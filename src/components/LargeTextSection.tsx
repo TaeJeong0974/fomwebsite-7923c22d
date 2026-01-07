@@ -9,7 +9,7 @@ const LargeTextSection = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.3 }}
+          viewport={{ amount: 0.3 }}
         >
           <p className="font-display text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-foreground leading-relaxed">
             Future of Marketing brings together the CMOs, founders, and some of the brightest minds shaping what comes next. Through conversations, events, and shared insights, we surface the ideas and tactics that help modern teams adapt and lead.
