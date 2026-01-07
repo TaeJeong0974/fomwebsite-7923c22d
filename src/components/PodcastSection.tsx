@@ -6,6 +6,7 @@ const episodes = [
     id: 1,
     slug: "the-future-of-remote-work",
     title: "Sara Varni",
+    company: "Datadog",
     description: "Exploring how distributed teams are reshaping the workplace.",
     date: "Jan 5, 2026",
     duration: "45 min",
@@ -15,6 +16,7 @@ const episodes = [
     id: 2,
     slug: "building-creative-communities",
     title: "Lindsey Irvine",
+    company: "Square",
     description: "How to foster meaningful connections in digital spaces.",
     date: "Dec 29, 2025",
     duration: "38 min",
@@ -24,6 +26,7 @@ const episodes = [
     id: 3,
     slug: "sustainable-tech-practices",
     title: "Ceci Stallsmith",
+    company: "Loveable",
     description: "Balancing innovation with environmental responsibility.",
     date: "Dec 22, 2025",
     duration: "52 min",
@@ -33,6 +36,7 @@ const episodes = [
     id: 4,
     slug: "the-art-of-storytelling",
     title: "Dave Steer",
+    company: "Webflow",
     description: "Crafting narratives that resonate with your audience.",
     date: "Dec 15, 2025",
     duration: "41 min",
@@ -42,6 +46,7 @@ const episodes = [
     id: 5,
     slug: "mindful-leadership",
     title: "Sheila Vashee",
+    company: "Figma",
     description: "Leading with intention in fast-paced environments.",
     date: "Coming Soon",
     duration: "TBD",
@@ -51,6 +56,7 @@ const episodes = [
     id: 6,
     slug: "design-systems-at-scale",
     title: "Lena Waters",
+    company: "Notion",
     description: "Creating consistent experiences across products.",
     date: "Coming Soon",
     duration: "TBD",
@@ -60,6 +66,7 @@ const episodes = [
     id: 7,
     slug: "building-in-public",
     title: "Katrina Wong",
+    company: "New Relic",
     description: "The power of transparency in growing your product and audience.",
     date: "Coming Soon",
     duration: "TBD",
@@ -69,6 +76,7 @@ const episodes = [
     id: 8,
     slug: "the-creator-economy",
     title: "Coming Soon",
+    company: "",
     description: "How individuals are building businesses around their passions.",
     date: "Coming Soon",
     duration: "TBD",
@@ -133,9 +141,12 @@ const PodcastSection = () => {
                   <span>•</span>
                   <span>{episode.duration}</span>
                 </div>
-                <h3 className="font-display text-lg font-semibold text-foreground mb-2">
+                <h3 className="font-display text-lg font-semibold text-foreground mb-1">
                   {episode.title}
                 </h3>
+                {episode.company && (
+                  <p className="text-sm text-muted-foreground mb-2">{episode.company}</p>
+                )}
                 <p className="text-muted-foreground text-sm">
                   {episode.description}
                 </p>
