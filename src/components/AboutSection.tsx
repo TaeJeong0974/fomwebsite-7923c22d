@@ -31,7 +31,7 @@ const AboutSection = () => {
       </div>
 
       <p className="text-2xl sm:text-3xl lg:text-4xl font-display text-foreground leading-snug max-w-4xl mb-12">
-        We're a team of storytellers, creators, and curious minds dedicated to bringing you conversations that matter.
+        Future of Marketing brings together the CMOs, founders, and some of the brightest minds shaping what comes next. Through conversations, events, and shared insights, we surface the ideas and tactics that help modern teams adapt and lead.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
