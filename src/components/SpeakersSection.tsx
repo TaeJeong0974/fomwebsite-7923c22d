@@ -2,32 +2,37 @@ const speakers = [
   {
     id: 1,
     name: "Sarah Chen",
-    role: "Tech Futurist",
-    image: null,
+    title: "Chief Technology Officer",
+    company: "FutureTech Labs",
+    bio: "Pioneer in AI ethics and sustainable technology solutions for the next generation.",
   },
   {
     id: 2,
     name: "Marcus Johnson",
-    role: "Creative Director",
-    image: null,
+    title: "Creative Director",
+    company: "Studio Collective",
+    bio: "Award-winning designer reshaping how brands connect with modern audiences.",
   },
   {
     id: 3,
     name: "Elena Rodriguez",
-    role: "Sustainability Expert",
-    image: null,
+    title: "Head of Sustainability",
+    company: "GreenPath Global",
+    bio: "Leading the charge on corporate environmental responsibility worldwide.",
   },
   {
     id: 4,
     name: "David Park",
-    role: "Founder & CEO",
-    image: null,
+    title: "Founder & CEO",
+    company: "Innovate Ventures",
+    bio: "Serial entrepreneur with three successful exits in the tech space.",
   },
   {
     id: 5,
     name: "Amara Williams",
-    role: "Author & Speaker",
-    image: null,
+    title: "Bestselling Author",
+    company: "Independent",
+    bio: "Her books on mindful leadership have sold over 2 million copies globally.",
   },
 ];
 
@@ -57,8 +62,14 @@ const SpeakersSection = () => {
             <h3 className="font-display text-lg font-semibold text-foreground">
               {speaker.name}
             </h3>
-            <p className="text-muted-foreground text-sm">
-              {speaker.role}
+            <p className="text-sm text-foreground">
+              {speaker.title}
+            </p>
+            <p className="text-sm text-muted-foreground">
+              {speaker.company}
+            </p>
+            <p className="text-sm text-muted-foreground mt-2">
+              {speaker.bio}
             </p>
           </article>
         ))}
