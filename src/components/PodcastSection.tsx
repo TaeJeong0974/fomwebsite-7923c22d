@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Headphones, Video } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const episodes = [
   {
@@ -8,7 +9,6 @@ const episodes = [
     title: "Sara Varni",
     company: "Datadog",
     description: "Exploring how distributed teams are reshaping the workplace.",
-    date: "Jan 5, 2026",
     duration: "45 min",
     comingSoon: false,
   },
@@ -18,7 +18,6 @@ const episodes = [
     title: "Lindsey Irvine",
     company: "Square",
     description: "How to foster meaningful connections in digital spaces.",
-    date: "Dec 29, 2025",
     duration: "38 min",
     comingSoon: false,
   },
@@ -28,7 +27,6 @@ const episodes = [
     title: "Ceci Stallsmith",
     company: "Loveable",
     description: "Balancing innovation with environmental responsibility.",
-    date: "Dec 22, 2025",
     duration: "52 min",
     comingSoon: false,
   },
@@ -38,7 +36,6 @@ const episodes = [
     title: "Dave Steer",
     company: "Webflow",
     description: "Crafting narratives that resonate with your audience.",
-    date: "Dec 15, 2025",
     duration: "41 min",
     comingSoon: false,
   },
@@ -48,7 +45,6 @@ const episodes = [
     title: "Sheila Vashee",
     company: "Figma",
     description: "Leading with intention in fast-paced environments.",
-    date: "Coming Soon",
     duration: "TBD",
     comingSoon: true,
   },
@@ -58,7 +54,6 @@ const episodes = [
     title: "Lena Waters",
     company: "Notion",
     description: "Creating consistent experiences across products.",
-    date: "Coming Soon",
     duration: "TBD",
     comingSoon: true,
   },
@@ -68,17 +63,6 @@ const episodes = [
     title: "Katrina Wong",
     company: "New Relic",
     description: "The power of transparency in growing your product and audience.",
-    date: "Coming Soon",
-    duration: "TBD",
-    comingSoon: true,
-  },
-  {
-    id: 8,
-    slug: "the-creator-economy",
-    title: "Coming Soon",
-    company: "",
-    description: "How individuals are building businesses around their passions.",
-    date: "Coming Soon",
     duration: "TBD",
     comingSoon: true,
   },
@@ -164,6 +148,19 @@ const PodcastSection = () => {
             </CardWrapper>
           );
         })}
+
+        {/* Subscribe Card */}
+        <div className="border border-dashed border-border rounded-lg overflow-hidden bg-muted/30 flex flex-col items-center justify-center p-8 text-center min-h-[320px]">
+          <h3 className="font-display text-2xl font-bold text-foreground mb-4">
+            More Coming Soon
+          </h3>
+          <p className="text-muted-foreground mb-6">
+            Be the first to know when new episodes drop.
+          </p>
+          <Button variant="default" size="lg">
+            Subscribe
+          </Button>
+        </div>
       </div>
     </section>
   );
