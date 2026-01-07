@@ -1,18 +1,23 @@
+import { Linkedin } from "lucide-react";
+
 const team = [
   {
     name: "Sarah Chen",
-    role: "Host & Creator",
-    bio: "Award-winning journalist with 15 years of experience in tech reporting. Sarah founded the podcast to explore the human stories behind innovation.",
+    title: "Host & Creator",
+    company: "TechVoice Media",
+    linkedin: "https://linkedin.com/in/sarahchen",
   },
   {
     name: "Marcus Williams",
-    role: "Co-Host & Producer",
-    bio: "Former radio producer turned podcaster. Marcus brings his signature storytelling style and keen ear for compelling narratives to every episode.",
+    title: "Co-Host & Producer",
+    company: "Podcast Studios Inc.",
+    linkedin: "https://linkedin.com/in/marcuswilliams",
   },
   {
     name: "Elena Rodriguez",
-    role: "Executive Producer",
-    bio: "Media veteran who has shaped the voices of countless creators. Elena ensures every episode meets the highest standards of quality and authenticity.",
+    title: "Executive Producer",
+    company: "MediaWorks Global",
+    linkedin: "https://linkedin.com/in/elenarodriguez",
   },
 ];
 
@@ -39,11 +44,18 @@ const AboutSection = () => {
               <h3 className="font-display text-xl font-bold text-foreground">
                 {member.name}
               </h3>
-              <p className="text-sm text-primary font-medium">{member.role}</p>
+              <p className="text-sm text-primary font-medium">{member.title}</p>
+              <p className="text-sm text-muted-foreground">{member.company}</p>
             </div>
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              {member.bio}
-            </p>
+            <a
+              href={member.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
+            >
+              <Linkedin size={16} />
+              <span>LinkedIn</span>
+            </a>
           </div>
         ))}
       </div>
