@@ -67,10 +67,11 @@ const SpeakersSection = () => {
           </p>
         </div>
 
-        <motion.div 
-          style={{ x }}
-          className="flex gap-6 pl-4 sm:pl-6 lg:pl-8"
-        >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            style={{ x }}
+            className="flex gap-6"
+          >
           {speakers.map((speaker) => (
             <article
               key={speaker.id}
@@ -94,7 +95,8 @@ const SpeakersSection = () => {
               </p>
             </article>
           ))}
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
