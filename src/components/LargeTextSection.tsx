@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const LargeTextSection = () => {
   return (
-    <section className="h-[calc(100vh-4rem)] flex items-center bg-muted">
+    <section className="h-[70vh] flex items-center bg-muted">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           className="max-w-4xl"
