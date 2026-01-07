@@ -4,6 +4,7 @@ import LargeTextSection from "@/components/LargeTextSection";
 import SpeakersSection from "@/components/SpeakersSection";
 import PodcastSection from "@/components/PodcastSection";
 import EventsSection from "@/components/EventsSection";
+import AboutSection from "@/components/AboutSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 
@@ -19,6 +20,7 @@ const Index = () => {
         <SpeakersSection />
         <PodcastSection />
         <EventsSection />
+        <AboutSection />
         <CTASection />
       </main>
       
