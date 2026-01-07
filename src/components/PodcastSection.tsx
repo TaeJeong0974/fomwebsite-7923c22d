@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Headphones, Video } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 const episodes = [
   {
@@ -88,19 +89,22 @@ const PodcastSection = () => {
         </p>
       </div>
 
-      {/* Episodes Grid: 1 col mobile, 2 col tablet, 3 col desktop */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {episodes.map((episode) => {
+        {episodes.map((episode, index) => {
           const CardWrapper = episode.comingSoon ? 'div' : Link;
           const cardProps = episode.comingSoon 
             ? { className: "border border-dashed border-border rounded-lg overflow-hidden block bg-muted/30" }
             : { to: `/episode/${episode.slug}`, className: "border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors block" };
           
           return (
-            <CardWrapper
+            <motion.div
               key={episode.id}
-              {...cardProps as any}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
             >
+              <CardWrapper {...cardProps as any}>
               {/* Video placeholder */}
               <div className={`aspect-video flex items-center justify-center relative group/video ${episode.comingSoon ? 'bg-muted/50' : 'bg-muted'}`}>
                 {episode.comingSoon ? (
@@ -145,12 +149,18 @@ const PodcastSection = () => {
                   </div>
                 )}
               </div>
-            </CardWrapper>
+              </CardWrapper>
+            </motion.div>
           );
         })}
 
-        {/* Subscribe Card */}
-        <div className="border border-dashed border-border rounded-lg overflow-hidden bg-muted/30 flex flex-col items-center justify-center p-8 text-center min-h-[320px]">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-50px" }}
+          transition={{ duration: 0.4, delay: episodes.length * 0.1 }}
+          className="border border-dashed border-border rounded-lg overflow-hidden bg-muted/30 flex flex-col items-center justify-center p-8 text-center min-h-[320px]"
+        >
           <h3 className="font-display text-2xl font-bold text-foreground mb-4">
             More Coming Soon
           </h3>
@@ -160,7 +170,7 @@ const PodcastSection = () => {
           <Button variant="default" size="lg">
             Subscribe
           </Button>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
