@@ -37,6 +37,13 @@ const speakers = [
     company: "Independent",
     bio: "Her books on mindful leadership have sold over 2 million copies globally.",
   },
+  {
+    id: 6,
+    name: "James Mitchell",
+    title: "VP of Product",
+    company: "Nexus Technologies",
+    bio: "Shaping the future of human-centered design in enterprise software.",
+  },
 ];
 
 const SpeakersSection = () => {
