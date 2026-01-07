@@ -9,6 +9,7 @@ const episodes = [
     description: "Exploring how distributed teams are reshaping the workplace.",
     date: "Jan 5, 2026",
     duration: "45 min",
+    comingSoon: false,
   },
   {
     id: 2,
@@ -17,6 +18,7 @@ const episodes = [
     description: "How to foster meaningful connections in digital spaces.",
     date: "Dec 29, 2025",
     duration: "38 min",
+    comingSoon: false,
   },
   {
     id: 3,
@@ -25,6 +27,7 @@ const episodes = [
     description: "Balancing innovation with environmental responsibility.",
     date: "Dec 22, 2025",
     duration: "52 min",
+    comingSoon: false,
   },
   {
     id: 4,
@@ -33,38 +36,43 @@ const episodes = [
     description: "Crafting narratives that resonate with your audience.",
     date: "Dec 15, 2025",
     duration: "41 min",
+    comingSoon: false,
   },
   {
     id: 5,
     slug: "mindful-leadership",
     title: "Mindful Leadership",
     description: "Leading with intention in fast-paced environments.",
-    date: "Dec 8, 2025",
-    duration: "47 min",
+    date: "Coming Soon",
+    duration: "TBD",
+    comingSoon: true,
   },
   {
     id: 6,
     slug: "design-systems-at-scale",
     title: "Design Systems at Scale",
     description: "Creating consistent experiences across products.",
-    date: "Dec 1, 2025",
-    duration: "55 min",
+    date: "Coming Soon",
+    duration: "TBD",
+    comingSoon: true,
   },
   {
     id: 7,
     slug: "building-in-public",
     title: "Building in Public",
     description: "The power of transparency in growing your product and audience.",
-    date: "Nov 24, 2025",
-    duration: "43 min",
+    date: "Coming Soon",
+    duration: "TBD",
+    comingSoon: true,
   },
   {
     id: 8,
     slug: "the-creator-economy",
     title: "The Creator Economy",
     description: "How individuals are building businesses around their passions.",
-    date: "Nov 17, 2025",
-    duration: "49 min",
+    date: "Coming Soon",
+    duration: "TBD",
+    comingSoon: true,
   },
 ];
 
@@ -90,42 +98,54 @@ const PodcastSection = () => {
 
       {/* Episodes Grid: 1 col mobile, 2 col tablet, 3 col desktop */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {episodes.map((episode) => (
-          <Link
-            to={`/episode/${episode.slug}`}
-            key={episode.id}
-            className="border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors block"
-          >
-            {/* Video placeholder */}
-            <div className="aspect-video bg-muted flex items-center justify-center">
-              <span className="text-muted-foreground text-sm">Video</span>
-            </div>
-            
-            <div className="p-6">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
-                <time>{episode.date}</time>
-                <span>•</span>
-                <span>{episode.duration}</span>
+        {episodes.map((episode) => {
+          const CardWrapper = episode.comingSoon ? 'div' : Link;
+          const cardProps = episode.comingSoon 
+            ? { className: "border border-border rounded-lg overflow-hidden block opacity-60" }
+            : { to: `/episode/${episode.slug}`, className: "border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors block" };
+          
+          return (
+            <CardWrapper
+              key={episode.id}
+              {...cardProps as any}
+            >
+              {/* Video placeholder */}
+              <div className="aspect-video bg-muted flex items-center justify-center relative">
+                {episode.comingSoon ? (
+                  <span className="text-foreground font-medium text-sm bg-background px-3 py-1 rounded-full">Coming Soon</span>
+                ) : (
+                  <span className="text-muted-foreground text-sm">Video</span>
+                )}
               </div>
-              <h3 className="font-display text-lg font-semibold text-foreground mb-2">
-                {episode.title}
-              </h3>
-              <p className="text-muted-foreground text-sm">
-                {episode.description}
-              </p>
-              <div className="mt-4 flex items-center gap-4">
-                <span className="text-primary font-medium text-sm inline-flex items-center gap-1.5">
-                  <Video size={14} />
-                  Watch
-                </span>
-                <span className="text-primary font-medium text-sm inline-flex items-center gap-1.5">
-                  <Headphones size={14} />
-                  Listen
-                </span>
+              
+              <div className="p-6">
+                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                  <time>{episode.date}</time>
+                  <span>•</span>
+                  <span>{episode.duration}</span>
+                </div>
+                <h3 className="font-display text-lg font-semibold text-foreground mb-2">
+                  {episode.title}
+                </h3>
+                <p className="text-muted-foreground text-sm">
+                  {episode.description}
+                </p>
+                {!episode.comingSoon && (
+                  <div className="mt-4 flex items-center gap-4">
+                    <span className="text-primary font-medium text-sm inline-flex items-center gap-1.5">
+                      <Video size={14} />
+                      Watch
+                    </span>
+                    <span className="text-primary font-medium text-sm inline-flex items-center gap-1.5">
+                      <Headphones size={14} />
+                      Listen
+                    </span>
+                  </div>
+                )}
               </div>
-            </div>
-          </Link>
-        ))}
+            </CardWrapper>
+          );
+        })}
       </div>
     </section>
   );
