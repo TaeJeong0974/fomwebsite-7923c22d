@@ -44,11 +44,11 @@ const SpeakersSection = () => {
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"],
+    offset: ["start 0.3", "end start"],
   });
 
-  // Transform vertical scroll to horizontal movement
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
+  // Transform vertical scroll to horizontal movement - starts at 0 (visible) then scrolls left
+  const x = useTransform(scrollYProgress, [0, 0.3, 1], ["0%", "0%", "-60%"]);
 
   return (
     <section 
