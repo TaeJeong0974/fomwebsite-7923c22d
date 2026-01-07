@@ -109,7 +109,7 @@ const PodcastSection = () => {
         {episodes.map((episode) => {
           const CardWrapper = episode.comingSoon ? 'div' : Link;
           const cardProps = episode.comingSoon 
-            ? { className: "border border-border rounded-lg overflow-hidden block opacity-60" }
+            ? { className: "border border-dashed border-border rounded-lg overflow-hidden block bg-muted/30" }
             : { to: `/episode/${episode.slug}`, className: "border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors block" };
           
           return (
@@ -118,9 +118,9 @@ const PodcastSection = () => {
               {...cardProps as any}
             >
               {/* Video placeholder */}
-              <div className="aspect-video bg-muted flex items-center justify-center relative group/video">
+              <div className={`aspect-video flex items-center justify-center relative group/video ${episode.comingSoon ? 'bg-muted/50' : 'bg-muted'}`}>
                 {episode.comingSoon ? (
-                  <span className="text-foreground font-medium text-sm bg-background px-3 py-1 rounded-full">Coming Soon</span>
+                  <span className="text-muted-foreground font-medium text-sm border border-border px-3 py-1 rounded-full">Coming Soon</span>
                 ) : (
                   <>
                     <span className="text-muted-foreground text-sm">Video</span>
