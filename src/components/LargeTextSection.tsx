@@ -1,6 +1,6 @@
 const LargeTextSection = () => {
   return (
-    <section className="h-screen flex items-center bg-muted">
+    <section className="h-[calc(100vh-4rem)] flex items-center bg-muted">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl">
           <p className="font-display text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-foreground leading-relaxed">
