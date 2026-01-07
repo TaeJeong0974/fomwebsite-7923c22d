@@ -58,47 +58,28 @@ const SpeakersSection = () => {
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-65%"]);
 
   return (
-    <section 
-      ref={containerRef}
-      id="speakers" 
-      className="relative h-[200vh]"
-    >
-      {/* Sticky container that pins while scrolling */}
-      <div className="sticky top-0 h-screen flex flex-col pt-20 lg:pt-28 pb-20 lg:pb-28 overflow-hidden">
+    <section ref={containerRef} id="speakers" className="relative h-[200vh]">
+      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8">
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground">
             Featured Speakers
           </h2>
-          <p className="mt-2 text-muted-foreground">
-            Voices that inspire and challenge
-          </p>
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
-            style={{ x }}
-            className="flex gap-6"
-          >
-          {speakers.map((speaker) => (
-            <article
-              key={speaker.id}
-              className="flex-shrink-0 w-64 sm:w-72 lg:w-80"
-            >
-              {/* Image placeholder */}
-              <div className="aspect-square bg-muted rounded-lg mb-4 flex items-center justify-center">
-                <span className="text-muted-foreground text-sm">Photo</span>
-              </div>
-              <h3 className="font-display text-lg font-semibold text-foreground">
-                {speaker.name}
-              </h3>
-              <p className="text-sm text-foreground">
-                {speaker.title}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                {speaker.company}
-              </p>
-            </article>
-          ))}
+          <motion.div style={{ x }} className="flex gap-6">
+            {speakers.map((speaker) => (
+              <article key={speaker.id} className="flex-shrink-0 w-64 sm:w-72 lg:w-80">
+                <div className="aspect-square bg-muted rounded-lg mb-4 flex items-center justify-center">
+                  <span className="text-muted-foreground text-sm">Photo</span>
+                </div>
+                <h3 className="font-display text-lg font-semibold text-foreground">
+                  {speaker.name}
+                </h3>
+                <p className="text-sm text-foreground">{speaker.title}</p>
+                <p className="text-sm text-muted-foreground">{speaker.company}</p>
+              </article>
+            ))}
           </motion.div>
         </div>
       </div>
