@@ -50,6 +50,22 @@ const episodes = [
     date: "Dec 1, 2025",
     duration: "55 min",
   },
+  {
+    id: 7,
+    slug: "building-in-public",
+    title: "Building in Public",
+    description: "The power of transparency in growing your product and audience.",
+    date: "Nov 24, 2025",
+    duration: "43 min",
+  },
+  {
+    id: 8,
+    slug: "the-creator-economy",
+    title: "The Creator Economy",
+    description: "How individuals are building businesses around their passions.",
+    date: "Nov 17, 2025",
+    duration: "49 min",
+  },
 ];
 
 const PodcastSection = () => {
