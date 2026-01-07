@@ -5,7 +5,7 @@ const LargeTextSection = () => {
     <section className="h-[70vh] flex items-center bg-muted">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="max-w-4xl"
+          className="max-w-4xl lg:max-w-5xl xl:max-w-6xl"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
