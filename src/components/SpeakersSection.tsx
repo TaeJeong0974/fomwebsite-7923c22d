@@ -4,45 +4,45 @@ import { motion, useScroll, useTransform } from "framer-motion";
 const speakers = [
   {
     id: 1,
-    name: "Sarah Chen",
-    title: "Chief Technology Officer",
-    company: "FutureTech Labs",
-    bio: "Pioneer in AI ethics and sustainable technology solutions for the next generation.",
+    name: "Sara Varni",
+    title: "Chief Marketing Officer",
+    company: "Datadog",
   },
   {
     id: 2,
-    name: "Marcus Johnson",
-    title: "Creative Director",
-    company: "Studio Collective",
-    bio: "Award-winning designer reshaping how brands connect with modern audiences.",
+    name: "Lindsey Irvine",
+    title: "Chief Marketing Officer",
+    company: "Square",
   },
   {
     id: 3,
-    name: "Elena Rodriguez",
-    title: "Head of Sustainability",
-    company: "GreenPath Global",
-    bio: "Leading the charge on corporate environmental responsibility worldwide.",
+    name: "Ceci Stallsmith",
+    title: "Chief Marketing Officer",
+    company: "Loveable",
   },
   {
     id: 4,
-    name: "David Park",
-    title: "Founder & CEO",
-    company: "Innovate Ventures",
-    bio: "Serial entrepreneur with three successful exits in the tech space.",
+    name: "Dave Steer",
+    title: "Chief Marketing Officer",
+    company: "Webflow",
   },
   {
     id: 5,
-    name: "Amara Williams",
-    title: "Bestselling Author",
-    company: "Independent",
-    bio: "Her books on mindful leadership have sold over 2 million copies globally.",
+    name: "Sheila Vashee",
+    title: "Chief Marketing Officer",
+    company: "Figma",
   },
   {
     id: 6,
-    name: "James Mitchell",
-    title: "VP of Product",
-    company: "Nexus Technologies",
-    bio: "Shaping the future of human-centered design in enterprise software.",
+    name: "Lena Waters",
+    title: "Chief Marketing Officer",
+    company: "Notion",
+  },
+  {
+    id: 7,
+    name: "Katrina Wong",
+    title: "Chief Marketing Officer",
+    company: "New Relic",
   },
 ];
 
@@ -96,9 +96,6 @@ const SpeakersSection = () => {
               </p>
               <p className="text-sm text-muted-foreground">
                 {speaker.company}
-              </p>
-              <p className="text-sm text-muted-foreground mt-2">
-                {speaker.bio}
               </p>
             </article>
           ))}
