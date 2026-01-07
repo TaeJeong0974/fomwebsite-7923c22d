@@ -56,7 +56,7 @@ const SpeakersSection = () => {
             className="flex-shrink-0 w-64 sm:w-72 lg:w-80 snap-start"
           >
             {/* Image placeholder */}
-            <div className="aspect-[3/4] bg-muted rounded-lg mb-4 flex items-center justify-center">
+            <div className="aspect-square bg-muted rounded-lg mb-4 flex items-center justify-center">
               <span className="text-muted-foreground text-sm">Photo</span>
             </div>
             <h3 className="font-display text-lg font-semibold text-foreground">
