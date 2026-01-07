@@ -44,55 +44,58 @@ const SpeakersSection = () => {
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 0.3", "end start"],
+    offset: ["start start", "end end"],
   });
 
-  // Transform vertical scroll to horizontal movement - starts at 0 (visible) then scrolls left
-  const x = useTransform(scrollYProgress, [0, 0.3, 1], ["0%", "0%", "-60%"]);
+  // Transform vertical scroll to horizontal movement
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-65%"]);
 
   return (
     <section 
       ref={containerRef}
       id="speakers" 
-      className="overflow-hidden"
+      className="relative h-[200vh]"
     >
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-        <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground">
-          Featured Speakers
-        </h2>
-        <p className="mt-2 text-muted-foreground">
-          Voices that inspire and challenge
-        </p>
-      </div>
+      {/* Sticky container that pins while scrolling */}
+      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground">
+            Featured Speakers
+          </h2>
+          <p className="mt-2 text-muted-foreground">
+            Voices that inspire and challenge
+          </p>
+        </div>
 
-      <motion.div 
-        style={{ x }}
-        className="flex gap-6 pl-4 sm:pl-6 lg:pl-8"
-      >
-        {speakers.map((speaker) => (
-          <article
-            key={speaker.id}
-            className="flex-shrink-0 w-64 sm:w-72 lg:w-80"
-          >
-            {/* Image placeholder */}
-            <div className="aspect-square bg-muted rounded-lg mb-4 flex items-center justify-center">
-              <span className="text-muted-foreground text-sm">Photo</span>
-            </div>
-            <h3 className="font-display text-lg font-semibold text-foreground">
-              {speaker.name}
-            </h3>
-            <p className="text-sm text-foreground">
-              {speaker.title}
-            </p>
-            <p className="text-sm text-muted-foreground">
-              {speaker.company}
-            </p>
-            <p className="text-sm text-muted-foreground mt-2">
-              {speaker.bio}
-            </p>
-          </article>
-        ))}
-      </motion.div>
+        <motion.div 
+          style={{ x }}
+          className="flex gap-6 pl-4 sm:pl-6 lg:pl-8"
+        >
+          {speakers.map((speaker) => (
+            <article
+              key={speaker.id}
+              className="flex-shrink-0 w-64 sm:w-72 lg:w-80"
+            >
+              {/* Image placeholder */}
+              <div className="aspect-square bg-muted rounded-lg mb-4 flex items-center justify-center">
+                <span className="text-muted-foreground text-sm">Photo</span>
+              </div>
+              <h3 className="font-display text-lg font-semibold text-foreground">
+                {speaker.name}
+              </h3>
+              <p className="text-sm text-foreground">
+                {speaker.title}
+              </p>
+              <p className="text-sm text-muted-foreground">
+                {speaker.company}
+              </p>
+              <p className="text-sm text-muted-foreground mt-2">
+                {speaker.bio}
+              </p>
+            </article>
+          ))}
+        </motion.div>
+      </div>
     </section>
   );
 };
