@@ -1,3 +1,6 @@
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+
 const speakers = [
   {
     id: 1,
@@ -37,9 +40,23 @@ const speakers = [
 ];
 
 const SpeakersSection = () => {
+  const containerRef = useRef<HTMLElement>(null);
+  
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"],
+  });
+
+  // Transform vertical scroll to horizontal movement
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
+
   return (
-    <section id="speakers" className="container mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="mb-8">
+    <section 
+      ref={containerRef}
+      id="speakers" 
+      className="overflow-hidden"
+    >
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8">
         <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground">
           Featured Speakers
         </h2>
@@ -48,12 +65,14 @@ const SpeakersSection = () => {
         </p>
       </div>
 
-      {/* Horizontal scroll on mobile, full width scroll on all */}
-      <div className="flex gap-6 overflow-x-auto pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x snap-mandatory scrollbar-hide">
+      <motion.div 
+        style={{ x }}
+        className="flex gap-6 pl-4 sm:pl-6 lg:pl-8"
+      >
         {speakers.map((speaker) => (
           <article
             key={speaker.id}
-            className="flex-shrink-0 w-64 sm:w-72 lg:w-80 snap-start"
+            className="flex-shrink-0 w-64 sm:w-72 lg:w-80"
           >
             {/* Image placeholder */}
             <div className="aspect-square bg-muted rounded-lg mb-4 flex items-center justify-center">
@@ -73,7 +92,7 @@ const SpeakersSection = () => {
             </p>
           </article>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 };
