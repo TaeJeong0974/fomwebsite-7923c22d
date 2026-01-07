@@ -43,6 +43,8 @@ const episodes = [
   },
 ];
 
+import { Headphones, Video } from "lucide-react";
+
 const PodcastSection = () => {
   return (
     <section id="podcast" className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,8 +52,16 @@ const PodcastSection = () => {
         <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground">
           Latest Episodes
         </h2>
-        <p className="mt-2 text-muted-foreground">
-          Catch up on our most recent conversations
+        <p className="mt-2 text-muted-foreground flex items-center gap-3">
+          <span className="inline-flex items-center gap-1.5">
+            <Video size={16} />
+            Watch
+          </span>
+          <span>or</span>
+          <span className="inline-flex items-center gap-1.5">
+            <Headphones size={16} />
+            Listen
+          </span>
         </p>
       </div>
 
@@ -79,9 +89,16 @@ const PodcastSection = () => {
               <p className="text-muted-foreground text-sm">
                 {episode.description}
               </p>
-              <button className="mt-4 text-primary font-medium text-sm hover:underline">
-                Listen →
-              </button>
+              <div className="mt-4 flex items-center gap-4">
+                <button className="text-primary font-medium text-sm hover:underline inline-flex items-center gap-1.5">
+                  <Video size={14} />
+                  Watch
+                </button>
+                <button className="text-primary font-medium text-sm hover:underline inline-flex items-center gap-1.5">
+                  <Headphones size={14} />
+                  Listen
+                </button>
+              </div>
             </div>
           </article>
         ))}
