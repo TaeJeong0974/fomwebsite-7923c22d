@@ -61,10 +61,10 @@ const SpeakersSection = () => {
     <section 
       ref={containerRef}
       id="speakers" 
-      className="relative h-[200vh]"
+      className="relative h-[150vh]"
     >
       {/* Sticky container that pins while scrolling */}
-      <div className="sticky top-0 h-screen flex flex-col pt-20 lg:pt-28 pb-20 lg:pb-28 overflow-hidden">
+      <div className="sticky top-0 h-[80vh] flex flex-col pt-20 lg:pt-28 pb-12 overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8">
           <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground">
             Featured Speakers
