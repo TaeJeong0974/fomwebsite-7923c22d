@@ -1,65 +1,46 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Ticket } from "lucide-react";
 
 const CTASection = () => {
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Email submitted:", email);
+    setEmail("");
+  };
+
   return (
-    <section className="py-24 bg-card relative overflow-hidden">
-      {/* Decorative elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-3xl" />
-      </div>
+    <section className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="bg-muted rounded-lg p-8 sm:p-12 lg:p-16 text-center">
+        <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground">
+          Never Miss an Episode or Event
+        </h2>
+        <p className="mt-4 text-muted-foreground max-w-xl mx-auto">
+          Subscribe to our newsletter for weekly updates, exclusive content, 
+          and early access to event tickets.
+        </p>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-          className="max-w-4xl mx-auto text-center"
+        <form
+          onSubmit={handleSubmit}
+          className="mt-8 flex flex-col sm:flex-row gap-4 max-w-md mx-auto"
         >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="inline-flex items-center gap-2 px-4 py-2 mb-6 bg-primary/10 border border-primary/30 rounded-full"
-          >
-            <Ticket className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-primary">Early Bird Pricing Ends Soon</span>
-          </motion.div>
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
+            required
+            className="flex-1 px-4 py-3 rounded-md border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+          />
+          <Button type="submit" className="px-6">
+            Subscribe
+          </Button>
+        </form>
 
-          <h2 className="font-display text-4xl md:text-6xl font-bold mb-6">
-            Ready to Join the{" "}
-            <span className="text-gradient">Movement</span>?
-          </h2>
-
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10">
-            Secure your spot at Summit 2025. Connect with innovators, 
-            learn from the best, and be part of something extraordinary.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button variant="hero" size="xl">
-              Get Tickets Now
-              <ArrowRight className="w-5 h-5" />
-            </Button>
-            <p className="text-muted-foreground text-sm">
-              Starting at <span className="text-foreground font-semibold">$299</span>
-            </p>
-          </div>
-
-          <div className="mt-12 flex items-center justify-center gap-8 text-sm text-muted-foreground">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500" />
-              <span>500+ tickets remaining</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-primary" />
-              <span>30-day refund policy</span>
-            </div>
-          </div>
-        </motion.div>
+        <p className="mt-4 text-xs text-muted-foreground">
+          No spam. Unsubscribe anytime.
+        </p>
       </div>
     </section>
   );
