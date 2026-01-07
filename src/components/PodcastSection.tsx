@@ -110,11 +110,20 @@ const PodcastSection = () => {
               {...cardProps as any}
             >
               {/* Video placeholder */}
-              <div className="aspect-video bg-muted flex items-center justify-center relative">
+              <div className="aspect-video bg-muted flex items-center justify-center relative group/video">
                 {episode.comingSoon ? (
                   <span className="text-foreground font-medium text-sm bg-background px-3 py-1 rounded-full">Coming Soon</span>
                 ) : (
-                  <span className="text-muted-foreground text-sm">Video</span>
+                  <>
+                    <span className="text-muted-foreground text-sm">Video</span>
+                    <div className="absolute inset-0 flex items-center justify-center bg-background/60 opacity-0 group-hover/video:opacity-100 transition-opacity duration-300">
+                      <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center">
+                        <svg className="w-6 h-6 text-primary-foreground ml-1" fill="currentColor" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </>
                 )}
               </div>
               
