@@ -60,22 +60,29 @@ const PodcastSection = () => {
         {episodes.map((episode) => (
           <article
             key={episode.id}
-            className="border border-border rounded-lg p-6 hover:border-primary/50 transition-colors"
+            className="border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors"
           >
-            <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
-              <time>{episode.date}</time>
-              <span>•</span>
-              <span>{episode.duration}</span>
+            {/* Video placeholder */}
+            <div className="aspect-video bg-muted flex items-center justify-center">
+              <span className="text-muted-foreground text-sm">Video</span>
             </div>
-            <h3 className="font-display text-lg font-semibold text-foreground mb-2">
-              {episode.title}
-            </h3>
-            <p className="text-muted-foreground text-sm">
-              {episode.description}
-            </p>
-            <button className="mt-4 text-primary font-medium text-sm hover:underline">
-              Listen →
-            </button>
+            
+            <div className="p-6">
+              <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+                <time>{episode.date}</time>
+                <span>•</span>
+                <span>{episode.duration}</span>
+              </div>
+              <h3 className="font-display text-lg font-semibold text-foreground mb-2">
+                {episode.title}
+              </h3>
+              <p className="text-muted-foreground text-sm">
+                {episode.description}
+              </p>
+              <button className="mt-4 text-primary font-medium text-sm hover:underline">
+                Listen →
+              </button>
+            </div>
           </article>
         ))}
       </div>
