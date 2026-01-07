@@ -136,9 +136,7 @@ const PodcastSection = () => {
               </div>
               
               <div className="p-6">
-                <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
-                  <time>{episode.date}</time>
-                  <span>•</span>
+                <div className="flex items-center text-sm text-muted-foreground mb-3">
                   <span>{episode.duration}</span>
                 </div>
                 <h3 className="font-display text-lg font-semibold text-foreground mb-1">
