@@ -1,6 +1,10 @@
+import { Link } from "react-router-dom";
+import { Headphones, Video } from "lucide-react";
+
 const episodes = [
   {
     id: 1,
+    slug: "the-future-of-remote-work",
     title: "The Future of Remote Work",
     description: "Exploring how distributed teams are reshaping the workplace.",
     date: "Jan 5, 2026",
@@ -8,6 +12,7 @@ const episodes = [
   },
   {
     id: 2,
+    slug: "building-creative-communities",
     title: "Building Creative Communities",
     description: "How to foster meaningful connections in digital spaces.",
     date: "Dec 29, 2025",
@@ -15,6 +20,7 @@ const episodes = [
   },
   {
     id: 3,
+    slug: "sustainable-tech-practices",
     title: "Sustainable Tech Practices",
     description: "Balancing innovation with environmental responsibility.",
     date: "Dec 22, 2025",
@@ -22,6 +28,7 @@ const episodes = [
   },
   {
     id: 4,
+    slug: "the-art-of-storytelling",
     title: "The Art of Storytelling",
     description: "Crafting narratives that resonate with your audience.",
     date: "Dec 15, 2025",
@@ -29,6 +36,7 @@ const episodes = [
   },
   {
     id: 5,
+    slug: "mindful-leadership",
     title: "Mindful Leadership",
     description: "Leading with intention in fast-paced environments.",
     date: "Dec 8, 2025",
@@ -36,14 +44,13 @@ const episodes = [
   },
   {
     id: 6,
+    slug: "design-systems-at-scale",
     title: "Design Systems at Scale",
     description: "Creating consistent experiences across products.",
     date: "Dec 1, 2025",
     duration: "55 min",
   },
 ];
-
-import { Headphones, Video } from "lucide-react";
 
 const PodcastSection = () => {
   return (
@@ -68,9 +75,10 @@ const PodcastSection = () => {
       {/* Episodes Grid: 1 col mobile, 2 col tablet, 3 col desktop */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {episodes.map((episode) => (
-          <article
+          <Link
+            to={`/episode/${episode.slug}`}
             key={episode.id}
-            className="border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors"
+            className="border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors block"
           >
             {/* Video placeholder */}
             <div className="aspect-video bg-muted flex items-center justify-center">
@@ -90,17 +98,17 @@ const PodcastSection = () => {
                 {episode.description}
               </p>
               <div className="mt-4 flex items-center gap-4">
-                <button className="text-primary font-medium text-sm hover:underline inline-flex items-center gap-1.5">
+                <span className="text-primary font-medium text-sm inline-flex items-center gap-1.5">
                   <Video size={14} />
                   Watch
-                </button>
-                <button className="text-primary font-medium text-sm hover:underline inline-flex items-center gap-1.5">
+                </span>
+                <span className="text-primary font-medium text-sm inline-flex items-center gap-1.5">
                   <Headphones size={14} />
                   Listen
-                </button>
+                </span>
               </div>
             </div>
-          </article>
+          </Link>
         ))}
       </div>
     </section>
