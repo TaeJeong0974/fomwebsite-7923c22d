@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 const lines = [
-  "Future of Marketing brings together the CMOs, founders, and brightest minds shaping what comes next—through conversations, events, and shared insights that help modern teams adapt and lead.",
+  "Future of Marketing is a podcast and event series bringing together CMOs and growth leaders navigating AI in modern B2B marketing.",
 ];
 
 const containerVariants = {
