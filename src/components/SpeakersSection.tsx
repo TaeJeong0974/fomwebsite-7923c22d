@@ -81,7 +81,7 @@ const SpeakersSection = () => {
           </h2>
         </div>
 
-        <div className="pl-4 sm:pl-6 lg:pl-[max(1rem,calc((100vw-1280px)/2+1rem))]">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div ref={cardsRef} style={{ x }} className="flex gap-5">
             {speakers.map((speaker, index) => (
               <motion.article 
