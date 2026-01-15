@@ -69,10 +69,10 @@ const SpeakersSection = () => {
   });
 
   // Transform vertical scroll to horizontal movement - adjusted to show all cards
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-85%"]);
 
   return (
-    <section ref={containerRef} id="speakers" className="relative h-[250vh]">
+    <section ref={containerRef} id="speakers" className="relative h-[300vh]">
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-12">
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground tracking-tight">
