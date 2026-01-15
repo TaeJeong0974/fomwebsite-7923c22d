@@ -110,16 +110,16 @@ const PodcastSection = () => {
           >
             {episode.comingSoon ? (
               <div className={`${episode.bgColor} rounded-3xl overflow-hidden h-full`}>
-                <div className="aspect-[4/5] flex flex-col">
-                  {/* Image/Episode container */}
-                  <div className="flex-1 relative overflow-hidden">
+                <div className="flex flex-col h-full">
+                  {/* Image/Episode container - fixed aspect ratio */}
+                  <div className="aspect-[4/3] relative overflow-hidden">
                     <div className={`absolute inset-4 rounded-2xl ${episode.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center`}>
                       <Headphones className={`w-12 h-12 ${episode.textLight ? 'text-white/60' : 'text-foreground/40'}`} />
                     </div>
                   </div>
                   
                   {/* Content area */}
-                  <div className="p-6 pt-0">
+                  <div className="p-6 flex-1">
                     <div className="flex items-center gap-2 mb-3">
                       <span className={`text-xs font-medium ${episode.textLight ? 'text-white/60' : 'text-muted-foreground'}`}>
                         Coming Soon
@@ -147,9 +147,9 @@ const PodcastSection = () => {
                 to={`/episode/${episode.slug}`}
                 className={`${episode.bgColor} rounded-3xl overflow-hidden block group transition-transform duration-300 hover:scale-[1.02] h-full`}
               >
-                <div className="aspect-[4/5] flex flex-col">
-                  {/* Image/Episode container */}
-                  <div className="flex-1 relative overflow-hidden">
+                <div className="flex flex-col h-full">
+                  {/* Image/Episode container - fixed aspect ratio */}
+                  <div className="aspect-[4/3] relative overflow-hidden">
                     <div className={`absolute inset-4 rounded-2xl ${episode.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center transition-transform duration-300 group-hover:scale-105`}>
                       <Video className={`w-12 h-12 ${episode.textLight ? 'text-white/60' : 'text-foreground/40'}`} />
                     </div>
@@ -163,7 +163,7 @@ const PodcastSection = () => {
                   </div>
                   
                   {/* Content area */}
-                  <div className="p-6 pt-0">
+                  <div className="p-6 flex-1">
                     <div className="flex items-center gap-2 mb-3">
                       <span className={`text-xs font-medium ${episode.textLight ? 'text-white/60' : 'text-muted-foreground'}`}>
                         {episode.duration}
