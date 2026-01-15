@@ -113,7 +113,7 @@ const PodcastSection = () => {
                 <div className="flex flex-col h-full">
                   {/* Image/Episode container - fixed aspect ratio */}
                   <div className="aspect-[4/3] relative overflow-hidden">
-                    <div className={`absolute inset-4 rounded-2xl ${episode.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center`}>
+                    <div className={`absolute inset-4 ${episode.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center`}>
                       <Headphones className={`w-12 h-12 ${episode.textLight ? 'text-white/60' : 'text-foreground/40'}`} />
                     </div>
                   </div>
@@ -150,7 +150,7 @@ const PodcastSection = () => {
                 <div className="flex flex-col h-full">
                   {/* Image/Episode container - fixed aspect ratio */}
                   <div className="aspect-[4/3] relative overflow-hidden">
-                    <div className={`absolute inset-4 rounded-2xl ${episode.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center transition-transform duration-300 group-hover:scale-105`}>
+                    <div className={`absolute inset-4 ${episode.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center transition-transform duration-300 group-hover:scale-105`}>
                       <Video className={`w-12 h-12 ${episode.textLight ? 'text-white/60' : 'text-foreground/40'}`} />
                     </div>
                     
