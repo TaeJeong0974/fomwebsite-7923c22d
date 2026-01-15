@@ -62,14 +62,16 @@ const speakers = [
 
 const SpeakersSection = () => {
   const containerRef = useRef<HTMLElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
 
-  // Transform vertical scroll to horizontal movement - adjusted to show all cards
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-85%"]);
+  // Calculate the total width needed to scroll
+  // 7 cards × (384px + 20px gap) = ~2828px, minus viewport width
+  const x = useTransform(scrollYProgress, [0, 1], [0, -2400]);
 
   return (
     <section ref={containerRef} id="speakers" className="relative h-[300vh]">
@@ -81,7 +83,7 @@ const SpeakersSection = () => {
         </div>
 
         <div className="pl-4 sm:pl-6 lg:pl-[max(1rem,calc((100vw-1280px)/2+1rem))]">
-          <motion.div style={{ x }} className="flex gap-5">
+          <motion.div ref={cardsRef} style={{ x }} className="flex gap-5">
             {speakers.map((speaker, index) => (
               <motion.article 
                 key={speaker.id}
