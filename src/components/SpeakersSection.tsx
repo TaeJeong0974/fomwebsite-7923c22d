@@ -93,10 +93,10 @@ const SpeakersSection = () => {
                 className={`flex-shrink-0 w-72 sm:w-80 lg:w-96 ${speaker.bgColor} rounded-3xl overflow-hidden transition-transform duration-300 hover:scale-[1.02] cursor-pointer`}
               >
                 <div className="aspect-[3/4] flex flex-col">
-                  {/* Avatar area */}
-                  <div className="flex-1 flex items-center justify-center p-8">
-                    <div className={`w-28 h-28 rounded-full ${speaker.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center`}>
-                      <span className={`font-display text-4xl font-bold ${speaker.textLight ? 'text-white/80' : 'text-foreground/60'}`}>
+                  {/* Image container */}
+                  <div className="flex-1 relative overflow-hidden">
+                    <div className={`absolute inset-4 rounded-2xl ${speaker.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center`}>
+                      <span className={`font-display text-5xl font-bold ${speaker.textLight ? 'text-white/60' : 'text-foreground/40'}`}>
                         {speaker.name.charAt(0)}
                       </span>
                     </div>
