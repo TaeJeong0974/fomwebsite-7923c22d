@@ -23,7 +23,7 @@ const team = [
 
 const AboutSection = () => {
   return (
-    <section id="about" className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="container mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
       <div className="mb-8">
         <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground">
           About

@@ -13,8 +13,8 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      {/* Vertical rhythm handled globally with consistent spacing */}
-      <main className="space-y-16 sm:space-y-20 lg:space-y-24 py-12 sm:py-16 lg:py-20">
+      {/* Vertical rhythm handled by individual sections with py-24 lg:py-32 */}
+      <main>
         <HeroSection />
         <LargeTextSection />
         <SpeakersSection />
