@@ -75,9 +75,6 @@ const SpeakersSection = () => {
     <section ref={containerRef} id="speakers" className="relative h-[300vh]">
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8 lg:mb-12">
-          <p className="text-sm text-muted-foreground uppercase tracking-[0.2em] mb-3 font-medium">
-            Season 5
-          </p>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
             Featured Speakers
           </h2>
