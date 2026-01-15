@@ -52,7 +52,7 @@ const episodes = [
     id: 5,
     slug: "mindful-leadership",
     title: "Sheila Vashee",
-    company: "Figma",
+    company: "",
     description: "Leading with intention in fast-paced environments.",
     duration: "TBD",
     comingSoon: true,
@@ -63,7 +63,7 @@ const episodes = [
     id: 6,
     slug: "design-systems-at-scale",
     title: "Lena Waters",
-    company: "Notion",
+    company: "",
     description: "Creating consistent experiences across products.",
     duration: "TBD",
     comingSoon: true,
@@ -131,9 +131,11 @@ const PodcastSection = () => {
                     <p className={`text-sm leading-relaxed ${episode.textLight ? 'text-white/70' : 'text-muted-foreground'} mb-1`}>
                       {episode.description}
                     </p>
-                    <p className={`text-sm font-medium ${episode.textLight ? 'text-white/60' : 'text-primary'}`}>
-                      {episode.company}
-                    </p>
+                    {episode.company && (
+                      <p className={`text-sm font-medium ${episode.textLight ? 'text-white/60' : 'text-primary'}`}>
+                        {episode.company}
+                      </p>
+                    )}
                   </div>
                 </div>
               </div>
