@@ -6,25 +6,25 @@ import hostElena from "@/assets/host-elena.jpg";
 
 const hosts = [
   {
-    name: "Sarah Chen",
-    title: "Host & Creator",
-    bio: "15+ years in B2B marketing. Previously led growth at Stripe and Notion.",
+    name: "Camille Ricketts",
+    title: "Partner, XYZ Venture Capital",
+    bio: "Leads investments in product-led growth and go-to-market software startups. Previously the first marketing leader at Notion, founded First Round Review, managed communications at Tesla, and reported for the Wall Street Journal.",
     image: hostSarah,
-    linkedin: "https://linkedin.com/in/sarahchen",
+    linkedin: "https://linkedin.com/in/camillericketts",
   },
   {
-    name: "Marcus Williams",
-    title: "Co-Host & Producer",
-    bio: "Podcast veteran with 500+ episodes produced. Former NPR contributor.",
+    name: "Ethan Smith",
+    title: "Founder & CEO, Graphite",
+    bio: "Runs a premium Vertical AI Growth Agency helping companies like Webflow, Notion, MasterClass, and Captions drive sustainable revenue growth via SEO, content, and AEO. Also an adjunct professor at IE Business School.",
     image: hostMarcus,
-    linkedin: "https://linkedin.com/in/marcuswilliams",
+    linkedin: "https://linkedin.com/in/ethansmith",
   },
   {
-    name: "Elena Rodriguez",
-    title: "Executive Producer",
-    bio: "Award-winning producer. Built content studios at HubSpot and Salesforce.",
+    name: "Camille Ricketts",
+    title: "Partner, XYZ Venture Capital",
+    bio: "Leads investments in product-led growth and go-to-market software startups. Previously the first marketing leader at Notion, founded First Round Review, managed communications at Tesla, and reported for the Wall Street Journal.",
     image: hostElena,
-    linkedin: "https://linkedin.com/in/elenarodriguez",
+    linkedin: "https://linkedin.com/in/camillericketts",
   },
 ];
 
