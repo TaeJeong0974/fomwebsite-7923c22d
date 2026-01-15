@@ -99,19 +99,28 @@ const PodcastSection = () => {
           >
             {episode.comingSoon ? (
               <div className={`${episode.bgColor} rounded-3xl overflow-hidden h-full`}>
-                <div className="aspect-[4/5] flex flex-col items-center justify-center p-8 text-center">
-                  <div className="w-20 h-20 rounded-full bg-muted/50 flex items-center justify-center mb-6">
-                    <Headphones className="w-8 h-8 text-muted-foreground" />
+                <div className="aspect-[4/5] flex flex-col">
+                  {/* Image/Episode container */}
+                  <div className="flex-1 relative overflow-hidden">
+                    <div className={`absolute inset-4 rounded-2xl ${episode.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center`}>
+                      <Headphones className={`w-12 h-12 ${episode.textLight ? 'text-white/60' : 'text-foreground/40'}`} />
+                    </div>
                   </div>
-                  <span className="text-xs font-medium tracking-wide uppercase text-muted-foreground mb-3">
-                    Coming Soon
-                  </span>
-                  <h3 className="font-display text-xl font-semibold text-foreground mb-1">
-                    {episode.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {episode.company}
-                  </p>
+                  
+                  {/* Content area */}
+                  <div className="p-6 pt-0">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className={`text-xs font-medium tracking-wide uppercase ${episode.textLight ? 'text-white/60' : 'text-muted-foreground'}`}>
+                        Coming Soon
+                      </span>
+                    </div>
+                    <h3 className={`font-display text-xl font-semibold mb-2 ${episode.textLight ? 'text-white' : 'text-foreground'}`}>
+                      {episode.title}
+                    </h3>
+                    <p className={`text-sm leading-relaxed ${episode.textLight ? 'text-white/70' : 'text-muted-foreground'}`}>
+                      {episode.company}
+                    </p>
+                  </div>
                 </div>
               </div>
             ) : (
