@@ -1,6 +1,6 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
-import LargeTextSection from "@/components/LargeTextSection";
+import IntroSection from "@/components/IntroSection";
 import SpeakersSection from "@/components/SpeakersSection";
 import PodcastSection from "@/components/PodcastSection";
 import EventsSection from "@/components/EventsSection";
@@ -13,10 +13,9 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
       
-      {/* Vertical rhythm handled by individual sections with py-24 lg:py-32 */}
       <main>
         <HeroSection />
-        <LargeTextSection />
+        <IntroSection />
         <SpeakersSection />
         <PodcastSection />
         <EventsSection />
