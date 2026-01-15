@@ -12,19 +12,19 @@ const CTASection = () => {
   };
 
   return (
-    <section className="py-24 lg:py-32 bg-foreground">
+    <section className="py-16 lg:py-20 bg-foreground">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-background tracking-tight leading-tight">
+            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-background tracking-tight leading-tight">
               Never Miss an Episode or Event
             </h2>
-            <p className="mt-4 text-background/60 text-lg">
+            <p className="mt-3 text-background/60 text-sm lg:text-base">
               Subscribe to our newsletter for weekly updates, exclusive content, 
               and early access to event tickets.
             </p>
@@ -36,9 +36,9 @@ const CTASection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-3">
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-background/80 mb-2">
+                <label htmlFor="email" className="block text-xs font-medium text-background/70 mb-1.5">
                   Email address
                 </label>
                 <input
@@ -48,13 +48,13 @@ const CTASection = () => {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
-                  className="w-full px-4 py-3.5 border border-background/20 bg-background/10 text-background placeholder:text-background/40 focus:outline-none focus:border-background/40 transition-colors"
+                  className="w-full px-3.5 py-2.5 text-sm border border-background/20 bg-background/10 text-background placeholder:text-background/40 focus:outline-none focus:border-background/40 transition-colors"
                 />
               </div>
-              <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3.5 h-auto">
+              <Button type="submit" size="sm" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
                 Subscribe
               </Button>
-              <p className="text-xs text-background/50 text-center">
+              <p className="text-[10px] text-background/50 text-center">
                 No spam. Unsubscribe anytime.
               </p>
             </form>
