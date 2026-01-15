@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import podcastStudio from "@/assets/podcast-studio.jpg";
 
 const episodes = [
   {
@@ -92,13 +93,22 @@ const PodcastSection = () => {
   return (
     <section id="podcast" className="py-20 lg:py-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 lg:mb-12">
-          <p className="text-xs text-muted-foreground uppercase tracking-[0.2em] mb-3 font-medium">
-            Listen Now
-          </p>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
-            Podcast Episodes
-          </h2>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12 lg:mb-16">
+          <div>
+            <p className="text-xs text-muted-foreground uppercase tracking-[0.2em] mb-3 font-medium">
+              Listen Now
+            </p>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
+              Podcast Episodes
+            </h2>
+          </div>
+          <div className="relative aspect-[4/3] lg:aspect-auto overflow-hidden">
+            <img 
+              src={podcastStudio} 
+              alt="Two people recording a podcast in a professional studio"
+              className="w-full h-full object-cover grayscale"
+            />
+          </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
