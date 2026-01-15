@@ -89,12 +89,12 @@ const PodcastSection = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
         {episodes.map((episode, index) => {
           const CardWrapper = episode.comingSoon ? 'div' : Link;
           const cardProps = episode.comingSoon 
-            ? { className: "border border-dashed border-border rounded-lg overflow-hidden block bg-muted/30" }
-            : { to: `/episode/${episode.slug}`, className: "border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors block" };
+            ? { className: "border border-dashed border-border rounded-lg overflow-hidden block bg-muted/30 h-full flex flex-col" }
+            : { to: `/episode/${episode.slug}`, className: "border border-border rounded-lg overflow-hidden hover:border-primary/50 transition-colors block h-full flex flex-col" };
           
           return (
             <motion.div
@@ -123,7 +123,7 @@ const PodcastSection = () => {
                 )}
               </div>
               
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-1">
                 <div className="flex items-center text-sm text-muted-foreground mb-3">
                   <span>{episode.duration}</span>
                 </div>
@@ -133,7 +133,7 @@ const PodcastSection = () => {
                 {episode.company && (
                   <p className="text-sm text-muted-foreground mb-2">{episode.company}</p>
                 )}
-                <p className="text-muted-foreground text-sm">
+                <p className="text-muted-foreground text-sm flex-1">
                   {episode.description}
                 </p>
                 {!episode.comingSoon && (
