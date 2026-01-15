@@ -11,7 +11,7 @@ const CTASection = () => {
   };
 
   return (
-    <section className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="container mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
       {/* Two column layout: text left, form right */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         {/* Left column - Text */}
