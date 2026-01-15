@@ -121,21 +121,24 @@ const PodcastSection = () => {
                   {/* Content area */}
                   <div className="p-6 pt-0">
                     <div className="flex items-center gap-2 mb-3">
-                      <span className={`text-xs font-medium tracking-wide uppercase ${episode.textLight ? 'text-white/60' : 'text-muted-foreground'}`}>
+                      <span className={`text-xs font-medium ${episode.textLight ? 'text-white/60' : 'text-muted-foreground'}`}>
                         Coming Soon
                       </span>
+                      {episode.company && (
+                        <>
+                          <span className={`w-1 h-1 rounded-full ${episode.textLight ? 'bg-white/40' : 'bg-muted-foreground/40'}`} />
+                          <span className={`text-xs font-medium ${episode.textLight ? 'text-white/60' : 'text-muted-foreground'}`}>
+                            {episode.company}
+                          </span>
+                        </>
+                      )}
                     </div>
                     <h3 className={`font-display text-xl font-semibold mb-2 ${episode.textLight ? 'text-white' : 'text-foreground'}`}>
                       {episode.title}
                     </h3>
-                    <p className={`text-sm leading-relaxed ${episode.textLight ? 'text-white/70' : 'text-muted-foreground'} mb-1`}>
+                    <p className={`text-sm leading-relaxed ${episode.textLight ? 'text-white/70' : 'text-muted-foreground'}`}>
                       {episode.description}
                     </p>
-                    {episode.company && (
-                      <p className={`text-sm font-medium ${episode.textLight ? 'text-white/60' : 'text-primary'}`}>
-                        {episode.company}
-                      </p>
-                    )}
                   </div>
                 </div>
               </div>
