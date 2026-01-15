@@ -120,10 +120,10 @@ const PodcastSection = () => {
                 className={`${episode.bgColor} rounded-3xl overflow-hidden block group transition-transform duration-300 hover:scale-[1.02]`}
               >
                 <div className="aspect-[4/5] flex flex-col">
-                  {/* Visual area */}
-                  <div className="flex-1 flex items-center justify-center relative p-8">
-                    <div className={`w-24 h-24 rounded-2xl ${episode.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center transition-transform duration-300 group-hover:scale-110`}>
-                      <Video className={`w-10 h-10 ${episode.textLight ? 'text-white/80' : 'text-foreground/60'}`} />
+                  {/* Image/Episode container */}
+                  <div className="flex-1 relative overflow-hidden">
+                    <div className={`absolute inset-4 rounded-2xl ${episode.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center transition-transform duration-300 group-hover:scale-105`}>
+                      <Video className={`w-12 h-12 ${episode.textLight ? 'text-white/60' : 'text-foreground/40'}`} />
                     </div>
                     
                     {/* Play button overlay on hover */}
