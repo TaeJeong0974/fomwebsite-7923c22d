@@ -81,7 +81,7 @@ const SpeakersSection = () => {
         </div>
 
         <div className="pl-4 sm:pl-6 lg:pl-[max(1rem,calc((100vw-1280px)/2+1rem))]">
-          <motion.div style={{ x }} className="flex gap-5 pr-[50vw]">
+          <motion.div style={{ x }} className="flex gap-5">
             {speakers.map((speaker, index) => (
               <motion.article 
                 key={speaker.id}
@@ -116,6 +116,8 @@ const SpeakersSection = () => {
                 </div>
               </motion.article>
             ))}
+            {/* Spacer to ensure last card is fully visible */}
+            <div className="flex-shrink-0 w-[50vw]" aria-hidden="true" />
           </motion.div>
         </div>
       </div>
