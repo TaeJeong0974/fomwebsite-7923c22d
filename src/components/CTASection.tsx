@@ -16,7 +16,7 @@ const CTASection = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
         {/* Left column - Text */}
         <div>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground">
+          <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground">
             Never Miss an Episode or Event
           </h2>
           <p className="mt-4 text-muted-foreground text-lg">
