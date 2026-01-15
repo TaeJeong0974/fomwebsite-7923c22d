@@ -1,5 +1,4 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 
 const speakers = [
   {
@@ -61,62 +60,65 @@ const speakers = [
 ];
 
 const SpeakersSection = () => {
-  const containerRef = useRef<HTMLElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-  });
-
-  const x = useTransform(scrollYProgress, [0, 1], [0, -2000]);
+  // Duplicate speakers for seamless infinite scroll
+  const duplicatedSpeakers = [...speakers, ...speakers];
 
   return (
-    <section ref={containerRef} id="speakers" className="relative h-[300vh]">
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8 lg:mb-12">
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
-            Featured Speakers
-          </h2>
-        </div>
+    <section id="speakers" className="py-20 lg:py-28 overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8 lg:mb-12">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight"
+        >
+          Featured Speakers
+        </motion.h2>
+      </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div ref={cardsRef} style={{ x }} className="flex gap-4 lg:gap-6">
-            {speakers.map((speaker, index) => (
-              <motion.article 
-                key={speaker.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                className={`flex-shrink-0 w-64 sm:w-72 lg:w-80 ${speaker.bgColor} overflow-hidden transition-transform duration-300 hover:scale-[1.02] cursor-pointer`}
-              >
-                <div className="aspect-[3/4] flex flex-col">
-                  <div className="flex-1 relative overflow-hidden">
-                    <div className={`absolute inset-4 ${speaker.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center`}>
-                      <span className={`font-display text-6xl font-bold ${speaker.textLight ? 'text-white/40' : 'text-foreground/20'}`}>
-                        {speaker.name.charAt(0)}
-                      </span>
-                    </div>
-                  </div>
-                  
-                  <div className="p-5 lg:p-6">
-                    <h3 className={`font-display text-lg lg:text-xl font-semibold mb-0.5 ${speaker.textLight ? 'text-white' : 'text-foreground'}`}>
-                      {speaker.name}
-                    </h3>
-                    <p className={`text-sm ${speaker.textLight ? 'text-white/70' : 'text-muted-foreground'}`}>
-                      {speaker.title}
-                    </p>
-                    <p className={`text-sm font-medium mt-1 ${speaker.textLight ? 'text-white/50' : 'text-primary'}`}>
-                      {speaker.company}
-                    </p>
+      <div className="relative group">
+        <motion.div
+          className="flex gap-4 lg:gap-6"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{
+            x: {
+              duration: 30,
+              repeat: Infinity,
+              ease: "linear",
+            },
+          }}
+          style={{ width: "fit-content" }}
+        >
+          {duplicatedSpeakers.map((speaker, index) => (
+            <article
+              key={`${speaker.id}-${index}`}
+              className={`flex-shrink-0 w-64 sm:w-72 lg:w-80 ${speaker.bgColor} overflow-hidden transition-transform duration-300 hover:scale-[1.02] cursor-pointer`}
+            >
+              <div className="aspect-[3/4] flex flex-col">
+                <div className="flex-1 relative overflow-hidden">
+                  <div className={`absolute inset-4 ${speaker.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center`}>
+                    <span className={`font-display text-6xl font-bold ${speaker.textLight ? 'text-white/40' : 'text-foreground/20'}`}>
+                      {speaker.name.charAt(0)}
+                    </span>
                   </div>
                 </div>
-              </motion.article>
-            ))}
-            <div className="flex-shrink-0 w-[50vw]" aria-hidden="true" />
-          </motion.div>
-        </div>
+                
+                <div className="p-5 lg:p-6">
+                  <h3 className={`font-display text-lg lg:text-xl font-semibold mb-0.5 ${speaker.textLight ? 'text-white' : 'text-foreground'}`}>
+                    {speaker.name}
+                  </h3>
+                  <p className={`text-sm ${speaker.textLight ? 'text-white/70' : 'text-muted-foreground'}`}>
+                    {speaker.title}
+                  </p>
+                  <p className={`text-sm font-medium mt-1 ${speaker.textLight ? 'text-white/50' : 'text-primary'}`}>
+                    {speaker.company}
+                  </p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
