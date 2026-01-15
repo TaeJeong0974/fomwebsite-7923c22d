@@ -14,11 +14,11 @@ const containerVariants = {
 };
 
 const lineVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 60 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 1.2, ease: "easeOut" as const },
+    transition: { duration: 1, ease: [0.25, 0.1, 0.25, 1] as const },
   },
 };
 
@@ -37,7 +37,7 @@ const LargeTextSection = () => {
             <motion.p
               key={index}
               variants={lineVariants}
-              className="font-display text-2xl sm:text-3xl lg:text-4xl xl:text-5xl text-foreground leading-relaxed mb-4 last:mb-0"
+              className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-foreground leading-tight mb-4 last:mb-0 font-medium"
             >
               {line}
             </motion.p>
