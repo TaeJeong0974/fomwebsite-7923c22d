@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import FomLogo from "@/assets/FOM_Logo.svg";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,8 +18,8 @@ const Navbar = () => {
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <a href="/" className="font-display text-xl font-bold text-foreground">
-            PodEvents
+          <a href="/" className="flex items-center">
+            <img src={FomLogo} alt="Future of Marketing" className="h-6" />
           </a>
 
           {/* Desktop Navigation */}
