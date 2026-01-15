@@ -7,9 +7,10 @@ const episodes = [
   {
     id: 1,
     slug: "the-future-of-remote-work",
-    title: "Sara Varni",
+    episodeTitle: "The Future of Remote Work",
+    name: "Sara Varni",
+    role: "Chief Marketing Officer",
     company: "Datadog",
-    description: "Exploring how distributed teams are reshaping the workplace.",
     duration: "45 min",
     comingSoon: false,
     bgColor: "bg-[hsl(220,20%,10%)]",
@@ -18,9 +19,10 @@ const episodes = [
   {
     id: 2,
     slug: "building-creative-communities",
-    title: "Lindsey Irvine",
+    episodeTitle: "Building Creative Communities",
+    name: "Lindsey Irvine",
+    role: "Chief Marketing Officer",
     company: "Square",
-    description: "How to foster meaningful connections in digital spaces.",
     duration: "38 min",
     comingSoon: false,
     bgColor: "bg-[hsl(200,80%,92%)]",
@@ -29,9 +31,10 @@ const episodes = [
   {
     id: 3,
     slug: "sustainable-tech-practices",
-    title: "Ceci Stallsmith",
+    episodeTitle: "Sustainable Tech Practices",
+    name: "Ceci Stallsmith",
+    role: "Chief Marketing Officer",
     company: "Loveable",
-    description: "Balancing innovation with environmental responsibility.",
     duration: "52 min",
     comingSoon: false,
     bgColor: "bg-[hsl(35,100%,95%)]",
@@ -40,9 +43,10 @@ const episodes = [
   {
     id: 4,
     slug: "the-art-of-storytelling",
-    title: "Dave Steer",
+    episodeTitle: "The Art of Storytelling",
+    name: "Dave Steer",
+    role: "Chief Marketing Officer",
     company: "Webflow",
-    description: "Crafting narratives that resonate with your audience.",
     duration: "41 min",
     comingSoon: false,
     bgColor: "bg-[hsl(280,30%,95%)]",
@@ -51,9 +55,10 @@ const episodes = [
   {
     id: 5,
     slug: "mindful-leadership",
-    title: "Sheila Vashee",
+    episodeTitle: "Mindful Leadership",
+    name: "Sheila Vashee",
+    role: "Chief Marketing Officer",
     company: "",
-    description: "Leading with intention in fast-paced environments.",
     duration: "TBD",
     comingSoon: true,
     bgColor: "bg-[hsl(240,10%,96%)]",
@@ -62,9 +67,10 @@ const episodes = [
   {
     id: 6,
     slug: "design-systems-at-scale",
-    title: "Lena Waters",
+    episodeTitle: "Design Systems at Scale",
+    name: "Lena Waters",
+    role: "Chief Marketing Officer",
     company: "",
-    description: "Creating consistent experiences across products.",
     duration: "TBD",
     comingSoon: true,
     bgColor: "bg-[hsl(160,40%,94%)]",
@@ -73,9 +79,10 @@ const episodes = [
   {
     id: 7,
     slug: "future-of-marketing",
-    title: "Katrina Wong",
+    episodeTitle: "Future of Marketing",
+    name: "Katrina Wong",
+    role: "Chief Marketing Officer",
     company: "New Relic",
-    description: "Building brand awareness in competitive markets.",
     duration: "TBD",
     comingSoon: true,
     bgColor: "bg-[hsl(10,80%,94%)]",
@@ -133,11 +140,14 @@ const PodcastSection = () => {
                         </>
                       )}
                     </div>
-                    <h3 className={`font-display text-xl font-semibold mb-2 ${episode.textLight ? 'text-white' : 'text-foreground'}`}>
-                      {episode.title}
+                    <h3 className={`font-display text-xl font-semibold mb-1 ${episode.textLight ? 'text-white' : 'text-foreground'}`}>
+                      {episode.episodeTitle}
                     </h3>
-                    <p className={`text-sm leading-relaxed ${episode.textLight ? 'text-white/70' : 'text-muted-foreground'}`}>
-                      {episode.description}
+                    <p className={`text-sm font-medium mb-1 ${episode.textLight ? 'text-white/90' : 'text-foreground'}`}>
+                      {episode.name}
+                    </p>
+                    <p className={`text-xs leading-relaxed ${episode.textLight ? 'text-white/70' : 'text-muted-foreground'}`}>
+                      {episode.role}{episode.company && `, ${episode.company}`}
                     </p>
                   </div>
                 </div>
@@ -177,11 +187,14 @@ const PodcastSection = () => {
                         </>
                       )}
                     </div>
-                    <h3 className={`font-display text-xl font-semibold mb-2 ${episode.textLight ? 'text-white' : 'text-foreground'}`}>
-                      {episode.title}
+                    <h3 className={`font-display text-xl font-semibold mb-1 ${episode.textLight ? 'text-white' : 'text-foreground'}`}>
+                      {episode.episodeTitle}
                     </h3>
-                    <p className={`text-sm leading-relaxed ${episode.textLight ? 'text-white/70' : 'text-muted-foreground'}`}>
-                      {episode.description}
+                    <p className={`text-sm font-medium mb-1 ${episode.textLight ? 'text-white/90' : 'text-foreground'}`}>
+                      {episode.name}
+                    </p>
+                    <p className={`text-xs leading-relaxed ${episode.textLight ? 'text-white/70' : 'text-muted-foreground'}`}>
+                      {episode.role}{episode.company && `, ${episode.company}`}
                     </p>
                   </div>
                 </div>
