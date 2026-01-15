@@ -15,7 +15,7 @@ const AboutSection = () => {
               Our Mission
             </p>
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
-              About
+              About Future<br className="hidden sm:block" /> of Marketing
             </h2>
           </motion.div>
 
