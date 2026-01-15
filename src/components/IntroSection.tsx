@@ -60,15 +60,13 @@ const IntroSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                className="group"
               >
                 <div className="relative overflow-hidden mb-4 aspect-[4/5]">
                   <img 
                     src={host.image} 
                     alt={host.name}
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover grayscale"
                   />
-                  <div className="absolute inset-0 bg-foreground/5 group-hover:bg-transparent transition-colors duration-500" />
                 </div>
                 
                 <div className="flex items-start justify-between gap-3">
