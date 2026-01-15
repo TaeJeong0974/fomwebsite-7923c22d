@@ -13,13 +13,12 @@ const CTASection = () => {
 
   return (
     <section className="py-16 lg:py-20 bg-foreground">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-xl mr-auto ml-0 lg:ml-[calc((100vw-1280px)/2+2rem)]">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center"
         >
           <h2 className="font-display text-2xl sm:text-3xl font-semibold text-background tracking-tight">
             Never Miss an Episode
@@ -50,7 +49,7 @@ const CTASection = () => {
           </Button>
         </motion.form>
 
-        <p className="mt-4 text-[10px] text-background/40 text-center">
+        <p className="mt-4 text-[10px] text-background/40">
           No spam. Unsubscribe anytime.
         </p>
       </div>
