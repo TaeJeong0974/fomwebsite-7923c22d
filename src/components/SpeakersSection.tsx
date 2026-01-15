@@ -100,13 +100,13 @@ const SpeakersSection = () => {
           {duplicatedSpeakers.map((speaker, index) => (
             <article
               key={`${speaker.id}-${index}`}
-              className="flex-shrink-0 w-64 sm:w-72 lg:w-80 cursor-pointer group"
+              className="flex-shrink-0 w-64 sm:w-72 lg:w-80"
             >
               <div className="relative overflow-hidden mb-4 aspect-[4/5]">
                 <img 
                   src={speaker.image} 
                   alt={speaker.name}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                  className="w-full h-full object-cover grayscale"
                 />
               </div>
               
