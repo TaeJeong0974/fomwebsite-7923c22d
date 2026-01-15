@@ -36,6 +36,22 @@ const speakers = [
   },
   {
     id: 5,
+    name: "Sheila Vashee",
+    title: "Chief Marketing Officer",
+    company: "Figma",
+    bgColor: "bg-[hsl(160,40%,94%)]",
+    textLight: false,
+  },
+  {
+    id: 6,
+    name: "Lena Waters",
+    title: "Chief Marketing Officer",
+    company: "Notion",
+    bgColor: "bg-[hsl(240,10%,96%)]",
+    textLight: false,
+  },
+  {
+    id: 7,
     name: "Katrina Wong",
     title: "Chief Marketing Officer",
     company: "New Relic",
