@@ -69,9 +69,8 @@ const SpeakersSection = () => {
     offset: ["start start", "end end"],
   });
 
-  // Calculate the total width needed to scroll
-  // 7 cards × (384px + 20px gap) = ~2828px, minus viewport width
-  const x = useTransform(scrollYProgress, [0, 1], [0, -2400]);
+  // Calculate scroll distance to show last card aligned left
+  const x = useTransform(scrollYProgress, [0, 1], [0, -2000]);
 
   return (
     <section ref={containerRef} id="speakers" className="relative h-[300vh]">
