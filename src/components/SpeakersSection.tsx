@@ -69,55 +69,54 @@ const SpeakersSection = () => {
     offset: ["start start", "end end"],
   });
 
-  // Calculate scroll distance to show last card aligned left
   const x = useTransform(scrollYProgress, [0, 1], [0, -2000]);
 
   return (
     <section ref={containerRef} id="speakers" className="relative h-[300vh]">
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8 lg:mb-12">
+          <p className="text-sm text-muted-foreground uppercase tracking-[0.2em] mb-3 font-medium">
+            Season 5
+          </p>
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground tracking-tight">
             Featured Speakers
           </h2>
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div ref={cardsRef} style={{ x }} className="flex gap-5">
+          <motion.div ref={cardsRef} style={{ x }} className="flex gap-4 lg:gap-6">
             {speakers.map((speaker, index) => (
               <motion.article 
                 key={speaker.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
-                transition={{ duration: 0.5, delay: index * 0.08 }}
-                className={`flex-shrink-0 w-72 sm:w-80 lg:w-96 ${speaker.bgColor} overflow-hidden transition-transform duration-300 hover:scale-[1.02] cursor-pointer`}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+                className={`flex-shrink-0 w-64 sm:w-72 lg:w-80 ${speaker.bgColor} overflow-hidden transition-transform duration-300 hover:scale-[1.02] cursor-pointer`}
               >
                 <div className="aspect-[3/4] flex flex-col">
-                  {/* Image container */}
                   <div className="flex-1 relative overflow-hidden">
                     <div className={`absolute inset-4 ${speaker.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center`}>
-                      <span className={`font-display text-5xl font-bold ${speaker.textLight ? 'text-white/60' : 'text-foreground/40'}`}>
+                      <span className={`font-display text-6xl font-bold ${speaker.textLight ? 'text-white/40' : 'text-foreground/20'}`}>
                         {speaker.name.charAt(0)}
                       </span>
                     </div>
                   </div>
                   
-                  {/* Content area */}
-                  <div className="p-6 pt-0">
-                    <h3 className={`font-display text-xl font-semibold mb-1 ${speaker.textLight ? 'text-white' : 'text-foreground'}`}>
+                  <div className="p-5 lg:p-6">
+                    <h3 className={`font-display text-lg lg:text-xl font-semibold mb-0.5 ${speaker.textLight ? 'text-white' : 'text-foreground'}`}>
                       {speaker.name}
                     </h3>
                     <p className={`text-sm ${speaker.textLight ? 'text-white/70' : 'text-muted-foreground'}`}>
                       {speaker.title}
                     </p>
-                    <p className={`text-sm font-medium mt-1 ${speaker.textLight ? 'text-white/60' : 'text-primary'}`}>
+                    <p className={`text-sm font-medium mt-1 ${speaker.textLight ? 'text-white/50' : 'text-primary'}`}>
                       {speaker.company}
                     </p>
                   </div>
                 </div>
               </motion.article>
             ))}
-            {/* Spacer to ensure last card is fully visible */}
             <div className="flex-shrink-0 w-[50vw]" aria-hidden="true" />
           </motion.div>
         </div>

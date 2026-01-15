@@ -73,10 +73,14 @@
     --input: 240 6% 85%;
     --ring: 24 95% 50%;
 
-    --radius: 0.75rem;
+    --radius: 0rem;
 
     --font-display: 'ITC Avant Garde Gothic Pro', 'Century Gothic', sans-serif;
     --font-body: 'ITC Avant Garde Gothic Pro', 'Century Gothic', sans-serif;
+    
+    /* Section spacing */
+    --section-padding-y: 6rem;
+    --section-padding-y-lg: 8rem;
 
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 240 10% 10%;

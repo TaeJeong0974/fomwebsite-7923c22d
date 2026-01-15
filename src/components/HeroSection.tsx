@@ -1,13 +1,23 @@
+import { motion } from "framer-motion";
+
 const HeroSection = () => {
   return (
-    <section className="h-[70vh] flex items-center container mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl">
-        <p className="text-sm text-muted-foreground uppercase tracking-widest mb-4">
-          Podcast & Events
-        </p>
-        <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-foreground leading-[1.1]">
-          Stories, Ideas & Live Experiences
-        </h1>
+    <section className="min-h-[75vh] flex items-center">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-5xl"
+        >
+          <p className="text-sm text-muted-foreground uppercase tracking-[0.2em] mb-6 font-medium">
+            Podcast & Events
+          </p>
+          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-bold text-foreground leading-[0.95] tracking-tight">
+            Stories, Ideas &<br />
+            Live Experiences
+          </h1>
+        </motion.div>
       </div>
     </section>
   );
