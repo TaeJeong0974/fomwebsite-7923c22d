@@ -1,11 +1,11 @@
 const EventsSection = () => {
   return (
     <section id="events" className="container mx-auto px-4 sm:px-6 lg:px-8 py-24 lg:py-32">
-      <div className="mb-8">
-        <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground">
+      <div className="mb-12">
+        <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground tracking-tight">
           Events
         </h2>
-        <p className="mt-2 text-muted-foreground">
+        <p className="mt-3 text-lg text-muted-foreground">
           Meet us in person or join online
         </p>
       </div>
