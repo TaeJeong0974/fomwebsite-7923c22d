@@ -117,7 +117,10 @@ const PodcastSection = () => {
                     <h3 className={`font-display text-xl font-semibold mb-2 ${episode.textLight ? 'text-white' : 'text-foreground'}`}>
                       {episode.title}
                     </h3>
-                    <p className={`text-sm leading-relaxed ${episode.textLight ? 'text-white/70' : 'text-muted-foreground'}`}>
+                    <p className={`text-sm leading-relaxed ${episode.textLight ? 'text-white/70' : 'text-muted-foreground'} mb-1`}>
+                      {episode.description}
+                    </p>
+                    <p className={`text-sm font-medium ${episode.textLight ? 'text-white/60' : 'text-primary'}`}>
                       {episode.company}
                     </p>
                   </div>
