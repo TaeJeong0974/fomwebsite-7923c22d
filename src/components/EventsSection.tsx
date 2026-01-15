@@ -1,10 +1,10 @@
 import { motion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 
 const EventsSection = () => {
   return (
-    <section id="events" className="py-20 lg:py-28 bg-muted">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="events" className="bg-muted">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
         <div className="mb-10 lg:mb-12">
           <p className="text-xs text-muted-foreground uppercase tracking-[0.2em] mb-3 font-medium">
             In Person & Online
@@ -13,55 +13,70 @@ const EventsSection = () => {
             Events
           </h2>
         </div>
+      </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          {/* Past Event */}
-          <motion.article 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="bg-card border border-border p-5 lg:p-6 hover:border-foreground/20 transition-colors group cursor-pointer"
-          >
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-                Past Event
-              </span>
-              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 transition-all" />
-            </div>
-            <h3 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-2">
+      {/* Full-bleed Past Event with Video */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden group cursor-pointer"
+      >
+        {/* Video Background */}
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          poster="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80"
+        >
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-crowd-at-a-concert-seen-from-behind-4611-large.mp4" type="video/mp4" />
+        </video>
+
+        {/* Overlay Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
+
+        {/* Content */}
+        <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 lg:p-16">
+          <div className="max-w-2xl">
+            <span className="inline-block text-[10px] font-medium uppercase tracking-wider text-white/60 mb-3">
+              Past Event
+            </span>
+            <h3 className="font-display text-2xl sm:text-3xl lg:text-5xl font-semibold text-white mb-3 tracking-tight">
               Season 5 Launch Party
             </h3>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
+            <div className="flex items-center gap-2 text-sm text-white/70 mb-4">
               <span>Dec 15, 2025</span>
-              <span className="w-0.5 h-0.5 rounded-full bg-muted-foreground/40" />
+              <span className="w-1 h-1 rounded-full bg-white/40" />
               <span>Los Angeles, CA</span>
+              <span className="w-1 h-1 rounded-full bg-white/40" />
+              <span>200+ attendees</span>
             </div>
-            <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-              Over 200 listeners joined us to celebrate the launch of Season 5. The evening featured live performances, Q&A sessions, and exclusive content.
+            <p className="text-sm sm:text-base text-white/60 max-w-lg mb-6 hidden sm:block">
+              An evening of live performances, Q&A sessions, and exclusive content with our community.
             </p>
-            <div className="flex items-center gap-4 text-xs text-muted-foreground">
-              <span>📸 45 photos</span>
-              <span>🎥 Recording available</span>
+            <div className="flex items-center gap-4">
+              <button className="flex items-center gap-2 bg-white text-black px-4 py-2.5 text-sm font-medium hover:bg-white/90 transition-colors">
+                <Play className="w-4 h-4 fill-current" />
+                Watch Recap
+              </button>
+              <button className="flex items-center gap-2 text-white/80 text-sm font-medium hover:text-white transition-colors group/btn">
+                View Photos
+                <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+              </button>
             </div>
-          </motion.article>
-
-          {/* Stay Updated */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="border border-dashed border-border/60 p-5 lg:p-6 flex flex-col items-start justify-center"
-          >
-            <p className="text-sm text-muted-foreground mb-1">
-              More events coming soon.
-            </p>
-            <p className="text-xs text-muted-foreground/60">
-              Subscribe to be the first to know.
-            </p>
-          </motion.div>
+          </div>
         </div>
+      </motion.div>
+
+      {/* Stay Updated */}
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12">
+        <p className="text-sm text-muted-foreground">
+          More events coming soon. <span className="text-muted-foreground/60">Subscribe to be the first to know.</span>
+        </p>
       </div>
     </section>
   );
