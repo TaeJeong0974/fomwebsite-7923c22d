@@ -4,16 +4,6 @@ import { ArrowRight, Play } from "lucide-react";
 const EventsSection = () => {
   return (
     <section id="events" className="bg-muted">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-        <div className="mb-10 lg:mb-12">
-          <p className="text-xs text-muted-foreground uppercase tracking-[0.2em] mb-3 font-medium">
-            In Person & Online
-          </p>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
-            Events
-          </h2>
-        </div>
-      </div>
 
       {/* Full-bleed Past Event with Video */}
       <motion.div
