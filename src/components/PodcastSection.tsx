@@ -93,22 +93,13 @@ const PodcastSection = () => {
   return (
     <section id="podcast" className="py-20 lg:py-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12 lg:mb-16">
-          <div>
-            <p className="text-xs text-muted-foreground uppercase tracking-[0.2em] mb-3 font-medium">
-              Listen Now
-            </p>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
-              Podcast Episodes
-            </h2>
-          </div>
-          <div className="relative aspect-[4/3] lg:aspect-auto overflow-hidden">
-            <img 
-              src={podcastStudio} 
-              alt="Two people recording a podcast in a professional studio"
-              className="w-full h-full object-cover grayscale"
-            />
-          </div>
+        <div className="mb-10 lg:mb-12">
+          <p className="text-xs text-muted-foreground uppercase tracking-[0.2em] mb-3 font-medium">
+            Listen Now
+          </p>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
+            Podcast Episodes
+          </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -124,26 +115,33 @@ const PodcastSection = () => {
                 to={`/episode/${episode.slug}`}
                 className={`${episode.bgColor} block group hover:opacity-90 transition-opacity`}
               >
-                <div className="aspect-[16/9] relative flex flex-col justify-end p-6 lg:p-8">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className={`text-xs font-medium ${episode.textLight ? 'text-white/50' : 'text-muted-foreground'}`}>
-                      {episode.duration}
-                    </span>
-                    {episode.company && (
-                      <>
-                        <span className={`w-1 h-1 rounded-full ${episode.textLight ? 'bg-white/30' : 'bg-muted-foreground/40'}`} />
-                        <span className={`text-xs font-medium ${episode.textLight ? 'text-white/50' : 'text-muted-foreground'}`}>
-                          {episode.company}
-                        </span>
-                      </>
-                    )}
+                <div className="aspect-[16/9] relative overflow-hidden">
+                  <img 
+                    src={podcastStudio} 
+                    alt={`${episode.name} podcast episode`}
+                    className="w-full h-full object-cover grayscale opacity-40"
+                  />
+                  <div className="absolute inset-0 flex flex-col justify-end p-6 lg:p-8">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className={`text-xs font-medium ${episode.textLight ? 'text-white/50' : 'text-muted-foreground'}`}>
+                        {episode.duration}
+                      </span>
+                      {episode.company && (
+                        <>
+                          <span className={`w-1 h-1 rounded-full ${episode.textLight ? 'bg-white/30' : 'bg-muted-foreground/40'}`} />
+                          <span className={`text-xs font-medium ${episode.textLight ? 'text-white/50' : 'text-muted-foreground'}`}>
+                            {episode.company}
+                          </span>
+                        </>
+                      )}
+                    </div>
+                    <h3 className={`font-display text-xl lg:text-2xl font-semibold tracking-tight ${episode.textLight ? 'text-white' : 'text-foreground'}`}>
+                      {episode.episodeTitle}
+                    </h3>
+                    <p className={`text-sm mt-1 ${episode.textLight ? 'text-white/60' : 'text-muted-foreground'}`}>
+                      with {episode.name}
+                    </p>
                   </div>
-                  <h3 className={`font-display text-xl lg:text-2xl font-semibold tracking-tight ${episode.textLight ? 'text-white' : 'text-foreground'}`}>
-                    {episode.episodeTitle}
-                  </h3>
-                  <p className={`text-sm mt-1 ${episode.textLight ? 'text-white/60' : 'text-muted-foreground'}`}>
-                    with {episode.name}
-                  </p>
                 </div>
               </Link>
             </motion.div>
