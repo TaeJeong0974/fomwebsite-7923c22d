@@ -78,7 +78,7 @@ const SpeakersSection = () => {
           <p className="text-sm text-muted-foreground uppercase tracking-[0.2em] mb-3 font-medium">
             Season 5
           </p>
-          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground tracking-tight">
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
             Featured Speakers
           </h2>
         </div>
