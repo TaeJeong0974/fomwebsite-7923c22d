@@ -1,14 +1,17 @@
 import { motion } from "framer-motion";
 
 const lines = [
-  "Future of Marketing brings together the CMOs, founders, and brightest minds shaping what comes next—through conversations, events, and shared insights that help modern teams adapt and lead.",
+  "Future of Marketing brings together the CMOs,",
+  "founders, and brightest minds shaping what comes next—",
+  "through conversations, events, and shared insights",
+  "that help modern teams adapt and lead.",
 ];
 
 const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.4,
+      staggerChildren: 0.15,
     },
   },
 };
