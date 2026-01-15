@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { Headphones, Video, Play } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Play } from "lucide-react";
 import { motion } from "framer-motion";
 
 const episodes = [
@@ -103,109 +102,91 @@ const PodcastSection = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-          {episodes.map((episode, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+          {episodes.filter(ep => !ep.comingSoon).map((episode, index) => (
+            <motion.div
+              key={episode.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ 
+                duration: 0.5, 
+                delay: index * 0.1,
+                ease: [0.25, 0.1, 0.25, 1]
+              }}
+            >
+              <Link
+                to={`/episode/${episode.slug}`}
+                className={`${episode.bgColor} overflow-hidden block group transition-all duration-500 hover:scale-[1.02]`}
+              >
+                <div className="aspect-[16/10] relative overflow-hidden">
+                  {/* Background pattern */}
+                  <div className={`absolute inset-0 ${episode.textLight ? 'bg-white/5' : 'bg-black/[0.02]'}`} />
+                  
+                  {/* Large initial letter */}
+                  <div className="absolute top-6 right-6">
+                    <span className={`font-display text-[8rem] lg:text-[12rem] font-bold leading-none ${episode.textLight ? 'text-white/10' : 'text-foreground/5'}`}>
+                      {episode.episodeTitle.charAt(0)}
+                    </span>
+                  </div>
+                  
+                  {/* Play button */}
+                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <div className="w-16 h-16 lg:w-20 lg:h-20 bg-primary flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300">
+                      <Play className="w-6 h-6 lg:w-8 lg:h-8 text-primary-foreground ml-1" fill="currentColor" />
+                    </div>
+                  </div>
+                  
+                  {/* Content overlay */}
+                  <div className="absolute inset-0 flex flex-col justify-end p-6 lg:p-8">
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className={`text-xs font-medium uppercase tracking-wider ${episode.textLight ? 'text-white/50' : 'text-muted-foreground'}`}>
+                        {episode.duration}
+                      </span>
+                      {episode.company && (
+                        <>
+                          <span className={`w-1 h-1 rounded-full ${episode.textLight ? 'bg-white/30' : 'bg-muted-foreground/40'}`} />
+                          <span className={`text-xs font-medium uppercase tracking-wider ${episode.textLight ? 'text-white/50' : 'text-muted-foreground'}`}>
+                            {episode.company}
+                          </span>
+                        </>
+                      )}
+                    </div>
+                    <h3 className={`font-display text-2xl lg:text-3xl font-semibold mb-2 tracking-tight ${episode.textLight ? 'text-white' : 'text-foreground'}`}>
+                      {episode.episodeTitle}
+                    </h3>
+                    <p className={`text-sm lg:text-base ${episode.textLight ? 'text-white/60' : 'text-muted-foreground'}`}>
+                      with {episode.name}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Coming Soon Row */}
+        <div className="mt-6 lg:mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
+          {episodes.filter(ep => ep.comingSoon).map((episode, index) => (
             <motion.div
               key={episode.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ 
-                duration: 0.4, 
-                delay: index * 0.03,
-                ease: [0.25, 0.1, 0.25, 1]
-              }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              className={`${episode.bgColor} p-5 lg:p-6`}
             >
-              {episode.comingSoon ? (
-                <div className={`${episode.bgColor} overflow-hidden h-full`}>
-                  <div className="flex flex-col h-full">
-                    <div className="aspect-[4/3] relative overflow-hidden">
-                      <div className={`absolute inset-4 ${episode.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center`}>
-                        <Headphones className={`w-8 h-8 ${episode.textLight ? 'text-white/30' : 'text-foreground/15'}`} />
-                      </div>
-                    </div>
-                    
-                    <div className="p-4 flex-1">
-                      <span className={`text-[10px] font-medium uppercase tracking-wider ${episode.textLight ? 'text-white/50' : 'text-muted-foreground'}`}>
-                        Coming Soon
-                      </span>
-                      <h3 className={`font-display text-base font-semibold mt-1 mb-0.5 ${episode.textLight ? 'text-white' : 'text-foreground'}`}>
-                        {episode.episodeTitle}
-                      </h3>
-                      <p className={`text-sm ${episode.textLight ? 'text-white/60' : 'text-muted-foreground'}`}>
-                        {episode.name}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ) : (
-                <Link
-                  to={`/episode/${episode.slug}`}
-                  className={`${episode.bgColor} overflow-hidden block group transition-transform duration-300 hover:scale-[1.02] h-full`}
-                >
-                  <div className="flex flex-col h-full">
-                    <div className="aspect-[4/3] relative overflow-hidden">
-                      <div className={`absolute inset-4 ${episode.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center transition-transform duration-300 group-hover:scale-105`}>
-                        <Video className={`w-8 h-8 ${episode.textLight ? 'text-white/30' : 'text-foreground/15'}`} />
-                      </div>
-                      
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="w-12 h-12 bg-primary flex items-center justify-center">
-                          <Play className="w-5 h-5 text-primary-foreground ml-0.5" fill="currentColor" />
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="p-4 flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <span className={`text-[10px] font-medium ${episode.textLight ? 'text-white/50' : 'text-muted-foreground'}`}>
-                          {episode.duration}
-                        </span>
-                        {episode.company && (
-                          <>
-                            <span className={`w-0.5 h-0.5 rounded-full ${episode.textLight ? 'bg-white/30' : 'bg-muted-foreground/40'}`} />
-                            <span className={`text-[10px] font-medium ${episode.textLight ? 'text-white/50' : 'text-muted-foreground'}`}>
-                              {episode.company}
-                            </span>
-                          </>
-                        )}
-                      </div>
-                      <h3 className={`font-display text-base font-semibold mb-0.5 ${episode.textLight ? 'text-white' : 'text-foreground'}`}>
-                        {episode.episodeTitle}
-                      </h3>
-                      <p className={`text-sm ${episode.textLight ? 'text-white/60' : 'text-muted-foreground'}`}>
-                        {episode.name}
-                      </p>
-                    </div>
-                  </div>
-                </Link>
-              )}
+              <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+                Coming Soon
+              </span>
+              <h3 className="font-display text-base lg:text-lg font-semibold mt-2 text-foreground">
+                {episode.episodeTitle}
+              </h3>
+              <p className="text-sm text-muted-foreground mt-1">
+                {episode.name}
+              </p>
             </motion.div>
           ))}
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
-            transition={{ duration: 0.4, delay: episodes.length * 0.03 }}
-            className="bg-primary overflow-hidden"
-          >
-            <div className="aspect-[4/5] flex flex-col items-center justify-center p-5 text-center">
-              <h3 className="font-display text-lg font-bold text-primary-foreground mb-1.5">
-                More Coming Soon
-              </h3>
-              <p className="text-primary-foreground/70 mb-4 text-sm">
-                Be the first to know when new episodes drop.
-              </p>
-              <Button 
-                variant="secondary" 
-                size="sm"
-                className="font-medium"
-              >
-                Subscribe
-              </Button>
-            </div>
-          </motion.div>
         </div>
       </div>
     </section>
