@@ -60,8 +60,8 @@ const SpeakersSection = () => {
   return (
     <section ref={containerRef} id="speakers" className="relative h-[200vh]">
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8">
-          <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground tracking-tight">
             Featured Speakers
           </h2>
         </div>
