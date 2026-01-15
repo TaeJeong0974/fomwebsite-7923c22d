@@ -100,28 +100,26 @@ const SpeakersSection = () => {
           {duplicatedSpeakers.map((speaker, index) => (
             <article
               key={`${speaker.id}-${index}`}
-              className={`flex-shrink-0 w-64 sm:w-72 lg:w-80 ${speaker.bgColor} overflow-hidden transition-transform duration-300 hover:scale-[1.02] cursor-pointer`}
+              className="flex-shrink-0 w-64 sm:w-72 lg:w-80 cursor-pointer group"
             >
-              <div className="aspect-[3/4] flex flex-col">
-                <div className="flex-1 relative overflow-hidden">
-                  <img 
-                    src={speaker.image} 
-                    alt={speaker.name}
-                    className="absolute inset-0 w-full h-full object-cover object-top"
-                  />
-                </div>
-                
-                <div className="p-5 lg:p-6">
-                  <h3 className={`font-display text-lg lg:text-xl font-semibold mb-0.5 ${speaker.textLight ? 'text-white' : 'text-foreground'}`}>
-                    {speaker.name}
-                  </h3>
-                  <p className={`text-sm ${speaker.textLight ? 'text-white/70' : 'text-muted-foreground'}`}>
-                    {speaker.title}
-                  </p>
-                  <p className={`text-sm font-medium mt-1 ${speaker.textLight ? 'text-white/50' : 'text-primary'}`}>
-                    {speaker.company}
-                  </p>
-                </div>
+              <div className="relative overflow-hidden mb-4 aspect-[4/5]">
+                <img 
+                  src={speaker.image} 
+                  alt={speaker.name}
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105"
+                />
+              </div>
+              
+              <div>
+                <h3 className="font-display text-lg lg:text-xl font-semibold mb-0.5 text-foreground">
+                  {speaker.name}
+                </h3>
+                <p className="text-sm text-muted-foreground">
+                  {speaker.title}
+                </p>
+                <p className="text-sm font-medium mt-1 text-primary">
+                  {speaker.company}
+                </p>
               </div>
             </article>
           ))}
