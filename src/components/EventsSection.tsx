@@ -15,7 +15,7 @@ const EventsSection = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          {/* Featured Past Event */}
+          {/* Past Event */}
           <motion.article 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -24,8 +24,8 @@ const EventsSection = () => {
             className="bg-card border border-border p-5 lg:p-6 hover:border-foreground/20 transition-colors group cursor-pointer"
           >
             <div className="flex items-center justify-between mb-3">
-              <span className="text-[10px] font-medium uppercase tracking-wider text-primary">
-                Featured Recap
+              <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
+                Past Event
               </span>
               <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 transition-all" />
             </div>
@@ -46,32 +46,21 @@ const EventsSection = () => {
             </div>
           </motion.article>
 
-          {/* Upcoming Event */}
-          <motion.article 
+          {/* Stay Updated */}
+          <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="bg-card border border-border p-5 lg:p-6 hover:border-foreground/20 transition-colors group cursor-pointer"
+            className="border border-dashed border-border/60 p-5 lg:p-6 flex flex-col items-start justify-center"
           >
-            <div className="flex items-center justify-between mb-3">
-              <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-                Coming Soon
-              </span>
-              <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground group-hover:translate-x-1 transition-all" />
-            </div>
-            <h3 className="font-display text-xl lg:text-2xl font-semibold text-foreground mb-2">
-              Live Podcast Recording
-            </h3>
-            <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
-              <span>Jan 20, 2026</span>
-              <span className="w-0.5 h-0.5 rounded-full bg-muted-foreground/40" />
-              <span>San Francisco, CA</span>
-            </div>
-            <p className="text-sm text-muted-foreground leading-relaxed">
-              Join us for a live recording with special guests. Limited seats available for this intimate experience.
+            <p className="text-sm text-muted-foreground mb-1">
+              More events coming soon.
             </p>
-          </motion.article>
+            <p className="text-xs text-muted-foreground/60">
+              Subscribe to be the first to know.
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>
