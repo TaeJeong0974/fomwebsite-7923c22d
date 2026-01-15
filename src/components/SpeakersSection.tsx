@@ -90,12 +90,12 @@ const SpeakersSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ duration: 0.5, delay: index * 0.08 }}
-                className={`flex-shrink-0 w-72 sm:w-80 lg:w-96 ${speaker.bgColor} rounded-3xl overflow-hidden transition-transform duration-300 hover:scale-[1.02] cursor-pointer`}
+                className={`flex-shrink-0 w-72 sm:w-80 lg:w-96 ${speaker.bgColor} overflow-hidden transition-transform duration-300 hover:scale-[1.02] cursor-pointer`}
               >
                 <div className="aspect-[3/4] flex flex-col">
                   {/* Image container */}
                   <div className="flex-1 relative overflow-hidden">
-                    <div className={`absolute inset-4 rounded-2xl ${speaker.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center`}>
+                    <div className={`absolute inset-4 ${speaker.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center`}>
                       <span className={`font-display text-5xl font-bold ${speaker.textLight ? 'text-white/60' : 'text-foreground/40'}`}>
                         {speaker.name.charAt(0)}
                       </span>

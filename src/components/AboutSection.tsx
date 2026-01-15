@@ -37,7 +37,7 @@ const AboutSection = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {team.map((member) => (
           <div key={member.name} className="space-y-3">
-            <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center text-2xl font-display font-bold text-muted-foreground">
+            <div className="w-16 h-16 bg-muted flex items-center justify-center text-2xl font-display font-bold text-muted-foreground">
               {member.name.charAt(0)}
             </div>
             <div>
