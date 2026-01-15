@@ -109,7 +109,7 @@ const PodcastSection = () => {
             }}
           >
             {episode.comingSoon ? (
-              <div className={`${episode.bgColor} rounded-3xl overflow-hidden h-full`}>
+              <div className={`${episode.bgColor} overflow-hidden h-full`}>
                 <div className="flex flex-col h-full">
                   {/* Image/Episode container - fixed aspect ratio */}
                   <div className="aspect-[4/3] relative overflow-hidden">
@@ -145,7 +145,7 @@ const PodcastSection = () => {
             ) : (
               <Link
                 to={`/episode/${episode.slug}`}
-                className={`${episode.bgColor} rounded-3xl overflow-hidden block group transition-transform duration-300 hover:scale-[1.02] h-full`}
+                className={`${episode.bgColor} overflow-hidden block group transition-transform duration-300 hover:scale-[1.02] h-full`}
               >
                 <div className="flex flex-col h-full">
                   {/* Image/Episode container - fixed aspect ratio */}
@@ -156,7 +156,7 @@ const PodcastSection = () => {
                     
                     {/* Play button overlay on hover */}
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="w-16 h-16 rounded-full bg-primary flex items-center justify-center shadow-lg">
+                      <div className="w-16 h-16 bg-primary flex items-center justify-center shadow-lg">
                         <Play className="w-7 h-7 text-primary-foreground ml-1" fill="currentColor" />
                       </div>
                     </div>
@@ -196,7 +196,7 @@ const PodcastSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.5, delay: episodes.length * 0.08 }}
-          className="bg-gradient-to-br from-primary to-accent rounded-3xl overflow-hidden"
+          className="bg-gradient-to-br from-primary to-accent overflow-hidden"
         >
           <div className="aspect-[4/5] flex flex-col items-center justify-center p-8 text-center">
             <h3 className="font-display text-2xl font-bold text-primary-foreground mb-3">
@@ -208,7 +208,7 @@ const PodcastSection = () => {
             <Button 
               variant="secondary" 
               size="lg"
-              className="rounded-full px-8 font-medium"
+              className="px-8 font-medium"
             >
               Subscribe
             </Button>

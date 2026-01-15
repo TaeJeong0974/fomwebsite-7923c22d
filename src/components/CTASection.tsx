@@ -26,7 +26,7 @@ const CTASection = () => {
         </div>
 
         {/* Right column - Form */}
-        <div className="bg-muted rounded-lg p-6 sm:p-8">
+        <div className="bg-muted p-6 sm:p-8">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
@@ -39,7 +39,7 @@ const CTASection = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
                 required
-                className="w-full px-4 py-3 rounded-md border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
+                className="w-full px-4 py-3 border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary"
               />
             </div>
             <Button type="submit" className="w-full">

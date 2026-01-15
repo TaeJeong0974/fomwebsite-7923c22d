@@ -12,7 +12,7 @@ const EventsSection = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Past Event Card - Featured */}
-        <article className="border border-border rounded-lg p-8 hover:border-primary/50 transition-colors bg-card md:row-span-1">
+        <article className="border border-border p-8 hover:border-primary/50 transition-colors bg-card md:row-span-1">
           <div className="text-sm text-primary uppercase tracking-wide font-medium mb-2">
             Featured Recap
           </div>
@@ -34,7 +34,7 @@ const EventsSection = () => {
         </article>
 
         {/* Upcoming Event Card */}
-        <article className="border border-border rounded-lg p-8 hover:border-primary/50 transition-colors bg-card">
+        <article className="border border-border p-8 hover:border-primary/50 transition-colors bg-card">
           <div className="text-sm text-muted-foreground uppercase tracking-wide mb-2">
             Coming Soon
           </div>
