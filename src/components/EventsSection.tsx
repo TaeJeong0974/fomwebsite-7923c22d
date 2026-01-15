@@ -63,12 +63,6 @@ const EventsSection = () => {
         </div>
       </motion.div>
 
-      {/* Stay Updated */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-12">
-        <p className="text-sm text-muted-foreground">
-          More events coming soon. <span className="text-muted-foreground/60">Subscribe to be the first to know.</span>
-        </p>
-      </div>
     </section>
   );
 };
