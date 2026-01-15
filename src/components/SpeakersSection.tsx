@@ -7,42 +7,56 @@ const speakers = [
     name: "Sara Varni",
     title: "Chief Marketing Officer",
     company: "Datadog",
+    bgColor: "bg-[hsl(220,20%,10%)]",
+    textLight: true,
   },
   {
     id: 2,
     name: "Lindsey Irvine",
     title: "Chief Marketing Officer",
     company: "Square",
+    bgColor: "bg-[hsl(200,80%,92%)]",
+    textLight: false,
   },
   {
     id: 3,
     name: "Ceci Stallsmith",
     title: "Chief Marketing Officer",
     company: "Loveable",
+    bgColor: "bg-[hsl(35,100%,95%)]",
+    textLight: false,
   },
   {
     id: 4,
     name: "Dave Steer",
     title: "Chief Marketing Officer",
     company: "Webflow",
+    bgColor: "bg-[hsl(280,30%,95%)]",
+    textLight: false,
   },
   {
     id: 5,
     name: "Sheila Vashee",
     title: "Chief Marketing Officer",
     company: "Figma",
+    bgColor: "bg-[hsl(160,40%,94%)]",
+    textLight: false,
   },
   {
     id: 6,
     name: "Lena Waters",
     title: "Chief Marketing Officer",
     company: "Notion",
+    bgColor: "bg-[hsl(240,10%,96%)]",
+    textLight: false,
   },
   {
     id: 7,
     name: "Katrina Wong",
     title: "Chief Marketing Officer",
     company: "New Relic",
+    bgColor: "bg-[hsl(10,80%,94%)]",
+    textLight: false,
   },
 ];
 
@@ -69,15 +83,33 @@ const SpeakersSection = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div style={{ x }} className="flex gap-6">
             {speakers.map((speaker) => (
-              <article key={speaker.id} className="flex-shrink-0 w-64 sm:w-72 lg:w-80">
-                <div className="aspect-square bg-muted rounded-lg mb-4 flex items-center justify-center">
-                  <span className="text-muted-foreground text-sm">Photo</span>
+              <article 
+                key={speaker.id} 
+                className={`flex-shrink-0 w-72 sm:w-80 lg:w-96 ${speaker.bgColor} rounded-3xl overflow-hidden transition-transform duration-300 hover:scale-[1.02] cursor-pointer`}
+              >
+                <div className="aspect-[3/4] flex flex-col">
+                  {/* Avatar area */}
+                  <div className="flex-1 flex items-center justify-center p-8">
+                    <div className={`w-28 h-28 rounded-full ${speaker.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center`}>
+                      <span className={`font-display text-4xl font-bold ${speaker.textLight ? 'text-white/80' : 'text-foreground/60'}`}>
+                        {speaker.name.charAt(0)}
+                      </span>
+                    </div>
+                  </div>
+                  
+                  {/* Content area */}
+                  <div className="p-6 pt-0">
+                    <h3 className={`font-display text-xl font-semibold mb-1 ${speaker.textLight ? 'text-white' : 'text-foreground'}`}>
+                      {speaker.name}
+                    </h3>
+                    <p className={`text-sm ${speaker.textLight ? 'text-white/70' : 'text-muted-foreground'}`}>
+                      {speaker.title}
+                    </p>
+                    <p className={`text-sm font-medium mt-1 ${speaker.textLight ? 'text-white/60' : 'text-primary'}`}>
+                      {speaker.company}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="font-display text-lg font-semibold text-foreground">
-                  {speaker.name}
-                </h3>
-                <p className="text-sm text-foreground">{speaker.title}</p>
-                <p className="text-sm text-muted-foreground">{speaker.company}</p>
               </article>
             ))}
           </motion.div>
