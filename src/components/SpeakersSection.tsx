@@ -8,6 +8,7 @@ const speakers = [
     company: "Datadog",
     bgColor: "bg-[hsl(220,20%,10%)]",
     textLight: true,
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=500&fit=crop&crop=face",
   },
   {
     id: 2,
@@ -16,6 +17,7 @@ const speakers = [
     company: "Square",
     bgColor: "bg-[hsl(200,80%,92%)]",
     textLight: false,
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=500&fit=crop&crop=face",
   },
   {
     id: 3,
@@ -24,6 +26,7 @@ const speakers = [
     company: "Loveable",
     bgColor: "bg-[hsl(35,100%,95%)]",
     textLight: false,
+    image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=500&fit=crop&crop=face",
   },
   {
     id: 4,
@@ -32,6 +35,7 @@ const speakers = [
     company: "Webflow",
     bgColor: "bg-[hsl(280,30%,95%)]",
     textLight: false,
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=500&fit=crop&crop=face",
   },
   {
     id: 5,
@@ -40,6 +44,7 @@ const speakers = [
     company: "Figma",
     bgColor: "bg-[hsl(160,40%,94%)]",
     textLight: false,
+    image: "https://images.unsplash.com/photo-1598550874175-4d0ef436c909?w=400&h=500&fit=crop&crop=face",
   },
   {
     id: 6,
@@ -48,6 +53,7 @@ const speakers = [
     company: "Notion",
     bgColor: "bg-[hsl(240,10%,96%)]",
     textLight: false,
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=500&fit=crop&crop=face",
   },
   {
     id: 7,
@@ -56,6 +62,7 @@ const speakers = [
     company: "New Relic",
     bgColor: "bg-[hsl(10,80%,94%)]",
     textLight: false,
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=500&fit=crop&crop=face",
   },
 ];
 
@@ -97,11 +104,11 @@ const SpeakersSection = () => {
             >
               <div className="aspect-[3/4] flex flex-col">
                 <div className="flex-1 relative overflow-hidden">
-                  <div className={`absolute inset-4 ${speaker.textLight ? 'bg-white/10' : 'bg-black/5'} flex items-center justify-center`}>
-                    <span className={`font-display text-6xl font-bold ${speaker.textLight ? 'text-white/40' : 'text-foreground/20'}`}>
-                      {speaker.name.charAt(0)}
-                    </span>
-                  </div>
+                  <img 
+                    src={speaker.image} 
+                    alt={speaker.name}
+                    className="absolute inset-0 w-full h-full object-cover object-top"
+                  />
                 </div>
                 
                 <div className="p-5 lg:p-6">
