@@ -1,6 +1,5 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const speakers = [
   {
@@ -69,58 +68,20 @@ const SpeakersSection = () => {
     offset: ["start start", "end end"],
   });
 
-  // Transform vertical scroll to horizontal movement
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
-
-  const scrollToPosition = (direction: "left" | "right") => {
-    if (containerRef.current) {
-      const currentScroll = window.scrollY;
-      const sectionTop = containerRef.current.offsetTop;
-      const sectionHeight = containerRef.current.offsetHeight;
-      const scrollRange = sectionHeight - window.innerHeight;
-      
-      // Calculate new scroll position
-      const scrollStep = scrollRange * 0.25;
-      const newScroll = direction === "right" 
-        ? Math.min(currentScroll + scrollStep, sectionTop + scrollRange)
-        : Math.max(currentScroll - scrollStep, sectionTop);
-      
-      window.scrollTo({
-        top: newScroll,
-        behavior: "smooth",
-      });
-    }
-  };
+  // Transform vertical scroll to horizontal movement - adjusted to show all cards
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
 
   return (
-    <section ref={containerRef} id="speakers" className="relative h-[200vh]">
+    <section ref={containerRef} id="speakers" className="relative h-[250vh]">
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-12 flex items-end justify-between">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-12">
           <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground tracking-tight">
             Featured Speakers
           </h2>
-          
-          {/* Navigation arrows */}
-          <div className="flex gap-3">
-            <button
-              onClick={() => scrollToPosition("left")}
-              className="w-12 h-12 rounded-full border border-border bg-background flex items-center justify-center transition-all hover:bg-muted"
-              aria-label="Scroll left"
-            >
-              <ChevronLeft className="w-5 h-5 text-foreground" />
-            </button>
-            <button
-              onClick={() => scrollToPosition("right")}
-              className="w-12 h-12 rounded-full border border-border bg-background flex items-center justify-center transition-all hover:bg-muted"
-              aria-label="Scroll right"
-            >
-              <ChevronRight className="w-5 h-5 text-foreground" />
-            </button>
-          </div>
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div style={{ x }} className="flex gap-5">
+        <div className="pl-4 sm:pl-6 lg:pl-[max(1rem,calc((100vw-1280px)/2+1rem))]">
+          <motion.div style={{ x }} className="flex gap-5 pr-[50vw]">
             {speakers.map((speaker, index) => (
               <motion.article 
                 key={speaker.id}
