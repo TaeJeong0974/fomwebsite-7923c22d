@@ -38,7 +38,7 @@ const IntroSection = () => {
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] text-foreground max-w-4xl font-medium mb-16 lg:mb-24"
-          style={{ lineHeight: 1.8 }}
+          style={{ lineHeight: 1.2 }}
         >
           Future of Marketing is a podcast and event series bringing together CMOs and growth leaders navigating AI in modern B2B marketing.
         </motion.p>
