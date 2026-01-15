@@ -123,12 +123,6 @@ const PodcastSection = () => {
                   {/* Background pattern */}
                   <div className={`absolute inset-0 ${episode.textLight ? 'bg-white/5' : 'bg-black/[0.02]'}`} />
                   
-                  {/* Large initial letter */}
-                  <div className="absolute top-6 right-6">
-                    <span className={`font-display text-[8rem] lg:text-[12rem] font-bold leading-none ${episode.textLight ? 'text-white/10' : 'text-foreground/5'}`}>
-                      {episode.episodeTitle.charAt(0)}
-                    </span>
-                  </div>
                   
                   {/* Play button */}
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
