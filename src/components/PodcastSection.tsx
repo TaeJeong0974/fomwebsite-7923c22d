@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { Play } from "lucide-react";
 import { motion } from "framer-motion";
 
 const episodes = [
@@ -102,65 +101,47 @@ const PodcastSection = () => {
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {episodes.filter(ep => !ep.comingSoon).map((episode, index) => (
             <motion.div
               key={episode.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ 
-                duration: 0.5, 
-                delay: index * 0.1,
-                ease: [0.25, 0.1, 0.25, 1]
-              }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
             >
               <Link
                 to={`/episode/${episode.slug}`}
-                className={`${episode.bgColor} overflow-hidden block group transition-all duration-500 hover:scale-[1.02]`}
+                className={`${episode.bgColor} block group hover:opacity-90 transition-opacity`}
               >
-                <div className="aspect-[16/10] relative overflow-hidden">
-                  {/* Background pattern */}
-                  <div className={`absolute inset-0 ${episode.textLight ? 'bg-white/5' : 'bg-black/[0.02]'}`} />
-                  
-                  
-                  {/* Play button */}
-                  <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    <div className="w-16 h-16 lg:w-20 lg:h-20 bg-primary flex items-center justify-center transform scale-90 group-hover:scale-100 transition-transform duration-300">
-                      <Play className="w-6 h-6 lg:w-8 lg:h-8 text-primary-foreground ml-1" fill="currentColor" />
-                    </div>
+                <div className="aspect-[16/9] relative flex flex-col justify-end p-6 lg:p-8">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className={`text-xs font-medium ${episode.textLight ? 'text-white/50' : 'text-muted-foreground'}`}>
+                      {episode.duration}
+                    </span>
+                    {episode.company && (
+                      <>
+                        <span className={`w-1 h-1 rounded-full ${episode.textLight ? 'bg-white/30' : 'bg-muted-foreground/40'}`} />
+                        <span className={`text-xs font-medium ${episode.textLight ? 'text-white/50' : 'text-muted-foreground'}`}>
+                          {episode.company}
+                        </span>
+                      </>
+                    )}
                   </div>
-                  
-                  {/* Content overlay */}
-                  <div className="absolute inset-0 flex flex-col justify-end p-6 lg:p-8">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className={`text-xs font-medium uppercase tracking-wider ${episode.textLight ? 'text-white/50' : 'text-muted-foreground'}`}>
-                        {episode.duration}
-                      </span>
-                      {episode.company && (
-                        <>
-                          <span className={`w-1 h-1 rounded-full ${episode.textLight ? 'bg-white/30' : 'bg-muted-foreground/40'}`} />
-                          <span className={`text-xs font-medium uppercase tracking-wider ${episode.textLight ? 'text-white/50' : 'text-muted-foreground'}`}>
-                            {episode.company}
-                          </span>
-                        </>
-                      )}
-                    </div>
-                    <h3 className={`font-display text-2xl lg:text-3xl font-semibold mb-2 tracking-tight ${episode.textLight ? 'text-white' : 'text-foreground'}`}>
-                      {episode.episodeTitle}
-                    </h3>
-                    <p className={`text-sm lg:text-base ${episode.textLight ? 'text-white/60' : 'text-muted-foreground'}`}>
-                      with {episode.name}
-                    </p>
-                  </div>
+                  <h3 className={`font-display text-xl lg:text-2xl font-semibold tracking-tight ${episode.textLight ? 'text-white' : 'text-foreground'}`}>
+                    {episode.episodeTitle}
+                  </h3>
+                  <p className={`text-sm mt-1 ${episode.textLight ? 'text-white/60' : 'text-muted-foreground'}`}>
+                    with {episode.name}
+                  </p>
                 </div>
               </Link>
             </motion.div>
           ))}
         </div>
 
-        {/* Coming Soon Row */}
-        <div className="mt-6 lg:mt-8 grid grid-cols-2 sm:grid-cols-3 gap-4">
+        {/* Coming Soon */}
+        <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
           {episodes.filter(ep => ep.comingSoon).map((episode, index) => (
             <motion.div
               key={episode.id}
@@ -168,12 +149,12 @@ const PodcastSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              className={`${episode.bgColor} p-5 lg:p-6`}
+              className="border border-border p-5"
             >
               <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
                 Coming Soon
               </span>
-              <h3 className="font-display text-base lg:text-lg font-semibold mt-2 text-foreground">
+              <h3 className="font-display text-base font-semibold mt-2 text-foreground">
                 {episode.episodeTitle}
               </h3>
               <p className="text-sm text-muted-foreground mt-1">
