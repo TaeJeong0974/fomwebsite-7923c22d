@@ -145,7 +145,7 @@ const PodcastSection = () => {
             ) : (
               <Link
                 to={`/episode/${episode.slug}`}
-                className={`${episode.bgColor} rounded-3xl overflow-hidden block group transition-transform duration-300 hover:scale-[1.02]`}
+                className={`${episode.bgColor} rounded-3xl overflow-hidden block group transition-transform duration-300 hover:scale-[1.02] h-full`}
               >
                 <div className="aspect-[4/5] flex flex-col">
                   {/* Image/Episode container */}
@@ -168,10 +168,14 @@ const PodcastSection = () => {
                       <span className={`text-xs font-medium ${episode.textLight ? 'text-white/60' : 'text-muted-foreground'}`}>
                         {episode.duration}
                       </span>
-                      <span className={`w-1 h-1 rounded-full ${episode.textLight ? 'bg-white/40' : 'bg-muted-foreground/40'}`} />
-                      <span className={`text-xs font-medium ${episode.textLight ? 'text-white/60' : 'text-muted-foreground'}`}>
-                        {episode.company}
-                      </span>
+                      {episode.company && (
+                        <>
+                          <span className={`w-1 h-1 rounded-full ${episode.textLight ? 'bg-white/40' : 'bg-muted-foreground/40'}`} />
+                          <span className={`text-xs font-medium ${episode.textLight ? 'text-white/60' : 'text-muted-foreground'}`}>
+                            {episode.company}
+                          </span>
+                        </>
+                      )}
                     </div>
                     <h3 className={`font-display text-xl font-semibold mb-2 ${episode.textLight ? 'text-white' : 'text-foreground'}`}>
                       {episode.title}
@@ -179,18 +183,6 @@ const PodcastSection = () => {
                     <p className={`text-sm leading-relaxed ${episode.textLight ? 'text-white/70' : 'text-muted-foreground'}`}>
                       {episode.description}
                     </p>
-                    
-                    {/* Action links */}
-                    <div className="mt-4 flex items-center gap-4">
-                      <span className={`text-sm font-medium inline-flex items-center gap-1.5 ${episode.textLight ? 'text-white' : 'text-primary'}`}>
-                        <Video size={14} />
-                        Watch
-                      </span>
-                      <span className={`text-sm font-medium inline-flex items-center gap-1.5 ${episode.textLight ? 'text-white' : 'text-primary'}`}>
-                        <Headphones size={14} />
-                        Listen
-                      </span>
-                    </div>
                   </div>
                 </div>
               </Link>
