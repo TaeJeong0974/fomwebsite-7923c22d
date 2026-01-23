@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 const episodes = [
   {
     id: 1,
-    slug: "the-future-of-remote-work",
-    name: "Sara Varni",
+    slug: "meagen-eisenberg",
+    name: "Meagen Eisenberg",
     title: "Chief Marketing Officer",
     company: "Datadog",
     overview: "Exploring how remote work is reshaping company culture and marketing strategies.",
@@ -15,8 +15,8 @@ const episodes = [
   },
   {
     id: 2,
-    slug: "building-creative-communities",
-    name: "Lindsey Irvine",
+    slug: "lena-waters",
+    name: "Lena Waters",
     title: "Chief Marketing Officer",
     company: "Square",
     overview: "Building and nurturing creative communities that drive brand loyalty.",
@@ -26,8 +26,8 @@ const episodes = [
   },
   {
     id: 3,
-    slug: "sustainable-tech-practices",
-    name: "Ceci Stallsmith",
+    slug: "dave-steer",
+    name: "Dave Steer",
     title: "Chief Marketing Officer",
     company: "Loveable",
     overview: "How sustainable practices are becoming central to tech marketing.",
@@ -37,8 +37,8 @@ const episodes = [
   },
   {
     id: 4,
-    slug: "the-art-of-storytelling",
-    name: "Dave Steer",
+    slug: "sara-varni",
+    name: "Sara Varni",
     title: "Chief Marketing Officer",
     company: "Webflow",
     overview: "The power of storytelling in building memorable brand experiences.",
