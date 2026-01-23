@@ -116,7 +116,7 @@ const PodcastSection = () => {
                     backgroundPosition: 'center',
                   }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
                   <div className="relative z-10 mt-auto">
                     <h3 className="font-display text-2xl lg:text-3xl tracking-tight text-white">
                       <span className="font-semibold">{episode.name.split(' ')[0]}</span>{' '}
