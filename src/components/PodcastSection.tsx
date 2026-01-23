@@ -109,8 +109,10 @@ const PodcastSection = () => {
                 className="block group hover:opacity-90 transition-opacity relative overflow-hidden"
               >
                 <div 
-                  className="aspect-[16/9] relative flex flex-col justify-end p-6 lg:p-8 overflow-hidden"
+                  className="relative flex flex-col justify-end overflow-hidden"
                   style={{
+                    aspectRatio: 'clamp(1, 0.75 + 0.5 * (100vw - 320px) / 1600, 1.78)',
+                    padding: 'clamp(1.25rem, 3vw, 2.5rem)',
                     backgroundImage: `url(${guestBg})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
@@ -118,14 +120,23 @@ const PodcastSection = () => {
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
                   <div className="relative z-10 mt-auto">
-                    <h3 className="font-display text-2xl lg:text-3xl tracking-tight text-white">
+                    <h3 
+                      className="font-display tracking-tight text-white"
+                      style={{ fontSize: 'clamp(1.5rem, 1rem + 2vw, 2.5rem)' }}
+                    >
                       <span className="font-semibold">{episode.name.split(' ')[0]}</span>{' '}
                       <span className="font-normal">{episode.name.split(' ').slice(1).join(' ')}</span>
                     </h3>
-                    <p className="text-sm mt-1 text-white/80">
+                    <p 
+                      className="mt-1 text-white/80"
+                      style={{ fontSize: 'clamp(0.75rem, 0.5rem + 0.5vw, 0.875rem)' }}
+                    >
                       {episode.title}{episode.company && `, ${episode.company}`}
                     </p>
-                    <p className="text-sm mt-3 leading-relaxed text-white/70 max-h-0 overflow-hidden transition-all duration-300 ease-out group-hover:max-h-20 group-hover:mt-3">
+                    <p 
+                      className="leading-relaxed text-white/70 max-h-0 overflow-hidden transition-all duration-300 ease-out group-hover:max-h-20 group-hover:mt-3"
+                      style={{ fontSize: 'clamp(0.75rem, 0.5rem + 0.5vw, 0.875rem)' }}
+                    >
                       {episode.overview}
                     </p>
                   </div>
