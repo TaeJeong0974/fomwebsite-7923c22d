@@ -5,11 +5,10 @@ const episodes = [
   {
     id: 1,
     slug: "the-future-of-remote-work",
-    episodeTitle: "The Future of Remote Work",
     name: "Sara Varni",
-    role: "Chief Marketing Officer",
+    title: "Chief Marketing Officer",
     company: "Datadog",
-    duration: "45 min",
+    overview: "Exploring how remote work is reshaping company culture and marketing strategies.",
     comingSoon: false,
     bgColor: "bg-[hsl(220,20%,10%)]",
     textLight: true,
@@ -17,11 +16,10 @@ const episodes = [
   {
     id: 2,
     slug: "building-creative-communities",
-    episodeTitle: "Building Creative Communities",
     name: "Lindsey Irvine",
-    role: "Chief Marketing Officer",
+    title: "Chief Marketing Officer",
     company: "Square",
-    duration: "38 min",
+    overview: "Building and nurturing creative communities that drive brand loyalty.",
     comingSoon: false,
     bgColor: "bg-[hsl(200,80%,92%)]",
     textLight: false,
@@ -29,11 +27,10 @@ const episodes = [
   {
     id: 3,
     slug: "sustainable-tech-practices",
-    episodeTitle: "Sustainable Tech Practices",
     name: "Ceci Stallsmith",
-    role: "Chief Marketing Officer",
+    title: "Chief Marketing Officer",
     company: "Loveable",
-    duration: "52 min",
+    overview: "How sustainable practices are becoming central to tech marketing.",
     comingSoon: false,
     bgColor: "bg-[hsl(35,100%,95%)]",
     textLight: false,
@@ -41,11 +38,10 @@ const episodes = [
   {
     id: 4,
     slug: "the-art-of-storytelling",
-    episodeTitle: "The Art of Storytelling",
     name: "Dave Steer",
-    role: "Chief Marketing Officer",
+    title: "Chief Marketing Officer",
     company: "Webflow",
-    duration: "41 min",
+    overview: "The power of storytelling in building memorable brand experiences.",
     comingSoon: false,
     bgColor: "bg-[hsl(280,30%,95%)]",
     textLight: false,
@@ -53,11 +49,10 @@ const episodes = [
   {
     id: 5,
     slug: "mindful-leadership",
-    episodeTitle: "Mindful Leadership",
     name: "Sheila Vashee",
-    role: "Chief Marketing Officer",
+    title: "Chief Marketing Officer",
     company: "",
-    duration: "TBD",
+    overview: "Leading with intention and building resilient marketing teams.",
     comingSoon: true,
     bgColor: "bg-[hsl(240,10%,96%)]",
     textLight: false,
@@ -65,11 +60,10 @@ const episodes = [
   {
     id: 6,
     slug: "design-systems-at-scale",
-    episodeTitle: "Design Systems at Scale",
     name: "Lena Waters",
-    role: "Chief Marketing Officer",
+    title: "Chief Marketing Officer",
     company: "",
-    duration: "TBD",
+    overview: "Scaling design systems across global marketing organizations.",
     comingSoon: true,
     bgColor: "bg-[hsl(160,40%,94%)]",
     textLight: false,
@@ -77,11 +71,10 @@ const episodes = [
   {
     id: 7,
     slug: "future-of-marketing",
-    episodeTitle: "Future of Marketing",
     name: "Katrina Wong",
-    role: "Chief Marketing Officer",
+    title: "Chief Marketing Officer",
     company: "New Relic",
-    duration: "TBD",
+    overview: "What's next for marketing in the age of AI and automation.",
     comingSoon: true,
     bgColor: "bg-[hsl(10,80%,94%)]",
     textLight: false,
@@ -115,24 +108,14 @@ const PodcastSection = () => {
                 className={`${episode.bgColor} block group hover:opacity-90 transition-opacity`}
               >
                 <div className="aspect-[16/9] relative flex flex-col justify-end p-6 lg:p-8">
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className={`text-xs font-medium ${episode.textLight ? 'text-white/50' : 'text-muted-foreground'}`}>
-                      {episode.duration}
-                    </span>
-                    {episode.company && (
-                      <>
-                        <span className={`w-1 h-1 rounded-full ${episode.textLight ? 'bg-white/30' : 'bg-muted-foreground/40'}`} />
-                        <span className={`text-xs font-medium ${episode.textLight ? 'text-white/50' : 'text-muted-foreground'}`}>
-                          {episode.company}
-                        </span>
-                      </>
-                    )}
-                  </div>
-                  <h3 className={`font-display text-xl lg:text-2xl font-semibold tracking-tight ${episode.textLight ? 'text-white' : 'text-foreground'}`}>
-                    {episode.episodeTitle}
+                  <h3 className={`font-display text-2xl lg:text-3xl font-semibold tracking-tight ${episode.textLight ? 'text-white' : 'text-foreground'}`}>
+                    {episode.name}
                   </h3>
-                  <p className={`text-sm mt-1 ${episode.textLight ? 'text-white/60' : 'text-muted-foreground'}`}>
-                    with {episode.name}
+                  <p className={`text-sm mt-1 ${episode.textLight ? 'text-white/70' : 'text-muted-foreground'}`}>
+                    {episode.title}{episode.company && `, ${episode.company}`}
+                  </p>
+                  <p className={`text-sm mt-3 leading-relaxed ${episode.textLight ? 'text-white/60' : 'text-muted-foreground/80'}`}>
+                    {episode.overview}
                   </p>
                 </div>
               </Link>
@@ -155,10 +138,10 @@ const PodcastSection = () => {
                 Coming Soon
               </span>
               <h3 className="font-display text-base font-semibold mt-2 text-foreground">
-                {episode.episodeTitle}
-              </h3>
-              <p className="text-sm text-muted-foreground mt-1">
                 {episode.name}
+              </h3>
+              <p className="text-xs text-muted-foreground mt-1">
+                {episode.title}{episode.company && `, ${episode.company}`}
               </p>
             </motion.div>
           ))}
