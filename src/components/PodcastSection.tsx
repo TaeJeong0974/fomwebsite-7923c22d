@@ -116,19 +116,19 @@ const PodcastSection = () => {
                     backgroundPosition: 'center',
                   }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                  <div className="relative z-10 transition-transform duration-300 ease-out group-hover:-translate-y-6">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+                  <div className="relative z-10 mt-auto">
                     <h3 className="font-display text-2xl lg:text-3xl tracking-tight text-white">
                       <span className="font-semibold">{episode.name.split(' ')[0]}</span>{' '}
                       <span className="font-normal">{episode.name.split(' ').slice(1).join(' ')}</span>
                     </h3>
-                    <p className="text-sm mt-1 text-white/70">
+                    <p className="text-sm mt-1 text-white/80">
                       {episode.title}{episode.company && `, ${episode.company}`}
                     </p>
+                    <p className="text-sm mt-3 leading-relaxed text-white/70 max-h-0 overflow-hidden transition-all duration-300 ease-out group-hover:max-h-20 group-hover:mt-3">
+                      {episode.overview}
+                    </p>
                   </div>
-                  <p className="relative z-10 text-sm mt-3 leading-relaxed text-white/60 opacity-0 translate-y-4 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
-                    {episode.overview}
-                  </p>
                 </div>
               </Link>
             </motion.div>
