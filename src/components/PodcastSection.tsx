@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import guestBg from "@/assets/guest-bg.png";
 
 const episodes = [
   {
@@ -105,18 +106,28 @@ const PodcastSection = () => {
             >
               <Link
                 to={`/episode/${episode.slug}`}
-                className={`${episode.bgColor} block group hover:opacity-90 transition-opacity`}
+                className="block group hover:opacity-90 transition-opacity relative overflow-hidden"
               >
-                <div className="aspect-[16/9] relative flex flex-col justify-end p-6 lg:p-8">
-                  <h3 className={`font-display text-2xl lg:text-3xl font-semibold tracking-tight ${episode.textLight ? 'text-white' : 'text-foreground'}`}>
-                    {episode.name}
-                  </h3>
-                  <p className={`text-sm mt-1 ${episode.textLight ? 'text-white/70' : 'text-muted-foreground'}`}>
-                    {episode.title}{episode.company && `, ${episode.company}`}
-                  </p>
-                  <p className={`text-sm mt-3 leading-relaxed ${episode.textLight ? 'text-white/60' : 'text-muted-foreground/80'}`}>
-                    {episode.overview}
-                  </p>
+                <div 
+                  className="aspect-[16/9] relative flex flex-col justify-end p-6 lg:p-8"
+                  style={{
+                    backgroundImage: `url(${guestBg})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                  <div className="relative z-10">
+                    <h3 className="font-display text-2xl lg:text-3xl font-semibold tracking-tight text-white">
+                      {episode.name}
+                    </h3>
+                    <p className="text-sm mt-1 text-white/70">
+                      {episode.title}{episode.company && `, ${episode.company}`}
+                    </p>
+                    <p className="text-sm mt-3 leading-relaxed text-white/60">
+                      {episode.overview}
+                    </p>
+                  </div>
                 </div>
               </Link>
             </motion.div>
