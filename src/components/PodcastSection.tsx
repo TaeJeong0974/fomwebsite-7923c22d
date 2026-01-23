@@ -125,7 +125,7 @@ const PodcastSection = () => {
                     <p className="text-sm mt-1 text-white/80">
                       {episode.title}{episode.company && `, ${episode.company}`}
                     </p>
-                    <p className="text-sm mt-3 leading-relaxed text-white/70 max-h-0 overflow-hidden transition-all duration-300 ease-out group-hover:max-h-20 group-hover:mt-3">
+                    <p className="text-sm leading-relaxed text-white/70 max-h-0 overflow-hidden transition-all duration-300 ease-out group-hover:max-h-20 group-hover:mt-3">
                       {episode.overview}
                     </p>
                   </div>
