@@ -118,8 +118,9 @@ const PodcastSection = () => {
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
                   <div className="relative z-10">
-                    <h3 className="font-display text-2xl lg:text-3xl font-semibold tracking-tight text-white">
-                      {episode.name}
+                    <h3 className="font-display text-2xl lg:text-3xl tracking-tight text-white">
+                      <span className="font-semibold">{episode.name.split(' ')[0]}</span>{' '}
+                      <span className="font-normal">{episode.name.split(' ').slice(1).join(' ')}</span>
                     </h3>
                     <p className="text-sm mt-1 text-white/70">
                       {episode.title}{episode.company && `, ${episode.company}`}
