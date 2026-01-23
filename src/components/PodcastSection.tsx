@@ -109,7 +109,7 @@ const PodcastSection = () => {
                 className="block group hover:opacity-90 transition-opacity relative overflow-hidden"
               >
                 <div 
-                  className="aspect-[16/9] relative flex flex-col justify-end p-6 lg:p-8 overflow-hidden"
+                  className="aspect-[16/9] relative flex flex-col justify-end px-6 lg:px-8 pt-6 lg:pt-8 pb-8 lg:pb-10 overflow-hidden"
                   style={{
                     backgroundImage: `url(${guestBg})`,
                     backgroundSize: 'cover',
