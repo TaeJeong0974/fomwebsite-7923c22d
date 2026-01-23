@@ -109,7 +109,7 @@ const PodcastSection = () => {
                 className="block group hover:opacity-90 transition-opacity relative overflow-hidden"
               >
                 <div 
-                  className="aspect-[16/9] relative flex flex-col justify-end p-6 lg:p-8"
+                  className="aspect-[16/9] relative flex flex-col justify-end p-6 lg:p-8 overflow-hidden"
                   style={{
                     backgroundImage: `url(${guestBg})`,
                     backgroundSize: 'cover',
@@ -117,7 +117,7 @@ const PodcastSection = () => {
                   }}
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                  <div className="relative z-10">
+                  <div className="relative z-10 transition-transform duration-300 ease-out group-hover:-translate-y-6">
                     <h3 className="font-display text-2xl lg:text-3xl tracking-tight text-white">
                       <span className="font-semibold">{episode.name.split(' ')[0]}</span>{' '}
                       <span className="font-normal">{episode.name.split(' ').slice(1).join(' ')}</span>
@@ -125,10 +125,10 @@ const PodcastSection = () => {
                     <p className="text-sm mt-1 text-white/70">
                       {episode.title}{episode.company && `, ${episode.company}`}
                     </p>
-                    <p className="text-sm mt-3 leading-relaxed text-white/60">
-                      {episode.overview}
-                    </p>
                   </div>
+                  <p className="relative z-10 text-sm mt-3 leading-relaxed text-white/60 opacity-0 translate-y-4 transition-all duration-300 ease-out group-hover:opacity-100 group-hover:translate-y-0">
+                    {episode.overview}
+                  </p>
                 </div>
               </Link>
             </motion.div>
