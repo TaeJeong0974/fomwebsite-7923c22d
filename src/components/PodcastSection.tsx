@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import guestBg from "@/assets/guest-bg.png";
+import subscribeBg from "@/assets/subscribe-bg.png";
 
 const episodes = [
   {
@@ -86,7 +87,7 @@ const PodcastSection = () => {
 
         {/* Featured Episodes - Hero Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
-          {featuredEpisodes.map((episode, index) => (
+          {featuredEpisodes.slice(0, 5).map((episode, index) => (
             <motion.div
               key={episode.id}
               initial={{ opacity: 0 }}
@@ -137,6 +138,34 @@ const PodcastSection = () => {
               </Link>
             </motion.div>
           ))}
+          
+          {/* Subscribe CTA Card - Position 6 */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.5 }}
+            className="bg-background"
+          >
+            <div 
+              className="aspect-[4/5] relative overflow-hidden"
+              style={{
+                backgroundImage: `url(${subscribeBg})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            >
+              {/* Content */}
+              <div className="absolute inset-0 flex flex-col justify-between p-6 lg:p-8">
+                <h3 className="font-display text-3xl lg:text-4xl font-bold text-foreground leading-tight tracking-tight">
+                  Subscribe to stay current on how teams are using AI.
+                </h3>
+                <button className="self-start bg-foreground text-background font-display font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-lg hover:bg-foreground/90 transition-colors">
+                  Subscribe
+                </button>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         {/* Archive Episodes - Compact List */}
