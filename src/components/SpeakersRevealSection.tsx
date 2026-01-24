@@ -49,9 +49,16 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Gradient Background Layer - Default state with grain texture */}
-      <div className="absolute inset-0">
-        {/* Warm coral to cool gray gradient */}
+      {/* Gradient Background Layer - Reveals on hover with grain texture */}
+      <motion.div
+        className="absolute inset-0"
+        initial={false}
+        animate={{ 
+          opacity: isHovered ? 1 : 0,
+        }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      >
+        {/* Warm coral to cool gray gradient inspired by reference */}
         <div 
           className="absolute inset-0"
           style={{
@@ -74,29 +81,19 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
             backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
           }}
         />
-      </div>
-
-      {/* Photo Layer - Reveals on hover */}
-      <motion.div
-        className="absolute inset-0"
-        initial={false}
-        animate={{ 
-          opacity: isHovered ? 1 : 0,
-        }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      >
+        {/* Photo with blend */}
         <motion.img 
           src={speakerImages[index]} 
           alt={speaker.name}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover mix-blend-luminosity opacity-60"
           initial={false}
           animate={{
-            scale: isHovered ? 1 : 1.1,
+            scale: isHovered ? 1 : 1.15,
           }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         />
-        {/* Gradient overlay for text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        {/* Bottom gradient for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
       </motion.div>
 
       {/* Typography Layer - Visible by default */}
@@ -110,14 +107,14 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
       >
         {/* Top: Company */}
         <div>
-          <span className="text-[10px] uppercase tracking-[0.3em] text-foreground/70 font-medium">
+          <span className="text-[10px] uppercase tracking-[0.3em] text-primary font-medium">
             {speaker.company}
           </span>
         </div>
 
         {/* Center: Large Name */}
         <div className="flex-1 flex flex-col justify-center -mt-4">
-          <h3 className="font-display text-foreground leading-[0.85] tracking-tight">
+          <h3 className="font-display text-background leading-[0.85] tracking-tight">
             <span className="block text-3xl sm:text-4xl lg:text-5xl font-bold">
               {firstName}
             </span>
@@ -129,7 +126,7 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
 
         {/* Bottom: Title */}
         <div>
-          <p className="text-xs lg:text-sm text-foreground/60 font-medium">
+          <p className="text-xs lg:text-sm text-background/60 font-medium">
             {speaker.title}
           </p>
         </div>
@@ -158,7 +155,7 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
 
       {/* Corner Accent */}
       <motion.div
-        className="absolute top-4 right-4 lg:top-6 lg:right-6 w-2 h-2 bg-foreground"
+        className="absolute top-4 right-4 lg:top-6 lg:right-6 w-2 h-2 bg-primary"
         initial={false}
         animate={{ 
           scale: isHovered ? 0 : 1,
