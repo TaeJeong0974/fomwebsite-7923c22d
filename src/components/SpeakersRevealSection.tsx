@@ -45,7 +45,7 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="relative aspect-[4/5] bg-muted overflow-hidden cursor-pointer group"
+      className="relative aspect-[4/5] bg-muted/50 overflow-hidden cursor-pointer group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -90,7 +90,7 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
             <span className="block text-3xl sm:text-4xl lg:text-5xl font-bold">
               {firstName}
             </span>
-            <span className="block text-3xl sm:text-4xl lg:text-5xl font-normal">
+            <span className="block text-3xl sm:text-4xl lg:text-5xl font-normal mt-2">
               {lastName}
             </span>
           </h3>
