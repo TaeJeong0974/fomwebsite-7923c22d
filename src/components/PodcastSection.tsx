@@ -11,6 +11,7 @@ const episodes = [
     name: "Meagen Eisenberg",
     title: "Chief Marketing Officer",
     company: "Samsara",
+    companyDomain: "samsara.com",
     overview: "Exploring how remote work is reshaping company culture and marketing strategies.",
     comingSoon: false,
   },
@@ -20,6 +21,7 @@ const episodes = [
     name: "Lena Waters",
     title: "Chief Marketing Officer",
     company: "Notion",
+    companyDomain: "notion.so",
     overview: "Building and nurturing creative communities that drive brand loyalty.",
     comingSoon: false,
   },
@@ -29,6 +31,7 @@ const episodes = [
     name: "Dave Steer",
     title: "Chief Marketing Officer",
     company: "Webflow",
+    companyDomain: "webflow.com",
     overview: "How sustainable practices are becoming central to tech marketing.",
     comingSoon: false,
   },
@@ -38,6 +41,7 @@ const episodes = [
     name: "Sara Varni",
     title: "Chief Marketing Officer",
     company: "Datadog",
+    companyDomain: "datadoghq.com",
     overview: "The power of storytelling in building memorable brand experiences.",
     comingSoon: false,
   },
@@ -47,6 +51,7 @@ const episodes = [
     name: "Guest Name",
     title: "Chief Marketing Officer",
     company: "Company",
+    companyDomain: null,
     overview: "FPO - Episode description placeholder text for upcoming content.",
     comingSoon: false,
   },
@@ -56,6 +61,7 @@ const episodes = [
     name: "Guest Name",
     title: "Chief Marketing Officer",
     company: "Company",
+    companyDomain: null,
     overview: "FPO - Episode description placeholder text for upcoming content.",
     comingSoon: false,
   },
@@ -108,10 +114,16 @@ const PodcastSection = () => {
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                   
-                  {/* Episode badge - Logo */}
-                  <div className="absolute top-0 left-0 bg-primary p-3">
-                    <img src={FomLogo} alt="FOM" className="h-4 w-auto invert" />
-                  </div>
+                  {/* Company logo badge */}
+                  {episode.companyDomain && (
+                    <div className="absolute top-0 left-0 bg-primary p-2.5">
+                      <img 
+                        src={`https://logo.clearbit.com/${episode.companyDomain}`} 
+                        alt={episode.company}
+                        className="h-5 w-5 object-contain"
+                      />
+                    </div>
+                  )}
                   
                   {/* Content */}
                   <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
