@@ -68,7 +68,7 @@ const episodes = [
   },
 ];
 
-const FEATURED_COUNT = 4;
+const FEATURED_COUNT = 6;
 
 const PodcastSection = () => {
   const publishedEpisodes = episodes.filter(ep => !ep.comingSoon);
@@ -110,7 +110,7 @@ const PodcastSection = () => {
                 className="block group"
               >
                 <div 
-                  className="aspect-[4/3] relative overflow-hidden"
+                  className="aspect-[4/5] relative overflow-hidden"
                   style={{
                     backgroundImage: `url(${guestBg})`,
                     backgroundSize: 'cover',
