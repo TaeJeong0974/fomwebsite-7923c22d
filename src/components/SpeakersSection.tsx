@@ -31,24 +31,6 @@ const speakers = [
     title: "Chief Marketing Officer",
     company: "Webflow",
   },
-  {
-    id: 5,
-    name: "Sheila Vashee",
-    title: "Chief Marketing Officer",
-    company: "Figma",
-  },
-  {
-    id: 6,
-    name: "Lena Waters",
-    title: "Chief Marketing Officer",
-    company: "Notion",
-  },
-  {
-    id: 7,
-    name: "Katrina Wong",
-    title: "Chief Marketing Officer",
-    company: "New Relic",
-  },
 ];
 
 const SpeakersSection = () => {
