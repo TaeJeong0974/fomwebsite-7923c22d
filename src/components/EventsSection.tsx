@@ -3,7 +3,7 @@ import { ArrowRight, Play } from "lucide-react";
 
 const EventsSection = () => {
   return (
-    <section id="events" className="bg-muted">
+    <section id="events" className="py-20 lg:py-28 bg-muted">
       {/* Full-width Video */}
       <motion.div
         initial={{ opacity: 0 }}
