@@ -34,43 +34,6 @@ const speakers = [
   },
 ];
 
-// Staggered letter animation component
-const AnimatedName = ({ 
-  name, 
-  isHovered, 
-  fontWeight 
-}: { 
-  name: string; 
-  isHovered: boolean; 
-  fontWeight: string;
-}) => {
-  const letters = name.split('');
-  
-  return (
-    <span className={`block text-3xl sm:text-4xl lg:text-5xl ${fontWeight}`}>
-      {letters.map((letter, i) => (
-        <motion.span
-          key={i}
-          className="inline-block"
-          initial={false}
-          animate={{
-            y: isHovered ? -60 : 0,
-            opacity: isHovered ? 0 : 1,
-            rotateX: isHovered ? 90 : 0,
-          }}
-          transition={{
-            duration: 0.4,
-            delay: isHovered ? i * 0.02 : (letters.length - i) * 0.02,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-        >
-          {letter === ' ' ? '\u00A0' : letter}
-        </motion.span>
-      ))}
-    </span>
-  );
-};
-
 const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: number }) => {
   const [isHovered, setIsHovered] = useState(false);
   const firstName = speaker.name.split(' ')[0];
@@ -106,37 +69,40 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
       </motion.div>
 
       {/* Typography Layer - Visible by default */}
-      <div className="absolute inset-0 flex flex-col justify-between p-4 lg:p-6">
+      <motion.div
+        className="absolute inset-0 flex flex-col justify-between p-4 lg:p-6"
+        initial={false}
+        animate={{ 
+          opacity: isHovered ? 0 : 1,
+        }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+      >
         {/* Top: Company */}
-        <motion.div
-          initial={false}
-          animate={{ opacity: isHovered ? 0 : 1 }}
-          transition={{ duration: 0.2 }}
-        >
+        <div>
           <span className="text-[10px] uppercase tracking-[0.3em] text-primary font-medium">
             {speaker.company}
           </span>
-        </motion.div>
+        </div>
 
-        {/* Center: Large Name with Staggered Animation */}
+        {/* Center: Large Name */}
         <div className="flex-1 flex flex-col justify-center -mt-4">
           <h3 className="font-display text-background leading-[0.85] tracking-tight">
-            <AnimatedName name={firstName} isHovered={isHovered} fontWeight="font-medium" />
-            <AnimatedName name={lastName} isHovered={isHovered} fontWeight="font-normal" />
+            <span className="block text-3xl sm:text-4xl lg:text-5xl font-bold">
+              {firstName}
+            </span>
+            <span className="block text-3xl sm:text-4xl lg:text-5xl font-bold">
+              {lastName}
+            </span>
           </h3>
         </div>
 
         {/* Bottom: Title */}
-        <motion.div
-          initial={false}
-          animate={{ opacity: isHovered ? 0 : 1 }}
-          transition={{ duration: 0.2 }}
-        >
+        <div>
           <p className="text-xs lg:text-sm text-background/60 font-medium">
             {speaker.title}
           </p>
-        </motion.div>
-      </div>
+        </div>
+      </motion.div>
 
       {/* Hover State: Name at bottom */}
       <motion.div
