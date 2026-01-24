@@ -20,17 +20,13 @@ const CTASection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="flex items-end gap-6"
           >
-            <div className="w-12 h-12 lg:w-16 lg:h-16 bg-primary flex-shrink-0" />
-            <div>
-              <p className="text-[10px] text-background/60 uppercase tracking-[0.3em] mb-2 font-medium">
-                Newsletter
-              </p>
-              <h2 className="font-display text-2xl sm:text-3xl font-semibold text-background tracking-tight">
-                Never Miss an Episode
-              </h2>
-            </div>
+            <p className="text-[10px] text-background/60 uppercase tracking-[0.3em] mb-2 font-medium">
+              Newsletter
+            </p>
+            <h2 className="font-display text-2xl sm:text-3xl font-semibold text-background tracking-tight">
+              Never Miss an Episode
+            </h2>
             <p className="mt-2 text-background/60 text-sm">
               Subscribe for weekly updates and exclusive content.
             </p>
