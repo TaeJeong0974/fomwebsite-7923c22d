@@ -34,16 +34,15 @@ const speakers = [
 ];
 
 const SpeakersSection = () => {
-  const duplicatedSpeakers = [...speakers, ...speakers];
-
   return (
-    <section id="speakers" className="py-20 lg:py-28 overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8 lg:mb-12">
+    <section id="speakers" className="py-20 lg:py-28">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
+          className="mb-8 lg:mb-12"
         >
           <p className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] mb-2 font-medium">
             Featured
@@ -52,29 +51,19 @@ const SpeakersSection = () => {
             Speakers
           </h2>
         </motion.div>
-      </div>
 
-      <div className="relative">
-        <motion.div
-          className="flex gap-4 lg:gap-6"
-          animate={{ x: ["0%", "-50%"] }}
-          transition={{
-            x: {
-              duration: 30,
-              repeat: Infinity,
-              ease: "linear",
-            },
-          }}
-          style={{ width: "fit-content" }}
-        >
-          {duplicatedSpeakers.map((speaker, index) => (
-            <article
-              key={`${speaker.id}-${index}`}
-              className="flex-shrink-0 w-64 sm:w-72 lg:w-80"
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
+          {speakers.map((speaker, index) => (
+            <motion.article
+              key={speaker.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <div className="relative overflow-hidden aspect-[4/5]">
                 <img 
-                  src={speakerImages[index % speakerImages.length]} 
+                  src={speakerImages[index]} 
                   alt={speaker.name}
                   className="w-full h-full object-cover"
                 />
@@ -91,9 +80,9 @@ const SpeakersSection = () => {
                   {speaker.company}
                 </p>
               </div>
-            </article>
+            </motion.article>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
