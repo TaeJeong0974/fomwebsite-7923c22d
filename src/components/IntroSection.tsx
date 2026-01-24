@@ -27,65 +27,16 @@ const IntroSection = () => {
   return (
     <section className="py-20 lg:py-28 bg-muted">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 lg:gap-8 mb-16 lg:mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0 }}
-            className="flex flex-col"
-          >
-            <div className="w-12 h-12 lg:w-16 lg:h-16 bg-primary mb-4" />
-            <p className="font-display text-xl sm:text-2xl lg:text-3xl font-medium text-foreground leading-tight">
-              Future of Marketing
-            </p>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex flex-col"
-          >
-            <p className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] mb-3 font-medium">
-              Format
-            </p>
-            <p className="font-display text-lg lg:text-xl font-medium text-foreground leading-snug">
-              A podcast and event series
-            </p>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="flex flex-col"
-          >
-            <p className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] mb-3 font-medium">
-              Audience
-            </p>
-            <p className="font-display text-lg lg:text-xl font-medium text-foreground leading-snug">
-              CMOs and growth leaders
-            </p>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="flex flex-col"
-          >
-            <p className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] mb-3 font-medium">
-              Focus
-            </p>
-            <p className="font-display text-lg lg:text-xl font-medium text-foreground leading-snug">
-              Navigating AI in modern B2B marketing
-            </p>
-          </motion.div>
-        </div>
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] text-foreground max-w-4xl font-medium mb-16 lg:mb-24"
+          style={{ lineHeight: 1.2 }}
+        >
+          Future of Marketing is a podcast and event series bringing together CMOs and growth leaders navigating AI in modern B2B marketing.
+        </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
