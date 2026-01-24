@@ -57,15 +57,23 @@ const SpeakersSection = () => {
   return (
     <section id="speakers" className="py-20 lg:py-28 overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-8 lg:mb-12">
-        <motion.h2
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight"
+          className="flex items-end gap-6"
         >
-          Featured Speakers
-        </motion.h2>
+          <div className="w-16 h-16 lg:w-20 lg:h-20 bg-primary flex-shrink-0" />
+          <div>
+            <p className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] mb-2 font-medium">
+              Season 5
+            </p>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
+              Featured Speakers
+            </h2>
+          </div>
+        </motion.div>
       </div>
 
       <div className="relative">

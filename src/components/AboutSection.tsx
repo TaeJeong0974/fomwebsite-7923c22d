@@ -11,12 +11,17 @@ const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-xs text-muted-foreground uppercase tracking-[0.2em] mb-3 font-medium">
-              Our Mission
-            </p>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
-              About Future<br className="hidden sm:block" /> of Marketing
-            </h2>
+            <div className="flex items-end gap-6">
+              <div className="w-16 h-16 lg:w-20 lg:h-20 bg-primary flex-shrink-0" />
+              <div>
+                <p className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] mb-2 font-medium">
+                  Our Mission
+                </p>
+                <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
+                  About Future<br className="hidden sm:block" /> of Marketing
+                </h2>
+              </div>
+            </div>
           </motion.div>
 
           <motion.div
