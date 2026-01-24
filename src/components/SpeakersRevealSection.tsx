@@ -49,23 +49,51 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Photo Layer - Hidden by default, reveals on hover */}
+      {/* Gradient Background Layer - Reveals on hover with grain texture */}
       <motion.div
         className="absolute inset-0"
         initial={false}
         animate={{ 
           opacity: isHovered ? 1 : 0,
-          scale: isHovered ? 1 : 1.1
         }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
-        <img 
+        {/* Warm coral to cool gray gradient inspired by reference */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `
+              linear-gradient(
+                135deg,
+                hsl(210, 20%, 75%) 0%,
+                hsl(20, 40%, 80%) 25%,
+                hsl(10, 60%, 75%) 50%,
+                hsl(5, 55%, 70%) 75%,
+                hsl(0, 50%, 65%) 100%
+              )
+            `
+          }}
+        />
+        {/* Grain/noise texture overlay */}
+        <div 
+          className="absolute inset-0 opacity-40 mix-blend-overlay"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          }}
+        />
+        {/* Photo with blend */}
+        <motion.img 
           src={speakerImages[index]} 
           alt={speaker.name}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover mix-blend-luminosity opacity-60"
+          initial={false}
+          animate={{
+            scale: isHovered ? 1 : 1.15,
+          }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         />
-        {/* Gradient overlay for text legibility on hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        {/* Bottom gradient for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
       </motion.div>
 
       {/* Typography Layer - Visible by default */}
