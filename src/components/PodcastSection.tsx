@@ -79,7 +79,7 @@ const PodcastSection = () => {
             <p className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] mb-2 font-medium">
               Episodes
             </p>
-            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground tracking-tight leading-none">
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
               Podcast
             </h2>
           </div>
@@ -119,17 +119,15 @@ const PodcastSection = () => {
                   
                   {/* Content */}
                   <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
-                    <h3 className="font-display text-2xl lg:text-3xl tracking-tight text-white leading-tight">
-                      <span className="font-bold">{episode.name.split(' ')[0]}</span>
-                      <br />
-                      <span className="font-normal">{episode.name.split(' ').slice(1).join(' ')}</span>
+                    <h3 className="font-display text-lg lg:text-xl font-semibold text-white">
+                      {episode.name}
                     </h3>
-                    <div className="flex items-center gap-3 mt-3">
-                      <div className="w-8 h-px bg-white/50" />
-                      <p className="text-xs text-white/70 uppercase tracking-wider font-medium">
-                        {episode.company || episode.title}
-                      </p>
-                    </div>
+                    <p className="text-sm text-white/70 mt-0.5">
+                      {episode.title}
+                    </p>
+                    <p className="text-sm font-medium mt-1 text-primary">
+                      {episode.company}
+                    </p>
                     <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden transition-all duration-300 ease-out md:group-hover:max-h-32 md:group-hover:mt-4">
                       <p className="text-sm leading-relaxed text-white/60 mb-4">
                         {episode.overview}
@@ -171,17 +169,15 @@ const PodcastSection = () => {
               
               {/* Content */}
               <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
-                <h3 className="font-display text-2xl lg:text-3xl tracking-tight text-white leading-tight">
-                  <span className="font-bold">Guest</span>
-                  <br />
-                  <span className="font-normal">Name</span>
+                <h3 className="font-display text-lg lg:text-xl font-semibold text-white">
+                  Guest Name
                 </h3>
-                <div className="flex items-center gap-3 mt-3">
-                  <div className="w-8 h-px bg-white/50" />
-                  <p className="text-xs text-white/70 uppercase tracking-wider font-medium">
-                    Company
-                  </p>
-                </div>
+                <p className="text-sm text-white/70 mt-0.5">
+                  Chief Marketing Officer
+                </p>
+                <p className="text-sm font-medium mt-1 text-primary">
+                  Company
+                </p>
               </div>
             </div>
           </motion.div>
