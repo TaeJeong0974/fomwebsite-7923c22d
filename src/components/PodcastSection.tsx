@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import guestBg from "@/assets/guest-bg.png";
 import subscribeBg from "@/assets/subscribe-bg.png";
+import FomLogo from "@/assets/FOM_Logo.svg";
 
 const episodes = [
   {
@@ -107,11 +108,9 @@ const PodcastSection = () => {
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                   
-                  {/* Episode number - Bauhaus style */}
-                  <div className="absolute top-0 left-0 bg-primary text-primary-foreground px-4 py-2">
-                    <span className="font-display text-sm font-bold tracking-wider">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
+                  {/* Episode badge - Logo */}
+                  <div className="absolute top-0 left-0 bg-primary p-3">
+                    <img src={FomLogo} alt="FOM" className="h-4 w-auto invert" />
                   </div>
                   
                   {/* Content */}
