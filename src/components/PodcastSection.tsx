@@ -75,48 +75,65 @@ const PodcastSection = () => {
   return (
     <section id="podcast" className="py-20 lg:py-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-10 lg:mb-12">
-          <p className="text-xs text-muted-foreground uppercase tracking-[0.2em] mb-3 font-medium">
-            Listen Now
-          </p>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
-            Podcast Episodes
-          </h2>
+        {/* Header with geometric accent */}
+        <div className="mb-12 lg:mb-16 flex items-end gap-6">
+          <div className="w-16 h-16 lg:w-20 lg:h-20 bg-primary flex-shrink-0" />
+          <div>
+            <p className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] mb-2 font-medium">
+              Episodes
+            </p>
+            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground tracking-tight leading-none">
+              Podcast
+            </h2>
+          </div>
         </div>
 
-        {/* Published Episodes */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {/* Published Episodes - Asymmetric Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
           {publishedEpisodes.map((episode, index) => (
             <motion.div
               key={episode.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="bg-background"
             >
               <Link
                 to={`/episode/${episode.slug}`}
                 className="block group"
               >
                 <div 
-                  className="aspect-[16/9] relative flex flex-col justify-end p-6 lg:p-8 overflow-hidden transition-transform duration-300 hover:scale-[1.01]"
+                  className="aspect-[4/3] relative overflow-hidden"
                   style={{
                     backgroundImage: `url(${guestBg})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                   }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                   
-                  <div className="relative z-10">
-                    <h3 className="font-display text-2xl lg:text-3xl tracking-tight text-white">
-                      <span className="font-bold">{episode.name.split(' ')[0]}</span>{' '}
+                  {/* Episode number - Bauhaus style */}
+                  <div className="absolute top-0 left-0 bg-primary text-primary-foreground px-4 py-2">
+                    <span className="font-display text-sm font-bold tracking-wider">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
+                    <h3 className="font-display text-2xl lg:text-3xl tracking-tight text-white leading-tight">
+                      <span className="font-bold">{episode.name.split(' ')[0]}</span>
+                      <br />
                       <span className="font-normal">{episode.name.split(' ').slice(1).join(' ')}</span>
                     </h3>
-                    <p className="text-sm mt-1.5 text-white/80 font-medium">
-                      {episode.title}{episode.company && ` · ${episode.company}`}
-                    </p>
-                    <p className="text-sm leading-relaxed text-white/70 max-h-0 overflow-hidden transition-all duration-300 ease-out group-hover:max-h-20 group-hover:mt-3">
+                    <div className="flex items-center gap-3 mt-3">
+                      <div className="w-8 h-px bg-white/50" />
+                      <p className="text-xs text-white/70 uppercase tracking-wider font-medium">
+                        {episode.company || episode.title}
+                      </p>
+                    </div>
+                    <p className="text-sm leading-relaxed text-white/60 max-h-0 overflow-hidden transition-all duration-300 ease-out group-hover:max-h-20 group-hover:mt-4">
                       {episode.overview}
                     </p>
                   </div>
@@ -126,25 +143,28 @@ const PodcastSection = () => {
           ))}
         </div>
 
-        {/* Coming Soon */}
-        <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {/* Coming Soon - Swiss Grid */}
+        <div className="mt-px grid grid-cols-3 gap-px bg-border">
           {upcomingEpisodes.map((episode, index) => (
             <motion.div
               key={episode.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="border border-border p-5"
+              transition={{ duration: 0.3, delay: index * 0.05 }}
+              className="bg-background p-5 lg:p-6 group hover:bg-secondary transition-colors duration-200"
             >
-              <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground">
-                Coming Soon
-              </span>
-              <h3 className="font-display text-base font-semibold mt-2 text-foreground">
+              <div className="flex items-start justify-between mb-4">
+                <span className="font-display text-3xl lg:text-4xl font-bold text-muted-foreground/30">
+                  {String(publishedEpisodes.length + index + 1).padStart(2, '0')}
+                </span>
+                <div className="w-2 h-2 rounded-full bg-muted-foreground/30" />
+              </div>
+              <h3 className="font-display text-sm lg:text-base font-bold text-foreground leading-tight">
                 {episode.name}
               </h3>
-              <p className="text-xs text-muted-foreground mt-1">
-                {episode.title}{episode.company && ` · ${episode.company}`}
+              <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider">
+                {episode.title}
               </p>
             </motion.div>
           ))}
