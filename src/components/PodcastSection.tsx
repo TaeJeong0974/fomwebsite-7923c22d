@@ -87,7 +87,7 @@ const PodcastSection = () => {
 
         {/* Featured Episodes - Hero Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
-          {featuredEpisodes.slice(0, 5).map((episode, index) => (
+          {featuredEpisodes.slice(0, 4).map((episode, index) => (
             <motion.div
               key={episode.id}
               initial={{ opacity: 0 }}
@@ -138,6 +138,43 @@ const PodcastSection = () => {
               </Link>
             </motion.div>
           ))}
+          
+          {/* Coming Soon Card - Position 5 */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.4 }}
+            className="bg-background"
+          >
+            <div 
+              className="aspect-[4/5] relative overflow-hidden"
+              style={{
+                backgroundImage: `url(${guestBg})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+              
+              {/* Episode number - Bauhaus style */}
+              <div className="absolute top-0 left-0 bg-primary text-primary-foreground px-4 py-2">
+                <span className="font-display text-sm font-bold tracking-wider">
+                  05
+                </span>
+              </div>
+              
+              {/* Content */}
+              <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
+                <p className="text-xs text-white/50 uppercase tracking-[0.3em] mb-2 font-medium">
+                  Coming Soon
+                </p>
+                <h3 className="font-display text-2xl lg:text-3xl tracking-tight text-white/80 leading-tight font-bold">
+                  Stay Tuned
+                </h3>
+              </div>
+            </div>
+          </motion.div>
           
           {/* Subscribe CTA Card - Position 6 */}
           <motion.div
