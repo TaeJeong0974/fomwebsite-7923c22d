@@ -157,21 +157,26 @@ const PodcastSection = () => {
             >
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
               
-              {/* Episode number - Bauhaus style */}
-              <div className="absolute top-0 left-0 bg-primary text-primary-foreground px-4 py-2">
-                <span className="font-display text-sm font-bold tracking-wider">
-                  05
+              {/* Coming Soon label - top */}
+              <div className="absolute top-0 left-0 bg-muted-foreground text-background px-4 py-2">
+                <span className="font-display text-sm font-bold tracking-wider uppercase">
+                  Coming Soon
                 </span>
               </div>
               
               {/* Content */}
               <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
-                <p className="text-xs text-white/50 uppercase tracking-[0.3em] mb-2 font-medium">
-                  Coming Soon
-                </p>
-                <h3 className="font-display text-2xl lg:text-3xl tracking-tight text-white/80 leading-tight font-bold">
-                  Stay Tuned
+                <h3 className="font-display text-2xl lg:text-3xl tracking-tight text-white leading-tight">
+                  <span className="font-bold">Guest</span>
+                  <br />
+                  <span className="font-normal">Name</span>
                 </h3>
+                <div className="flex items-center gap-3 mt-3">
+                  <div className="w-8 h-px bg-white/50" />
+                  <p className="text-xs text-white/70 uppercase tracking-wider font-medium">
+                    Company
+                  </p>
+                </div>
               </div>
             </div>
           </motion.div>
