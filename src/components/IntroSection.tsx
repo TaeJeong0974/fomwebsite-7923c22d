@@ -7,21 +7,18 @@ const hosts = [
     name: "Camille Ricketts",
     title: "Partner, XYZ Venture Capital",
     bio: "Leads investments in product-led growth and go-to-market software startups. Previously the first marketing leader at Notion, founded First Round Review, managed communications at Tesla, and reported for the Wall Street Journal.",
-    image: hostPattern,
     linkedin: "https://linkedin.com/in/camillericketts",
   },
   {
     name: "Ethan Smith",
     title: "Founder & CEO, Graphite",
     bio: "Runs a premium Vertical AI Growth Agency helping companies like Webflow, Notion, MasterClass, and Captions drive sustainable revenue growth via SEO, content, and AEO. Also an adjunct professor at IE Business School.",
-    image: hostPattern,
     linkedin: "https://linkedin.com/in/ethansmith",
   },
   {
     name: "Mada Seghete",
     title: "CEO & Co-Founder, Upside",
     bio: "Built a next-gen revenue intelligence platform for B2B leaders. Previously co-founded and was CMO of Branch, scaling to $100M+ revenue. Cornell Engineering graduate with Masters and MBA from Stanford. Partner at XFactor Ventures investing in women founders.",
-    image: hostPattern,
     linkedin: "https://linkedin.com/in/madaseghete",
   },
 ];
@@ -51,7 +48,7 @@ const IntroSection = () => {
             Your Hosts
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {hosts.map((host, index) => (
               <motion.div
                 key={host.name}
@@ -60,27 +57,28 @@ const IntroSection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
               >
-                <div className="relative overflow-hidden mb-4 aspect-[4/5]">
+                <div className="relative overflow-hidden aspect-[4/5]">
                   <img 
-                    src={host.image} 
-                    alt={host.name}
+                    src={hostPattern} 
+                    alt=""
                     className="w-full h-full object-cover"
                   />
                 </div>
                 
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <h3 className="font-display text-lg font-semibold text-foreground mb-0.5">
+                <div className="flex items-start justify-between gap-3 pt-4">
+                  <div className="min-w-0">
+                    <h3 className="font-display text-lg font-semibold text-foreground">
                       {host.name}
                     </h3>
-                    <p className="text-sm text-primary font-medium mb-1.5">{host.title}</p>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{host.bio}</p>
+                    <p className="text-sm text-primary font-medium mt-0.5">{host.title}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed mt-2">{host.bio}</p>
                   </div>
                   <a
                     href={host.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-shrink-0 w-8 h-8 bg-background border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
+                    aria-label={`${host.name} LinkedIn`}
                   >
                     <Linkedin size={14} />
                   </a>
