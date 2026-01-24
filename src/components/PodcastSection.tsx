@@ -95,7 +95,7 @@ const PodcastSection = () => {
         </div>
 
         {/* Featured Episodes - Hero Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
           {featuredEpisodes.map((episode, index) => (
             <motion.div
               key={episode.id}
