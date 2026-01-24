@@ -44,7 +44,7 @@ const episodes = [
     slug: "mindful-leadership",
     name: "Sheila Vashee",
     title: "Chief Marketing Officer",
-    company: "",
+    company: "Twilio",
     overview: "Leading with intention and building resilient marketing teams.",
     comingSoon: true,
   },
@@ -53,7 +53,7 @@ const episodes = [
     slug: "design-systems-at-scale",
     name: "Lena Waters",
     title: "Chief Marketing Officer",
-    company: "",
+    company: "Stripe",
     overview: "Scaling design systems across global marketing organizations.",
     comingSoon: true,
   },
@@ -68,9 +68,15 @@ const episodes = [
   },
 ];
 
+const FEATURED_COUNT = 4;
+
 const PodcastSection = () => {
   const publishedEpisodes = episodes.filter(ep => !ep.comingSoon);
   const upcomingEpisodes = episodes.filter(ep => ep.comingSoon);
+  
+  // Split published into featured (latest) and archive (rest)
+  const featuredEpisodes = publishedEpisodes.slice(0, FEATURED_COUNT);
+  const archiveEpisodes = publishedEpisodes.slice(FEATURED_COUNT);
 
   return (
     <section id="podcast" className="py-20 lg:py-28">
@@ -88,9 +94,9 @@ const PodcastSection = () => {
           </div>
         </div>
 
-        {/* Published Episodes - Asymmetric Grid */}
+        {/* Featured Episodes - Hero Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border">
-          {publishedEpisodes.map((episode, index) => (
+          {featuredEpisodes.map((episode, index) => (
             <motion.div
               key={episode.id}
               initial={{ opacity: 0 }}
@@ -143,32 +149,74 @@ const PodcastSection = () => {
           ))}
         </div>
 
+        {/* Archive Episodes - Compact List */}
+        {archiveEpisodes.length > 0 && (
+          <div className="mt-px border-t border-border">
+            {archiveEpisodes.map((episode, index) => (
+              <motion.div
+                key={episode.id}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: index * 0.05 }}
+              >
+                <Link
+                  to={`/episode/${episode.slug}`}
+                  className="group flex items-center gap-6 py-5 border-b border-border hover:bg-secondary/50 transition-colors duration-200 px-2"
+                >
+                  <span className="font-display text-2xl font-bold text-muted-foreground/40 w-12">
+                    {String(FEATURED_COUNT + index + 1).padStart(2, '0')}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-display text-base lg:text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                      {episode.name}
+                    </h3>
+                    <p className="text-xs text-muted-foreground uppercase tracking-wider mt-0.5">
+                      {episode.title}{episode.company && ` · ${episode.company}`}
+                    </p>
+                  </div>
+                  <div className="w-6 h-6 flex items-center justify-center">
+                    <div className="w-2 h-2 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        )}
+
         {/* Coming Soon - Swiss Grid */}
-        <div className="mt-px grid grid-cols-3 gap-px bg-border">
-          {upcomingEpisodes.map((episode, index) => (
-            <motion.div
-              key={episode.id}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.3, delay: index * 0.05 }}
-              className="bg-background p-5 lg:p-6 group hover:bg-secondary transition-colors duration-200"
-            >
-              <div className="flex items-start justify-between mb-4">
-                <span className="font-display text-3xl lg:text-4xl font-bold text-muted-foreground/30">
-                  {String(publishedEpisodes.length + index + 1).padStart(2, '0')}
-                </span>
-                <div className="w-2 h-2 rounded-full bg-muted-foreground/30" />
-              </div>
-              <h3 className="font-display text-sm lg:text-base font-bold text-foreground leading-tight">
-                {episode.name}
-              </h3>
-              <p className="text-xs text-muted-foreground mt-1 uppercase tracking-wider">
-                {episode.title}
-              </p>
-            </motion.div>
-          ))}
-        </div>
+        {upcomingEpisodes.length > 0 && (
+          <div className="mt-12 lg:mt-16">
+            <p className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] mb-4 font-medium">
+              Coming Soon
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
+              {upcomingEpisodes.map((episode, index) => (
+                <motion.div
+                  key={episode.id}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  className="bg-background p-5 lg:p-6"
+                >
+                  <div className="flex items-start justify-between mb-3">
+                    <span className="font-display text-2xl font-bold text-muted-foreground/20">
+                      {String(publishedEpisodes.length + index + 1).padStart(2, '0')}
+                    </span>
+                    <div className="w-2 h-2 rounded-full bg-muted-foreground/20" />
+                  </div>
+                  <h3 className="font-display text-sm lg:text-base font-bold text-foreground leading-tight">
+                    {episode.name}
+                  </h3>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {episode.title}{episode.company && ` · ${episode.company}`}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
