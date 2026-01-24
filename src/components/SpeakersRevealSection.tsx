@@ -45,7 +45,7 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="relative aspect-[4/5] bg-foreground overflow-hidden cursor-pointer group"
+      className="relative aspect-[4/5] bg-muted overflow-hidden cursor-pointer group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -86,7 +86,7 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
 
         {/* Center: Large Name */}
         <div className="flex-1 flex flex-col justify-center -mt-4">
-          <h3 className="font-display text-background leading-[0.85] tracking-tight">
+          <h3 className="font-display text-foreground leading-[0.85] tracking-tight">
             <span className="block text-3xl sm:text-4xl lg:text-5xl font-bold">
               {firstName}
             </span>
@@ -98,7 +98,7 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
 
         {/* Bottom: Title */}
         <div>
-          <p className="text-xs lg:text-sm text-background/60 font-medium">
+          <p className="text-xs lg:text-sm text-muted-foreground font-medium">
             {speaker.title}
           </p>
         </div>
