@@ -116,9 +116,9 @@ const PodcastSection = () => {
                   
                   {/* Company logo badge */}
                   {episode.companyDomain && (
-                    <div className="absolute top-0 left-0 bg-primary p-2.5">
+                    <div className="absolute top-0 left-0 bg-white p-2.5">
                       <img 
-                        src={`https://logo.clearbit.com/${episode.companyDomain}`} 
+                        src={`https://www.google.com/s2/favicons?domain=${episode.companyDomain}&sz=64`} 
                         alt={episode.company}
                         className="h-5 w-5 object-contain"
                       />
