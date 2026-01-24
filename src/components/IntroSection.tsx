@@ -62,7 +62,7 @@ const IntroSection = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
               >
-                <div className="relative overflow-hidden mb-4 aspect-[4/5]">
+                <div className="relative overflow-hidden mb-4 w-24 aspect-[4/5]">
                   <img 
                     src={host.image} 
                     alt={host.name}
