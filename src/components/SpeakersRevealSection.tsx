@@ -90,7 +90,7 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
             <span className="block text-3xl sm:text-4xl lg:text-5xl font-bold">
               {firstName}
             </span>
-            <span className="block text-3xl sm:text-4xl lg:text-5xl font-bold">
+            <span className="block text-3xl sm:text-4xl lg:text-5xl font-normal">
               {lastName}
             </span>
           </h3>
