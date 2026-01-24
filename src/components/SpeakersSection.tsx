@@ -64,7 +64,7 @@ const SpeakersSection = () => {
           transition={{ duration: 0.5 }}
         >
           <p className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] mb-2 font-medium">
-            Season 5
+            Featured
           </p>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
             Featured Speakers
