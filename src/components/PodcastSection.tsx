@@ -72,15 +72,18 @@ const PodcastSection = () => {
   return (
     <section id="podcast" className="py-20 lg:py-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight mb-8 lg:mb-12"
-        >
-          Podcast
-        </motion.h2>
+        {/* Header with geometric accent */}
+        <div className="mb-12 lg:mb-16 flex items-end gap-6">
+          <div className="w-16 h-16 lg:w-20 lg:h-20 bg-primary flex-shrink-0" />
+          <div>
+            <p className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] mb-2 font-medium">
+              Episodes
+            </p>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
+              Podcast
+            </h2>
+          </div>
+        </div>
 
         {/* Featured Episodes - Hero Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
