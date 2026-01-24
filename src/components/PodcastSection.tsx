@@ -57,42 +57,14 @@ const episodes = [
     overview: "FPO - Episode description placeholder text for upcoming content.",
     comingSoon: false,
   },
-  {
-    id: 7,
-    slug: "mindful-leadership",
-    name: "Sheila Vashee",
-    title: "Chief Marketing Officer",
-    company: "Twilio",
-    overview: "Leading with intention and building resilient marketing teams.",
-    comingSoon: true,
-  },
-  {
-    id: 6,
-    slug: "design-systems-at-scale",
-    name: "Lena Waters",
-    title: "Chief Marketing Officer",
-    company: "Stripe",
-    overview: "Scaling design systems across global marketing organizations.",
-    comingSoon: true,
-  },
-  {
-    id: 7,
-    slug: "future-of-marketing",
-    name: "Katrina Wong",
-    title: "Chief Marketing Officer",
-    company: "New Relic",
-    overview: "What's next for marketing in the age of AI and automation.",
-    comingSoon: true,
-  },
 ];
 
 const FEATURED_COUNT = 6;
 
 const PodcastSection = () => {
-  const publishedEpisodes = episodes.filter(ep => !ep.comingSoon);
-  const upcomingEpisodes = episodes.filter(ep => ep.comingSoon);
+  const publishedEpisodes = episodes;
   
-  // Split published into featured (latest) and archive (rest)
+  // Split into featured (latest) and archive (rest)
   const featuredEpisodes = publishedEpisodes.slice(0, FEATURED_COUNT);
   const archiveEpisodes = publishedEpisodes.slice(FEATURED_COUNT);
 
@@ -202,39 +174,6 @@ const PodcastSection = () => {
           </div>
         )}
 
-        {/* Coming Soon - Swiss Grid */}
-        {upcomingEpisodes.length > 0 && (
-          <div className="mt-12 lg:mt-16">
-            <p className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] mb-4 font-medium">
-              Coming Soon
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
-              {upcomingEpisodes.map((episode, index) => (
-                <motion.div
-                  key={episode.id}
-                  initial={{ opacity: 0 }}
-                  whileInView={{ opacity: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
-                  className="bg-background p-5 lg:p-6"
-                >
-                  <div className="flex items-start justify-between mb-3">
-                    <span className="font-display text-2xl font-bold text-muted-foreground/20">
-                      {String(publishedEpisodes.length + index + 1).padStart(2, '0')}
-                    </span>
-                    <div className="w-2 h-2 rounded-full bg-muted-foreground/20" />
-                  </div>
-                  <h3 className="font-display text-sm lg:text-base font-bold text-foreground leading-tight">
-                    {episode.name}
-                  </h3>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    {episode.title}{episode.company && ` · ${episode.company}`}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        )}
       </div>
     </section>
   );
