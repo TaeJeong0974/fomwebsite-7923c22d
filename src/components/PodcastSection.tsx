@@ -130,11 +130,11 @@ const PodcastSection = () => {
                         {episode.company || episode.title}
                       </p>
                     </div>
-                    <div className="max-h-0 overflow-hidden transition-all duration-300 ease-out group-hover:max-h-32 group-hover:mt-4">
+                    <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden transition-all duration-300 ease-out md:group-hover:max-h-32 md:group-hover:mt-4">
                       <p className="text-sm leading-relaxed text-white/60 mb-4">
                         {episode.overview}
                       </p>
-                      <span className="inline-block bg-white text-black font-display font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded hover:bg-white/90 transition-colors">
+                      <span className="inline-block bg-white text-black font-display font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded active:bg-white/90 md:hover:bg-white/90 transition-colors">
                         Listen Now
                       </span>
                     </div>
