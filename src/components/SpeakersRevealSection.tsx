@@ -159,31 +159,7 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
         </p>
       </motion.div>
 
-      {/* Diagonal Line Sweep */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none overflow-hidden"
-        initial={false}
-      >
-        <motion.div
-          className="absolute w-[200%] h-[2px] bg-primary origin-left"
-          style={{ 
-            top: '50%',
-            left: '-50%',
-            rotate: '-45deg',
-          }}
-          initial={false}
-          animate={{
-            x: isHovered ? '100%' : '-100%',
-            opacity: isHovered ? [0, 1, 1, 0] : 0,
-          }}
-          transition={{ 
-            duration: 0.6, 
-            ease: [0.22, 1, 0.36, 1],
-          }}
-        />
-      </motion.div>
-
-      {/* Corner Accent - Top Right */}
+      {/* Corner Accent */}
       <motion.div
         className="absolute top-4 right-4 lg:top-6 lg:right-6 w-2 h-2 bg-primary"
         initial={false}
@@ -193,22 +169,6 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
         }}
         transition={{ duration: 0.3 }}
       />
-
-      {/* Corner Accent - Bottom Left (appears on hover) */}
-      <motion.div
-        className="absolute bottom-4 left-4 lg:bottom-6 lg:left-6"
-        initial={false}
-        animate={{ 
-          opacity: isHovered ? 1 : 0,
-          scale: isHovered ? 1 : 0.5,
-        }}
-        transition={{ duration: 0.4, delay: isHovered ? 0.2 : 0 }}
-      >
-        <div className="flex gap-1">
-          <div className="w-2 h-2 bg-primary" />
-          <div className="w-2 h-2 border border-primary" />
-        </div>
-      </motion.div>
     </motion.article>
   );
 };
