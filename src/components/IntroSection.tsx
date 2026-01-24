@@ -25,7 +25,7 @@ const hosts = [
 
 const IntroSection = () => {
   return (
-    <section className="py-20 lg:py-28 bg-muted">
+    <section className="py-20 lg:py-28 bg-muted/40">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.p
           initial={{ opacity: 0, y: 30 }}
