@@ -45,7 +45,7 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="relative aspect-[4/5] bg-muted/50 overflow-hidden cursor-pointer group"
+      className="relative aspect-[4/5] bg-muted/30 overflow-hidden cursor-pointer group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -158,7 +158,7 @@ const SpeakersRevealSection = () => {
           </h2>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-border">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
           {speakers.map((speaker, index) => (
             <SpeakerCard key={speaker.id} speaker={speaker} index={index} />
           ))}
