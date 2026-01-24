@@ -1,29 +1,27 @@
 import { motion } from "framer-motion";
 import { Linkedin } from "lucide-react";
-import hostSarah from "@/assets/host-sarah.jpg";
-import hostMarcus from "@/assets/host-marcus.jpg";
-import hostElena from "@/assets/host-elena.jpg";
+import hostPattern from "@/assets/host-pattern.png";
 
 const hosts = [
   {
     name: "Camille Ricketts",
     title: "Partner, XYZ Venture Capital",
     bio: "Leads investments in product-led growth and go-to-market software startups. Previously the first marketing leader at Notion, founded First Round Review, managed communications at Tesla, and reported for the Wall Street Journal.",
-    image: hostSarah,
+    image: hostPattern,
     linkedin: "https://linkedin.com/in/camillericketts",
   },
   {
     name: "Ethan Smith",
     title: "Founder & CEO, Graphite",
     bio: "Runs a premium Vertical AI Growth Agency helping companies like Webflow, Notion, MasterClass, and Captions drive sustainable revenue growth via SEO, content, and AEO. Also an adjunct professor at IE Business School.",
-    image: hostMarcus,
+    image: hostPattern,
     linkedin: "https://linkedin.com/in/ethansmith",
   },
   {
     name: "Mada Seghete",
     title: "CEO & Co-Founder, Upside",
     bio: "Built a next-gen revenue intelligence platform for B2B leaders. Previously co-founded and was CMO of Branch, scaling to $100M+ revenue. Cornell Engineering graduate with Masters and MBA from Stanford. Partner at XFactor Ventures investing in women founders.",
-    image: hostElena,
+    image: hostPattern,
     linkedin: "https://linkedin.com/in/madaseghete",
   },
 ];
@@ -66,7 +64,7 @@ const IntroSection = () => {
                   <img 
                     src={host.image} 
                     alt={host.name}
-                    className="w-full h-full object-cover grayscale"
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 
