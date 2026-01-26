@@ -74,7 +74,7 @@ const SpeakerCard = ({
 
         {/* Content - always visible at bottom */}
         <div className="card-content-bottom card-padding">
-          <h3 className="font-display text-white leading-[0.95] tracking-tight">
+          <h3 className="font-display leading-[0.95] tracking-tight text-foreground hover-transition group-hover:text-white">
             <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
               {firstName}
             </span>
