@@ -110,10 +110,9 @@ const SpeakerCard = ({
         </h3>
       </motion.div>
 
-      {/* Hover State: Name (two lines) + scrolling info with liquid glass animation */}
+      {/* Hover State: Name + push-up info (matching Podcast pattern) */}
       <motion.div className="absolute inset-x-0 bottom-0 p-5 lg:p-6" initial={false} animate={{
         opacity: isHovered ? 1 : 0,
-        y: isHovered ? 0 : 30,
         filter: isHovered ? 'blur(0px)' : 'blur(4px)'
       }} transition={{
         duration: 0.6,
@@ -128,29 +127,19 @@ const SpeakerCard = ({
             {lastName}
           </span>
         </h3>
+        <p className="text-sm text-white/70 mt-1">
+          {speaker.title}
+        </p>
+        <p className="text-sm font-medium text-primary">
+          {speaker.company}
+        </p>
         
-        {/* Info that scrolls up with liquid motion */}
-        <motion.div 
-          initial={false}
-          animate={{
-            opacity: isHovered ? 1 : 0,
-            y: isHovered ? 0 : 24,
-            filter: isHovered ? 'blur(0px)' : 'blur(2px)'
-          }}
-          transition={{
-            duration: 0.7,
-            ease: [0.32, 0.72, 0, 1],
-            delay: isHovered ? 0.1 : 0
-          }}
-          className="overflow-hidden"
-        >
-          <p className="text-sm text-white/70 mt-3">
-            {speaker.title}, {speaker.company}
-          </p>
-          <p className="text-sm leading-relaxed text-white/60 mt-2">
+        {/* Bio that pushes up on hover - matching Podcast animation */}
+        <div className={`overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${isHovered ? 'max-h-32 mt-3 opacity-100 translate-y-0 blur-0' : 'max-h-0 mt-0 opacity-0 translate-y-4 blur-[2px]'}`}>
+          <p className="text-sm leading-relaxed text-white/60">
             {speaker.bio}
           </p>
-        </motion.div>
+        </div>
       </motion.div>
 
     </motion.article>;
