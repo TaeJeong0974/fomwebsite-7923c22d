@@ -55,13 +55,13 @@ const SpeakerCard = ({
       className="group"
     >
       <div className="card-base card-image hover-scale">
-        {/* Photo Layer */}
-        <div className="absolute inset-0">
+        {/* Photo Layer - hidden at rest, revealed on hover */}
+        <div className="absolute inset-0 opacity-0 hover-transition group-hover:opacity-100">
           <img src={speakerImages[index]} alt={speaker.name} className="w-full h-full object-cover" />
-          <div className="card-overlay hover-transition group-hover:opacity-90" />
-          {/* Light grey overlay for rest state */}
-          <div className="absolute inset-0 bg-muted/80 hover-transition group-hover:opacity-0" />
+          <div className="card-overlay" />
         </div>
+        {/* Light grey background for rest state */}
+        <div className="absolute inset-0 bg-muted hover-transition group-hover:opacity-0" />
 
         {/* Company favicon badge */}
         <div className="absolute top-4 left-4 glass rounded-xl p-2.5 hover-scale-badge">
