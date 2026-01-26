@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { LayoutGrid, Rows3 } from "lucide-react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import SpeakersCarousel from "./SpeakersCarousel";
 import SpeakersFeaturedGrid from "./SpeakersFeaturedGrid";
 
@@ -25,28 +26,44 @@ const SpeakersSection = () => {
           </div>
           
           {/* Layout Toggle */}
-          <div className="glass rounded-full p-1.5 flex items-center gap-1">
-            <button
-              onClick={() => setLayout("carousel")}
-              className={`p-2.5 rounded-full transition-all duration-300 ${
-                layout === "carousel" 
-                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25" 
-                  : "text-muted-foreground hover:text-foreground hover:bg-white/5"
-              }`}
-            >
-              <Rows3 className="h-4 w-4" />
-            </button>
-            <button
-              onClick={() => setLayout("grid")}
-              className={`p-2.5 rounded-full transition-all duration-300 ${
-                layout === "grid" 
-                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25" 
-                  : "text-muted-foreground hover:text-foreground hover:bg-white/5"
-              }`}
-            >
-              <LayoutGrid className="h-4 w-4" />
-            </button>
-          </div>
+          <TooltipProvider delayDuration={300}>
+            <div className="glass rounded-full p-1.5 flex items-center gap-1">
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button
+                    onClick={() => setLayout("carousel")}
+                    className={`p-2.5 rounded-full transition-all duration-300 ${
+                      layout === "carousel" 
+                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25" 
+                        : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+                    }`}
+                  >
+                    <Rows3 className="h-4 w-4" />
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Carousel view</p>
+                </TooltipContent>
+              </Tooltip>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <button
+                    onClick={() => setLayout("grid")}
+                    className={`p-2.5 rounded-full transition-all duration-300 ${
+                      layout === "grid" 
+                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25" 
+                        : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+                    }`}
+                  >
+                    <LayoutGrid className="h-4 w-4" />
+                  </button>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>Grid view</p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
+          </TooltipProvider>
         </motion.div>
       </div>
 
