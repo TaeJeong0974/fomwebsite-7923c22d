@@ -1,10 +1,58 @@
 import { motion } from "framer-motion";
+import { useMemo } from "react";
 import speaker1 from "@/assets/speaker-1.png";
 import speaker2 from "@/assets/speaker-2.png";
 import speaker3 from "@/assets/speaker-3.png";
 import speaker4 from "@/assets/speaker-4.png";
 
 const speakerImages = [speaker1, speaker2, speaker3, speaker4];
+
+// Generate color variations for mosaic pattern
+const generateColorVariations = (hexColor: string, count: number = 16) => {
+  // Convert hex to HSL
+  const hex = hexColor.replace('#', '');
+  const r = parseInt(hex.substr(0, 2), 16) / 255;
+  const g = parseInt(hex.substr(2, 2), 16) / 255;
+  const b = parseInt(hex.substr(4, 2), 16) / 255;
+  
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  let h = 0, s = 0, l = (max + min) / 2;
+  
+  if (max !== min) {
+    const d = max - min;
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    switch (max) {
+      case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+      case g: h = ((b - r) / d + 2) / 6; break;
+      case b: h = ((r - g) / d + 4) / 6; break;
+    }
+  }
+  
+  // Generate variations with different lightness and slight saturation shifts
+  const variations: string[] = [];
+  for (let i = 0; i < count; i++) {
+    const lightnessShift = (Math.random() - 0.5) * 0.3; // -15% to +15%
+    const satShift = (Math.random() - 0.5) * 0.2; // -10% to +10%
+    const newL = Math.max(0.2, Math.min(0.8, l + lightnessShift));
+    const newS = Math.max(0.3, Math.min(1, s + satShift));
+    variations.push(`hsl(${Math.round(h * 360)}, ${Math.round(newS * 100)}%, ${Math.round(newL * 100)}%)`);
+  }
+  return variations;
+};
+
+// Mosaic pattern component
+const MosaicPattern = ({ brandColor }: { brandColor: string }) => {
+  const colors = useMemo(() => generateColorVariations(brandColor, 16), [brandColor]);
+  
+  return (
+    <div className="absolute inset-0 grid grid-cols-4 grid-rows-4">
+      {colors.map((color, i) => (
+        <div key={i} style={{ backgroundColor: color }} />
+      ))}
+    </div>
+  );
+};
 
 const speakers = [{
   id: 1,
@@ -59,11 +107,10 @@ const SpeakerCard = ({
       className="group"
     >
       <div className="card-base card-image hover-scale">
-        {/* Brand Color Layer - visible at rest, fades on hover */}
-        <div 
-          className="absolute inset-0 hover-transition group-hover:opacity-0"
-          style={{ backgroundColor: speaker.brandColor }}
-        />
+        {/* Brand Color Mosaic - visible at rest, fades on hover */}
+        <div className="absolute inset-0 hover-transition group-hover:opacity-0">
+          <MosaicPattern brandColor={speaker.brandColor} />
+        </div>
         
         {/* Photo Layer - hidden at rest, reveals on hover */}
         <div className="absolute inset-0 opacity-0 hover-transition group-hover:opacity-100">
