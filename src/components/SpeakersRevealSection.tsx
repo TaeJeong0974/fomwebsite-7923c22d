@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { useMemo } from "react";
 import speaker1 from "@/assets/speaker-1.png";
 import speaker2 from "@/assets/speaker-2.png";
 import speaker3 from "@/assets/speaker-3.png";
@@ -7,83 +6,12 @@ import speaker4 from "@/assets/speaker-4.png";
 
 const speakerImages = [speaker1, speaker2, speaker3, speaker4];
 
-// Convert hex to HSL
-const hexToHSL = (hexColor: string) => {
-  const hex = hexColor.replace('#', '');
-  const r = parseInt(hex.substr(0, 2), 16) / 255;
-  const g = parseInt(hex.substr(2, 2), 16) / 255;
-  const b = parseInt(hex.substr(4, 2), 16) / 255;
-  
-  const max = Math.max(r, g, b);
-  const min = Math.min(r, g, b);
-  let h = 0, s = 0, l = (max + min) / 2;
-  
-  if (max !== min) {
-    const d = max - min;
-    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-    switch (max) {
-      case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
-      case g: h = ((b - r) / d + 2) / 6; break;
-      case b: h = ((r - g) / d + 4) / 6; break;
-    }
-  }
-  
-  return { h: h * 360, s: s * 100, l: l * 100 };
-};
-
-// Generate 6x5 grid with diagonal gradient from lighter (bottom-left) to darker (top-right)
-const generateMosaicGrid = (hexColor: string) => {
-  const { h, s, l } = hexToHSL(hexColor);
-  const cols = 6;
-  const rows = 5;
-  const tiles: string[] = [];
-  
-  for (let row = 0; row < rows; row++) {
-    for (let col = 0; col < cols; col++) {
-      // Calculate diagonal position: bottom-left (0) to top-right (1)
-      // row 0 = top, row 4 = bottom
-      // col 0 = left, col 5 = right
-      const diagonalPos = (col + (rows - 1 - row)) / (cols + rows - 2);
-      
-      // Lightness: lighter at bottom-left (high L), darker at top-right (low L)
-      // Map diagonalPos 0->1 to lightness offset +15 to -15
-      const lightnessOffset = 15 - (diagonalPos * 30);
-      
-      // Add subtle deterministic variation (±5%)
-      const variation = (((col * 7 + row * 11) % 11) - 5);
-      
-      const newL = Math.max(15, Math.min(85, l + lightnessOffset + variation));
-      
-      tiles.push(`hsl(${Math.round(h)}, ${Math.round(s)}%, ${Math.round(newL)}%)`);
-    }
-  }
-  
-  return tiles;
-};
-
-// Mosaic pattern component - 6x5 grid with diagonal gradient
-const MosaicPattern = ({ brandColor }: { brandColor: string }) => {
-  const tiles = useMemo(() => generateMosaicGrid(brandColor), [brandColor]);
-  
-  return (
-    <div 
-      className="absolute inset-0 grid grid-cols-6 grid-rows-5"
-      style={{ backgroundColor: brandColor }}
-    >
-      {tiles.map((color, i) => (
-        <div key={i} style={{ backgroundColor: color }} />
-      ))}
-    </div>
-  );
-};
-
 const speakers = [{
   id: 1,
   name: "Sara Varni",
   title: "Chief Marketing Officer",
   company: "Datadog",
   companyDomain: "datadoghq.com",
-  brandColor: "#632CA6", // Datadog purple
   bio: "Building the future of cloud monitoring through data-driven marketing strategies."
 }, {
   id: 2,
@@ -91,7 +19,6 @@ const speakers = [{
   title: "Chief Marketing Officer",
   company: "Square",
   companyDomain: "squareup.com",
-  brandColor: "#006AFF", // Square blue
   bio: "Empowering small businesses with accessible financial tools and innovative campaigns."
 }, {
   id: 3,
@@ -99,7 +26,6 @@ const speakers = [{
   title: "Chief Marketing Officer",
   company: "Loveable",
   companyDomain: "lovable.dev",
-  brandColor: "#F97316", // Lovable orange
   bio: "Pioneering AI-powered product development and redefining how teams build software."
 }, {
   id: 4,
@@ -107,7 +33,6 @@ const speakers = [{
   title: "Chief Marketing Officer",
   company: "Webflow",
   companyDomain: "webflow.com",
-  brandColor: "#4353FF", // Webflow blue
   bio: "Championing the no-code movement and democratizing web design for creators."
 }];
 
@@ -130,15 +55,10 @@ const SpeakerCard = ({
       className="group"
     >
       <div className="card-base card-image hover-scale">
-        {/* Brand Color Mosaic - visible at rest, fades on hover */}
-        <div className="absolute inset-0 hover-transition group-hover:opacity-0">
-          <MosaicPattern brandColor={speaker.brandColor} />
-        </div>
-        
-        {/* Photo Layer - hidden at rest, reveals on hover */}
-        <div className="absolute inset-0 opacity-0 hover-transition group-hover:opacity-100">
+        {/* Photo Layer */}
+        <div className="absolute inset-0">
           <img src={speakerImages[index]} alt={speaker.name} className="w-full h-full object-cover" />
-          <div className="card-overlay" />
+          <div className="card-overlay hover-transition group-hover:opacity-90" />
         </div>
 
         {/* Company favicon badge */}
