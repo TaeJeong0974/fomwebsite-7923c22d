@@ -52,58 +52,47 @@ const SpeakerCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="card-base card-image cursor-pointer group hover-scale"
+      className="group"
     >
-      {/* Photo Layer */}
-      <div className="absolute inset-0 hover-reveal-scale">
-        <img src={speakerImages[index]} alt={speaker.name} className="w-full h-full object-cover" />
-        <div className="card-overlay" />
-      </div>
+      <div className="card-base card-image hover-scale">
+        {/* Photo Layer */}
+        <div className="absolute inset-0">
+          <img src={speakerImages[index]} alt={speaker.name} className="w-full h-full object-cover" />
+          <div className="card-overlay hover-transition group-hover:opacity-90" />
+        </div>
 
-      {/* Rest State */}
-      <div className="card-content-full card-padding hover-hide-up">
         {/* Company favicon badge */}
-        <div className="glass rounded-xl p-2.5 w-fit hover-scale-badge">
+        <div className="absolute top-4 left-4 glass rounded-xl p-2.5 hover-scale-badge">
           <img 
             src={`https://www.google.com/s2/favicons?domain=${speaker.companyDomain}&sz=64`} 
             alt={speaker.company}
             className="h-5 w-5 object-contain"
           />
         </div>
-        
-        {/* Name at bottom - two lines */}
-        <h3 className="font-display text-foreground leading-[0.95] tracking-tight">
-          <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
-            {firstName}
-          </span>
-          <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
-            {lastName}
-          </span>
-        </h3>
-      </div>
 
-      {/* Hover State */}
-      <div className="card-content-bottom card-padding hover-reveal-up">
-        <h3 className="font-display text-white leading-[0.95] tracking-tight">
-          <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
-            {firstName}
-          </span>
-          <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
-            {lastName}
-          </span>
-        </h3>
-        <p className="text-body-sm text-white/70 mt-1">
-          {speaker.title}
-        </p>
-        <p className="text-body-sm font-medium text-primary">
-          {speaker.company}
-        </p>
-        
-        {/* Bio */}
-        <div className="hover-expand">
-          <p className="text-body-sm leading-relaxed text-white/60">
-            {speaker.bio}
+        {/* Content - always visible at bottom */}
+        <div className="card-content-bottom card-padding">
+          <h3 className="font-display text-white leading-[0.95] tracking-tight">
+            <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
+              {firstName}
+            </span>
+            <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
+              {lastName}
+            </span>
+          </h3>
+          <p className="text-body-sm text-white/70 mt-1 hover-transition">
+            {speaker.title}
           </p>
+          <p className="text-body-sm font-medium text-primary hover-transition">
+            {speaker.company}
+          </p>
+          
+          {/* Reveal content on hover */}
+          <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
+            <p className="text-body-sm leading-relaxed text-white/60">
+              {speaker.bio}
+            </p>
+          </div>
         </div>
       </div>
     </motion.article>
