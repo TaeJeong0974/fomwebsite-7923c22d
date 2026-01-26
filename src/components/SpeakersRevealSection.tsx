@@ -42,6 +42,8 @@ const SpeakerCard = ({
   index: number;
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const firstName = speaker.name.split(' ')[0];
+  const lastName = speaker.name.split(' ').slice(1).join(' ');
   return <motion.article initial={{
     opacity: 0,
     y: 20
@@ -83,10 +85,13 @@ const SpeakerCard = ({
           />
         </div>
         
-        {/* Name at bottom */}
-        <h3 className="font-display text-foreground leading-[0.9] tracking-tight">
+        {/* Name at bottom - two lines */}
+        <h3 className="font-display text-foreground leading-[0.95] tracking-tight">
           <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
-            {speaker.name}
+            {firstName}
+          </span>
+          <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
+            {lastName}
           </span>
         </h3>
       </motion.div>
