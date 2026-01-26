@@ -34,8 +34,6 @@ const SpeakerCard = ({
   index: number;
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const firstName = speaker.name.split(' ')[0];
-  const lastName = speaker.name.split(' ').slice(1).join(' ');
   return <motion.article initial={{
     opacity: 0,
     y: 20
@@ -61,38 +59,18 @@ const SpeakerCard = ({
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
       </motion.div>
 
-      {/* Typography Layer - Visible by default */}
-      <motion.div className="absolute inset-0 flex flex-col justify-between p-5 lg:p-6" initial={false} animate={{
+      {/* Typography Layer - Visible by default, name at bottom */}
+      <motion.div className="absolute inset-0 flex flex-col justify-end p-5 lg:p-6" initial={false} animate={{
       opacity: isHovered ? 0 : 1
     }} transition={{
       duration: 0.3,
       ease: "easeOut"
     }}>
-        {/* Top: Company */}
-        <div>
-          <span className="text-[10px] uppercase tracking-[0.3em] text-primary font-medium">
-            {speaker.company}
+        <h3 className="font-display text-foreground leading-[0.9] tracking-tight">
+          <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
+            {speaker.name}
           </span>
-        </div>
-
-        {/* Center: Large Name */}
-        <div className="flex-1 flex flex-col justify-center -mt-4">
-          <h3 className="font-display text-foreground leading-[0.85] tracking-tight">
-            <span className="block text-3xl sm:text-4xl lg:text-5xl font-bold">
-              {firstName}
-            </span>
-            <span className="block text-3xl sm:text-4xl lg:text-5xl font-normal mt-2">
-              {lastName}
-            </span>
-          </h3>
-        </div>
-
-        {/* Bottom: Title */}
-        <div>
-          <p className="text-xs lg:text-sm text-muted-foreground font-medium">
-            {speaker.title}
-          </p>
-        </div>
+        </h3>
       </motion.div>
 
       {/* Hover State: Name at bottom */}
