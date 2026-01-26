@@ -94,13 +94,11 @@ const IntroSection = () => {
                           <p className="text-body-sm text-white/70 mt-1">{host.title}</p>
                         </div>
                         <motion.div
-                          animate={{ 
-                            rotate: isExpanded ? 180 : 0,
-                            scale: isExpanded ? 1 : [1, 1.1, 1],
-                          }}
+                          animate={{ rotate: isExpanded ? 180 : 0 }}
+                          whileHover={{ scale: isExpanded ? 1 : [1, 1.15, 1] }}
                           transition={{ 
                             rotate: { duration: 0.3 },
-                            scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                            scale: { duration: 0.6, ease: "easeInOut" }
                           }}
                           className="glass rounded-full p-2"
                         >
