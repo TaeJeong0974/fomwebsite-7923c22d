@@ -54,7 +54,7 @@ const SpeakerCard = ({
       transition={{ duration: 0.4, delay: index * 0.1 }}
       className="group"
     >
-      <div className="card-base card-image hover-scale">
+      <div className="card-base card-image hover-scale bg-muted/60">
         {/* Photo Layer */}
         <div className="absolute inset-0">
           <img src={speakerImages[index]} alt={speaker.name} className="w-full h-full object-cover" />
