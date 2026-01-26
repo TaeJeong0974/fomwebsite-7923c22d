@@ -28,25 +28,37 @@ const SpeakersSection = () => {
           <div className="glass rounded-full p-1.5 flex items-center gap-1">
             <button
               onClick={() => setLayout("carousel")}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`group/btn flex items-center gap-2 px-3 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                 layout === "carousel" 
-                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25" 
-                  : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25 px-4" 
+                  : "text-muted-foreground hover:text-foreground hover:bg-white/5 hover:px-4"
               }`}
             >
-              <Rows3 className="h-4 w-4" />
-              <span className="hidden sm:inline">Carousel</span>
+              <Rows3 className="h-4 w-4 shrink-0" />
+              <span className={`overflow-hidden transition-all duration-300 ${
+                layout === "carousel" 
+                  ? "w-auto opacity-100" 
+                  : "w-0 opacity-0 group-hover/btn:w-auto group-hover/btn:opacity-100"
+              }`}>
+                Carousel
+              </span>
             </button>
             <button
               onClick={() => setLayout("grid")}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`group/btn flex items-center gap-2 px-3 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                 layout === "grid" 
-                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25" 
-                  : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25 px-4" 
+                  : "text-muted-foreground hover:text-foreground hover:bg-white/5 hover:px-4"
               }`}
             >
-              <LayoutGrid className="h-4 w-4" />
-              <span className="hidden sm:inline">Grid</span>
+              <LayoutGrid className="h-4 w-4 shrink-0" />
+              <span className={`overflow-hidden transition-all duration-300 ${
+                layout === "grid" 
+                  ? "w-auto opacity-100" 
+                  : "w-0 opacity-0 group-hover/btn:w-auto group-hover/btn:opacity-100"
+              }`}>
+                Grid
+              </span>
             </button>
           </div>
         </motion.div>
