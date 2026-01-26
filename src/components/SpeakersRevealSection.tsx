@@ -9,22 +9,26 @@ const speakers = [{
   id: 1,
   name: "Sara Varni",
   title: "Chief Marketing Officer",
-  company: "Datadog"
+  company: "Datadog",
+  bio: "Building the future of cloud monitoring through data-driven marketing strategies."
 }, {
   id: 2,
   name: "Lindsey Irvine",
   title: "Chief Marketing Officer",
-  company: "Square"
+  company: "Square",
+  bio: "Empowering small businesses with accessible financial tools and innovative campaigns."
 }, {
   id: 3,
   name: "Ceci Stallsmith",
   title: "Chief Marketing Officer",
-  company: "Loveable"
+  company: "Loveable",
+  bio: "Pioneering AI-powered product development and redefining how teams build software."
 }, {
   id: 4,
   name: "Dave Steer",
   title: "Chief Marketing Officer",
-  company: "Webflow"
+  company: "Webflow",
+  bio: "Championing the no-code movement and democratizing web design for creators."
 }];
 const SpeakerCard = ({
   speaker,
@@ -59,13 +63,16 @@ const SpeakerCard = ({
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
       </motion.div>
 
-      {/* Typography Layer - Visible by default, name at bottom */}
+      {/* Typography Layer - Visible by default, name + company at bottom */}
       <motion.div className="absolute inset-0 flex flex-col justify-end p-5 lg:p-6" initial={false} animate={{
       opacity: isHovered ? 0 : 1
     }} transition={{
       duration: 0.3,
       ease: "easeOut"
     }}>
+        <p className="text-sm font-medium text-primary mb-1">
+          {speaker.company}
+        </p>
         <h3 className="font-display text-foreground leading-[0.9] tracking-tight">
           <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
             {speaker.name}
@@ -73,7 +80,7 @@ const SpeakerCard = ({
         </h3>
       </motion.div>
 
-      {/* Hover State: Name at bottom */}
+      {/* Hover State: Name + bio at bottom */}
       <motion.div className="absolute inset-x-0 bottom-0 p-5 lg:p-6" initial={false} animate={{
       opacity: isHovered ? 1 : 0,
       y: isHovered ? 0 : 20
@@ -86,10 +93,10 @@ const SpeakerCard = ({
           {speaker.name}
         </h3>
         <p className="text-sm text-white/70 mt-0.5">
-          {speaker.title}
+          {speaker.title}, {speaker.company}
         </p>
-        <p className="text-sm font-medium mt-1 text-primary">
-          {speaker.company}
+        <p className="text-sm leading-relaxed text-white/60 mt-3">
+          {speaker.bio}
         </p>
       </motion.div>
 
