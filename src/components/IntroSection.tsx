@@ -49,43 +49,88 @@ const IntroSection = () => {
           </p>
           
           <div className="grid grid-cols-1 md:grid-cols-3 grid-gap">
-            {hosts.map((host, index) => (
-              <motion.div
-                key={host.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                className="group"
-              >
-                <div className="card-image hover-scale">
-                  <img 
-                    src={hostPattern} 
-                    alt=""
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                
-                <div className="flex items-start justify-between gap-3 pt-5">
-                  <div className="min-w-0">
-                    <h3 className="font-display text-lg font-semibold text-foreground">
-                      {host.name}
-                    </h3>
-                    <p className="text-body-sm text-primary font-medium mt-0.5">{host.title}</p>
-                    <p className="text-body-sm text-muted-foreground leading-relaxed mt-2">{host.bio}</p>
+            {hosts.map((host, index) => {
+              const firstName = host.name.split(' ')[0];
+              const lastName = host.name.split(' ').slice(1).join(' ');
+              
+              return (
+                <motion.article
+                  key={host.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                  className="card-base card-image cursor-pointer group"
+                >
+                  {/* Pattern Layer */}
+                  <div className="absolute inset-0 hover-reveal-scale">
+                    <img 
+                      src={hostPattern} 
+                      alt=""
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="card-overlay" />
                   </div>
-                  <a
-                    href={host.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex-shrink-0 w-9 h-9 glass rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover-transition hover-scale focus-ring"
-                    aria-label={`${host.name} LinkedIn`}
-                  >
-                    <Linkedin size={14} />
-                  </a>
-                </div>
-              </motion.div>
-            ))}
+
+                  {/* Rest State */}
+                  <div className="card-content-full card-padding hover-hide-up">
+                    {/* LinkedIn badge */}
+                    <a
+                      href={host.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="glass rounded-xl p-2.5 w-fit hover-scale-badge focus-ring"
+                      aria-label={`${host.name} LinkedIn`}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <Linkedin size={20} className="text-foreground" />
+                    </a>
+                    
+                    {/* Name at bottom - two lines */}
+                    <h3 className="font-display text-foreground leading-[0.95] tracking-tight">
+                      <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
+                        {firstName}
+                      </span>
+                      <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
+                        {lastName}
+                      </span>
+                    </h3>
+                  </div>
+
+                  {/* Hover State */}
+                  <div className="card-content-bottom card-padding hover-reveal-up">
+                    <h3 className="font-display text-white leading-[0.95] tracking-tight">
+                      <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
+                        {firstName}
+                      </span>
+                      <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
+                        {lastName}
+                      </span>
+                    </h3>
+                    <p className="text-body-sm text-white/70 mt-1">
+                      {host.title}
+                    </p>
+                    
+                    {/* Bio */}
+                    <div className="hover-expand">
+                      <p className="text-body-sm leading-relaxed text-white/60">
+                        {host.bio}
+                      </p>
+                      <a
+                        href={host.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn-base btn-glass-light btn-sm mt-3"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <Linkedin size={14} className="mr-2" />
+                        LinkedIn
+                      </a>
+                    </div>
+                  </div>
+                </motion.article>
+              );
+            })}
           </div>
         </motion.div>
       </div>
