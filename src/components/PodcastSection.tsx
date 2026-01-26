@@ -259,7 +259,7 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
 // List View Component
 const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
   return (
-    <div className="space-y-2">
+    <div className="space-y-4">
       {episodes.map((episode, index) => (
         <motion.div
           key={episode.id}
@@ -270,41 +270,43 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
         >
           <Link
             to={`/episode/${episode.slug}`}
-            className="group flex items-center gap-6 py-5 border-b border-border hover:bg-secondary/30 hover-transition px-4 rounded-xl -mx-4"
+            className="group flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 py-6 border-b border-border hover:bg-secondary/30 hover-transition px-4 rounded-xl -mx-4"
           >
-            {/* Episode Number */}
-            <span className="font-display text-2xl font-bold text-muted-foreground/40 w-12">
-              {String(index + 1).padStart(2, '0')}
-            </span>
-            
-            {/* Company Logo */}
-            {episode.companyDomain && (
-              <div className="glass rounded-xl p-2.5 shrink-0">
-                <img 
-                  src={`https://www.google.com/s2/favicons?domain=${episode.companyDomain}&sz=64`} 
-                  alt={episode.company}
-                  className="h-5 w-5 object-contain"
-                />
+            <div className="flex items-center gap-4 sm:gap-6">
+              {/* Episode Number */}
+              <span className="font-display text-3xl lg:text-4xl font-bold text-muted-foreground/40 w-12 shrink-0">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              
+              {/* Company Logo */}
+              {episode.companyDomain && (
+                <div className="glass rounded-xl p-3 shrink-0">
+                  <img 
+                    src={`https://www.google.com/s2/favicons?domain=${episode.companyDomain}&sz=64`} 
+                    alt={episode.company}
+                    className="h-6 w-6 object-contain"
+                  />
+                </div>
+              )}
+              
+              {/* Name - matching card size */}
+              <div className="min-w-0">
+                <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-foreground group-hover:text-primary hover-transition leading-tight">
+                  {episode.name}
+                </h3>
+                <p className="text-body-sm text-muted-foreground mt-1">
+                  {episode.title} · <span className="text-primary font-medium">{episode.company}</span>
+                </p>
               </div>
-            )}
-            
-            {/* Content */}
-            <div className="flex-1 min-w-0">
-              <h3 className="font-display text-base lg:text-lg font-semibold text-foreground group-hover:text-primary hover-transition">
-                {episode.name}
-              </h3>
-              <p className="text-label mt-0.5">
-                {episode.title} · {episode.company}
-              </p>
             </div>
             
-            {/* Overview on larger screens */}
-            <p className="hidden lg:block text-body-sm text-muted-foreground max-w-xs truncate">
+            {/* Overview */}
+            <p className="text-body-sm text-muted-foreground sm:ml-auto sm:max-w-md sm:text-right leading-relaxed">
               {episode.overview}
             </p>
             
             {/* Hover indicator */}
-            <div className="w-6 h-6 flex items-center justify-center shrink-0">
+            <div className="hidden sm:flex w-6 h-6 items-center justify-center shrink-0">
               <div className="w-2 h-2 rounded-full bg-primary opacity-0 group-hover:opacity-100 hover-transition" />
             </div>
           </Link>
@@ -320,18 +322,18 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.3, delay: (episodes.length + idx) * 0.05 }}
         >
-          <div className="flex items-center gap-6 py-5 border-b border-border px-4 rounded-xl -mx-4 opacity-50">
-            <span className="font-display text-2xl font-bold text-muted-foreground/40 w-12">
+          <div className="flex items-center gap-4 sm:gap-6 py-6 border-b border-border px-4 rounded-xl -mx-4 opacity-50">
+            <span className="font-display text-3xl lg:text-4xl font-bold text-muted-foreground/40 w-12 shrink-0">
               {String(episodes.length + idx + 1).padStart(2, '0')}
             </span>
-            <div className="glass rounded-xl p-2.5 shrink-0">
-              <div className="h-5 w-5 rounded bg-muted" />
+            <div className="glass rounded-xl p-3 shrink-0">
+              <div className="h-6 w-6 rounded bg-muted" />
             </div>
-            <div className="flex-1 min-w-0">
-              <h3 className="font-display text-base lg:text-lg font-semibold text-foreground">
+            <div className="min-w-0">
+              <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-foreground leading-tight">
                 Coming Soon
               </h3>
-              <p className="text-label mt-0.5">Guest to be announced</p>
+              <p className="text-body-sm text-muted-foreground mt-1">Guest to be announced</p>
             </div>
           </div>
         </motion.div>
