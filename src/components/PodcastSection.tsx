@@ -35,16 +35,6 @@ const episodes = [
     comingSoon: false,
   },
   {
-    id: 4,
-    slug: "sara-varni",
-    name: "Sara Varni",
-    title: "Chief Marketing Officer",
-    company: "Datadog",
-    companyDomain: "datadoghq.com",
-    overview: "The power of storytelling in building memorable brand experiences.",
-    comingSoon: false,
-  },
-  {
     id: 5,
     slug: "guest-five",
     name: "Guest Name",
