@@ -147,9 +147,6 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-gap">
       {episodes.slice(0, 4).map((episode, index) => {
-        const firstName = episode.name.split(' ')[0];
-        const lastName = episode.name.split(' ').slice(1).join(' ');
-        
         return (
           <motion.div
             key={episode.id}
@@ -183,9 +180,8 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
                 )}
                 
                 <div className="card-content-bottom card-padding-lg">
-                  <h3 className="font-display text-white leading-[0.95] tracking-tight">
-                    <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">{firstName}</span>
-                    <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">{lastName}</span>
+                  <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-white leading-tight tracking-tight">
+                    {episode.name}
                   </h3>
                   <p className="text-body-sm text-white/70 mt-1">{episode.title}</p>
                   <p className="text-body-sm font-medium text-primary">{episode.company}</p>
