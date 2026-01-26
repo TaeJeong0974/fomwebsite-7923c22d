@@ -360,19 +360,21 @@
     font-size: 1.125rem;
     line-height: 1.7;
     letter-spacing: 0.01em;
-    color: hsl(var(--muted-foreground));
+    color: hsl(0 0% 100%);
   }
 
   .text-body {
     font-size: 0.9375rem;
     line-height: 1.65;
     letter-spacing: 0.01em;
+    color: hsl(0 0% 100%);
   }
 
   .text-body-sm {
     font-size: 0.8125rem;
     line-height: 1.6;
     letter-spacing: 0.005em;
+    color: hsl(0 0% 100%);
   }
 
   /* ==========================================
