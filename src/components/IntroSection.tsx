@@ -88,11 +88,11 @@ const IntroSection = () => {
                       aria-label={`${host.name} LinkedIn`}
                       onClick={(e) => e.stopPropagation()}
                     >
-                      <Linkedin size={20} className="text-foreground" />
+                      <Linkedin size={20} className="text-white" />
                     </a>
                     
                     {/* Name at bottom - two lines */}
-                    <h3 className="font-display text-foreground leading-[0.95] tracking-tight">
+                    <h3 className="font-display text-white leading-[0.95] tracking-tight">
                       <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
                         {firstName}
                       </span>
