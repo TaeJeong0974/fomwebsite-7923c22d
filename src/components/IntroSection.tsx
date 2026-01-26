@@ -94,8 +94,14 @@ const IntroSection = () => {
                           <p className="text-body-sm text-white/70 mt-1">{host.title}</p>
                         </div>
                         <motion.div
-                          animate={{ rotate: isExpanded ? 180 : 0 }}
-                          transition={{ duration: 0.3 }}
+                          animate={{ 
+                            rotate: isExpanded ? 180 : 0,
+                            scale: isExpanded ? 1 : [1, 1.1, 1],
+                          }}
+                          transition={{ 
+                            rotate: { duration: 0.3 },
+                            scale: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                          }}
                           className="glass rounded-full p-2"
                         >
                           <ChevronDown className="h-5 w-5 text-white" />
