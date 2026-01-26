@@ -29,26 +29,46 @@ const generateColorVariations = (hexColor: string, count: number = 16) => {
     }
   }
   
-  // Generate variations with different lightness and slight saturation shifts
-  const variations: string[] = [];
+  // Generate gradient pairs with different lightness and slight saturation shifts
+  const variations: { from: string; to: string; angle: number }[] = [];
+  // Use seeded values for consistency
+  const seeds = [0.2, 0.8, 0.4, 0.6, 0.3, 0.7, 0.5, 0.1, 0.9, 0.35, 0.65, 0.25, 0.75, 0.45, 0.55, 0.15];
+  const angles = [135, 180, 90, 225, 45, 270, 0, 315, 160, 200, 70, 110, 250, 290, 20, 340];
+  
   for (let i = 0; i < count; i++) {
-    const lightnessShift = (Math.random() - 0.5) * 0.3; // -15% to +15%
-    const satShift = (Math.random() - 0.5) * 0.2; // -10% to +10%
-    const newL = Math.max(0.2, Math.min(0.8, l + lightnessShift));
-    const newS = Math.max(0.3, Math.min(1, s + satShift));
-    variations.push(`hsl(${Math.round(h * 360)}, ${Math.round(newS * 100)}%, ${Math.round(newL * 100)}%)`);
+    const seed1 = seeds[i % seeds.length];
+    const seed2 = seeds[(i + 3) % seeds.length];
+    
+    const lightnessShift1 = (seed1 - 0.5) * 0.35;
+    const lightnessShift2 = (seed2 - 0.5) * 0.35;
+    const satShift = (seed1 - 0.5) * 0.15;
+    
+    const newL1 = Math.max(0.25, Math.min(0.75, l + lightnessShift1));
+    const newL2 = Math.max(0.25, Math.min(0.75, l + lightnessShift2));
+    const newS = Math.max(0.4, Math.min(1, s + satShift));
+    
+    variations.push({
+      from: `hsl(${Math.round(h * 360)}, ${Math.round(newS * 100)}%, ${Math.round(newL1 * 100)}%)`,
+      to: `hsl(${Math.round(h * 360)}, ${Math.round(newS * 100)}%, ${Math.round(newL2 * 100)}%)`,
+      angle: angles[i % angles.length]
+    });
   }
   return variations;
 };
 
 // Mosaic pattern component
 const MosaicPattern = ({ brandColor }: { brandColor: string }) => {
-  const colors = useMemo(() => generateColorVariations(brandColor, 16), [brandColor]);
+  const gradients = useMemo(() => generateColorVariations(brandColor, 16), [brandColor]);
   
   return (
     <div className="absolute inset-0 grid grid-cols-4 grid-rows-4">
-      {colors.map((color, i) => (
-        <div key={i} style={{ backgroundColor: color }} />
+      {gradients.map((gradient, i) => (
+        <div 
+          key={i} 
+          style={{ 
+            background: `linear-gradient(${gradient.angle}deg, ${gradient.from}, ${gradient.to})` 
+          }} 
+        />
       ))}
     </div>
   );
