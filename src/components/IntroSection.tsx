@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { Linkedin } from "lucide-react";
 import speaker2 from "@/assets/speaker-2.png";
 import speaker3 from "@/assets/speaker-3.png";
 import speaker4 from "@/assets/speaker-4.png";
@@ -78,19 +77,7 @@ const IntroSection = () => {
                   </div>
 
                   {/* Rest State */}
-                  <div className="card-content-full card-padding hover-hide-up">
-                    {/* LinkedIn badge */}
-                    <a
-                      href={host.linkedin}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="glass rounded-xl p-2.5 w-fit hover-scale-badge focus-ring"
-                      aria-label={`${host.name} LinkedIn`}
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <Linkedin size={20} className="text-white" />
-                    </a>
-                    
+                  <div className="card-content-bottom card-padding hover-hide-up">
                     {/* Name at bottom - two lines */}
                     <h3 className="font-display text-white leading-[0.95] tracking-tight">
                       <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
@@ -121,16 +108,6 @@ const IntroSection = () => {
                       <p className="text-body-sm leading-relaxed text-white/60">
                         {host.bio}
                       </p>
-                      <a
-                        href={host.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn-base btn-glass-light btn-sm mt-3"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <Linkedin size={14} className="mr-2" />
-                        LinkedIn
-                      </a>
                     </div>
                   </div>
                 </motion.article>
