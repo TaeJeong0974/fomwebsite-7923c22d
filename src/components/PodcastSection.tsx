@@ -103,7 +103,7 @@ const PodcastSection = () => {
                 className="block group"
               >
                 <div 
-                  className="aspect-[4/5] relative overflow-hidden rounded-2xl transition-transform duration-600 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:scale-[1.02]"
+                  className="aspect-[4/5] relative overflow-hidden rounded-2xl transition-transform duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:scale-[1.02]"
                   style={{
                     backgroundImage: `url(${guestBg})`,
                     backgroundSize: 'cover',
@@ -111,7 +111,7 @@ const PodcastSection = () => {
                   }}
                 >
                   {/* Liquid glass overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-all duration-600 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:from-black/80 group-hover:via-black/40" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:from-black/80 group-hover:via-black/40" />
                   
                   {/* Company logo badge - glass pill with liquid hover */}
                   {episode.companyDomain && (
@@ -158,14 +158,14 @@ const PodcastSection = () => {
             transition={{ duration: 0.4, delay: 0.4 }}
           >
             <div 
-              className="aspect-[4/5] relative overflow-hidden rounded-2xl group cursor-pointer transition-transform duration-600 ease-[cubic-bezier(0.33,1,0.68,1)] hover:scale-[1.02]"
+              className="aspect-[4/5] relative overflow-hidden rounded-2xl group cursor-pointer transition-transform duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] hover:scale-[1.02]"
               style={{
                 backgroundImage: `url(${guestBg})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-all duration-600 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:from-black/80" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:from-black/80" />
               
               {/* Coming Soon label - glass pill with liquid hover */}
               <div className="absolute top-4 left-4 glass-dark rounded-full px-4 py-2 transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:scale-105">
@@ -197,7 +197,7 @@ const PodcastSection = () => {
             transition={{ duration: 0.4, delay: 0.5 }}
           >
             <div 
-              className="aspect-[4/5] relative overflow-hidden rounded-2xl group cursor-pointer transition-transform duration-600 ease-[cubic-bezier(0.33,1,0.68,1)] hover:scale-[1.02]"
+              className="aspect-[4/5] relative overflow-hidden rounded-2xl group cursor-pointer transition-transform duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] hover:scale-[1.02]"
               style={{
                 backgroundImage: `url(${subscribeBg})`,
                 backgroundSize: 'cover',
