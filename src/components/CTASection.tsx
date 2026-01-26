@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 
 const CTASection = () => {
@@ -12,8 +11,8 @@ const CTASection = () => {
   };
 
   return (
-    <section className="py-20 lg:py-28">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="section-spacing">
+      <div className="container mx-auto container-padding">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -22,13 +21,13 @@ const CTASection = () => {
           className="glass-dark rounded-3xl p-8 sm:p-12 lg:p-16"
         >
           <div className="max-w-xl">
-            <p className="text-[10px] text-white/50 uppercase tracking-[0.3em] mb-2 font-medium">
+            <p className="text-label text-white/50 mb-2">
               Newsletter
             </p>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-white tracking-tight">
+            <h2 className="text-display-md text-white">
               Never Miss an Episode
             </h2>
-            <p className="mt-3 text-white/60 text-sm sm:text-base">
+            <p className="mt-3 text-body text-white/60">
               Subscribe for weekly updates and exclusive content.
             </p>
 
@@ -46,17 +45,17 @@ const CTASection = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@example.com"
                 required
-                className="flex-1 px-5 py-3 text-sm glass rounded-full text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all duration-300"
+                className="flex-1 px-5 py-3 text-body glass rounded-full text-white placeholder:text-white/40 focus-ring hover-transition"
               />
-              <Button 
+              <button 
                 type="submit" 
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 rounded-full"
+                className="btn-base btn-md bg-primary hover:bg-primary/90 text-primary-foreground"
               >
                 Subscribe
-              </Button>
+              </button>
             </motion.form>
 
-            <p className="mt-4 text-[10px] text-white/40">
+            <p className="mt-4 text-body-sm text-white/40">
               No spam. Unsubscribe anytime.
             </p>
           </div>

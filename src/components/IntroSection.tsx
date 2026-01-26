@@ -25,8 +25,8 @@ const hosts = [
 
 const IntroSection = () => {
   return (
-    <section className="py-20 lg:py-28">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="section-spacing">
+      <div className="container mx-auto container-padding">
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -44,11 +44,11 @@ const IntroSection = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <p className="text-xs text-muted-foreground uppercase tracking-[0.2em] mb-8 font-medium">
+          <p className="text-label mb-8">
             Your Hosts
           </p>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 grid-gap">
             {hosts.map((host, index) => (
               <motion.div
                 key={host.name}
@@ -58,11 +58,11 @@ const IntroSection = () => {
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                 className="group"
               >
-                <div className="relative overflow-hidden aspect-[4/5] rounded-2xl">
+                <div className="card-image hover-scale">
                   <img 
                     src={hostPattern} 
                     alt=""
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-cover"
                   />
                 </div>
                 
@@ -71,14 +71,14 @@ const IntroSection = () => {
                     <h3 className="font-display text-lg font-semibold text-foreground">
                       {host.name}
                     </h3>
-                    <p className="text-sm text-primary font-medium mt-0.5">{host.title}</p>
-                    <p className="text-sm text-muted-foreground leading-relaxed mt-2">{host.bio}</p>
+                    <p className="text-body-sm text-primary font-medium mt-0.5">{host.title}</p>
+                    <p className="text-body-sm text-muted-foreground leading-relaxed mt-2">{host.bio}</p>
                   </div>
                   <a
                     href={host.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-shrink-0 w-9 h-9 glass rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-105"
+                    className="flex-shrink-0 w-9 h-9 glass rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover-transition hover-scale focus-ring"
                     aria-label={`${host.name} LinkedIn`}
                   >
                     <Linkedin size={14} />

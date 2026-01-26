@@ -5,16 +5,16 @@ const Footer = () => {
 
   return (
     <footer className="py-8 lg:py-10">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto container-padding">
         <div className="glass-subtle rounded-2xl px-6 py-5">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-3">
               <img src={FomLogo} alt="Future of Marketing" className="h-4 opacity-50" />
-              <span className="text-xs text-muted-foreground">
+              <span className="text-body-sm text-muted-foreground">
                 Stories, ideas, and live experiences.
               </span>
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-body-sm text-muted-foreground">
               © {currentYear} Future of Marketing
             </p>
           </div>
