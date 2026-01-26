@@ -1,10 +1,11 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
 import speaker1 from "@/assets/speaker-1.png";
 import speaker2 from "@/assets/speaker-2.png";
 import speaker3 from "@/assets/speaker-3.png";
 import speaker4 from "@/assets/speaker-4.png";
+
 const speakerImages = [speaker1, speaker2, speaker3, speaker4];
+
 const speakers = [{
   id: 1,
   name: "Sara Varni",
@@ -34,6 +35,7 @@ const speakers = [{
   companyDomain: "webflow.com",
   bio: "Championing the no-code movement and democratizing web design for creators."
 }];
+
 const SpeakerCard = ({
   speaker,
   index
@@ -41,42 +43,25 @@ const SpeakerCard = ({
   speaker: typeof speakers[0];
   index: number;
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
   const firstName = speaker.name.split(' ')[0];
   const lastName = speaker.name.split(' ').slice(1).join(' ');
-  return <motion.article initial={{
-    opacity: 0,
-    y: 20
-  }} whileInView={{
-    opacity: 1,
-    y: 0
-  }} viewport={{
-    once: true
-  }} transition={{
-    duration: 0.5,
-    delay: index * 0.1
-  }} className="relative aspect-[4/5] bg-muted/40 rounded-2xl overflow-hidden cursor-pointer group" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-      {/* Photo Layer - Hidden by default, reveals on hover with smooth motion */}
-      <motion.div className="absolute inset-0" initial={false} animate={{
-        opacity: isHovered ? 1 : 0,
-        scale: isHovered ? 1 : 1.02
-      }} transition={{
-        duration: 0.5,
-        ease: [0.33, 1, 0.68, 1]
-      }}>
+  
+  return (
+    <motion.article 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      className="relative aspect-[4/5] bg-muted/40 rounded-2xl overflow-hidden cursor-pointer group"
+    >
+      {/* Photo Layer - Hidden by default, reveals on hover */}
+      <div className="absolute inset-0 opacity-0 scale-[1.02] transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:opacity-100 group-hover:scale-100">
         <img src={speakerImages[index]} alt={speaker.name} className="w-full h-full object-cover" />
-        {/* Gradient overlay for text legibility on hover */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-      </motion.div>
+      </div>
 
-      {/* Typography Layer - Visible by default, favicon at top + name at bottom */}
-      <motion.div className="absolute inset-0 flex flex-col justify-between p-5 lg:p-6" initial={false} animate={{
-        opacity: isHovered ? 0 : 1,
-        y: isHovered ? -8 : 0
-      }} transition={{
-        duration: 0.5,
-        ease: [0.33, 1, 0.68, 1]
-      }}>
+      {/* Rest State - Visible by default, fades on hover */}
+      <div className="absolute inset-0 flex flex-col justify-between p-5 lg:p-6 transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:opacity-0 group-hover:-translate-y-2">
         {/* Company favicon badge */}
         <div className="glass rounded-xl p-2.5 w-fit">
           <img 
@@ -95,16 +80,10 @@ const SpeakerCard = ({
             {lastName}
           </span>
         </h3>
-      </motion.div>
+      </div>
 
-      {/* Hover State: Name + push-up info (matching Podcast pattern) */}
-      <motion.div className="absolute inset-x-0 bottom-0 p-5 lg:p-6" initial={false} animate={{
-        opacity: isHovered ? 1 : 0,
-        y: isHovered ? 0 : 12
-      }} transition={{
-        duration: 0.5,
-        ease: [0.33, 1, 0.68, 1]
-      }}>
+      {/* Hover State - Hidden by default, reveals on hover */}
+      <div className="absolute inset-x-0 bottom-0 p-5 lg:p-6 opacity-0 translate-y-3 transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:opacity-100 group-hover:translate-y-0">
         {/* Name - same style as rest state */}
         <h3 className="font-display text-white leading-[0.95] tracking-tight">
           <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
@@ -121,38 +100,40 @@ const SpeakerCard = ({
           {speaker.company}
         </p>
         
-        {/* Bio that pushes up on hover - matching Podcast animation */}
-        <div className={`overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] ${isHovered ? 'max-h-32 mt-3 opacity-100 translate-y-0' : 'max-h-0 mt-0 opacity-0 translate-y-3'}`}>
+        {/* Bio that pushes up on hover */}
+        <div className="max-h-0 mt-0 overflow-hidden opacity-0 translate-y-3 transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:max-h-32 group-hover:mt-3 group-hover:opacity-100 group-hover:translate-y-0">
           <p className="text-sm leading-relaxed text-white/60">
             {speaker.bio}
           </p>
         </div>
-      </motion.div>
-
-    </motion.article>;
+      </div>
+    </motion.article>
+  );
 };
+
 const SpeakersRevealSection = () => {
-  return <section className="py-20 lg:py-28">
+  return (
+    <section className="py-20 lg:py-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div initial={{
-        opacity: 0,
-        y: 20
-      }} whileInView={{
-        opacity: 1,
-        y: 0
-      }} viewport={{
-        once: true
-      }} transition={{
-        duration: 0.5
-      }} className="mb-8 lg:mb-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-8 lg:mb-12"
+        >
           <p className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] mb-2 font-medium">FEATURED</p>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">Speakers</h2>
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
-          {speakers.map((speaker, index) => <SpeakerCard key={speaker.id} speaker={speaker} index={index} />)}
+          {speakers.map((speaker, index) => (
+            <SpeakerCard key={speaker.id} speaker={speaker} index={index} />
+          ))}
         </div>
       </div>
-    </section>;
+    </section>
+  );
 };
+
 export default SpeakersRevealSection;
