@@ -64,7 +64,7 @@ const SpeakerCard = ({
           backdropFilter: isHovered ? 'blur(0px)' : 'blur(0px)',
           background: isHovered ? 'transparent' : 'transparent'
         }}
-        transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
+        transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
       />
       
       {/* Photo Layer - Hidden by default, reveals on hover with liquid motion */}
@@ -73,8 +73,8 @@ const SpeakerCard = ({
         scale: isHovered ? 1 : 1.05,
         filter: isHovered ? 'blur(0px)' : 'blur(8px)'
       }} transition={{
-        duration: 0.7,
-        ease: [0.32, 0.72, 0, 1]
+        duration: 0.6,
+        ease: [0.33, 1, 0.68, 1]
       }}>
         <img src={speakerImages[index]} alt={speaker.name} className="w-full h-full object-cover" />
         {/* Gradient overlay for text legibility on hover */}
@@ -88,7 +88,7 @@ const SpeakerCard = ({
         filter: isHovered ? 'blur(4px)' : 'blur(0px)'
       }} transition={{
         duration: 0.5,
-        ease: [0.32, 0.72, 0, 1]
+        ease: [0.33, 1, 0.68, 1]
       }}>
         {/* Company favicon badge */}
         <div className="glass rounded-xl p-2.5 w-fit">
@@ -115,8 +115,8 @@ const SpeakerCard = ({
         opacity: isHovered ? 1 : 0,
         filter: isHovered ? 'blur(0px)' : 'blur(4px)'
       }} transition={{
-        duration: 0.6,
-        ease: [0.32, 0.72, 0, 1]
+        duration: 0.5,
+        ease: [0.33, 1, 0.68, 1]
       }}>
         {/* Name - same style as rest state */}
         <h3 className="font-display text-white leading-[0.95] tracking-tight">
@@ -135,7 +135,7 @@ const SpeakerCard = ({
         </p>
         
         {/* Bio that pushes up on hover - matching Podcast animation */}
-        <div className={`overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${isHovered ? 'max-h-32 mt-3 opacity-100 translate-y-0 blur-0' : 'max-h-0 mt-0 opacity-0 translate-y-4 blur-[2px]'}`}>
+        <div className={`overflow-hidden transition-all duration-600 ease-[cubic-bezier(0.33,1,0.68,1)] ${isHovered ? 'max-h-32 mt-3 opacity-100 translate-y-0 blur-0' : 'max-h-0 mt-0 opacity-0 translate-y-4 blur-[2px]'}`}>
           <p className="text-sm leading-relaxed text-white/60">
             {speaker.bio}
           </p>
