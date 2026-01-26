@@ -1,7 +1,8 @@
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import IntroSection from "@/components/IntroSection";
-import SpeakersRevealSection from "@/components/SpeakersRevealSection";
+import SpeakersCarousel from "@/components/SpeakersCarousel";
+import SpeakersFeaturedGrid from "@/components/SpeakersFeaturedGrid";
 import PodcastSection from "@/components/PodcastSection";
 import EventsSection from "@/components/EventsSection";
 import AboutSection from "@/components/AboutSection";
@@ -16,7 +17,13 @@ const Index = () => {
       <main>
         <HeroSection />
         <IntroSection />
-        <SpeakersRevealSection />
+        
+        {/* Option 1: Horizontal Carousel */}
+        <SpeakersCarousel />
+        
+        {/* Option 2: Featured + Grid */}
+        <SpeakersFeaturedGrid />
+        
         <PodcastSection />
         <EventsSection />
         <AboutSection />
