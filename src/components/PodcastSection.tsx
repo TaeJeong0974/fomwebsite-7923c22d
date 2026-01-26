@@ -198,6 +198,48 @@ const PodcastSection = () => {
             </div>
           </motion.div>
           
+          {/* Coming Soon Card - Position 6 */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.5 }}
+          >
+            <div 
+              className="card-image group cursor-pointer hover-scale"
+              style={{
+                backgroundImage: `url(${guestBg})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            >
+              <div className="card-overlay-light hover-transition group-hover:opacity-90" />
+              
+              {/* Coming Soon label */}
+              <div className="absolute top-4 left-4 badge-interactive glass-dark text-white">
+                Coming Soon
+              </div>
+              
+              {/* Content */}
+              <div className="card-content-bottom card-padding-lg">
+                <h3 className="font-display text-white leading-[0.95] tracking-tight">
+                  <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
+                    Guest
+                  </span>
+                  <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
+                    Name
+                  </span>
+                </h3>
+                <p className="text-body-sm text-white/70 mt-1">
+                  Chief Marketing Officer
+                </p>
+                <p className="text-body-sm font-medium text-primary">
+                  Company
+                </p>
+              </div>
+            </div>
+          </motion.div>
+          
           {/* Subscribe CTA Card - Position 6 */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
