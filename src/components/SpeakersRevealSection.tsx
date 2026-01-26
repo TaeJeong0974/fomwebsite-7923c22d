@@ -52,7 +52,7 @@ const SpeakerCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className="card-base card-image cursor-pointer group"
+      className="card-base card-image cursor-pointer group hover-scale"
     >
       {/* Photo Layer */}
       <div className="absolute inset-0 hover-reveal-scale">
