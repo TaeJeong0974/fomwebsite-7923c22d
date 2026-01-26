@@ -27,7 +27,7 @@ const Navbar = () => {
               <li key={link.label}>
                 <a
                   href={link.href}
-                  className="text-body-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 hover-transition px-4 py-2 rounded-full focus-ring"
+                  className="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary/50 hover-transition px-4 py-2 rounded-full focus-ring"
                 >
                   {link.label}
                 </a>
@@ -36,8 +36,8 @@ const Navbar = () => {
           </ul>
 
           {/* Desktop CTA */}
-          <div className="hidden md:block">
-            <button className="btn-base btn-glass btn-sm">
+          <div className="hidden md:flex items-center justify-center">
+            <button className="btn-base btn-glass btn-md">
               Subscribe
             </button>
           </div>
@@ -68,7 +68,7 @@ const Navbar = () => {
                 </li>
               ))}
               <li className="pt-3 px-4">
-                <button className="btn-base btn-glass btn-sm w-full">
+                <button className="btn-base btn-glass btn-md w-full">
                   Subscribe
                 </button>
               </li>
