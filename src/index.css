@@ -205,4 +205,115 @@
     border: 1px solid hsl(0 0% 100% / 0.1);
     box-shadow: 0 8px 32px -8px hsl(0 0% 0% / 0.3);
   }
+
+  /* ==========================================
+     Liquid Glass Hover Animation System
+     ========================================== */
+  
+  /* Base transition - apply to any element that needs smooth animations */
+  .hover-transition {
+    transition: all 500ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  .hover-transition-fast {
+    transition: all 300ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  .hover-transition-slow {
+    transition: all 700ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  /* Hover reveal - hidden by default, shows on parent group hover */
+  .hover-reveal {
+    opacity: 0;
+    transition: all 500ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  .group:hover .hover-reveal {
+    opacity: 1;
+  }
+
+  /* Hover reveal with slide up */
+  .hover-reveal-up {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: all 500ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  .group:hover .hover-reveal-up {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hover reveal with scale */
+  .hover-reveal-scale {
+    opacity: 0;
+    transform: scale(1.02);
+    transition: all 500ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  .group:hover .hover-reveal-scale {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  /* Hover hide - visible by default, hides on parent group hover */
+  .hover-hide {
+    opacity: 1;
+    transition: all 500ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  .group:hover .hover-hide {
+    opacity: 0;
+  }
+
+  /* Hover hide with slide up */
+  .hover-hide-up {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 500ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  .group:hover .hover-hide-up {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  /* Hover expand - for content that expands on hover */
+  .hover-expand {
+    max-height: 0;
+    margin-top: 0;
+    opacity: 0;
+    transform: translateY(12px);
+    overflow: hidden;
+    transition: all 500ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  .group:hover .hover-expand {
+    max-height: 8rem;
+    margin-top: 0.75rem;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Hover scale - subtle scale on hover */
+  .hover-scale {
+    transition: transform 500ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  .hover-scale:hover,
+  .group:hover .hover-scale {
+    transform: scale(1.02);
+  }
+
+  /* Hover scale badge - for small elements like badges */
+  .hover-scale-badge {
+    transition: all 500ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  .group:hover .hover-scale-badge {
+    transform: scale(1.1);
+    box-shadow: 0 8px 24px -8px hsl(0 0% 0% / 0.2);
+  }
+
+  /* Hover lift - adds shadow and slight lift */
+  .hover-lift {
+    transition: all 500ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px -8px hsl(0 0% 0% / 0.15);
+  }
 }
