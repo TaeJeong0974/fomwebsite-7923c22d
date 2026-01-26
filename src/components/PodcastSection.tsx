@@ -76,20 +76,16 @@ const PodcastSection = () => {
   const archiveEpisodes = publishedEpisodes.slice(FEATURED_COUNT);
 
   return (
-    <section id="podcast" className="py-20 lg:py-28">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="podcast" className="section-spacing">
+      <div className="container mx-auto container-padding">
         {/* Header */}
         <div className="mb-12 lg:mb-16">
-          <p className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] mb-2 font-medium">
-            Episodes
-          </p>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
-            Podcast
-          </h2>
+          <p className="text-label mb-2">Episodes</p>
+          <h2 className="text-display-lg text-foreground">Podcast</h2>
         </div>
 
         {/* Featured Episodes - Hero Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-gap">
           {featuredEpisodes.slice(0, 4).map((episode, index) => (
             <motion.div
               key={episode.id}
@@ -103,19 +99,19 @@ const PodcastSection = () => {
                 className="block group"
               >
                 <div 
-                  className="aspect-[4/5] relative overflow-hidden rounded-2xl transition-transform duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:scale-[1.02]"
+                  className="card-image hover-scale"
                   style={{
                     backgroundImage: `url(${guestBg})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                   }}
                 >
-                  {/* Liquid glass overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:from-black/80 group-hover:via-black/40" />
+                  {/* Overlay */}
+                  <div className="card-overlay-light hover-transition group-hover:opacity-90" />
                   
-                  {/* Company logo badge - glass pill with liquid hover */}
+                  {/* Company logo badge */}
                   {episode.companyDomain && (
-                    <div className="absolute top-4 left-4 glass rounded-xl p-2.5 transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:scale-110 group-hover:shadow-lg">
+                    <div className="absolute top-4 left-4 glass rounded-xl p-2.5 hover-scale-badge">
                       <img 
                         src={`https://www.google.com/s2/favicons?domain=${episode.companyDomain}&sz=64`} 
                         alt={episode.company}
@@ -125,22 +121,22 @@ const PodcastSection = () => {
                   )}
                   
                   {/* Content */}
-                  <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
-                    <h3 className="font-display text-lg lg:text-xl font-semibold text-white transition-transform duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:translate-y-0">
+                  <div className="card-content-bottom card-padding-lg">
+                    <h3 className="font-display text-lg lg:text-xl font-semibold text-white hover-transition">
                       {episode.name}
                     </h3>
-                    <p className="text-sm text-white/70 mt-0.5 transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)]">
+                    <p className="text-body-sm text-white/70 mt-0.5 hover-transition">
                       {episode.title}
                     </p>
-                    <p className="text-sm font-medium mt-1 text-primary transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)]">
+                    <p className="text-body-sm font-medium mt-1 text-primary hover-transition">
                       {episode.company}
                     </p>
-                    {/* Reveal content with liquid glass animation */}
-                    <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] md:opacity-0 md:translate-y-3 md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
-                      <p className="text-sm leading-relaxed text-white/60 mb-4">
+                    {/* Reveal content */}
+                    <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
+                      <p className="text-body-sm leading-relaxed text-white/60 mb-4">
                         {episode.overview}
                       </p>
-                      <span className="inline-block glass text-white font-display font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-full active:scale-[0.98] transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] md:hover:bg-white/20 md:hover:scale-105">
+                      <span className="btn-base btn-glass-light btn-sm">
                         Listen Now
                       </span>
                     </div>
@@ -158,31 +154,29 @@ const PodcastSection = () => {
             transition={{ duration: 0.4, delay: 0.4 }}
           >
             <div 
-              className="aspect-[4/5] relative overflow-hidden rounded-2xl group cursor-pointer transition-transform duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] hover:scale-[1.02]"
+              className="card-image group cursor-pointer hover-scale"
               style={{
                 backgroundImage: `url(${guestBg})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:from-black/80" />
+              <div className="card-overlay-light hover-transition group-hover:opacity-90" />
               
-              {/* Coming Soon label - glass pill with liquid hover */}
-              <div className="absolute top-4 left-4 glass-dark rounded-full px-4 py-2 transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] group-hover:scale-105">
-                <span className="font-display text-sm font-bold tracking-wider uppercase text-white">
-                  Coming Soon
-                </span>
+              {/* Coming Soon label */}
+              <div className="absolute top-4 left-4 badge-interactive glass-dark text-white">
+                Coming Soon
               </div>
               
               {/* Content */}
-              <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
+              <div className="card-content-bottom card-padding-lg">
                 <h3 className="font-display text-lg lg:text-xl font-semibold text-white">
                   Guest Name
                 </h3>
-                <p className="text-sm text-white/70 mt-0.5">
+                <p className="text-body-sm text-white/70 mt-0.5">
                   Chief Marketing Officer
                 </p>
-                <p className="text-sm font-medium mt-1 text-primary">
+                <p className="text-body-sm font-medium mt-1 text-primary">
                   Company
                 </p>
               </div>
@@ -197,7 +191,7 @@ const PodcastSection = () => {
             transition={{ duration: 0.4, delay: 0.5 }}
           >
             <div 
-              className="aspect-[4/5] relative overflow-hidden rounded-2xl group cursor-pointer transition-transform duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] hover:scale-[1.02]"
+              className="card-image group cursor-pointer hover-scale"
               style={{
                 backgroundImage: `url(${subscribeBg})`,
                 backgroundSize: 'cover',
@@ -205,11 +199,11 @@ const PodcastSection = () => {
               }}
             >
               {/* Content */}
-              <div className="absolute inset-0 flex flex-col justify-between p-6 lg:p-8">
-                <h3 className="font-display text-3xl lg:text-4xl font-bold text-foreground leading-tight tracking-tight">
+              <div className="card-content-full card-padding-lg">
+                <h3 className="text-display-md text-foreground">
                   Subscribe to stay current on how teams are using AI.
                 </h3>
-                <button className="self-start bg-foreground text-background font-display font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] hover:bg-foreground/90 hover:scale-105 active:scale-[0.98]">
+                <button className="btn-base btn-primary btn-lg self-start">
                   Subscribe
                 </button>
               </div>
@@ -230,21 +224,21 @@ const PodcastSection = () => {
               >
                 <Link
                   to={`/episode/${episode.slug}`}
-                  className="group flex items-center gap-6 py-5 border-b border-border hover:bg-secondary/30 transition-all duration-300 px-4 rounded-xl -mx-4"
+                  className="group flex items-center gap-6 py-5 border-b border-border hover:bg-secondary/30 hover-transition px-4 rounded-xl -mx-4"
                 >
                   <span className="font-display text-2xl font-bold text-muted-foreground/40 w-12">
                     {String(FEATURED_COUNT + index + 1).padStart(2, '0')}
                   </span>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-display text-base lg:text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
+                    <h3 className="font-display text-base lg:text-lg font-semibold text-foreground group-hover:text-primary hover-transition">
                       {episode.name}
                     </h3>
-                    <p className="text-xs text-muted-foreground uppercase tracking-wider mt-0.5">
+                    <p className="text-label mt-0.5">
                       {episode.title}{episode.company && ` · ${episode.company}`}
                     </p>
                   </div>
                   <div className="w-6 h-6 flex items-center justify-center">
-                    <div className="w-2 h-2 rounded-full bg-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className="w-2 h-2 rounded-full bg-primary opacity-0 group-hover:opacity-100 hover-transition" />
                   </div>
                 </Link>
               </motion.div>

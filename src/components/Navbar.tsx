@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import FomLogo from "@/assets/FOM_Logo.svg";
 
 const Navbar = () => {
@@ -18,7 +17,7 @@ const Navbar = () => {
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8 glass rounded-2xl">
         <div className="flex items-center justify-between h-14 lg:h-16">
           {/* Logo */}
-          <a href="/" className="flex items-center">
+          <a href="/" className="flex items-center focus-ring rounded-lg">
             <img src={FomLogo} alt="Future of Marketing" className="h-5 lg:h-6" />
           </a>
 
@@ -28,7 +27,7 @@ const Navbar = () => {
               <li key={link.label}>
                 <a
                   href={link.href}
-                  className="text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-all duration-300 px-4 py-2 rounded-full"
+                  className="text-body-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 hover-transition px-4 py-2 rounded-full focus-ring"
                 >
                   {link.label}
                 </a>
@@ -38,14 +37,14 @@ const Navbar = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:block">
-            <Button size="sm" variant="glass" className="rounded-full">
+            <button className="btn-base btn-glass btn-sm">
               Subscribe
-            </Button>
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 -mr-2 rounded-full hover:bg-secondary/50 transition-colors"
+            className="md:hidden p-2 -mr-2 rounded-full hover:bg-secondary/50 hover-transition focus-ring"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -61,7 +60,7 @@ const Navbar = () => {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="block py-2 px-4 text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-xl transition-all duration-300"
+                    className="block py-2 px-4 text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-xl hover-transition focus-ring"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}
@@ -69,9 +68,9 @@ const Navbar = () => {
                 </li>
               ))}
               <li className="pt-3 px-4">
-                <Button className="w-full rounded-full" size="sm" variant="glass">
+                <button className="btn-base btn-glass btn-sm w-full">
                   Subscribe
-                </Button>
+                </button>
               </li>
             </ul>
           </div>

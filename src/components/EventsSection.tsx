@@ -3,8 +3,8 @@ import { ArrowRight, Play } from "lucide-react";
 
 const EventsSection = () => {
   return (
-    <section id="events" className="py-20 lg:py-28">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="events" className="section-spacing">
+      <div className="container mx-auto container-padding">
         {/* Full-width Video */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -26,36 +26,36 @@ const EventsSection = () => {
           </video>
 
           {/* Overlay Gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+          <div className="card-overlay" />
           <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
 
           {/* Content */}
           <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 lg:p-12">
             <div className="max-w-2xl">
-              <span className="inline-block glass-dark rounded-full px-4 py-1.5 text-[10px] font-medium uppercase tracking-wider text-white/80 mb-4">
+              <span className="badge-interactive glass-dark text-white/80 mb-4">
                 Past Event
               </span>
-              <h3 className="font-display text-2xl sm:text-3xl lg:text-5xl font-semibold text-white mb-3 tracking-tight">
+              <h3 className="text-display-lg text-white mb-3">
                 Season 5 Launch Party
               </h3>
-              <div className="flex items-center gap-2 text-sm text-white/70 mb-4">
+              <div className="flex items-center gap-2 text-body-sm text-white/70 mb-4">
                 <span>Dec 15, 2025</span>
                 <span className="w-1 h-1 rounded-full bg-white/40" />
                 <span>Los Angeles, CA</span>
                 <span className="w-1 h-1 rounded-full bg-white/40" />
                 <span>200+ attendees</span>
               </div>
-              <p className="text-sm sm:text-base text-white/60 max-w-lg mb-6 hidden sm:block">
+              <p className="text-body text-white/60 max-w-lg mb-6 hidden sm:block">
                 An evening of live performances, Q&A sessions, and exclusive content with our community.
               </p>
               <div className="flex items-center gap-4">
-                <button className="flex items-center gap-2 glass text-white px-5 py-2.5 text-sm font-medium rounded-full hover:bg-white/20 active:scale-[0.98] transition-all duration-300">
+                <button className="btn-base btn-glass-light btn-sm gap-2">
                   <Play className="w-4 h-4 fill-current" />
                   Watch Recap
                 </button>
-                <button className="flex items-center gap-2 text-white/80 text-sm font-medium hover:text-white transition-colors group/btn">
+                <button className="flex items-center gap-2 text-white/80 text-body-sm font-medium hover:text-white hover-transition group/btn">
                   View Photos
-                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 hover-transition" />
                 </button>
               </div>
             </div>
