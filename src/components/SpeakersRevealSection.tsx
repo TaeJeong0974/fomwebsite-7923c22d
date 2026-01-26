@@ -96,24 +96,45 @@ const SpeakerCard = ({
         </h3>
       </motion.div>
 
-      {/* Hover State: Name + bio at bottom */}
+      {/* Hover State: Name (two lines) + scrolling info */}
       <motion.div className="absolute inset-x-0 bottom-0 p-5 lg:p-6" initial={false} animate={{
-      opacity: isHovered ? 1 : 0,
-      y: isHovered ? 0 : 20
+      opacity: isHovered ? 1 : 0
     }} transition={{
-      duration: 0.4,
-      ease: [0.22, 1, 0.36, 1],
-      delay: isHovered ? 0.1 : 0
+      duration: 0.3,
+      ease: "easeOut"
     }}>
-        <h3 className="font-display text-lg lg:text-xl font-semibold text-white">
-          {speaker.name}
+        {/* Name - same style as rest state */}
+        <h3 className="font-display text-white leading-[0.95] tracking-tight">
+          <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
+            {firstName}
+          </span>
+          <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
+            {lastName}
+          </span>
         </h3>
-        <p className="text-sm text-white/70 mt-0.5">
-          {speaker.title}, {speaker.company}
-        </p>
-        <p className="text-sm leading-relaxed text-white/60 mt-3">
-          {speaker.bio}
-        </p>
+        
+        {/* Info that scrolls up */}
+        <motion.div 
+          initial={false}
+          animate={{
+            opacity: isHovered ? 1 : 0,
+            y: isHovered ? 0 : 20,
+            maxHeight: isHovered ? 200 : 0
+          }}
+          transition={{
+            duration: 0.4,
+            ease: [0.22, 1, 0.36, 1],
+            delay: isHovered ? 0.15 : 0
+          }}
+          className="overflow-hidden"
+        >
+          <p className="text-sm text-white/70 mt-3">
+            {speaker.title}, {speaker.company}
+          </p>
+          <p className="text-sm leading-relaxed text-white/60 mt-2">
+            {speaker.bio}
+          </p>
+        </motion.div>
       </motion.div>
 
     </motion.article>;
