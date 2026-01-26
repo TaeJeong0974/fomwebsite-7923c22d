@@ -25,13 +25,13 @@ const SpeakersSection = () => {
           </div>
           
           {/* Layout Toggle */}
-          <div className="glass rounded-full p-1 flex items-center gap-1">
+          <div className="glass rounded-full p-1.5 flex items-center gap-1">
             <button
               onClick={() => setLayout("carousel")}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                 layout === "carousel" 
-                  ? "bg-foreground text-background" 
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25" 
+                  : "text-muted-foreground hover:text-foreground hover:bg-white/5"
               }`}
             >
               <Rows3 className="h-4 w-4" />
@@ -39,10 +39,10 @@ const SpeakersSection = () => {
             </button>
             <button
               onClick={() => setLayout("grid")}
-              className={`flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${
+              className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
                 layout === "grid" 
-                  ? "bg-foreground text-background" 
-                  : "text-muted-foreground hover:text-foreground"
+                  ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25" 
+                  : "text-muted-foreground hover:text-foreground hover:bg-white/5"
               }`}
             >
               <LayoutGrid className="h-4 w-4" />
