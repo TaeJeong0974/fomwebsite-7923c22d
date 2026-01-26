@@ -358,18 +358,21 @@
   /* Body text */
   .text-body-lg {
     font-size: 1.125rem;
-    line-height: 1.6;
+    line-height: 1.7;
+    letter-spacing: 0.01em;
     color: hsl(var(--muted-foreground));
   }
 
   .text-body {
-    font-size: 0.875rem;
-    line-height: 1.5;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    letter-spacing: 0.01em;
   }
 
   .text-body-sm {
-    font-size: 0.75rem;
-    line-height: 1.5;
+    font-size: 0.8125rem;
+    line-height: 1.6;
+    letter-spacing: 0.005em;
   }
 
   /* ==========================================
