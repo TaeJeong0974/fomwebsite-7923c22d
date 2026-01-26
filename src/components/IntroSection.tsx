@@ -64,7 +64,7 @@ const IntroSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                  className="card-base card-image cursor-pointer group"
+                  className="card-base card-image cursor-pointer group hover-scale"
                 >
                   {/* Photo Layer - visible at rest */}
                   <div className="absolute inset-0">
