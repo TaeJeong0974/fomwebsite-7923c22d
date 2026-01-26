@@ -45,7 +45,7 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="relative aspect-[4/5] bg-muted/30 overflow-hidden cursor-pointer group"
+      className="relative aspect-[4/5] glass-subtle rounded-2xl overflow-hidden cursor-pointer group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -70,7 +70,7 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
 
       {/* Typography Layer - Visible by default */}
       <motion.div
-        className="absolute inset-0 flex flex-col justify-between p-4 lg:p-6"
+        className="absolute inset-0 flex flex-col justify-between p-5 lg:p-6"
         initial={false}
         animate={{ 
           opacity: isHovered ? 0 : 1,
@@ -106,7 +106,7 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
 
       {/* Hover State: Name at bottom */}
       <motion.div
-        className="absolute inset-x-0 bottom-0 p-4 lg:p-6"
+        className="absolute inset-x-0 bottom-0 p-5 lg:p-6"
         initial={false}
         animate={{ 
           opacity: isHovered ? 1 : 0,
@@ -125,13 +125,13 @@ const SpeakerCard = ({ speaker, index }: { speaker: typeof speakers[0]; index: n
         </p>
       </motion.div>
 
-      {/* Corner Accent */}
+      {/* Corner Accent - Glass pill */}
       <motion.div
-        className="absolute top-4 right-4 lg:top-6 lg:right-6 w-2 h-2 bg-primary"
+        className="absolute top-4 right-4 lg:top-5 lg:right-5 w-2 h-2 bg-primary rounded-full"
         initial={false}
         animate={{ 
           scale: isHovered ? 0 : 1,
-          rotate: isHovered ? 45 : 0
+          opacity: isHovered ? 0 : 1
         }}
         transition={{ duration: 0.3 }}
       />

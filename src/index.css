@@ -69,11 +69,11 @@
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 6% 85%;
-    --input: 240 6% 85%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
     --ring: 24 95% 50%;
 
-    --radius: 0rem;
+    --radius: 1.25rem;
 
     --font-display: 'ITC Avant Garde Gothic Pro', 'Century Gothic', sans-serif;
     --font-body: 'ITC Avant Garde Gothic Pro', 'Century Gothic', sans-serif;
@@ -82,13 +82,21 @@
     --section-padding-y: 6rem;
     --section-padding-y-lg: 8rem;
 
+    /* Liquid Glass Variables */
+    --glass-bg: 0 0% 100%;
+    --glass-border: 0 0% 100%;
+    --glass-blur: 20px;
+    --glass-opacity: 0.7;
+    --glass-shadow: 0 8px 32px -8px hsl(240 10% 10% / 0.1);
+    --glass-shadow-lg: 0 20px 60px -15px hsl(240 10% 10% / 0.15);
+
     --sidebar-background: 0 0% 100%;
     --sidebar-foreground: 240 10% 10%;
     --sidebar-primary: 24 95% 50%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 240 5% 94%;
     --sidebar-accent-foreground: 240 10% 10%;
-    --sidebar-border: 240 6% 85%;
+    --sidebar-border: 240 6% 90%;
     --sidebar-ring: 24 95% 50%;
   }
 
@@ -112,6 +120,13 @@
     --border: 240 6% 18%;
     --input: 240 6% 18%;
     --ring: 24 95% 50%;
+
+    /* Liquid Glass - Dark Mode */
+    --glass-bg: 240 10% 10%;
+    --glass-border: 0 0% 100%;
+    --glass-opacity: 0.5;
+    --glass-shadow: 0 8px 32px -8px hsl(0 0% 0% / 0.3);
+    --glass-shadow-lg: 0 20px 60px -15px hsl(0 0% 0% / 0.4);
   }
 }
 
@@ -157,5 +172,37 @@
 
   .glow-accent {
     box-shadow: var(--glow-accent);
+  }
+
+  /* Liquid Glass Effects */
+  .glass {
+    background: hsl(var(--glass-bg) / var(--glass-opacity));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid hsl(var(--glass-border) / 0.2);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glass-subtle {
+    background: hsl(var(--glass-bg) / 0.5);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid hsl(var(--glass-border) / 0.1);
+  }
+
+  .glass-prominent {
+    background: hsl(var(--glass-bg) / 0.85);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid hsl(var(--glass-border) / 0.25);
+    box-shadow: var(--glass-shadow-lg);
+  }
+
+  .glass-dark {
+    background: hsl(240 10% 10% / 0.7);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid hsl(0 0% 100% / 0.1);
+    box-shadow: 0 8px 32px -8px hsl(0 0% 0% / 0.3);
   }
 }
