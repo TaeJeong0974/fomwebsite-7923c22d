@@ -12,6 +12,7 @@ const speakers = [{
   title: "Chief Marketing Officer",
   company: "Datadog",
   companyDomain: "datadoghq.com",
+  brandColor: "#632CA6", // Datadog purple
   bio: "Building the future of cloud monitoring through data-driven marketing strategies."
 }, {
   id: 2,
@@ -19,6 +20,7 @@ const speakers = [{
   title: "Chief Marketing Officer",
   company: "Square",
   companyDomain: "squareup.com",
+  brandColor: "#006AFF", // Square blue
   bio: "Empowering small businesses with accessible financial tools and innovative campaigns."
 }, {
   id: 3,
@@ -26,6 +28,7 @@ const speakers = [{
   title: "Chief Marketing Officer",
   company: "Loveable",
   companyDomain: "lovable.dev",
+  brandColor: "#F97316", // Lovable orange
   bio: "Pioneering AI-powered product development and redefining how teams build software."
 }, {
   id: 4,
@@ -33,6 +36,7 @@ const speakers = [{
   title: "Chief Marketing Officer",
   company: "Webflow",
   companyDomain: "webflow.com",
+  brandColor: "#4353FF", // Webflow blue
   bio: "Championing the no-code movement and democratizing web design for creators."
 }];
 
@@ -55,10 +59,16 @@ const SpeakerCard = ({
       className="group"
     >
       <div className="card-base card-image hover-scale">
-        {/* Photo Layer */}
-        <div className="absolute inset-0">
+        {/* Brand Color Layer - visible at rest, fades on hover */}
+        <div 
+          className="absolute inset-0 hover-transition group-hover:opacity-0"
+          style={{ backgroundColor: speaker.brandColor }}
+        />
+        
+        {/* Photo Layer - hidden at rest, reveals on hover */}
+        <div className="absolute inset-0 opacity-0 hover-transition group-hover:opacity-100">
           <img src={speakerImages[index]} alt={speaker.name} className="w-full h-full object-cover" />
-          <div className="card-overlay hover-transition group-hover:opacity-90" />
+          <div className="card-overlay" />
         </div>
 
         {/* Company favicon badge */}
