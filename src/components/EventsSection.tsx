@@ -3,36 +3,36 @@ import { ArrowRight, Play } from "lucide-react";
 
 const EventsSection = () => {
   return (
-    <section id="events" className="py-20 lg:py-28 bg-muted/40">
-      {/* Full-width Video */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-        className="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden group cursor-pointer"
-      >
-        {/* Video Background */}
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          poster="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80"
+    <section id="events" className="py-20 lg:py-28">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Full-width Video */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden group cursor-pointer rounded-3xl"
         >
-          <source src="https://assets.mixkit.co/videos/preview/mixkit-crowd-at-a-concert-seen-from-behind-4611-large.mp4" type="video/mp4" />
-        </video>
+          {/* Video Background */}
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="absolute inset-0 w-full h-full object-cover"
+            poster="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80"
+          >
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-crowd-at-a-concert-seen-from-behind-4611-large.mp4" type="video/mp4" />
+          </video>
 
-        {/* Overlay Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
+          {/* Overlay Gradient */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
 
-        {/* Content - aligned to container */}
-        <div className="absolute inset-0 flex flex-col justify-end">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-6 sm:pb-10 lg:pb-12">
+          {/* Content */}
+          <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 lg:p-12">
             <div className="max-w-2xl">
-              <span className="inline-block text-[10px] font-medium uppercase tracking-wider text-white/60 mb-3">
+              <span className="inline-block glass-dark rounded-full px-4 py-1.5 text-[10px] font-medium uppercase tracking-wider text-white/80 mb-4">
                 Past Event
               </span>
               <h3 className="font-display text-2xl sm:text-3xl lg:text-5xl font-semibold text-white mb-3 tracking-tight">
@@ -49,7 +49,7 @@ const EventsSection = () => {
                 An evening of live performances, Q&A sessions, and exclusive content with our community.
               </p>
               <div className="flex items-center gap-4">
-                <button className="flex items-center gap-2 bg-white text-black px-4 py-2.5 text-sm font-medium hover:bg-white/90 transition-colors">
+                <button className="flex items-center gap-2 glass text-white px-5 py-2.5 text-sm font-medium rounded-full hover:bg-white/20 active:scale-[0.98] transition-all duration-300">
                   <Play className="w-4 h-4 fill-current" />
                   Watch Recap
                 </button>
@@ -60,9 +60,8 @@ const EventsSection = () => {
               </div>
             </div>
           </div>
-        </div>
-      </motion.div>
-
+        </motion.div>
+      </div>
     </section>
   );
 };

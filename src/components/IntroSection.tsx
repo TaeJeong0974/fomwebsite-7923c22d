@@ -25,18 +25,19 @@ const hosts = [
 
 const IntroSection = () => {
   return (
-    <section className="py-20 lg:py-28 bg-muted/40">
+    <section className="py-20 lg:py-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] text-foreground max-w-4xl font-medium mb-16 lg:mb-24"
-          style={{ lineHeight: 1.2 }}
+          className="glass-prominent rounded-3xl p-8 sm:p-12 lg:p-16 mb-16 lg:mb-24"
         >
-          Future of Marketing is a podcast and event series bringing together CMOs and growth leaders navigating AI in modern B2B marketing.
-        </motion.p>
+          <p className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] text-foreground max-w-4xl font-medium" style={{ lineHeight: 1.2 }}>
+            Future of Marketing is a podcast and event series bringing together CMOs and growth leaders navigating AI in modern B2B marketing.
+          </p>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -56,16 +57,17 @@ const IntroSection = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                className="group"
               >
-                <div className="relative overflow-hidden aspect-[4/5]">
+                <div className="relative overflow-hidden aspect-[4/5] rounded-2xl">
                   <img 
                     src={hostPattern} 
                     alt=""
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 
-                <div className="flex items-start justify-between gap-3 pt-4">
+                <div className="flex items-start justify-between gap-3 pt-5">
                   <div className="min-w-0">
                     <h3 className="font-display text-lg font-semibold text-foreground">
                       {host.name}
@@ -77,7 +79,7 @@ const IntroSection = () => {
                     href={host.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex-shrink-0 w-8 h-8 bg-background border border-border flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground transition-colors"
+                    className="flex-shrink-0 w-9 h-9 glass rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground transition-all duration-300 hover:scale-105"
                     aria-label={`${host.name} LinkedIn`}
                   >
                     <Linkedin size={14} />

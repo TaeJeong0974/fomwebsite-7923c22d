@@ -14,8 +14,8 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-4 z-50 mx-4 sm:mx-6 lg:mx-8">
+      <nav className="container mx-auto px-4 sm:px-6 lg:px-8 glass rounded-2xl">
         <div className="flex items-center justify-between h-14 lg:h-16">
           {/* Logo */}
           <a href="/" className="flex items-center">
@@ -23,12 +23,12 @@ const Navbar = () => {
           </a>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-6 lg:gap-8">
+          <ul className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
               <li key={link.label}>
                 <a
                   href={link.href}
-                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  className="text-sm text-muted-foreground hover:text-foreground hover:bg-secondary/50 transition-all duration-300 px-4 py-2 rounded-full"
                 >
                   {link.label}
                 </a>
@@ -38,12 +38,14 @@ const Navbar = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:block">
-            <Button size="sm">Subscribe</Button>
+            <Button size="sm" variant="glass" className="rounded-full">
+              Subscribe
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2 -mr-2"
+            className="md:hidden p-2 -mr-2 rounded-full hover:bg-secondary/50 transition-colors"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -53,21 +55,23 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-border">
-            <ul className="flex flex-col gap-3">
+          <div className="md:hidden py-4 border-t border-border/50">
+            <ul className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="block py-1 text-muted-foreground hover:text-foreground transition-colors"
+                    className="block py-2 px-4 text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-xl transition-all duration-300"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}
                   </a>
                 </li>
               ))}
-              <li className="pt-3">
-                <Button className="w-full" size="sm">Subscribe</Button>
+              <li className="pt-3 px-4">
+                <Button className="w-full rounded-full" size="sm" variant="glass">
+                  Subscribe
+                </Button>
               </li>
             </ul>
           </div>

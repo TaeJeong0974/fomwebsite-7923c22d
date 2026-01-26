@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import guestBg from "@/assets/guest-bg.png";
 import subscribeBg from "@/assets/subscribe-bg.png";
-import FomLogo from "@/assets/FOM_Logo.svg";
 
 const episodes = [
   {
@@ -90,22 +89,21 @@ const PodcastSection = () => {
         </div>
 
         {/* Featured Episodes - Hero Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-border">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
           {featuredEpisodes.slice(0, 4).map((episode, index) => (
             <motion.div
               key={episode.id}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
-              className="bg-background"
             >
               <Link
                 to={`/episode/${episode.slug}`}
                 className="block group"
               >
                 <div 
-                  className="aspect-[4/5] relative overflow-hidden"
+                  className="aspect-[4/5] relative overflow-hidden rounded-2xl"
                   style={{
                     backgroundImage: `url(${guestBg})`,
                     backgroundSize: 'cover',
@@ -114,9 +112,9 @@ const PodcastSection = () => {
                 >
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
                   
-                  {/* Company logo badge */}
+                  {/* Company logo badge - glass pill */}
                   {episode.companyDomain && (
-                    <div className="absolute top-0 left-0 bg-white p-2.5">
+                    <div className="absolute top-4 left-4 glass rounded-xl p-2.5">
                       <img 
                         src={`https://www.google.com/s2/favicons?domain=${episode.companyDomain}&sz=64`} 
                         alt={episode.company}
@@ -136,11 +134,11 @@ const PodcastSection = () => {
                     <p className="text-sm font-medium mt-1 text-primary">
                       {episode.company}
                     </p>
-                    <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden transition-all duration-300 ease-out md:group-hover:max-h-32 md:group-hover:mt-4">
+                    <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden transition-all duration-500 ease-out md:group-hover:max-h-32 md:group-hover:mt-4">
                       <p className="text-sm leading-relaxed text-white/60 mb-4">
                         {episode.overview}
                       </p>
-                      <span className="inline-block bg-white text-black font-display font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded active:bg-white/90 md:hover:bg-white/90 transition-colors">
+                      <span className="inline-block glass text-white font-display font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-full active:scale-[0.98] md:hover:bg-white/20 transition-all duration-300">
                         Listen Now
                       </span>
                     </div>
@@ -152,14 +150,13 @@ const PodcastSection = () => {
           
           {/* Coming Soon Card - Position 5 */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.4 }}
-            className="bg-background"
           >
             <div 
-              className="aspect-[4/5] relative overflow-hidden"
+              className="aspect-[4/5] relative overflow-hidden rounded-2xl"
               style={{
                 backgroundImage: `url(${guestBg})`,
                 backgroundSize: 'cover',
@@ -168,9 +165,9 @@ const PodcastSection = () => {
             >
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
               
-              {/* Coming Soon label - top */}
-              <div className="absolute top-0 left-0 bg-muted-foreground text-background px-4 py-2">
-                <span className="font-display text-sm font-bold tracking-wider uppercase">
+              {/* Coming Soon label - glass pill */}
+              <div className="absolute top-4 left-4 glass-dark rounded-full px-4 py-2">
+                <span className="font-display text-sm font-bold tracking-wider uppercase text-white">
                   Coming Soon
                 </span>
               </div>
@@ -192,14 +189,13 @@ const PodcastSection = () => {
           
           {/* Subscribe CTA Card - Position 6 */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: 0.5 }}
-            className="bg-background"
           >
             <div 
-              className="aspect-[4/5] relative overflow-hidden"
+              className="aspect-[4/5] relative overflow-hidden rounded-2xl"
               style={{
                 backgroundImage: `url(${subscribeBg})`,
                 backgroundSize: 'cover',
@@ -211,7 +207,7 @@ const PodcastSection = () => {
                 <h3 className="font-display text-3xl lg:text-4xl font-bold text-foreground leading-tight tracking-tight">
                   Subscribe to stay current on how teams are using AI.
                 </h3>
-                <button className="self-start bg-foreground text-background font-display font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-lg hover:bg-foreground/90 transition-colors">
+                <button className="self-start bg-foreground text-background font-display font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full hover:bg-foreground/90 active:scale-[0.98] transition-all duration-300">
                   Subscribe
                 </button>
               </div>
@@ -221,7 +217,7 @@ const PodcastSection = () => {
 
         {/* Archive Episodes - Compact List */}
         {archiveEpisodes.length > 0 && (
-          <div className="mt-px border-t border-border">
+          <div className="mt-8">
             {archiveEpisodes.map((episode, index) => (
               <motion.div
                 key={episode.id}
@@ -232,7 +228,7 @@ const PodcastSection = () => {
               >
                 <Link
                   to={`/episode/${episode.slug}`}
-                  className="group flex items-center gap-6 py-5 border-b border-border hover:bg-secondary/50 transition-colors duration-200 px-2"
+                  className="group flex items-center gap-6 py-5 border-b border-border hover:bg-secondary/30 transition-all duration-300 px-4 rounded-xl -mx-4"
                 >
                   <span className="font-display text-2xl font-bold text-muted-foreground/40 w-12">
                     {String(FEATURED_COUNT + index + 1).padStart(2, '0')}
