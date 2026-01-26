@@ -136,7 +136,7 @@ const PodcastSection = () => {
                       {episode.company}
                     </p>
                     {/* Reveal content with liquid glass animation */}
-                    <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden transition-all duration-600 ease-[cubic-bezier(0.33,1,0.68,1)] md:opacity-0 md:translate-y-4 md:blur-[2px] md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 md:group-hover:blur-0">
+                    <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] md:opacity-0 md:translate-y-3 md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
                       <p className="text-sm leading-relaxed text-white/60 mb-4">
                         {episode.overview}
                       </p>
