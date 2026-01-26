@@ -34,26 +34,6 @@ const episodes = [
     overview: "How sustainable practices are becoming central to tech marketing.",
     comingSoon: false,
   },
-  {
-    id: 5,
-    slug: "guest-five",
-    name: "Guest Name",
-    title: "Chief Marketing Officer",
-    company: "Company",
-    companyDomain: null,
-    overview: "FPO - Episode description placeholder text for upcoming content.",
-    comingSoon: false,
-  },
-  {
-    id: 6,
-    slug: "guest-six",
-    name: "Guest Name",
-    title: "Chief Marketing Officer",
-    company: "Company",
-    companyDomain: null,
-    overview: "FPO - Episode description placeholder text for upcoming content.",
-    comingSoon: false,
-  },
 ];
 
 const FEATURED_COUNT = 6;
