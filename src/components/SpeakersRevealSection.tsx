@@ -49,7 +49,7 @@ const SpeakerCard = ({
   }} transition={{
     duration: 0.5,
     delay: index * 0.1
-  }} className="relative aspect-[4/5] glass-subtle rounded-2xl overflow-hidden cursor-pointer group" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
+  }} className="relative aspect-[4/5] bg-muted/40 rounded-2xl overflow-hidden cursor-pointer group" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
       {/* Photo Layer - Hidden by default, reveals on hover */}
       <motion.div className="absolute inset-0" initial={false} animate={{
       opacity: isHovered ? 1 : 0,
