@@ -10,24 +10,28 @@ const speakers = [{
   name: "Sara Varni",
   title: "Chief Marketing Officer",
   company: "Datadog",
+  companyDomain: "datadoghq.com",
   bio: "Building the future of cloud monitoring through data-driven marketing strategies."
 }, {
   id: 2,
   name: "Lindsey Irvine",
   title: "Chief Marketing Officer",
   company: "Square",
+  companyDomain: "squareup.com",
   bio: "Empowering small businesses with accessible financial tools and innovative campaigns."
 }, {
   id: 3,
   name: "Ceci Stallsmith",
   title: "Chief Marketing Officer",
   company: "Loveable",
+  companyDomain: "lovable.dev",
   bio: "Pioneering AI-powered product development and redefining how teams build software."
 }, {
   id: 4,
   name: "Dave Steer",
   title: "Chief Marketing Officer",
   company: "Webflow",
+  companyDomain: "webflow.com",
   bio: "Championing the no-code movement and democratizing web design for creators."
 }];
 const SpeakerCard = ({
@@ -63,16 +67,23 @@ const SpeakerCard = ({
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
       </motion.div>
 
-      {/* Typography Layer - Visible by default, name + company at bottom */}
-      <motion.div className="absolute inset-0 flex flex-col justify-end p-5 lg:p-6" initial={false} animate={{
+      {/* Typography Layer - Visible by default, favicon at top + name at bottom */}
+      <motion.div className="absolute inset-0 flex flex-col justify-between p-5 lg:p-6" initial={false} animate={{
       opacity: isHovered ? 0 : 1
     }} transition={{
       duration: 0.3,
       ease: "easeOut"
     }}>
-        <p className="text-sm font-medium text-primary mb-1">
-          {speaker.company}
-        </p>
+        {/* Company favicon badge */}
+        <div className="glass rounded-xl p-2.5 w-fit">
+          <img 
+            src={`https://www.google.com/s2/favicons?domain=${speaker.companyDomain}&sz=64`} 
+            alt={speaker.company}
+            className="h-5 w-5 object-contain"
+          />
+        </div>
+        
+        {/* Name at bottom */}
         <h3 className="font-display text-foreground leading-[0.9] tracking-tight">
           <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
             {speaker.name}
@@ -100,13 +111,6 @@ const SpeakerCard = ({
         </p>
       </motion.div>
 
-      {/* Corner Accent - Glass pill */}
-      <motion.div className="absolute top-4 right-4 lg:top-5 lg:right-5 w-2 h-2 bg-primary rounded-full" initial={false} animate={{
-      scale: isHovered ? 0 : 1,
-      opacity: isHovered ? 0 : 1
-    }} transition={{
-      duration: 0.3
-    }} />
     </motion.article>;
 };
 const SpeakersRevealSection = () => {
