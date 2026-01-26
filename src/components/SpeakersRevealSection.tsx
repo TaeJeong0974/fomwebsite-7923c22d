@@ -56,24 +56,12 @@ const SpeakerCard = ({
     duration: 0.5,
     delay: index * 0.1
   }} className="relative aspect-[4/5] bg-muted/40 rounded-2xl overflow-hidden cursor-pointer group" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-      {/* Liquid Glass hover overlay */}
-      <motion.div 
-        className="absolute inset-0 rounded-2xl pointer-events-none z-10"
-        initial={false}
-        animate={{
-          backdropFilter: isHovered ? 'blur(0px)' : 'blur(0px)',
-          background: isHovered ? 'transparent' : 'transparent'
-        }}
-        transition={{ duration: 0.6, ease: [0.33, 1, 0.68, 1] }}
-      />
-      
-      {/* Photo Layer - Hidden by default, reveals on hover with liquid motion */}
+      {/* Photo Layer - Hidden by default, reveals on hover with smooth motion */}
       <motion.div className="absolute inset-0" initial={false} animate={{
         opacity: isHovered ? 1 : 0,
-        scale: isHovered ? 1 : 1.05,
-        filter: isHovered ? 'blur(0px)' : 'blur(8px)'
+        scale: isHovered ? 1 : 1.02
       }} transition={{
-        duration: 0.6,
+        duration: 0.5,
         ease: [0.33, 1, 0.68, 1]
       }}>
         <img src={speakerImages[index]} alt={speaker.name} className="w-full h-full object-cover" />
@@ -84,8 +72,7 @@ const SpeakerCard = ({
       {/* Typography Layer - Visible by default, favicon at top + name at bottom */}
       <motion.div className="absolute inset-0 flex flex-col justify-between p-5 lg:p-6" initial={false} animate={{
         opacity: isHovered ? 0 : 1,
-        y: isHovered ? -10 : 0,
-        filter: isHovered ? 'blur(4px)' : 'blur(0px)'
+        y: isHovered ? -8 : 0
       }} transition={{
         duration: 0.5,
         ease: [0.33, 1, 0.68, 1]
@@ -113,7 +100,7 @@ const SpeakerCard = ({
       {/* Hover State: Name + push-up info (matching Podcast pattern) */}
       <motion.div className="absolute inset-x-0 bottom-0 p-5 lg:p-6" initial={false} animate={{
         opacity: isHovered ? 1 : 0,
-        filter: isHovered ? 'blur(0px)' : 'blur(4px)'
+        y: isHovered ? 0 : 12
       }} transition={{
         duration: 0.5,
         ease: [0.33, 1, 0.68, 1]
@@ -135,7 +122,7 @@ const SpeakerCard = ({
         </p>
         
         {/* Bio that pushes up on hover - matching Podcast animation */}
-        <div className={`overflow-hidden transition-all duration-600 ease-[cubic-bezier(0.33,1,0.68,1)] ${isHovered ? 'max-h-32 mt-3 opacity-100 translate-y-0 blur-0' : 'max-h-0 mt-0 opacity-0 translate-y-4 blur-[2px]'}`}>
+        <div className={`overflow-hidden transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] ${isHovered ? 'max-h-32 mt-3 opacity-100 translate-y-0' : 'max-h-0 mt-0 opacity-0 translate-y-3'}`}>
           <p className="text-sm leading-relaxed text-white/60">
             {speaker.bio}
           </p>
