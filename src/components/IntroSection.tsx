@@ -1,4 +1,6 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown, Linkedin } from "lucide-react";
 import speaker2 from "@/assets/speaker-2.png";
 import speaker3 from "@/assets/speaker-3.png";
 import speaker4 from "@/assets/speaker-4.png";
@@ -7,27 +9,29 @@ const hosts = [
   {
     name: "Camille Ricketts",
     title: "Partner, XYZ Venture Capital",
-    bio: "Leads investments in product-led growth and go-to-market software startups. Previously the first marketing leader at Notion, founded First Round Review, managed communications at Tesla, and reported for the Wall Street Journal.",
+    bio: "Partner at XYZ Venture Capital, where she leads investments in product-led growth and go-to-market software startups. Prior, she was the first marketing leader at Notion, building out the brand, community, and more. She also founded First Round Review for First Round Capital, managed communications at Tesla, and reported for the Wall Street Journal.",
     linkedin: "https://linkedin.com/in/camillericketts",
     image: speaker4,
   },
   {
     name: "Ethan Smith",
     title: "Founder & CEO, Graphite",
-    bio: "Runs a premium Vertical AI Growth Agency helping companies like Webflow, Notion, MasterClass, and Captions drive sustainable revenue growth via SEO, content, and AEO. Also an adjunct professor at IE Business School.",
+    bio: "Founder and CEO of Graphite, a premium Vertical AI Growth Agency that helps companies like Webflow, Notion, MasterClass, and Captions drive sustainable revenue growth via SEO, content, and AEO (Answer Engine Optimization). Ethan is also an adjunct professor at IE Business School.",
     linkedin: "https://linkedin.com/in/ethansmith",
     image: speaker3,
   },
   {
     name: "Mada Seghete",
     title: "CEO & Co-Founder, Upside",
-    bio: "Built a next-gen revenue intelligence platform for B2B leaders. Previously co-founded and was CMO of Branch, scaling to $100M+ revenue. Cornell Engineering graduate with Masters and MBA from Stanford. Partner at XFactor Ventures investing in women founders.",
+    bio: "CEO and co-founder of Upside, a next-gen revenue intelligence platform for B2B leaders. Previously co-founded and was CMO of Branch, helping scale to $100M+ revenue. Cornell Engineering graduate with Masters and MBA from Stanford. Partner at XFactor Ventures investing in women founders and organizes yearly retreats for 100+ women founders.",
     linkedin: "https://linkedin.com/in/madaseghete",
     image: speaker2,
   },
 ];
 
 const IntroSection = () => {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
   return (
     <section className="section-spacing">
       <div className="container mx-auto container-padding">
@@ -56,6 +60,7 @@ const IntroSection = () => {
             {hosts.map((host, index) => {
               const firstName = host.name.split(' ')[0];
               const lastName = host.name.split(' ').slice(1).join(' ');
+              const isExpanded = expandedIndex === index;
               
               return (
                 <motion.article
@@ -66,37 +71,62 @@ const IntroSection = () => {
                   transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
                   className="group"
                 >
-                  <div className="card-base card-image hover-scale">
-                    {/* Photo Layer - visible at rest */}
+                  <div 
+                    className="card-base card-image hover-scale cursor-pointer"
+                    onClick={() => setExpandedIndex(isExpanded ? null : index)}
+                  >
                     <div className="absolute inset-0">
                       <img 
                         src={host.image} 
                         alt={host.name}
                         className="w-full h-full object-cover"
                       />
-                      <div className="card-overlay hover-transition group-hover:opacity-90" />
+                      <div className="card-overlay" />
                     </div>
 
-                    {/* Content - always visible at bottom */}
                     <div className="card-content-bottom card-padding">
-                      <h3 className="font-display text-white leading-[0.95] tracking-tight">
-                        <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
-                          {firstName}
-                        </span>
-                        <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
-                          {lastName}
-                        </span>
-                      </h3>
-                      <p className="text-body-sm text-white/70 mt-1 hover-transition">
-                        {host.title}
-                      </p>
-                      
-                      {/* Reveal content on hover */}
-                      <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
-                        <p className="text-body-sm leading-relaxed text-white/60">
-                          {host.bio}
-                        </p>
+                      <div className="flex items-end justify-between">
+                        <div>
+                          <h3 className="font-display text-white leading-[0.95] tracking-tight">
+                            <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">{firstName}</span>
+                            <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">{lastName}</span>
+                          </h3>
+                          <p className="text-body-sm text-white/70 mt-1">{host.title}</p>
+                        </div>
+                        <motion.div
+                          animate={{ rotate: isExpanded ? 180 : 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="glass rounded-full p-2"
+                        >
+                          <ChevronDown className="h-5 w-5 text-white" />
+                        </motion.div>
                       </div>
+                      
+                      <AnimatePresence>
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="overflow-hidden"
+                          >
+                            <p className="text-body-sm leading-relaxed text-white/60 mt-4">
+                              {host.bio}
+                            </p>
+                            <a 
+                              href={host.linkedin} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="inline-flex items-center gap-2 text-primary text-sm font-medium mt-3 hover:underline"
+                            >
+                              <Linkedin className="h-4 w-4" />
+                              Connect on LinkedIn
+                            </a>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
                   </div>
                 </motion.article>
