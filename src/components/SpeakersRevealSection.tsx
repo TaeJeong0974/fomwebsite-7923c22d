@@ -40,16 +40,19 @@ const generateMosaicGrid = (hexColor: string) => {
   
   for (let row = 0; row < rows; row++) {
     for (let col = 0; col < cols; col++) {
-      // Calculate diagonal position (0 = bottom-left, 1 = top-right)
+      // Calculate diagonal position: bottom-left (0) to top-right (1)
+      // row 0 = top, row 4 = bottom
+      // col 0 = left, col 5 = right
       const diagonalPos = (col + (rows - 1 - row)) / (cols + rows - 2);
       
-      // Base lightness shift based on diagonal (-15% lighter to +15% darker)
-      const baseLightnessShift = (diagonalPos - 0.5) * 30; // -15 to +15
+      // Lightness: lighter at bottom-left (high L), darker at top-right (low L)
+      // Map diagonalPos 0->1 to lightness offset +15 to -15
+      const lightnessOffset = 15 - (diagonalPos * 30);
       
-      // Add subtle random variation (5-15% range)
-      const variation = ((col * 7 + row * 11) % 10 - 5) * 1.5; // Deterministic "random"
+      // Add subtle deterministic variation (±5%)
+      const variation = (((col * 7 + row * 11) % 11) - 5);
       
-      const newL = Math.max(20, Math.min(80, l - baseLightnessShift + variation));
+      const newL = Math.max(15, Math.min(85, l + lightnessOffset + variation));
       
       tiles.push(`hsl(${Math.round(h)}, ${Math.round(s)}%, ${Math.round(newL)}%)`);
     }
