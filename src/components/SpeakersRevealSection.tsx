@@ -80,16 +80,16 @@ const SpeakerCard = ({
               {lastName}
             </span>
           </h3>
-          <p className="text-body-sm text-white/70 mt-1 hover-transition">
-            {speaker.title}
-          </p>
-          <p className="text-body-sm font-medium text-primary hover-transition">
-            {speaker.company}
-          </p>
           
           {/* Reveal content on hover */}
-          <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
-            <p className="text-body-sm leading-relaxed text-white/60">
+          <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:max-h-32 md:group-hover:mt-3 md:group-hover:opacity-100 md:group-hover:translate-y-0">
+            <p className="text-body-sm text-white/70">
+              {speaker.title}
+            </p>
+            <p className="text-body-sm font-medium text-primary">
+              {speaker.company}
+            </p>
+            <p className="text-body-sm leading-relaxed text-white/60 mt-2">
               {speaker.bio}
             </p>
           </div>
