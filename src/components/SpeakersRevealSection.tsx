@@ -59,6 +59,8 @@ const SpeakerCard = ({
         <div className="absolute inset-0">
           <img src={speakerImages[index]} alt={speaker.name} className="w-full h-full object-cover" />
           <div className="card-overlay hover-transition group-hover:opacity-90" />
+          {/* Light grey overlay for rest state */}
+          <div className="absolute inset-0 bg-muted/80 hover-transition group-hover:opacity-0" />
         </div>
 
         {/* Company favicon badge */}
