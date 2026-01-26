@@ -1,33 +1,39 @@
 import { motion } from "framer-motion";
-
 const AboutSection = () => {
-  return (
-    <section id="about" className="py-20 lg:py-28">
+  return <section id="about" className="py-20 lg:py-28">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} transition={{
+          duration: 0.6
+        }}>
             <div>
-              <p className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] mb-2 font-medium">
-                Our Mission
-              </p>
-              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
-                About Future<br className="hidden sm:block" /> of Marketing
+              <p className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] mb-2 font-medium">ABOUT</p>
+              <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">The Future
+of Marketing<br className="hidden sm:block" /> of Marketing
               </h2>
             </div>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="lg:pt-2"
-          >
+          <motion.div initial={{
+          opacity: 0,
+          y: 20
+        }} whileInView={{
+          opacity: 1,
+          y: 0
+        }} viewport={{
+          once: true
+        }} transition={{
+          duration: 0.6,
+          delay: 0.1
+        }} className="lg:pt-2">
             <p className="text-lg sm:text-xl font-display text-foreground leading-relaxed mb-5">
               We believe the future of marketing is being written right now—by the leaders willing to experiment, adapt, and share what they learn.
             </p>
@@ -40,8 +46,6 @@ const AboutSection = () => {
           </motion.div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
-
 export default AboutSection;

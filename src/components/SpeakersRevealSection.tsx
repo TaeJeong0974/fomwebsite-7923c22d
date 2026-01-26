@@ -139,9 +139,7 @@ const SpeakersRevealSection = () => {
         duration: 0.5
       }} className="mb-8 lg:mb-12">
           <p className="text-[10px] text-muted-foreground uppercase tracking-[0.3em] mb-2 font-medium">FEATURED</p>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">
-            Guest Lineup
-          </h2>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground tracking-tight">Speakers</h2>
         </motion.div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
