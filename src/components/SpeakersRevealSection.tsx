@@ -56,26 +56,40 @@ const SpeakerCard = ({
     duration: 0.5,
     delay: index * 0.1
   }} className="relative aspect-[4/5] bg-muted/40 rounded-2xl overflow-hidden cursor-pointer group" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-      {/* Photo Layer - Hidden by default, reveals on hover */}
+      {/* Liquid Glass hover overlay */}
+      <motion.div 
+        className="absolute inset-0 rounded-2xl pointer-events-none z-10"
+        initial={false}
+        animate={{
+          backdropFilter: isHovered ? 'blur(0px)' : 'blur(0px)',
+          background: isHovered ? 'transparent' : 'transparent'
+        }}
+        transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
+      />
+      
+      {/* Photo Layer - Hidden by default, reveals on hover with liquid motion */}
       <motion.div className="absolute inset-0" initial={false} animate={{
-      opacity: isHovered ? 1 : 0,
-      scale: isHovered ? 1 : 1.1
-    }} transition={{
-      duration: 0.5,
-      ease: [0.22, 1, 0.36, 1]
-    }}>
+        opacity: isHovered ? 1 : 0,
+        scale: isHovered ? 1 : 1.05,
+        filter: isHovered ? 'blur(0px)' : 'blur(8px)'
+      }} transition={{
+        duration: 0.7,
+        ease: [0.32, 0.72, 0, 1]
+      }}>
         <img src={speakerImages[index]} alt={speaker.name} className="w-full h-full object-cover" />
         {/* Gradient overlay for text legibility on hover */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
       </motion.div>
 
       {/* Typography Layer - Visible by default, favicon at top + name at bottom */}
       <motion.div className="absolute inset-0 flex flex-col justify-between p-5 lg:p-6" initial={false} animate={{
-      opacity: isHovered ? 0 : 1
-    }} transition={{
-      duration: 0.3,
-      ease: "easeOut"
-    }}>
+        opacity: isHovered ? 0 : 1,
+        y: isHovered ? -10 : 0,
+        filter: isHovered ? 'blur(4px)' : 'blur(0px)'
+      }} transition={{
+        duration: 0.5,
+        ease: [0.32, 0.72, 0, 1]
+      }}>
         {/* Company favicon badge */}
         <div className="glass rounded-xl p-2.5 w-fit">
           <img 
@@ -96,13 +110,15 @@ const SpeakerCard = ({
         </h3>
       </motion.div>
 
-      {/* Hover State: Name (two lines) + scrolling info */}
+      {/* Hover State: Name (two lines) + scrolling info with liquid glass animation */}
       <motion.div className="absolute inset-x-0 bottom-0 p-5 lg:p-6" initial={false} animate={{
-      opacity: isHovered ? 1 : 0
-    }} transition={{
-      duration: 0.3,
-      ease: "easeOut"
-    }}>
+        opacity: isHovered ? 1 : 0,
+        y: isHovered ? 0 : 30,
+        filter: isHovered ? 'blur(0px)' : 'blur(4px)'
+      }} transition={{
+        duration: 0.6,
+        ease: [0.32, 0.72, 0, 1]
+      }}>
         {/* Name - same style as rest state */}
         <h3 className="font-display text-white leading-[0.95] tracking-tight">
           <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">
@@ -113,18 +129,18 @@ const SpeakerCard = ({
           </span>
         </h3>
         
-        {/* Info that scrolls up */}
+        {/* Info that scrolls up with liquid motion */}
         <motion.div 
           initial={false}
           animate={{
             opacity: isHovered ? 1 : 0,
-            y: isHovered ? 0 : 20,
-            maxHeight: isHovered ? 200 : 0
+            y: isHovered ? 0 : 24,
+            filter: isHovered ? 'blur(0px)' : 'blur(2px)'
           }}
           transition={{
-            duration: 0.4,
-            ease: [0.22, 1, 0.36, 1],
-            delay: isHovered ? 0.15 : 0
+            duration: 0.7,
+            ease: [0.32, 0.72, 0, 1],
+            delay: isHovered ? 0.1 : 0
           }}
           className="overflow-hidden"
         >

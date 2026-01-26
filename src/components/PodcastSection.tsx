@@ -103,18 +103,19 @@ const PodcastSection = () => {
                 className="block group"
               >
                 <div 
-                  className="aspect-[4/5] relative overflow-hidden rounded-2xl"
+                  className="aspect-[4/5] relative overflow-hidden rounded-2xl transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-[1.02]"
                   style={{
                     backgroundImage: `url(${guestBg})`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                   }}
                 >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                  {/* Liquid glass overlay on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:from-black/80 group-hover:via-black/40" />
                   
-                  {/* Company logo badge - glass pill */}
+                  {/* Company logo badge - glass pill with liquid hover */}
                   {episode.companyDomain && (
-                    <div className="absolute top-4 left-4 glass rounded-xl p-2.5">
+                    <div className="absolute top-4 left-4 glass rounded-xl p-2.5 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-110 group-hover:shadow-lg">
                       <img 
                         src={`https://www.google.com/s2/favicons?domain=${episode.companyDomain}&sz=64`} 
                         alt={episode.company}
@@ -125,20 +126,21 @@ const PodcastSection = () => {
                   
                   {/* Content */}
                   <div className="absolute inset-x-0 bottom-0 p-6 lg:p-8">
-                    <h3 className="font-display text-lg lg:text-xl font-semibold text-white">
+                    <h3 className="font-display text-lg lg:text-xl font-semibold text-white transition-transform duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-y-0">
                       {episode.name}
                     </h3>
-                    <p className="text-sm text-white/70 mt-0.5">
+                    <p className="text-sm text-white/70 mt-0.5 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
                       {episode.title}
                     </p>
-                    <p className="text-sm font-medium mt-1 text-primary">
+                    <p className="text-sm font-medium mt-1 text-primary transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)]">
                       {episode.company}
                     </p>
-                    <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden transition-all duration-500 ease-out md:group-hover:max-h-32 md:group-hover:mt-4">
+                    {/* Reveal content with liquid glass animation */}
+                    <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] md:opacity-0 md:translate-y-4 md:blur-[2px] md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0 md:group-hover:blur-0">
                       <p className="text-sm leading-relaxed text-white/60 mb-4">
                         {episode.overview}
                       </p>
-                      <span className="inline-block glass text-white font-display font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-full active:scale-[0.98] md:hover:bg-white/20 transition-all duration-300">
+                      <span className="inline-block glass text-white font-display font-bold text-xs uppercase tracking-wider px-5 py-2.5 rounded-full active:scale-[0.98] transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] md:hover:bg-white/20 md:hover:scale-105">
                         Listen Now
                       </span>
                     </div>
@@ -156,17 +158,17 @@ const PodcastSection = () => {
             transition={{ duration: 0.4, delay: 0.4 }}
           >
             <div 
-              className="aspect-[4/5] relative overflow-hidden rounded-2xl"
+              className="aspect-[4/5] relative overflow-hidden rounded-2xl group cursor-pointer transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-[1.02]"
               style={{
                 backgroundImage: `url(${guestBg})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:from-black/80" />
               
-              {/* Coming Soon label - glass pill */}
-              <div className="absolute top-4 left-4 glass-dark rounded-full px-4 py-2">
+              {/* Coming Soon label - glass pill with liquid hover */}
+              <div className="absolute top-4 left-4 glass-dark rounded-full px-4 py-2 transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:scale-105">
                 <span className="font-display text-sm font-bold tracking-wider uppercase text-white">
                   Coming Soon
                 </span>
@@ -195,7 +197,7 @@ const PodcastSection = () => {
             transition={{ duration: 0.4, delay: 0.5 }}
           >
             <div 
-              className="aspect-[4/5] relative overflow-hidden rounded-2xl"
+              className="aspect-[4/5] relative overflow-hidden rounded-2xl group cursor-pointer transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] hover:scale-[1.02]"
               style={{
                 backgroundImage: `url(${subscribeBg})`,
                 backgroundSize: 'cover',
@@ -207,7 +209,7 @@ const PodcastSection = () => {
                 <h3 className="font-display text-3xl lg:text-4xl font-bold text-foreground leading-tight tracking-tight">
                   Subscribe to stay current on how teams are using AI.
                 </h3>
-                <button className="self-start bg-foreground text-background font-display font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full hover:bg-foreground/90 active:scale-[0.98] transition-all duration-300">
+                <button className="self-start bg-foreground text-background font-display font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-full transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-foreground/90 hover:scale-105 active:scale-[0.98]">
                   Subscribe
                 </button>
               </div>
