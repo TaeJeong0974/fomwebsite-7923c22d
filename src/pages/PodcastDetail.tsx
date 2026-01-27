@@ -44,6 +44,7 @@ const PodcastDetail = () => {
                 <EpisodeVideoPlayer 
                   guestName={episode.name}
                   companyDomain={episode.companyDomain}
+                  heroImage={episode.heroImage}
                 />
               </motion.div>
 
