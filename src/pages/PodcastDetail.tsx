@@ -133,19 +133,13 @@ const PodcastDetail = () => {
                   <Link
                     key={ep.id}
                     to={`/episode/${ep.slug}`}
-                    className="group glass rounded-2xl p-5 hover-transition hover:bg-muted/80"
+                    className="group block"
                   >
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-muted flex items-center justify-center shrink-0">
-                        <img 
-                          src={`https://www.google.com/s2/favicons?domain=${ep.companyDomain}&sz=64`} 
-                          alt={ep.company}
-                          className="h-6 w-6 object-contain"
-                        />
-                      </div>
-                      <div className="min-w-0 flex-1">
+                    {/* Name & Info */}
+                    <div className="mb-4">
+                      <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
-                          <h4 className="font-display text-lg font-semibold text-foreground group-hover:text-primary hover-transition">
+                          <h4 className="font-display text-xl font-semibold text-foreground group-hover:text-primary hover-transition">
                             {ep.name}
                           </h4>
                           {ep.comingSoon && (
@@ -154,14 +148,20 @@ const PodcastDetail = () => {
                             </span>
                           )}
                         </div>
-                        <p className="text-sm text-muted-foreground mt-0.5">
-                          {ep.title}
-                        </p>
-                        <p className="text-sm font-medium text-primary">
-                          {ep.company}
-                        </p>
+                        <ArrowRight size={18} className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 hover-transition shrink-0" />
                       </div>
-                      <ArrowRight size={18} className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 hover-transition shrink-0 mt-1" />
+                      <p className="text-sm text-muted-foreground mt-0.5">
+                        {ep.title}, <span className="text-primary">{ep.company}</span>
+                      </p>
+                    </div>
+                    
+                    {/* Photo */}
+                    <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-muted">
+                      <img 
+                        src={`https://ui-avatars.com/api/?name=${encodeURIComponent(ep.name)}&size=400&background=f5f5f5&color=1a1a1a&font-size=0.35`}
+                        alt={ep.name}
+                        className="w-full h-full object-cover group-hover:scale-105 hover-transition"
+                      />
                     </div>
                   </Link>
                 ))}
