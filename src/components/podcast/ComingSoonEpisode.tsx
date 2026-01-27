@@ -1,8 +1,11 @@
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, Bell, Linkedin, Sparkles } from "lucide-react";
+import { ArrowLeft, Bell } from "lucide-react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
+import EpisodeTopics from "@/components/podcast/EpisodeTopics";
+import NotifyCTACard from "@/components/podcast/NotifyCTACard";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 import { getEpisodeBySlug, PodcastEpisode } from "@/lib/podcastData";
 import guestBg from "@/assets/guest-bg.png";
@@ -13,7 +16,6 @@ interface ComingSoonEpisodeProps {
 
 const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => {
   const { slug } = useParams();
-  const { openSubscribe } = useSubscribe();
   
   // Use prop episode or fetch by slug
   const episode = propEpisode || (slug ? getEpisodeBySlug(slug) : undefined);
@@ -44,10 +46,11 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
             </Link>
           </motion.div>
 
+          {/* Episode Content */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-8">
-              {/* Hero Card */}
+              {/* Hero Card (replaces Video Player) */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -78,28 +81,32 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
                     Coming Soon
                   </span>
                 </div>
-                
-                {/* Content */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8">
-                  <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 leading-tight">
-                    {episode.name}
-                  </h1>
-                  <p className="text-lg text-white/70">
-                    {episode.title} at <span className="text-primary font-medium">{episode.company}</span>
-                  </p>
-                </div>
+              </motion.div>
+
+              {/* Title & Meta */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
+                  {episode.name}
+                </h1>
+                <p className="text-lg text-muted-foreground mb-4">
+                  {episode.title} at <span className="text-primary font-medium">{episode.company}</span>
+                </p>
               </motion.div>
 
               {/* Overview */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
               >
                 <h2 className="font-display text-xl font-semibold text-foreground mb-4">
                   Episode Preview
                 </h2>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground leading-relaxed">
                   {episode.overview}
                 </p>
               </motion.div>
@@ -109,7 +116,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
                 >
                   <h2 className="font-display text-xl font-semibold text-foreground mb-4">
                     About {episode.name.split(' ')[0]}
@@ -120,29 +127,14 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
                 </motion.div>
               )}
 
-              {/* Topics We'll Cover */}
-              {episode.topics.length > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                >
-                  <h2 className="font-display text-xl font-semibold text-foreground mb-4">
-                    Topics We'll Cover
-                  </h2>
-                  <ul className="space-y-3">
-                    {episode.topics.map((topic, index) => (
-                      <li 
-                        key={index}
-                        className="flex items-start gap-3 text-muted-foreground"
-                      >
-                        <Sparkles className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                        <span>{topic}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              )}
+              {/* Topics */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+              >
+                <EpisodeTopics topics={episode.topics} title="Topics We'll Cover" />
+              </motion.div>
             </div>
 
             {/* Sidebar */}
@@ -152,75 +144,17 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              {/* Notify CTA Card */}
-              <div className="glass-dark rounded-2xl p-6 text-center">
-                <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
-                  <Bell className="w-7 h-7 text-primary" />
-                </div>
-                <h3 className="font-display text-lg font-semibold text-white mb-2">
-                  Get Notified
-                </h3>
-                <p className="text-white/60 text-sm mb-6">
-                  Be the first to know when this episode drops.
-                </p>
-                <button
-                  onClick={openSubscribe}
-                  className="w-full btn-base btn-lg bg-primary hover:bg-primary/90 text-primary-foreground"
-                >
-                  Notify Me
-                </button>
-              </div>
+              {/* Notify CTA Card (replaces Chapters) */}
+              <NotifyCTACard />
 
-              {/* Guest Info Card */}
-              <div className="glass rounded-2xl p-6">
-                <div className="flex items-center gap-4 mb-4">
-                  {episode.companyDomain && (
-                    <div className="w-12 h-12 rounded-xl bg-muted flex items-center justify-center">
-                      <img 
-                        src={`https://www.google.com/s2/favicons?domain=${episode.companyDomain}&sz=64`} 
-                        alt={episode.company}
-                        className="h-6 w-6 object-contain"
-                      />
-                    </div>
-                  )}
-                  <div>
-                    <h4 className="font-display font-semibold text-foreground">{episode.name}</h4>
-                    <p className="text-sm text-muted-foreground">{episode.title}</p>
-                  </div>
-                </div>
-                <p className="text-sm text-muted-foreground mb-4">
-                  {episode.company}
-                </p>
-                {episode.linkedInUrl && (
-                  <a
-                    href={episode.linkedInUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 hover-transition"
-                  >
-                    <Linkedin className="w-4 h-4" />
-                    View LinkedIn
-                  </a>
-                )}
-              </div>
-
-              {/* Company Card */}
-              <div className="glass rounded-2xl p-6">
-                <h4 className="font-display font-semibold text-foreground mb-2">
-                  About {episode.company}
-                </h4>
-                <a
-                  href={`https://${episode.companyDomain}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 hover-transition"
-                >
-                  {episode.companyDomain}
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
-                </a>
-              </div>
+              {/* Guest Card */}
+              <EpisodeGuestCard
+                name={episode.name}
+                title={episode.title}
+                company={episode.company}
+                companyDomain={episode.companyDomain}
+                linkedInUrl={episode.linkedInUrl}
+              />
             </motion.div>
           </div>
         </div>
