@@ -67,11 +67,10 @@ const SubscribeCard = () => {
             className="card-content-full card-padding-lg"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="max-w-md">
-              <p className="text-label text-foreground/50 mb-1">Stay Updated</p>
-              <h3 className="text-display-sm text-foreground mb-4">
-                Never Miss an Episode
-              </h3>
+          <div className="max-w-md">
+            <h3 className="text-display-md text-foreground mb-4">
+              Never Miss an Episode
+            </h3>
               
               <form onSubmit={handleSubmit} className="space-y-3">
                 <input
@@ -119,7 +118,7 @@ const SubscribeCard = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h3 className="text-display-sm text-foreground mb-2">You're In!</h3>
+            <h3 className="text-display-md text-foreground mb-2">You're In!</h3>
             <p className="text-body text-foreground/60">
               We'll notify you when new episodes drop.
             </p>
