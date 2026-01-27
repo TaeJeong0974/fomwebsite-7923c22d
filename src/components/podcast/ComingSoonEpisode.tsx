@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, Bell } from "lucide-react";
+import { Bell, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -7,7 +7,7 @@ import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
 import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import NotifyCTACard from "@/components/podcast/NotifyCTACard";
 import { useSubscribe } from "@/contexts/SubscribeContext";
-import { getEpisodeBySlug, PodcastEpisode } from "@/lib/podcastData";
+import { getEpisodeBySlug, getPublishedEpisodes, PodcastEpisode } from "@/lib/podcastData";
 import guestBg from "@/assets/guest-bg.png";
 
 interface ComingSoonEpisodeProps {
@@ -20,6 +20,9 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
   // Use prop episode or fetch by slug
   const episode = propEpisode || (slug ? getEpisodeBySlug(slug) : undefined);
   
+  // Get other published episodes for "Other Great Speakers"
+  const otherEpisodes = getPublishedEpisodes().slice(0, 3);
+  
   // Generic coming soon if no episode found
   if (!episode) {
     return <GenericComingSoon />;
@@ -31,25 +34,11 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
 
       <main className="section-spacing">
         <div className="container mx-auto container-padding">
-          {/* Back link */}
-          <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <Link
-              to="/#podcast"
-              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground hover-transition mb-8"
-            >
-              <ArrowLeft size={16} />
-              Back to episodes
-            </Link>
-          </motion.div>
 
           {/* Episode Content */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Main Content */}
-            <div className="lg:col-span-2 space-y-8">
+            <div className="lg:col-span-2 space-y-12">
               {/* Hero Card (replaces Video Player) */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -77,61 +66,52 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
                 
                 {/* Coming Soon Badge */}
                 <div className="absolute top-6 right-6">
-                  <span className="glass-dark text-white px-4 py-2 rounded-full text-sm font-medium">
+                  <span className="bg-foreground text-background px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wide">
                     Coming Soon
                   </span>
                 </div>
               </motion.div>
 
-              {/* Title & Meta */}
-              <motion.div
+              {/* Pull Quote with Speaker Attribution */}
+              <motion.blockquote
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
+                className="space-y-4"
               >
-                <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
-                  {episode.name}
-                </h1>
-                <p className="text-lg text-muted-foreground mb-4">
-                  {episode.title} at <span className="text-primary font-medium">{episode.company}</span>
+                <p className="font-display text-3xl md:text-4xl lg:text-5xl font-medium text-foreground/90 leading-relaxed">
+                  "{episode.overview}"
                 </p>
-              </motion.div>
+                <footer className="flex items-center justify-between">
+                  <cite className="font-display text-xl font-semibold text-foreground not-italic">
+                    — {episode.name}
+                  </cite>
+                  <span className="inline-flex items-center gap-1.5 glass px-3 py-1.5 rounded-full text-sm text-muted-foreground">
+                    <Clock size={14} className="text-primary" />
+                    Coming Soon
+                  </span>
+                </footer>
+              </motion.blockquote>
 
-              {/* Overview */}
+              {/* About This Episode */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
                 <h2 className="font-display text-xl font-semibold text-foreground mb-4">
-                  Episode Preview
+                  About This Episode
                 </h2>
-                <p className="text-muted-foreground leading-relaxed">
-                  {episode.overview}
-                </p>
+                <div className="text-muted-foreground whitespace-pre-line leading-relaxed">
+                  {episode.bio || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
+                </div>
               </motion.div>
-
-              {/* Bio */}
-              {episode.bio && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 }}
-                >
-                  <h2 className="font-display text-xl font-semibold text-foreground mb-4">
-                    About {episode.name.split(' ')[0]}
-                  </h2>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {episode.bio}
-                  </p>
-                </motion.div>
-              )}
 
               {/* Topics */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
               >
                 <EpisodeTopics topics={episode.topics} title="Topics We'll Cover" />
               </motion.div>
@@ -144,9 +124,6 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              {/* Notify CTA Card (replaces Chapters) */}
-              <NotifyCTACard />
-
               {/* Guest Card */}
               <EpisodeGuestCard
                 name={episode.name}
@@ -154,9 +131,69 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
                 company={episode.company}
                 companyDomain={episode.companyDomain}
                 linkedInUrl={episode.linkedInUrl}
+                bio={episode.bio}
               />
+
+              {/* Notify CTA Card - Sticky */}
+              <div className="lg:sticky lg:top-8">
+                <NotifyCTACard />
+              </div>
             </motion.div>
           </div>
+
+          {/* Other Great Speakers */}
+          {otherEpisodes.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-20 pt-12 border-t border-border"
+            >
+              <h3 className="font-display text-2xl font-semibold text-foreground mb-8">
+                Other Great Speakers
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {otherEpisodes.map((ep) => (
+                  <Link
+                    key={ep.id}
+                    to={`/episode/${ep.slug}`}
+                    className="block group"
+                  >
+                    <div 
+                      className="card-image hover-scale"
+                      style={{
+                        backgroundImage: `url(${guestBg})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                      }}
+                    >
+                      <div className="card-overlay-light hover-transition group-hover:opacity-90" />
+                      
+                      {ep.companyDomain && (
+                        <div className="absolute top-4 left-4 glass rounded-xl p-2.5 hover-scale-badge z-[3]">
+                          <img 
+                            src={`https://www.google.com/s2/favicons?domain=${ep.companyDomain}&sz=64`} 
+                            alt={ep.company}
+                            className="h-5 w-5 object-contain"
+                          />
+                        </div>
+                      )}
+                      
+                      <div className="card-content-bottom card-padding-lg z-[3]">
+                        <h3 className="font-display text-2xl sm:text-3xl font-semibold text-white tracking-tight">
+                          {ep.name.split(' ').map((word, i) => (
+                            <span key={i} className="block">{word}</span>
+                          ))}
+                        </h3>
+                        <p className="text-body-sm text-white/70 mt-1">{ep.title}</p>
+                        <p className="text-body-sm font-medium text-primary">{ep.company}</p>
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+          )}
         </div>
       </main>
 
@@ -175,13 +212,6 @@ const GenericComingSoon = () => {
 
       <main className="section-spacing">
         <div className="container mx-auto container-padding">
-          <Link
-            to="/#podcast"
-            className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground hover-transition mb-8"
-          >
-            <ArrowLeft size={16} />
-            Back to episodes
-          </Link>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
