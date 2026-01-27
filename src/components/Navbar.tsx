@@ -10,7 +10,6 @@ const Navbar = () => {
   const navLinks = [
     { label: "Podcast", href: "#podcast" },
     { label: "Events", href: "#events" },
-    { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },
   ];
 
