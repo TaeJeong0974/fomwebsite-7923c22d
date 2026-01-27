@@ -14,7 +14,7 @@ const EpisodeGuestCard = ({ name, title, company, companyDomain, linkedInUrl }: 
       </h3>
       <div className="flex items-start gap-4">
         {/* Company Logo as Avatar */}
-        <div className="w-14 h-14 rounded-2xl glass-dark flex items-center justify-center shrink-0">
+        <div className="w-14 h-14 rounded-2xl bg-muted flex items-center justify-center shrink-0">
           <img 
             src={`https://www.google.com/s2/favicons?domain=${companyDomain}&sz=64`} 
             alt={company}
