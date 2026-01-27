@@ -219,18 +219,16 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
             }}
           >
             <div className="card-overlay-light hover-transition group-hover:opacity-90" />
-            <div className="absolute top-4 left-1/2 -translate-x-1/2 flex items-center gap-2">
-              {guest.companyDomain && (
-                <div className="glass rounded-xl p-2.5">
-                  <img 
-                    src={`https://www.google.com/s2/favicons?domain=${guest.companyDomain}&sz=64`} 
-                    alt={guest.company}
-                    className="h-5 w-5 object-contain"
-                  />
-                </div>
-              )}
-              <span className="text-white/60 text-xs font-medium uppercase tracking-wider">Coming Soon</span>
-            </div>
+            {guest.companyDomain && (
+              <div className="absolute top-4 left-4 glass rounded-xl p-2.5 hover-scale-badge">
+                <img 
+                  src={`https://www.google.com/s2/favicons?domain=${guest.companyDomain}&sz=64`} 
+                  alt={guest.company}
+                  className="h-5 w-5 object-contain"
+                />
+              </div>
+            )}
+            <span className="absolute top-4 right-4 text-white/60 text-xs font-medium">Coming Soon</span>
             <div className="card-content-bottom card-padding-lg">
               <h3 className="font-display text-white leading-[0.95] tracking-tight">
                 {guest.name.split(' ').map((word, i, arr) => (
@@ -318,7 +316,7 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
           transition={{ duration: 0.3, delay: (episodes.length + idx) * 0.05 }}
         >
           <div className="glass rounded-2xl p-6 sm:p-8 flex items-start justify-between gap-6 opacity-60 relative">
-            <span className="absolute top-4 right-4 text-muted-foreground text-xs font-medium uppercase tracking-wider">Coming Soon</span>
+            <span className="absolute top-4 right-4 text-muted-foreground text-xs font-medium">Coming Soon</span>
             <div className="flex-1 min-w-0">
               <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground leading-[0.95] tracking-tight text-left">
                 {guest.name}
