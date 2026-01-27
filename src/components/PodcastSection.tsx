@@ -320,11 +320,11 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
               <div className="flex items-center gap-3 mb-1">
                 <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Coming Soon</span>
               </div>
-              <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground/60 leading-[0.95] tracking-tight">
+              <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground leading-[0.95] tracking-tight">
                 {guest.name}
               </h3>
               <p className="text-body mt-3">
-                <span className="text-muted-foreground/60">{guest.title}</span> <span className="font-medium text-foreground/60">@ {guest.company}</span>
+                <span className="text-muted-foreground">{guest.title}</span> <span className="font-medium text-foreground">@ {guest.company}</span>
               </p>
             </div>
             <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center shrink-0 mt-2">
