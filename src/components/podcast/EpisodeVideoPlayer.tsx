@@ -37,11 +37,6 @@ const EpisodeVideoPlayer = ({ guestName, companyDomain }: EpisodeVideoPlayerProp
         </div>
       )}
       
-      {/* Guest Name Overlay */}
-      <div className="absolute bottom-0 left-0 right-0 p-6">
-        <p className="text-white/60 text-sm font-medium uppercase tracking-wider mb-1">Now Playing</p>
-        <h3 className="font-display text-2xl sm:text-3xl font-semibold text-white">{guestName}</h3>
-      </div>
     </div>
   );
 };
