@@ -38,13 +38,13 @@ const HeroSection = () => {
           animate="visible"
           variants={staggerContainer}
         >
-          <motion.p
+          <motion.h1
             variants={fadeUpVariant}
             className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] text-foreground max-w-4xl font-medium mb-16 lg:mb-24"
             style={{ lineHeight: 1.2 }}
           >
             Future of Marketing is a podcast and event series bringing together CMOs and growth leaders navigating AI in modern B2B marketing.
-          </motion.p>
+          </motion.h1>
 
           <motion.div variants={fadeUpVariant}>
             <p className="text-label mb-8">
