@@ -1,34 +1,17 @@
 import { motion } from "framer-motion";
-import heroLogo from "@/assets/hero-logo.svg";
 
 const HeroSection = () => {
   return (
-    <section className="min-h-[80vh] flex items-center justify-center relative overflow-hidden">
-      {/* Video Background */}
-      <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="w-full h-full object-cover"
+    <section className="py-20 lg:py-32">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium text-foreground leading-tight max-w-5xl"
         >
-          <source src="https://videos.pexels.com/video-files/6774125/6774125-uhd_2732_1440_25fps.mp4" type="video/mp4" />
-        </video>
-        {/* Dark overlay for contrast */}
-        <div className="absolute inset-0 bg-black/50" />
-      </div>
-      
-      {/* Centered Logo */}
-      <div className="relative z-10 flex items-center justify-center px-4">
-        <motion.img
-          src={heroLogo}
-          alt="FOM Logo"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full max-w-[10rem] sm:max-w-[12rem] md:max-w-xs lg:max-w-sm invert"
-        />
+          Future of Marketing is a podcast and event series bringing together CMOs and growth leaders navigating AI in modern B2B marketing.
+        </motion.h1>
       </div>
     </section>
   );
