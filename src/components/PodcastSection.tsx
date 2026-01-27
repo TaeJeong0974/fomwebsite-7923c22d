@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { LayoutGrid, List } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { useSubscribe } from "@/contexts/SubscribeContext";
 import { getPublishedEpisodes, getComingSoonEpisodes, PodcastEpisode } from "@/lib/podcastData";
 import SubscribeCard from "@/components/SubscribeCard";
 import guestBg from "@/assets/guest-bg.png";
@@ -103,8 +102,6 @@ const PodcastSection = () => {
 
 // Grid View Component
 const PodcastGridView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEpisode[], comingSoonEpisodes: PodcastEpisode[] }) => {
-  
-  
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-gap">
       {episodes.slice(0, 4).map((episode, index) => {
@@ -223,8 +220,6 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
 
 // List View Component
 const PodcastListView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEpisode[], comingSoonEpisodes: PodcastEpisode[] }) => {
-  
-  
   return (
     <div className="divide-y divide-border/50">
       {episodes.map((episode, index) => (
