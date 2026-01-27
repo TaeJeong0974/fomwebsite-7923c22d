@@ -28,6 +28,7 @@ export interface PodcastEpisode {
   publishedDate: string;
   comingSoon: boolean;
   linkedInUrl?: string;
+  previewVideoUrl?: string;
 }
 
 export const podcastEpisodes: PodcastEpisode[] = [
@@ -66,6 +67,7 @@ We dive deep into how Samsara's approach to physical operations data is transfor
     publishedDate: "Jan 15, 2026",
     comingSoon: false,
     linkedInUrl: "https://linkedin.com/in/meageneisenberg",
+    previewVideoUrl: "https://assets.mixkit.co/videos/preview/mixkit-woman-typing-on-a-laptop-in-an-office-4835-large.mp4",
   },
   {
     id: 2,
@@ -102,6 +104,7 @@ This conversation covers everything from product marketing to brand building in 
     publishedDate: "Jan 8, 2026",
     comingSoon: false,
     linkedInUrl: "https://linkedin.com/in/lenawaters",
+    previewVideoUrl: "https://assets.mixkit.co/videos/preview/mixkit-woman-working-on-laptop-at-home-4841-large.mp4",
   },
   {
     id: 3,
@@ -138,6 +141,7 @@ We explore the challenges of marketing in a highly regulated industry while main
     publishedDate: "Jan 8, 2026",
     comingSoon: false,
     linkedInUrl: "https://linkedin.com/in/lindseyirvine",
+    previewVideoUrl: "https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-woman-typing-on-a-laptop-4770-large.mp4",
   },
   // Coming Soon Episodes
   {
