@@ -31,7 +31,7 @@ const CTASection = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="mt-8"
             >
-              <SubscribeButton className="btn-base btn-lg bg-primary hover:bg-primary/90 text-primary-foreground">
+              <SubscribeButton className="btn-base btn-lg bg-background hover:bg-background/90 text-foreground">
                 Subscribe
               </SubscribeButton>
             </motion.div>
