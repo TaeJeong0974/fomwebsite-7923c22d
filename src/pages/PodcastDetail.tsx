@@ -76,7 +76,7 @@ const PodcastDetail = () => {
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
                 <p className="font-display text-2xl md:text-3xl font-medium text-foreground/90 leading-relaxed">
-                  "The best marketing doesn't feel like marketing—it feels like a conversation worth having."
+                  "The best ideas come from real conversations—the ones that challenge assumptions and open new doors."
                 </p>
               </motion.blockquote>
 
