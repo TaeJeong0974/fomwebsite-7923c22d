@@ -6,6 +6,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { getPublishedEpisodes, getComingSoonEpisodes, PodcastEpisode } from "@/lib/podcastData";
 import SubscribeCard from "@/components/SubscribeCard";
 import guestBg from "@/assets/guest-bg.png";
+import { liquidEase } from "@/components/animations/PageLoadAnimation";
 
 type LayoutType = "grid" | "list";
 
@@ -28,10 +29,10 @@ const PodcastSection = () => {
       <div className="container mx-auto container-padding">
         {/* Header */}
         <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: liquidEase }}
           className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 lg:mb-12"
         >
           <div>
@@ -117,10 +118,10 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
         return (
           <motion.div
             key={episode.id}
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.4, delay: index * 0.1 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 0.6, delay: index * 0.1, ease: liquidEase }}
           >
             <Link
               to={`/episode/${episode.slug}`}
@@ -171,10 +172,10 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
       {comingSoonEpisodes.map((episode, idx) => (
         <motion.div
           key={`coming-soon-${episode.id}`}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: (episodes.length + idx) * 0.1 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.6, delay: (episodes.length + idx) * 0.1, ease: liquidEase }}
         >
           <Link
             to={`/episode/${episode.slug}`}
@@ -218,10 +219,10 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
       
       {/* Subscribe CTA Card */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.4, delay: 0.6 }}
+        initial={{ opacity: 0, y: 40, scale: 0.98 }}
+        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 0.7, delay: 0.5, ease: liquidEase }}
       >
         <SubscribeCard />
       </motion.div>
@@ -236,10 +237,10 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
       {episodes.map((episode, index) => (
         <motion.div
           key={episode.id}
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.3, delay: index * 0.05 }}
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, delay: index * 0.08, ease: liquidEase }}
         >
           <Link
             to={`/episode/${episode.slug}`}
@@ -272,10 +273,10 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
       {comingSoonEpisodes.map((episode, idx) => (
         <motion.div
           key={`coming-soon-list-${episode.id}`}
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.3, delay: (episodes.length + idx) * 0.05 }}
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.5, delay: (episodes.length + idx) * 0.08, ease: liquidEase }}
         >
           <Link
             to={`/episode/${episode.slug}`}

@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import FomLogo from "@/assets/FOM_Logo.svg";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 import SubscribeButton from "@/components/SubscribeButton";
+import { fadeDownVariant, liquidEase } from "@/components/animations/PageLoadAnimation";
 
 const Navbar = () => {
   const { openSubscribe } = useSubscribe();
@@ -14,7 +16,12 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="sticky top-4 z-50 mx-4 sm:mx-6 lg:mx-8">
+    <motion.header 
+      initial="hidden"
+      animate="visible"
+      variants={fadeDownVariant}
+      className="sticky top-4 z-50 mx-4 sm:mx-6 lg:mx-8"
+    >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8 glass rounded-2xl">
         <div className="flex items-center justify-between h-14 lg:h-16">
           {/* Logo */}
@@ -24,24 +31,38 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <ul className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <li key={link.label}>
+            {navLinks.map((link, index) => (
+              <motion.li 
+                key={link.label}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ 
+                  duration: 0.4, 
+                  delay: 0.3 + index * 0.1,
+                  ease: liquidEase 
+                }}
+              >
                 <a
                   href={link.href}
                   className="text-base font-medium text-foreground hover:text-primary hover:bg-secondary/50 hover-transition px-4 py-2 rounded-full focus-ring"
                 >
                   {link.label}
                 </a>
-              </li>
+              </motion.li>
             ))}
           </ul>
 
           {/* Desktop CTA */}
-          <div className="hidden md:flex items-center justify-center">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.5, ease: liquidEase }}
+            className="hidden md:flex items-center justify-center"
+          >
             <SubscribeButton className="btn-base btn-glass btn-md">
               Subscribe
             </SubscribeButton>
-          </div>
+          </motion.div>
 
           {/* Mobile Menu Button */}
           <button
@@ -77,7 +98,7 @@ const Navbar = () => {
           </div>
         )}
       </nav>
-    </header>
+    </motion.header>
   );
 };
 
