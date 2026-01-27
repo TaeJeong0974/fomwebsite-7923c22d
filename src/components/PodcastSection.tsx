@@ -117,10 +117,14 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
       {episodes.slice(0, 4).map((episode, index) => (
         <motion.div
           key={episode.id}
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.6, delay: index * 0.1, ease: liquidEase }}
+          transition={{ 
+            duration: 1.0, 
+            delay: index * 0.18, 
+            ease: liquidEase 
+          }}
         >
           <PodcastCard 
             episode={episode} 
@@ -133,10 +137,14 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
       {comingSoonEpisodes.map((episode, idx) => (
         <motion.div
           key={`coming-soon-${episode.id}`}
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 0.6, delay: (episodes.length + idx) * 0.1, ease: liquidEase }}
+          transition={{ 
+            duration: 1.0, 
+            delay: (episodes.slice(0, 4).length + idx) * 0.18, 
+            ease: liquidEase 
+          }}
         >
           <PodcastCard 
             episode={episode} 
@@ -145,12 +153,15 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
         </motion.div>
       ))}
       
-      {/* Subscribe CTA Card */}
       <motion.div
-        initial={{ opacity: 0, y: 40, scale: 0.98 }}
+        initial={{ opacity: 0, y: 30, scale: 0.98 }}
         whileInView={{ opacity: 1, y: 0, scale: 1 }}
         viewport={{ once: true, amount: 0.15 }}
-        transition={{ duration: 0.7, delay: 0.5, ease: liquidEase }}
+        transition={{ 
+          duration: 1.0, 
+          delay: 0.9, 
+          ease: liquidEase 
+        }}
       >
         <SubscribeCard />
       </motion.div>
@@ -165,10 +176,14 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
       {episodes.map((episode, index) => (
         <motion.div
           key={episode.id}
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -16 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5, delay: index * 0.08, ease: liquidEase }}
+          transition={{ 
+            duration: 0.9, 
+            delay: index * 0.12, 
+            ease: liquidEase 
+          }}
         >
           <Link
             to={`/episode/${episode.slug}`}
@@ -201,10 +216,14 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
       {comingSoonEpisodes.map((episode, idx) => (
         <motion.div
           key={`coming-soon-list-${episode.id}`}
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: -16 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.5, delay: (episodes.length + idx) * 0.08, ease: liquidEase }}
+          transition={{ 
+            duration: 0.9, 
+            delay: (episodes.length + idx) * 0.12, 
+            ease: liquidEase 
+          }}
         >
           <Link
             to={`/episode/${episode.slug}`}
