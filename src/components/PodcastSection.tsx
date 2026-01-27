@@ -228,7 +228,7 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
                 />
               </div>
             )}
-            <span className="absolute top-4 right-4 text-white/60 text-xs font-medium tracking-wide uppercase">Coming Soon</span>
+            <span className="absolute top-4 right-4 text-white text-xs font-medium tracking-wide uppercase">Coming Soon</span>
             <div className="card-content-bottom card-padding-lg">
               <h3 className="font-display text-white leading-[0.95] tracking-tight">
                 {guest.name.split(' ').map((word, i, arr) => (
