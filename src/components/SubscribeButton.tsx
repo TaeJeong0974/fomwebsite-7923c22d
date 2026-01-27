@@ -90,7 +90,7 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
                 />
                 <button
                   type="submit"
-                  className="w-full btn-base btn-md bg-primary hover:bg-primary/90 text-primary-foreground"
+                  className="w-full btn-base btn-md bg-white hover:bg-white/90 text-black"
                 >
                   Subscribe
                 </button>
