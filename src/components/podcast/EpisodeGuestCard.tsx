@@ -1,5 +1,3 @@
-import { Linkedin } from "lucide-react";
-
 interface EpisodeGuestCardProps {
   name: string;
   title: string;
@@ -33,9 +31,8 @@ const EpisodeGuestCard = ({ name, title, company, companyDomain, linkedInUrl }: 
               href={linkedInUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary hover-transition mt-2"
+              className="text-sm text-muted-foreground hover:text-primary hover-transition mt-2 inline-block"
             >
-              <Linkedin className="w-4 h-4" />
               LinkedIn
             </a>
           )}
