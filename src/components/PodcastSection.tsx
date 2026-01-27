@@ -137,7 +137,7 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
                   </div>
                 )}
                 
-                <span className="absolute top-4 right-4 bg-primary text-primary-foreground text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">New</span>
+                {index === 0 && <span className="absolute top-4 right-4 bg-primary text-primary-foreground text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">New</span>}
                 
                 <div className="card-content-bottom card-padding-lg">
                   <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-white tracking-tight">
@@ -242,7 +242,7 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
                 <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-primary hover-transition leading-[0.95] tracking-tight">
                   {episode.name}
                 </h3>
-                <span className="bg-primary text-primary-foreground text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">New</span>
+                {index === 0 && <span className="bg-primary text-primary-foreground text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">New</span>}
               </div>
               <p className="text-body mt-3">
                 <span className="text-muted-foreground">{episode.title}</span> <span className="font-medium text-foreground">@ {episode.company}</span>
