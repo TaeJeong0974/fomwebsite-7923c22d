@@ -95,7 +95,7 @@ const PodcastDetail = () => {
 
             {/* Sidebar */}
             <motion.div 
-              className="space-y-6 lg:sticky lg:top-8 lg:self-start"
+              className="space-y-6"
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
@@ -110,11 +110,13 @@ const PodcastDetail = () => {
                 bio={episode.bio}
               />
 
-              {/* Action Buttons */}
-              <EpisodeActionButtons 
-                youtubeUrl={episode.youtubeUrl}
-                spotifyUrl={episode.spotifyUrl}
-              />
+              {/* Action Buttons - Sticky */}
+              <div className="lg:sticky lg:top-8">
+                <EpisodeActionButtons 
+                  youtubeUrl={episode.youtubeUrl}
+                  spotifyUrl={episode.spotifyUrl}
+                />
+              </div>
             </motion.div>
           </div>
 
