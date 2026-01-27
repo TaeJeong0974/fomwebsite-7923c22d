@@ -16,8 +16,12 @@ const PodcastDetail = () => {
   const episode = getEpisodeBySlug(slug || "");
 
   // Show coming soon page if episode not found or is coming soon
-  if (!episode || episode.comingSoon) {
+  if (!episode) {
     return <ComingSoonEpisode />;
+  }
+  
+  if (episode.comingSoon) {
+    return <ComingSoonEpisode episode={episode} />;
   }
 
   return (

@@ -19,6 +19,7 @@ export interface PodcastEpisode {
   companyDomain: string;
   overview: string;
   fullDescription: string;
+  bio?: string;
   topics: string[];
   chapters: PodcastChapter[];
   youtubeUrl: string;
@@ -26,6 +27,7 @@ export interface PodcastEpisode {
   duration: string;
   publishedDate: string;
   comingSoon: boolean;
+  linkedInUrl?: string;
 }
 
 export const podcastEpisodes: PodcastEpisode[] = [
@@ -131,6 +133,55 @@ We explore the challenges of marketing in a highly regulated industry while main
     publishedDate: "Jan 8, 2026",
     comingSoon: false,
   },
+  // Coming Soon Episodes
+  {
+    id: 4,
+    slug: "sara-varni",
+    name: "Sara Varni",
+    title: "Chief Marketing Officer",
+    company: "Datadog",
+    companyDomain: "datadoghq.com",
+    overview: "How observability is transforming the way engineering teams build and ship software.",
+    bio: "Sara Varni is the Chief Marketing Officer at Datadog, where she leads global marketing strategy for the cloud monitoring platform trusted by thousands of enterprises. Previously, she served as CMO at Twilio and held leadership roles at Salesforce. Sara is known for her expertise in scaling marketing organizations during hypergrowth and building brands that resonate with technical audiences.",
+    fullDescription: "",
+    topics: [
+      "Marketing to developers and engineers",
+      "Building trust with technical audiences",
+      "Scaling marketing at hypergrowth companies",
+      "The rise of observability platforms",
+    ],
+    chapters: [],
+    youtubeUrl: "",
+    spotifyUrl: "",
+    duration: "",
+    publishedDate: "Coming Soon",
+    comingSoon: true,
+    linkedInUrl: "https://linkedin.com/in/saravarni",
+  },
+  {
+    id: 5,
+    slug: "kate-johnson",
+    name: "Kate Johnson",
+    title: "Chief Marketing Officer",
+    company: "Mada",
+    companyDomain: "mada.com",
+    overview: "Redefining digital payments and the future of fintech in emerging markets.",
+    bio: "Kate Johnson is the Chief Marketing Officer at Mada, where she's pioneering marketing strategies for next-generation payment solutions. With a background spanning global fintech leaders, Kate brings unique insights on building consumer trust in digital payments and navigating complex regulatory environments. She's passionate about financial inclusion and making payments seamless for everyone.",
+    fullDescription: "",
+    topics: [
+      "Fintech marketing in emerging markets",
+      "Building consumer trust in digital payments",
+      "The future of cashless societies",
+      "Brand building in regulated industries",
+    ],
+    chapters: [],
+    youtubeUrl: "",
+    spotifyUrl: "",
+    duration: "",
+    publishedDate: "Coming Soon",
+    comingSoon: true,
+    linkedInUrl: "https://linkedin.com/in/katejohnson",
+  },
 ];
 
 export const getEpisodeBySlug = (slug: string): PodcastEpisode | undefined => {
@@ -139,4 +190,8 @@ export const getEpisodeBySlug = (slug: string): PodcastEpisode | undefined => {
 
 export const getPublishedEpisodes = (): PodcastEpisode[] => {
   return podcastEpisodes.filter((ep) => !ep.comingSoon);
+};
+
+export const getComingSoonEpisodes = (): PodcastEpisode[] => {
+  return podcastEpisodes.filter((ep) => ep.comingSoon);
 };
