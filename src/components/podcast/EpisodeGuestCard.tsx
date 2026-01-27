@@ -4,9 +4,10 @@ interface EpisodeGuestCardProps {
   company: string;
   companyDomain: string;
   linkedInUrl?: string;
+  bio?: string;
 }
 
-const EpisodeGuestCard = ({ name, title, company, companyDomain, linkedInUrl }: EpisodeGuestCardProps) => {
+const EpisodeGuestCard = ({ name, title, company, companyDomain, linkedInUrl, bio }: EpisodeGuestCardProps) => {
   return (
     <div className="glass rounded-2xl p-6">
       <h3 className="font-display text-lg font-semibold text-foreground mb-4">
@@ -38,6 +39,12 @@ const EpisodeGuestCard = ({ name, title, company, companyDomain, linkedInUrl }: 
           )}
         </div>
       </div>
+      
+      {bio && (
+        <p className="text-sm text-muted-foreground leading-relaxed mt-4 pt-4 border-t border-border">
+          {bio}
+        </p>
+      )}
     </div>
   );
 };
