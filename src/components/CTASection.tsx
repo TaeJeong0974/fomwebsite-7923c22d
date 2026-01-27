@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import SubscribeButton from "@/components/SubscribeButton";
 
 const CTASection = () => {
-
   return (
     <section className="section-spacing">
       <div className="container mx-auto container-padding">
