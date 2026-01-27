@@ -280,11 +280,22 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
               </p>
             </div>
             
-            {/* Right: Arrow */}
-            <div className="w-10 h-10 rounded-full glass-dark flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground hover-transition mt-2">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+            {/* Right: Logo + Arrow */}
+            <div className="flex items-center gap-3 shrink-0 mt-2">
+              {episode.companyDomain && (
+                <div className="w-10 h-10 rounded-xl glass-dark flex items-center justify-center group-hover:bg-primary/20 hover-transition">
+                  <img 
+                    src={`https://www.google.com/s2/favicons?domain=${episode.companyDomain}&sz=64`} 
+                    alt={episode.company}
+                    className="h-5 w-5 object-contain"
+                  />
+                </div>
+              )}
+              <div className="w-10 h-10 rounded-full glass-dark flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground hover-transition">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
             </div>
           </Link>
         </motion.div>
