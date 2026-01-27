@@ -5,9 +5,8 @@ import { LayoutGrid, List } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 import { getPublishedEpisodes, getComingSoonEpisodes, PodcastEpisode } from "@/lib/podcastData";
-import SubscribeButton from "@/components/SubscribeButton";
+import SubscribeCard from "@/components/SubscribeCard";
 import guestBg from "@/assets/guest-bg.png";
-import subscribeBg from "@/assets/subscribe-bg.png";
 
 type LayoutType = "grid" | "list";
 
@@ -216,19 +215,7 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
         viewport={{ once: true }}
         transition={{ duration: 0.4, delay: 0.6 }}
       >
-        <SubscribeButton 
-          className="card-image group cursor-pointer hover-scale"
-          style={{
-            backgroundImage: `url(${subscribeBg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="card-content-full card-padding-lg">
-            <h3 className="text-display-md text-foreground">Subscribe to stay current on how teams are using AI.</h3>
-            <span className="btn-base btn-primary btn-lg self-start">Subscribe</span>
-          </div>
-        </SubscribeButton>
+        <SubscribeCard />
       </motion.div>
     </div>
   );
