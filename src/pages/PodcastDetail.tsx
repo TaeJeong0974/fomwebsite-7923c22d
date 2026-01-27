@@ -134,38 +134,43 @@ const PodcastDetail = () => {
                   <Link
                     key={ep.id}
                     to={`/episode/${ep.slug}`}
-                    className="group block"
+                    className="block group"
                   >
-                    {/* Name & Info */}
-                    <div className="mb-4">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <h4 className="font-display text-xl font-semibold text-foreground group-hover:text-primary hover-transition">
-                            {ep.name}
-                          </h4>
-                          {ep.comingSoon && (
-                            <span className="bg-foreground text-background text-[10px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-full">
-                              Soon
-                            </span>
-                          )}
-                        </div>
-                        <ArrowRight size={18} className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 hover-transition shrink-0" />
-                      </div>
-                      <p className="text-sm text-muted-foreground mt-0.5">
-                        {ep.title}, <span className="text-primary">{ep.company}</span>
-                      </p>
-                    </div>
-                    
-                    {/* Photo */}
                     <div 
-                      className="aspect-[4/5] rounded-2xl overflow-hidden bg-muted"
+                      className="card-image hover-scale"
                       style={{
                         backgroundImage: `url(${guestBg})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                       }}
                     >
-                      <div className="w-full h-full bg-gradient-to-t from-black/40 via-black/10 to-transparent group-hover:scale-105 hover-transition" />
+                      <div className="card-overlay-light hover-transition group-hover:opacity-90" />
+                      
+                      {ep.companyDomain && (
+                        <div className="absolute top-4 left-4 glass rounded-xl p-2.5 hover-scale-badge z-[3]">
+                          <img 
+                            src={`https://www.google.com/s2/favicons?domain=${ep.companyDomain}&sz=64`} 
+                            alt={ep.company}
+                            className="h-5 w-5 object-contain"
+                          />
+                        </div>
+                      )}
+                      
+                      {ep.comingSoon && (
+                        <span className="absolute top-4 right-4 bg-foreground text-background text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full z-[3]">
+                          Upcoming
+                        </span>
+                      )}
+                      
+                      <div className="card-content-bottom card-padding-lg z-[3]">
+                        <h3 className="font-display text-2xl sm:text-3xl font-semibold text-white tracking-tight">
+                          {ep.name.split(' ').map((word, i) => (
+                            <span key={i} className="block">{word}</span>
+                          ))}
+                        </h3>
+                        <p className="text-body-sm text-white/70 mt-1">{ep.title}</p>
+                        <p className="text-body-sm font-medium text-primary">{ep.company}</p>
+                      </div>
                     </div>
                   </Link>
                 ))}
