@@ -281,7 +281,7 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
         >
           <Link
             to={`/episode/${episode.slug}`}
-            className="group glass rounded-2xl p-6 sm:p-8 flex items-start justify-between gap-6 hover:bg-white/[0.08] hover-transition"
+            className="group py-6 sm:py-8 flex items-start justify-between gap-6 hover-transition"
           >
             {/* Left: Name + Title/Company stacked */}
             <div className="flex-1 min-w-0 text-left">
@@ -315,7 +315,7 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.3, delay: (episodes.length + idx) * 0.05 }}
         >
-          <div className="glass rounded-2xl p-6 sm:p-8 flex items-start justify-between gap-6">
+          <div className="py-6 sm:py-8 flex items-start justify-between gap-6">
             <div className="flex-1 min-w-0 text-left">
               <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground leading-[0.95] tracking-tight">
                 {guest.name}
