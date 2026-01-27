@@ -9,14 +9,16 @@ import EpisodeChapters from "@/components/podcast/EpisodeChapters";
 import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
 import ComingSoonEpisode from "@/components/podcast/ComingSoonEpisode";
-import { getEpisodeBySlug, getPublishedEpisodes } from "@/lib/podcastData";
+import { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes } from "@/lib/podcastData";
 
 const PodcastDetail = () => {
   const { slug } = useParams();
   const episode = getEpisodeBySlug(slug || "");
   
-  // Get other episodes for "You might also like"
-  const otherEpisodes = getPublishedEpisodes().filter(ep => ep.slug !== slug).slice(0, 3);
+  // Get other episodes for "You might also like" - mix of published and coming soon
+  const publishedEpisodes = getPublishedEpisodes().filter(ep => ep.slug !== slug).slice(0, 2);
+  const comingSoonEpisodes = getComingSoonEpisodes().slice(0, 1);
+  const otherEpisodes = [...publishedEpisodes, ...comingSoonEpisodes];
 
   // Show coming soon page if episode not found or is coming soon
   if (!episode) {
@@ -142,9 +144,16 @@ const PodcastDetail = () => {
                         />
                       </div>
                       <div className="min-w-0 flex-1">
-                        <h4 className="font-display text-lg font-semibold text-foreground group-hover:text-primary hover-transition">
-                          {ep.name}
-                        </h4>
+                        <div className="flex items-center gap-2">
+                          <h4 className="font-display text-lg font-semibold text-foreground group-hover:text-primary hover-transition">
+                            {ep.name}
+                          </h4>
+                          {ep.comingSoon && (
+                            <span className="bg-foreground text-background text-[10px] font-semibold tracking-wide uppercase px-2 py-0.5 rounded-full">
+                              Soon
+                            </span>
+                          )}
+                        </div>
                         <p className="text-sm text-muted-foreground mt-0.5">
                           {ep.title}
                         </p>
