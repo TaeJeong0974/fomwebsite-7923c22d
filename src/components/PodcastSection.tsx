@@ -199,7 +199,10 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
       })}
       
       {/* Coming Soon Cards */}
-      {[1, 2].map((_, idx) => (
+      {[
+        { name: "Sara Varni", title: "Chief Marketing Officer", company: "Datadog", companyDomain: "datadoghq.com" },
+        { name: "Kate Johnson", title: "Chief Marketing Officer", company: "Mada", companyDomain: "mada.com" },
+      ].map((guest, idx) => (
         <motion.div
           key={`coming-soon-${idx}`}
           initial={{ opacity: 0, y: 20 }}
@@ -217,13 +220,23 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
           >
             <div className="card-overlay-light hover-transition group-hover:opacity-90" />
             <div className="absolute top-4 left-4 badge-interactive glass-dark text-white">Coming Soon</div>
+            {guest.companyDomain && (
+              <div className="absolute top-4 right-4 glass rounded-xl p-2.5 hover-scale-badge">
+                <img 
+                  src={`https://www.google.com/s2/favicons?domain=${guest.companyDomain}&sz=64`} 
+                  alt={guest.company}
+                  className="h-5 w-5 object-contain"
+                />
+              </div>
+            )}
             <div className="card-content-bottom card-padding-lg">
               <h3 className="font-display text-white leading-[0.95] tracking-tight">
-                <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">Guest</span>
-                <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">Name</span>
+                {guest.name.split(' ').map((word, i, arr) => (
+                  <span key={i} className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">{word}</span>
+                ))}
               </h3>
-              <p className="text-body-sm text-white/70 mt-1">Chief Marketing Officer</p>
-              <p className="text-body-sm font-medium text-primary">Company</p>
+              <p className="text-body-sm text-white/70 mt-1">{guest.title}</p>
+              <p className="text-body-sm font-medium text-primary">{guest.company}</p>
             </div>
           </div>
         </motion.div>
@@ -291,7 +304,10 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
       ))}
       
       {/* Coming Soon items */}
-      {[1, 2].map((_, idx) => (
+      {[
+        { name: "Sara Varni", title: "Chief Marketing Officer", company: "Datadog", companyDomain: "datadoghq.com" },
+        { name: "Kate Johnson", title: "Chief Marketing Officer", company: "Mada", companyDomain: "mada.com" },
+      ].map((guest, idx) => (
         <motion.div
           key={`coming-soon-list-${idx}`}
           initial={{ opacity: 0, y: 10 }}
@@ -299,15 +315,22 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.3, delay: (episodes.length + idx) * 0.05 }}
         >
-          <div className="glass rounded-2xl p-5 flex items-center gap-4 opacity-40">
-            <div className="glass-dark rounded-xl p-3 shrink-0">
-              <div className="h-6 w-6 rounded bg-muted-foreground/20" />
-            </div>
-            <div className="min-w-0">
-              <h3 className="font-display text-xl sm:text-2xl font-semibold text-foreground leading-tight">
-                Coming Soon
+          <div className="glass rounded-2xl p-6 sm:p-8 flex items-start justify-between gap-6 opacity-60">
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-3 mb-2">
+                <span className="badge-interactive glass-dark text-white text-xs">Coming Soon</span>
+              </div>
+              <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground leading-[0.95] tracking-tight text-left">
+                {guest.name}
               </h3>
-              <p className="text-body-sm text-muted-foreground mt-0.5">Guest to be announced</p>
+              <p className="text-body text-foreground mt-3 text-left">
+                {guest.title} <span className="font-medium">@ {guest.company}</span>
+              </p>
+            </div>
+            <div className="w-10 h-10 rounded-full glass-dark flex items-center justify-center shrink-0 mt-2">
+              <svg className="w-5 h-5 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </div>
           </div>
         </motion.div>
