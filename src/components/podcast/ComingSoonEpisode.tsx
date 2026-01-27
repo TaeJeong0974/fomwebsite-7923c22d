@@ -68,28 +68,12 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30 group-hover:from-black/95 group-hover:via-black/60 hover-transition" />
                 
-                {/* Upcoming Badge - black container with subtle pulse */}
-                <motion.div 
-                  className="absolute top-6 left-6 z-10"
-                  animate={{ 
-                    boxShadow: [
-                      "0 0 0 0 rgba(255, 107, 0, 0)",
-                      "0 0 0 8px rgba(255, 107, 0, 0.15)",
-                      "0 0 0 0 rgba(255, 107, 0, 0)"
-                    ]
-                  }}
-                  transition={{ 
-                    duration: 2.5, 
-                    repeat: Infinity,
-                    ease: [0.22, 1, 0.36, 1]
-                  }}
-                  style={{ borderRadius: "9999px" }}
-                >
-                  <span className="bg-foreground px-4 py-2 rounded-full text-sm font-semibold text-background inline-flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+                {/* Upcoming Badge - black container */}
+                <div className="absolute top-6 left-6 z-10">
+                  <span className="bg-foreground px-4 py-2 rounded-full text-sm font-semibold text-background">
                     Upcoming
                   </span>
-                </motion.div>
+                </div>
 
                 {/* Interactive Content */}
                 <AnimatePresence mode="wait">
