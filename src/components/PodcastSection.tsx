@@ -217,17 +217,14 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
         transition={{ duration: 0.4, delay: 0.6 }}
       >
         <SubscribeButton 
-          className="card-image group cursor-pointer hover-scale flex flex-col"
+          className="card-image group cursor-pointer hover-scale"
+          style={{
+            backgroundImage: `url(${subscribeBg})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
         >
-          <div 
-            className="absolute inset-0 rounded-2xl"
-            style={{
-              backgroundImage: `url(${subscribeBg})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          />
-          <div className="card-content-full card-padding-lg relative z-10">
+          <div className="card-content-full card-padding-lg">
             <h3 className="text-display-md text-foreground">Subscribe to stay current on how teams are using AI.</h3>
             <span className="btn-base btn-primary btn-lg self-start">Subscribe</span>
           </div>
