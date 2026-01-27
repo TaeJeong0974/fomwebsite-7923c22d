@@ -1,8 +1,7 @@
 import { motion } from "framer-motion";
-import { useSubscribe } from "@/contexts/SubscribeContext";
+import SubscribeButton from "@/components/SubscribeButton";
 
 const CTASection = () => {
-  const { openSubscribe } = useSubscribe();
 
   return (
     <section className="section-spacing">
@@ -32,12 +31,9 @@ const CTASection = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="mt-8"
             >
-              <button 
-                onClick={openSubscribe}
-                className="btn-base btn-lg bg-primary hover:bg-primary/90 text-primary-foreground"
-              >
+              <SubscribeButton className="btn-base btn-lg bg-primary hover:bg-primary/90 text-primary-foreground">
                 Subscribe
-              </button>
+              </SubscribeButton>
             </motion.div>
           </div>
         </motion.div>
