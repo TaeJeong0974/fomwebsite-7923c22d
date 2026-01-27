@@ -40,7 +40,7 @@ export const podcastEpisodes: PodcastEpisode[] = [
     company: "Samsara",
     companyDomain: "samsara.com",
     overview: "Exploring how remote work is reshaping company culture and marketing strategies.",
-    bio: "Meagen Eisenberg is the Chief Marketing Officer at Samsara, the pioneer of the Connected Operations Cloud. With over two decades of experience in B2B marketing, she has held CMO roles at MongoDB and TripActions, and VP-level positions at DocuSign and ArcSight. Meagen is known for her expertise in demand generation, account-based marketing, and building world-class marketing teams that drive hypergrowth.",
+    bio: "A builder who moves fast, operates tactically, and earns trust through execution. With nearly 25 years scaling high-growth companies as CMO at Samsara, MongoDB, TripActions/Navan, and leadership roles at DocuSign and G2.",
     fullDescription: `In this episode, we sit down with Meagen Eisenberg, CMO of Samsara, to explore how the landscape of marketing leadership is evolving in the age of connected operations.
 
 Meagen shares her insights on building high-performing marketing teams, leveraging data to drive decisions, and the critical role of storytelling in B2B marketing.
