@@ -66,7 +66,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
                 
                 {/* Coming Soon Badge */}
                 <div className="absolute top-6 right-6">
-                  <span className="bg-foreground text-background px-4 py-2 rounded-full text-sm font-semibold uppercase tracking-wide">
+                  <span className="bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-base font-bold uppercase tracking-wider shadow-lg">
                     Coming Soon
                   </span>
                 </div>
