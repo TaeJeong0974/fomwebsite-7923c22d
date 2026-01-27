@@ -268,40 +268,23 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
         >
           <Link
             to={`/episode/${episode.slug}`}
-            className="group glass rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center gap-4 hover:bg-white/[0.08] hover-transition"
+            className="group glass rounded-2xl p-6 sm:p-8 flex items-start justify-between gap-6 hover:bg-white/[0.08] hover-transition"
           >
-            {/* Left: Logo + Info */}
-            <div className="flex items-center gap-4 flex-1 min-w-0">
-              {episode.companyDomain && (
-                <div className="glass-dark rounded-xl p-3 shrink-0 group-hover:bg-primary/20 hover-transition">
-                  <img 
-                    src={`https://www.google.com/s2/favicons?domain=${episode.companyDomain}&sz=64`} 
-                    alt={episode.company}
-                    className="h-6 w-6 object-contain"
-                  />
-                </div>
-              )}
-              
-              <div className="min-w-0">
-                <h3 className="font-display text-xl sm:text-2xl font-semibold text-foreground group-hover:text-primary hover-transition leading-tight truncate">
-                  {episode.name}
-                </h3>
-                <p className="text-body-sm text-muted-foreground mt-0.5">
-                  {episode.title} <span className="text-primary">@ {episode.company}</span>
-                </p>
-              </div>
+            {/* Left: Name + Title/Company stacked */}
+            <div className="flex-1 min-w-0">
+              <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-primary hover-transition leading-[0.95] tracking-tight">
+                {episode.name}
+              </h3>
+              <p className="text-body text-muted-foreground mt-3">
+                {episode.title} <span className="text-primary font-medium">@ {episode.company}</span>
+              </p>
             </div>
             
-            {/* Right: Overview + Arrow */}
-            <div className="flex items-center gap-4 sm:max-w-sm">
-              <p className="text-body-sm text-muted-foreground leading-relaxed line-clamp-2">
-                {episode.overview}
-              </p>
-              <div className="w-8 h-8 rounded-full glass-dark flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground hover-transition">
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </div>
+            {/* Right: Arrow */}
+            <div className="w-10 h-10 rounded-full glass-dark flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground hover-transition mt-2">
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </div>
           </Link>
         </motion.div>
