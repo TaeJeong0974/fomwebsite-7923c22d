@@ -189,7 +189,7 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
                   <p className="text-body-sm font-medium text-primary">{episode.company}</p>
                   <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
                     <p className="text-body-sm leading-relaxed text-white/60 mb-4">{episode.overview}</p>
-                    <span className="btn-base btn-glass-light btn-sm">Listen Now</span>
+                    <span className="btn-base btn-glass-light btn-sm">Watch Now</span>
                   </div>
                 </div>
               </div>
