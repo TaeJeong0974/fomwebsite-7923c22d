@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
-// Shared easing for liquid-glass feel
-export const liquidEase = [0.33, 1, 0.68, 1] as const;
+// Shared easing for liquid-glass feel - refined for elegance
+export const liquidEase = [0.22, 1, 0.36, 1] as const;
 
 // Stagger container for initial page load
 export const staggerContainer = {
@@ -10,8 +10,8 @@ export const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.1,
+      staggerChildren: 0.2,
+      delayChildren: 0.15,
     },
   },
 };
@@ -20,13 +20,13 @@ export const staggerContainer = {
 export const fadeUpVariant = {
   hidden: { 
     opacity: 0, 
-    y: 30 
+    y: 24 
   },
   visible: { 
     opacity: 1, 
     y: 0,
     transition: {
-      duration: 0.8,
+      duration: 1.1,
       ease: liquidEase,
     },
   },
@@ -36,13 +36,13 @@ export const fadeUpVariant = {
 export const fadeDownVariant = {
   hidden: { 
     opacity: 0, 
-    y: -20 
+    y: -16 
   },
   visible: { 
     opacity: 1, 
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.9,
       ease: liquidEase,
     },
   },
@@ -52,13 +52,13 @@ export const fadeDownVariant = {
 export const scaleFadeVariant = {
   hidden: { 
     opacity: 0, 
-    scale: 0.95 
+    scale: 0.97 
   },
   visible: { 
     opacity: 1, 
     scale: 1,
     transition: {
-      duration: 0.6,
+      duration: 0.9,
       ease: liquidEase,
     },
   },
