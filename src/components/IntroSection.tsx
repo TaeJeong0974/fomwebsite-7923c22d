@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Linkedin } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import speaker2 from "@/assets/speaker-2.png";
 import speaker3 from "@/assets/speaker-3.png";
 import speaker4 from "@/assets/speaker-4.png";
@@ -10,21 +10,18 @@ const hosts = [
     name: "Camille Ricketts",
     title: "Partner, XYZ Venture Capital",
     bio: "Partner at XYZ Venture Capital, where she leads investments in product-led growth and go-to-market software startups. Prior, she was the first marketing leader at Notion, building out the brand, community, and more. She also founded First Round Review for First Round Capital, managed communications at Tesla, and reported for the Wall Street Journal.",
-    linkedin: "https://linkedin.com/in/camillericketts",
     image: speaker4,
   },
   {
     name: "Ethan Smith",
     title: "Founder & CEO, Graphite",
     bio: "Founder and CEO of Graphite, a premium Vertical AI Growth Agency that helps companies like Webflow, Notion, MasterClass, and Captions drive sustainable revenue growth via SEO, content, and AEO (Answer Engine Optimization). Ethan is also an adjunct professor at IE Business School.",
-    linkedin: "https://linkedin.com/in/ethansmith",
     image: speaker3,
   },
   {
     name: "Mada Seghete",
     title: "CEO & Co-Founder, Upside",
     bio: "CEO and co-founder of Upside, a next-gen revenue intelligence platform for B2B leaders. Previously co-founded and was CMO of Branch, helping scale to $100M+ revenue. Cornell Engineering graduate with Masters and MBA from Stanford. Partner at XFactor Ventures investing in women founders and organizes yearly retreats for 100+ women founders.",
-    linkedin: "https://linkedin.com/in/madaseghete",
     image: speaker2,
   },
 ];
@@ -118,16 +115,6 @@ const IntroSection = () => {
                             <p className="text-body-sm leading-relaxed text-white/60 mt-4">
                               {host.bio}
                             </p>
-                            <a 
-                              href={host.linkedin} 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              onClick={(e) => e.stopPropagation()}
-                              className="inline-flex items-center gap-2 text-primary text-sm font-medium mt-3 hover:underline"
-                            >
-                              <Linkedin className="h-4 w-4" />
-                              Connect on LinkedIn
-                            </a>
                           </motion.div>
                         )}
                       </AnimatePresence>

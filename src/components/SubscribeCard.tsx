@@ -21,7 +21,7 @@ const SubscribeCard = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Email submitted:", email);
+    // TODO: Connect to backend when Lovable Cloud is enabled
     setIsSubmitted(true);
     setEmail("");
     
