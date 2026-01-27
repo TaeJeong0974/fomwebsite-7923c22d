@@ -219,9 +219,8 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
             }}
           >
             <div className="card-overlay-light hover-transition group-hover:opacity-90" />
-            <div className="absolute top-4 left-4 badge-interactive glass-dark text-white">Coming Soon</div>
             {guest.companyDomain && (
-              <div className="absolute top-4 right-4 glass rounded-xl p-2.5 hover-scale-badge">
+              <div className="absolute top-4 left-4 glass rounded-xl p-2.5 hover-scale-badge">
                 <img 
                   src={`https://www.google.com/s2/favicons?domain=${guest.companyDomain}&sz=64`} 
                   alt={guest.company}
@@ -230,6 +229,7 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
               </div>
             )}
             <div className="card-content-bottom card-padding-lg">
+              <span className="badge-interactive glass-dark text-white text-xs mb-3 inline-block">Coming Soon</span>
               <h3 className="font-display text-white leading-[0.95] tracking-tight">
                 {guest.name.split(' ').map((word, i, arr) => (
                   <span key={i} className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">{word}</span>
@@ -317,9 +317,7 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
         >
           <div className="glass rounded-2xl p-6 sm:p-8 flex items-start justify-between gap-6 opacity-60">
             <div className="flex-1 min-w-0">
-              <div className="flex items-center gap-3 mb-2">
-                <span className="badge-interactive glass-dark text-white text-xs">Coming Soon</span>
-              </div>
+              <span className="badge-interactive glass-dark text-white text-xs mb-3 inline-block">Coming Soon</span>
               <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground leading-[0.95] tracking-tight text-left">
                 {guest.name}
               </h3>
