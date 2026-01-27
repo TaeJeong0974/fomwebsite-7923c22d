@@ -150,6 +150,7 @@ const PodcastDetail = () => {
                 title={episode.title}
                 company={episode.company}
                 companyDomain={episode.companyDomain}
+                linkedInUrl={episode.linkedInUrl}
               />
 
               {/* Chapters */}

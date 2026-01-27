@@ -1,11 +1,14 @@
+import { Linkedin } from "lucide-react";
+
 interface EpisodeGuestCardProps {
   name: string;
   title: string;
   company: string;
   companyDomain: string;
+  linkedInUrl?: string;
 }
 
-const EpisodeGuestCard = ({ name, title, company, companyDomain }: EpisodeGuestCardProps) => {
+const EpisodeGuestCard = ({ name, title, company, companyDomain, linkedInUrl }: EpisodeGuestCardProps) => {
   return (
     <div className="glass rounded-2xl p-6">
       <h3 className="font-display text-lg font-semibold text-foreground mb-4">
@@ -21,10 +24,21 @@ const EpisodeGuestCard = ({ name, title, company, companyDomain }: EpisodeGuestC
           />
         </div>
         
-        <div>
+        <div className="min-w-0">
           <h4 className="font-display text-xl font-semibold text-foreground">{name}</h4>
           <p className="text-sm text-muted-foreground mt-0.5">{title}</p>
           <p className="text-sm font-medium text-primary">{company}</p>
+          {linkedInUrl && (
+            <a
+              href={linkedInUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary hover-transition mt-2"
+            >
+              <Linkedin className="w-4 h-4" />
+              LinkedIn
+            </a>
+          )}
         </div>
       </div>
     </div>

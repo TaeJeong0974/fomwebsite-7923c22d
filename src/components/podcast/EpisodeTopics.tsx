@@ -1,12 +1,15 @@
 interface EpisodeTopicsProps {
   topics: string[];
+  title?: string;
 }
 
-const EpisodeTopics = ({ topics }: EpisodeTopicsProps) => {
+const EpisodeTopics = ({ topics, title = "Topics Covered" }: EpisodeTopicsProps) => {
+  if (!topics || topics.length === 0) return null;
+  
   return (
     <div>
       <h3 className="font-display text-xl font-semibold text-foreground mb-4">
-        Topics Covered
+        {title}
       </h3>
       <ul className="space-y-3">
         {topics.map((topic, index) => (
