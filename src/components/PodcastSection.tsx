@@ -317,7 +317,7 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
         >
           <div className="py-6 sm:py-8 flex items-start justify-between gap-6">
             <div className="flex-1 min-w-0 text-left">
-              <div className="flex items-center gap-3 mb-1">
+              <div className="flex items-center gap-3 mb-2">
                 <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Coming Soon</span>
               </div>
               <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground leading-[0.95] tracking-tight">
