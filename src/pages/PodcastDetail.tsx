@@ -53,9 +53,6 @@ const PodcastDetail = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 leading-tight">
-                  {episode.name}
-                </h1>
                 <p className="text-lg text-muted-foreground mb-4">
                   {episode.title} at <span className="text-primary font-medium">{episode.company}</span>
                 </p>
