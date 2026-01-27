@@ -137,6 +137,8 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
                   </div>
                 )}
                 
+                <span className="absolute top-4 right-4 bg-primary text-primary-foreground text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">New</span>
+                
                 <div className="card-content-bottom card-padding-lg">
                   <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-white tracking-tight">
                     {episode.name.split(' ').map((word, i, arr) => (
@@ -187,7 +189,7 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
                   />
                 </div>
               )}
-              <span className="absolute top-4 right-4 text-white text-xs font-medium tracking-wide uppercase">Coming Soon</span>
+              <span className="absolute top-4 right-4 bg-foreground text-background text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">Upcoming</span>
               <div className="card-content-bottom card-padding-lg">
                 <h3 className="font-display text-white leading-[0.95] tracking-tight">
                   {episode.name.split(' ').map((word, i) => (
@@ -236,9 +238,12 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
           >
             {/* Left: Name + Title/Company stacked */}
             <div className="flex-1 min-w-0 text-left">
-              <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-primary hover-transition leading-[0.95] tracking-tight">
-                {episode.name}
-              </h3>
+              <div className="flex items-center gap-3">
+                <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-primary hover-transition leading-[0.95] tracking-tight">
+                  {episode.name}
+                </h3>
+                <span className="bg-primary text-primary-foreground text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">New</span>
+              </div>
               <p className="text-body mt-3">
                 <span className="text-muted-foreground">{episode.title}</span> <span className="font-medium text-foreground">@ {episode.company}</span>
               </p>
@@ -268,12 +273,12 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
             className="group py-6 sm:py-8 flex items-start justify-between gap-6 hover-transition"
           >
             <div className="flex-1 min-w-0 text-left">
-              <div className="flex items-center gap-3 mb-2">
-                <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Coming Soon</span>
+              <div className="flex items-center gap-3">
+                <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-primary hover-transition leading-[0.95] tracking-tight">
+                  {episode.name}
+                </h3>
+                <span className="bg-foreground text-background text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">Upcoming</span>
               </div>
-              <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-primary hover-transition leading-[0.95] tracking-tight">
-                {episode.name}
-              </h3>
               <p className="text-body mt-3">
                 <span className="text-muted-foreground">{episode.title}</span> <span className="font-medium text-foreground">@ {episode.company}</span>
               </p>
