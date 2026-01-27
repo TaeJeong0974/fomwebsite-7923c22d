@@ -16,7 +16,7 @@ const CTASection = () => {
             Never Miss an Episode
           </h2>
           <p className="mt-6 text-lg text-muted-foreground max-w-xl mx-auto">
-            Subscribe for weekly updates and exclusive content.
+            Get notified when new episodes drop and stay in the loop.
           </p>
 
           <motion.div
