@@ -39,6 +39,7 @@ export const podcastEpisodes: PodcastEpisode[] = [
     company: "Samsara",
     companyDomain: "samsara.com",
     overview: "Exploring how remote work is reshaping company culture and marketing strategies.",
+    bio: "Meagen Eisenberg is the Chief Marketing Officer at Samsara, the pioneer of the Connected Operations Cloud. With over two decades of experience in B2B marketing, she has held CMO roles at MongoDB and TripActions, and VP-level positions at DocuSign and ArcSight. Meagen is known for her expertise in demand generation, account-based marketing, and building world-class marketing teams that drive hypergrowth.",
     fullDescription: `In this episode, we sit down with Meagen Eisenberg, CMO of Samsara, to explore how the landscape of marketing leadership is evolving in the age of connected operations.
 
 Meagen shares her insights on building high-performing marketing teams, leveraging data to drive decisions, and the critical role of storytelling in B2B marketing.
@@ -64,6 +65,7 @@ We dive deep into how Samsara's approach to physical operations data is transfor
     duration: "52 min",
     publishedDate: "Jan 15, 2026",
     comingSoon: false,
+    linkedInUrl: "https://linkedin.com/in/meageneisenberg",
   },
   {
     id: 2,
@@ -73,6 +75,7 @@ We dive deep into how Samsara's approach to physical operations data is transfor
     company: "Notion",
     companyDomain: "notion.so",
     overview: "Building and nurturing creative communities that drive brand loyalty.",
+    bio: "Lena Waters is the Chief Marketing Officer at Notion, where she leads the marketing strategy for one of the fastest-growing productivity platforms in the world. Before Notion, Lena held senior marketing roles at Dropbox and Atlassian, where she pioneered community-driven growth strategies. She's a recognized thought leader on building authentic brand communities and product-led marketing.",
     fullDescription: `Join us as we explore the art of community-led growth with Lena Waters, CMO of Notion—the workspace that's redefined how teams collaborate.
 
 Lena reveals the secrets behind Notion's organic growth, the power of user-generated content, and why community is the ultimate competitive advantage.
@@ -98,6 +101,7 @@ This conversation covers everything from product marketing to brand building in 
     duration: "48 min",
     publishedDate: "Jan 8, 2026",
     comingSoon: false,
+    linkedInUrl: "https://linkedin.com/in/lenawaters",
   },
   {
     id: 3,
@@ -107,6 +111,7 @@ This conversation covers everything from product marketing to brand building in 
     company: "Square",
     companyDomain: "squareup.com",
     overview: "Building a payments brand that resonates with businesses of all sizes.",
+    bio: "Lindsey Irvine is the Chief Marketing Officer at Square, where she oversees brand, communications, and marketing for the financial services company serving millions of businesses. With a background in fintech and consumer marketing, Lindsey previously led marketing at Carta and held leadership roles at PayPal. She's passionate about democratizing financial services and making complex products accessible to everyday entrepreneurs.",
     fullDescription: `In this episode, Lindsey Irvine, CMO of Square, discusses the art of marketing financial services to small and medium businesses.
 
 Lindsey shares her insights on building trust through brand, the evolution of fintech marketing, and how Square has become synonymous with modern commerce.
@@ -132,6 +137,7 @@ We explore the challenges of marketing in a highly regulated industry while main
     duration: "50 min",
     publishedDate: "Jan 8, 2026",
     comingSoon: false,
+    linkedInUrl: "https://linkedin.com/in/lindseyirvine",
   },
   // Coming Soon Episodes
   {
