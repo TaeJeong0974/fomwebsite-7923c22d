@@ -1,0 +1,65 @@
+import { Link } from "react-router-dom";
+import { X } from "lucide-react";
+import { motion } from "framer-motion";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+
+interface EpisodeOverlayLayoutProps {
+  children: React.ReactNode;
+}
+
+const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
+  return (
+    <div className="min-h-screen bg-muted/40 relative">
+      {/* Backdrop pattern - subtle dot grid */}
+      <div 
+        className="fixed inset-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: `radial-gradient(circle, hsl(var(--foreground)) 1px, transparent 1px)`,
+          backgroundSize: '24px 24px',
+        }}
+      />
+      
+      <Navbar />
+
+      {/* Close Button - Fixed position */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.3, delay: 0.2 }}
+        className="fixed top-24 right-6 lg:right-10 z-50"
+      >
+        <Link
+          to="/#podcast"
+          className="flex items-center justify-center w-12 h-12 rounded-full bg-foreground text-background hover:bg-foreground/90 hover-transition shadow-lg"
+          aria-label="Close and return to episodes"
+        >
+          <X size={20} />
+        </Link>
+      </motion.div>
+
+      {/* Floating Panel Container */}
+      <main className="relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ 
+            duration: 0.5, 
+            ease: [0.22, 1, 0.36, 1] 
+          }}
+          className="container mx-auto container-padding py-8"
+        >
+          <div className="bg-background rounded-3xl shadow-2xl shadow-black/5 overflow-hidden">
+            <div className="p-6 sm:p-8 lg:p-12">
+              {children}
+            </div>
+          </div>
+        </motion.div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default EpisodeOverlayLayout;
