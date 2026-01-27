@@ -40,12 +40,12 @@ const episodes: Episode[] = [
   },
   {
     id: 3,
-    slug: "dave-steer",
-    name: "Dave Steer",
+    slug: "lindsey-irvine",
+    name: "Lindsey Irvine",
     title: "Chief Marketing Officer",
-    company: "Webflow",
-    companyDomain: "webflow.com",
-    overview: "How sustainable practices are becoming central to tech marketing.",
+    company: "Square",
+    companyDomain: "squareup.com",
+    overview: "Building a payments brand that resonates with businesses of all sizes.",
     comingSoon: false,
   },
 ];

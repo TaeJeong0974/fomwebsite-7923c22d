@@ -99,36 +99,36 @@ This conversation covers everything from product marketing to brand building in 
   },
   {
     id: 3,
-    slug: "dave-steer",
-    name: "Dave Steer",
+    slug: "lindsey-irvine",
+    name: "Lindsey Irvine",
     title: "Chief Marketing Officer",
-    company: "Webflow",
-    companyDomain: "webflow.com",
-    overview: "How sustainable practices are becoming central to tech marketing.",
-    fullDescription: `In this episode, Dave Steer, CMO of Webflow, discusses the intersection of design, development, and marketing in the no-code revolution.
+    company: "Square",
+    companyDomain: "squareup.com",
+    overview: "Building a payments brand that resonates with businesses of all sizes.",
+    fullDescription: `In this episode, Lindsey Irvine, CMO of Square, discusses the art of marketing financial services to small and medium businesses.
 
-We explore how Webflow has empowered creators to build without boundaries, and the marketing strategies that turned a design tool into a movement.
+Lindsey shares her insights on building trust through brand, the evolution of fintech marketing, and how Square has become synonymous with modern commerce.
 
-Dave shares his philosophy on authentic marketing, the importance of empowering your users, and what's next for the visual development space.`,
+We explore the challenges of marketing in a highly regulated industry while maintaining creativity and customer connection.`,
     topics: [
-      "Marketing the no-code revolution",
-      "Empowering creators and designers",
-      "Authentic brand storytelling",
-      "Building a developer community",
-      "The visual development future",
+      "Fintech brand building",
+      "Marketing to SMBs",
+      "Trust and transparency in financial services",
+      "The future of commerce",
+      "Scaling marketing operations",
     ],
     chapters: [
       { time: "0:00", title: "Episode intro" },
-      { time: "3:45", title: "Dave's background" },
-      { time: "14:00", title: "The no-code movement" },
-      { time: "26:30", title: "Marketing to creators" },
-      { time: "38:00", title: "Community building" },
-      { time: "44:30", title: "What's next for Webflow" },
+      { time: "4:00", title: "Lindsey's journey to CMO" },
+      { time: "15:00", title: "Building the Square brand" },
+      { time: "27:00", title: "Marketing in fintech" },
+      { time: "38:00", title: "SMB customer insights" },
+      { time: "46:00", title: "Future of payments" },
     ],
     youtubeUrl: "https://youtube.com",
     spotifyUrl: "https://spotify.com",
-    duration: "46 min",
-    publishedDate: "Jan 1, 2026",
+    duration: "50 min",
+    publishedDate: "Jan 8, 2026",
     comingSoon: false,
   },
 ];
