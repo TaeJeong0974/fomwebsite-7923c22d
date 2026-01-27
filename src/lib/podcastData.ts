@@ -29,7 +29,6 @@ export interface PodcastEpisode {
   comingSoon: boolean;
   linkedInUrl?: string;
   previewVideoUrl?: string;
-  heroImage?: string;
 }
 
 export const podcastEpisodes: PodcastEpisode[] = [
@@ -69,7 +68,6 @@ We dive deep into how Samsara's approach to physical operations data is transfor
     comingSoon: false,
     linkedInUrl: "https://linkedin.com/in/meageneisenberg",
     previewVideoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-    heroImage: "meagen-eisenberg",
   },
   {
     id: 2,

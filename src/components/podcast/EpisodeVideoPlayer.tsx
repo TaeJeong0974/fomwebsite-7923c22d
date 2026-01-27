@@ -1,32 +1,23 @@
 import { Play } from "lucide-react";
 import guestBg from "@/assets/guest-bg.png";
-import episodeMeagenEisenberg from "@/assets/episode-meagen-eisenberg.png";
-
-// Map of hero images by episode slug
-const heroImages: Record<string, string> = {
-  "meagen-eisenberg": episodeMeagenEisenberg,
-};
 
 interface EpisodeVideoPlayerProps {
   guestName: string;
   companyDomain?: string;
-  heroImage?: string;
 }
 
-const EpisodeVideoPlayer = ({ guestName, companyDomain, heroImage }: EpisodeVideoPlayerProps) => {
-  const backgroundImage = heroImage ? (heroImages[heroImage] || guestBg) : guestBg;
-  
+const EpisodeVideoPlayer = ({ guestName, companyDomain }: EpisodeVideoPlayerProps) => {
   return (
     <div 
       className="relative aspect-video rounded-2xl overflow-hidden group cursor-pointer hover-scale"
       style={{
-        backgroundImage: `url(${backgroundImage})`,
+        backgroundImage: `url(${guestBg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
     >
       {/* Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20" />
       
       {/* Play Button */}
       <div className="absolute inset-0 flex items-center justify-center">
