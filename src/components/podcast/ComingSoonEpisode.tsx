@@ -68,20 +68,9 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30 group-hover:from-black/95 group-hover:via-black/60 hover-transition" />
                 
-                {/* Company Badge */}
-                {episode.companyDomain && (
-                  <div className="absolute top-6 left-6 glass rounded-xl p-3 z-10">
-                    <img 
-                      src={`https://www.google.com/s2/favicons?domain=${episode.companyDomain}&sz=64`} 
-                      alt={episode.company}
-                      className="h-6 w-6 object-contain"
-                    />
-                  </div>
-                )}
-                
-                {/* Upcoming Badge with subtle pulse */}
+                {/* Upcoming Badge - black container with subtle pulse */}
                 <motion.div 
-                  className="absolute top-6 right-6 z-10"
+                  className="absolute top-6 left-6 z-10"
                   animate={{ 
                     boxShadow: [
                       "0 0 0 0 rgba(255, 107, 0, 0)",
@@ -96,7 +85,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
                   }}
                   style={{ borderRadius: "9999px" }}
                 >
-                  <span className="glass px-4 py-2 rounded-full text-sm font-semibold text-white inline-flex items-center gap-2">
+                  <span className="bg-foreground px-4 py-2 rounded-full text-sm font-semibold text-background inline-flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                     Upcoming
                   </span>
