@@ -1,14 +1,8 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
+import { useSubscribe } from "@/contexts/SubscribeContext";
 
 const CTASection = () => {
-  const [email, setEmail] = useState("");
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log("Email submitted:", email);
-    setEmail("");
-  };
+  const { openSubscribe } = useSubscribe();
 
   return (
     <section className="section-spacing">
@@ -31,33 +25,20 @@ const CTASection = () => {
               Subscribe for weekly updates and exclusive content.
             </p>
 
-            <motion.form
-              onSubmit={handleSubmit}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="mt-8 flex flex-col sm:flex-row gap-3"
+              className="mt-8"
             >
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@example.com"
-                required
-                className="flex-1 px-5 py-3 text-body glass rounded-full text-white placeholder:text-white/40 focus-ring hover-transition"
-              />
               <button 
-                type="submit" 
-                className="btn-base btn-md bg-primary hover:bg-primary/90 text-primary-foreground"
+                onClick={openSubscribe}
+                className="btn-base btn-lg bg-primary hover:bg-primary/90 text-primary-foreground"
               >
                 Subscribe
               </button>
-            </motion.form>
-
-            <p className="mt-4 text-body-sm text-white/40">
-              No spam. Unsubscribe anytime.
-            </p>
+            </motion.div>
           </div>
         </motion.div>
       </div>
