@@ -105,7 +105,7 @@ const PodcastDetail = () => {
                   transition={{ duration: 0.5, delay: 0.3 }}
                 >
                   <h2 className="font-display text-xl font-semibold text-foreground mb-4">
-                    About {episode.name.split(' ')[0]}
+                    Bio
                   </h2>
                   <p className="text-muted-foreground leading-relaxed">
                     {episode.bio}
