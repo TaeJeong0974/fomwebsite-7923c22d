@@ -54,9 +54,9 @@ const PodcastDetail = () => {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="flex items-center justify-between"
               >
-                <h1 className="font-display text-2xl font-semibold text-foreground">
+                <h2 className="font-display text-2xl font-semibold text-foreground">
                   {episode.name}
-                </h1>
+                </h2>
                 <span className="inline-flex items-center gap-1.5 glass px-3 py-1.5 rounded-full text-sm text-muted-foreground">
                   <Clock size={14} className="text-primary" />
                   {episode.duration}
