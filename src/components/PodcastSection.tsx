@@ -288,7 +288,7 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
               <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-primary hover-transition leading-[0.95] tracking-tight text-left">
                 {episode.name}
               </h3>
-              <p className="text-body text-muted-foreground mt-3 text-left">
+              <p className="text-body text-muted-foreground mt-3">
                 {episode.title} <span className="font-medium text-foreground">@ {episode.company}</span>
               </p>
             </div>
@@ -320,7 +320,7 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
               <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground leading-[0.95] tracking-tight text-left">
                 {guest.name}
               </h3>
-              <p className="text-body text-muted-foreground mt-3 text-left">
+              <p className="text-body text-muted-foreground mt-3">
                 {guest.title} <span className="font-medium text-foreground">@ {guest.company}</span>
               </p>
             </div>
