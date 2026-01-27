@@ -5,6 +5,7 @@ import { LayoutGrid, List } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 import { getPublishedEpisodes, getComingSoonEpisodes, PodcastEpisode } from "@/lib/podcastData";
+import SubscribeButton from "@/components/SubscribeButton";
 import guestBg from "@/assets/guest-bg.png";
 import subscribeBg from "@/assets/subscribe-bg.png";
 
@@ -103,7 +104,7 @@ const PodcastSection = () => {
 
 // Grid View Component
 const PodcastGridView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEpisode[], comingSoonEpisodes: PodcastEpisode[] }) => {
-  const { openSubscribe } = useSubscribe();
+  
   
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-gap">
@@ -215,20 +216,22 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
         viewport={{ once: true }}
         transition={{ duration: 0.4, delay: 0.6 }}
       >
-        <div 
-          onClick={openSubscribe}
-          className="card-image group cursor-pointer hover-scale"
-          style={{
-            backgroundImage: `url(${subscribeBg})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
+        <SubscribeButton 
+          className="card-image group cursor-pointer hover-scale flex flex-col"
         >
-          <div className="card-content-full card-padding-lg">
+          <div 
+            className="absolute inset-0 rounded-2xl"
+            style={{
+              backgroundImage: `url(${subscribeBg})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          />
+          <div className="card-content-full card-padding-lg relative z-10">
             <h3 className="text-display-md text-foreground">Subscribe to stay current on how teams are using AI.</h3>
-            <button className="btn-base btn-primary btn-lg self-start">Subscribe</button>
+            <span className="btn-base btn-primary btn-lg self-start">Subscribe</span>
           </div>
-        </div>
+        </SubscribeButton>
       </motion.div>
     </div>
   );
@@ -236,7 +239,7 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
 
 // List View Component
 const PodcastListView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEpisode[], comingSoonEpisodes: PodcastEpisode[] }) => {
-  const { openSubscribe } = useSubscribe();
+  
   
   return (
     <div className="divide-y divide-border/50">
