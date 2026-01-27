@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { Bell, Clock } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
@@ -35,14 +36,9 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
   }
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-
-      <main className="section-spacing">
-        <div className="container mx-auto container-padding">
-
-          {/* Episode Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
+    <EpisodeOverlayLayout>
+      {/* Episode Content */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-12">
               {/* Hero Card with Get Notified CTA */}
@@ -235,64 +231,60 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
             </motion.div>
           </div>
 
-          {/* Other Great Speakers */}
-          {otherEpisodes.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-              className="mt-20 pt-12 border-t border-border"
-            >
-              <h3 className="font-display text-2xl font-semibold text-foreground mb-8">
-                Other Great Speakers
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {otherEpisodes.map((ep) => (
-                  <Link
-                    key={ep.id}
-                    to={`/episode/${ep.slug}`}
-                    className="block group"
-                  >
-                    <div 
-                      className="card-image hover-scale"
-                      style={{
-                        backgroundImage: `url(${guestBg})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                      }}
-                    >
-                      <div className="card-overlay-light hover-transition group-hover:opacity-90" />
-                      
-                      {ep.companyDomain && (
-                        <div className="absolute top-4 left-4 glass rounded-xl p-2.5 hover-scale-badge z-[3]">
-                          <img 
-                            src={`https://www.google.com/s2/favicons?domain=${ep.companyDomain}&sz=64`} 
-                            alt={ep.company}
-                            className="h-5 w-5 object-contain"
-                          />
-                        </div>
-                      )}
-                      
-                      <div className="card-content-bottom card-padding-lg z-[3]">
-                        <h3 className="font-display text-2xl sm:text-3xl font-semibold text-white tracking-tight">
-                          {ep.name.split(' ').map((word, i) => (
-                            <span key={i} className="block">{word}</span>
-                          ))}
-                        </h3>
-                        <p className="text-body-sm text-white/70 mt-1">{ep.title}</p>
-                        <p className="text-body-sm font-medium text-primary">{ep.company}</p>
-                      </div>
+      {/* Other Great Speakers */}
+      {otherEpisodes.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="mt-12 pt-12 border-t border-border"
+        >
+          <h3 className="font-display text-2xl font-semibold text-foreground mb-8">
+            Other Great Speakers
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {otherEpisodes.map((ep) => (
+              <Link
+                key={ep.id}
+                to={`/episode/${ep.slug}`}
+                className="block group"
+              >
+                <div 
+                  className="card-image hover-scale"
+                  style={{
+                    backgroundImage: `url(${guestBg})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                >
+                  <div className="card-overlay-light hover-transition group-hover:opacity-90" />
+                  
+                  {ep.companyDomain && (
+                    <div className="absolute top-4 left-4 glass rounded-xl p-2.5 hover-scale-badge z-[3]">
+                      <img 
+                        src={`https://www.google.com/s2/favicons?domain=${ep.companyDomain}&sz=64`} 
+                        alt={ep.company}
+                        className="h-5 w-5 object-contain"
+                      />
                     </div>
-                  </Link>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </div>
-      </main>
-
-      <Footer />
-    </div>
+                  )}
+                  
+                  <div className="card-content-bottom card-padding-lg z-[3]">
+                    <h3 className="font-display text-2xl sm:text-3xl font-semibold text-white tracking-tight">
+                      {ep.name.split(' ').map((word, i) => (
+                        <span key={i} className="block">{word}</span>
+                      ))}
+                    </h3>
+                    <p className="text-body-sm text-white/70 mt-1">{ep.title}</p>
+                    <p className="text-body-sm font-medium text-primary">{ep.company}</p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </motion.div>
+      )}
+    </EpisodeOverlayLayout>
   );
 };
 
