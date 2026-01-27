@@ -69,6 +69,18 @@ const PodcastDetail = () => {
                 </span>
               </motion.div>
 
+              {/* Pull Quote */}
+              <motion.blockquote
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="relative pl-6 border-l-4 border-primary"
+              >
+                <p className="font-display text-2xl md:text-3xl font-medium text-foreground/90 leading-relaxed italic">
+                  "The best marketing doesn't feel like marketing—it feels like a conversation worth having."
+                </p>
+              </motion.blockquote>
+
               {/* Description */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
