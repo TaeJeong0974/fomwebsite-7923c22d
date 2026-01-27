@@ -75,7 +75,7 @@ const PodcastDetail = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
               >
-                <p className="font-display text-2xl md:text-3xl font-medium text-foreground/90 leading-relaxed">
+                <p className="font-display text-3xl md:text-4xl lg:text-5xl font-medium text-foreground/90 leading-relaxed">
                   "The best marketing doesn't feel like marketing—it feels like a conversation worth having."
                 </p>
               </motion.blockquote>
