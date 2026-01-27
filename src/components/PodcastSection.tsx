@@ -4,58 +4,16 @@ import { motion, AnimatePresence } from "framer-motion";
 import { LayoutGrid, List } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useSubscribe } from "@/contexts/SubscribeContext";
+import { getPublishedEpisodes, getComingSoonEpisodes, PodcastEpisode } from "@/lib/podcastData";
 import guestBg from "@/assets/guest-bg.png";
 import subscribeBg from "@/assets/subscribe-bg.png";
-
-interface Episode {
-  id: number;
-  slug: string;
-  name: string;
-  title: string;
-  company: string;
-  companyDomain: string;
-  overview: string;
-  comingSoon: boolean;
-}
-
-const episodes: Episode[] = [
-  {
-    id: 1,
-    slug: "meagen-eisenberg",
-    name: "Meagen Eisenberg",
-    title: "Chief Marketing Officer",
-    company: "Samsara",
-    companyDomain: "samsara.com",
-    overview: "Exploring how remote work is reshaping company culture and marketing strategies.",
-    comingSoon: false,
-  },
-  {
-    id: 2,
-    slug: "lena-waters",
-    name: "Lena Waters",
-    title: "Chief Marketing Officer",
-    company: "Notion",
-    companyDomain: "notion.so",
-    overview: "Building and nurturing creative communities that drive brand loyalty.",
-    comingSoon: false,
-  },
-  {
-    id: 3,
-    slug: "lindsey-irvine",
-    name: "Lindsey Irvine",
-    title: "Chief Marketing Officer",
-    company: "Square",
-    companyDomain: "squareup.com",
-    overview: "Building a payments brand that resonates with businesses of all sizes.",
-    comingSoon: false,
-  },
-];
 
 type LayoutType = "grid" | "list";
 
 const PodcastSection = () => {
   const [layout, setLayout] = useState<LayoutType>("grid");
-  const publishedEpisodes = episodes;
+  const publishedEpisodes = getPublishedEpisodes();
+  const comingSoonEpisodes = getComingSoonEpisodes();
 
   return (
     <section id="podcast" className="section-spacing">
@@ -124,7 +82,7 @@ const PodcastSection = () => {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <PodcastGridView episodes={publishedEpisodes} />
+              <PodcastGridView episodes={publishedEpisodes} comingSoonEpisodes={comingSoonEpisodes} />
             </motion.div>
           ) : (
             <motion.div
@@ -134,7 +92,7 @@ const PodcastSection = () => {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <PodcastListView episodes={publishedEpisodes} />
+              <PodcastListView episodes={publishedEpisodes} comingSoonEpisodes={comingSoonEpisodes} />
             </motion.div>
           )}
         </AnimatePresence>
@@ -144,7 +102,7 @@ const PodcastSection = () => {
 };
 
 // Grid View Component
-const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
+const PodcastGridView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEpisode[], comingSoonEpisodes: PodcastEpisode[] }) => {
   const { openSubscribe } = useSubscribe();
   
   return (
@@ -202,50 +160,51 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
       })}
       
       {/* Coming Soon Cards */}
-      {[
-        { name: "Sara Varni", title: "Chief Marketing Officer", company: "Datadog", companyDomain: "datadoghq.com" },
-        { name: "Kate Johnson", title: "Chief Marketing Officer", company: "Mada", companyDomain: "mada.com" },
-      ].map((guest, idx) => (
+      {comingSoonEpisodes.map((episode, idx) => (
         <motion.div
-          key={`coming-soon-${idx}`}
+          key={`coming-soon-${episode.id}`}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: (4 + idx) * 0.1 }}
+          transition={{ duration: 0.4, delay: (episodes.length + idx) * 0.1 }}
         >
-          <div 
-            onClick={openSubscribe}
-            className="card-image group cursor-pointer hover-scale"
-            style={{
-              backgroundImage: `url(${guestBg})`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
+          <Link
+            to={`/episode/${episode.slug}`}
+            className="block group"
           >
-            <div className="card-overlay-light hover-transition group-hover:opacity-90" />
-            {guest.companyDomain && (
-              <div className="absolute top-4 left-4 glass rounded-xl p-2.5 hover-scale-badge">
-                <img 
-                  src={`https://www.google.com/s2/favicons?domain=${guest.companyDomain}&sz=64`} 
-                  alt={guest.company}
-                  className="h-5 w-5 object-contain"
-                />
-              </div>
-            )}
-            <span className="absolute top-4 right-4 text-white text-xs font-medium tracking-wide uppercase">Coming Soon</span>
-            <div className="card-content-bottom card-padding-lg">
-              <h3 className="font-display text-white leading-[0.95] tracking-tight">
-                {guest.name.split(' ').map((word, i, arr) => (
-                  <span key={i} className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">{word}</span>
-                ))}
-              </h3>
-              <p className="text-body-sm text-white/70 mt-1">{guest.title}</p>
-              <p className="text-body-sm font-medium text-primary">{guest.company}</p>
-              <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
-                <span className="btn-base btn-glass-light btn-sm">Notify Me</span>
+            <div 
+              className="card-image hover-scale"
+              style={{
+                backgroundImage: `url(${guestBg})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            >
+              <div className="card-overlay-light hover-transition group-hover:opacity-90" />
+              {episode.companyDomain && (
+                <div className="absolute top-4 left-4 glass rounded-xl p-2.5 hover-scale-badge">
+                  <img 
+                    src={`https://www.google.com/s2/favicons?domain=${episode.companyDomain}&sz=64`} 
+                    alt={episode.company}
+                    className="h-5 w-5 object-contain"
+                  />
+                </div>
+              )}
+              <span className="absolute top-4 right-4 text-white text-xs font-medium tracking-wide uppercase">Coming Soon</span>
+              <div className="card-content-bottom card-padding-lg">
+                <h3 className="font-display text-white leading-[0.95] tracking-tight">
+                  {episode.name.split(' ').map((word, i) => (
+                    <span key={i} className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">{word}</span>
+                  ))}
+                </h3>
+                <p className="text-body-sm text-white/70 mt-1">{episode.title}</p>
+                <p className="text-body-sm font-medium text-primary">{episode.company}</p>
+                <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
+                  <span className="btn-base btn-glass-light btn-sm">Learn More</span>
+                </div>
               </div>
             </div>
-          </div>
+          </Link>
         </motion.div>
       ))}
       
@@ -276,7 +235,7 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
 };
 
 // List View Component
-const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
+const PodcastListView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEpisode[], comingSoonEpisodes: PodcastEpisode[] }) => {
   const { openSubscribe } = useSubscribe();
   
   return (
@@ -314,38 +273,35 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
       ))}
       
       {/* Coming Soon items */}
-      {[
-        { name: "Sara Varni", title: "Chief Marketing Officer", company: "Datadog", companyDomain: "datadoghq.com" },
-        { name: "Kate Johnson", title: "Chief Marketing Officer", company: "Mada", companyDomain: "mada.com" },
-      ].map((guest, idx) => (
+      {comingSoonEpisodes.map((episode, idx) => (
         <motion.div
-          key={`coming-soon-list-${idx}`}
+          key={`coming-soon-list-${episode.id}`}
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.3, delay: (episodes.length + idx) * 0.05 }}
         >
-          <button 
-            onClick={openSubscribe}
-            className="w-full py-6 sm:py-8 flex items-start justify-between gap-6 group hover-transition text-left"
+          <Link
+            to={`/episode/${episode.slug}`}
+            className="group py-6 sm:py-8 flex items-start justify-between gap-6 hover-transition"
           >
-            <div className="flex-1 min-w-0">
+            <div className="flex-1 min-w-0 text-left">
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Coming Soon</span>
               </div>
               <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-primary hover-transition leading-[0.95] tracking-tight">
-                {guest.name}
+                {episode.name}
               </h3>
               <p className="text-body mt-3">
-                <span className="text-muted-foreground">{guest.title}</span> <span className="font-medium text-foreground">@ {guest.company}</span>
+                <span className="text-muted-foreground">{episode.title}</span> <span className="font-medium text-foreground">@ {episode.company}</span>
               </p>
             </div>
             <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground hover-transition mt-2">
               <svg className="w-5 h-5 text-muted-foreground group-hover:text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </div>
-          </button>
+          </Link>
         </motion.div>
       ))}
     </div>
