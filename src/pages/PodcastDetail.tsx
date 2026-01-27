@@ -97,11 +97,27 @@ const PodcastDetail = () => {
                 />
               </motion.div>
 
+              {/* Bio */}
+              {episode.bio && (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 }}
+                >
+                  <h2 className="font-display text-xl font-semibold text-foreground mb-4">
+                    About {episode.name.split(' ')[0]}
+                  </h2>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {episode.bio}
+                  </p>
+                </motion.div>
+              )}
+
               {/* Description */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
               >
                 <h2 className="font-display text-xl font-semibold text-foreground mb-4">
                   About This Episode
@@ -115,7 +131,7 @@ const PodcastDetail = () => {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.4 }}
+                transition={{ duration: 0.5, delay: 0.5 }}
               >
                 <EpisodeTopics topics={episode.topics} />
               </motion.div>
