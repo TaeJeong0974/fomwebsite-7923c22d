@@ -85,17 +85,6 @@ const PodcastDetail = () => {
                 </div>
               </motion.div>
 
-              {/* Action Buttons */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-              >
-                <EpisodeActionButtons 
-                  youtubeUrl={episode.youtubeUrl}
-                  spotifyUrl={episode.spotifyUrl}
-                />
-              </motion.div>
 
               {/* Bio */}
               {episode.bio && (
@@ -153,8 +142,11 @@ const PodcastDetail = () => {
                 linkedInUrl={episode.linkedInUrl}
               />
 
-              {/* Chapters */}
-              <EpisodeChapters chapters={episode.chapters} />
+              {/* Action Buttons */}
+              <EpisodeActionButtons 
+                youtubeUrl={episode.youtubeUrl}
+                spotifyUrl={episode.spotifyUrl}
+              />
             </motion.div>
           </div>
         </div>
