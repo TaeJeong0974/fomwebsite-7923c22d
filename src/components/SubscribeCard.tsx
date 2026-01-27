@@ -64,45 +64,39 @@ const SubscribeCard = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="card-content-bottom card-padding-lg"
+            className="card-content-full card-padding-lg"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="max-w-md">
-              <h3 className="text-display-md text-foreground mb-4">
-                Never Miss an Episode
-              </h3>
-              
-              <form onSubmit={handleSubmit} className="space-y-3">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@example.com"
-                  required
-                  autoFocus
-                  className="w-full px-5 py-3 text-body glass rounded-full text-foreground placeholder:text-foreground/40 focus-ring hover-transition"
-                />
-                <div className="flex items-center gap-4">
-                  <button
-                    type="submit"
-                    className="btn-base btn-lg bg-primary hover:bg-primary/90 text-primary-foreground"
-                  >
-                    Subscribe
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setShowForm(false)}
-                    className="text-body text-foreground/60 hover:text-foreground hover-transition"
-                  >
-                    Cancel
-                  </button>
-                </div>
-              </form>
-              
-              <p className="mt-3 text-body-sm text-foreground/40">
-                No spam. Unsubscribe anytime.
-              </p>
-            </div>
+            <h3 className="text-display-md text-foreground">
+              Never Miss an Episode
+            </h3>
+            
+            <form onSubmit={handleSubmit} className="max-w-md space-y-3">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@example.com"
+                required
+                autoFocus
+                className="w-full px-5 py-3 text-body glass rounded-full text-foreground placeholder:text-foreground/40 focus-ring hover-transition"
+              />
+              <div className="flex items-center gap-4">
+                <button
+                  type="submit"
+                  className="btn-base btn-lg bg-primary hover:bg-primary/90 text-primary-foreground"
+                >
+                  Subscribe
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowForm(false)}
+                  className="text-body text-foreground/60 hover:text-foreground hover-transition"
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
           </motion.div>
         ) : (
           <motion.div
