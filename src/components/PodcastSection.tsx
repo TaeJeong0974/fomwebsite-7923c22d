@@ -284,8 +284,8 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
             className="group glass rounded-2xl p-6 sm:p-8 flex items-start justify-between gap-6 hover:bg-white/[0.08] hover-transition"
           >
             {/* Left: Name + Title/Company stacked */}
-            <div className="flex-1 min-w-0">
-              <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-primary hover-transition leading-[0.95] tracking-tight text-left">
+            <div className="flex-1 min-w-0 text-left">
+              <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-primary hover-transition leading-[0.95] tracking-tight">
                 {episode.name}
               </h3>
               <p className="text-body text-muted-foreground mt-3">
@@ -316,8 +316,8 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
           transition={{ duration: 0.3, delay: (episodes.length + idx) * 0.05 }}
         >
           <div className="glass rounded-2xl p-6 sm:p-8 flex items-start justify-between gap-6">
-            <div className="flex-1 min-w-0">
-              <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground leading-[0.95] tracking-tight text-left">
+            <div className="flex-1 min-w-0 text-left">
+              <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground leading-[0.95] tracking-tight">
                 {guest.name}
               </h3>
               <p className="text-body text-muted-foreground mt-3">
