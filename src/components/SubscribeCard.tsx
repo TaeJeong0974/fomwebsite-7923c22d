@@ -55,7 +55,7 @@ const SubscribeCard = () => {
             <h3 className="text-display-md text-foreground">
               Subscribe to stay current on how teams are using AI.
             </h3>
-            <span className="btn-base btn-primary btn-lg self-start">Subscribe</span>
+            <span className="btn-base btn-lg bg-primary hover:bg-primary/90 text-primary-foreground self-start">Subscribe</span>
           </motion.div>
         ) : !isSubmitted ? (
           <motion.div
