@@ -64,12 +64,28 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
                   </div>
                 )}
                 
-                {/* Coming Soon Badge */}
-                <div className="absolute top-6 right-6">
-                  <span className="bg-primary text-primary-foreground px-5 py-2.5 rounded-full text-base font-bold uppercase tracking-wider shadow-lg">
+                {/* Coming Soon Badge with subtle pulse */}
+                <motion.div 
+                  className="absolute top-6 right-6"
+                  animate={{ 
+                    boxShadow: [
+                      "0 0 0 0 rgba(255, 107, 0, 0)",
+                      "0 0 0 8px rgba(255, 107, 0, 0.15)",
+                      "0 0 0 0 rgba(255, 107, 0, 0)"
+                    ]
+                  }}
+                  transition={{ 
+                    duration: 2.5, 
+                    repeat: Infinity,
+                    ease: [0.22, 1, 0.36, 1]
+                  }}
+                  style={{ borderRadius: "9999px" }}
+                >
+                  <span className="glass px-4 py-2 rounded-full text-sm font-semibold text-foreground inline-flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                     Coming Soon
                   </span>
-                </div>
+                </motion.div>
               </motion.div>
 
               {/* Pull Quote with Speaker Attribution */}
