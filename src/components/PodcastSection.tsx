@@ -270,7 +270,7 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
 // List View Component
 const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
   return (
-    <div className="space-y-2">
+    <div className="divide-y divide-border/50">
       {episodes.map((episode, index) => (
         <motion.div
           key={episode.id}
