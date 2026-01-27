@@ -255,28 +255,23 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
 // List View Component
 const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
   return (
-    <div className="space-y-4">
+    <div className="space-y-2">
       {episodes.map((episode, index) => (
         <motion.div
           key={episode.id}
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.3, delay: index * 0.05 }}
         >
           <Link
             to={`/episode/${episode.slug}`}
-            className="group flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 py-6 border-b border-border hover:bg-secondary/30 hover-transition px-4 rounded-xl -mx-4"
+            className="group glass rounded-2xl p-5 flex flex-col sm:flex-row sm:items-center gap-4 hover:bg-white/[0.08] hover-transition"
           >
-            <div className="flex items-center gap-4 sm:gap-6">
-              {/* Episode Number */}
-              <span className="font-display text-3xl lg:text-4xl font-bold text-muted-foreground/40 w-12 shrink-0">
-                {String(index + 1).padStart(2, '0')}
-              </span>
-              
-              {/* Company Logo */}
+            {/* Left: Logo + Info */}
+            <div className="flex items-center gap-4 flex-1 min-w-0">
               {episode.companyDomain && (
-                <div className="glass rounded-xl p-3 shrink-0">
+                <div className="glass-dark rounded-xl p-3 shrink-0 group-hover:bg-primary/20 hover-transition">
                   <img 
                     src={`https://www.google.com/s2/favicons?domain=${episode.companyDomain}&sz=64`} 
                     alt={episode.company}
@@ -285,51 +280,49 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
                 </div>
               )}
               
-              {/* Name - matching card size */}
               <div className="min-w-0">
-                <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-foreground group-hover:text-primary hover-transition leading-tight">
+                <h3 className="font-display text-xl sm:text-2xl font-semibold text-foreground group-hover:text-primary hover-transition leading-tight truncate">
                   {episode.name}
                 </h3>
-                <p className="text-body-sm text-muted-foreground mt-1">
-                  {episode.title} · <span className="text-primary font-medium">{episode.company}</span>
+                <p className="text-body-sm text-muted-foreground mt-0.5">
+                  {episode.title} <span className="text-primary">@ {episode.company}</span>
                 </p>
               </div>
             </div>
             
-            {/* Overview */}
-            <p className="text-body-sm text-muted-foreground sm:ml-auto sm:max-w-md sm:text-right leading-relaxed">
-              {episode.overview}
-            </p>
-            
-            {/* Hover indicator */}
-            <div className="hidden sm:flex w-6 h-6 items-center justify-center shrink-0">
-              <div className="w-2 h-2 rounded-full bg-primary opacity-0 group-hover:opacity-100 hover-transition" />
+            {/* Right: Overview + Arrow */}
+            <div className="flex items-center gap-4 sm:max-w-sm">
+              <p className="text-body-sm text-muted-foreground leading-relaxed line-clamp-2">
+                {episode.overview}
+              </p>
+              <div className="w-8 h-8 rounded-full glass-dark flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground hover-transition">
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
             </div>
           </Link>
         </motion.div>
       ))}
       
-      {/* Coming Soon items in list */}
+      {/* Coming Soon items */}
       {[1, 2].map((_, idx) => (
         <motion.div
           key={`coming-soon-list-${idx}`}
-          initial={{ opacity: 0, x: -20 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.3, delay: (episodes.length + idx) * 0.05 }}
         >
-          <div className="flex items-center gap-4 sm:gap-6 py-6 border-b border-border px-4 rounded-xl -mx-4 opacity-50">
-            <span className="font-display text-3xl lg:text-4xl font-bold text-muted-foreground/40 w-12 shrink-0">
-              {String(episodes.length + idx + 1).padStart(2, '0')}
-            </span>
-            <div className="glass rounded-xl p-3 shrink-0">
-              <div className="h-6 w-6 rounded bg-muted" />
+          <div className="glass rounded-2xl p-5 flex items-center gap-4 opacity-40">
+            <div className="glass-dark rounded-xl p-3 shrink-0">
+              <div className="h-6 w-6 rounded bg-muted-foreground/20" />
             </div>
             <div className="min-w-0">
-              <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-foreground leading-tight">
+              <h3 className="font-display text-xl sm:text-2xl font-semibold text-foreground leading-tight">
                 Coming Soon
               </h3>
-              <p className="text-body-sm text-muted-foreground mt-1">Guest to be announced</p>
+              <p className="text-body-sm text-muted-foreground mt-0.5">Guest to be announced</p>
             </div>
           </div>
         </motion.div>
