@@ -64,13 +64,13 @@ const SubscribeCard = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="card-content-full card-padding-lg"
+            className="card-content-bottom card-padding-lg"
             onClick={(e) => e.stopPropagation()}
           >
-          <div className="max-w-md">
-            <h3 className="text-display-md text-foreground mb-4">
-              Never Miss an Episode
-            </h3>
+            <div className="max-w-md">
+              <h3 className="text-display-md text-foreground mb-4">
+                Never Miss an Episode
+              </h3>
               
               <form onSubmit={handleSubmit} className="space-y-3">
                 <input
@@ -82,17 +82,17 @@ const SubscribeCard = () => {
                   autoFocus
                   className="w-full px-5 py-3 text-body glass rounded-full text-foreground placeholder:text-foreground/40 focus-ring hover-transition"
                 />
-                <div className="flex gap-3">
+                <div className="flex items-center gap-4">
                   <button
                     type="submit"
-                    className="btn-base btn-lg bg-primary hover:bg-primary/90 text-primary-foreground flex-1"
+                    className="btn-base btn-lg bg-primary hover:bg-primary/90 text-primary-foreground"
                   >
                     Subscribe
                   </button>
                   <button
                     type="button"
                     onClick={() => setShowForm(false)}
-                    className="btn-base btn-lg btn-glass"
+                    className="text-body text-foreground/60 hover:text-foreground hover-transition"
                   >
                     Cancel
                   </button>
