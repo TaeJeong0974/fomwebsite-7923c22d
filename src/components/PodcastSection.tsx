@@ -275,7 +275,7 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
               <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-primary hover-transition leading-[0.95] tracking-tight">
                 {episode.name}
               </h3>
-              <p className="text-body text-muted-foreground mt-3">
+              <p className="text-body text-muted-foreground mt-3 text-left">
                 {episode.title} <span className="text-primary font-medium">@ {episode.company}</span>
               </p>
             </div>
