@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { ArrowLeft, Clock, Calendar } from "lucide-react";
+import { Clock } from "lucide-react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -47,20 +47,13 @@ const PodcastDetail = () => {
                 />
               </motion.div>
 
-              {/* Title & Meta */}
+              {/* Meta */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <p className="text-lg text-muted-foreground mb-4">
-                  {episode.title} at <span className="text-primary font-medium">{episode.company}</span>
-                </p>
                 <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                  <span className="inline-flex items-center gap-1.5 glass px-3 py-1.5 rounded-full">
-                    <Calendar size={14} className="text-primary" />
-                    {episode.publishedDate}
-                  </span>
                   <span className="inline-flex items-center gap-1.5 glass px-3 py-1.5 rounded-full">
                     <Clock size={14} className="text-primary" />
                     {episode.duration}
