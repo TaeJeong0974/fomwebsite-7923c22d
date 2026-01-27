@@ -37,7 +37,7 @@ const PodcastSection = () => {
         >
           <div>
             <p className="text-label mb-2">Episodes</p>
-            <h2 className="text-display-lg text-foreground">Podcast</h2>
+            <h2 className="text-display-xl text-foreground">Podcast</h2>
           </div>
           
           {/* Layout Toggle */}
