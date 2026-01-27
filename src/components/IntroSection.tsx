@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import hostEthan from "@/assets/host-ethan.png";
 
 const hosts = [
   {
@@ -13,7 +14,7 @@ const hosts = [
     name: "Ethan Smith",
     title: "Founder & CEO, Graphite",
     bio: "Founder and CEO of Graphite, a premium Vertical AI Growth Agency that helps companies like Webflow, Notion, MasterClass, and Captions drive sustainable revenue growth via SEO, content, and AEO (Answer Engine Optimization). Ethan is also an adjunct professor at IE Business School.",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=600&h=800&fit=crop",
+    image: hostEthan,
   },
   {
     name: "Mada Seghete",
