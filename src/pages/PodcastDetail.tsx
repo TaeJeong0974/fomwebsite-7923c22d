@@ -47,18 +47,20 @@ const PodcastDetail = () => {
                 />
               </motion.div>
 
-              {/* Meta */}
+              {/* Name & Duration */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
+                className="flex items-center justify-between"
               >
-                <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                  <span className="inline-flex items-center gap-1.5 glass px-3 py-1.5 rounded-full">
-                    <Clock size={14} className="text-primary" />
-                    {episode.duration}
-                  </span>
-                </div>
+                <h1 className="font-display text-2xl font-semibold text-foreground">
+                  {episode.name}
+                </h1>
+                <span className="inline-flex items-center gap-1.5 glass px-3 py-1.5 rounded-full text-sm text-muted-foreground">
+                  <Clock size={14} className="text-primary" />
+                  {episode.duration}
+                </span>
               </motion.div>
 
               {/* Description */}
