@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { Clock } from "lucide-react";
+import { Clock, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -9,11 +9,14 @@ import EpisodeChapters from "@/components/podcast/EpisodeChapters";
 import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
 import ComingSoonEpisode from "@/components/podcast/ComingSoonEpisode";
-import { getEpisodeBySlug } from "@/lib/podcastData";
+import { getEpisodeBySlug, getPublishedEpisodes } from "@/lib/podcastData";
 
 const PodcastDetail = () => {
   const { slug } = useParams();
   const episode = getEpisodeBySlug(slug || "");
+  
+  // Get other episodes for "You might also like"
+  const otherEpisodes = getPublishedEpisodes().filter(ep => ep.slug !== slug).slice(0, 3);
 
   // Show coming soon page if episode not found or is coming soon
   if (!episode) {
@@ -111,6 +114,51 @@ const PodcastDetail = () => {
               />
             </motion.div>
           </div>
+
+          {/* You Might Also Like */}
+          {otherEpisodes.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="mt-20 pt-12 border-t border-border"
+            >
+              <h3 className="font-display text-2xl font-semibold text-foreground mb-8">
+                You Might Also Like
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {otherEpisodes.map((ep) => (
+                  <Link
+                    key={ep.id}
+                    to={`/episode/${ep.slug}`}
+                    className="group glass rounded-2xl p-5 hover-transition hover:bg-muted/80"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-muted flex items-center justify-center shrink-0">
+                        <img 
+                          src={`https://www.google.com/s2/favicons?domain=${ep.companyDomain}&sz=64`} 
+                          alt={ep.company}
+                          className="h-6 w-6 object-contain"
+                        />
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <h4 className="font-display text-lg font-semibold text-foreground group-hover:text-primary hover-transition">
+                          {ep.name}
+                        </h4>
+                        <p className="text-sm text-muted-foreground mt-0.5">
+                          {ep.title}
+                        </p>
+                        <p className="text-sm font-medium text-primary">
+                          {ep.company}
+                        </p>
+                      </div>
+                      <ArrowRight size={18} className="text-muted-foreground group-hover:text-primary group-hover:translate-x-1 hover-transition shrink-0 mt-1" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </motion.div>
+          )}
         </div>
       </main>
 
