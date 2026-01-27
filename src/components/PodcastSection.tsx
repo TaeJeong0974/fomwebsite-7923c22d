@@ -228,8 +228,8 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
                 />
               </div>
             )}
+            <span className="absolute top-4 right-4 text-white/60 text-xs font-medium">Coming Soon</span>
             <div className="card-content-bottom card-padding-lg">
-              <span className="badge-interactive glass-dark text-white text-xs mb-3 inline-block">Coming Soon</span>
               <h3 className="font-display text-white leading-[0.95] tracking-tight">
                 {guest.name.split(' ').map((word, i, arr) => (
                   <span key={i} className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">{word}</span>
@@ -315,9 +315,9 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.3, delay: (episodes.length + idx) * 0.05 }}
         >
-          <div className="glass rounded-2xl p-6 sm:p-8 flex items-start justify-between gap-6 opacity-60">
+          <div className="glass rounded-2xl p-6 sm:p-8 flex items-start justify-between gap-6 opacity-60 relative">
+            <span className="absolute top-4 right-4 text-muted-foreground text-xs font-medium">Coming Soon</span>
             <div className="flex-1 min-w-0">
-              <span className="badge-interactive glass-dark text-white text-xs mb-3 inline-block">Coming Soon</span>
               <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground leading-[0.95] tracking-tight text-left">
                 {guest.name}
               </h3>
