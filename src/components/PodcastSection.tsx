@@ -294,8 +294,8 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
             </div>
             
             {/* Right: Arrow */}
-            <div className="w-10 h-10 rounded-full glass-dark flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground hover-transition mt-2">
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground hover-transition mt-2">
+              <svg className="w-5 h-5 text-muted-foreground group-hover:text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </div>
@@ -315,9 +315,8 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.3, delay: (episodes.length + idx) * 0.05 }}
         >
-          <div className="glass rounded-2xl p-6 sm:p-8 flex items-start justify-between gap-6 opacity-60">
+          <div className="glass rounded-2xl p-6 sm:p-8 flex items-start justify-between gap-6">
             <div className="flex-1 min-w-0">
-              <span className="badge-interactive glass-dark text-white text-xs mb-3 inline-block">Coming Soon</span>
               <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground leading-[0.95] tracking-tight text-left">
                 {guest.name}
               </h3>
@@ -325,7 +324,7 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
                 {guest.title} <span className="font-medium">@ {guest.company}</span>
               </p>
             </div>
-            <div className="w-10 h-10 rounded-full glass-dark flex items-center justify-center shrink-0 mt-2">
+            <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center shrink-0 mt-2">
               <svg className="w-5 h-5 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
