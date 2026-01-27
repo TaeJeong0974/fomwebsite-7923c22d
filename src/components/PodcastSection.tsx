@@ -180,8 +180,10 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
                 )}
                 
                 <div className="card-content-bottom card-padding-lg">
-                  <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-white leading-tight tracking-tight">
-                    {episode.name}
+                  <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-white tracking-tight">
+                    {episode.name.split(' ').map((word, i, arr) => (
+                      <span key={i} className="block">{word}{i < arr.length - 1 ? '' : ''}</span>
+                    ))}
                   </h3>
                   <p className="text-body-sm text-white/70 mt-1">{episode.title}</p>
                   <p className="text-body-sm font-medium text-primary">{episode.company}</p>
