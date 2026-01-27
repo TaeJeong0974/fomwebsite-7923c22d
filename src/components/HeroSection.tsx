@@ -1,32 +1,34 @@
 import { motion } from "framer-motion";
+import heroLogo from "@/assets/hero-logo.svg";
 
 const HeroSection = () => {
   return (
-    <section className="min-h-[70vh] flex items-center pt-8 relative overflow-hidden">
-      {/* Subtle gradient orbs for depth */}
-      <div className="absolute top-20 right-10 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />
-      <div className="absolute bottom-10 left-10 w-80 h-80 bg-accent/5 rounded-full blur-3xl" />
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-24 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-5xl"
+    <section className="min-h-[80vh] flex items-center justify-center relative overflow-hidden">
+      {/* Video Background */}
+      <div className="absolute inset-0 z-0">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover"
         >
-          <motion.p 
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-xs text-muted-foreground uppercase tracking-[0.2em] mb-5 font-medium"
-          >
-            Podcast & Events
-          </motion.p>
-          <h1 className="font-display text-[2.75rem] sm:text-6xl md:text-7xl lg:text-8xl xl:text-[6.5rem] font-bold text-foreground leading-[0.95] tracking-[-0.02em]">
-            Stories, Ideas &<br />
-            Live Experiences
-          </h1>
-        </motion.div>
+          <source src="https://videos.pexels.com/video-files/3129671/3129671-uhd_2560_1440_30fps.mp4" type="video/mp4" />
+        </video>
+        {/* Dark overlay for contrast */}
+        <div className="absolute inset-0 bg-black/50" />
+      </div>
+      
+      {/* Centered Logo */}
+      <div className="relative z-10 flex items-center justify-center px-4">
+        <motion.img
+          src={heroLogo}
+          alt="FOM Logo"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl invert"
+        />
       </div>
     </section>
   );
