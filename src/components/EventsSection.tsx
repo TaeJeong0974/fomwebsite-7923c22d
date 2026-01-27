@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Play } from "lucide-react";
+import { liquidEase } from "@/components/animations/PageLoadAnimation";
 
 const EventsSection = () => {
   return (
@@ -7,10 +8,10 @@ const EventsSection = () => {
       <div className="container mx-auto container-padding">
         {/* Full-width Video */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, y: 50, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.9, ease: liquidEase }}
           className="relative w-full aspect-[16/9] md:aspect-[21/9] overflow-hidden group cursor-pointer rounded-3xl"
         >
           {/* Video Background */}
@@ -30,7 +31,13 @@ const EventsSection = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-black/50 to-transparent" />
 
           {/* Content */}
-          <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 lg:p-12">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.3, ease: liquidEase }}
+            className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 lg:p-12"
+          >
             <div className="max-w-2xl">
               <span className="badge-interactive glass-dark text-white/80 mb-4">
                 Past Event
@@ -59,7 +66,7 @@ const EventsSection = () => {
                 </button>
               </div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </section>
