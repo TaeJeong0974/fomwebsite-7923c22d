@@ -140,7 +140,7 @@ const PodcastDetail = () => {
               className="mt-20 pt-12 border-t border-border"
             >
               <h3 className="font-display text-2xl font-semibold text-foreground mb-8">
-                You Might Also Like
+                Other Great Speakers
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {otherEpisodes.map((ep) => (
