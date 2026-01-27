@@ -5,13 +5,14 @@ interface EpisodeGuestCardProps {
   companyDomain: string;
   linkedInUrl?: string;
   bio?: string;
+  isUpcoming?: boolean;
 }
 
-const EpisodeGuestCard = ({ name, title, company, companyDomain, linkedInUrl, bio }: EpisodeGuestCardProps) => {
+const EpisodeGuestCard = ({ name, title, company, companyDomain, linkedInUrl, bio, isUpcoming = false }: EpisodeGuestCardProps) => {
   return (
     <div className="glass rounded-2xl p-6">
       <h3 className="font-display text-lg font-semibold text-foreground mb-4">
-        Featured Guest
+        {isUpcoming ? "Upcoming Guest" : "Featured Guest"}
       </h3>
       <div className="flex items-start gap-4">
         {/* Company Logo as Avatar */}

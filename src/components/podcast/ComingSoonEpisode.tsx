@@ -64,7 +64,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
                   </div>
                 )}
                 
-                {/* Coming Soon Badge with subtle pulse */}
+                {/* Upcoming Badge with subtle pulse */}
                 <motion.div 
                   className="absolute top-6 right-6"
                   animate={{ 
@@ -83,7 +83,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
                 >
                   <span className="glass px-4 py-2 rounded-full text-sm font-semibold text-foreground inline-flex items-center gap-2">
                     <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-                    Coming Soon
+                    Upcoming
                   </span>
                 </motion.div>
               </motion.div>
@@ -104,7 +104,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
                   </cite>
                   <span className="inline-flex items-center gap-1.5 glass px-3 py-1.5 rounded-full text-sm text-muted-foreground">
                     <Clock size={14} className="text-primary" />
-                    Coming Soon
+                    Upcoming Episode
                   </span>
                 </footer>
               </motion.blockquote>
@@ -148,6 +148,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
                 companyDomain={episode.companyDomain}
                 linkedInUrl={episode.linkedInUrl}
                 bio={episode.bio}
+                isUpcoming
               />
 
               {/* Notify CTA Card - Sticky */}
