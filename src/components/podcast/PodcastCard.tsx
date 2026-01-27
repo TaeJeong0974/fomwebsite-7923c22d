@@ -1,0 +1,116 @@
+import { useRef, useState } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { PodcastEpisode } from "@/lib/podcastData";
+import guestBg from "@/assets/guest-bg.png";
+
+interface PodcastCardProps {
+  episode: PodcastEpisode;
+  isNew?: boolean;
+  isUpcoming?: boolean;
+}
+
+const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCardProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    if (videoRef.current && episode.previewVideoUrl) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play().catch(() => {
+        // Autoplay may be blocked, that's okay
+      });
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.currentTime = 0;
+    }
+  };
+
+  return (
+    <Link
+      to={`/episode/${episode.slug}`}
+      className="block group"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div 
+        className="card-image hover-scale"
+        style={{
+          backgroundImage: `url(${guestBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      >
+        {/* Video overlay - only for published episodes with preview */}
+        {episode.previewVideoUrl && !isUpcoming && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: isHovered ? 1 : 0 }}
+            transition={{ duration: 0.4 }}
+            className="absolute inset-0 z-[1]"
+          >
+            <video
+              ref={videoRef}
+              muted
+              playsInline
+              className="w-full h-full object-cover"
+              poster={guestBg}
+            >
+              <source src={episode.previewVideoUrl} type="video/mp4" />
+            </video>
+          </motion.div>
+        )}
+
+        <div className="card-overlay-light hover-transition group-hover:opacity-90 z-[2]" />
+        
+        {episode.companyDomain && (
+          <div className="absolute top-4 left-4 glass rounded-xl p-2.5 hover-scale-badge z-[3]">
+            <img 
+              src={`https://www.google.com/s2/favicons?domain=${episode.companyDomain}&sz=64`} 
+              alt={episode.company}
+              className="h-5 w-5 object-contain"
+            />
+          </div>
+        )}
+        
+        {isNew && (
+          <span className="absolute top-4 right-4 bg-primary text-primary-foreground text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full z-[3]">
+            New
+          </span>
+        )}
+        
+        {isUpcoming && (
+          <span className="absolute top-4 right-4 bg-foreground text-background text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full z-[3]">
+            Upcoming
+          </span>
+        )}
+        
+        <div className="card-content-bottom card-padding-lg z-[3]">
+          <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-white tracking-tight">
+            {episode.name.split(' ').map((word, i, arr) => (
+              <span key={i} className="block">{word}{i < arr.length - 1 ? '' : ''}</span>
+            ))}
+          </h3>
+          <p className="text-body-sm text-white/70 mt-1">{episode.title}</p>
+          <p className="text-body-sm font-medium text-primary">{episode.company}</p>
+          <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
+            {!isUpcoming && (
+              <p className="text-body-sm leading-relaxed text-white/60 mb-4">{episode.overview}</p>
+            )}
+            <span className="btn-base btn-glass-light btn-sm">
+              {isUpcoming ? "Learn More" : "Watch Now"}
+            </span>
+          </div>
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+export default PodcastCard;

@@ -5,7 +5,7 @@ import { LayoutGrid, List } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { getPublishedEpisodes, getComingSoonEpisodes, PodcastEpisode } from "@/lib/podcastData";
 import SubscribeCard from "@/components/SubscribeCard";
-import guestBg from "@/assets/guest-bg.png";
+import PodcastCard from "@/components/podcast/PodcastCard";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
 
 type LayoutType = "grid" | "list";
@@ -114,59 +114,20 @@ const PodcastSection = () => {
 const PodcastGridView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEpisode[], comingSoonEpisodes: PodcastEpisode[] }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-gap">
-      {episodes.slice(0, 4).map((episode, index) => {
-        return (
-          <motion.div
-            key={episode.id}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 0.6, delay: index * 0.1, ease: liquidEase }}
-          >
-            <Link
-              to={`/episode/${episode.slug}`}
-              className="block group"
-            >
-              <div 
-                className="card-image hover-scale"
-                style={{
-                  backgroundImage: `url(${guestBg})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
-              >
-                <div className="card-overlay-light hover-transition group-hover:opacity-90" />
-                
-                {episode.companyDomain && (
-                  <div className="absolute top-4 left-4 glass rounded-xl p-2.5 hover-scale-badge">
-                    <img 
-                      src={`https://www.google.com/s2/favicons?domain=${episode.companyDomain}&sz=64`} 
-                      alt={episode.company}
-                      className="h-5 w-5 object-contain"
-                    />
-                  </div>
-                )}
-                
-                {isNewEpisode(episode.publishedDate) && <span className="absolute top-4 right-4 bg-primary text-primary-foreground text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">New</span>}
-                
-                <div className="card-content-bottom card-padding-lg">
-                  <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-white tracking-tight">
-                    {episode.name.split(' ').map((word, i, arr) => (
-                      <span key={i} className="block">{word}{i < arr.length - 1 ? '' : ''}</span>
-                    ))}
-                  </h3>
-                  <p className="text-body-sm text-white/70 mt-1">{episode.title}</p>
-                  <p className="text-body-sm font-medium text-primary">{episode.company}</p>
-                  <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
-                    <p className="text-body-sm leading-relaxed text-white/60 mb-4">{episode.overview}</p>
-                    <span className="btn-base btn-glass-light btn-sm">Watch Now</span>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </motion.div>
-        );
-      })}
+      {episodes.slice(0, 4).map((episode, index) => (
+        <motion.div
+          key={episode.id}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.6, delay: index * 0.1, ease: liquidEase }}
+        >
+          <PodcastCard 
+            episode={episode} 
+            isNew={isNewEpisode(episode.publishedDate)}
+          />
+        </motion.div>
+      ))}
       
       {/* Coming Soon Cards */}
       {comingSoonEpisodes.map((episode, idx) => (
@@ -177,43 +138,10 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 0.6, delay: (episodes.length + idx) * 0.1, ease: liquidEase }}
         >
-          <Link
-            to={`/episode/${episode.slug}`}
-            className="block group"
-          >
-            <div 
-              className="card-image hover-scale"
-              style={{
-                backgroundImage: `url(${guestBg})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
-            >
-              <div className="card-overlay-light hover-transition group-hover:opacity-90" />
-              {episode.companyDomain && (
-                <div className="absolute top-4 left-4 glass rounded-xl p-2.5 hover-scale-badge">
-                  <img 
-                    src={`https://www.google.com/s2/favicons?domain=${episode.companyDomain}&sz=64`} 
-                    alt={episode.company}
-                    className="h-5 w-5 object-contain"
-                  />
-                </div>
-              )}
-              <span className="absolute top-4 right-4 bg-foreground text-background text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">Upcoming</span>
-              <div className="card-content-bottom card-padding-lg">
-                <h3 className="font-display text-white leading-[0.95] tracking-tight">
-                  {episode.name.split(' ').map((word, i) => (
-                    <span key={i} className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">{word}</span>
-                  ))}
-                </h3>
-                <p className="text-body-sm text-white/70 mt-1">{episode.title}</p>
-                <p className="text-body-sm font-medium text-primary">{episode.company}</p>
-                <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
-                  <span className="btn-base btn-glass-light btn-sm">Learn More</span>
-                </div>
-              </div>
-            </div>
-          </Link>
+          <PodcastCard 
+            episode={episode} 
+            isUpcoming={true}
+          />
         </motion.div>
       ))}
       
