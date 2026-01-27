@@ -100,7 +100,7 @@ const HeroSection = () => {
                             }}
                             className="bg-foreground rounded-full p-2"
                           >
-                            <ChevronDown className="h-5 w-5 text-primary" />
+                            <ChevronDown className="h-5 w-5 text-white" />
                           </motion.div>
                         </div>
                         
