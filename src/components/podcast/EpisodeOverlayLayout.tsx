@@ -14,10 +14,9 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
     <div className="min-h-screen bg-muted/40 relative">
       {/* Blurred homepage preview - simulated card grid */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-background" />
-        <div className="container mx-auto container-padding pt-32">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 opacity-20 blur-xl">
-            {[...Array(8)].map((_, i) => (
+        <div className="container mx-auto container-padding pt-24">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 opacity-60 blur-lg scale-105">
+            {[...Array(12)].map((_, i) => (
               <div
                 key={i}
                 className="aspect-[3/4] rounded-2xl bg-cover bg-center"
@@ -26,8 +25,8 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
             ))}
           </div>
         </div>
-        {/* Fade overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/70 to-background" />
+        {/* Subtle fade overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background/50 via-background/40 to-background/60" />
       </div>
       
       <Navbar />
