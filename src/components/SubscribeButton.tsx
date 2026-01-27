@@ -11,9 +11,10 @@ import {
 interface SubscribeButtonProps {
   className?: string;
   children?: React.ReactNode;
+  style?: React.CSSProperties;
 }
 
-const SubscribeButton = ({ className = "", children = "Subscribe" }: SubscribeButtonProps) => {
+const SubscribeButton = ({ className = "", children = "Subscribe", style }: SubscribeButtonProps) => {
   const isMobile = useIsMobile();
   const { openSubscribe } = useSubscribe();
   const [isOpen, setIsOpen] = useState(false);
@@ -44,9 +45,9 @@ const SubscribeButton = ({ className = "", children = "Subscribe" }: SubscribeBu
   // Mobile: use the global modal
   if (isMobile) {
     return (
-      <button onClick={openSubscribe} className={className}>
+      <div onClick={openSubscribe} className={className} style={style}>
         {children}
-      </button>
+      </div>
     );
   }
 
@@ -54,9 +55,9 @@ const SubscribeButton = ({ className = "", children = "Subscribe" }: SubscribeBu
   return (
     <Popover open={isOpen} onOpenChange={handleOpenChange}>
       <PopoverTrigger asChild>
-        <button className={className}>
+        <div className={className} style={style}>
           {children}
-        </button>
+        </div>
       </PopoverTrigger>
       <PopoverContent 
         className="w-80 p-0 glass-dark border-white/10 rounded-2xl overflow-hidden"
