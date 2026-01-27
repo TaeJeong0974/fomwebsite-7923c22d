@@ -30,20 +30,6 @@ const PodcastDetail = () => {
 
       <main className="section-spacing">
         <div className="container mx-auto container-padding">
-          {/* Back link */}
-          <motion.div
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3 }}
-          >
-            <Link
-              to="/#podcast"
-              className="inline-flex items-center gap-2 text-muted-foreground hover:text-foreground hover-transition mb-8"
-            >
-              <ArrowLeft size={16} />
-              Back to episodes
-            </Link>
-          </motion.div>
 
           {/* Episode Content */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
