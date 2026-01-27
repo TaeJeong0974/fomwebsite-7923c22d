@@ -3,6 +3,7 @@ import { X } from "lucide-react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import guestBg from "@/assets/guest-bg.png";
 
 interface EpisodeOverlayLayoutProps {
   children: React.ReactNode;
@@ -11,14 +12,23 @@ interface EpisodeOverlayLayoutProps {
 const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
   return (
     <div className="min-h-screen bg-muted/40 relative">
-      {/* Backdrop pattern - subtle dot grid */}
-      <div 
-        className="fixed inset-0 opacity-[0.03] pointer-events-none"
-        style={{
-          backgroundImage: `radial-gradient(circle, hsl(var(--foreground)) 1px, transparent 1px)`,
-          backgroundSize: '24px 24px',
-        }}
-      />
+      {/* Blurred homepage preview - simulated card grid */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-background" />
+        <div className="container mx-auto container-padding pt-32">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 opacity-40 blur-md">
+            {[...Array(8)].map((_, i) => (
+              <div
+                key={i}
+                className="aspect-[3/4] rounded-2xl bg-cover bg-center"
+                style={{ backgroundImage: `url(${guestBg})` }}
+              />
+            ))}
+          </div>
+        </div>
+        {/* Fade overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+      </div>
       
       <Navbar />
 
