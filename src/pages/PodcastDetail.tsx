@@ -10,6 +10,7 @@ import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
 import ComingSoonEpisode from "@/components/podcast/ComingSoonEpisode";
 import { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes } from "@/lib/podcastData";
+import guestBg from "@/assets/guest-bg.png";
 
 const PodcastDetail = () => {
   const { slug } = useParams();
@@ -156,12 +157,15 @@ const PodcastDetail = () => {
                     </div>
                     
                     {/* Photo */}
-                    <div className="aspect-[4/5] rounded-2xl overflow-hidden bg-muted">
-                      <img 
-                        src={`https://ui-avatars.com/api/?name=${encodeURIComponent(ep.name)}&size=400&background=f5f5f5&color=1a1a1a&font-size=0.35`}
-                        alt={ep.name}
-                        className="w-full h-full object-cover group-hover:scale-105 hover-transition"
-                      />
+                    <div 
+                      className="aspect-[4/5] rounded-2xl overflow-hidden bg-muted"
+                      style={{
+                        backgroundImage: `url(${guestBg})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                      }}
+                    >
+                      <div className="w-full h-full bg-gradient-to-t from-black/40 via-black/10 to-transparent group-hover:scale-105 hover-transition" />
                     </div>
                   </Link>
                 ))}
