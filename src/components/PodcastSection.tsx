@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { LayoutGrid, List } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { useSubscribe } from "@/contexts/SubscribeContext";
 import guestBg from "@/assets/guest-bg.png";
 import subscribeBg from "@/assets/subscribe-bg.png";
 
@@ -144,6 +145,8 @@ const PodcastSection = () => {
 
 // Grid View Component
 const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
+  const { openSubscribe } = useSubscribe();
+  
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-gap">
       {episodes.slice(0, 4).map((episode, index) => {
@@ -211,6 +214,7 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
           transition={{ duration: 0.4, delay: (4 + idx) * 0.1 }}
         >
           <div 
+            onClick={openSubscribe}
             className="card-image group cursor-pointer hover-scale"
             style={{
               backgroundImage: `url(${guestBg})`,
@@ -237,6 +241,9 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
               </h3>
               <p className="text-body-sm text-white/70 mt-1">{guest.title}</p>
               <p className="text-body-sm font-medium text-primary">{guest.company}</p>
+              <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
+                <span className="btn-base btn-glass-light btn-sm">Notify Me</span>
+              </div>
             </div>
           </div>
         </motion.div>
@@ -250,6 +257,7 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
         transition={{ duration: 0.4, delay: 0.6 }}
       >
         <div 
+          onClick={openSubscribe}
           className="card-image group cursor-pointer hover-scale"
           style={{
             backgroundImage: `url(${subscribeBg})`,
@@ -269,6 +277,8 @@ const PodcastGridView = ({ episodes }: { episodes: Episode[] }) => {
 
 // List View Component
 const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
+  const { openSubscribe } = useSubscribe();
+  
   return (
     <div className="divide-y divide-border/50">
       {episodes.map((episode, index) => (
@@ -315,24 +325,27 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
           viewport={{ once: true }}
           transition={{ duration: 0.3, delay: (episodes.length + idx) * 0.05 }}
         >
-          <div className="py-6 sm:py-8 flex items-start justify-between gap-6">
-            <div className="flex-1 min-w-0 text-left">
+          <button 
+            onClick={openSubscribe}
+            className="w-full py-6 sm:py-8 flex items-start justify-between gap-6 group hover-transition text-left"
+          >
+            <div className="flex-1 min-w-0">
               <div className="flex items-center gap-3 mb-2">
                 <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Coming Soon</span>
               </div>
-              <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground leading-[0.95] tracking-tight">
+              <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-primary hover-transition leading-[0.95] tracking-tight">
                 {guest.name}
               </h3>
               <p className="text-body mt-3">
                 <span className="text-muted-foreground">{guest.title}</span> <span className="font-medium text-foreground">@ {guest.company}</span>
               </p>
             </div>
-            <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center shrink-0 mt-2">
-              <svg className="w-5 h-5 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground hover-transition mt-2">
+              <svg className="w-5 h-5 text-muted-foreground group-hover:text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
               </svg>
             </div>
-          </div>
+          </button>
         </motion.div>
       ))}
     </div>

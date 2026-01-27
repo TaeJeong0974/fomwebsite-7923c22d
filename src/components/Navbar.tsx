@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import FomLogo from "@/assets/FOM_Logo.svg";
+import { useSubscribe } from "@/contexts/SubscribeContext";
 
 const Navbar = () => {
+  const { openSubscribe } = useSubscribe();
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
@@ -37,7 +39,7 @@ const Navbar = () => {
 
           {/* Desktop CTA */}
           <div className="hidden md:flex items-center justify-center">
-            <button className="btn-base btn-glass btn-md">
+            <button onClick={openSubscribe} className="btn-base btn-glass btn-md">
               Subscribe
             </button>
           </div>
@@ -68,7 +70,7 @@ const Navbar = () => {
                 </li>
               ))}
               <li className="pt-3 px-4">
-                <button className="btn-base btn-glass btn-md w-full">
+                <button onClick={openSubscribe} className="btn-base btn-glass btn-md w-full">
                   Subscribe
                 </button>
               </li>
