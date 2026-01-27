@@ -271,12 +271,12 @@ const PodcastListView = ({ episodes }: { episodes: Episode[] }) => {
             className="group glass rounded-2xl p-6 sm:p-8 flex items-start justify-between gap-6 hover:bg-white/[0.08] hover-transition"
           >
             {/* Left: Name + Title/Company stacked */}
-            <div className="flex-1 min-w-0 flex flex-col items-start">
-              <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-primary hover-transition leading-[0.95] tracking-tight">
+            <div className="flex-1 min-w-0">
+              <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-primary hover-transition leading-[0.95] tracking-tight text-left">
                 {episode.name}
               </h3>
-              <p className="text-body text-muted-foreground mt-3">
-                {episode.title} <span className="text-primary font-medium">@ {episode.company}</span>
+              <p className="text-body text-foreground mt-3 text-left">
+                {episode.title} <span className="font-medium">@ {episode.company}</span>
               </p>
             </div>
             
