@@ -102,7 +102,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
               episode.name.split(' ').map((word, i, arr) => (
                 <span 
                   key={i} 
-                  className={`block ${i === 0 ? 'font-semibold' : 'font-normal'}`}
+                  className={`block ${i === 0 ? 'font-medium' : 'font-normal'}`}
                 >
                   {word}
                 </span>
