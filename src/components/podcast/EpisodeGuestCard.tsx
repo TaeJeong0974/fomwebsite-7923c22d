@@ -25,7 +25,7 @@ const EpisodeGuestCard = ({ name, title, company, companyDomain, linkedInUrl, bi
       </h3>
       
       <div className="space-y-3">
-        <h2 className="font-display text-3xl sm:text-4xl font-semibold text-foreground leading-tight">
+        <h2 className="font-display text-4xl sm:text-5xl font-semibold text-foreground leading-tight">
           {name.split(' ').map((word, i) => (
             <span key={i} className="block">{word}</span>
           ))}
