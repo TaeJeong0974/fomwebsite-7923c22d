@@ -87,6 +87,17 @@ const PodcastDetail = () => {
             spotifyUrl={episode.spotifyUrl}
           />
 
+          {/* Featured Guest - only for guest episodes */}
+          {episode.slug !== 'intro-to-fom' && (
+            <EpisodeGuestCard
+              name={episode.name}
+              title={episode.title}
+              company={episode.company}
+              linkedInUrl={episode.linkedInUrl}
+              bio={episode.bio}
+            />
+          )}
+
           {/* Your Hosts - always shown */}
           <div className="glass rounded-xl p-5 sm:p-6 space-y-4 sm:space-y-6">
             <p className="text-label">Your Hosts</p>
@@ -113,17 +124,6 @@ const PodcastDetail = () => {
               ))}
             </div>
           </div>
-
-          {/* Featured Guest - only for guest episodes */}
-          {episode.slug !== 'intro-to-fom' && (
-            <EpisodeGuestCard
-              name={episode.name}
-              title={episode.title}
-              company={episode.company}
-              linkedInUrl={episode.linkedInUrl}
-              bio={episode.bio}
-            />
-          )}
         </motion.div>
       </div>
 
