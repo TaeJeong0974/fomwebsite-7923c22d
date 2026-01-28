@@ -67,7 +67,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
             duration: 0.5, 
             ease: [0.22, 1, 0.36, 1] 
           }}
-          className="container mx-auto bg-background rounded-3xl shadow-2xl shadow-black/5 overflow-hidden p-5 sm:p-6 relative"
+          className="container mx-auto bg-background rounded-3xl shadow-2xl shadow-black/5 overflow-hidden p-5 pr-20 sm:p-6 sm:pr-20 relative"
         >
           {/* Close Button - Absolutely positioned */}
           <button
