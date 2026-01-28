@@ -97,8 +97,6 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
               <span key={i} className="block">{word}{i < arr.length - 1 ? '' : ''}</span>
             ))}
           </h3>
-          <p className="text-body-sm text-white mt-1">{episode.title}</p>
-          <p className="text-body-sm font-medium text-white">{episode.company}</p>
           <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
             {!isUpcoming && (
               <p className="text-body-sm leading-relaxed text-white mb-4">{episode.overview}</p>

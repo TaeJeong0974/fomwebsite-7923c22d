@@ -27,12 +27,12 @@ export interface PodcastEpisode {
 export const podcastEpisodes: PodcastEpisode[] = [
   {
     id: 1,
-    slug: "meagen-eisenberg",
-    name: "Meagen Eisenberg",
-    title: "Chief Marketing Officer",
-    company: "Samsara",
-    companyDomain: "samsara.com",
-    overview: "Exploring how remote work is reshaping company culture and marketing strategies.",
+    slug: "intro-to-fom",
+    name: "Intro to FOM",
+    title: "",
+    company: "",
+    companyDomain: "",
+    overview: "Meet the hosts and discover what Future of Marketing is all about.",
     bio: "A builder who moves fast, operates tactically, and earns trust through execution. With nearly 25 years scaling high-growth companies as CMO at Samsara, MongoDB, TripActions/Navan, and leadership roles at DocuSign and G2.",
     fullDescription: `In this episode, we sit down with Meagen Eisenberg, CMO of Samsara, to explore how the landscape of marketing leadership is evolving in the age of connected operations.
 
@@ -160,30 +160,6 @@ We explore the challenges of marketing in a highly regulated industry while main
     publishedDate: "Coming Soon",
     comingSoon: true,
     linkedInUrl: "https://linkedin.com/in/saravarni",
-  },
-  {
-    id: 5,
-    slug: "kate-johnson",
-    name: "Kate Johnson",
-    title: "Chief Marketing Officer",
-    company: "Mada",
-    companyDomain: "mada.com",
-    overview: "Redefining digital payments and the future of fintech in emerging markets.",
-    bio: "Kate Johnson is the Chief Marketing Officer at Mada, where she's pioneering marketing strategies for next-generation payment solutions. With a background spanning global fintech leaders, Kate brings unique insights on building consumer trust in digital payments and navigating complex regulatory environments. She's passionate about financial inclusion and making payments seamless for everyone.",
-    fullDescription: "",
-    topics: [
-      "Fintech marketing in emerging markets",
-      "Building consumer trust in digital payments",
-      "The future of cashless societies",
-      "Brand building in regulated industries",
-    ],
-    chapters: [],
-    youtubeUrl: "",
-    spotifyUrl: "",
-    duration: "",
-    publishedDate: "Coming Soon",
-    comingSoon: true,
-    linkedInUrl: "https://linkedin.com/in/katejohnson",
   },
 ];
 
