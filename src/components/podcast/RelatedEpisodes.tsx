@@ -19,7 +19,7 @@ const RelatedEpisodes = ({ episodes, title = "Other Speakers", delay = 0.4 }: Re
       transition={{ duration: 0.5, delay }}
       className="mt-8 sm:mt-12 pt-8 sm:pt-12 border-t border-border"
     >
-      <h2 className="font-display text-xl sm:text-2xl font-semibold text-foreground mb-6 sm:mb-8">
+      <h2 className="text-display-xl text-foreground mb-6 sm:mb-8">
         {title.split(' ').map((word, i) => (
           <span key={i} className="block">{word}</span>
         ))}
