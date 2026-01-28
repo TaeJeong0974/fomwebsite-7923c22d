@@ -15,13 +15,13 @@ const EpisodeTopics = ({ topics, title = "Topics Covered" }: EpisodeTopicsProps)
       </h3>
       <div className="border-t border-border">
         {/* Table Header */}
-        <div className="flex items-center gap-6 py-3 border-b border-border/50">
+        <div className="flex items-center gap-6 py-3 border-b border-border">
           <span className="w-8 text-xs font-medium text-muted-foreground uppercase tracking-wider">No.</span>
           <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Topic</span>
         </div>
         {/* Table Rows */}
         {topics.map((topic, index) => (
-          <div key={index} className="flex items-start gap-6 py-4 border-b border-border/30 last:border-b-0">
+          <div key={index} className="flex items-start gap-6 py-4 border-b border-border/60 last:border-b-0">
             <span className="w-8 text-sm text-muted-foreground tabular-nums">
               {formatNumber(index)}
             </span>
