@@ -59,18 +59,10 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
 
       {/* Floating Panel Container */}
       <main className="relative z-10 pt-24">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ 
-            duration: 0.5, 
-            ease: [0.22, 1, 0.36, 1] 
-          }}
-          className="mx-4 sm:mx-6 lg:mx-8 pb-8"
-        >
-          <div className="container mx-auto bg-background rounded-3xl shadow-2xl shadow-black/5 overflow-hidden">
-            {/* Close Button Bar */}
-            <div className="flex items-center justify-end px-4 sm:px-6 lg:px-8 py-5 border-b border-border/50">
+        <div className="mx-4 sm:mx-6 lg:mx-8 pb-8">
+          <div className="container mx-auto">
+            {/* Close Button - Outside Panel */}
+            <div className="flex items-center justify-end py-4">
               <button
                 onClick={handleClose}
                 className="flex items-center justify-center w-12 h-12 rounded-full bg-foreground text-background hover:bg-foreground/90 hover-transition"
@@ -80,12 +72,23 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
               </button>
             </div>
 
-            {/* Main Content */}
-            <div className="px-4 sm:px-6 lg:px-8 pt-4 sm:pt-5 pb-6 sm:pb-8">
+            {/* White Content Panel */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ 
+                duration: 0.5, 
+                ease: [0.22, 1, 0.36, 1] 
+              }}
+              className="bg-background rounded-3xl shadow-2xl shadow-black/5 overflow-hidden"
+            >
+              {/* Main Content */}
+              <div className="px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
               {children}
-            </div>
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
       </main>
 
       <Footer />
