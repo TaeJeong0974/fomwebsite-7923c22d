@@ -65,8 +65,9 @@ const PodcastDetail = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
+            className="pt-4"
           >
-            <h2 className="text-label mb-5">
+            <h2 className="text-label mb-6">
               About This Episode
             </h2>
             <div className="text-foreground/80 whitespace-pre-line leading-relaxed text-lg">
