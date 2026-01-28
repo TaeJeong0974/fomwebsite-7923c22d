@@ -14,13 +14,15 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
 
   const handleClose = useCallback(() => {
     navigate('/');
-    // Smooth scroll to podcast section after navigation
-    setTimeout(() => {
-      const podcastSection = document.getElementById('podcast');
-      if (podcastSection) {
-        podcastSection.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 150);
+    // Smooth scroll to podcast section after navigation completes
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        const podcastSection = document.getElementById('podcast');
+        if (podcastSection) {
+          podcastSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 300);
+    });
   }, [navigate]);
 
   // Keyboard support - Escape to close
