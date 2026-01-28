@@ -94,7 +94,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
                   </div>
                   <div className="flex items-center gap-3 min-w-0">
                     <div 
-                      className="w-12 aspect-[3/2] rounded-lg bg-cover bg-center shrink-0 group-hover:scale-105 hover-transition"
+                      className="w-12 aspect-[3/2] bg-cover bg-center shrink-0 group-hover:scale-105 hover-transition"
                       style={{ backgroundImage: `url(${guestBg})` }}
                     />
                     <div className="min-w-0 hidden sm:block">
@@ -128,7 +128,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
                       <p className="text-xs text-muted-foreground truncate">{next.title}</p>
                     </div>
                     <div 
-                      className="w-12 aspect-[3/2] rounded-lg bg-cover bg-center shrink-0 group-hover:scale-105 hover-transition"
+                      className="w-12 aspect-[3/2] bg-cover bg-center shrink-0 group-hover:scale-105 hover-transition"
                       style={{ backgroundImage: `url(${guestBg})` }}
                     />
                   </div>
