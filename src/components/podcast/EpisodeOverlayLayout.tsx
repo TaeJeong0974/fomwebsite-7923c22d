@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import guestBg from "@/assets/guest-bg.png";
 
 interface EpisodeOverlayLayoutProps {
@@ -81,8 +80,6 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
           {children}
         </motion.div>
       </main>
-
-      <Footer />
     </div>
   );
 };

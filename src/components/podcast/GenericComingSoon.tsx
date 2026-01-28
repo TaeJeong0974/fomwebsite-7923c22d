@@ -1,7 +1,6 @@
 import { Bell } from "lucide-react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 
 const GenericComingSoon = () => {
@@ -38,8 +37,6 @@ const GenericComingSoon = () => {
           </motion.div>
         </div>
       </main>
-
-      <Footer />
     </div>
   );
 };
