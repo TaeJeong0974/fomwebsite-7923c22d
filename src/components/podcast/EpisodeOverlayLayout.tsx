@@ -58,7 +58,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
       <Navbar />
 
       {/* Floating Panel Container */}
-      <main className="relative z-10 pt-20 pb-8 px-4 sm:px-6">
+      <main className="relative z-10 pt-16 pb-8 px-4 sm:px-6">
         {/* White Content Panel */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
