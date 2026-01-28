@@ -66,7 +66,7 @@ const PodcastDetail = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h3 className="text-[0.9375rem] font-medium uppercase tracking-widest text-foreground mb-4">
+            <h3 className="text-[0.9375rem] font-medium text-foreground mb-4">
               About This Episode
             </h3>
             <div className="text-foreground/80 whitespace-pre-line leading-relaxed text-lg">
@@ -104,7 +104,7 @@ const PodcastDetail = () => {
 
           {/* Your Hosts - always shown */}
           <div className="glass rounded-xl p-6 sm:p-8 space-y-6">
-            <h3 className="text-[0.9375rem] font-medium uppercase tracking-widest text-foreground">Your Hosts</h3>
+            <h3 className="text-[0.9375rem] font-medium text-foreground">Your Hosts</h3>
             <div className="space-y-5">
               {(episode.slug === 'intro-to-fom' ? podcastHosts : podcastHosts.slice(0, 2)).map((host, index) => (
                 <div key={index} className={index > 0 ? "pt-5 border-t border-border/20" : ""}>
