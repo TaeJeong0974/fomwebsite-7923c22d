@@ -70,7 +70,7 @@ const SubscribeModal = ({ open, onOpenChange }: SubscribeModalProps) => {
                 />
                 <button
                   type="submit"
-                  className="w-full btn-base btn-lg bg-primary hover:bg-primary/90 text-primary-foreground"
+                  className="w-full btn-base btn-glass-light btn-lg"
                 >
                   Subscribe
                 </button>
