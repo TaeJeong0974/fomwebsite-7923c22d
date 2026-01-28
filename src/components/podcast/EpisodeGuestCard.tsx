@@ -25,8 +25,12 @@ const EpisodeGuestCard = ({ name, title, company, companyDomain, linkedInUrl, bi
         </div>
         
         <div className="min-w-0">
-          <h4 className="font-display text-xl font-semibold text-foreground">{name}</h4>
-          <p className="text-sm text-muted-foreground mt-0.5">{title}</p>
+          <h2 className="font-display text-3xl sm:text-4xl font-semibold text-foreground leading-tight">
+            {name.split(' ').map((word, i) => (
+              <span key={i} className="block">{word}</span>
+            ))}
+          </h2>
+          <p className="text-sm text-muted-foreground mt-2">{title}</p>
           <p className="text-sm font-medium text-primary">{company}</p>
           {linkedInUrl && (
             <a
