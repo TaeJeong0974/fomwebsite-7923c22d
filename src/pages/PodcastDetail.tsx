@@ -81,12 +81,6 @@ const PodcastDetail = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          {/* Action Buttons */}
-          <EpisodeActionButtons 
-            youtubeUrl={episode.youtubeUrl}
-            spotifyUrl={episode.spotifyUrl}
-          />
-
           {/* Featured Guest - only for guest episodes */}
           {episode.slug !== 'intro-to-fom' && (
             <EpisodeGuestCard
@@ -97,6 +91,12 @@ const PodcastDetail = () => {
               bio={episode.bio}
             />
           )}
+
+          {/* Action Buttons */}
+          <EpisodeActionButtons 
+            youtubeUrl={episode.youtubeUrl}
+            spotifyUrl={episode.spotifyUrl}
+          />
 
           {/* Your Hosts - always shown */}
           <div className="glass rounded-xl p-5 sm:p-6 space-y-4 sm:space-y-6">
