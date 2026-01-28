@@ -82,7 +82,7 @@ const Navbar = () => {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    className="block py-2 px-4 text-muted-foreground hover:text-foreground hover:bg-secondary/50 rounded-xl hover-transition focus-ring"
+                    className="block py-2 px-4 text-foreground hover:text-primary hover:bg-secondary/50 rounded-xl hover-transition focus-ring"
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}
