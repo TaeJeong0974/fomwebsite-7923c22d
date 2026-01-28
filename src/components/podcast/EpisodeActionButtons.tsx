@@ -32,13 +32,13 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
 
   const buttonVariants = {
     initial: { scale: 1 },
-    hover: { scale: 1.05 },
-    tap: { scale: 0.95 },
+    hover: { scale: 1.02 },
+    tap: { scale: 0.98 },
   };
 
-  const iconButtonClass = "w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-muted hover:bg-muted/70 border border-border flex items-center justify-center hover-transition shadow-sm";
+  const liquidGlassButton = "flex items-center justify-center gap-2.5 bg-black/5 backdrop-blur-xl border border-black/10 text-foreground px-5 py-3 rounded-xl text-sm font-medium hover:bg-black/10 hover-transition shadow-sm";
   
-  const fullButtonClass = "flex items-center justify-center gap-2.5 bg-muted hover:bg-muted/70 border border-border text-foreground px-5 py-3 rounded-xl text-sm font-medium hover-transition";
+  const liquidGlassIcon = "w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-black/5 backdrop-blur-xl border border-black/10 flex items-center justify-center hover:bg-black/10 hover-transition shadow-sm";
 
   return (
     <TooltipProvider delayDuration={300}>
@@ -48,7 +48,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
             href={youtubeUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={fullButtonClass}
+            className={liquidGlassButton}
             variants={buttonVariants}
             initial="initial"
             whileHover="hover"
@@ -63,7 +63,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
             href={spotifyUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className={fullButtonClass}
+            className={liquidGlassButton}
             variants={buttonVariants}
             initial="initial"
             whileHover="hover"
@@ -79,7 +79,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
           <TooltipTrigger asChild>
             <motion.button 
               onClick={handleShare}
-              className={iconButtonClass}
+              className={liquidGlassIcon}
               variants={buttonVariants}
               initial="initial"
               whileHover="hover"
