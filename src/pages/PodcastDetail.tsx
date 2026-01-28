@@ -51,13 +51,13 @@ const PodcastDetail = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="space-y-6"
+                className="space-y-4"
               >
-                <p className="font-display text-2xl md:text-3xl lg:text-4xl font-medium text-foreground leading-[1.2]">
+                <p className="font-display text-3xl md:text-4xl lg:text-5xl font-medium text-foreground/90 leading-relaxed">
                   "The best marketing doesn't feel like marketing—it feels like a conversation worth having."
                 </p>
-                <footer className="flex items-center gap-4">
-                  <cite className="font-display text-base font-semibold text-foreground not-italic">
+                <footer className="flex items-center justify-between">
+                  <cite className="font-display text-xl font-semibold text-foreground not-italic">
                     — {episode.name}
                   </cite>
                   <span className="inline-flex items-center gap-1.5 glass px-3 py-1.5 rounded-full text-sm text-muted-foreground">
@@ -72,14 +72,13 @@ const PodcastDetail = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.4 }}
-                className="space-y-4"
               >
-                <h2 className="text-label">
+                <h2 className="font-display text-xl font-semibold text-foreground mb-4">
                   About This Episode
                 </h2>
-                <p className="text-body text-muted-foreground leading-relaxed">
+                <div className="text-muted-foreground whitespace-pre-line leading-relaxed">
                   {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
-                </p>
+                </div>
               </motion.div>
 
               {/* Topics */}
