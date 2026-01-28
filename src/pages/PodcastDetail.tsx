@@ -1,11 +1,11 @@
 import { useParams } from "react-router-dom";
-import { Clock } from "lucide-react";
 import { motion } from "framer-motion";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
 import EpisodeVideoPlayer from "@/components/podcast/EpisodeVideoPlayer";
 import EpisodeActionButtons from "@/components/podcast/EpisodeActionButtons";
 import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
+import EpisodePullQuote from "@/components/podcast/EpisodePullQuote";
 import ComingSoonEpisode from "@/components/podcast/ComingSoonEpisode";
 import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
 import { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes } from "@/lib/podcastData";
@@ -47,25 +47,11 @@ const PodcastDetail = () => {
           </motion.div>
 
           {/* Pull Quote */}
-          <motion.blockquote
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="space-y-4"
-          >
-            <p className="font-display text-3xl md:text-4xl lg:text-5xl font-medium text-foreground/90 leading-relaxed">
-              "The best marketing doesn't feel like marketing—it feels like a conversation worth having."
-            </p>
-            <footer className="flex items-center justify-between">
-              <cite className="font-display text-xl font-semibold text-foreground not-italic">
-                — {episode.name}
-              </cite>
-              <span className="inline-flex items-center gap-1.5 glass px-3 py-1.5 rounded-full text-sm text-muted-foreground">
-                <Clock size={14} className="text-primary" />
-                {episode.duration}
-              </span>
-            </footer>
-          </motion.blockquote>
+          <EpisodePullQuote
+            quote="The best marketing doesn't feel like marketing—it feels like a conversation worth having."
+            attribution={episode.name}
+            metaLabel={episode.duration || ""}
+          />
 
           {/* About This Episode */}
           <motion.div
