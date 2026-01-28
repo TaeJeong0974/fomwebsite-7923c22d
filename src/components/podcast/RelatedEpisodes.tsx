@@ -55,7 +55,7 @@ const RelatedEpisodes = ({ episodes, title = "Other Speakers", delay = 0.4 }: Re
               )}
               
               {ep.comingSoon && (
-                <span className="absolute top-4 right-4 glass text-foreground text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full z-[3] flex items-center justify-center">
+                <span className="absolute top-4 right-4 glass text-foreground text-xs font-semibold tracking-wide uppercase px-3 py-2 rounded-full z-[3] flex items-center justify-center leading-none">
                   Upcoming
                 </span>
               )}
