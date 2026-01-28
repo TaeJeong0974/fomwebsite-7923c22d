@@ -104,7 +104,7 @@ const PodcastDetail = () => {
 
           {/* Your Hosts - always shown */}
           <div className="glass rounded-xl p-6 sm:p-8 space-y-6">
-            <p className="text-label">Your Hosts</p>
+            <h3 className="text-label">Your Hosts</h3>
             <div className="space-y-5">
               {(episode.slug === 'intro-to-fom' ? podcastHosts : podcastHosts.slice(0, 2)).map((host, index) => (
                 <div key={index} className={index > 0 ? "pt-5 border-t border-border/20" : ""}>
