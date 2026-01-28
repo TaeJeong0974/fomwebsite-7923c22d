@@ -89,18 +89,12 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
                   to={`/episode/${prev.slug}`}
                   className="flex items-center gap-3 group flex-1 min-w-0"
                 >
-                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-muted group-hover:bg-foreground group-hover:text-background hover-transition shrink-0">
-                    <ChevronLeft size={16} />
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-muted group-hover:bg-foreground group-hover:text-background hover-transition shrink-0">
+                    <ChevronLeft size={18} />
                   </div>
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div 
-                      className="w-16 aspect-[3/2] bg-cover bg-center shrink-0 group-hover:scale-105 hover-transition"
-                      style={{ backgroundImage: `url(${guestBg})` }}
-                    />
-                    <div className="min-w-0 hidden sm:block">
-                      <p className="text-sm font-semibold text-foreground truncate">{prev.name}</p>
-                      <p className="text-xs text-muted-foreground truncate">{prev.title}</p>
-                    </div>
+                  <div className="min-w-0">
+                    <p className="text-base font-semibold text-foreground truncate group-hover:text-primary hover-transition">{prev.name}</p>
+                    <p className="text-sm text-muted-foreground truncate">{prev.title}</p>
                   </div>
                 </Link>
               ) : (
@@ -122,18 +116,12 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
                   to={`/episode/${next.slug}`}
                   className="flex items-center gap-3 group flex-1 min-w-0 justify-end"
                 >
-                  <div className="flex items-center gap-3 min-w-0">
-                    <div className="min-w-0 hidden sm:block text-right">
-                      <p className="text-sm font-semibold text-foreground truncate">{next.name}</p>
-                      <p className="text-xs text-muted-foreground truncate">{next.title}</p>
-                    </div>
-                    <div 
-                      className="w-16 aspect-[3/2] bg-cover bg-center shrink-0 group-hover:scale-105 hover-transition"
-                      style={{ backgroundImage: `url(${guestBg})` }}
-                    />
+                  <div className="min-w-0 text-right">
+                    <p className="text-base font-semibold text-foreground truncate group-hover:text-primary hover-transition">{next.name}</p>
+                    <p className="text-sm text-muted-foreground truncate">{next.title}</p>
                   </div>
-                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-muted group-hover:bg-foreground group-hover:text-background hover-transition shrink-0">
-                    <ChevronRight size={16} />
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-muted group-hover:bg-foreground group-hover:text-background hover-transition shrink-0">
+                    <ChevronRight size={18} />
                   </div>
                 </Link>
               ) : (
