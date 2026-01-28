@@ -1,11 +1,10 @@
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
+import { liquidEase } from "./PageLoadAnimation";
 
 interface PageTransitionProps {
   children: ReactNode;
 }
-
-const liquidEase = [0.22, 1, 0.36, 1] as const;
 
 const pageVariants = {
   initial: {
