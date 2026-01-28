@@ -62,7 +62,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
         <div className="mx-4 sm:mx-6 lg:mx-8 pb-8">
           <div className="container mx-auto">
             {/* Close Button - Outside Panel */}
-            <div className="flex items-center justify-end pt-2 pb-4">
+            <div className="flex items-center justify-end pb-4">
               <button
                 onClick={handleClose}
                 className="flex items-center justify-center w-12 h-12 rounded-full bg-foreground text-background hover:bg-foreground/90 hover-transition"
