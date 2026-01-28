@@ -16,7 +16,7 @@ const EpisodePullQuote = ({ quote, attribution, metaLabel, delay = 0.1 }: Episod
       transition={{ duration: 0.5, delay }}
       className="space-y-4"
     >
-      <p className="font-display text-3xl md:text-4xl lg:text-5xl font-medium text-foreground/90 leading-relaxed">
+      <p className="font-display text-2xl md:text-3xl lg:text-4xl font-medium text-foreground/90 leading-relaxed">
         "{quote}"
       </p>
       <footer className="flex items-center justify-between">
