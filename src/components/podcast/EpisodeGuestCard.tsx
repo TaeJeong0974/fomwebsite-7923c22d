@@ -9,7 +9,7 @@ interface EpisodeGuestCardProps {
 
 const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming = false }: EpisodeGuestCardProps) => {
   return (
-    <div className="glass rounded-xl p-6 space-y-6">
+    <div className="glass rounded-xl p-5 sm:p-6 space-y-4 sm:space-y-6">
       {/* Header */}
       <p className="text-label">
         {isUpcoming ? "Upcoming Guest" : "Featured Guest"}
@@ -17,7 +17,7 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
       
       {/* Guest Info */}
       <div className="space-y-4">
-        <h2 className="font-display text-4xl sm:text-5xl font-semibold text-foreground leading-[0.95]">
+        <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-foreground leading-[0.95]">
           {name.split(' ').map((word, i) => (
             <span key={i} className="block">{word}</span>
           ))}
