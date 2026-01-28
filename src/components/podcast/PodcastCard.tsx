@@ -80,13 +80,13 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
         )}
         
         {isNew && (
-          <span className="absolute top-4 right-4 bg-foreground text-background text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full z-[3]">
+          <span className="absolute top-4 right-4 glass text-foreground text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full z-[3]">
             New
           </span>
         )}
         
         {isUpcoming && (
-          <span className="absolute top-4 right-4 bg-foreground text-background text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full z-[3]">
+          <span className="absolute top-4 right-4 glass text-foreground text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full z-[3]">
             Upcoming
           </span>
         )}
