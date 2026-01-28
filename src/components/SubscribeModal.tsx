@@ -94,7 +94,7 @@ const SubscribeModal = ({ open, onOpenChange }: SubscribeModalProps) => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-display-sm text-white mb-2">You're In!</h3>
+              <h3 className="text-display-md text-white mb-2">You're In!</h3>
               <p className="text-body text-white/60">
                 We'll notify you when new episodes are available.
               </p>
