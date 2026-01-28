@@ -137,7 +137,7 @@ const PodcastDetail = () => {
                 className="block group"
               >
                 <div 
-                  className="card-image hover-scale"
+                  className="relative aspect-video rounded-2xl overflow-hidden hover-scale"
                   style={{
                     backgroundImage: `url(${guestBg})`,
                     backgroundSize: 'cover',
