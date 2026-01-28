@@ -20,12 +20,12 @@ const GenericComingSoon = () => {
             className="max-w-2xl mx-auto text-center"
           >
             <div className="w-20 h-20 rounded-full glass-dark mb-6 flex items-center justify-center mx-auto">
-              <Bell className="w-8 h-8 text-primary" />
+              <Bell className="w-8 h-8 text-foreground" />
             </div>
             <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
               New Episode<br />Coming Soon
             </h1>
-            <p className="text-muted-foreground text-lg max-w-md mx-auto mb-8">
+            <p className="text-foreground text-lg max-w-md mx-auto mb-8">
               We're preparing something special. Subscribe to get notified when this episode drops.
             </p>
             <button 

@@ -54,7 +54,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
             <h2 className="font-display text-xl font-semibold text-foreground mb-4">
               About This Episode
             </h2>
-            <div className="text-muted-foreground whitespace-pre-line leading-relaxed">
+            <div className="text-foreground whitespace-pre-line leading-relaxed">
               {episode.bio || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
             </div>
           </motion.div>

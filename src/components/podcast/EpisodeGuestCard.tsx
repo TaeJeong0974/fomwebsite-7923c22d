@@ -22,15 +22,15 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
             <span key={i} className="block">{word}</span>
           ))}
         </h2>
-        <p className="text-sm text-muted-foreground">
-          {title}, <span className="font-medium text-primary">{company}</span>
+        <p className="text-sm text-foreground">
+          {title}, <span className="font-medium text-foreground">{company}</span>
         </p>
         {linkedInUrl && (
           <a
             href={linkedInUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm text-muted-foreground hover:text-primary hover-transition inline-block"
+            className="text-sm text-foreground hover:text-foreground/70 hover-transition inline-block"
           >
             LinkedIn →
           </a>
@@ -39,7 +39,7 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
       
       {/* Bio */}
       {bio && (
-        <p className="text-sm text-muted-foreground leading-relaxed pt-6 border-t border-border/50">
+        <p className="text-sm text-foreground leading-relaxed pt-6 border-t border-border/50">
           {bio}
         </p>
       )}

@@ -21,7 +21,7 @@ const CTASection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.15, ease: liquidEase }}
-            className="mt-6 text-lg text-muted-foreground max-w-xl mx-auto"
+            className="mt-6 text-lg text-foreground max-w-xl mx-auto"
           >
             Get notified when new episodes drop and stay in the loop.
           </motion.p>
