@@ -9,8 +9,8 @@ const EpisodeTopics = ({ topics, title = "Topics Covered" }: EpisodeTopicsProps)
   const formatNumber = (index: number) => String(index + 1).padStart(2, '0');
 
   return (
-    <div className="pt-6">
-      <h2 className="text-label mb-8">
+    <div>
+      <h2 className="text-label mb-6">
         {title}
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-1">
