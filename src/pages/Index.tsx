@@ -3,7 +3,6 @@ import HeroSection from "@/components/HeroSection";
 import PodcastSection from "@/components/PodcastSection";
 import EventsSection from "@/components/EventsSection";
 import CTASection from "@/components/CTASection";
-import Footer from "@/components/Footer";
 
 const Index = () => {
   return (
@@ -16,8 +15,6 @@ const Index = () => {
         <EventsSection />
         <CTASection />
       </main>
-      
-      <Footer />
     </div>
   );
 };
