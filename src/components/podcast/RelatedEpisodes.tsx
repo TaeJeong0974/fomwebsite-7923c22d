@@ -45,7 +45,7 @@ const RelatedEpisodes = ({ episodes, title = "Other Speakers", delay = 0.4 }: Re
               <div className="card-overlay-light hover-transition group-hover:opacity-90" />
               
               {ep.companyDomain && (
-                <div className="absolute top-4 left-4 glass rounded-xl p-2.5 hover-scale-badge z-[3]">
+                <div className="absolute top-4 left-4 glass rounded-full p-2.5 hover-scale-badge z-[3]">
                   <img 
                     src={`https://www.google.com/s2/favicons?domain=${ep.companyDomain}&sz=64`} 
                     alt={ep.company}
