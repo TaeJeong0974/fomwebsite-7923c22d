@@ -30,7 +30,7 @@ const GenericComingSoon = () => {
             </p>
             <button 
               onClick={openSubscribe}
-              className="inline-flex items-center gap-2.5 bg-primary text-primary-foreground px-6 py-3 rounded-xl font-medium hover:bg-primary/90 hover-transition hover-lift"
+              className="btn-base btn-glass btn-lg inline-flex items-center gap-2.5"
             >
               <Bell className="w-5 h-5" />
               Notify Me

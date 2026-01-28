@@ -72,7 +72,7 @@ const ComingSoonHeroCard = ({ guestFirstName }: ComingSoonHeroCardProps) => {
             <h3 className="font-display text-2xl md:text-3xl font-semibold text-white mb-4 max-w-md">
               Be the first to know when this episode drops.
             </h3>
-            <span className="btn-base btn-lg bg-primary hover:bg-primary/90 text-primary-foreground self-start inline-flex items-center gap-2">
+            <span className="btn-base btn-glass-light btn-lg self-start inline-flex items-center gap-2">
               <Bell size={18} />
               Get Notified
             </span>
@@ -104,7 +104,7 @@ const ComingSoonHeroCard = ({ guestFirstName }: ComingSoonHeroCardProps) => {
               <div className="flex items-center gap-4">
                 <button
                   type="submit"
-                  className="btn-base btn-lg bg-primary hover:bg-primary/90 text-primary-foreground"
+                  className="btn-base btn-glass-light btn-lg"
                 >
                   Notify Me
                 </button>
