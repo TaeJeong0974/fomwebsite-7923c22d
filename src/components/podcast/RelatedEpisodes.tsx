@@ -61,7 +61,7 @@ const RelatedEpisodes = ({ episodes, title = "Other Speakers", delay = 0.4 }: Re
               )}
               
               <div className="card-content-bottom card-padding-lg z-[3]">
-                <h3 className="font-display text-2xl sm:text-3xl text-white tracking-tight">
+                <h3 className="font-display text-2xl sm:text-3xl text-white tracking-normal">
                   {ep.name.split(' ').map((word, i) => (
                     <span key={i} className={`block ${i === 0 ? 'font-medium' : 'font-normal'}`}>{word}</span>
                   ))}
