@@ -64,77 +64,8 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
       
       <Navbar />
 
-      {/* Episode Navigation Bar - Full Width */}
-      <div className="relative z-10 pt-24 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="flex items-center justify-between gap-4 mb-6"
-          >
-            {/* Previous Episode */}
-            {prev ? (
-              <Link
-                to={`/episode/${prev.slug}`}
-                className="flex items-center gap-3 group flex-1 min-w-0"
-              >
-                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-muted group-hover:bg-foreground group-hover:text-background hover-transition shrink-0">
-                  <ChevronLeft size={16} />
-                </div>
-                <div className="flex items-center gap-3 min-w-0">
-                  <div 
-                    className="w-10 h-10 rounded-lg bg-cover bg-center shrink-0 group-hover:scale-105 hover-transition"
-                    style={{ backgroundImage: `url(${guestBg})` }}
-                  />
-                  <div className="min-w-0 hidden sm:block">
-                    <p className="text-sm font-semibold text-foreground truncate">{prev.name}</p>
-                    <p className="text-xs text-muted-foreground truncate">{prev.title}</p>
-                  </div>
-                </div>
-              </Link>
-            ) : (
-              <div className="flex-1" />
-            )}
-
-            {/* Close Button */}
-            <button
-              onClick={handleClose}
-              className="flex items-center justify-center w-10 h-10 rounded-full bg-foreground text-background hover:bg-foreground/90 hover-transition shrink-0"
-              aria-label="Close and return to episodes"
-            >
-              <X size={18} />
-            </button>
-
-            {/* Next Episode */}
-            {next ? (
-              <Link
-                to={`/episode/${next.slug}`}
-                className="flex items-center gap-3 group flex-1 min-w-0 justify-end"
-              >
-                <div className="flex items-center gap-3 min-w-0">
-                  <div className="min-w-0 hidden sm:block text-right">
-                    <p className="text-sm font-semibold text-foreground truncate">{next.name}</p>
-                    <p className="text-xs text-muted-foreground truncate">{next.title}</p>
-                  </div>
-                  <div 
-                    className="w-10 h-10 rounded-lg bg-cover bg-center shrink-0 group-hover:scale-105 hover-transition"
-                    style={{ backgroundImage: `url(${guestBg})` }}
-                  />
-                </div>
-                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-muted group-hover:bg-foreground group-hover:text-background hover-transition shrink-0">
-                  <ChevronRight size={16} />
-                </div>
-              </Link>
-            ) : (
-              <div className="flex-1" />
-            )}
-          </motion.div>
-        </div>
-      </div>
-
       {/* Floating Panel Container */}
-      <main className="relative z-10">
+      <main className="relative z-10 pt-24">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -144,8 +75,76 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
           }}
           className="mx-4 sm:mx-6 lg:mx-8 pb-8"
         >
-          <div className="container mx-auto bg-background rounded-3xl shadow-2xl shadow-black/5 overflow-hidden px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
-            {children}
+          <div className="container mx-auto bg-background rounded-3xl shadow-2xl shadow-black/5 overflow-hidden">
+            {/* Episode Navigation Bar - Inside Container */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="flex items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 py-4 border-b border-border/50"
+            >
+              {/* Previous Episode */}
+              {prev ? (
+                <Link
+                  to={`/episode/${prev.slug}`}
+                  className="flex items-center gap-3 group flex-1 min-w-0"
+                >
+                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-muted group-hover:bg-foreground group-hover:text-background hover-transition shrink-0">
+                    <ChevronLeft size={16} />
+                  </div>
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div 
+                      className="w-10 h-10 rounded-lg bg-cover bg-center shrink-0 group-hover:scale-105 hover-transition"
+                      style={{ backgroundImage: `url(${guestBg})` }}
+                    />
+                    <div className="min-w-0 hidden sm:block">
+                      <p className="text-sm font-semibold text-foreground truncate">{prev.name}</p>
+                      <p className="text-xs text-muted-foreground truncate">{prev.title}</p>
+                    </div>
+                  </div>
+                </Link>
+              ) : (
+                <div className="flex-1" />
+              )}
+
+              {/* Close Button */}
+              <button
+                onClick={handleClose}
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-foreground text-background hover:bg-foreground/90 hover-transition shrink-0"
+                aria-label="Close and return to episodes"
+              >
+                <X size={18} />
+              </button>
+
+              {/* Next Episode */}
+              {next ? (
+                <Link
+                  to={`/episode/${next.slug}`}
+                  className="flex items-center gap-3 group flex-1 min-w-0 justify-end"
+                >
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="min-w-0 hidden sm:block text-right">
+                      <p className="text-sm font-semibold text-foreground truncate">{next.name}</p>
+                      <p className="text-xs text-muted-foreground truncate">{next.title}</p>
+                    </div>
+                    <div 
+                      className="w-10 h-10 rounded-lg bg-cover bg-center shrink-0 group-hover:scale-105 hover-transition"
+                      style={{ backgroundImage: `url(${guestBg})` }}
+                    />
+                  </div>
+                  <div className="flex items-center justify-center w-8 h-8 rounded-full bg-muted group-hover:bg-foreground group-hover:text-background hover-transition shrink-0">
+                    <ChevronRight size={16} />
+                  </div>
+                </Link>
+              ) : (
+                <div className="flex-1" />
+              )}
+            </motion.div>
+
+            {/* Main Content */}
+            <div className="px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+              {children}
+            </div>
           </div>
         </motion.div>
       </main>
