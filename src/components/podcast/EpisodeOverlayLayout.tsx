@@ -70,10 +70,8 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
           }}
           className="container mx-auto container-padding py-8"
         >
-          <div className="bg-background rounded-3xl shadow-2xl shadow-black/5 overflow-hidden">
-            <div className="p-6 sm:p-8 lg:p-12">
-              {children}
-            </div>
+          <div className="bg-background rounded-3xl shadow-2xl shadow-black/5 overflow-hidden p-6 sm:p-8">
+            {children}
           </div>
         </motion.div>
       </main>
