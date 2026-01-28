@@ -16,8 +16,8 @@ const EpisodeVideoPlayer = () => {
       
       {/* Play Button */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full glass flex items-center justify-center group-hover:scale-110 hover-transition">
-          <Play className="w-8 h-8 sm:w-10 sm:h-10 text-white fill-white ml-1" />
+        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full glass flex items-center justify-center group-hover:scale-110 hover-transition">
+          <Play className="w-6 h-6 sm:w-8 sm:h-8 text-white fill-white ml-1" />
         </div>
       </div>
     </div>
