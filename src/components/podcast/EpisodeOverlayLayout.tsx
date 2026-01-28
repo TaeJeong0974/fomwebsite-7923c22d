@@ -1,10 +1,11 @@
 import { useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
-import { X } from "lucide-react";
+import { useNavigate, useParams, Link } from "react-router-dom";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import guestBg from "@/assets/guest-bg.png";
+import { getAdjacentEpisodes } from "@/lib/podcastData";
 
 interface EpisodeOverlayLayoutProps {
   children: React.ReactNode;
@@ -12,6 +13,8 @@ interface EpisodeOverlayLayoutProps {
 
 const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
   const navigate = useNavigate();
+  const { slug } = useParams();
+  const { prev, next } = getAdjacentEpisodes(slug || "");
 
   const handleClose = useCallback(() => {
     navigate('/#podcast');
@@ -24,17 +27,21 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
     }, 100);
   }, [navigate]);
 
-  // Keyboard support - Escape to close
+  // Keyboard support - Escape to close, arrow keys to navigate
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         handleClose();
+      } else if (event.key === 'ArrowLeft' && prev) {
+        navigate(`/episode/${prev.slug}`);
+      } else if (event.key === 'ArrowRight' && next) {
+        navigate(`/episode/${next.slug}`);
       }
     };
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, [handleClose]);
+  }, [handleClose, navigate, prev, next]);
 
   return (
     <div className="min-h-screen bg-muted/40 relative">
@@ -57,24 +64,55 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
       
       <Navbar />
 
-      {/* Close Button - Fixed position */}
+      {/* Top Navigation Bar */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.3, delay: 0.2 }}
-        className="fixed top-24 right-6 lg:right-10 z-50"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className="fixed top-20 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8"
       >
-        <button
-          onClick={handleClose}
-          className="flex items-center justify-center w-12 h-12 rounded-full bg-foreground text-background hover:bg-foreground/90 hover-transition shadow-lg"
-          aria-label="Close and return to episodes"
-        >
-          <X size={20} />
-        </button>
+        <div className="container mx-auto">
+          <div className="flex items-center justify-between bg-background/80 backdrop-blur-xl rounded-full px-2 py-2 shadow-lg border border-border/50 max-w-md mx-auto">
+            {/* Previous Episode */}
+            {prev ? (
+              <Link
+                to={`/episode/${prev.slug}`}
+                className="flex items-center gap-1.5 px-3 py-2 rounded-full hover:bg-muted hover-transition text-sm font-medium text-muted-foreground hover:text-foreground"
+              >
+                <ChevronLeft size={16} />
+                <span className="hidden sm:inline">Previous</span>
+              </Link>
+            ) : (
+              <div className="w-24" />
+            )}
+
+            {/* Close Button */}
+            <button
+              onClick={handleClose}
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-foreground text-background hover:bg-foreground/90 hover-transition"
+              aria-label="Close and return to episodes"
+            >
+              <X size={18} />
+            </button>
+
+            {/* Next Episode */}
+            {next ? (
+              <Link
+                to={`/episode/${next.slug}`}
+                className="flex items-center gap-1.5 px-3 py-2 rounded-full hover:bg-muted hover-transition text-sm font-medium text-muted-foreground hover:text-foreground"
+              >
+                <span className="hidden sm:inline">Next</span>
+                <ChevronRight size={16} />
+              </Link>
+            ) : (
+              <div className="w-24" />
+            )}
+          </div>
+        </div>
       </motion.div>
 
       {/* Floating Panel Container */}
-      <main className="relative z-10">
+      <main className="relative z-10 pt-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
