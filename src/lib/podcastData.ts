@@ -205,3 +205,16 @@ export const getPublishedEpisodes = (): PodcastEpisode[] => {
 export const getComingSoonEpisodes = (): PodcastEpisode[] => {
   return podcastEpisodes.filter((ep) => ep.comingSoon);
 };
+
+export const getAdjacentEpisodes = (currentSlug: string): { prev: PodcastEpisode | null; next: PodcastEpisode | null } => {
+  const currentIndex = podcastEpisodes.findIndex((ep) => ep.slug === currentSlug);
+  
+  if (currentIndex === -1) {
+    return { prev: null, next: null };
+  }
+  
+  const prev = currentIndex > 0 ? podcastEpisodes[currentIndex - 1] : null;
+  const next = currentIndex < podcastEpisodes.length - 1 ? podcastEpisodes[currentIndex + 1] : null;
+  
+  return { prev, next };
+};
