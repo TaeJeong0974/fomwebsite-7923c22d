@@ -9,7 +9,7 @@ const EpisodeTopics = ({ topics, title = "Topics Covered" }: EpisodeTopicsProps)
   const formatNumber = (index: number) => String(index + 1).padStart(2, '0');
 
   return (
-    <div className="max-w-prose">
+    <div>
       <h3 className="text-section-header mb-4">
         {title}
       </h3>
