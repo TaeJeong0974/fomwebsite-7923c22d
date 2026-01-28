@@ -113,7 +113,7 @@ const SubscribeCard = () => {
               </svg>
             </div>
             <h3 className="text-display-md text-foreground mb-2">You're In!</h3>
-            <p className="text-body text-foreground/60">
+            <p className="text-body text-foreground">
               We'll notify you when new episodes drop.
             </p>
           </motion.div>

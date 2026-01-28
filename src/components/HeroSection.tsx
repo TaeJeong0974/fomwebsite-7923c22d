@@ -89,7 +89,7 @@ const HeroSection = () => {
                               <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">{firstName}</span>
                               <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">{lastName}</span>
                             </h3>
-                            <p className="text-body-sm text-white/70 mt-1">{host.title}</p>
+                            <p className="text-body-sm text-white mt-1">{host.title}</p>
                           </div>
                           <motion.div
                             animate={{ rotate: isExpanded ? 180 : 0 }}
@@ -113,7 +113,7 @@ const HeroSection = () => {
                               transition={{ duration: 0.3 }}
                               className="overflow-hidden"
                             >
-                              <p className="text-body-sm leading-relaxed text-white/60 mt-4">
+                              <p className="text-body-sm leading-relaxed text-white mt-4">
                                 {host.bio}
                               </p>
                             </motion.div>

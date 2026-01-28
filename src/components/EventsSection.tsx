@@ -39,20 +39,20 @@ const EventsSection = () => {
             className="absolute inset-0 flex flex-col justify-end p-6 sm:p-10 lg:p-12"
           >
             <div className="max-w-2xl">
-              <span className="badge-interactive glass-dark text-white/80 mb-4">
+              <span className="badge-interactive glass-dark text-white mb-4">
                 Past Event
               </span>
               <h3 className="text-display-lg text-white mb-3">
                 Season 5 Launch Party
               </h3>
-              <div className="flex items-center gap-2 text-body-sm text-white/70 mb-4">
+              <div className="flex items-center gap-2 text-body-sm text-white mb-4">
                 <span>Dec 15, 2025</span>
                 <span className="w-1 h-1 rounded-full bg-white/40" />
                 <span>Los Angeles, CA</span>
                 <span className="w-1 h-1 rounded-full bg-white/40" />
                 <span>200+ attendees</span>
               </div>
-              <p className="text-body text-white/60 max-w-lg mb-6 hidden sm:block">
+              <p className="text-body text-white max-w-lg mb-6 hidden sm:block">
                 An evening of live performances, Q&A sessions, and exclusive content with our community.
               </p>
               <div className="flex items-center gap-4">
@@ -60,7 +60,7 @@ const EventsSection = () => {
                   <Play className="w-4 h-4 fill-current" />
                   Watch Recap
                 </button>
-                <button className="flex items-center gap-2 text-white/80 text-body-sm font-medium hover:text-white hover-transition group/btn">
+                <button className="flex items-center gap-2 text-white text-body-sm font-medium hover:text-white/80 hover-transition group/btn">
                   View Photos
                   <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 hover-transition" />
                 </button>
