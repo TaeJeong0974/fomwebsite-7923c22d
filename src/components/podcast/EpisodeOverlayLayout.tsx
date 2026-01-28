@@ -13,14 +13,14 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
   const navigate = useNavigate();
 
   const handleClose = useCallback(() => {
-    navigate('/#podcast');
+    navigate('/');
     // Smooth scroll to podcast section after navigation
     setTimeout(() => {
       const podcastSection = document.getElementById('podcast');
       if (podcastSection) {
         podcastSection.scrollIntoView({ behavior: 'smooth' });
       }
-    }, 100);
+    }, 150);
   }, [navigate]);
 
   // Keyboard support - Escape to close
