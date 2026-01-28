@@ -100,6 +100,16 @@ const PodcastDetail = () => {
                     <p className="text-sm text-foreground mt-1">
                       {host.title}, <span className="font-medium">{host.company}</span>
                     </p>
+                    {host.linkedInUrl && (
+                      <a
+                        href={host.linkedInUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm text-foreground hover:text-foreground/70 hover-transition inline-block mt-1"
+                      >
+                        LinkedIn →
+                      </a>
+                    )}
                   </div>
                 ))}
               </div>
