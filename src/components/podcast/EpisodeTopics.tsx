@@ -10,7 +10,7 @@ const EpisodeTopics = ({ topics, title = "Topics Covered" }: EpisodeTopicsProps)
 
   return (
     <div>
-      <h2 className="font-display text-xs font-medium uppercase tracking-[0.2em] text-foreground mb-6">
+      <h2 className="font-display text-xs font-medium uppercase tracking-[0.2em] text-muted-foreground mb-6">
         {title}
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4">
