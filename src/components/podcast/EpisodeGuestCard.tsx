@@ -15,20 +15,20 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="glass rounded-xl p-5 sm:p-6 space-y-4">
+    <div className="glass rounded-xl p-6 sm:p-8 space-y-6">
       {/* Header */}
       <p className="text-label">
         {isUpcoming ? "Upcoming Guest" : "Featured Guest"}
       </p>
       
       {/* Guest Info */}
-      <div className="space-y-3">
-        <h2 className="font-display text-2xl sm:text-3xl text-foreground leading-[0.95] tracking-normal">
+      <div className="space-y-4">
+        <h2 className="font-display text-3xl sm:text-4xl text-foreground leading-[0.95] tracking-normal">
           {name.split(' ').map((word, i) => (
             <span key={i} className={`block ${i === 0 ? 'font-medium' : 'font-normal'}`}>{word}</span>
           ))}
         </h2>
-        <p className="text-sm text-muted-foreground">
+        <p className="text-muted-foreground">
           {title}, <span className="font-medium text-foreground">{company}</span>
         </p>
         {linkedInUrl && (
@@ -36,7 +36,7 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
             href={linkedInUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-medium text-muted-foreground hover:text-foreground hover-transition inline-block"
+            className="text-sm text-muted-foreground hover:text-foreground hover-transition inline-block"
           >
             LinkedIn →
           </a>

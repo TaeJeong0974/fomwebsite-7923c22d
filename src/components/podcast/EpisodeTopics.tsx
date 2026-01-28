@@ -10,16 +10,16 @@ const EpisodeTopics = ({ topics, title = "Topics Covered" }: EpisodeTopicsProps)
 
   return (
     <div>
-      <h2 className="text-label mb-5">
+      <h2 className="text-label mb-6">
         {title}
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-0">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-1">
         {topics.map((topic, index) => (
-          <div key={index} className="flex items-start gap-3 py-3 border-b border-border/30 last:border-b-0">
-            <span className="font-display text-xs font-medium text-muted-foreground tabular-nums pt-0.5">
+          <div key={index} className="flex items-start gap-4 py-4">
+            <span className="font-display text-sm font-medium text-muted-foreground tabular-nums">
               {formatNumber(index)}
             </span>
-            <span className="text-sm text-foreground/80 leading-relaxed">{topic}</span>
+            <span className="text-foreground leading-relaxed">{topic}</span>
           </div>
         ))}
       </div>

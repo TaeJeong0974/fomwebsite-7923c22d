@@ -14,17 +14,17 @@ const EpisodePullQuote = ({ quote, attribution, metaLabel, delay = 0.1 }: Episod
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
-      className="space-y-3 py-6 border-y border-border/30"
+      className="space-y-6"
     >
-      <p className="font-display text-xl sm:text-2xl font-medium text-foreground leading-snug tracking-tight">
+      <p className="font-display text-2xl sm:text-3xl lg:text-4xl font-medium text-foreground leading-tight">
         "{quote}"
       </p>
-      <footer className="flex items-center justify-between pt-1">
-        <cite className="text-xs font-medium uppercase tracking-widest text-muted-foreground not-italic">
+      <footer className="flex items-center justify-between">
+        <cite className="text-label not-italic">
           — {attribution}
         </cite>
-        <span className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
-          <Clock size={12} />
+        <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+          <Clock size={14} />
           {metaLabel}
         </span>
       </footer>

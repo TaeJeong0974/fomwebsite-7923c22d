@@ -35,8 +35,8 @@ const PodcastDetail = () => {
     <EpisodeOverlayLayout>
       {/* Episode Content */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
-        {/* Main Content */}
-        <div className="lg:col-span-2 space-y-5 sm:space-y-6 lg:space-y-8">
+      {/* Main Content */}
+        <div className="lg:col-span-2 space-y-8 sm:space-y-10 lg:space-y-12">
           {/* Video Player */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -66,10 +66,10 @@ const PodcastDetail = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h2 className="text-label mb-4">
+            <h2 className="text-label mb-5">
               About This Episode
             </h2>
-            <div className="text-sm text-foreground/80 whitespace-pre-line leading-relaxed">
+            <div className="text-foreground/80 whitespace-pre-line leading-relaxed text-lg">
               {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
             </div>
           </motion.div>
@@ -103,15 +103,15 @@ const PodcastDetail = () => {
           )}
 
           {/* Your Hosts - always shown */}
-          <div className="glass rounded-xl p-5 sm:p-6 space-y-4">
+          <div className="glass rounded-xl p-6 sm:p-8 space-y-6">
             <p className="text-label">Your Hosts</p>
-            <div className="space-y-3">
+            <div className="space-y-5">
               {(episode.slug === 'intro-to-fom' ? podcastHosts : podcastHosts.slice(0, 2)).map((host, index) => (
-                <div key={index} className={index > 0 ? "pt-3 border-t border-border/30" : ""}>
-                  <h3 className="font-display text-lg font-medium text-foreground tracking-normal">
+                <div key={index} className={index > 0 ? "pt-5 border-t border-border/20" : ""}>
+                  <h3 className="font-display text-xl sm:text-2xl font-medium text-foreground tracking-normal">
                     {host.name}
                   </h3>
-                  <p className="text-xs text-muted-foreground mt-0.5">
+                  <p className="text-sm text-muted-foreground mt-1">
                     {host.title}, <span className="font-medium text-foreground">{host.company}</span>
                   </p>
                   {host.linkedInUrl && (
@@ -119,7 +119,7 @@ const PodcastDetail = () => {
                       href={host.linkedInUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-xs font-medium text-muted-foreground hover:text-foreground hover-transition inline-block mt-1"
+                      className="text-sm text-muted-foreground hover:text-foreground hover-transition inline-block mt-2"
                     >
                       LinkedIn →
                     </a>
