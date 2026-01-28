@@ -59,17 +59,6 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
 
       {/* Floating Panel Container */}
       <main className="relative z-10 pt-24 pb-8 px-4 sm:px-6">
-        {/* Close Button - Outside Panel */}
-        <div className="container mx-auto flex items-center justify-end pb-4">
-          <button
-            onClick={handleClose}
-            className="flex items-center justify-center w-12 h-12 rounded-full bg-foreground text-background hover:bg-foreground/90 hover-transition"
-            aria-label="Close and return to episodes"
-          >
-            <X size={20} />
-          </button>
-        </div>
-
         {/* White Content Panel */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -80,6 +69,17 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
           }}
           className="container mx-auto bg-background rounded-3xl shadow-2xl shadow-black/5 overflow-hidden p-5 sm:p-6"
         >
+          {/* Close Button - Inside Panel */}
+          <div className="flex items-center justify-end pb-4">
+            <button
+              onClick={handleClose}
+              className="flex items-center justify-center w-12 h-12 rounded-full bg-foreground text-background hover:bg-foreground/90 hover-transition"
+              aria-label="Close and return to episodes"
+            >
+              <X size={20} />
+            </button>
+          </div>
+          
           {children}
         </motion.div>
       </main>
