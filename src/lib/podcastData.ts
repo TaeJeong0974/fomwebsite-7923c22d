@@ -33,6 +33,31 @@ export interface PodcastEpisode {
   hosts?: PodcastHost[];
 }
 
+// Shared hosts data
+export const podcastHosts: PodcastHost[] = [
+  {
+    name: "Mada Seghete",
+    title: "CEO & Co-Founder",
+    company: "Upside",
+    linkedInUrl: "https://linkedin.com/in/madaseghete",
+    bio: "CEO and co-founder of Upside, a next-gen revenue intelligence platform for B2B leaders. Previously co-founded and was CMO of Branch, helping scale to $100M+ revenue.",
+  },
+  {
+    name: "Ethan Smith",
+    title: "Founder & CEO",
+    company: "Graphite",
+    linkedInUrl: "https://linkedin.com/in/ethansmith",
+    bio: "Founder and CEO of Graphite, a premium Vertical AI Growth Agency that helps companies like Webflow, Notion, and MasterClass drive sustainable revenue growth.",
+  },
+  {
+    name: "Camille Ricketts",
+    title: "Partner",
+    company: "XYZ Venture Capital",
+    linkedInUrl: "https://linkedin.com/in/camillericketts",
+    bio: "Partner at XYZ Venture Capital, where she leads investments in product-led growth and go-to-market software startups. Previously the first marketing leader at Notion.",
+  },
+];
+
 export const podcastEpisodes: PodcastEpisode[] = [
   {
     id: 1,
@@ -63,29 +88,6 @@ We explore the big questions facing modern B2B marketers and preview the incredi
     duration: "25 min",
     publishedDate: "Jan 1, 2026",
     comingSoon: false,
-    hosts: [
-      {
-        name: "Mada Seghete",
-        title: "CEO & Co-Founder",
-        company: "Upside",
-        linkedInUrl: "https://linkedin.com/in/madaseghete",
-        bio: "CEO and co-founder of Upside, a next-gen revenue intelligence platform for B2B leaders. Previously co-founded and was CMO of Branch, helping scale to $100M+ revenue.",
-      },
-      {
-        name: "Ethan Smith",
-        title: "Founder & CEO",
-        company: "Graphite",
-        linkedInUrl: "https://linkedin.com/in/ethansmith",
-        bio: "Founder and CEO of Graphite, a premium Vertical AI Growth Agency that helps companies like Webflow, Notion, and MasterClass drive sustainable revenue growth.",
-      },
-      {
-        name: "Camille Ricketts",
-        title: "Partner",
-        company: "XYZ Venture Capital",
-        linkedInUrl: "https://linkedin.com/in/camillericketts",
-        bio: "Partner at XYZ Venture Capital, where she leads investments in product-led growth and go-to-market software startups. Previously the first marketing leader at Notion.",
-      },
-    ],
   },
   {
     id: 2,
