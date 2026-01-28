@@ -87,14 +87,14 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
               {prev ? (
                 <Link
                   to={`/episode/${prev.slug}`}
-                  className="flex items-center gap-3 group flex-1 min-w-0"
+                  className="flex items-center gap-4 group flex-1 min-w-0"
                 >
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-muted group-hover:bg-foreground group-hover:text-background hover-transition shrink-0">
-                    <ChevronLeft size={18} />
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-muted group-hover:bg-foreground group-hover:text-background hover-transition shrink-0">
+                    <ChevronLeft size={22} />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-base font-semibold text-foreground truncate group-hover:text-primary hover-transition">{prev.name}</p>
-                    <p className="text-sm text-muted-foreground truncate">{prev.title}</p>
+                    <p className="text-xl font-semibold text-foreground truncate group-hover:text-primary hover-transition">{prev.name}</p>
+                    <p className="text-base text-muted-foreground truncate">{prev.title}</p>
                   </div>
                 </Link>
               ) : (
@@ -114,14 +114,14 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
               {next ? (
                 <Link
                   to={`/episode/${next.slug}`}
-                  className="flex items-center gap-3 group flex-1 min-w-0 justify-end"
+                  className="flex items-center gap-4 group flex-1 min-w-0 justify-end"
                 >
                   <div className="min-w-0 text-right">
-                    <p className="text-base font-semibold text-foreground truncate group-hover:text-primary hover-transition">{next.name}</p>
-                    <p className="text-sm text-muted-foreground truncate">{next.title}</p>
+                    <p className="text-xl font-semibold text-foreground truncate group-hover:text-primary hover-transition">{next.name}</p>
+                    <p className="text-base text-muted-foreground truncate">{next.title}</p>
                   </div>
-                  <div className="flex items-center justify-center w-10 h-10 rounded-full bg-muted group-hover:bg-foreground group-hover:text-background hover-transition shrink-0">
-                    <ChevronRight size={18} />
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-muted group-hover:bg-foreground group-hover:text-background hover-transition shrink-0">
+                    <ChevronRight size={22} />
                   </div>
                 </Link>
               ) : (
