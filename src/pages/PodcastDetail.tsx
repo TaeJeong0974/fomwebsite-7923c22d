@@ -81,6 +81,12 @@ const PodcastDetail = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
+          {/* Action Buttons */}
+          <EpisodeActionButtons 
+            youtubeUrl={episode.youtubeUrl}
+            spotifyUrl={episode.spotifyUrl}
+          />
+
           {episode.hosts && episode.hosts.length > 0 ? (
             // Multiple hosts (e.g., intro episode)
             episode.hosts.map((host, index) => (
@@ -104,14 +110,6 @@ const PodcastDetail = () => {
               bio={episode.bio}
             />
           )}
-
-          {/* Action Buttons - Sticky */}
-          <div className="lg:sticky lg:top-8">
-            <EpisodeActionButtons 
-              youtubeUrl={episode.youtubeUrl}
-              spotifyUrl={episode.spotifyUrl}
-            />
-          </div>
         </motion.div>
       </div>
 
