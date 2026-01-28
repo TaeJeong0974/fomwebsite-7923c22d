@@ -13,13 +13,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
   const navigate = useNavigate();
 
   const handleClose = () => {
-    // Go back in history to preserve scroll position
-    // If no history (direct link), go to homepage
-    if (window.history.length > 1) {
-      navigate(-1);
-    } else {
-      navigate('/#podcast');
-    }
+    navigate('/#podcast');
   };
 
   return (
