@@ -13,7 +13,7 @@ const EpisodeTopics = ({ topics, title = "Topics Covered" }: EpisodeTopicsProps)
       <h3 className="text-section-header mb-4">
         {title}
       </h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-1">
+      <div className="space-y-1 max-w-prose">
         {topics.map((topic, index) => (
           <div key={index} className="flex items-start gap-4 py-4">
             <span className="font-display text-sm font-medium text-muted-foreground tabular-nums">
