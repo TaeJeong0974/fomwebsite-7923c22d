@@ -36,9 +36,9 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
     tap: { scale: 0.95 },
   };
 
-  const iconButtonClass = "w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center hover:bg-white/20 hover-transition shadow-lg shadow-black/10";
+  const iconButtonClass = "w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-muted hover:bg-muted/70 border border-border flex items-center justify-center hover-transition shadow-sm";
   
-  const fullButtonClass = "flex items-center justify-center gap-2.5 bg-white/10 backdrop-blur-xl border border-white/20 hover:bg-white/20 text-white px-5 py-3 rounded-xl text-sm font-medium hover-transition";
+  const fullButtonClass = "flex items-center justify-center gap-2.5 bg-muted hover:bg-muted/70 border border-border text-foreground px-5 py-3 rounded-xl text-sm font-medium hover-transition";
 
   const YouTubeIcon = () => (
     <svg className="w-5 h-5 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor">
@@ -57,7 +57,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
       <div className="space-y-6">
         {/* Option 1: Horizontal Row */}
         <div className="space-y-2">
-          <p className="text-xs text-white/60 uppercase tracking-wider font-medium">Option 1: Horizontal Row</p>
+          <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Option 1: Horizontal Row</p>
           <div className="flex items-center gap-2">
             <motion.a
               href={youtubeUrl}
@@ -101,7 +101,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
 
         {/* Option 2: Stacked Buttons */}
         <div className="space-y-2">
-          <p className="text-xs text-white/60 uppercase tracking-wider font-medium">Option 2: Stacked Buttons</p>
+          <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Option 2: Stacked Buttons</p>
           <div className="flex flex-col gap-2">
             <motion.a
               href={youtubeUrl}
@@ -145,7 +145,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
 
         {/* Option 3: Compact Icons */}
         <div className="space-y-2">
-          <p className="text-xs text-white/60 uppercase tracking-wider font-medium">Option 3: Compact Icons</p>
+          <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Option 3: Compact Icons</p>
           <div className="flex items-center justify-start gap-3">
             <Tooltip>
               <TooltipTrigger asChild>
@@ -197,7 +197,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
                   whileHover="hover"
                   whileTap="tap"
                 >
-                  <Share2 className="w-5 h-5 text-white" />
+                  <Share2 className="w-5 h-5 text-foreground" />
                 </motion.button>
               </TooltipTrigger>
               <TooltipContent side="bottom" className="bg-foreground text-background font-medium">
@@ -209,7 +209,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
 
         {/* Option 4: Split Layout */}
         <div className="space-y-2">
-          <p className="text-xs text-white/60 uppercase tracking-wider font-medium">Option 4: Split Layout</p>
+          <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">Option 4: Split Layout</p>
           <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-2">
               <motion.a
@@ -247,7 +247,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
               whileHover="hover"
               whileTap="tap"
             >
-              <Share2 className="w-5 h-5 text-white" />
+              <Share2 className="w-5 h-5 text-foreground" />
             </motion.button>
           </div>
         </div>
