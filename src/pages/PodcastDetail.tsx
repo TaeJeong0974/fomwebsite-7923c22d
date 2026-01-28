@@ -66,10 +66,10 @@ const PodcastDetail = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h2 className="font-display text-xl font-semibold text-foreground mb-4">
+            <h2 className="text-label mb-4">
               About This Episode
             </h2>
-            <div className="text-foreground whitespace-pre-line leading-relaxed">
+            <div className="text-sm text-foreground/80 whitespace-pre-line leading-relaxed">
               {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
             </div>
           </motion.div>
@@ -103,23 +103,23 @@ const PodcastDetail = () => {
           )}
 
           {/* Your Hosts - always shown */}
-          <div className="glass rounded-xl p-5 sm:p-6 space-y-4 sm:space-y-6">
+          <div className="glass rounded-xl p-5 sm:p-6 space-y-4">
             <p className="text-label">Your Hosts</p>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {(episode.slug === 'intro-to-fom' ? podcastHosts : podcastHosts.slice(0, 2)).map((host, index) => (
-                <div key={index} className={index > 0 ? "pt-4 border-t border-border/50" : ""}>
-                  <h3 className="font-display text-xl sm:text-2xl font-medium text-foreground tracking-normal">
+                <div key={index} className={index > 0 ? "pt-3 border-t border-border/30" : ""}>
+                  <h3 className="font-display text-lg font-medium text-foreground tracking-normal">
                     {host.name}
                   </h3>
-                  <p className="text-sm text-foreground mt-1">
-                    {host.title}, <span className="font-medium">{host.company}</span>
+                  <p className="text-xs text-muted-foreground mt-0.5">
+                    {host.title}, <span className="font-medium text-foreground">{host.company}</span>
                   </p>
                   {host.linkedInUrl && (
                     <a
                       href={host.linkedInUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-sm text-foreground hover:text-foreground/70 hover-transition inline-block mt-1"
+                      className="text-xs font-medium text-muted-foreground hover:text-foreground hover-transition inline-block mt-1"
                     >
                       LinkedIn →
                     </a>
