@@ -5,14 +5,21 @@ interface EpisodeGuestCardProps {
   linkedInUrl?: string;
   bio?: string;
   isUpcoming?: boolean;
+  isHost?: boolean;
 }
 
-const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming = false }: EpisodeGuestCardProps) => {
+const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming = false, isHost = false }: EpisodeGuestCardProps) => {
+  const getLabel = () => {
+    if (isHost) return "Your Host";
+    if (isUpcoming) return "Upcoming Guest";
+    return "Featured Guest";
+  };
+
   return (
     <div className="glass rounded-xl p-5 sm:p-6 space-y-4 sm:space-y-6">
       {/* Header */}
       <p className="text-label">
-        {isUpcoming ? "Upcoming Guest" : "Featured Guest"}
+        {getLabel()}
       </p>
       
       {/* Guest Info */}
