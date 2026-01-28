@@ -39,8 +39,15 @@ const PodcastDetail = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
+            className="space-y-4"
           >
             <EpisodeVideoPlayer />
+            
+            {/* Compact Action Buttons */}
+            <EpisodeActionButtons 
+              youtubeUrl={episode.youtubeUrl}
+              spotifyUrl={episode.spotifyUrl}
+            />
           </motion.div>
 
           {/* Pull Quote */}
@@ -91,12 +98,6 @@ const PodcastDetail = () => {
               bio={episode.bio}
             />
           )}
-
-          {/* Action Buttons */}
-          <EpisodeActionButtons 
-            youtubeUrl={episode.youtubeUrl}
-            spotifyUrl={episode.spotifyUrl}
-          />
 
           {/* Your Hosts - always shown */}
           <div className="glass rounded-xl p-5 sm:p-6 space-y-4 sm:space-y-6">
