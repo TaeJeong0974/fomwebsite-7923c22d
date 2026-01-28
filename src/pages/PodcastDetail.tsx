@@ -88,18 +88,22 @@ const PodcastDetail = () => {
           />
 
           {episode.hosts && episode.hosts.length > 0 ? (
-            // Multiple hosts (e.g., intro episode)
-            episode.hosts.map((host, index) => (
-              <EpisodeGuestCard
-                key={index}
-                name={host.name}
-                title={host.title}
-                company={host.company}
-                linkedInUrl={host.linkedInUrl}
-                bio={host.bio}
-                isHost={true}
-              />
-            ))
+            // Multiple hosts - consolidated card
+            <div className="glass rounded-xl p-5 sm:p-6 space-y-4 sm:space-y-6">
+              <p className="text-label">Your Hosts</p>
+              <div className="space-y-4">
+                {episode.hosts.map((host, index) => (
+                  <div key={index} className={index > 0 ? "pt-4 border-t border-border/50" : ""}>
+                    <h3 className="font-display text-xl sm:text-2xl font-semibold text-foreground">
+                      {host.name}
+                    </h3>
+                    <p className="text-sm text-foreground mt-1">
+                      {host.title}, <span className="font-medium">{host.company}</span>
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
           ) : (
             // Single guest
             <EpisodeGuestCard
