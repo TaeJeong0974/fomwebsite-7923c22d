@@ -32,9 +32,9 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
   return (
     <EpisodeOverlayLayout>
       {/* Episode Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 items-start">
         {/* Main Content */}
-        <div className="lg:col-span-2 space-y-12">
+        <div className="lg:col-span-2 space-y-8 sm:space-y-10 lg:space-y-12">
           {/* Hero Card with Get Notified CTA */}
           <ComingSoonHeroCard guestFirstName={guestFirstName} />
 

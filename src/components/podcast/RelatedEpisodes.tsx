@@ -17,12 +17,12 @@ const RelatedEpisodes = ({ episodes, title = "Other Great Speakers", delay = 0.4
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
-      className="mt-12 pt-12 border-t border-border"
+      className="mt-8 sm:mt-12 pt-8 sm:pt-12 border-t border-border"
     >
-      <h3 className="font-display text-2xl font-semibold text-foreground mb-8">
+      <h3 className="font-display text-xl sm:text-2xl font-semibold text-foreground mb-6 sm:mb-8">
         {title}
       </h3>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
         {episodes.map((ep) => (
           <Link
             key={ep.id}

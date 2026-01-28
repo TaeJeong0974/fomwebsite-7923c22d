@@ -24,7 +24,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
   };
 
   return (
-    <div className="glass rounded-xl p-6 space-y-3">
+    <div className="glass rounded-xl p-5 sm:p-6 space-y-2.5 sm:space-y-3">
       {/* YouTube Button */}
       <a
         href={youtubeUrl}
