@@ -98,7 +98,7 @@ const HeroSection = () => {
                               rotate: { duration: 0.3 },
                               scale: { duration: 0.6, ease: "easeInOut" }
                             }}
-                            className="bg-foreground rounded-full p-2"
+                            className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20"
                           >
                             <ChevronDown className="h-5 w-5 text-white" />
                           </motion.div>
