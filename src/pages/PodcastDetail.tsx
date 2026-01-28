@@ -81,13 +81,29 @@ const PodcastDetail = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <EpisodeGuestCard
-            name={episode.name}
-            title={episode.title}
-            company={episode.company}
-            linkedInUrl={episode.linkedInUrl}
-            bio={episode.bio}
-          />
+          {episode.hosts && episode.hosts.length > 0 ? (
+            // Multiple hosts (e.g., intro episode)
+            episode.hosts.map((host, index) => (
+              <EpisodeGuestCard
+                key={index}
+                name={host.name}
+                title={host.title}
+                company={host.company}
+                linkedInUrl={host.linkedInUrl}
+                bio={host.bio}
+                isHost={true}
+              />
+            ))
+          ) : (
+            // Single guest
+            <EpisodeGuestCard
+              name={episode.name}
+              title={episode.title}
+              company={episode.company}
+              linkedInUrl={episode.linkedInUrl}
+              bio={episode.bio}
+            />
+          )}
 
           {/* Action Buttons - Sticky */}
           <div className="lg:sticky lg:top-8">
