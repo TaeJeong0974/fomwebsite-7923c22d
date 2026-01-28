@@ -14,7 +14,7 @@ const EpisodePullQuote = ({ quote, attribution, metaLabel, delay = 0.1 }: Episod
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay }}
-      className="space-y-6"
+      className="space-y-6 max-w-prose"
     >
       <p className="font-display text-2xl sm:text-3xl lg:text-4xl font-medium text-foreground leading-tight">
         "{quote}"
