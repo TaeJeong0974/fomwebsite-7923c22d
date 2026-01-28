@@ -70,7 +70,7 @@ const PodcastDetail = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            <EpisodeTopics topics={episode.topics} variant="editorial" />
+            <EpisodeTopics topics={episode.topics} />
           </motion.div>
         </div>
 
