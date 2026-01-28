@@ -33,6 +33,36 @@ export const podcastEpisodes: PodcastEpisode[] = [
     company: "",
     companyDomain: "",
     overview: "Meet the hosts and discover what Future of Marketing is all about.",
+    bio: "",
+    fullDescription: `Welcome to Future of Marketing! In this introductory episode, meet your hosts and discover what this podcast is all about.
+
+We explore the big questions facing modern B2B marketers and preview the incredible guests and conversations to come.`,
+    topics: [
+      "Meet your hosts",
+      "What is Future of Marketing?",
+      "The big questions in B2B marketing",
+      "What to expect from the show",
+    ],
+    chapters: [
+      { time: "0:00", title: "Welcome" },
+      { time: "3:00", title: "Meet the hosts" },
+      { time: "10:00", title: "Why this podcast?" },
+      { time: "18:00", title: "What's coming up" },
+    ],
+    youtubeUrl: "https://youtube.com",
+    spotifyUrl: "https://spotify.com",
+    duration: "25 min",
+    publishedDate: "Jan 1, 2026",
+    comingSoon: false,
+  },
+  {
+    id: 2,
+    slug: "meagen-eisenberg",
+    name: "Meagen Eisenberg",
+    title: "Chief Marketing Officer",
+    company: "Samsara",
+    companyDomain: "samsara.com",
+    overview: "Exploring how remote work is reshaping company culture and marketing strategies.",
     bio: "A builder who moves fast, operates tactically, and earns trust through execution. With nearly 25 years scaling high-growth companies as CMO at Samsara, MongoDB, TripActions/Navan, and leadership roles at DocuSign and G2.",
     fullDescription: `In this episode, we sit down with Meagen Eisenberg, CMO of Samsara, to explore how the landscape of marketing leadership is evolving in the age of connected operations.
 
@@ -63,7 +93,7 @@ We dive deep into how Samsara's approach to physical operations data is transfor
     previewVideoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
   },
   {
-    id: 2,
+    id: 3,
     slug: "lena-waters",
     name: "Lena Waters",
     title: "Chief Marketing Officer",
@@ -100,7 +130,7 @@ This conversation covers everything from product marketing to brand building in 
     previewVideoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
   },
   {
-    id: 3,
+    id: 4,
     slug: "lindsey-irvine",
     name: "Lindsey Irvine",
     title: "Chief Marketing Officer",
@@ -138,7 +168,7 @@ We explore the challenges of marketing in a highly regulated industry while main
   },
   // Coming Soon Episodes
   {
-    id: 4,
+    id: 5,
     slug: "sara-varni",
     name: "Sara Varni",
     title: "Chief Marketing Officer",
