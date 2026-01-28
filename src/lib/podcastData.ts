@@ -101,33 +101,20 @@ We dive deep into how Samsara's approach to physical operations data is transfor
     companyDomain: "notion.so",
     overview: "Building and nurturing creative communities that drive brand loyalty.",
     bio: "Lena Waters is the Chief Marketing Officer at Notion, where she leads the marketing strategy for one of the fastest-growing productivity platforms in the world. Before Notion, Lena held senior marketing roles at Dropbox and Atlassian, where she pioneered community-driven growth strategies. She's a recognized thought leader on building authentic brand communities and product-led marketing.",
-    fullDescription: `Join us as we explore the art of community-led growth with Lena Waters, CMO of Notion—the workspace that's redefined how teams collaborate.
-
-Lena reveals the secrets behind Notion's organic growth, the power of user-generated content, and why community is the ultimate competitive advantage.
-
-This conversation covers everything from product marketing to brand building in a crowded market.`,
+    fullDescription: "",
     topics: [
       "Community-led growth strategies",
       "User-generated content at scale",
       "Building a beloved brand",
       "Product-market fit evolution",
-      "The future of collaboration tools",
     ],
-    chapters: [
-      { time: "0:00", title: "Welcome & introduction" },
-      { time: "5:00", title: "The Notion story" },
-      { time: "15:30", title: "Community as a growth engine" },
-      { time: "28:00", title: "Brand building in tech" },
-      { time: "40:15", title: "Future of work collaboration" },
-      { time: "48:00", title: "Final thoughts" },
-    ],
-    youtubeUrl: "https://youtube.com",
-    spotifyUrl: "https://spotify.com",
-    duration: "48 min",
-    publishedDate: "Jan 8, 2026",
-    comingSoon: false,
+    chapters: [],
+    youtubeUrl: "",
+    spotifyUrl: "",
+    duration: "",
+    publishedDate: "Coming Soon",
+    comingSoon: true,
     linkedInUrl: "https://linkedin.com/in/lenawaters",
-    previewVideoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
   },
   {
     id: 4,
