@@ -64,32 +64,43 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
       
       <Navbar />
 
-      {/* Top Navigation Bar */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed top-20 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8"
-      >
+      {/* Episode Navigation Bar - Full Width */}
+      <div className="relative z-10 pt-24 px-4 sm:px-6 lg:px-8">
         <div className="container mx-auto">
-          <div className="flex items-center justify-between bg-background/80 backdrop-blur-xl rounded-full px-2 py-2 shadow-lg border border-border/50 max-w-md mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="flex items-center justify-between gap-4 mb-6"
+          >
             {/* Previous Episode */}
             {prev ? (
               <Link
                 to={`/episode/${prev.slug}`}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-full hover:bg-muted hover-transition text-sm font-medium text-muted-foreground hover:text-foreground"
+                className="flex items-center gap-3 group flex-1 min-w-0"
               >
-                <ChevronLeft size={16} />
-                <span className="hidden sm:inline">Previous</span>
+                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-muted group-hover:bg-foreground group-hover:text-background hover-transition shrink-0">
+                  <ChevronLeft size={16} />
+                </div>
+                <div className="flex items-center gap-3 min-w-0">
+                  <div 
+                    className="w-10 h-10 rounded-lg bg-cover bg-center shrink-0 group-hover:scale-105 hover-transition"
+                    style={{ backgroundImage: `url(${guestBg})` }}
+                  />
+                  <div className="min-w-0 hidden sm:block">
+                    <p className="text-sm font-semibold text-foreground truncate">{prev.name}</p>
+                    <p className="text-xs text-muted-foreground truncate">{prev.title}</p>
+                  </div>
+                </div>
               </Link>
             ) : (
-              <div className="w-24" />
+              <div className="flex-1" />
             )}
 
             {/* Close Button */}
             <button
               onClick={handleClose}
-              className="flex items-center justify-center w-10 h-10 rounded-full bg-foreground text-background hover:bg-foreground/90 hover-transition"
+              className="flex items-center justify-center w-10 h-10 rounded-full bg-foreground text-background hover:bg-foreground/90 hover-transition shrink-0"
               aria-label="Close and return to episodes"
             >
               <X size={18} />
@@ -99,20 +110,31 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
             {next ? (
               <Link
                 to={`/episode/${next.slug}`}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-full hover:bg-muted hover-transition text-sm font-medium text-muted-foreground hover:text-foreground"
+                className="flex items-center gap-3 group flex-1 min-w-0 justify-end"
               >
-                <span className="hidden sm:inline">Next</span>
-                <ChevronRight size={16} />
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="min-w-0 hidden sm:block text-right">
+                    <p className="text-sm font-semibold text-foreground truncate">{next.name}</p>
+                    <p className="text-xs text-muted-foreground truncate">{next.title}</p>
+                  </div>
+                  <div 
+                    className="w-10 h-10 rounded-lg bg-cover bg-center shrink-0 group-hover:scale-105 hover-transition"
+                    style={{ backgroundImage: `url(${guestBg})` }}
+                  />
+                </div>
+                <div className="flex items-center justify-center w-8 h-8 rounded-full bg-muted group-hover:bg-foreground group-hover:text-background hover-transition shrink-0">
+                  <ChevronRight size={16} />
+                </div>
               </Link>
             ) : (
-              <div className="w-24" />
+              <div className="flex-1" />
             )}
-          </div>
+          </motion.div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Floating Panel Container */}
-      <main className="relative z-10 pt-8">
+      <main className="relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -120,7 +142,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
             duration: 0.5, 
             ease: [0.22, 1, 0.36, 1] 
           }}
-          className="mx-4 sm:mx-6 lg:mx-8 py-8"
+          className="mx-4 sm:mx-6 lg:mx-8 pb-8"
         >
           <div className="container mx-auto bg-background rounded-3xl shadow-2xl shadow-black/5 overflow-hidden px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
             {children}
