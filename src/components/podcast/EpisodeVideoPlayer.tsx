@@ -26,16 +26,6 @@ const EpisodeVideoPlayer = ({ guestName, companyDomain }: EpisodeVideoPlayerProp
         </div>
       </div>
       
-      {/* Company Logo Badge */}
-      {companyDomain && (
-        <div className="absolute top-4 left-4 glass rounded-xl p-2.5 hover-scale-badge">
-          <img 
-            src={`https://www.google.com/s2/favicons?domain=${companyDomain}&sz=64`} 
-            alt="Company logo"
-            className="h-5 w-5 object-contain"
-          />
-        </div>
-      )}
       
     </div>
   );
