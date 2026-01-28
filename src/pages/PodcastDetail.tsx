@@ -15,10 +15,12 @@ const PodcastDetail = () => {
   const { slug } = useParams();
   const episode = getEpisodeBySlug(slug || "");
   
-  // Get other episodes - mix of published and coming soon
-  const publishedEpisodes = getPublishedEpisodes().filter(ep => ep.slug !== slug).slice(0, 2);
-  const comingSoonEpisodes = getComingSoonEpisodes().slice(0, 1);
-  const otherEpisodes = [...publishedEpisodes, ...comingSoonEpisodes];
+  // Get other episodes - always show exactly 3, mixing published and coming soon
+  const allOtherEpisodes = [
+    ...getPublishedEpisodes().filter(ep => ep.slug !== slug),
+    ...getComingSoonEpisodes().filter(ep => ep.slug !== slug)
+  ];
+  const otherEpisodes = allOtherEpisodes.slice(0, 3);
 
   // Show coming soon page if episode not found or is coming soon
   if (!episode) {
