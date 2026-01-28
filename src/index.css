@@ -204,7 +204,6 @@
 
   /* Section Headers - matches body size with medium weight */
   .text-section-header {
-    font-family: var(--font-body);
     font-size: 0.9375rem;
     font-weight: 500;
     line-height: 1.65;
