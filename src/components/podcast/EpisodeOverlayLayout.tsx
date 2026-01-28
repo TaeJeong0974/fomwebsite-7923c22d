@@ -72,7 +72,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
           {/* Close Button - Absolutely positioned */}
           <button
             onClick={handleClose}
-            className="absolute top-5 right-5 sm:top-6 sm:right-6 z-10 flex items-center justify-center w-12 h-12 rounded-full glass hover:scale-105 hover-transition"
+            className="absolute top-5 right-5 sm:top-6 sm:right-6 z-10 flex items-center justify-center w-12 h-12 rounded-full bg-black/5 backdrop-blur-xl border border-black/10 hover:bg-black/10 hover:scale-105 hover-transition shadow-lg shadow-black/5"
             aria-label="Close and return to episodes"
           >
             <X size={20} />
