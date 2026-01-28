@@ -4,7 +4,7 @@ import guestBg from "@/assets/guest-bg.png";
 const EpisodeVideoPlayer = () => {
   return (
     <div 
-      className="relative aspect-video rounded-2xl overflow-hidden group cursor-pointer"
+      className="relative aspect-video rounded-xl overflow-hidden group cursor-pointer"
       style={{
         backgroundImage: `url(${guestBg})`,
         backgroundSize: 'cover',

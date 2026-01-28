@@ -41,7 +41,7 @@ const ComingSoonHeroCard = ({ guestFirstName }: ComingSoonHeroCardProps) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="relative aspect-video rounded-3xl overflow-hidden cursor-pointer group"
+      className="relative aspect-video rounded-xl overflow-hidden cursor-pointer group"
       style={{
         backgroundImage: `url(${guestBg})`,
         backgroundSize: 'cover',
