@@ -9,7 +9,7 @@ interface EpisodeGuestCardProps {
 
 const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming = false }: EpisodeGuestCardProps) => {
   return (
-    <div className="glass rounded-2xl p-6 space-y-6">
+    <div className="glass rounded-xl p-6 space-y-6">
       {/* Header */}
       <p className="text-label">
         {isUpcoming ? "Upcoming Guest" : "Featured Guest"}

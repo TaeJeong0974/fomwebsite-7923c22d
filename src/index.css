@@ -70,7 +70,7 @@
     --border: 240 6% 90%;
     --input: 240 6% 90%;
     --ring: 24 95% 50%;
-    --radius: 1.25rem;
+    --radius: 0.75rem;
 
     /* Typography */
     --font-display: 'ITC Avant Garde Gothic Pro', 'Century Gothic', sans-serif;
@@ -369,14 +369,14 @@
   .card-base {
     position: relative;
     overflow: hidden;
-    border-radius: 1rem;
+    border-radius: 0.75rem;
     background-color: hsl(var(--muted) / 0.4);
   }
 
   .card-image {
     position: relative;
     overflow: hidden;
-    border-radius: 1rem;
+    border-radius: 0.75rem;
     aspect-ratio: 4 / 5;
   }
 

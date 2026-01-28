@@ -60,7 +60,7 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
         </div>
       </PopoverTrigger>
       <PopoverContent 
-        className="w-80 p-0 glass-dark border-white/10 rounded-2xl overflow-hidden"
+        className="w-80 p-0 glass-dark border-white/10 rounded-xl overflow-hidden"
         align="end"
         sideOffset={8}
       >

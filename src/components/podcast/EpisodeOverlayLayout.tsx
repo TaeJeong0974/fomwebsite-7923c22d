@@ -45,7 +45,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
             {[...Array(12)].map((_, i) => (
               <div
                 key={i}
-                className="aspect-[3/4] rounded-2xl bg-cover bg-center"
+                className="aspect-[3/4] rounded-xl bg-cover bg-center"
                 style={{ backgroundImage: `url(${guestBg})` }}
               />
             ))}
@@ -67,7 +67,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
             duration: 0.5, 
             ease: [0.22, 1, 0.36, 1] 
           }}
-          className="container mx-auto bg-background rounded-3xl shadow-2xl shadow-black/5 overflow-hidden p-8 pr-20 sm:p-10 sm:pr-24 relative"
+          className="container mx-auto bg-background rounded-xl shadow-2xl shadow-black/5 overflow-hidden p-8 pr-20 sm:p-10 sm:pr-24 relative"
         >
           {/* Close Button - Absolutely positioned */}
           <button

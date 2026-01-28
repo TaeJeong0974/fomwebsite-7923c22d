@@ -22,7 +22,7 @@ const Navbar = () => {
       variants={fadeDownVariant}
       className="sticky top-4 z-50 mx-4 sm:mx-6 lg:mx-8"
     >
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8 glass rounded-2xl">
+      <nav className="container mx-auto px-4 sm:px-6 lg:px-8 glass rounded-xl">
         <div className="flex items-center justify-between h-14 lg:h-16">
           {/* Logo */}
           <a href="/" className="flex items-center focus-ring rounded-lg">
