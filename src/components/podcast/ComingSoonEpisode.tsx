@@ -42,7 +42,6 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
           <EpisodePullQuote
             quote={episode.overview || ""}
             attribution={episode.name}
-            metaLabel="Upcoming Episode"
           />
 
           {/* About This Episode */}
