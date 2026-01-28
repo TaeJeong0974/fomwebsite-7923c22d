@@ -15,11 +15,11 @@ const EpisodeTopics = ({ topics, title = "Topics Covered" }: EpisodeTopicsProps)
       </h3>
       <div className="space-y-1 max-w-prose">
         {topics.map((topic, index) => (
-          <div key={index} className="flex items-start gap-4 py-4">
-            <span className="font-display text-sm font-medium text-muted-foreground tabular-nums">
+          <div key={index} className="flex items-start gap-3 py-3">
+            <span className="font-display text-xs font-medium text-muted-foreground tabular-nums mt-0.5">
               {formatNumber(index)}
             </span>
-            <span className="text-foreground leading-relaxed">{topic}</span>
+            <p className="text-foreground leading-relaxed">{topic}</p>
           </div>
         ))}
       </div>
