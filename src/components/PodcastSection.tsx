@@ -49,8 +49,8 @@ const PodcastSection = () => {
                     onClick={() => setLayout("grid")}
                     className={`p-2.5 rounded-full transition-all duration-300 ${
                       layout === "grid" 
-                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25" 
-                        : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+                        ? "bg-foreground text-background shadow-lg" 
+                        : "text-foreground hover:text-foreground hover:bg-white/5"
                     }`}
                   >
                     <LayoutGrid className="h-4 w-4" />
@@ -66,8 +66,8 @@ const PodcastSection = () => {
                     onClick={() => setLayout("list")}
                     className={`p-2.5 rounded-full transition-all duration-300 ${
                       layout === "list" 
-                        ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25" 
-                        : "text-muted-foreground hover:text-foreground hover:bg-white/5"
+                        ? "bg-foreground text-background shadow-lg" 
+                        : "text-foreground hover:text-foreground hover:bg-white/5"
                     }`}
                   >
                     <List className="h-4 w-4" />
@@ -192,19 +192,19 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
             {/* Left: Name + Title/Company stacked */}
             <div className="flex-1 min-w-0 text-left">
               <div className="flex items-center gap-3">
-                <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-primary hover-transition leading-[0.95] tracking-tight">
+                <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-foreground hover-transition leading-[0.95] tracking-tight">
                   {episode.name}
                 </h3>
-                {isNewEpisode(episode.publishedDate) && <span className="bg-primary text-primary-foreground text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">New</span>}
+                {isNewEpisode(episode.publishedDate) && <span className="bg-foreground text-background text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">New</span>}
               </div>
               <p className="text-body mt-3">
-                <span className="text-muted-foreground">{episode.title}</span> <span className="font-medium text-foreground">@ {episode.company}</span>
+                <span className="text-foreground">{episode.title}</span> <span className="font-medium text-foreground">@ {episode.company}</span>
               </p>
             </div>
             
             {/* Right: Arrow */}
-            <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground hover-transition mt-2">
-              <svg className="w-5 h-5 text-muted-foreground group-hover:text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center shrink-0 group-hover:bg-foreground group-hover:text-background hover-transition mt-2">
+              <svg className="w-5 h-5 text-foreground group-hover:text-background" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </div>
@@ -231,17 +231,17 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: { episodes: PodcastEp
           >
             <div className="flex-1 min-w-0 text-left">
               <div className="flex items-center gap-3">
-                <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-primary hover-transition leading-[0.95] tracking-tight">
+                <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-foreground hover-transition leading-[0.95] tracking-tight">
                   {episode.name}
                 </h3>
                 <span className="bg-foreground text-background text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full">Upcoming</span>
               </div>
               <p className="text-body mt-3">
-                <span className="text-muted-foreground">{episode.title}</span> <span className="font-medium text-foreground">@ {episode.company}</span>
+                <span className="text-foreground">{episode.title}</span> <span className="font-medium text-foreground">@ {episode.company}</span>
               </p>
             </div>
-            <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-primary-foreground hover-transition mt-2">
-              <svg className="w-5 h-5 text-muted-foreground group-hover:text-primary-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center shrink-0 group-hover:bg-foreground group-hover:text-background hover-transition mt-2">
+              <svg className="w-5 h-5 text-foreground group-hover:text-background" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </div>

@@ -24,7 +24,7 @@ const EpisodePullQuote = ({ quote, attribution, metaLabel, delay = 0.1 }: Episod
           — {attribution}
         </cite>
         <span className="inline-flex items-center gap-1.5 glass px-3 py-1.5 rounded-full text-sm text-foreground">
-          <Clock size={14} className="text-primary" />
+          <Clock size={14} className="text-foreground" />
           {metaLabel}
         </span>
       </footer>

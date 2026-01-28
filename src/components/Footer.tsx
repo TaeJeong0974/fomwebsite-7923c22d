@@ -10,11 +10,11 @@ const Footer = () => {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
             <div className="flex items-center gap-3">
               <img src={FomLogo} alt="Future of Marketing" className="h-4 opacity-50" />
-              <span className="text-body-sm text-muted-foreground">
+              <span className="text-body-sm text-foreground">
                 Stories, ideas, and live experiences.
               </span>
             </div>
-            <p className="text-body-sm text-muted-foreground">
+            <p className="text-body-sm text-foreground">
               © {currentYear} Future of Marketing
             </p>
           </div>
