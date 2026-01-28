@@ -81,7 +81,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="flex items-center justify-between gap-4 px-4 sm:px-6 lg:px-8 py-6 border-b border-border/50"
+              className="flex items-center gap-4 px-4 sm:px-6 lg:px-8 py-4 border-b border-border/50"
             >
               {/* Previous Episode */}
               {prev ? (
@@ -92,7 +92,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
                   <div className="flex items-center justify-center w-12 h-12 rounded-full bg-muted group-hover:bg-foreground group-hover:text-background hover-transition shrink-0">
                     <ChevronLeft size={22} />
                   </div>
-                  <div className="min-w-0">
+                  <div className="min-w-0 hidden sm:block">
                     <p className="text-xl font-semibold text-foreground truncate group-hover:text-primary hover-transition">{prev.name}</p>
                     <p className="text-base text-muted-foreground truncate">{prev.title}</p>
                   </div>
@@ -101,22 +101,13 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
                 <div className="flex-1" />
               )}
 
-              {/* Close Button */}
-              <button
-                onClick={handleClose}
-                className="flex items-center justify-center w-10 h-10 rounded-full bg-foreground text-background hover:bg-foreground/90 hover-transition shrink-0"
-                aria-label="Close and return to episodes"
-              >
-                <X size={18} />
-              </button>
-
               {/* Next Episode */}
               {next ? (
                 <Link
                   to={`/episode/${next.slug}`}
                   className="flex items-center gap-4 group flex-1 min-w-0 justify-end"
                 >
-                  <div className="min-w-0 text-right">
+                  <div className="min-w-0 text-right hidden sm:block">
                     <p className="text-xl font-semibold text-foreground truncate group-hover:text-primary hover-transition">{next.name}</p>
                     <p className="text-base text-muted-foreground truncate">{next.title}</p>
                   </div>
@@ -127,6 +118,15 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
               ) : (
                 <div className="flex-1" />
               )}
+
+              {/* Close Button - Far Right */}
+              <button
+                onClick={handleClose}
+                className="flex items-center justify-center w-12 h-12 rounded-full bg-foreground text-background hover:bg-foreground/90 hover-transition shrink-0 ml-2"
+                aria-label="Close and return to episodes"
+              >
+                <X size={20} />
+              </button>
             </motion.div>
 
             {/* Main Content */}
