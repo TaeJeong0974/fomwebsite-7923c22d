@@ -11,9 +11,9 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
   return (
     <div className="glass rounded-2xl p-6 space-y-6">
       {/* Header */}
-      <h3 className="font-display text-sm font-medium text-muted-foreground uppercase tracking-wider">
+      <p className="text-label">
         {isUpcoming ? "Upcoming Guest" : "Featured Guest"}
-      </h3>
+      </p>
       
       {/* Guest Info */}
       <div className="space-y-4">

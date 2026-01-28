@@ -8,9 +8,9 @@ const EpisodeTopics = ({ topics, title = "Topics Covered" }: EpisodeTopicsProps)
   
   return (
     <div>
-      <h3 className="font-display text-xl font-semibold text-foreground mb-4">
+      <h2 className="font-display text-xl font-semibold text-foreground mb-4">
         {title}
-      </h3>
+      </h2>
       <ul className="space-y-3">
         {topics.map((topic, index) => (
           <li key={index} className="flex items-start gap-3">

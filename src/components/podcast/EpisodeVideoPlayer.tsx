@@ -1,12 +1,7 @@
 import { Play } from "lucide-react";
 import guestBg from "@/assets/guest-bg.png";
 
-interface EpisodeVideoPlayerProps {
-  guestName: string;
-  companyDomain?: string;
-}
-
-const EpisodeVideoPlayer = ({ guestName, companyDomain }: EpisodeVideoPlayerProps) => {
+const EpisodeVideoPlayer = () => {
   return (
     <div 
       className="relative aspect-video rounded-2xl overflow-hidden group cursor-pointer"
@@ -25,8 +20,6 @@ const EpisodeVideoPlayer = ({ guestName, companyDomain }: EpisodeVideoPlayerProp
           <Play className="w-8 h-8 sm:w-10 sm:h-10 text-white fill-white ml-1" />
         </div>
       </div>
-      
-      
     </div>
   );
 };

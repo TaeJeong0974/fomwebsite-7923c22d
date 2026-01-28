@@ -40,10 +40,7 @@ const PodcastDetail = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <EpisodeVideoPlayer 
-              guestName={episode.name}
-              companyDomain={episode.companyDomain}
-            />
+            <EpisodeVideoPlayer />
           </motion.div>
 
           {/* Pull Quote */}
