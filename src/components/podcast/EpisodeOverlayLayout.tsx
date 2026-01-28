@@ -58,7 +58,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
       <Navbar />
 
       {/* Floating Panel Container */}
-      <main className="relative z-10 pt-24 pb-8 mx-4 sm:mx-6 lg:mx-8">
+      <main className="relative z-10 pt-24 pb-8 px-4 sm:px-6">
         {/* Close Button - Outside Panel */}
         <div className="container mx-auto flex items-center justify-end pb-4">
           <button
@@ -81,7 +81,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
           className="container mx-auto bg-background rounded-3xl shadow-2xl shadow-black/5 overflow-hidden"
         >
           {/* Main Content */}
-          <div className="p-4 sm:p-6 lg:p-8">
+          <div className="p-5 sm:p-6">
             {children}
           </div>
         </motion.div>
