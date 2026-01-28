@@ -8,18 +8,9 @@ interface EpisodeGuestCardProps {
   isUpcoming?: boolean;
 }
 
-const EpisodeGuestCard = ({ name, title, company, companyDomain, linkedInUrl, bio, isUpcoming = false }: EpisodeGuestCardProps) => {
+const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming = false }: EpisodeGuestCardProps) => {
   return (
-    <div className="glass rounded-2xl p-6 relative">
-      {/* Company Favicon Badge - Top Right */}
-      <div className="absolute top-4 right-4 w-12 h-12 rounded-xl bg-muted flex items-center justify-center">
-        <img 
-          src={`https://www.google.com/s2/favicons?domain=${companyDomain}&sz=64`} 
-          alt={company}
-          className="h-6 w-6 object-contain"
-        />
-      </div>
-      
+    <div className="glass rounded-2xl p-6">
       <h3 className="font-display text-lg font-semibold text-foreground mb-4">
         {isUpcoming ? "Upcoming Guest" : "Featured Guest"}
       </h3>
