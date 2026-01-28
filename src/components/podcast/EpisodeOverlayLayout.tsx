@@ -81,7 +81,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
           className="container mx-auto bg-background rounded-3xl shadow-2xl shadow-black/5 overflow-hidden"
         >
           {/* Main Content */}
-          <div className="p-6 sm:p-8 lg:p-10">
+          <div className="px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
             {children}
           </div>
         </motion.div>
