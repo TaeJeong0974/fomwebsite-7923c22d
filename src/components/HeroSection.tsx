@@ -85,8 +85,8 @@ const HeroSection = () => {
                       <div className="card-content-bottom card-padding">
                         <div className="flex items-end justify-between">
                           <div>
-                            <h3 className="font-display text-white leading-[0.95] tracking-tight">
-                              <span className="block text-2xl sm:text-3xl lg:text-4xl font-semibold">{firstName}</span>
+                            <h3 className="font-display text-white leading-[0.95] tracking-normal">
+                              <span className="block text-2xl sm:text-3xl lg:text-4xl font-medium">{firstName}</span>
                               <span className="block text-2xl sm:text-3xl lg:text-4xl font-normal">{lastName}</span>
                             </h3>
                             <p className="text-body-sm text-white mt-1">{host.title}</p>
