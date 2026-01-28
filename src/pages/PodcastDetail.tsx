@@ -64,13 +64,32 @@ const PodcastDetail = () => {
             </div>
           </motion.div>
 
-          {/* Topics */}
+          {/* Topics - All Variants Preview */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
+            className="space-y-12"
           >
-            <EpisodeTopics topics={episode.topics} />
+            <div className="p-6 bg-muted/30 rounded-xl">
+              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4 font-medium">Variant 1: Minimal Index</p>
+              <EpisodeTopics topics={episode.topics} variant="minimal" />
+            </div>
+            
+            <div className="p-6 bg-muted/30 rounded-xl">
+              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4 font-medium">Variant 2: Editorial Grid</p>
+              <EpisodeTopics topics={episode.topics} variant="editorial" />
+            </div>
+            
+            <div className="p-6 bg-muted/30 rounded-xl">
+              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4 font-medium">Variant 3: Dense List</p>
+              <EpisodeTopics topics={episode.topics} variant="dense" />
+            </div>
+            
+            <div className="p-6 bg-muted/30 rounded-xl">
+              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4 font-medium">Variant 4: Monospace Index</p>
+              <EpisodeTopics topics={episode.topics} variant="monospace" />
+            </div>
           </motion.div>
         </div>
 
