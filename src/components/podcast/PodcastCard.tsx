@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { PodcastEpisode } from "@/lib/podcastData";
+import { useTransition } from "@/contexts/TransitionContext";
 import guestBg from "@/assets/guest-bg.png";
 
 interface PodcastCardProps {
@@ -13,6 +14,7 @@ interface PodcastCardProps {
 const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const { setClickOrigin } = useTransition();
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -32,15 +34,23 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
     }
   };
 
+  const handleClick = (e: React.MouseEvent) => {
+    // Capture click position for the portal reveal
+    setClickOrigin({
+      x: e.clientX,
+      y: e.clientY,
+    });
+  };
+
   return (
     <Link
       to={`/episode/${episode.slug}`}
       className="block group"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      onClick={handleClick}
     >
-      <motion.div 
-        layoutId={`card-container-${episode.slug}`}
+      <div 
         className="card-image hover-scale"
         style={{
           backgroundImage: `url(${guestBg})`,
@@ -71,16 +81,13 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
         <div className="card-overlay-light hover-transition group-hover:opacity-90 z-[2]" />
         
         {episode.companyDomain && (
-          <motion.div 
-            layoutId={`card-badge-${episode.slug}`}
-            className="absolute top-4 left-4 glass rounded-full p-2.5 hover-scale-badge z-[3]"
-          >
+          <div className="absolute top-4 left-4 glass rounded-full p-2.5 hover-scale-badge z-[3]">
             <img 
               src={`https://www.google.com/s2/favicons?domain=${episode.companyDomain}&sz=64`} 
               alt={episode.company}
               className="h-5 w-5 object-contain"
             />
-          </motion.div>
+          </div>
         )}
         
         {isNew && (
@@ -96,10 +103,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
         )}
         
         <div className="card-content-bottom card-padding-lg z-[3]">
-          <motion.h3 
-            layoutId={`card-name-${episode.slug}`}
-            className="font-display text-2xl sm:text-3xl lg:text-4xl text-white tracking-normal"
-          >
+          <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl text-white tracking-normal">
             {episode.slug === 'intro-to-fom' ? (
               <>
                 <span className="block font-semibold">Intro</span>
@@ -115,7 +119,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
                 </span>
               ))
             )}
-          </motion.h3>
+          </h3>
           <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
             {!isUpcoming && (
               <p className="text-body-sm leading-relaxed text-white mb-4">{episode.overview}</p>
@@ -125,7 +129,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
             </span>
           </div>
         </div>
-      </motion.div>
+      </div>
     </Link>
   );
 };
