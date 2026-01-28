@@ -14,7 +14,7 @@ const EpisodePullQuote = ({ quote, attribution, delay = 0.1 }: EpisodePullQuoteP
       transition={{ duration: 0.5, delay }}
       className="space-y-6 max-w-prose"
     >
-      <p className="font-display text-2xl sm:text-3xl lg:text-4xl font-medium text-foreground leading-tight">
+      <p className="font-display text-xl sm:text-2xl lg:text-3xl font-medium text-foreground leading-snug">
         "{quote}"
       </p>
       <footer>
