@@ -2,7 +2,6 @@ interface EpisodeGuestCardProps {
   name: string;
   title: string;
   company: string;
-  companyDomain: string;
   linkedInUrl?: string;
   bio?: string;
   isUpcoming?: boolean;
@@ -10,18 +9,20 @@ interface EpisodeGuestCardProps {
 
 const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming = false }: EpisodeGuestCardProps) => {
   return (
-    <div className="glass rounded-2xl p-6">
-      <h3 className="font-display text-lg font-semibold text-foreground mb-4">
+    <div className="glass rounded-2xl p-6 space-y-6">
+      {/* Header */}
+      <h3 className="font-display text-sm font-medium text-muted-foreground uppercase tracking-wider">
         {isUpcoming ? "Upcoming Guest" : "Featured Guest"}
       </h3>
       
-      <div className="space-y-3">
-        <h2 className="font-display text-4xl sm:text-5xl font-semibold text-foreground leading-tight">
+      {/* Guest Info */}
+      <div className="space-y-4">
+        <h2 className="font-display text-4xl sm:text-5xl font-semibold text-foreground leading-[0.95]">
           {name.split(' ').map((word, i) => (
             <span key={i} className="block">{word}</span>
           ))}
         </h2>
-        <div>
+        <div className="space-y-1">
           <p className="text-sm text-muted-foreground">{title}</p>
           <p className="text-sm font-medium text-primary">{company}</p>
         </div>
@@ -32,13 +33,14 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
             rel="noopener noreferrer"
             className="text-sm text-muted-foreground hover:text-primary hover-transition inline-block"
           >
-            LinkedIn
+            LinkedIn →
           </a>
         )}
       </div>
       
+      {/* Bio */}
       {bio && (
-        <p className="text-sm text-muted-foreground leading-relaxed mt-4 pt-4 border-t border-border">
+        <p className="text-sm text-muted-foreground leading-relaxed pt-6 border-t border-border/50">
           {bio}
         </p>
       )}
