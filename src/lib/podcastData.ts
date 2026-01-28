@@ -218,3 +218,7 @@ export const getAdjacentEpisodes = (currentSlug: string): { prev: PodcastEpisode
   
   return { prev, next };
 };
+
+export const getEpisodeIndex = (slug: string): number => {
+  return podcastEpisodes.findIndex((ep) => ep.slug === slug);
+};
