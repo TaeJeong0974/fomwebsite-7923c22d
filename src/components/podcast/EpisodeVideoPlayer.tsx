@@ -9,7 +9,7 @@ interface EpisodeVideoPlayerProps {
 const EpisodeVideoPlayer = ({ guestName, companyDomain }: EpisodeVideoPlayerProps) => {
   return (
     <div 
-      className="relative aspect-video rounded-2xl overflow-hidden group cursor-pointer hover-scale"
+      className="relative aspect-video rounded-2xl overflow-hidden group cursor-pointer"
       style={{
         backgroundImage: `url(${guestBg})`,
         backgroundSize: 'cover',
