@@ -1,3 +1,4 @@
+import { useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
 import { motion } from "framer-motion";
@@ -12,9 +13,28 @@ interface EpisodeOverlayLayoutProps {
 const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
   const navigate = useNavigate();
 
-  const handleClose = () => {
+  const handleClose = useCallback(() => {
     navigate('/#podcast');
-  };
+    // Smooth scroll to podcast section after navigation
+    setTimeout(() => {
+      const podcastSection = document.getElementById('podcast');
+      if (podcastSection) {
+        podcastSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  }, [navigate]);
+
+  // Keyboard support - Escape to close
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        handleClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [handleClose]);
 
   return (
     <div className="min-h-screen bg-muted/40 relative">
