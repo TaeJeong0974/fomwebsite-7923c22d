@@ -1,20 +1,35 @@
-import { useEffect, useCallback } from "react";
+import { useEffect, useCallback, useRef, useState } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import guestBg from "@/assets/guest-bg.png";
-import { getAdjacentEpisodes } from "@/lib/podcastData";
+import { getAdjacentEpisodes, getEpisodeIndex } from "@/lib/podcastData";
 
 interface EpisodeOverlayLayoutProps {
   children: React.ReactNode;
 }
 
+const liquidEase = [0.22, 1, 0.36, 1] as const;
+
 const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
   const navigate = useNavigate();
   const { slug } = useParams();
   const { prev, next } = getAdjacentEpisodes(slug || "");
+  
+  // Track navigation direction
+  const prevSlugRef = useRef<string | null>(null);
+  const [direction, setDirection] = useState<"left" | "right">("right");
+  
+  useEffect(() => {
+    if (prevSlugRef.current && slug) {
+      const prevIndex = getEpisodeIndex(prevSlugRef.current);
+      const currentIndex = getEpisodeIndex(slug);
+      setDirection(currentIndex > prevIndex ? "right" : "left");
+    }
+    prevSlugRef.current = slug || null;
+  }, [slug]);
 
   const handleClose = useCallback(() => {
     navigate('/#podcast');
@@ -76,11 +91,8 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
           className="mx-4 sm:mx-6 lg:mx-8 pb-8"
         >
           <div className="container mx-auto bg-background rounded-3xl shadow-2xl shadow-black/5 overflow-hidden">
-            {/* Episode Navigation Bar - Inside Container */}
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+            {/* Episode Navigation Bar - No animation */}
+            <div
               className="flex items-center gap-4 px-4 sm:px-6 lg:px-8 py-5 border-b border-border/50"
             >
               {/* Previous Episode */}
@@ -127,12 +139,21 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
               >
                 <X size={20} />
               </button>
-            </motion.div>
-
-            {/* Main Content */}
-            <div className="px-4 sm:px-6 lg:px-8 pt-4 sm:pt-5 pb-6 sm:pb-8">
-              {children}
             </div>
+
+            {/* Main Content with slide animation */}
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={slug}
+                initial={{ x: direction === "right" ? 100 : -100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                exit={{ x: direction === "right" ? -100 : 100, opacity: 0 }}
+                transition={{ duration: 0.4, ease: liquidEase }}
+                className="px-4 sm:px-6 lg:px-8 pt-4 sm:pt-5 pb-6 sm:pb-8"
+              >
+                {children}
+              </motion.div>
+            </AnimatePresence>
           </div>
         </motion.div>
       </main>
