@@ -55,7 +55,7 @@ const SubscribeCard = () => {
             <h3 className="text-display-md text-foreground">
               Subscribe to stay current on how teams are using AI.
             </h3>
-            <span className="btn-base btn-glass btn-lg self-start">Subscribe</span>
+            <span className="btn-base btn-glass-light btn-lg self-start">Subscribe</span>
           </motion.div>
         ) : !isSubmitted ? (
           <motion.div
@@ -84,7 +84,7 @@ const SubscribeCard = () => {
               <div className="flex items-center gap-4">
                 <button
                   type="submit"
-                  className="btn-base btn-glass btn-lg"
+                  className="btn-base btn-glass-light btn-lg"
                 >
                   Subscribe
                 </button>
