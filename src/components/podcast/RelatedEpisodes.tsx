@@ -61,7 +61,7 @@ const RelatedEpisodes = ({ episodes, title = "Other Great Speakers", delay = 0.4
                     <span key={i} className="block">{word}</span>
                   ))}
                 </h3>
-                <p className="text-body-sm text-white/70 mt-1">{ep.title}</p>
+                <p className="text-body-sm text-white mt-1">{ep.title}</p>
                 <p className="text-body-sm font-medium text-primary">{ep.company}</p>
               </div>
             </div>

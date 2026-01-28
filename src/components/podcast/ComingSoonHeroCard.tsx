@@ -111,7 +111,7 @@ const ComingSoonHeroCard = ({ guestFirstName }: ComingSoonHeroCardProps) => {
                 <button
                   type="button"
                   onClick={() => setShowForm(false)}
-                  className="text-body text-white/60 hover:text-white hover-transition"
+                  className="text-body text-white hover:text-white/80 hover-transition"
                 >
                   Cancel
                 </button>
@@ -133,7 +133,7 @@ const ComingSoonHeroCard = ({ guestFirstName }: ComingSoonHeroCardProps) => {
               </svg>
             </div>
             <h3 className="font-display text-2xl font-semibold text-white mb-2">You're on the list!</h3>
-            <p className="text-body text-white/60">
+            <p className="text-body text-white">
               We'll let you know when {guestFirstName}'s episode is ready.
             </p>
           </motion.div>
