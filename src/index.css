@@ -202,11 +202,11 @@
     color: hsl(0 0% 100%);
   }
 
-  /* Section Headers - matches body typography exactly */
+  /* Section Headers - matches body typography with medium weight */
   .text-section-header {
     font-family: var(--font-body);
     font-size: 1.125rem;
-    font-weight: 400;
+    font-weight: 500;
     line-height: 1.7;
     color: hsl(var(--foreground));
   }
