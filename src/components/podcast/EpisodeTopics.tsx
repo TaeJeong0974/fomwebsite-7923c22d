@@ -10,9 +10,9 @@ const EpisodeTopics = ({ topics, title = "Topics Covered" }: EpisodeTopicsProps)
 
   return (
     <div>
-      <h2 className="text-label mb-6">
+      <h3 className="text-label mb-4">
         {title}
-      </h2>
+      </h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-1">
         {topics.map((topic, index) => (
           <div key={index} className="flex items-start gap-4 py-4">

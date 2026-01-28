@@ -66,9 +66,9 @@ const PodcastDetail = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h2 className="text-label mb-6">
+            <h3 className="text-label mb-4">
               About This Episode
-            </h2>
+            </h3>
             <div className="text-foreground/80 whitespace-pre-line leading-relaxed text-lg">
               {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
             </div>
