@@ -10,7 +10,18 @@ interface EpisodeGuestCardProps {
 
 const EpisodeGuestCard = ({ name, title, company, companyDomain, linkedInUrl, bio, isUpcoming = false }: EpisodeGuestCardProps) => {
   return (
-    <div className="glass rounded-2xl p-6">
+    <div className="glass rounded-2xl p-6 relative">
+      {linkedInUrl && (
+        <a
+          href={linkedInUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="absolute top-4 right-4 text-sm text-muted-foreground hover:text-primary hover-transition"
+        >
+          LinkedIn
+        </a>
+      )}
+      
       <h3 className="font-display text-lg font-semibold text-foreground mb-4">
         {isUpcoming ? "Upcoming Guest" : "Featured Guest"}
       </h3>
@@ -32,16 +43,6 @@ const EpisodeGuestCard = ({ name, title, company, companyDomain, linkedInUrl, bi
           </h2>
           <p className="text-sm text-muted-foreground mt-2">{title}</p>
           <p className="text-sm font-medium text-primary">{company}</p>
-          {linkedInUrl && (
-            <a
-              href={linkedInUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm text-muted-foreground hover:text-primary hover-transition mt-2 inline-block"
-            >
-              LinkedIn
-            </a>
-          )}
         </div>
       </div>
       
