@@ -1,9 +1,10 @@
 import { useEffect, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { X } from "lucide-react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import guestBg from "@/assets/guest-bg.png";
+import { getEpisodeBySlug } from "@/lib/podcastData";
 
 interface EpisodeOverlayLayoutProps {
   children: React.ReactNode;
@@ -11,6 +12,8 @@ interface EpisodeOverlayLayoutProps {
 
 const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
   const navigate = useNavigate();
+  const { slug } = useParams();
+  const episode = getEpisodeBySlug(slug || "");
 
   const handleClose = useCallback(() => {
     navigate('/');
@@ -60,26 +63,37 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
 
       {/* Floating Panel Container */}
       <main className="relative z-10 pt-8 sm:pt-12 pb-6 sm:pb-8 px-4 sm:px-6">
-        {/* White Content Panel */}
+        {/* White Content Panel - with shared layout animation */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          layoutId={episode ? `card-container-${episode.slug}` : undefined}
+          initial={!episode ? { opacity: 0, y: 30 } : undefined}
           animate={{ opacity: 1, y: 0 }}
           transition={{ 
-            duration: 0.5, 
-            ease: [0.22, 1, 0.36, 1] 
+            duration: 0.6, 
+            ease: [0.22, 1, 0.36, 1]
           }}
           className="container mx-auto bg-background rounded-xl shadow-2xl shadow-black/5 overflow-hidden p-5 pr-16 sm:p-8 sm:pr-20 lg:p-10 lg:pr-24 relative"
         >
           {/* Close Button - Aligned with content padding */}
-          <button
+          <motion.button
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.3, duration: 0.3 }}
             onClick={handleClose}
             className="absolute top-5 right-5 sm:top-8 sm:right-8 lg:top-10 lg:right-10 z-10 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-black/5 backdrop-blur-xl border border-black/10 hover:bg-black/10 hover:scale-105 hover-transition shadow-lg shadow-black/5"
             aria-label="Close and return to episodes"
           >
             <X size={18} className="sm:w-5 sm:h-5" />
-          </button>
+          </motion.button>
           
-          {children}
+          {/* Animate content in after container transition */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.2, duration: 0.4 }}
+          >
+            {children}
+          </motion.div>
         </motion.div>
       </main>
     </div>
