@@ -17,7 +17,7 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
   return (
     <div className="glass rounded-xl p-6 sm:p-8 space-y-6">
       {/* Header */}
-      <h3 className="text-[0.9375rem] leading-relaxed font-medium text-foreground" style={{ fontFamily: 'var(--font-body)' }}>
+      <h3 className="text-section-header">
         {isUpcoming ? "Upcoming Guest" : "Featured Guest"}
       </h3>
       
