@@ -125,33 +125,20 @@ We dive deep into how Samsara's approach to physical operations data is transfor
     companyDomain: "squareup.com",
     overview: "Building a payments brand that resonates with businesses of all sizes.",
     bio: "Lindsey Irvine is the Chief Marketing Officer at Square, where she oversees brand, communications, and marketing for the financial services company serving millions of businesses. With a background in fintech and consumer marketing, Lindsey previously led marketing at Carta and held leadership roles at PayPal. She's passionate about democratizing financial services and making complex products accessible to everyday entrepreneurs.",
-    fullDescription: `In this episode, Lindsey Irvine, CMO of Square, discusses the art of marketing financial services to small and medium businesses.
-
-Lindsey shares her insights on building trust through brand, the evolution of fintech marketing, and how Square has become synonymous with modern commerce.
-
-We explore the challenges of marketing in a highly regulated industry while maintaining creativity and customer connection.`,
+    fullDescription: "",
     topics: [
       "Fintech brand building",
       "Marketing to SMBs",
       "Trust and transparency in financial services",
       "The future of commerce",
-      "Scaling marketing operations",
     ],
-    chapters: [
-      { time: "0:00", title: "Episode intro" },
-      { time: "4:00", title: "Lindsey's journey to CMO" },
-      { time: "15:00", title: "Building the Square brand" },
-      { time: "27:00", title: "Marketing in fintech" },
-      { time: "38:00", title: "SMB customer insights" },
-      { time: "46:00", title: "Future of payments" },
-    ],
-    youtubeUrl: "https://youtube.com",
-    spotifyUrl: "https://spotify.com",
-    duration: "50 min",
-    publishedDate: "Jan 8, 2026",
-    comingSoon: false,
+    chapters: [],
+    youtubeUrl: "",
+    spotifyUrl: "",
+    duration: "",
+    publishedDate: "Coming Soon",
+    comingSoon: true,
     linkedInUrl: "https://linkedin.com/in/lindseyirvine",
-    previewVideoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
   },
   // Coming Soon Episodes
   {
