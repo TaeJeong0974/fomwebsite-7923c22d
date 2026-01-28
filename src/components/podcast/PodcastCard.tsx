@@ -92,15 +92,20 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
         )}
         
         <div className="card-content-bottom card-padding-lg z-[3]">
-          <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold text-white tracking-tight">
+          <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight">
             {episode.slug === 'intro-to-fom' ? (
               <>
-                <span className="block">Intro</span>
-                <span className="block">to FOM</span>
+                <span className="block font-semibold">Intro</span>
+                <span className="block font-normal">to FOM</span>
               </>
             ) : (
-              episode.name.split(' ').map((word, i) => (
-                <span key={i} className="block">{word}</span>
+              episode.name.split(' ').map((word, i, arr) => (
+                <span 
+                  key={i} 
+                  className={`block ${i === 0 ? 'font-semibold' : 'font-normal'}`}
+                >
+                  {word}
+                </span>
               ))
             )}
           </h3>
