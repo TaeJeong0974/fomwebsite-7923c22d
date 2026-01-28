@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { PodcastEpisode } from "@/lib/podcastData";
-import { useTransition } from "@/contexts/TransitionContext";
 import guestBg from "@/assets/guest-bg.png";
 
 interface PodcastCardProps {
@@ -14,7 +13,6 @@ interface PodcastCardProps {
 const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const { setClickOrigin } = useTransition();
 
   const handleMouseEnter = () => {
     setIsHovered(true);
@@ -34,21 +32,12 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
     }
   };
 
-  const handleClick = (e: React.MouseEvent) => {
-    // Capture click position for the portal reveal
-    setClickOrigin({
-      x: e.clientX,
-      y: e.clientY,
-    });
-  };
-
   return (
     <Link
       to={`/episode/${episode.slug}`}
       className="block group"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      onClick={handleClick}
     >
       <div 
         className="card-image hover-scale"
