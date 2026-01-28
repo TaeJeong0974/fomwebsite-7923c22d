@@ -6,16 +6,17 @@ import guestBg from "@/assets/guest-bg.png";
 interface RelatedEpisodesProps {
   episodes: PodcastEpisode[];
   title?: string;
+  delay?: number;
 }
 
-const RelatedEpisodes = ({ episodes, title = "Other Great Speakers" }: RelatedEpisodesProps) => {
+const RelatedEpisodes = ({ episodes, title = "Other Great Speakers", delay = 0.4 }: RelatedEpisodesProps) => {
   if (episodes.length === 0) return null;
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: 0.4 }}
+      transition={{ duration: 0.5, delay }}
       className="mt-12 pt-12 border-t border-border"
     >
       <h3 className="font-display text-2xl font-semibold text-foreground mb-8">
@@ -46,6 +47,12 @@ const RelatedEpisodes = ({ episodes, title = "Other Great Speakers" }: RelatedEp
                     className="h-5 w-5 object-contain"
                   />
                 </div>
+              )}
+              
+              {ep.comingSoon && (
+                <span className="absolute top-4 right-4 bg-foreground text-background text-xs font-semibold tracking-wide uppercase px-3 py-1.5 rounded-full z-[3]">
+                  Upcoming
+                </span>
               )}
               
               <div className="card-content-bottom card-padding-lg z-[3]">
