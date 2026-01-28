@@ -106,24 +106,11 @@ const PodcastDetail = () => {
           <div className="glass rounded-xl p-5 sm:p-6 space-y-4 sm:space-y-6">
             <p className="text-label">Your Hosts</p>
             <div className="space-y-4">
-              {podcastHosts.map((host, index) => (
+              {podcastHosts.slice(0, 2).map((host, index) => (
                 <div key={index} className={index > 0 ? "pt-4 border-t border-border/50" : ""}>
-                  <h3 className="font-display text-xl sm:text-2xl font-semibold text-foreground">
+                  <h3 className="font-display text-xl sm:text-2xl font-medium text-foreground tracking-normal">
                     {host.name}
                   </h3>
-                  <p className="text-sm text-foreground mt-1">
-                    {host.title}, <span className="font-medium">{host.company}</span>
-                  </p>
-                  {host.linkedInUrl && (
-                    <a
-                      href={host.linkedInUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-foreground hover:text-foreground/70 hover-transition inline-block mt-1"
-                    >
-                      LinkedIn →
-                    </a>
-                  )}
                 </div>
               ))}
             </div>
