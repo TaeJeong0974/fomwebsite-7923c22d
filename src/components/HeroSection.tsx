@@ -113,7 +113,7 @@ const HeroSection = () => {
                               transition={{ duration: 0.3 }}
                               className="overflow-hidden"
                             >
-                              <p className="text-sm leading-relaxed text-white/90 mt-4">
+                              <p className="text-sm leading-relaxed text-white/90 mt-4" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
                                 {host.bio}
                               </p>
                             </motion.div>
