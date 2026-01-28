@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
@@ -10,6 +10,18 @@ interface EpisodeOverlayLayoutProps {
 }
 
 const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
+  const navigate = useNavigate();
+
+  const handleClose = () => {
+    // Go back in history to preserve scroll position
+    // If no history (direct link), go to homepage
+    if (window.history.length > 1) {
+      navigate(-1);
+    } else {
+      navigate('/#podcast');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-muted/40 relative">
       {/* Blurred homepage preview - simulated card grid */}
@@ -38,13 +50,13 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
         transition={{ duration: 0.3, delay: 0.2 }}
         className="fixed top-24 right-6 lg:right-10 z-50"
       >
-        <Link
-          to="/#podcast"
+        <button
+          onClick={handleClose}
           className="flex items-center justify-center w-12 h-12 rounded-full bg-foreground text-background hover:bg-foreground/90 hover-transition shadow-lg"
           aria-label="Close and return to episodes"
         >
           <X size={20} />
-        </Link>
+        </button>
       </motion.div>
 
       {/* Floating Panel Container */}
