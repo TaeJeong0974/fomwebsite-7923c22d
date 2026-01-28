@@ -9,7 +9,7 @@ interface RelatedEpisodesProps {
   delay?: number;
 }
 
-const RelatedEpisodes = ({ episodes, title = "Other Great Speakers", delay = 0.4 }: RelatedEpisodesProps) => {
+const RelatedEpisodes = ({ episodes, title = "Other Speakers", delay = 0.4 }: RelatedEpisodesProps) => {
   if (episodes.length === 0) return null;
 
   return (
@@ -19,9 +19,11 @@ const RelatedEpisodes = ({ episodes, title = "Other Great Speakers", delay = 0.4
       transition={{ duration: 0.5, delay }}
       className="mt-8 sm:mt-12 pt-8 sm:pt-12 border-t border-border"
     >
-      <h3 className="font-display text-xl sm:text-2xl font-semibold text-foreground mb-6 sm:mb-8">
-        {title}
-      </h3>
+      <h2 className="font-display text-xl sm:text-2xl font-semibold text-foreground mb-6 sm:mb-8">
+        {title.split(' ').map((word, i) => (
+          <span key={i} className="block">{word}</span>
+        ))}
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
         {episodes.map((ep) => (
           <Link
