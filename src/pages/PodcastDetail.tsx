@@ -1,7 +1,5 @@
-import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { motion } from "framer-motion";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
 import EpisodeVideoPlayer from "@/components/podcast/EpisodeVideoPlayer";
 import EpisodeActionButtons from "@/components/podcast/EpisodeActionButtons";
@@ -12,16 +10,10 @@ import ComingSoonEpisode from "@/components/podcast/ComingSoonEpisode";
 import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
 import ListenSubscribeCards from "@/components/ListenSubscribeCards";
 import { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes, podcastHosts } from "@/lib/podcastData";
-import hostMada from "@/assets/host-mada.png";
-import hostEthan from "@/assets/host-ethan.png";
-import hostCamille from "@/assets/host-camille.png";
-
-const hostImages = [hostMada, hostEthan, hostCamille];
 
 const PodcastDetail = () => {
   const { slug } = useParams();
   const episode = getEpisodeBySlug(slug || "");
-  const [expandedHostIndex, setExpandedHostIndex] = useState<number | null>(null);
   
   // Get other episodes - always show exactly 3, mixing published and coming soon
   const allOtherEpisodes = [
@@ -38,8 +30,6 @@ const PodcastDetail = () => {
   if (episode.comingSoon) {
     return <ComingSoonEpisode episode={episode} />;
   }
-
-  const hostsToShow = episode.slug === 'intro-to-fom' ? podcastHosts : podcastHosts.slice(0, 2);
 
   return (
     <EpisodeOverlayLayout>
@@ -111,90 +101,30 @@ const PodcastDetail = () => {
             />
           )}
 
-          {/* Your Hosts */}
-          <div className="space-y-3">
-            <p className="text-label">Your Hosts</p>
-            <div className="space-y-4">
-              {hostsToShow.map((host, index) => {
-                const nameParts = host.name.split(' ');
-                const firstName = nameParts[0];
-                const lastName = nameParts.slice(1).join(' ');
-                const isExpanded = expandedHostIndex === index;
-                
-                return (
-                  <div 
-                    key={index}
-                    className="card-base card-image cursor-pointer"
-                    onClick={() => setExpandedHostIndex(isExpanded ? null : index)}
-                  >
-                    {/* Background Image */}
-                    <div className="absolute inset-0">
-                      <img 
-                        src={hostImages[index]} 
-                        alt={host.name}
-                        className="w-full h-full object-cover"
-                      />
-                      <div className="card-overlay" />
-                    </div>
-
-                    {/* Content */}
-                    <div className="card-content-bottom card-padding">
-                      <div className="flex items-end justify-between">
-                        <div>
-                          <h3 className="font-display text-white leading-[0.95] tracking-normal">
-                            <span className="block text-xl sm:text-2xl font-medium">{firstName}</span>
-                            <span className="block text-xl sm:text-2xl font-normal">{lastName}</span>
-                          </h3>
-                          <p className="text-body-sm text-white mt-1">
-                            {host.title}, <span className="font-normal text-white/80">{host.company}</span>
-                          </p>
-                          {host.linkedInUrl && (
-                            <a
-                              href={host.linkedInUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={(e) => e.stopPropagation()}
-                              className="text-sm text-white/80 hover:text-white hover-transition inline-block mt-2"
-                            >
-                              LinkedIn →
-                            </a>
-                          )}
-                        </div>
-                        {host.bio && (
-                          <motion.div
-                            animate={{ rotate: isExpanded ? 180 : 0 }}
-                            whileHover={{ scale: isExpanded ? 1 : [1, 1.15, 1] }}
-                            transition={{ 
-                              rotate: { duration: 0.3 },
-                              scale: { duration: 0.6, ease: "easeInOut" }
-                            }}
-                            className="rounded-full p-1.5 bg-white/10 backdrop-blur-xl border border-white/20"
-                          >
-                            <ChevronDown className="h-4 w-4 text-white" />
-                          </motion.div>
-                        )}
-                      </div>
-                      
-                      {/* Expandable Bio */}
-                      <AnimatePresence>
-                        {isExpanded && host.bio && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="overflow-hidden"
-                          >
-                            <p className="text-sm leading-relaxed text-white/90 mt-4" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
-                              {host.bio}
-                            </p>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  </div>
-                );
-              })}
+          {/* Your Hosts - always shown */}
+          <div className="glass rounded-xl p-6 sm:p-8 space-y-6">
+            <h3 className="text-section-header">Your Hosts</h3>
+            <div className="space-y-5">
+              {(episode.slug === 'intro-to-fom' ? podcastHosts : podcastHosts.slice(0, 2)).map((host, index) => (
+                <div key={index} className={index > 0 ? "pt-5 border-t border-border/20" : ""}>
+                  <h3 className="font-display text-xl sm:text-2xl font-medium text-foreground tracking-normal">
+                    {host.name}
+                  </h3>
+                  <p className="text-sm text-muted-foreground mt-1">
+                    {host.title}, <span className="font-medium text-foreground">{host.company}</span>
+                  </p>
+                  {host.linkedInUrl && (
+                    <a
+                      href={host.linkedInUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm text-muted-foreground hover:text-foreground hover-transition inline-block mt-2"
+                    >
+                      LinkedIn →
+                    </a>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </motion.div>

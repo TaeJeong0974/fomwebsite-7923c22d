@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
-import guestBg from "@/assets/guest-bg.png";
 
 interface EpisodeGuestCardProps {
   name: string;
@@ -10,91 +9,78 @@ interface EpisodeGuestCardProps {
   linkedInUrl?: string;
   bio?: string;
   isUpcoming?: boolean;
-  imageUrl?: string;
 }
 
-const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming = false, imageUrl }: EpisodeGuestCardProps) => {
+const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming = false }: EpisodeGuestCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const nameParts = name.split(' ');
-  const firstName = nameParts[0];
-  const lastName = nameParts.slice(1).join(' ');
 
   return (
-    <div className="space-y-3">
-      <p className="text-label">
+    <div className="glass rounded-xl p-6 sm:p-8 space-y-6">
+      {/* Header */}
+      <h3 className="text-section-header">
         {isUpcoming ? "Upcoming Guest" : "Featured Guest"}
-      </p>
+      </h3>
       
-      <div 
-        className="card-base card-image cursor-pointer"
-        onClick={() => setIsExpanded(!isExpanded)}
-      >
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <img 
-            src={imageUrl || guestBg} 
-            alt={name}
-            className="w-full h-full object-cover"
-          />
-          <div className="card-overlay" />
-        </div>
-
-        {/* Content */}
-        <div className="card-content-bottom card-padding">
-          <div className="flex items-end justify-between">
-            <div>
-              <h3 className="font-display text-white leading-[0.95] tracking-normal">
-                <span className="block text-2xl sm:text-3xl font-medium">{firstName}</span>
-                <span className="block text-2xl sm:text-3xl font-normal">{lastName}</span>
-              </h3>
-              <p className="text-body-sm text-white mt-1">
-                {title}, <span className="font-normal text-white/80">{company}</span>
-              </p>
-              {linkedInUrl && (
-                <a
-                  href={linkedInUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={(e) => e.stopPropagation()}
-                  className="text-sm text-white/80 hover:text-white hover-transition inline-block mt-2"
-                >
-                  LinkedIn →
-                </a>
-              )}
-            </div>
-            {bio && (
-              <motion.div
-                animate={{ rotate: isExpanded ? 180 : 0 }}
-                whileHover={{ scale: isExpanded ? 1 : [1, 1.15, 1] }}
-                transition={{ 
-                  rotate: { duration: 0.3 },
-                  scale: { duration: 0.6, ease: "easeInOut" }
-                }}
-                className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20"
-              >
-                <ChevronDown className="h-5 w-5 text-white" />
-              </motion.div>
-            )}
-          </div>
+      {/* Guest Info */}
+      <div className="space-y-4">
+        <h2 className="font-display text-3xl sm:text-4xl text-foreground leading-[0.95] tracking-normal">
+          {name.split(' ').map((word, i) => (
+            <span key={i} className={`block ${i === 0 ? 'font-medium' : 'font-normal'}`}>{word}</span>
+          ))}
+        </h2>
+        <p className="text-muted-foreground">
+          {title}, <span className="font-medium text-foreground">{company}</span>
+        </p>
+        {linkedInUrl && (
+          <a
+            href={linkedInUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-muted-foreground hover:text-foreground hover-transition inline-block"
+          >
+            LinkedIn →
+          </a>
+        )}
+      </div>
+      
+      {/* Bio Accordion */}
+      {bio && (
+        <div className="pt-4 border-t border-border/50">
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="flex items-center justify-between w-full text-left group"
+          >
+            <span className="text-sm font-medium text-foreground">About {name.split(' ')[0]}</span>
+            <motion.div
+              animate={{ rotate: isExpanded ? 180 : 0 }}
+              whileHover={{ scale: isExpanded ? 1 : [1, 1.15, 1] }}
+              transition={{ 
+                rotate: { duration: 0.3 },
+                scale: { duration: 0.6, ease: "easeInOut" }
+              }}
+              className="rounded-full p-1.5 bg-foreground/5 backdrop-blur-xl border border-border/20"
+            >
+              <ChevronDown className="h-4 w-4 text-foreground" />
+            </motion.div>
+          </button>
           
-          {/* Expandable Bio */}
           <AnimatePresence>
-            {isExpanded && bio && (
+            {isExpanded && (
               <motion.div
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.3 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                 className="overflow-hidden"
               >
-                <p className="text-sm leading-relaxed text-white/90 mt-4" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
+                <p className="text-sm text-foreground leading-relaxed pt-4">
                   {bio}
                 </p>
               </motion.div>
             )}
           </AnimatePresence>
         </div>
-      </div>
+      )}
     </div>
   );
 };
