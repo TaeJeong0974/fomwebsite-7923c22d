@@ -29,7 +29,7 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
           ))}
         </h2>
         <p className="text-muted-foreground">
-          {title}, <span className="font-medium text-foreground">{company}</span>
+          {title}, {company}
         </p>
         {linkedInUrl && (
           <a
