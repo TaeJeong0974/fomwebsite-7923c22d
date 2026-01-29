@@ -111,7 +111,7 @@ const PodcastDetail = () => {
                     {host.name}
                   </h3>
                   <p className="text-sm text-muted-foreground mt-1">
-                    {host.title}, <span className="font-medium text-foreground">{host.company}</span>
+                    {host.title}, {host.company}
                   </p>
                   {host.linkedInUrl && (
                     <a
