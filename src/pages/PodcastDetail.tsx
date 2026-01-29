@@ -146,7 +146,7 @@ const PodcastDetail = () => {
                             <span className="block text-xl sm:text-2xl font-normal">{lastName}</span>
                           </h3>
                           <p className="text-body-sm text-white mt-1">
-                            {host.title}, {host.company}
+                            {host.title}, <span className="font-normal text-white/80">{host.company}</span>
                           </p>
                           {host.linkedInUrl && (
                             <a

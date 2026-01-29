@@ -48,7 +48,7 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
                 <span className="block text-2xl sm:text-3xl font-normal">{lastName}</span>
               </h3>
               <p className="text-body-sm text-white mt-1">
-                {title}, {company}
+                {title}, <span className="font-normal text-white/80">{company}</span>
               </p>
               {linkedInUrl && (
                 <a
