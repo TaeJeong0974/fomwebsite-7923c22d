@@ -85,19 +85,16 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
   }, []);
 
   const handleClose = useCallback(() => {
-    setIsVisible(false);
-    setTimeout(() => {
-      navigate('/');
-      // Smooth scroll to podcast section after navigation completes
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          const podcastSection = document.getElementById('podcast');
-          if (podcastSection) {
-            podcastSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
-        }, 100);
-      });
-    }, 400);
+    navigate('/');
+    // Smooth scroll to podcast section after navigation completes
+    requestAnimationFrame(() => {
+      setTimeout(() => {
+        const podcastSection = document.getElementById('podcast');
+        if (podcastSection) {
+          podcastSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    });
   }, [navigate]);
 
   // Keyboard support - Escape to close
