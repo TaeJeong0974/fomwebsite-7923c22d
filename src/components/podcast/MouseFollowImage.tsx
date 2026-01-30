@@ -18,10 +18,9 @@ const MouseFollowImage = ({ isHovered, mouseX, mouseY, imageSrc, name }: MouseFo
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
-          className="absolute pointer-events-none z-[5]"
+          className="absolute pointer-events-none z-[5] top-1/2 -translate-y-1/2"
           style={{
-            left: mouseX - 80,
-            top: mouseY - 104,
+            left: Math.max(0, mouseX - 80),
           }}
         >
           <div className="w-52 h-64 rounded-2xl overflow-hidden shadow-2xl">
