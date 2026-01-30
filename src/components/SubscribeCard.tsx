@@ -52,7 +52,7 @@ const SubscribeCard = () => {
             onClick={handleCardClick}
             className="card-content-full card-padding-lg"
           >
-            <h3 className="text-display-md text-foreground">
+            <h3 className="text-display-md 2xl:text-display-lg text-foreground">
               Subscribe to stay current on how teams are using AI.
             </h3>
             <span className="btn-base btn-lg bg-foreground text-background hover:bg-foreground/90 self-start">Subscribe</span>
