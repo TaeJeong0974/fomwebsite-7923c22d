@@ -244,8 +244,8 @@ const PodcastListView = ({
         onMouseLeave={() => setHoveredIndex(null)}
         onMouseMove={(e) => handleMouseMove(index, e)}
       >
-          {/* Mouse Follow Image - only for guest episodes, hidden when CTA hovered */}
-          {episode.slug !== 'intro-to-fom' && mousePositions[index] && (
+          {/* Mouse Follow Image - hidden when CTA hovered */}
+          {mousePositions[index] && (
             <MouseFollowImage 
               isHovered={hoveredIndex === index && ctaHovered !== index}
               mouseX={mousePositions[index].x}
