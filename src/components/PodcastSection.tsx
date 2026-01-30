@@ -37,7 +37,7 @@ const PodcastSection = () => {
         ease: liquidEase
       }} className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 lg:mb-12">
           <div>
-            <p className="text-label mb-2">WAT</p>
+            <p className="text-label mb-2">WATCH</p>
             <h2 className="text-display-xl text-foreground">Podcast</h2>
           </div>
           
