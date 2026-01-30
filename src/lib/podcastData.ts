@@ -46,7 +46,7 @@ export const podcastHosts: PodcastHost[] = [
     name: "Ethan Smith",
     title: "Founder & CEO",
     company: "Graphite",
-    linkedInUrl: "https://linkedin.com/in/ethansmith",
+    linkedInUrl: "https://www.linkedin.com/in/ethanls/",
     bio: "Founder and CEO of Graphite, a premium Vertical AI Growth Agency that helps companies like Webflow, Notion, and MasterClass drive sustainable revenue growth.",
   },
   {
