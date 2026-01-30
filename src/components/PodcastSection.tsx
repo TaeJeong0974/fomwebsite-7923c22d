@@ -265,7 +265,7 @@ const PodcastListView = ({
                 {isNewEpisode(episode.publishedDate) && <span className="glass text-foreground text-xs font-semibold tracking-wide uppercase px-3 pt-2.5 pb-2 rounded-full flex items-center justify-center leading-none">New</span>}
               </div>
               {episode.slug === 'intro-to-fom' ? (
-                <p className="text-body mt-3 text-foreground">
+                <p className="text-body mt-3 text-muted-foreground">
                   {podcastHosts.map((h, i) => (
                     <span key={h.name}>
                       {h.name}{i < podcastHosts.length - 1 && ', '}
