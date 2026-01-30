@@ -79,7 +79,7 @@ const SubscribeCard = () => {
                 placeholder="you@example.com"
                 required
                 autoFocus
-                className="w-full px-5 py-3 text-body glass rounded-full text-foreground placeholder:text-foreground/40 focus-ring hover-transition"
+                className="w-full px-5 py-3 text-body glass-dark rounded-full text-white placeholder:text-white/40 focus-ring hover-transition"
               />
               <div className="flex items-center gap-4">
                 <button
