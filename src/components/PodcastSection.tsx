@@ -167,6 +167,16 @@ const PodcastGridView = ({
     </div>;
 };
 
+// Gradient color palette for list hover states (blue → coral)
+const listHoverColors = [
+  "group-hover:text-[hsl(220,50%,65%)]",   // Muted blue
+  "group-hover:text-[hsl(210,40%,70%)]",   // Light steel blue
+  "group-hover:text-[hsl(200,35%,72%)]",   // Dusty blue
+  "group-hover:text-[hsl(25,45%,70%)]",    // Warm sand
+  "group-hover:text-[hsl(15,50%,68%)]",    // Soft coral
+  "group-hover:text-[hsl(8,55%,65%)]",     // Coral
+];
+
 // List View Component
 const PodcastListView = ({
   episodes,
@@ -194,7 +204,7 @@ const PodcastListView = ({
             {/* Left: Name + Title/Company stacked */}
             <div className="flex-1 min-w-0 text-left">
               <div className="flex items-center gap-3">
-                <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-foreground hover-transition leading-[0.95] tracking-tight">
+                <h3 className={`font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground ${listHoverColors[index % listHoverColors.length]} transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] leading-[0.95] tracking-tight`}>
                   {episode.name}
                 </h3>
                 {isNewEpisode(episode.publishedDate) && <span className="glass text-foreground text-xs font-semibold tracking-wide uppercase px-3 pt-2.5 pb-2 rounded-full flex items-center justify-center leading-none">New</span>}
@@ -237,7 +247,7 @@ const PodcastListView = ({
     }}>
           <Link to={`/episode/${episode.slug}`} className="group py-6 sm:py-8 flex items-start justify-between gap-6 hover-transition">
             <div className="flex-1 min-w-0 text-left">
-              <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-foreground hover-transition leading-[0.95] tracking-tight">
+              <h3 className={`font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground ${listHoverColors[(episodes.length + idx) % listHoverColors.length]} transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] leading-[0.95] tracking-tight`}>
                 {episode.name}
               </h3>
               <p className="text-body mt-3">
