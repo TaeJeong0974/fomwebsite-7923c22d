@@ -20,8 +20,8 @@ const MouseFollowImage = ({ isHovered, mouseX, mouseY, imageSrc, name }: MouseFo
           transition={{ duration: 0.5, ease: "easeOut" }}
           className="absolute pointer-events-none z-[5]"
           style={{
-            left: Math.max(0, mouseX - 80),
-            top: `clamp(0px, ${mouseY - 128}px, calc(100% - 256px))`,
+            left: mouseX - 104,
+            top: mouseY - 128,
           }}
         >
           <div className="w-52 h-64 rounded-2xl overflow-hidden shadow-2xl">
