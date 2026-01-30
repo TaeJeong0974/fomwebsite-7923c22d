@@ -127,22 +127,25 @@ const PodcastGridView = ({
   comingSoonEpisodes: PodcastEpisode[];
 }) => {
   return <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-gap">
-      {episodes.slice(0, 4).map((episode, index) => <motion.div key={episode.id} initial={{
-      opacity: 0,
-      y: 30
-    }} whileInView={{
-      opacity: 1,
-      y: 0
-    }} viewport={{
-      once: true,
-      amount: 0.15
-    }} transition={{
-      duration: 1.0,
-      delay: index * 0.18,
-      ease: liquidEase
-    }}>
-          <PodcastCard episode={episode} isNew={isNewEpisode(episode.publishedDate)} />
-        </motion.div>)}
+      {episodes.slice(0, 4).map((episode, index) => {
+        const row = Math.floor(index / 3);
+        return <motion.div key={episode.id} initial={{
+        opacity: 0,
+        y: 30
+      }} whileInView={{
+        opacity: 1,
+        y: 0
+      }} viewport={{
+        once: true,
+        amount: 0.15
+      }} transition={{
+        duration: 1.0,
+        delay: row * 0.18,
+        ease: liquidEase
+      }}>
+            <PodcastCard episode={episode} isNew={isNewEpisode(episode.publishedDate)} />
+          </motion.div>;
+      })}
       
       {/* Coming Soon Cards */}
       {comingSoonEpisodes.map((episode, idx) => <motion.div key={`coming-soon-${episode.id}`} initial={{
