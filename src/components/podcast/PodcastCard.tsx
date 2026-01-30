@@ -112,7 +112,12 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
             )}
           </h3>
           <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
-            {!isUpcoming && (
+            {episode.title && episode.company && (
+              <p className="text-body-sm text-white/80 mb-2">
+                {episode.title} @ {episode.company}
+              </p>
+            )}
+            {!isUpcoming && episode.overview && (
               <p className="text-body-sm leading-relaxed text-white mb-4">{episode.overview}</p>
             )}
             <span className="btn-base btn-glass-light btn-sm">
