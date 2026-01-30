@@ -67,8 +67,8 @@ const SubscribeCard = () => {
             className="card-content-full card-padding-lg"
             onClick={(e) => e.stopPropagation()}
           >
-            <h3 className="text-display-md text-foreground">
-              Never Miss an Episode
+            <h3 className="text-display-md 2xl:text-display-lg text-foreground">
+              Subscribe to stay current on how teams are using AI.
             </h3>
             
             <form onSubmit={handleSubmit} className="max-w-md space-y-3">
@@ -105,15 +105,12 @@ const SubscribeCard = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="card-content-full card-padding-lg items-center justify-center text-center"
+            className="card-content-full card-padding-lg"
           >
-            <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mb-4">
-              <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <h3 className="text-display-md text-foreground mb-2">You're In!</h3>
-            <p className="text-body text-foreground">
+            <h3 className="text-display-md 2xl:text-display-lg text-foreground">
+              Thank you for subscribing.
+            </h3>
+            <p className="text-body text-foreground/70">
               We'll notify you when new episodes drop.
             </p>
           </motion.div>
