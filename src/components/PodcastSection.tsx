@@ -211,8 +211,11 @@ const PodcastListView = ({
             </div>
             
             {/* Right: Contextual CTA */}
-            <span className="btn-base btn-glass btn-sm shrink-0 mt-2 group-hover:bg-foreground group-hover:text-background">
+            <span className="btn-base btn-glass btn-sm shrink-0 mt-2 group-hover:bg-foreground group-hover:text-background flex items-center gap-2">
               Watch Now
+              <svg className="w-4 h-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </span>
           </Link>
         </motion.div>)}
@@ -243,8 +246,11 @@ const PodcastListView = ({
             </div>
             
             {/* Right: Contextual CTA */}
-            <span className="btn-base btn-glass btn-sm shrink-0 mt-2 group-hover:bg-foreground group-hover:text-background">
+            <span className="btn-base btn-glass btn-sm shrink-0 mt-2 group-hover:bg-foreground group-hover:text-background flex items-center gap-2">
               Coming Soon
+              <svg className="w-4 h-4 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
             </span>
           </Link>
         </motion.div>)}
