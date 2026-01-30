@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { LayoutGrid, List } from "lucide-react";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { getPublishedEpisodes, getComingSoonEpisodes, PodcastEpisode } from "@/lib/podcastData";
+import { getPublishedEpisodes, getComingSoonEpisodes, PodcastEpisode, podcastHosts } from "@/lib/podcastData";
 import SubscribeCard from "@/components/SubscribeCard";
 import PodcastCard from "@/components/podcast/PodcastCard";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
@@ -199,9 +199,9 @@ const PodcastListView = ({
                 </h3>
                 {isNewEpisode(episode.publishedDate) && <span className="glass text-foreground text-xs font-semibold tracking-wide uppercase px-3 pt-2.5 pb-2 rounded-full flex items-center justify-center leading-none">New</span>}
               </div>
-              {episode.slug === 'intro-to-fom' && episode.hosts ? (
+              {episode.slug === 'intro-to-fom' ? (
                 <p className="text-body mt-3 text-foreground">
-                  {episode.hosts.map(h => h.name).join(', ')}
+                  {podcastHosts.map(h => h.name).join(', ')}
                 </p>
               ) : (
                 <p className="text-body mt-3">
