@@ -5,17 +5,26 @@ import { useSubscribe } from "@/contexts/SubscribeContext";
 interface ListenSubscribeCardsProps {
   showTitle?: boolean;
   className?: string;
+  variant?: "light" | "dark";
 }
 
-const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscribeCardsProps) => {
+const ListenSubscribeCards = ({ showTitle = true, className = "", variant = "light" }: ListenSubscribeCardsProps) => {
   const { openSubscribe } = useSubscribe();
 
-  const cardBase = "flex flex-col items-center justify-center gap-4 bg-black/5 backdrop-blur-xl border border-black/10 rounded-2xl p-6 sm:p-8 text-center hover:bg-black/10 hover-transition shadow-sm cursor-pointer";
+  const isDark = variant === "dark";
+  
+  const cardBase = isDark
+    ? "flex flex-col items-center justify-center gap-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl p-6 sm:p-8 text-center hover:bg-white/15 hover-transition shadow-sm cursor-pointer"
+    : "flex flex-col items-center justify-center gap-4 bg-black/5 backdrop-blur-xl border border-black/10 rounded-2xl p-6 sm:p-8 text-center hover:bg-black/10 hover-transition shadow-sm cursor-pointer";
+
+  const textColor = isDark ? "text-white" : "text-foreground";
+  const textMuted = isDark ? "text-white/70" : "text-foreground/70";
+  const iconBg = isDark ? "bg-white/10" : "bg-foreground/10";
 
   return (
     <div className={className}>
       {showTitle && (
-        <h3 className="font-display text-xl sm:text-2xl font-semibold text-foreground mb-6 sm:mb-8">
+        <h3 className={`font-display text-xl sm:text-2xl font-semibold ${textColor} mb-6 sm:mb-8`}>
           Listen & Subscribe
         </h3>
       )}
@@ -27,12 +36,12 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          <div className="w-12 h-12 rounded-full bg-foreground/10 flex items-center justify-center">
-            <Bell className="w-6 h-6 text-foreground" />
+          <div className={`w-12 h-12 rounded-full ${iconBg} flex items-center justify-center`}>
+            <Bell className={`w-6 h-6 ${textColor}`} />
           </div>
           <div>
-            <h4 className="font-display text-lg font-semibold text-foreground">Subscribe</h4>
-            <p className="text-sm text-foreground/70 mt-1">Get notified of new episodes</p>
+            <h4 className={`font-display text-lg font-semibold ${textColor}`}>Subscribe</h4>
+            <p className={`text-sm ${textMuted} mt-1`}>Get notified of new episodes</p>
           </div>
         </motion.button>
 
@@ -51,8 +60,8 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
             </svg>
           </div>
           <div>
-            <h4 className="font-display text-lg font-semibold text-foreground">YouTube</h4>
-            <p className="text-sm text-foreground/70 mt-1">Watch full episodes</p>
+            <h4 className={`font-display text-lg font-semibold ${textColor}`}>YouTube</h4>
+            <p className={`text-sm ${textMuted} mt-1`}>Watch full episodes</p>
           </div>
         </motion.a>
 
@@ -71,8 +80,8 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
             </svg>
           </div>
           <div>
-            <h4 className="font-display text-lg font-semibold text-foreground">Spotify</h4>
-            <p className="text-sm text-foreground/70 mt-1">Listen on the go</p>
+            <h4 className={`font-display text-lg font-semibold ${textColor}`}>Spotify</h4>
+            <p className={`text-sm ${textMuted} mt-1`}>Listen on the go</p>
           </div>
         </motion.a>
       </div>
