@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { PodcastEpisode } from "@/lib/podcastData";
 import guestBg from "@/assets/guest-bg.png";
+import datadogIcon from "@/assets/datadog-icon.svg";
 
 interface PodcastCardProps {
   episode: PodcastEpisode;
@@ -72,7 +73,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
         {episode.companyDomain && (
           <div className="absolute top-6 left-6 lg:top-8 lg:left-8 glass rounded-full p-2.5 hover-scale-badge z-[3]">
             <img 
-              src={`https://www.google.com/s2/favicons?domain=${episode.companyDomain}&sz=64`} 
+              src={episode.companyDomain === 'datadoghq.com' ? datadogIcon : `https://www.google.com/s2/favicons?domain=${episode.companyDomain}&sz=64`} 
               alt={episode.company}
               className="h-5 w-5 object-contain"
             />
