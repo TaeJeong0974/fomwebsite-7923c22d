@@ -205,6 +205,7 @@ const PodcastListView = ({
   comingSoonEpisodes: PodcastEpisode[];
 }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [ctaHovered, setCtaHovered] = useState<number | null>(null);
   const [mousePositions, setMousePositions] = useState<Record<number, { x: number; y: number }>>({});
 
   const handleMouseMove = (index: number, e: React.MouseEvent<HTMLDivElement>) => {
@@ -243,10 +244,10 @@ const PodcastListView = ({
         onMouseLeave={() => setHoveredIndex(null)}
         onMouseMove={(e) => handleMouseMove(index, e)}
       >
-          {/* Mouse Follow Image - only for guest episodes */}
+          {/* Mouse Follow Image - only for guest episodes, hidden when CTA hovered */}
           {episode.slug !== 'intro-to-fom' && (
             <MouseFollowImage 
-              isHovered={hoveredIndex === index}
+              isHovered={hoveredIndex === index && ctaHovered !== index}
               mouseX={mousePositions[index]?.x ?? 0}
               mouseY={mousePositions[index]?.y ?? 0}
               imageSrc={episodeImageMap[episode.slug] || listHoverImages[index % listHoverImages.length]}
@@ -275,7 +276,11 @@ const PodcastListView = ({
             </div>
             
             {/* Right: Contextual CTA */}
-            <span className="shrink-0 mt-2 flex items-center gap-0 group-hover:gap-2 px-4 py-2 rounded-full text-sm font-medium text-muted-foreground group-hover:text-background bg-transparent group-hover:bg-foreground transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
+            <span 
+              className="shrink-0 mt-2 flex items-center gap-0 group-hover:gap-2 px-4 py-2 rounded-full text-sm font-medium text-muted-foreground group-hover:text-background bg-transparent group-hover:bg-foreground transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+              onMouseEnter={() => setCtaHovered(index)}
+              onMouseLeave={() => setCtaHovered(null)}
+            >
               Watch Now
               <svg className="w-0 h-4 opacity-0 group-hover:w-4 group-hover:opacity-100 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -311,9 +316,9 @@ const PodcastListView = ({
           onMouseLeave={() => setHoveredIndex(null)}
           onMouseMove={(e) => handleMouseMove(globalIndex, e)}
         >
-          {/* Mouse Follow Image */}
+          {/* Mouse Follow Image - hidden when CTA hovered */}
           <MouseFollowImage 
-            isHovered={hoveredIndex === globalIndex}
+            isHovered={hoveredIndex === globalIndex && ctaHovered !== globalIndex}
             mouseX={mousePositions[globalIndex]?.x ?? 0}
             mouseY={mousePositions[globalIndex]?.y ?? 0}
             imageSrc={listHoverImages[globalIndex % listHoverImages.length]}
@@ -331,7 +336,11 @@ const PodcastListView = ({
             </div>
             
             {/* Right: Contextual CTA */}
-            <span className="shrink-0 mt-2 flex items-center gap-0 group-hover:gap-2 px-4 py-2 rounded-full text-sm font-medium text-muted-foreground group-hover:text-background bg-transparent group-hover:bg-foreground transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
+            <span 
+              className="shrink-0 mt-2 flex items-center gap-0 group-hover:gap-2 px-4 py-2 rounded-full text-sm font-medium text-muted-foreground group-hover:text-background bg-transparent group-hover:bg-foreground transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+              onMouseEnter={() => setCtaHovered(globalIndex)}
+              onMouseLeave={() => setCtaHovered(null)}
+            >
               Coming Soon
               <svg className="w-0 h-4 opacity-0 group-hover:w-4 group-hover:opacity-100 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
