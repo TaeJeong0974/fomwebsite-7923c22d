@@ -277,14 +277,11 @@ const PodcastListView = ({
             
             {/* Right: Contextual CTA */}
             <span 
-              className="shrink-0 mt-2 inline-flex items-center justify-center gap-0 group-hover:gap-2 px-4 py-2 rounded-full text-sm font-medium leading-none text-muted-foreground group-hover:text-background bg-transparent group-hover:bg-foreground transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+              className="shrink-0 btn-base btn-glass btn-sm opacity-0 group-hover:opacity-100"
               onMouseEnter={() => setCtaHovered(index)}
               onMouseLeave={() => setCtaHovered(null)}
             >
-              <span className="leading-none">Watch Now</span>
-              <svg className="w-0 h-4 opacity-0 group-hover:w-4 group-hover:opacity-100 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+              Watch Now
             </span>
           </Link>
         </motion.div>)}
@@ -337,14 +334,11 @@ const PodcastListView = ({
             
             {/* Right: Contextual CTA */}
             <span 
-              className="shrink-0 mt-2 inline-flex items-center justify-center gap-0 group-hover:gap-2 px-4 py-2 rounded-full text-sm font-medium leading-none text-muted-foreground group-hover:text-background bg-transparent group-hover:bg-foreground transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+              className="shrink-0 btn-base btn-glass btn-sm opacity-0 group-hover:opacity-100"
               onMouseEnter={() => setCtaHovered(globalIndex)}
               onMouseLeave={() => setCtaHovered(null)}
             >
-              <span className="leading-none">Coming Soon</span>
-              <svg className="w-0 h-4 opacity-0 group-hover:w-4 group-hover:opacity-100 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+              Coming Soon
             </span>
           </Link>
         </motion.div>;
