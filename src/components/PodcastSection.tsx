@@ -245,11 +245,11 @@ const PodcastListView = ({
         onMouseMove={(e) => handleMouseMove(index, e)}
       >
           {/* Mouse Follow Image - only for guest episodes, hidden when CTA hovered */}
-          {episode.slug !== 'intro-to-fom' && (
+          {episode.slug !== 'intro-to-fom' && mousePositions[index] && (
             <MouseFollowImage 
               isHovered={hoveredIndex === index && ctaHovered !== index}
-              mouseX={mousePositions[index]?.x ?? 0}
-              mouseY={mousePositions[index]?.y ?? 0}
+              mouseX={mousePositions[index].x}
+              mouseY={mousePositions[index].y}
               imageSrc={episodeImageMap[episode.slug] || listHoverImages[index % listHoverImages.length]}
               name={episode.name}
             />
@@ -314,13 +314,15 @@ const PodcastListView = ({
           onMouseMove={(e) => handleMouseMove(globalIndex, e)}
         >
           {/* Mouse Follow Image - hidden when CTA hovered */}
-          <MouseFollowImage 
-            isHovered={hoveredIndex === globalIndex && ctaHovered !== globalIndex}
-            mouseX={mousePositions[globalIndex]?.x ?? 0}
-            mouseY={mousePositions[globalIndex]?.y ?? 0}
-            imageSrc={listHoverImages[globalIndex % listHoverImages.length]}
-            name={episode.name}
-          />
+          {mousePositions[globalIndex] && (
+            <MouseFollowImage 
+              isHovered={hoveredIndex === globalIndex && ctaHovered !== globalIndex}
+              mouseX={mousePositions[globalIndex].x}
+              mouseY={mousePositions[globalIndex].y}
+              imageSrc={listHoverImages[globalIndex % listHoverImages.length]}
+              name={episode.name}
+            />
+          )}
           
           <Link to={`/episode/${episode.slug}`} className="group py-6 sm:py-8 flex items-start justify-between gap-6 hover-transition relative z-10">
             <div className="flex-1 min-w-0 text-left">
