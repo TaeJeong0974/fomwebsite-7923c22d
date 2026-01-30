@@ -333,8 +333,8 @@ const PodcastListView = ({
               <h3 className={`font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground ${listHoverColors[globalIndex % listHoverColors.length]} transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] leading-[0.95] tracking-tight`}>
                 {episode.name}
               </h3>
-              <p className="text-body mt-3">
-                <span className="text-foreground">{episode.title}</span> <span className="font-medium text-foreground">@ {episode.company}</span>
+              <p className="text-body mt-3 text-foreground">
+                {episode.title} <span className="font-medium">@ {episode.company}</span>
               </p>
             </div>
             
