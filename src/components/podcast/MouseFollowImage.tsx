@@ -14,17 +14,13 @@ const MouseFollowImage = ({ isHovered, mouseX, mouseY, imageSrc, name }: MouseFo
     <AnimatePresence>
       {isHovered && (
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ opacity: { duration: 0.5, ease: "easeOut" } }}
-          className="absolute pointer-events-none z-0"
-          style={{
-            left: mouseX - 100,
-            top: mouseY - 120,
-          }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.95 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="absolute inset-0 pointer-events-none z-0 flex items-center justify-start pl-4"
         >
-          <div className="w-52 h-64 rounded-2xl overflow-hidden shadow-2xl">
+          <div className="w-40 h-52 rounded-2xl overflow-hidden shadow-2xl">
             <img 
               src={imageSrc || guestBg} 
               alt={name}
