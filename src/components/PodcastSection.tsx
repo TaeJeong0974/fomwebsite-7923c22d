@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { LayoutGrid, List } from "lucide-react";
@@ -187,12 +187,22 @@ const PodcastListView = ({
   comingSoonEpisodes: PodcastEpisode[];
 }) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [mousePositions, setMousePositions] = useState<Record<number, { x: number; y: number }>>({});
+
+  const handleMouseMove = (index: number, e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePositions(prev => ({
+      ...prev,
+      [index]: {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      }
+    }));
+  };
 
   return <div className="divide-y divide-border/50">
       {episodes.map((episode, index) => <motion.div 
         key={episode.id} 
-        ref={(el) => { itemRefs.current[index] = el; }}
         initial={{
           opacity: 0,
           x: -16
@@ -213,12 +223,14 @@ const PodcastListView = ({
         className="relative"
         onMouseEnter={() => setHoveredIndex(index)}
         onMouseLeave={() => setHoveredIndex(null)}
+        onMouseMove={(e) => handleMouseMove(index, e)}
       >
           {/* Mouse Follow Image - only for guest episodes */}
           {episode.slug !== 'intro-to-fom' && (
             <MouseFollowImage 
               isHovered={hoveredIndex === index}
-              containerRef={{ current: itemRefs.current[index] } as React.RefObject<HTMLElement>}
+              mouseX={mousePositions[index]?.x ?? 0}
+              mouseY={mousePositions[index]?.y ?? 0}
               name={episode.name}
             />
           )}
@@ -247,7 +259,7 @@ const PodcastListView = ({
             <span className="shrink-0 mt-2 flex items-center gap-0 group-hover:gap-2 px-4 py-2 rounded-full text-sm font-medium text-muted-foreground group-hover:text-background bg-transparent group-hover:bg-foreground transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]">
               Watch Now
               <svg className="w-0 h-4 opacity-0 group-hover:w-4 group-hover:opacity-100 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7-7 7" />
               </svg>
             </span>
           </Link>
@@ -258,7 +270,6 @@ const PodcastListView = ({
         const globalIndex = episodes.length + idx;
         return <motion.div 
           key={`coming-soon-list-${episode.id}`} 
-          ref={(el) => { itemRefs.current[globalIndex] = el; }}
           initial={{
             opacity: 0,
             x: -16
@@ -279,11 +290,13 @@ const PodcastListView = ({
           className="relative"
           onMouseEnter={() => setHoveredIndex(globalIndex)}
           onMouseLeave={() => setHoveredIndex(null)}
+          onMouseMove={(e) => handleMouseMove(globalIndex, e)}
         >
           {/* Mouse Follow Image */}
           <MouseFollowImage 
             isHovered={hoveredIndex === globalIndex}
-            containerRef={{ current: itemRefs.current[globalIndex] } as React.RefObject<HTMLElement>}
+            mouseX={mousePositions[globalIndex]?.x ?? 0}
+            mouseY={mousePositions[globalIndex]?.y ?? 0}
             name={episode.name}
           />
           
