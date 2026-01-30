@@ -60,8 +60,9 @@ const PodcastSection = () => {
             <div className="glass rounded-full p-1.5 flex items-center gap-1">
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button onClick={() => setLayout("grid")} className={`p-2.5 rounded-full transition-all duration-300 ${layout === "grid" ? "bg-foreground text-background shadow-lg" : "text-foreground hover:text-foreground hover:bg-white/5"}`}>
+                  <button onClick={() => setLayout("grid")} className={`p-2.5 rounded-full transition-all duration-300 flex items-center gap-2 ${layout === "grid" ? "bg-foreground text-background shadow-lg" : "text-foreground hover:text-foreground hover:bg-white/5"}`}>
                     <LayoutGrid className="h-4 w-4" />
+                    <span className="text-xs font-medium pr-1">Grid</span>
                   </button>
                 </TooltipTrigger>
                 <TooltipContent>
@@ -70,8 +71,9 @@ const PodcastSection = () => {
               </Tooltip>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <button onClick={() => setLayout("list")} className={`p-2.5 rounded-full transition-all duration-300 ${layout === "list" ? "bg-foreground text-background shadow-lg" : "text-foreground hover:text-foreground hover:bg-white/5"}`}>
+                  <button onClick={() => setLayout("list")} className={`p-2.5 rounded-full transition-all duration-300 flex items-center gap-2 ${layout === "list" ? "bg-foreground text-background shadow-lg" : "text-foreground hover:text-foreground hover:bg-white/5"}`}>
                     <List className="h-4 w-4" />
+                    <span className="text-xs font-medium pr-1">List</span>
                   </button>
                 </TooltipTrigger>
                 <TooltipContent>
