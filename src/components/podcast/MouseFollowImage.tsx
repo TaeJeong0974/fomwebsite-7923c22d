@@ -23,7 +23,7 @@ const MouseFollowImage = ({ isHovered, mouseX, mouseY, imageSrc, name }: MouseFo
           top: mouseY - 128,
         }}
       >
-        <div className="w-52 h-64 overflow-hidden shadow-2xl">
+        <div className="w-52 h-64 overflow-hidden">
           <img 
             src={imageSrc || guestBg} 
             alt={name}
