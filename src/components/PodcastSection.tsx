@@ -277,7 +277,7 @@ const PodcastListView = ({
             
             {/* Right: Contextual CTA */}
             <span 
-              className="shrink-0 btn-base btn-glass btn-sm"
+              className="shrink-0 btn-base btn-glass btn-sm hover:bg-[hsl(var(--foreground)/0.05)]"
               onMouseEnter={() => setCtaHovered(index)}
               onMouseLeave={() => setCtaHovered(null)}
             >
@@ -334,7 +334,7 @@ const PodcastListView = ({
             
             {/* Right: Contextual CTA */}
             <span 
-              className="shrink-0 btn-base btn-glass btn-sm"
+              className="shrink-0 btn-base btn-glass btn-sm hover:bg-[hsl(var(--foreground)/0.05)]"
               onMouseEnter={() => setCtaHovered(globalIndex)}
               onMouseLeave={() => setCtaHovered(null)}
             >
