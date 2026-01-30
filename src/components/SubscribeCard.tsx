@@ -52,7 +52,7 @@ const SubscribeCard = () => {
             onClick={handleCardClick}
             className="card-content-full card-padding-lg"
           >
-            <h3 className="text-display-md 2xl:text-display-lg text-foreground">
+            <h3 className="text-display-md text-foreground">
               Subscribe to stay current on how teams are using AI.
             </h3>
             <span className="btn-base btn-lg bg-foreground text-background hover:bg-foreground/90 self-start">Subscribe</span>
@@ -67,7 +67,7 @@ const SubscribeCard = () => {
             className="card-content-full card-padding-lg"
             onClick={(e) => e.stopPropagation()}
           >
-            <h3 className="text-display-md 2xl:text-display-lg text-foreground">
+            <h3 className="text-display-md text-foreground">
               Subscribe to stay current on how teams are using AI.
             </h3>
             
@@ -107,7 +107,7 @@ const SubscribeCard = () => {
             transition={{ duration: 0.2 }}
             className="card-content-full card-padding-lg"
           >
-            <h3 className="text-display-md 2xl:text-display-lg text-foreground">
+            <h3 className="text-display-md text-foreground">
               Thank you for subscribing.
             </h3>
             <p className="text-body text-foreground/70">
