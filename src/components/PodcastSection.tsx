@@ -194,12 +194,8 @@ const PodcastListView = ({
             {/* Left: Name + Title/Company stacked */}
             <div className="flex-1 min-w-0 text-left">
               <div className="flex items-center gap-3">
-                <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl text-foreground group-hover:text-foreground hover-transition leading-[0.95] tracking-normal">
-                  {episode.name.split(' ').map((word, i) => (
-                    <span key={i} className={i === 0 ? 'font-medium' : 'font-normal'}>
-                      {word}{i < episode.name.split(' ').length - 1 ? ' ' : ''}
-                    </span>
-                  ))}
+                <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-foreground hover-transition leading-[0.95] tracking-tight">
+                  {episode.name}
                 </h3>
                 {isNewEpisode(episode.publishedDate) && <span className="glass text-foreground text-xs font-semibold tracking-wide uppercase px-3 pt-2.5 pb-2 rounded-full flex items-center justify-center leading-none">New</span>}
               </div>
@@ -235,12 +231,8 @@ const PodcastListView = ({
           <Link to={`/episode/${episode.slug}`} className="group py-6 sm:py-8 flex items-start justify-between gap-6 hover-transition">
             <div className="flex-1 min-w-0 text-left">
               <div className="flex items-center gap-3">
-                <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl text-foreground group-hover:text-foreground hover-transition leading-[0.95] tracking-normal">
-                  {episode.name.split(' ').map((word, i) => (
-                    <span key={i} className={i === 0 ? 'font-medium' : 'font-normal'}>
-                      {word}{i < episode.name.split(' ').length - 1 ? ' ' : ''}
-                    </span>
-                  ))}
+                <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground group-hover:text-foreground hover-transition leading-[0.95] tracking-tight">
+                  {episode.name}
                 </h3>
                 <span className="glass text-foreground text-xs font-semibold tracking-wide uppercase px-3 pt-2.5 pb-2 rounded-full flex items-center justify-center leading-none">Upcoming</span>
               </div>
