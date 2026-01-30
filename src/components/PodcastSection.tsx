@@ -8,6 +8,13 @@ import SubscribeCard from "@/components/SubscribeCard";
 import PodcastCard from "@/components/podcast/PodcastCard";
 import MouseFollowImage from "@/components/podcast/MouseFollowImage";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
+import hostMada from "@/assets/host-mada.png";
+import hostEthan from "@/assets/host-ethan.png";
+import hostCamille from "@/assets/host-camille.png";
+
+// Rotate through available images for list hover
+const listHoverImages = [hostMada, hostEthan, hostCamille];
+
 type LayoutType = "grid" | "list";
 const isNewEpisode = (publishedDate: string): boolean => {
   if (publishedDate === "Coming Soon") return false;
@@ -231,6 +238,7 @@ const PodcastListView = ({
               isHovered={hoveredIndex === index}
               mouseX={mousePositions[index]?.x ?? 0}
               mouseY={mousePositions[index]?.y ?? 0}
+              imageSrc={listHoverImages[index % listHoverImages.length]}
               name={episode.name}
             />
           )}
@@ -297,6 +305,7 @@ const PodcastListView = ({
             isHovered={hoveredIndex === globalIndex}
             mouseX={mousePositions[globalIndex]?.x ?? 0}
             mouseY={mousePositions[globalIndex]?.y ?? 0}
+            imageSrc={listHoverImages[globalIndex % listHoverImages.length]}
             name={episode.name}
           />
           
