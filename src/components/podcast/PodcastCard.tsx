@@ -70,7 +70,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
         <div className="card-overlay-light hover-transition group-hover:opacity-90 z-[2]" />
         
         {episode.companyDomain && (
-          <div className="absolute top-4 left-4 glass rounded-full p-2.5 hover-scale-badge z-[3]">
+          <div className="absolute top-6 left-6 lg:top-8 lg:left-8 glass rounded-full p-2.5 hover-scale-badge z-[3]">
             <img 
               src={`https://www.google.com/s2/favicons?domain=${episode.companyDomain}&sz=64`} 
               alt={episode.company}
@@ -80,13 +80,13 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
         )}
         
         {isNew && (
-          <span className="absolute top-4 right-4 glass text-foreground text-xs font-semibold tracking-wide uppercase px-3 pt-2.5 pb-2 rounded-full z-[3] flex items-center justify-center leading-none">
+          <span className="absolute top-6 right-6 lg:top-8 lg:right-8 glass text-foreground text-xs font-semibold tracking-wide uppercase px-3 pt-2.5 pb-2 rounded-full z-[3] flex items-center justify-center leading-none">
             New
           </span>
         )}
         
         {isUpcoming && (
-          <div className="absolute top-4 left-0 right-0 flex justify-end pr-4 z-[3]">
+          <div className="absolute top-6 right-6 lg:top-8 lg:right-8 z-[3]">
             <span className="glass text-foreground text-xs font-semibold tracking-wide uppercase px-3 pt-2.5 pb-2 rounded-full flex items-center justify-center leading-none">
               Upcoming
             </span>
