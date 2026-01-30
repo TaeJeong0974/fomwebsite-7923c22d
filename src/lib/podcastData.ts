@@ -88,6 +88,7 @@ We explore the big questions facing modern B2B marketers and preview the incredi
     duration: "25 min",
     publishedDate: "Jan 1, 2026",
     comingSoon: false,
+    hosts: podcastHosts,
   },
   {
     id: 2,
