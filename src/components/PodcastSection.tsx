@@ -223,11 +223,11 @@ const PodcastListView = ({
         key={episode.id} 
         initial={{
           opacity: 0,
-          x: -16
+          y: 30
         }} 
         whileInView={{
           opacity: 1,
-          x: 0
+          y: 0
         }} 
         viewport={{
           once: true,
@@ -291,11 +291,11 @@ const PodcastListView = ({
           key={`coming-soon-list-${episode.id}`} 
           initial={{
             opacity: 0,
-            x: -16
+            y: 30
           }} 
           whileInView={{
             opacity: 1,
-            x: 0
+            y: 0
           }} 
           viewport={{
             once: true,
