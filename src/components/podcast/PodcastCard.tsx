@@ -86,7 +86,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
         )}
         
         {isUpcoming && (
-          <div className="absolute top-4 left-0 right-0 flex justify-center z-[3]">
+          <div className="absolute top-4 left-0 right-0 flex justify-end pr-4 z-[3]">
             <span className="glass text-foreground text-xs font-semibold tracking-wide uppercase px-3 pt-2.5 pb-2 rounded-full flex items-center justify-center leading-none">
               Upcoming
             </span>
