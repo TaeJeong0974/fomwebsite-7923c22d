@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { LayoutGrid, List } from "lucide-react";
@@ -6,6 +6,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { getPublishedEpisodes, getComingSoonEpisodes, PodcastEpisode, podcastHosts } from "@/lib/podcastData";
 import SubscribeCard from "@/components/SubscribeCard";
 import PodcastCard from "@/components/podcast/PodcastCard";
+import MouseFollowImage from "@/components/podcast/MouseFollowImage";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
 type LayoutType = "grid" | "list";
 const isNewEpisode = (publishedDate: string): boolean => {
@@ -185,22 +186,44 @@ const PodcastListView = ({
   episodes: PodcastEpisode[];
   comingSoonEpisodes: PodcastEpisode[];
 }) => {
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
   return <div className="divide-y divide-border/50">
-      {episodes.map((episode, index) => <motion.div key={episode.id} initial={{
-      opacity: 0,
-      x: -16
-    }} whileInView={{
-      opacity: 1,
-      x: 0
-    }} viewport={{
-      once: true,
-      amount: 0.3
-    }} transition={{
-      duration: 0.9,
-      delay: index * 0.12,
-      ease: liquidEase
-    }}>
-          <Link to={`/episode/${episode.slug}`} className="group py-6 sm:py-8 flex items-start justify-between gap-6 hover-transition">
+      {episodes.map((episode, index) => <motion.div 
+        key={episode.id} 
+        ref={(el) => { itemRefs.current[index] = el; }}
+        initial={{
+          opacity: 0,
+          x: -16
+        }} 
+        whileInView={{
+          opacity: 1,
+          x: 0
+        }} 
+        viewport={{
+          once: true,
+          amount: 0.3
+        }} 
+        transition={{
+          duration: 0.9,
+          delay: index * 0.12,
+          ease: liquidEase
+        }}
+        className="relative"
+        onMouseEnter={() => setHoveredIndex(index)}
+        onMouseLeave={() => setHoveredIndex(null)}
+      >
+          {/* Mouse Follow Image - only for guest episodes */}
+          {episode.slug !== 'intro-to-fom' && (
+            <MouseFollowImage 
+              isHovered={hoveredIndex === index}
+              containerRef={{ current: itemRefs.current[index] } as React.RefObject<HTMLElement>}
+              name={episode.name}
+            />
+          )}
+          
+          <Link to={`/episode/${episode.slug}`} className="group py-6 sm:py-8 flex items-start justify-between gap-6 hover-transition relative z-10">
             {/* Left: Name + Title/Company stacked */}
             <div className="flex-1 min-w-0 text-left">
               <div className="flex items-center gap-3">
@@ -231,23 +254,42 @@ const PodcastListView = ({
         </motion.div>)}
       
       {/* Coming Soon items */}
-      {comingSoonEpisodes.map((episode, idx) => <motion.div key={`coming-soon-list-${episode.id}`} initial={{
-      opacity: 0,
-      x: -16
-    }} whileInView={{
-      opacity: 1,
-      x: 0
-    }} viewport={{
-      once: true,
-      amount: 0.3
-    }} transition={{
-      duration: 0.9,
-      delay: (episodes.length + idx) * 0.12,
-      ease: liquidEase
-    }}>
-          <Link to={`/episode/${episode.slug}`} className="group py-6 sm:py-8 flex items-start justify-between gap-6 hover-transition">
+      {comingSoonEpisodes.map((episode, idx) => {
+        const globalIndex = episodes.length + idx;
+        return <motion.div 
+          key={`coming-soon-list-${episode.id}`} 
+          ref={(el) => { itemRefs.current[globalIndex] = el; }}
+          initial={{
+            opacity: 0,
+            x: -16
+          }} 
+          whileInView={{
+            opacity: 1,
+            x: 0
+          }} 
+          viewport={{
+            once: true,
+            amount: 0.3
+          }} 
+          transition={{
+            duration: 0.9,
+            delay: idx * 0.12,
+            ease: liquidEase
+          }}
+          className="relative"
+          onMouseEnter={() => setHoveredIndex(globalIndex)}
+          onMouseLeave={() => setHoveredIndex(null)}
+        >
+          {/* Mouse Follow Image */}
+          <MouseFollowImage 
+            isHovered={hoveredIndex === globalIndex}
+            containerRef={{ current: itemRefs.current[globalIndex] } as React.RefObject<HTMLElement>}
+            name={episode.name}
+          />
+          
+          <Link to={`/episode/${episode.slug}`} className="group py-6 sm:py-8 flex items-start justify-between gap-6 hover-transition relative z-10">
             <div className="flex-1 min-w-0 text-left">
-              <h3 className={`font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground ${listHoverColors[(episodes.length + idx) % listHoverColors.length]} transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] leading-[0.95] tracking-tight`}>
+              <h3 className={`font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground ${listHoverColors[globalIndex % listHoverColors.length]} transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] leading-[0.95] tracking-tight`}>
                 {episode.name}
               </h3>
               <p className="text-body mt-3">
@@ -263,7 +305,8 @@ const PodcastListView = ({
               </svg>
             </span>
           </Link>
-        </motion.div>)}
+        </motion.div>;
+      })}
     </div>;
 };
 export default PodcastSection;
