@@ -36,19 +36,17 @@ const MouseFollowImage = ({ isHovered, containerRef, imageSrc, name }: MouseFoll
     <AnimatePresence>
       {isHovered && (
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0 }}
           animate={{ 
             opacity: 1, 
-            scale: 1,
-            x: mousePosition.x - 80,
-            y: mousePosition.y - 100,
+            x: mousePosition.x - 100,
+            y: mousePosition.y - 120,
           }}
-          exit={{ opacity: 0, scale: 0.8 }}
+          exit={{ opacity: 0 }}
           transition={{ 
-            opacity: { duration: 0.2 },
-            scale: { duration: 0.2 },
-            x: { duration: 0.15, ease: "easeOut" },
-            y: { duration: 0.15, ease: "easeOut" },
+            opacity: { duration: 0.4, ease: "easeOut" },
+            x: { duration: 0.12, ease: "easeOut" },
+            y: { duration: 0.12, ease: "easeOut" },
           }}
           className="absolute pointer-events-none z-0"
           style={{
@@ -56,7 +54,7 @@ const MouseFollowImage = ({ isHovered, containerRef, imageSrc, name }: MouseFoll
             top: 0,
           }}
         >
-          <div className="w-40 h-48 rounded-xl overflow-hidden shadow-2xl">
+          <div className="w-52 h-64 rounded-2xl overflow-hidden shadow-2xl">
             <img 
               src={imageSrc || guestBg} 
               alt={name}
