@@ -11,8 +11,14 @@ import { liquidEase } from "@/components/animations/PageLoadAnimation";
 import hostMada from "@/assets/host-mada.png";
 import hostEthan from "@/assets/host-ethan.png";
 import hostCamille from "@/assets/host-camille.png";
+import guestBg from "@/assets/guest-bg.png";
 
-// Rotate through available images for list hover
+// Map episode slugs to specific images
+const episodeImageMap: Record<string, string> = {
+  'meagen-eisenberg': guestBg,
+};
+
+// Fallback rotation for episodes without specific images
 const listHoverImages = [hostMada, hostEthan, hostCamille];
 
 type LayoutType = "grid" | "list";
@@ -238,7 +244,7 @@ const PodcastListView = ({
               isHovered={hoveredIndex === index}
               mouseX={mousePositions[index]?.x ?? 0}
               mouseY={mousePositions[index]?.y ?? 0}
-              imageSrc={listHoverImages[index % listHoverImages.length]}
+              imageSrc={episodeImageMap[episode.slug] || listHoverImages[index % listHoverImages.length]}
               name={episode.name}
             />
           )}
