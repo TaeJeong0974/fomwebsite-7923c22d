@@ -11,32 +11,50 @@ interface MouseFollowImageProps {
 
 const MouseFollowImage = ({ isHovered, containerRef, imageSrc, name }: MouseFollowImageProps) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [initialPosition, setInitialPosition] = useState({ x: 0, y: 0 });
+  const hasInitialized = useRef(false);
 
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
-      if (containerRef.current && isHovered) {
+      if (containerRef.current) {
         const rect = containerRef.current.getBoundingClientRect();
-        setMousePosition({
+        const newPos = {
           x: e.clientX - rect.left,
           y: e.clientY - rect.top,
-        });
+        };
+        setMousePosition(newPos);
+        
+        // Capture initial position when hover starts
+        if (isHovered && !hasInitialized.current) {
+          setInitialPosition(newPos);
+          hasInitialized.current = true;
+        }
       }
     };
 
-    if (isHovered) {
-      window.addEventListener("mousemove", handleMouseMove);
-    }
+    window.addEventListener("mousemove", handleMouseMove);
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
   }, [isHovered, containerRef]);
 
+  // Reset initialization flag when hover ends
+  useEffect(() => {
+    if (!isHovered) {
+      hasInitialized.current = false;
+    }
+  }, [isHovered]);
+
   return (
     <AnimatePresence>
       {isHovered && (
         <motion.div
-          initial={{ opacity: 0 }}
+          initial={{ 
+            opacity: 0,
+            x: initialPosition.x - 100,
+            y: initialPosition.y - 120,
+          }}
           animate={{ 
             opacity: 1, 
             x: mousePosition.x - 100,
@@ -44,9 +62,9 @@ const MouseFollowImage = ({ isHovered, containerRef, imageSrc, name }: MouseFoll
           }}
           exit={{ opacity: 0 }}
           transition={{ 
-            opacity: { duration: 0.4, ease: "easeOut" },
-            x: { duration: 0.12, ease: "easeOut" },
-            y: { duration: 0.12, ease: "easeOut" },
+            opacity: { duration: 0.3, ease: "easeOut" },
+            x: { duration: 0.1, ease: "easeOut" },
+            y: { duration: 0.1, ease: "easeOut" },
           }}
           className="absolute pointer-events-none z-0"
           style={{
