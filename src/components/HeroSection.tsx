@@ -5,6 +5,7 @@ import hostMada from "@/assets/host-mada.png";
 import hostEthan from "@/assets/host-ethan.png";
 import hostCamille from "@/assets/host-camille.png";
 import { liquidEase, staggerContainer, fadeUpVariant } from "@/components/animations/PageLoadAnimation";
+import { ParallaxSection } from "@/components/animations/ParallaxSection";
 
 const hosts = [
   {
@@ -38,13 +39,16 @@ const HeroSection = () => {
           animate="visible"
           variants={staggerContainer}
         >
-          <motion.h1
-            variants={fadeUpVariant}
-            className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] text-foreground max-w-4xl font-medium mb-16 lg:mb-24"
-            style={{ lineHeight: 1.2 }}
-          >
-            Future of Marketing is a podcast and event series bringing together CMOs and growth leaders navigating AI in modern B2B marketing.
-          </motion.h1>
+          {/* Hero headline with subtle parallax */}
+          <ParallaxSection speed={0.08} direction="up">
+            <motion.h1
+              variants={fadeUpVariant}
+              className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] text-foreground max-w-4xl font-medium mb-16 lg:mb-24"
+              style={{ lineHeight: 1.2 }}
+            >
+              Future of Marketing is a podcast and event series bringing together CMOs and growth leaders navigating AI in modern B2B marketing.
+            </motion.h1>
+          </ParallaxSection>
 
           <motion.div variants={fadeUpVariant}>
             <p className="text-label mb-8">
