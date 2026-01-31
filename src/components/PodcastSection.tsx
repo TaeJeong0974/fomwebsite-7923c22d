@@ -40,7 +40,7 @@ const PodcastSection = () => {
   const comingSoonEpisodes = getComingSoonEpisodes();
 
   return (
-    <section id="podcast" className="section-spacing">
+    <section id="podcast" className="pt-8 lg:pt-12 pb-14 lg:pb-20">
       <div className="container mx-auto container-padding">
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6 lg:mb-8">
