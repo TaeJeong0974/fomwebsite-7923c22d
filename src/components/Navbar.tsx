@@ -47,10 +47,10 @@ const Navbar = () => {
       variants={fadeDownVariant}
       className="sticky top-4 z-50 container mx-auto container-padding"
     >
-      <nav className="glass rounded-xl px-4 sm:px-5 lg:px-6">
-        <div className="grid grid-cols-3 items-center h-14 lg:h-16">
-          {/* Logo - First column */}
-          <Link to="/" className="flex items-center focus-ring rounded-lg justify-self-start">
+      <nav className="glass rounded-xl py-3 lg:py-4">
+        <div className="grid grid-cols-3 items-center grid-gap">
+          {/* Logo - First column, with left padding for pill aesthetics */}
+          <Link to="/" className="flex items-center focus-ring rounded-lg justify-self-start pl-4 sm:pl-5 lg:pl-6">
             <img src={FomLogo} alt="Future of Marketing" className="h-5 lg:h-6" />
           </Link>
 
@@ -78,12 +78,12 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* Desktop CTA - Third column, aligned right */}
+          {/* Desktop CTA - Third column, aligned right with right padding */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.5, ease: liquidEase }}
-            className="hidden md:flex items-center justify-self-end"
+            className="hidden md:flex items-center justify-self-end pr-4 sm:pr-5 lg:pr-6"
           >
             <SubscribeButton className="btn-base btn-glass btn-md">
               Subscribe
@@ -92,7 +92,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button - Third column on mobile */}
           <button
-            className="md:hidden p-2 -mr-2 rounded-full hover:bg-secondary/50 hover-transition focus-ring col-start-3 justify-self-end"
+            className="md:hidden p-2 rounded-full hover:bg-secondary/50 hover-transition focus-ring col-start-3 justify-self-end mr-2 sm:mr-3"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
