@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 const liquidEase = [0.22, 1, 0.36, 1] as const;
 
@@ -12,16 +12,29 @@ const PageTransition = ({ children }: PageTransitionProps) => {
   const location = useLocation();
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [displayLocation, setDisplayLocation] = useState(location);
+  const previousPathRef = useRef(location.pathname);
 
   useEffect(() => {
     if (location.pathname !== displayLocation.pathname) {
-      setIsTransitioning(true);
+      const isFromHomeToDetail = 
+        previousPathRef.current === "/" && 
+        location.pathname.startsWith("/episode/");
+      
+      if (isFromHomeToDetail) {
+        // Trigger wipe animation only for homepage → detail
+        setIsTransitioning(true);
+      } else {
+        // Instant transition for all other navigations
+        setDisplayLocation(location);
+        previousPathRef.current = location.pathname;
+      }
     }
   }, [location, displayLocation]);
 
   const handleAnimationComplete = () => {
     if (isTransitioning) {
       setDisplayLocation(location);
+      previousPathRef.current = location.pathname;
       setIsTransitioning(false);
     }
   };
@@ -33,7 +46,7 @@ const PageTransition = ({ children }: PageTransitionProps) => {
         {children}
       </div>
 
-      {/* Wipe overlay - appears on route change */}
+      {/* Wipe overlay - only for homepage → detail */}
       {isTransitioning && (
         <>
           {/* Primary wipe */}
@@ -54,8 +67,8 @@ const PageTransition = ({ children }: PageTransitionProps) => {
         </>
       )}
 
-      {/* Exit wipe - reveals new page */}
-      {!isTransitioning && displayLocation.pathname === location.pathname && (
+      {/* Exit wipe - reveals detail page after transition */}
+      {!isTransitioning && displayLocation.pathname.startsWith("/episode/") && (
         <>
           <motion.div
             key={`exit-primary-${location.pathname}`}
