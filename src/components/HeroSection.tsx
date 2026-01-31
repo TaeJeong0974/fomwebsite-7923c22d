@@ -53,7 +53,7 @@ const HeroSection = () => {
           {/* Large FOM Icon - centered, aligned to columns 2-3 of host grid */}
           <motion.div
             variants={fadeUpVariant}
-            className="grid grid-cols-1 md:grid-cols-3 grid-gap mb-16 lg:mb-24"
+            className="grid grid-cols-1 md:grid-cols-3 grid-gap mb-16 lg:mb-24 pt-8 lg:pt-16"
           >
             {/* Empty first column */}
             <div className="hidden md:block" />
