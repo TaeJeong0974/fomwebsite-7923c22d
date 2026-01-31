@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import FomLogo from "@/assets/FOM_Logo.svg";
@@ -10,11 +10,35 @@ import { fadeDownVariant, liquidEase } from "@/components/animations/PageLoadAni
 const Navbar = () => {
   const { openSubscribe } = useSubscribe();
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHomePage = location.pathname === "/";
+  
   const navLinks = [
     { label: "Podcast", href: "#podcast" },
     { label: "Events", href: "#events" },
     { label: "Contact", href: "#contact" },
   ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsOpen(false);
+    
+    if (isHomePage) {
+      // On homepage, just scroll to section
+      const element = document.querySelector(href);
+      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } else {
+      // On other pages, navigate home then scroll
+      navigate('/');
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          const element = document.querySelector(href);
+          element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      });
+    }
+  };
 
   return (
     <motion.header 
@@ -45,6 +69,7 @@ const Navbar = () => {
               >
                 <a
                   href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="text-base font-medium text-foreground hover:text-primary hover:bg-secondary/50 hover-transition px-4 py-2 rounded-full focus-ring"
                 >
                   {link.label}
@@ -83,8 +108,8 @@ const Navbar = () => {
                 <li key={link.label}>
                   <a
                     href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
                     className="block py-2 px-4 text-foreground hover:text-primary hover:bg-secondary/50 rounded-xl hover-transition focus-ring"
-                    onClick={() => setIsOpen(false)}
                   >
                     {link.label}
                   </a>
