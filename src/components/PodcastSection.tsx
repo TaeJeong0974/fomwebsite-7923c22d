@@ -43,7 +43,7 @@ const PodcastSection = () => {
     <section id="podcast" className="section-spacing">
       <div className="container mx-auto container-padding">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 lg:mb-12">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6 lg:mb-8">
           <div>
             <p className="text-label mb-2">WATCH</p>
             <h2 className="text-display-xl text-foreground" style={{ fontWeight: 500 }}>Podcast</h2>
