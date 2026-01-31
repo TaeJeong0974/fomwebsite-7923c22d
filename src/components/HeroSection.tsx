@@ -78,7 +78,7 @@ const HeroSection = () => {
 
           {/* Hosts section with label aligned to first column */}
           <motion.div variants={fadeUpVariant}>
-            <p className="text-label mb-8">
+            <p className="text-label mb-4">
               Your Host
             </p>
             
