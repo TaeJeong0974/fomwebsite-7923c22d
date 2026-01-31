@@ -40,8 +40,8 @@ const HeroSection = () => {
           variants={staggerContainer}
         >
           {/* Top section with tagline and logo - aligned to 3-column host grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 grid-gap items-end mb-16 lg:mb-24">
-            {/* Left: Tagline - takes first column */}
+          <div className="grid grid-cols-1 md:grid-cols-3 grid-gap items-start mb-16 lg:mb-24">
+            {/* Left: Tagline - takes first column, stays at top */}
             <motion.h1
               variants={fadeUpVariant}
               className="font-display text-xl sm:text-2xl md:text-3xl lg:text-[2rem] text-foreground font-medium uppercase tracking-tight leading-[1.1]"
@@ -52,10 +52,10 @@ const HeroSection = () => {
               Marketing
             </motion.h1>
 
-            {/* Right: Large FOM Icon - spans columns 2-3 (aligned with Ethan & Camille) */}
+            {/* Right: Large FOM Icon - spans columns 2-3, aligned to bottom */}
             <motion.div
               variants={fadeUpVariant}
-              className="md:col-span-2 flex justify-center md:justify-end"
+              className="md:col-span-2 flex justify-center md:justify-end self-end"
             >
               <img 
                 src={FOMIcon} 
