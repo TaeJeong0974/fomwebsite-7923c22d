@@ -1,5 +1,6 @@
 import { Share2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 
 interface EpisodeActionButtonsProps {
   youtubeUrl: string;
@@ -20,6 +21,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
     } else {
       // Fallback: copy to clipboard
       await navigator.clipboard.writeText(window.location.href);
+      toast.success("Link copied to clipboard");
     }
   };
 
