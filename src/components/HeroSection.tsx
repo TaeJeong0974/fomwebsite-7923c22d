@@ -39,16 +39,25 @@ const HeroSection = () => {
           animate="visible"
           variants={staggerContainer}
         >
-          {/* Tagline at top left */}
-          <motion.h1
-            variants={fadeUpVariant}
-            className="font-display text-xl sm:text-2xl md:text-3xl lg:text-[2rem] text-foreground font-medium uppercase tracking-tight leading-[1.1] mb-20 lg:mb-32"
-          >
-            A Podcast<br />
-            Series on How<br />
-            AI is Changing<br />
-            Marketing
-          </motion.h1>
+          {/* Top row: Tagline left, Title right */}
+          <div className="flex justify-between items-start mb-20 lg:mb-32">
+            <motion.h1
+              variants={fadeUpVariant}
+              className="font-display text-xl sm:text-2xl md:text-3xl lg:text-[2rem] text-foreground font-medium uppercase tracking-tight leading-[1.1]"
+            >
+              A Podcast<br />
+              Series on How<br />
+              AI is Changing<br />
+              Marketing
+            </motion.h1>
+            
+            <motion.p
+              variants={fadeUpVariant}
+              className="text-label hidden sm:block"
+            >
+              The Future of Marketing
+            </motion.p>
+          </div>
 
           {/* Large FOM Icon - centered, aligned to columns 2-3 of host grid */}
           <motion.div
@@ -67,10 +76,10 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* Hosts section */}
+          {/* Hosts section with label aligned to first column */}
           <motion.div variants={fadeUpVariant}>
             <p className="text-label mb-8">
-              Your Hosts
+              Your Host
             </p>
             
             <div className="grid grid-cols-1 md:grid-cols-3 grid-gap">
