@@ -34,14 +34,23 @@ const RelatedEpisodes = ({ episodes, title = "Other Speakers", delay = 0.4 }: Re
             to={`/episode/${ep.slug}`}
             className="block group"
           >
-            <div 
-              className="card-image hover-scale"
-              style={{
-                backgroundImage: `url(${guestBg})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
-            >
+            <div className="card-image hover-scale overflow-hidden">
+              {/* Animated background */}
+              <motion.div
+                className="absolute inset-0 z-0"
+                style={{
+                  backgroundImage: `url(${guestBg})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
+                initial={{ scale: 1 }}
+                whileInView={{ scale: 1 }}
+                whileHover={{ scale: 1.05 }}
+                transition={{ 
+                  duration: 1, 
+                  ease: [0.22, 1, 0.36, 1] 
+                }}
+              />
               <div className="card-overlay-light hover-transition group-hover:opacity-90" />
               
               {ep.companyDomain && (
