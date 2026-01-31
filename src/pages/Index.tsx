@@ -9,15 +9,24 @@ const Index = () => {
   return (
     <div className="min-h-screen relative">
       {/* Fixed gradient background */}
-      <div 
-        className="fixed inset-0 -z-10"
-        style={{
-          backgroundImage: `url(${siteBg})`,
-          backgroundSize: '150% 150%',
-          backgroundPosition: 'top left',
-          backgroundRepeat: 'no-repeat',
-        }}
-      />
+      <div className="fixed inset-0 -z-10">
+        {/* Base gradient image */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `url(${siteBg})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        {/* Overlay that reveals only bottom-right corner */}
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: 'linear-gradient(135deg, #ddd9d4 0%, #ddd9d4 50%, transparent 80%)',
+          }}
+        />
+      </div>
       
       <Navbar />
       
