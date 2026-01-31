@@ -65,9 +65,9 @@ const Navbar = () => {
             </SubscribeButton>
           </motion.div>
 
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Third column on mobile */}
           <button
-            className="md:hidden p-2 -mr-2 rounded-full hover:bg-secondary/50 hover-transition focus-ring"
+            className="md:hidden p-2 -mr-2 rounded-full hover:bg-secondary/50 hover-transition focus-ring col-start-3 justify-self-end"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >

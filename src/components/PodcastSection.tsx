@@ -63,7 +63,7 @@ const PodcastSection = () => {
                       className={`p-2.5 rounded-full transition-all duration-300 flex items-center gap-2 ${
                         layout === type 
                           ? "bg-foreground text-background shadow-lg" 
-                          : "text-foreground hover:bg-white/5"
+                          : "text-foreground hover:bg-foreground/5"
                       }`}
                     >
                       <Icon className="h-4 w-4" />
