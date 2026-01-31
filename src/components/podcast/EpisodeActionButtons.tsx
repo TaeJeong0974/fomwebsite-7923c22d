@@ -20,19 +20,6 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
-      {/* Subscribe */}
-      <motion.button
-        onClick={openSubscribe}
-        className={liquidGlassButton}
-        variants={buttonVariants}
-        initial="initial"
-        whileHover="hover"
-        whileTap="tap"
-      >
-        <Bell className="w-5 h-5 text-foreground" />
-        <span>Subscribe</span>
-      </motion.button>
-
       {/* YouTube */}
       <motion.a
         href={youtubeUrl}
@@ -68,6 +55,19 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
         <span className="sm:hidden">Spotify</span>
         <span className="hidden sm:inline">Listen on Spotify</span>
       </motion.a>
+
+      {/* Subscribe */}
+      <motion.button
+        onClick={openSubscribe}
+        className={liquidGlassButton}
+        variants={buttonVariants}
+        initial="initial"
+        whileHover="hover"
+        whileTap="tap"
+      >
+        <Bell className="w-5 h-5 text-foreground" />
+        <span>Subscribe</span>
+      </motion.button>
     </div>
   );
 };
