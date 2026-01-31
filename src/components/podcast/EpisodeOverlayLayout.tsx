@@ -156,6 +156,18 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
       
       <Navbar />
 
+      {/* Fixed Close Button */}
+      <motion.button
+        variants={closeButtonVariants}
+        initial="hidden"
+        animate={isVisible ? "visible" : "exit"}
+        onClick={handleClose}
+        className="fixed top-20 sm:top-24 right-6 sm:right-8 lg:right-12 z-50 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-foreground text-background hover:bg-foreground/80 hover:scale-105 hover-transition shadow-lg"
+        aria-label="Close and return to episodes"
+      >
+        <X size={18} className="sm:w-5 sm:h-5" />
+      </motion.button>
+
       {/* Floating Panel Container */}
       <main className="relative z-10 pt-8 sm:pt-12 pb-6 sm:pb-8 px-4 sm:px-6">
         {/* White Content Panel with cascade reveal */}
@@ -163,18 +175,8 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
           variants={containerVariants}
           initial="hidden"
           animate={isVisible ? "visible" : "exit"}
-          className="container mx-auto bg-background rounded-xl shadow-2xl shadow-black/5 overflow-hidden p-5 pr-16 sm:p-8 sm:pr-20 lg:p-10 lg:pr-24 relative"
+          className="container mx-auto bg-background rounded-xl shadow-2xl shadow-black/5 overflow-hidden p-5 sm:p-8 lg:p-10 relative"
         >
-          {/* Close Button - sticky */}
-          <motion.button
-            variants={closeButtonVariants}
-            onClick={handleClose}
-            className="sticky top-4 sm:top-6 lg:top-8 ml-auto -mt-10 sm:-mt-12 lg:-mt-10 -mr-11 sm:-mr-14 lg:-mr-16 z-20 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-foreground text-background hover:bg-foreground/80 hover:scale-105 hover-transition shadow-lg"
-            aria-label="Close and return to episodes"
-          >
-            <X size={18} className="sm:w-5 sm:h-5" />
-          </motion.button>
-          
           {/* Content wrapper for staggered children */}
           <motion.div variants={itemVariants}>
             {children}
