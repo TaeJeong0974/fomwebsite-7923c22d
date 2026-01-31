@@ -22,15 +22,11 @@ const liquidTransition = {
 
 const StickyVerticalText = () => {
   const [currentSection, setCurrentSection] = useState<string>("hero");
-  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
-      
-      // Show after scrolling past initial viewport
-      setIsVisible(scrollY > windowHeight * 0.3);
 
       // Find the current section based on scroll position
       const sections = SECTION_LABELS.map(({ id }) => {
@@ -65,60 +61,50 @@ const StickyVerticalText = () => {
   return (
     <>
       {/* Left side - Brand tagline (constant) */}
-      <AnimatePresence>
-        {isVisible && (
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -20 }}
-            transition={liquidTransition}
-            className="fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden lg:block"
-          >
-            <div 
-              className="text-[11px] font-display font-semibold tracking-[0.2em] text-foreground/60 whitespace-nowrap"
-              style={{ 
-                writingMode: "vertical-rl",
-                transform: "rotate(180deg)",
-              }}
-            >
-              {BRAND_TAGLINE}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
+        className="fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden lg:block"
+      >
+        <div 
+          className="text-[11px] font-display font-semibold tracking-[0.2em] text-foreground/60 whitespace-nowrap"
+          style={{ 
+            writingMode: "vertical-rl",
+            transform: "rotate(180deg)",
+          }}
+        >
+          {BRAND_TAGLINE}
+        </div>
+      </motion.div>
 
       {/* Right side - Section indicator (changes) */}
-      <AnimatePresence>
-        {isVisible && (
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 20 }}
-            transition={liquidTransition}
-            className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden lg:block"
-          >
-            <div 
-              className="relative h-40 flex items-center justify-center overflow-hidden"
-              style={{ 
-                writingMode: "vertical-rl",
-              }}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
+        className="fixed right-6 top-1/2 -translate-y-1/2 z-40 hidden lg:block"
+      >
+        <div 
+          className="relative h-40 flex items-center justify-center overflow-hidden"
+          style={{ 
+            writingMode: "vertical-rl",
+          }}
+        >
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={currentLabel}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] as const }}
+              className="text-[11px] font-display font-semibold tracking-[0.2em] text-foreground/60 whitespace-nowrap"
             >
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={currentLabel}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
-                  className="text-[11px] font-display font-semibold tracking-[0.2em] text-foreground/60 whitespace-nowrap"
-                >
-                  {currentLabel}
-                </motion.span>
-              </AnimatePresence>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              {currentLabel}
+            </motion.span>
+          </AnimatePresence>
+        </div>
+      </motion.div>
     </>
   );
 };
