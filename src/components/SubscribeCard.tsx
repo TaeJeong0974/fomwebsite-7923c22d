@@ -33,14 +33,22 @@ const SubscribeCard = () => {
   };
 
   return (
-    <div 
-      className="card-image group cursor-pointer hover-scale"
-      style={{
-        backgroundImage: `url(${subscribeBg})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    >
+    <div className="card-image group cursor-pointer hover-scale overflow-hidden">
+      {/* Animated background */}
+      <motion.div
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: `url(${subscribeBg})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+        initial={{ scale: 1 }}
+        whileHover={{ scale: 1.05 }}
+        transition={{ 
+          duration: 1, 
+          ease: [0.22, 1, 0.36, 1] 
+        }}
+      />
       <AnimatePresence mode="wait">
         {!showForm ? (
           <motion.div
@@ -50,7 +58,7 @@ const SubscribeCard = () => {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={handleCardClick}
-            className="card-content-full card-padding-lg"
+            className="card-content-full card-padding-lg z-10"
           >
             <h3 className="text-display-md text-foreground">
               Subscribe to stay current on how teams are using AI.
@@ -64,7 +72,7 @@ const SubscribeCard = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="card-content-full card-padding-lg"
+            className="card-content-full card-padding-lg z-10"
             onClick={(e) => e.stopPropagation()}
           >
             <h3 className="text-display-md text-foreground">
@@ -105,7 +113,7 @@ const SubscribeCard = () => {
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="card-content-full card-padding-lg"
+            className="card-content-full card-padding-lg z-10"
           >
             <h3 className="text-display-md text-foreground">
               Thank you for subscribing.
