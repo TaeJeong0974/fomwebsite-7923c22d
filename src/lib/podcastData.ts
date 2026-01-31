@@ -70,7 +70,11 @@ export const podcastEpisodes: PodcastEpisode[] = [
     bio: "",
     fullDescription: `Welcome to Future of Marketing! In this introductory episode, meet your hosts and discover what this podcast is all about.
 
-We explore the big questions facing modern B2B marketers and preview the incredible guests and conversations to come.`,
+We explore the big questions facing modern B2B marketers and preview the incredible guests and conversations to come.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
     topics: [
       "Meet your hosts",
       "What is Future of Marketing?",
