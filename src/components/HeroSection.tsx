@@ -4,6 +4,7 @@ import { ChevronDown } from "lucide-react";
 import hostMada from "@/assets/host-mada.png";
 import hostEthan from "@/assets/host-ethan.png";
 import hostCamille from "@/assets/host-camille.png";
+import FOMIcon from "@/assets/FOM_Icon.svg";
 import { liquidEase, staggerContainer, fadeUpVariant } from "@/components/animations/PageLoadAnimation";
 
 const hosts = [
@@ -38,14 +39,33 @@ const HeroSection = () => {
           animate="visible"
           variants={staggerContainer}
         >
-          <motion.h1
-            variants={fadeUpVariant}
-            className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-[2.75rem] text-foreground max-w-4xl font-medium mb-16 lg:mb-24"
-            style={{ lineHeight: 1.2 }}
-          >
-            Future of Marketing is a podcast and event series bringing together CMOs and growth leaders navigating AI in modern B2B marketing.
-          </motion.h1>
+          {/* Top section with tagline and logo */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start mb-16 lg:mb-24">
+            {/* Left: Tagline */}
+            <motion.h1
+              variants={fadeUpVariant}
+              className="font-display text-xl sm:text-2xl md:text-3xl lg:text-[2rem] text-foreground font-medium uppercase tracking-tight leading-[1.1]"
+            >
+              A Podcast<br />
+              Series on How<br />
+              AI is Changing<br />
+              Marketing
+            </motion.h1>
 
+            {/* Right: Large FOM Icon */}
+            <motion.div
+              variants={fadeUpVariant}
+              className="flex justify-center lg:justify-end"
+            >
+              <img 
+                src={FOMIcon} 
+                alt="Future of Marketing" 
+                className="w-full max-w-md lg:max-w-lg h-auto text-foreground"
+              />
+            </motion.div>
+          </div>
+
+          {/* Hosts section */}
           <motion.div variants={fadeUpVariant}>
             <p className="text-label mb-8">
               Your Hosts
