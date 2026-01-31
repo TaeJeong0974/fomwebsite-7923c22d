@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, MoveDown } from "lucide-react";
 import hostMada from "@/assets/host-mada.png";
 import hostEthan from "@/assets/host-ethan.png";
 import hostCamille from "@/assets/host-camille.png";
@@ -65,7 +65,8 @@ const HeroSection = () => {
             className="grid grid-cols-1 md:grid-cols-3 grid-gap items-end mb-12 lg:mb-16 pt-8 lg:pt-16"
           >
             {/* "Your Hosts" label in first column, aligned to bottom of logo */}
-            <div className="hidden md:block self-end">
+            <div className="hidden md:flex items-center gap-2 self-end">
+              <MoveDown className="h-5 w-5 text-foreground" strokeWidth={1.5} />
               <p className="text-label translate-y-2">Your Hosts</p>
             </div>
             {/* Logo spans columns 2-3 */}
