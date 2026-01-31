@@ -225,7 +225,7 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
               </div>
               
               <span 
-                className="shrink-0 inline-flex items-center justify-center font-display font-semibold uppercase tracking-wider text-xs px-5 py-2.5 rounded-full bg-black/5 backdrop-blur-xl border border-black/10 text-foreground hover:bg-foreground hover:text-background hover:border-foreground transition-all duration-300"
+                className="shrink-0 inline-flex items-center justify-center font-display font-semibold uppercase tracking-wider text-xs px-5 py-2.5 rounded-full bg-black/5 backdrop-blur-xl border border-black/10 text-foreground group-hover:bg-foreground group-hover:text-background group-hover:border-foreground transition-all duration-300"
                 onMouseEnter={() => setCtaHovered(index)}
                 onMouseLeave={() => setCtaHovered(null)}
               >
