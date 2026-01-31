@@ -165,11 +165,11 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
           animate={isVisible ? "visible" : "exit"}
           className="container mx-auto bg-background rounded-xl shadow-2xl shadow-black/5 overflow-hidden p-5 pr-16 sm:p-8 sm:pr-20 lg:p-10 lg:pr-24 relative"
         >
-          {/* Close Button - absolute, more space on left than right */}
+          {/* Close Button - sticky */}
           <motion.button
             variants={closeButtonVariants}
             onClick={handleClose}
-            className="absolute top-5 right-4 sm:top-8 sm:right-6 lg:top-10 lg:right-8 z-10 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-foreground text-background hover:bg-foreground/80 hover:scale-105 hover-transition shadow-lg"
+            className="sticky top-4 sm:top-6 lg:top-8 ml-auto -mt-10 sm:-mt-12 lg:-mt-10 -mr-11 sm:-mr-14 lg:-mr-16 z-20 flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-foreground text-background hover:bg-foreground/80 hover:scale-105 hover-transition shadow-lg"
             aria-label="Close and return to episodes"
           >
             <X size={18} className="sm:w-5 sm:h-5" />
