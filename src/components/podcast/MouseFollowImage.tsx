@@ -18,7 +18,7 @@ const MouseFollowImage = ({ isHovered, mouseX, mouseY, imageSrc, name }: MouseFo
         animate={{ 
           opacity: 1, 
           scale: 1,
-          transition: { duration: 0.8, ease: liquidEase }
+          transition: { duration: 0.7, ease: liquidEase }
         }}
         exit={{ 
           opacity: 0, 
