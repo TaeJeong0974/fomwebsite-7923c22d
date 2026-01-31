@@ -51,10 +51,23 @@ const Layout1 = () => (
 // Layout 3: Stacked with massive overlapping title
 const Layout3 = () => (
   <div className="relative">
-    {/* Large Title */}
-    <h2 className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-bold leading-[0.85] tracking-tight mb-[-2rem] sm:mb-[-3rem] lg:mb-[-5rem] relative z-10">
-      FOM<br />2025
-    </h2>
+    {/* Title and Copy - Left side */}
+    <div className="relative z-10 mb-[-2rem] sm:mb-[-3rem] lg:mb-[-5rem]">
+      <h2 className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-bold leading-[0.85] tracking-tight">
+        FOM<br />2025
+      </h2>
+      {/* Copy under title - visible on lg+ */}
+      <div className="hidden lg:block max-w-xs mt-6">
+        <span className="text-label text-muted-foreground">Past Event · San Francisco, CA</span>
+        <p className="text-body-sm text-muted-foreground mt-3">
+          An evening of insights, networking, and conversations about the future of AI in marketing.
+        </p>
+        <button className="mt-6 text-label hover:opacity-70 hover-transition flex items-center gap-2 group">
+          Watch Recap
+          <span className="w-8 h-[1px] bg-foreground group-hover:w-12 hover-transition" />
+        </button>
+      </div>
+    </div>
 
     {/* Video Container - offset to the right */}
     <div className="relative ml-auto w-full lg:w-3/4 aspect-[16/9] overflow-hidden rounded-xl group cursor-pointer">
@@ -78,15 +91,13 @@ const Layout3 = () => (
       </div>
     </div>
 
-    {/* Meta info */}
-    <div className="flex flex-col sm:flex-row sm:items-center justify-between mt-6 gap-4">
-      <div>
-        <span className="text-label text-muted-foreground">Past Event · San Francisco, CA</span>
-        <p className="text-body-sm text-muted-foreground mt-2 max-w-md">
-          An evening of insights, networking, and conversations about the future of AI in marketing.
-        </p>
-      </div>
-      <button className="text-label hover:opacity-70 hover-transition flex items-center gap-2 group shrink-0">
+    {/* Mobile Meta info */}
+    <div className="lg:hidden mt-6">
+      <span className="text-label text-muted-foreground">Past Event · San Francisco, CA</span>
+      <p className="text-body-sm text-muted-foreground mt-2">
+        An evening of insights, networking, and conversations about the future of AI in marketing.
+      </p>
+      <button className="mt-6 text-label hover:opacity-70 hover-transition flex items-center gap-2 group">
         Watch Recap
         <span className="w-8 h-[1px] bg-foreground group-hover:w-12 hover-transition" />
       </button>
