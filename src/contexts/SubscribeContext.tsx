@@ -5,14 +5,15 @@ interface SubscribeContextType {
   openSubscribe: () => void;
 }
 
-const SubscribeContext = createContext<SubscribeContextType | undefined>(undefined);
+// Provide a default no-op to prevent errors during HMR/fast refresh
+const SubscribeContext = createContext<SubscribeContextType>({
+  openSubscribe: () => {
+    console.warn("SubscribeProvider not mounted yet");
+  },
+});
 
 export const useSubscribe = () => {
-  const context = useContext(SubscribeContext);
-  if (!context) {
-    throw new Error("useSubscribe must be used within a SubscribeProvider");
-  }
-  return context;
+  return useContext(SubscribeContext);
 };
 
 interface SubscribeProviderProps {
