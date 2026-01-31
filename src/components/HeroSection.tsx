@@ -59,13 +59,15 @@ const HeroSection = () => {
             </motion.p>
           </div>
 
-          {/* Large FOM Icon - centered, aligned to columns 2-3 of host grid */}
+          {/* Large FOM Icon with "Your Host" label in first column */}
           <motion.div
             variants={fadeUpVariant}
             className="grid grid-cols-1 md:grid-cols-3 grid-gap mb-16 lg:mb-24 pt-8 lg:pt-16"
           >
-            {/* Empty first column */}
-            <div className="hidden md:block" />
+            {/* "Your Host" label in first column, aligned to bottom */}
+            <div className="hidden md:flex md:items-end md:pb-4">
+              <p className="text-label">Your Host</p>
+            </div>
             {/* Logo spans columns 2-3 */}
             <div className="md:col-span-2 flex justify-center">
               <img 
@@ -76,12 +78,11 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* Hosts section with label aligned to first column */}
+          {/* Mobile: Your Host label */}
+          <p className="text-label mb-4 md:hidden">Your Host</p>
+
+          {/* Hosts section */}
           <motion.div variants={fadeUpVariant}>
-            <p className="text-label mb-4">
-              Your Host
-            </p>
-            
             <div className="grid grid-cols-1 md:grid-cols-3 grid-gap">
               {hosts.map((host, index) => {
                 const firstName = host.name.split(' ')[0];
