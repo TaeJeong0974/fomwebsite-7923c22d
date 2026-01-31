@@ -60,13 +60,13 @@ const SubscribeModal = ({ open, onOpenChange }: SubscribeModalProps) => {
               </DialogHeader>
 
               <form onSubmit={handleSubmit} className="space-y-4">
-                <input
+              <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
-                  className="w-full px-5 py-3 text-body glass rounded-full text-white placeholder:text-white/40 focus-ring hover-transition"
+                  className="w-full px-5 py-3 text-body font-mono bg-black/60 border border-white/10 rounded-full text-white placeholder:text-white/40 focus-ring hover-transition"
                 />
                 <button
                   type="submit"
