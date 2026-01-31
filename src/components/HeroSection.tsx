@@ -42,7 +42,7 @@ const HeroSection = () => {
           {/* Tagline at top left */}
           <motion.h1
             variants={fadeUpVariant}
-            className="font-display text-xl sm:text-2xl md:text-3xl lg:text-[2rem] text-foreground font-medium uppercase tracking-tight leading-[1.1] mb-16 lg:mb-24"
+            className="font-display text-xl sm:text-2xl md:text-3xl lg:text-[2rem] text-foreground font-medium uppercase tracking-tight leading-[1.1] mb-20 lg:mb-32"
           >
             A Podcast<br />
             Series on How<br />
