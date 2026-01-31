@@ -40,7 +40,7 @@ const HeroSection = () => {
           variants={staggerContainer}
         >
           {/* Top row: Tagline left, Title right */}
-          <div className="flex justify-between items-start mb-20 lg:mb-20">
+          <div className="flex justify-between items-start mb-20 lg:mb-32">
             <motion.h1
               variants={fadeUpVariant}
               className="font-display text-xl sm:text-2xl md:text-3xl lg:text-[2rem] text-foreground font-medium uppercase tracking-tight leading-[1.1]"
@@ -62,7 +62,7 @@ const HeroSection = () => {
           {/* Large FOM Icon with "Your Host" label in first column */}
           <motion.div
             variants={fadeUpVariant}
-            className="grid grid-cols-1 md:grid-cols-3 grid-gap items-end mb-10 lg:mb-8 pt-8 lg:pt-8"
+            className="grid grid-cols-1 md:grid-cols-3 grid-gap items-end mb-10 lg:mb-14 pt-8 lg:pt-16"
           >
             {/* "Your Hosts" label in first column, aligned to bottom of logo */}
             <div className="hidden md:block self-end">
