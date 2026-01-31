@@ -86,7 +86,7 @@ const Navbar = () => {
               transition={{ duration: 0.5, delay: 0.5, ease: liquidEase }}
               className="hidden md:flex items-center justify-self-end"
             >
-              <SubscribeButton className="btn-base btn-glass btn-md">
+              <SubscribeButton className="text-sm font-semibold uppercase tracking-wide text-foreground hover:text-primary hover-transition px-4 py-1">
                 Subscribe
               </SubscribeButton>
             </motion.div>
