@@ -45,7 +45,7 @@ const Navbar = () => {
       initial="hidden"
       animate="visible"
       variants={fadeDownVariant}
-      className="sticky top-4 z-50 mx-4 sm:mx-6 lg:mx-8"
+      className="sticky top-4 z-50 mx-4 sm:mx-6 lg:mx-8 xl:mx-16 2xl:mx-24"
     >
       <nav className="container mx-auto container-padding glass rounded-xl">
         <div className="grid grid-cols-3 items-center h-14 lg:h-16">
