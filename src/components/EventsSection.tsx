@@ -1,4 +1,4 @@
-import { ArrowRight, Play } from "lucide-react";
+import { Play } from "lucide-react";
 
 const EventsSection = () => {
   return (
@@ -29,26 +29,18 @@ const EventsSection = () => {
                 Past Event
               </span>
               <h3 className="text-display-lg text-white mb-3">
-                Season 5 Launch Party
+                FOM 2025
               </h3>
               <div className="flex items-center gap-2 text-body-sm text-white mb-4">
-                <span>Dec 15, 2025</span>
-                <span className="w-1 h-1 rounded-full bg-white/40" />
-                <span>Los Angeles, CA</span>
-                <span className="w-1 h-1 rounded-full bg-white/40" />
-                <span>200+ attendees</span>
+                <span>San Francisco, CA</span>
               </div>
               <p className="text-body text-white max-w-lg mb-6 hidden sm:block">
-                An evening of live performances, Q&A sessions, and exclusive content with our community.
+                An evening of insights, networking, and conversations about the future of AI in marketing.
               </p>
               <div className="flex items-center gap-4">
                 <button className="btn-base btn-glass-light btn-sm gap-2">
                   <Play className="w-4 h-4 fill-current" />
                   Watch Recap
-                </button>
-                <button className="flex items-center gap-2 text-white text-body-sm font-medium hover:text-white/80 hover-transition group/btn">
-                  View Photos
-                  <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 hover-transition" />
                 </button>
               </div>
             </div>
