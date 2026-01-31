@@ -64,7 +64,7 @@ const HeroSection = () => {
             variants={fadeUpVariant}
             className="grid grid-cols-1 md:grid-cols-3 grid-gap items-end mb-16 lg:mb-24 pt-8 lg:pt-16"
           >
-            {/* "Your Host" label in first column, aligned to bottom of logo */}
+            {/* "Your Hosts" label in first column, aligned to bottom of logo */}
             <div className="hidden md:block self-end">
               <p className="text-label translate-y-2">Your Hosts</p>
             </div>
