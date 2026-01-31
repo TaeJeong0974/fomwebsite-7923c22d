@@ -74,7 +74,7 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
               transition={{ duration: 0.15 }}
               className="p-5"
             >
-              <p className="text-label text-white mb-1">Stay Updated</p>
+              <p className="text-label text-white/70 mb-1">Stay Updated</p>
               <h3 className="font-display text-lg font-semibold text-white mb-3">
                 Never Miss an Episode
               </h3>
@@ -86,7 +86,7 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
-                  className="w-full px-4 py-2.5 text-sm font-mono bg-black/60 border border-white/10 rounded-full text-white placeholder:text-white/40 focus-ring hover-transition"
+                  className="w-full px-4 py-2.5 text-sm font-mono bg-white/5 backdrop-blur-xl border border-white/10 rounded-full text-white placeholder:text-white/40 focus-ring hover-transition"
                 />
                 <button
                   type="submit"
