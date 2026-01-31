@@ -8,6 +8,7 @@ interface SectionLabel {
 
 const SECTION_LABELS: SectionLabel[] = [
   { id: "hero", label: "WELCOME" },
+  { id: "hosts", label: "HOST" },
   { id: "podcast", label: "FEATURED SPEAKERS" },
   { id: "events", label: "UPCOMING EVENTS" },
   { id: "cta", label: "STAY CONNECTED" },
