@@ -65,8 +65,8 @@ const HeroSection = () => {
             className="grid grid-cols-1 md:grid-cols-3 grid-gap items-end mb-16 lg:mb-24 pt-8 lg:pt-16"
           >
             {/* "Your Host" label in first column, aligned to bottom of logo */}
-            <div className="hidden md:block">
-              <p className="text-label">Your Host</p>
+            <div className="hidden md:block self-end">
+              <p className="text-label translate-y-1">Your Host</p>
             </div>
             {/* Logo spans columns 2-3 */}
             <div className="md:col-span-2 flex justify-center">
