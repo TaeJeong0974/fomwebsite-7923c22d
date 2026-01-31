@@ -184,17 +184,12 @@ const HeroSection = () => {
                           </h3>
                           <p className="text-body-sm text-white mt-1">{host.title}</p>
                         </div>
-                        <motion.div
-                          animate={{ rotate: isExpanded ? 180 : 0 }}
-                          whileHover={{ y: isExpanded ? 0 : -4 }}
-                          transition={{ 
-                            rotate: { duration: 0.3 },
-                            y: { duration: 0.3, ease: "easeOut" }
-                          }}
-                          className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20"
+                        <div
+                          className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20 transition-transform duration-300 ease-out group-hover:-translate-y-1 hover:!-translate-y-1.5"
+                          style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease' }}
                         >
                           <ChevronDown className="h-5 w-5 text-white" />
-                        </motion.div>
+                        </div>
                       </div>
                       
                       <AnimatePresence>
