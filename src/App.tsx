@@ -6,6 +6,7 @@ import { Toaster } from "sonner";
 import ScrollToTop from "@/components/ScrollToTop";
 import Index from "./pages/Index";
 import PodcastDetail from "./pages/PodcastDetail";
+import AnimationDemo from "./pages/AnimationDemo";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -19,6 +20,7 @@ const App = () => (
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/episode/:slug" element={<PodcastDetail />} />
+            <Route path="/animation-demo" element={<AnimationDemo />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
