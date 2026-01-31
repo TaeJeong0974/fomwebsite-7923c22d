@@ -5,7 +5,7 @@ import hostMada from "@/assets/host-mada.png";
 import hostEthan from "@/assets/host-ethan.png";
 import hostCamille from "@/assets/host-camille.png";
 import FOMIcon from "@/assets/FOM_Icon.svg";
-import { liquidEase, staggerContainer, fadeUpVariant } from "@/components/animations/PageLoadAnimation";
+import { liquidEase } from "@/components/animations/PageLoadAnimation";
 
 const hosts = [
   {
@@ -28,161 +28,197 @@ const hosts = [
   },
 ];
 
+const taglineLines = ["A Podcast", "Series on How", "AI is Changing", "Marketing"];
+
 const HeroSection = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   return (
     <section id="hero" className="pt-6 lg:pt-10 pb-14 lg:pb-20">
       <div className="container mx-auto container-padding">
+        {/* Top row: Tagline left, Title right */}
+        <div className="flex justify-between items-start mb-20 lg:mb-32 pl-4 sm:pl-5 lg:pl-6 pr-4 sm:pr-5 lg:pr-6">
+          {/* Typewriter tagline */}
+          <h1 className="font-display text-lg sm:text-xl md:text-2xl lg:text-[1.75rem] text-foreground font-medium uppercase tracking-tight leading-[1.1]">
+            {taglineLines.map((line, lineIndex) => (
+              <span key={lineIndex} className="block overflow-hidden">
+                <motion.span
+                  className="inline-block"
+                  initial={{ y: "100%" }}
+                  animate={{ y: 0 }}
+                  transition={{ 
+                    duration: 0.6, 
+                    ease: liquidEase, 
+                    delay: 0.3 + lineIndex * 0.15 
+                  }}
+                >
+                  {line.split("").map((char, charIndex) => (
+                    <motion.span
+                      key={charIndex}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ 
+                        duration: 0.05, 
+                        delay: 0.3 + lineIndex * 0.15 + charIndex * 0.03 
+                      }}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </motion.span>
+              </span>
+            ))}
+          </h1>
+          
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1.2, ease: liquidEase }}
+            className="text-label hidden sm:block"
+          >
+            The Future of Marketing
+          </motion.p>
+        </div>
+
+        {/* Large FOM Icon with "Your Host" label in first column */}
         <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={staggerContainer}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: liquidEase, delay: 1.4 }}
+          className="grid grid-cols-1 md:grid-cols-3 grid-gap items-end mb-12 lg:mb-16 pt-8 lg:pt-16"
         >
-          {/* Top row: Tagline left, Title right */}
-          <div className="flex justify-between items-start mb-20 lg:mb-32 pl-4 sm:pl-5 lg:pl-6 pr-4 sm:pr-5 lg:pr-6">
-            <motion.h1
-              variants={fadeUpVariant}
-              className="font-display text-lg sm:text-xl md:text-2xl lg:text-[1.75rem] text-foreground font-medium uppercase tracking-tight leading-[1.1]"
+          {/* "Your Hosts" label in first column, aligned to bottom of logo */}
+          <div className="hidden md:flex items-center gap-3 self-end">
+            <motion.svg 
+              width="16" 
+              height="40" 
+              viewBox="0 0 16 40" 
+              fill="none" 
+              className="text-foreground"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, y: [0, 6, 0] }}
+              transition={{ 
+                opacity: { duration: 0.5, delay: 2 },
+                y: { duration: 1.5, repeat: Infinity, ease: liquidEase, delay: 2.5 }
+              }}
             >
-              A Podcast<br />
-              Series on How<br />
-              AI is Changing<br />
-              Marketing
-            </motion.h1>
-            
-            <motion.p
-              variants={fadeUpVariant}
-              className="text-label hidden sm:block"
+              <path 
+                d="M8 0 L8 32 M2 26 L8 34 L14 26" 
+                stroke="currentColor" 
+                strokeWidth="1.5" 
+                strokeLinecap="round" 
+                strokeLinejoin="round"
+              />
+            </motion.svg>
+            <motion.p 
+              className="text-label translate-y-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 2 }}
             >
-              The Future of Marketing
+              Your Hosts
             </motion.p>
           </div>
-
-          {/* Large FOM Icon with "Your Host" label in first column */}
-          <motion.div
-            variants={fadeUpVariant}
-            className="grid grid-cols-1 md:grid-cols-3 grid-gap items-end mb-12 lg:mb-16 pt-8 lg:pt-16"
-          >
-            {/* "Your Hosts" label in first column, aligned to bottom of logo */}
-            <div className="hidden md:flex items-center gap-3 self-end">
-              <motion.svg 
-                width="16" 
-                height="40" 
-                viewBox="0 0 16 40" 
-                fill="none" 
-                className="text-foreground"
-                animate={{ y: [0, 6, 0] }}
-                transition={{ 
-                  duration: 1.5, 
-                  repeat: Infinity, 
-                  ease: [0.22, 1, 0.36, 1] 
-                }}
-              >
-                <path 
-                  d="M8 0 L8 32 M2 26 L8 34 L14 26" 
-                  stroke="currentColor" 
-                  strokeWidth="1.5" 
-                  strokeLinecap="round" 
-                  strokeLinejoin="round"
-                />
-              </motion.svg>
-              <p className="text-label translate-y-2">Your Hosts</p>
-            </div>
-            {/* Logo spans columns 2-3 */}
-            <div className="md:col-span-2 flex justify-center">
-              <img 
-                src={FOMIcon} 
-                alt="Future of Marketing" 
-                className="w-full max-w-full h-auto text-foreground"
-              />
-            </div>
-          </motion.div>
-
-          {/* Mobile: Your Host label */}
-          <p className="text-label mb-4 md:hidden">Your Hosts</p>
-
-          {/* Hosts section */}
-          <motion.div id="hosts" variants={fadeUpVariant}>
-            <div className="grid grid-cols-1 md:grid-cols-3 grid-gap">
-              {hosts.map((host, index) => {
-                const firstName = host.name.split(' ')[0];
-                const lastName = host.name.split(' ').slice(1).join(' ');
-                const isExpanded = expandedIndex === index;
-                
-                return (
-                  <motion.article
-                    key={host.name}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ 
-                      duration: 0.6, 
-                      delay: 0.6 + index * 0.15,
-                      ease: liquidEase 
-                    }}
-                    className="group"
-                  >
-                    <div 
-                      className="card-base card-image hover-scale cursor-pointer"
-                      onClick={() => setExpandedIndex(isExpanded ? null : index)}
-                    >
-                      <div className="absolute inset-0">
-                        <img 
-                          src={host.image} 
-                          alt={host.name}
-                          className="w-full h-full object-cover"
-                          loading="eager"
-                          fetchPriority="high"
-                          decoding="async"
-                        />
-                        <div className="card-overlay" />
-                      </div>
-
-                      <div className="card-content-bottom card-padding">
-                        <div className="flex items-end justify-between">
-                          <div>
-                            <h3 className="font-display text-white leading-[0.95] tracking-normal">
-                              <span className="block text-2xl sm:text-3xl lg:text-4xl font-medium">{firstName}</span>
-                              <span className="block text-2xl sm:text-3xl lg:text-4xl font-normal">{lastName}</span>
-                            </h3>
-                            <p className="text-body-sm text-white mt-1">{host.title}</p>
-                          </div>
-                          <motion.div
-                            animate={{ rotate: isExpanded ? 180 : 0 }}
-                            whileHover={{ scale: isExpanded ? 1 : [1, 1.15, 1] }}
-                            transition={{ 
-                              rotate: { duration: 0.3 },
-                              scale: { duration: 0.6, ease: "easeInOut" }
-                            }}
-                            className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20"
-                          >
-                            <ChevronDown className="h-5 w-5 text-white" />
-                          </motion.div>
-                        </div>
-                        
-                        <AnimatePresence>
-                          {isExpanded && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.3 }}
-                              className="overflow-hidden"
-                            >
-                              <p className="text-sm leading-relaxed text-white/90 mt-4" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
-                                {host.bio}
-                              </p>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    </div>
-                  </motion.article>
-                );
-              })}
-            </div>
-          </motion.div>
+          {/* Logo spans columns 2-3 */}
+          <div className="md:col-span-2 flex justify-center">
+            <img 
+              src={FOMIcon} 
+              alt="Future of Marketing" 
+              className="w-full max-w-full h-auto text-foreground"
+            />
+          </div>
         </motion.div>
+
+        {/* Mobile: Your Host label */}
+        <motion.p 
+          className="text-label mb-4 md:hidden"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 2 }}
+        >
+          Your Hosts
+        </motion.p>
+
+        {/* Hosts section */}
+        <div id="hosts">
+          <div className="grid grid-cols-1 md:grid-cols-3 grid-gap">
+            {hosts.map((host, index) => {
+              const firstName = host.name.split(' ')[0];
+              const lastName = host.name.split(' ').slice(1).join(' ');
+              const isExpanded = expandedIndex === index;
+              
+              return (
+                <motion.article
+                  key={host.name}
+                  initial={{ opacity: 0, y: 60 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: 2 + index * 0.2,
+                    ease: liquidEase 
+                  }}
+                  className="group"
+                >
+                  <div 
+                    className="card-base card-image hover-scale cursor-pointer"
+                    onClick={() => setExpandedIndex(isExpanded ? null : index)}
+                  >
+                    <div className="absolute inset-0">
+                      <img 
+                        src={host.image} 
+                        alt={host.name}
+                        className="w-full h-full object-cover"
+                        loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
+                      />
+                      <div className="card-overlay" />
+                    </div>
+
+                    <div className="card-content-bottom card-padding">
+                      <div className="flex items-end justify-between">
+                        <div>
+                          <h3 className="font-display text-white leading-[0.95] tracking-normal">
+                            <span className="block text-2xl sm:text-3xl lg:text-4xl font-medium">{firstName}</span>
+                            <span className="block text-2xl sm:text-3xl lg:text-4xl font-normal">{lastName}</span>
+                          </h3>
+                          <p className="text-body-sm text-white mt-1">{host.title}</p>
+                        </div>
+                        <motion.div
+                          animate={{ rotate: isExpanded ? 180 : 0 }}
+                          whileHover={{ scale: isExpanded ? 1 : [1, 1.15, 1] }}
+                          transition={{ 
+                            rotate: { duration: 0.3 },
+                            scale: { duration: 0.6, ease: "easeInOut" }
+                          }}
+                          className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20"
+                        >
+                          <ChevronDown className="h-5 w-5 text-white" />
+                        </motion.div>
+                      </div>
+                      
+                      <AnimatePresence>
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="overflow-hidden"
+                          >
+                            <p className="text-sm leading-relaxed text-white/90 mt-4" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
+                              {host.bio}
+                            </p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </section>
   );
