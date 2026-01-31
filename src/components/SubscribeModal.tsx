@@ -38,7 +38,7 @@ const SubscribeModal = ({ open, onOpenChange }: SubscribeModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="glass-dark border-white/10 sm:max-w-md p-0 overflow-hidden">
+      <DialogContent className="bg-black/80 backdrop-blur-xl border border-white/10 sm:max-w-md p-0 overflow-hidden">
         <AnimatePresence mode="wait">
           {!isSubmitted ? (
             <motion.div
