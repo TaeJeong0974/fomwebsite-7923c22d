@@ -105,7 +105,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
   }, [handleClose]);
 
   return (
-    <div className="min-h-screen bg-muted/40 relative">
+    <div className="min-h-screen bg-[#f4f2ef] relative">
       {/* Background cards with staggered fade */}
       <motion.div
         initial={{ opacity: 0.7 }}
