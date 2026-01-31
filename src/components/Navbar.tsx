@@ -45,9 +45,9 @@ const Navbar = () => {
       initial="hidden"
       animate="visible"
       variants={fadeDownVariant}
-      className="sticky top-4 z-50 mx-4 sm:mx-6 lg:mx-8 xl:mx-16 2xl:mx-24"
+      className="sticky top-4 z-50 container mx-auto container-padding"
     >
-      <nav className="container mx-auto container-padding glass rounded-xl">
+      <nav className="glass rounded-xl px-4 sm:px-5 lg:px-6">
         <div className="grid grid-cols-3 items-center h-14 lg:h-16">
           {/* Logo - First column */}
           <Link to="/" className="flex items-center focus-ring rounded-lg justify-self-start">

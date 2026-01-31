@@ -152,14 +152,15 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
       <Navbar />
 
       {/* Floating Panel Container */}
-      <main className="relative z-10 pt-8 sm:pt-12 pb-6 sm:pb-8 px-4 sm:px-6">
+      <main className="relative z-10 pt-8 sm:pt-12 pb-6 sm:pb-8">
         {/* White Content Panel with cascade reveal */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate={isVisible ? "visible" : "exit"}
-          className="container mx-auto bg-background rounded-xl shadow-2xl shadow-black/5 p-5 sm:p-8 lg:p-10 relative"
+          className="container mx-auto container-padding"
         >
+          <div className="bg-background rounded-xl shadow-2xl shadow-black/5 p-5 sm:p-8 lg:p-10 relative">
           {/* Close Button - absolute within panel, sticky while scrolling */}
           <div className="absolute top-0 right-0 bottom-0 w-16 sm:w-20 lg:w-24 pointer-events-none">
             <motion.button
@@ -176,6 +177,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
           <motion.div variants={itemVariants} className="pr-12 sm:pr-14 lg:pr-16">
             {children}
           </motion.div>
+          </div>
         </motion.div>
       </main>
     </div>
