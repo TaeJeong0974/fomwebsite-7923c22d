@@ -22,14 +22,6 @@ const EPISODE_IMAGES: Record<string, string> = {
 
 const HOST_IMAGES = [hostMada, hostEthan, hostCamille];
 
-const LIST_HOVER_COLORS = [
-  "group-hover:text-[hsl(220,50%,65%)]",
-  "group-hover:text-[hsl(210,40%,70%)]",
-  "group-hover:text-[hsl(200,35%,72%)]",
-  "group-hover:text-[hsl(25,45%,70%)]",
-  "group-hover:text-[hsl(15,50%,68%)]",
-  "group-hover:text-[hsl(8,55%,65%)]",
-];
 
 const isNewEpisode = (publishedDate: string): boolean => {
   if (publishedDate === "Coming Soon") return false;
@@ -204,7 +196,11 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
               <div className="flex-1 min-w-0 text-left">
                 <p className="text-label mb-2">EP {String(index + 1).padStart(2, '0')}</p>
                 <div className="flex items-center gap-3">
-                  <h3 className={`font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground ${LIST_HOVER_COLORS[index % LIST_HOVER_COLORS.length]} transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] leading-[0.95] tracking-tight`}>
+                  <h3 className={`font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight transition-colors duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                    hoveredIndex !== null && hoveredIndex !== index 
+                      ? 'text-foreground/30' 
+                      : 'text-foreground'
+                  }`}>
                     {episode.name}
                   </h3>
                   {!isComingSoon && isNewEpisode(episode.publishedDate) && (
