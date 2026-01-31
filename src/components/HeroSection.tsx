@@ -67,85 +67,93 @@ const HeroSection = () => {
             </div>
           </motion.div>
 
-          {/* Hosts section */}
+          {/* Hosts section - aligned to logo's left edge */}
           <motion.div variants={fadeUpVariant}>
-            <p className="text-label mb-8">
-              Your Hosts
-            </p>
-            
             <div className="grid grid-cols-1 md:grid-cols-3 grid-gap">
-              {hosts.map((host, index) => {
-                const firstName = host.name.split(' ')[0];
-                const lastName = host.name.split(' ').slice(1).join(' ');
-                const isExpanded = expandedIndex === index;
+              {/* Empty first column to align with logo */}
+              <div className="hidden md:block" />
+              {/* Content spans columns 2-3 */}
+              <div className="md:col-span-2">
+                <p className="text-label mb-8">
+                  Your Hosts
+                </p>
                 
-                return (
-                  <motion.article
-                    key={host.name}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ 
-                      duration: 0.6, 
-                      delay: 0.6 + index * 0.15,
-                      ease: liquidEase 
-                    }}
-                    className="group"
-                  >
-                    <div 
-                      className="card-base card-image hover-scale cursor-pointer"
-                      onClick={() => setExpandedIndex(isExpanded ? null : index)}
-                    >
-                      <div className="absolute inset-0">
-                        <img 
-                          src={host.image} 
-                          alt={host.name}
-                          className="w-full h-full object-cover"
-                        />
-                        <div className="card-overlay" />
-                      </div>
-
-                      <div className="card-content-bottom card-padding">
-                        <div className="flex items-end justify-between">
-                          <div>
-                            <h3 className="font-display text-white leading-[0.95] tracking-normal">
-                              <span className="block text-2xl sm:text-3xl lg:text-4xl font-medium">{firstName}</span>
-                              <span className="block text-2xl sm:text-3xl lg:text-4xl font-normal">{lastName}</span>
-                            </h3>
-                            <p className="text-body-sm text-white mt-1">{host.title}</p>
+                {/* Hosts in a 3-column grid within the 2-column span */}
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6">
+                  {hosts.map((host, index) => {
+                    const firstName = host.name.split(' ')[0];
+                    const lastName = host.name.split(' ').slice(1).join(' ');
+                    const isExpanded = expandedIndex === index;
+                    
+                    return (
+                      <motion.article
+                        key={host.name}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ 
+                          duration: 0.6, 
+                          delay: 0.6 + index * 0.15,
+                          ease: liquidEase 
+                        }}
+                        className="group"
+                      >
+                        <div 
+                          className="card-base card-image hover-scale cursor-pointer"
+                          onClick={() => setExpandedIndex(isExpanded ? null : index)}
+                        >
+                          <div className="absolute inset-0">
+                            <img 
+                              src={host.image} 
+                              alt={host.name}
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="card-overlay" />
                           </div>
-                          <motion.div
-                            animate={{ rotate: isExpanded ? 180 : 0 }}
-                            whileHover={{ scale: isExpanded ? 1 : [1, 1.15, 1] }}
-                            transition={{ 
-                              rotate: { duration: 0.3 },
-                              scale: { duration: 0.6, ease: "easeInOut" }
-                            }}
-                            className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20"
-                          >
-                            <ChevronDown className="h-5 w-5 text-white" />
-                          </motion.div>
+
+                          <div className="card-content-bottom card-padding">
+                            <div className="flex items-end justify-between">
+                              <div>
+                                <h3 className="font-display text-white leading-[0.95] tracking-normal">
+                                  <span className="block text-2xl sm:text-3xl lg:text-4xl font-medium">{firstName}</span>
+                                  <span className="block text-2xl sm:text-3xl lg:text-4xl font-normal">{lastName}</span>
+                                </h3>
+                                <p className="text-body-sm text-white mt-1">{host.title}</p>
+                              </div>
+                              <motion.div
+                                animate={{ rotate: isExpanded ? 180 : 0 }}
+                                whileHover={{ scale: isExpanded ? 1 : [1, 1.15, 1] }}
+                                transition={{ 
+                                  rotate: { duration: 0.3 },
+                                  scale: { duration: 0.6, ease: "easeInOut" }
+                                }}
+                                className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20"
+                              >
+                                <ChevronDown className="h-5 w-5 text-white" />
+                              </motion.div>
+                            </div>
+                            
+                            <AnimatePresence>
+                              {isExpanded && (
+                                <motion.div
+                                  initial={{ height: 0, opacity: 0 }}
+                                  animate={{ height: "auto", opacity: 1 }}
+                                  exit={{ height: 0, opacity: 0 }}
+                                  transition={{ duration: 0.3 }}
+                                  className="overflow-hidden"
+                                >
+                                  <p className="text-sm leading-relaxed text-white/90 mt-4" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
+                                    {host.bio}
+                                  </p>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </div>
                         </div>
-                        
-                        <AnimatePresence>
-                          {isExpanded && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.3 }}
-                              className="overflow-hidden"
-                            >
-                              <p className="text-sm leading-relaxed text-white/90 mt-4" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
-                                {host.bio}
-                              </p>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    </div>
-                  </motion.article>
-                );
-              })}
+                      </motion.article>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
           </motion.div>
         </motion.div>
