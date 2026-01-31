@@ -1,6 +1,51 @@
 import { useState } from "react";
 import { Play, ChevronLeft, ChevronRight } from "lucide-react";
 
+// Layout 1: Two column - text left aligned to bottom, video right
+const Layout1 = () => (
+  <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
+    {/* Left Content - aligned to bottom */}
+    <div className="flex flex-col justify-end">
+      <span className="text-label text-muted-foreground mb-4">Past Event</span>
+      <h2 className="text-[3rem] sm:text-[4rem] lg:text-[5rem] xl:text-[6rem] font-display font-bold leading-[0.9] tracking-tight">
+        FOM<br />2025
+      </h2>
+      <p className="text-body-sm text-muted-foreground mt-6 max-w-sm">
+        San Francisco, CA
+      </p>
+      <p className="text-body text-muted-foreground mt-3 max-w-sm">
+        An evening of insights, networking, and conversations about the future of AI in marketing.
+      </p>
+      <button className="mt-8 text-label hover:opacity-70 hover-transition flex items-center gap-2 group w-fit">
+        Watch Recap
+        <span className="w-8 h-[1px] bg-foreground group-hover:w-12 hover-transition" />
+      </button>
+    </div>
+
+    {/* Right Video */}
+    <div className="relative aspect-[16/9] overflow-hidden rounded-xl group cursor-pointer">
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+        poster="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80"
+      >
+        <source src="https://assets.mixkit.co/videos/preview/mixkit-crowd-at-a-concert-seen-from-behind-4611-large.mp4" type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 hover-transition" />
+      
+      {/* Play Button */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center group-hover:scale-110 hover-transition">
+          <Play className="w-8 h-8 text-white fill-white ml-1" />
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 // Layout 3: Stacked with massive overlapping title
 const Layout3 = () => (
   <div className="relative">
@@ -100,8 +145,8 @@ const Layout4 = () => (
   </div>
 );
 
-const layouts = [Layout3, Layout4];
-const layoutNames = ["Massive Title Stack", "Vertical Title"];
+const layouts = [Layout1, Layout3, Layout4];
+const layoutNames = ["Two Column Split", "Massive Title Stack", "Vertical Title"];
 
 const EventsSection = () => {
   const [currentLayout, setCurrentLayout] = useState(0);
@@ -122,7 +167,7 @@ const EventsSection = () => {
             <ChevronLeft className="w-5 h-5" />
           </button>
           <div className="text-center min-w-[200px]">
-            <span className="text-label text-muted-foreground">Layout {currentLayout + 1} of 2</span>
+            <span className="text-label text-muted-foreground">Layout {currentLayout + 1} of 3</span>
             <p className="text-body font-medium mt-1">{layoutNames[currentLayout]}</p>
           </div>
           <button 
