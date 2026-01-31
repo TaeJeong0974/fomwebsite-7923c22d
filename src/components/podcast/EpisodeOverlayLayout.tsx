@@ -3,15 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
 import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
+import { liquidEase } from "@/components/animations/PageLoadAnimation";
 import guestBg from "@/assets/guest-bg.png";
 
 interface EpisodeOverlayLayoutProps {
   children: React.ReactNode;
 }
 
-const liquidEase = [0.22, 1, 0.36, 1] as const;
-
-// Stagger animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -78,7 +76,6 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    // Trigger the cascade animation on mount
     requestAnimationFrame(() => {
       setIsVisible(true);
     });
@@ -86,7 +83,6 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
 
   const handleClose = useCallback(() => {
     navigate('/');
-    // Smooth scroll to podcast section after navigation completes
     requestAnimationFrame(() => {
       setTimeout(() => {
         const podcastSection = document.getElementById('podcast');
@@ -97,7 +93,6 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
     });
   }, [navigate]);
 
-  // Keyboard support - Escape to close
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
