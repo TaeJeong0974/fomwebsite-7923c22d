@@ -68,7 +68,7 @@ const StickyVerticalText = () => {
         className="fixed left-6 top-1/2 -translate-y-1/2 z-40 hidden lg:block"
       >
         <div 
-          className="text-[11px] font-display font-semibold tracking-[0.2em] text-foreground/60 whitespace-nowrap"
+          className="text-[11px] font-display font-medium tracking-[0.2em] text-foreground/40 whitespace-nowrap"
           style={{ 
             writingMode: "vertical-rl",
             transform: "rotate(180deg)",
@@ -98,7 +98,7 @@ const StickyVerticalText = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] as const }}
-              className="text-[11px] font-display font-semibold tracking-[0.2em] text-foreground/60 whitespace-nowrap"
+              className="text-[11px] font-display font-medium tracking-[0.2em] text-foreground/40 whitespace-nowrap"
             >
               {currentLabel}
             </motion.span>
