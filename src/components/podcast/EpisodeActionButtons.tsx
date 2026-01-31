@@ -1,6 +1,6 @@
-import { Share2 } from "lucide-react";
-import { motion } from "framer-motion";
-import { toast } from "sonner";
+import { Share2, Check } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 
 interface EpisodeActionButtonsProps {
   youtubeUrl: string;
@@ -8,6 +8,8 @@ interface EpisodeActionButtonsProps {
 }
 
 const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsProps) => {
+  const [copied, setCopied] = useState(false);
+
   const handleShare = async () => {
     if (navigator.share) {
       try {
@@ -21,7 +23,8 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
     } else {
       // Fallback: copy to clipboard
       await navigator.clipboard.writeText(window.location.href);
-      toast.success("Link copied to clipboard");
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
     }
   };
 
@@ -80,8 +83,33 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
         whileHover="hover"
         whileTap="tap"
       >
-        <Share2 className="w-5 h-5 text-foreground" />
-        <span>Share</span>
+        <AnimatePresence mode="wait">
+          {copied ? (
+            <motion.div
+              key="copied"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              transition={{ duration: 0.15 }}
+              className="flex items-center gap-2.5"
+            >
+              <Check className="w-5 h-5 text-green-500" />
+              <span className="text-green-500">Copied!</span>
+            </motion.div>
+          ) : (
+            <motion.div
+              key="share"
+              initial={{ scale: 0, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0, opacity: 0 }}
+              transition={{ duration: 0.15 }}
+              className="flex items-center gap-2.5"
+            >
+              <Share2 className="w-5 h-5 text-foreground" />
+              <span>Share</span>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.button>
     </div>
   );
