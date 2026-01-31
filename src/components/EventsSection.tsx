@@ -51,13 +51,15 @@ const Layout1 = () => (
 // Layout 3: Stacked with massive overlapping title
 const Layout3 = () => (
   <div className="relative">
-    {/* Title and Copy - Left side */}
-    <div className="relative z-10 mb-[-2rem] sm:mb-[-3rem] lg:mb-[-5rem]">
-      <h2 className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-bold leading-[0.85] tracking-tight">
-        FOM<br />2025
-      </h2>
-      {/* Copy under title - visible on lg+ */}
-      <div className="hidden lg:block max-w-xs mt-6">
+    {/* Title - overlaps video */}
+    <h2 className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-bold leading-[0.85] tracking-tight mb-[-2rem] sm:mb-[-3rem] lg:mb-[-5rem] relative z-10">
+      FOM<br />2025
+    </h2>
+
+    {/* Video and Copy side by side */}
+    <div className="relative flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-0">
+      {/* Copy - Left side, aligned with bottom of video */}
+      <div className="hidden lg:flex flex-col justify-end w-1/4 pr-8 pb-2">
         <span className="text-label text-muted-foreground">Past Event · San Francisco, CA</span>
         <p className="text-body-sm text-muted-foreground mt-3">
           An evening of insights, networking, and conversations about the future of AI in marketing.
@@ -67,26 +69,26 @@ const Layout3 = () => (
           <span className="w-8 h-[1px] bg-foreground group-hover:w-12 hover-transition" />
         </button>
       </div>
-    </div>
 
-    {/* Video Container - offset to the right */}
-    <div className="relative ml-auto w-full lg:w-3/4 aspect-[16/9] overflow-hidden rounded-xl group cursor-pointer">
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-        poster="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80"
-      >
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-crowd-at-a-concert-seen-from-behind-4611-large.mp4" type="video/mp4" />
-      </video>
-      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 hover-transition" />
-      
-      {/* Play Button */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center group-hover:scale-110 hover-transition">
-          <Play className="w-8 h-8 text-white fill-white ml-1" />
+      {/* Video Container */}
+      <div className="relative w-full lg:w-3/4 aspect-[16/9] overflow-hidden rounded-xl group cursor-pointer">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          poster="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80"
+        >
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-crowd-at-a-concert-seen-from-behind-4611-large.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 hover-transition" />
+        
+        {/* Play Button */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center group-hover:scale-110 hover-transition">
+            <Play className="w-8 h-8 text-white fill-white ml-1" />
+          </div>
         </div>
       </div>
     </div>
