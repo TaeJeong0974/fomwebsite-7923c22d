@@ -43,86 +43,89 @@ const Navbar = () => {
       initial="hidden"
       animate="visible"
       variants={fadeDownVariant}
-      className="sticky top-4 z-50 container mx-auto container-padding"
+      className="sticky top-4 z-50"
     >
-      {/* Glass pill with visual padding, grid aligned to page content */}
-      <nav className="glass rounded-xl">
-        <div className="grid grid-cols-3 items-center grid-gap py-3 lg:py-4 px-4 sm:px-5 lg:px-6">
-          {/* Logo - First column */}
-          <Link to="/" className="flex items-center focus-ring rounded-lg justify-self-start">
-            <img src={FomLogo} alt="Future of Marketing" className="h-5 lg:h-6" />
-          </Link>
+      {/* Outer container matches page content width */}
+      <div className="container mx-auto container-padding">
+        {/* Glass pill with inner padding for aesthetics, grid aligned to page content */}
+        <nav className="glass rounded-xl py-3 lg:py-4 px-4 sm:px-5 lg:px-6">
+          <div className="grid grid-cols-3 items-center grid-gap">
+            {/* Logo - First column */}
+            <Link to="/" className="flex items-center focus-ring rounded-lg justify-self-start">
+              <img src={FomLogo} alt="Future of Marketing" className="h-5 lg:h-6" />
+            </Link>
 
-          {/* Desktop Navigation - Second column, aligned left */}
-          <ul className="hidden md:flex items-center gap-1 justify-self-start -ml-4">
-            {navLinks.map((link, index) => (
-              <motion.li 
-                key={link.label}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ 
-                  duration: 0.4, 
-                  delay: 0.3 + index * 0.1,
-                  ease: liquidEase 
-                }}
-              >
-                <a
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="text-base font-medium text-foreground hover:text-primary hover:bg-secondary/50 hover-transition px-4 py-2 rounded-full focus-ring"
+            {/* Desktop Navigation - Second column */}
+            <ul className="hidden md:flex items-center gap-1 justify-self-start -ml-3">
+              {navLinks.map((link, index) => (
+                <motion.li 
+                  key={link.label}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.4, 
+                    delay: 0.3 + index * 0.1,
+                    ease: liquidEase 
+                  }}
                 >
-                  {link.label}
-                </a>
-              </motion.li>
-            ))}
-          </ul>
-
-          {/* Desktop CTA - Third column, aligned right */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.5, ease: liquidEase }}
-            className="hidden md:flex items-center justify-self-end"
-          >
-            <SubscribeButton className="btn-base btn-glass btn-md">
-              Subscribe
-            </SubscribeButton>
-          </motion.div>
-
-          {/* Mobile Menu Button - Third column on mobile */}
-          <button
-            className="md:hidden p-2 rounded-full hover:bg-secondary/50 hover-transition focus-ring col-start-3 justify-self-end"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label="Toggle menu"
-          >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-
-        {/* Mobile Navigation */}
-        {isOpen && (
-          <div className="md:hidden py-4 border-t border-border/50 px-4">
-            <ul className="flex flex-col gap-1">
-              {navLinks.map((link) => (
-                <li key={link.label}>
                   <a
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className="block py-2 px-4 text-foreground hover:text-primary hover:bg-secondary/50 rounded-xl hover-transition focus-ring"
+                    className="text-base font-medium text-foreground hover:text-primary hover:bg-secondary/50 hover-transition px-4 py-2 rounded-full focus-ring"
                   >
                     {link.label}
                   </a>
-                </li>
+                </motion.li>
               ))}
-              <li className="pt-3">
-                <button onClick={openSubscribe} className="btn-base btn-glass btn-md w-full">
-                  Subscribe
-                </button>
-              </li>
             </ul>
+
+            {/* Desktop CTA - Third column, aligned right */}
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.5, ease: liquidEase }}
+              className="hidden md:flex items-center justify-self-end"
+            >
+              <SubscribeButton className="btn-base btn-glass btn-md">
+                Subscribe
+              </SubscribeButton>
+            </motion.div>
+
+            {/* Mobile Menu Button - Third column on mobile */}
+            <button
+              className="md:hidden p-2 rounded-full hover:bg-secondary/50 hover-transition focus-ring col-start-3 justify-self-end"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
           </div>
-        )}
-      </nav>
+
+          {/* Mobile Navigation */}
+          {isOpen && (
+            <div className="md:hidden py-4 border-t border-border/50 mt-3">
+              <ul className="flex flex-col gap-1">
+                {navLinks.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link.href)}
+                      className="block py-2 px-4 text-foreground hover:text-primary hover:bg-secondary/50 rounded-xl hover-transition focus-ring"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+                <li className="pt-3">
+                  <button onClick={openSubscribe} className="btn-base btn-glass btn-md w-full">
+                    Subscribe
+                  </button>
+                </li>
+              </ul>
+            </div>
+          )}
+        </nav>
+      </div>
     </motion.header>
   );
 };
