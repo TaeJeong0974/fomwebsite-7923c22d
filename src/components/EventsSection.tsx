@@ -1,25 +1,27 @@
 import { useState } from "react";
 import { Play, ChevronLeft, ChevronRight } from "lucide-react";
 
-// Layout 1: Two column - text left aligned to bottom, video right
+// Layout 1: Two column with overlapping title
 const Layout1 = () => (
-  <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-    {/* Left Content - aligned to bottom */}
-    <div className="flex flex-col justify-end">
+  <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0">
+    {/* Left Content - aligned to bottom with overlapping title */}
+    <div className="flex flex-col justify-end relative z-10">
       <span className="text-label text-muted-foreground mb-4">Past Event</span>
-      <h2 className="text-[3rem] sm:text-[4rem] lg:text-[5rem] xl:text-[6rem] font-display font-bold leading-[0.9] tracking-tight">
+      <h2 className="text-[4rem] sm:text-[6rem] lg:text-[8rem] xl:text-[10rem] font-display font-bold leading-[0.85] tracking-tight lg:translate-x-[20%] xl:translate-x-[30%]">
         FOM<br />2025
       </h2>
-      <p className="text-body-sm text-muted-foreground mt-6 max-w-sm">
-        San Francisco, CA
-      </p>
-      <p className="text-body text-muted-foreground mt-3 max-w-sm">
-        An evening of insights, networking, and conversations about the future of AI in marketing.
-      </p>
-      <button className="mt-8 text-label hover:opacity-70 hover-transition flex items-center gap-2 group w-fit">
-        Watch Recap
-        <span className="w-8 h-[1px] bg-foreground group-hover:w-12 hover-transition" />
-      </button>
+      <div className="mt-6 lg:mt-8">
+        <p className="text-body-sm text-muted-foreground">
+          San Francisco, CA
+        </p>
+        <p className="text-body text-muted-foreground mt-3 max-w-sm">
+          An evening of insights, networking, and conversations about the future of AI in marketing.
+        </p>
+        <button className="mt-8 text-label hover:opacity-70 hover-transition flex items-center gap-2 group w-fit">
+          Watch Recap
+          <span className="w-8 h-[1px] bg-foreground group-hover:w-12 hover-transition" />
+        </button>
+      </div>
     </div>
 
     {/* Right Video */}
