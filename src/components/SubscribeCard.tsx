@@ -45,17 +45,17 @@ const SubscribeCard = () => {
       />
       {/* Animated color overlay */}
       <motion.div
-        className="absolute inset-0 z-[1] mix-blend-overlay"
+        className="absolute inset-0 z-[1] mix-blend-soft-light opacity-80"
         animate={{
           background: [
-            'linear-gradient(135deg, rgba(180, 180, 190, 0.6) 0%, rgba(220, 160, 150, 0.5) 50%, rgba(190, 190, 200, 0.6) 100%)',
-            'linear-gradient(135deg, rgba(200, 170, 160, 0.5) 0%, rgba(180, 180, 200, 0.6) 50%, rgba(220, 150, 140, 0.5) 100%)',
-            'linear-gradient(135deg, rgba(190, 190, 210, 0.6) 0%, rgba(210, 140, 130, 0.5) 50%, rgba(180, 180, 190, 0.6) 100%)',
-            'linear-gradient(135deg, rgba(180, 180, 190, 0.6) 0%, rgba(220, 160, 150, 0.5) 50%, rgba(190, 190, 200, 0.6) 100%)',
+            'linear-gradient(135deg, rgba(100, 120, 180, 0.9) 0%, rgba(255, 120, 100, 0.8) 50%, rgba(180, 160, 220, 0.9) 100%)',
+            'linear-gradient(135deg, rgba(255, 140, 120, 0.8) 0%, rgba(120, 100, 200, 0.9) 50%, rgba(255, 100, 130, 0.8) 100%)',
+            'linear-gradient(135deg, rgba(160, 140, 220, 0.9) 0%, rgba(255, 130, 100, 0.8) 50%, rgba(100, 140, 200, 0.9) 100%)',
+            'linear-gradient(135deg, rgba(100, 120, 180, 0.9) 0%, rgba(255, 120, 100, 0.8) 50%, rgba(180, 160, 220, 0.9) 100%)',
           ],
         }}
         transition={{
-          duration: 8,
+          duration: 6,
           ease: 'easeInOut',
           repeat: Infinity,
           repeatType: 'loop',
