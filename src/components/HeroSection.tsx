@@ -82,7 +82,7 @@ const HeroSection = () => {
           <p className="text-label mb-4 md:hidden">Your Hosts</p>
 
           {/* Hosts section */}
-          <motion.div variants={fadeUpVariant}>
+          <motion.div id="hosts" variants={fadeUpVariant}>
             <div className="grid grid-cols-1 md:grid-cols-3 grid-gap">
               {hosts.map((host, index) => {
                 const firstName = host.name.split(' ')[0];
