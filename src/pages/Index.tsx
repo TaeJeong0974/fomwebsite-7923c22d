@@ -10,7 +10,7 @@ const Index = () => {
     <div className="min-h-screen relative">
       {/* Fixed gradient background */}
       <div 
-        className="fixed inset-0 -z-10 bg-[#f5f4f2]"
+        className="fixed inset-0 -z-10 bg-[#e8e4df]"
         style={{
           backgroundImage: `url(${siteBg})`,
           backgroundSize: '70% auto',
