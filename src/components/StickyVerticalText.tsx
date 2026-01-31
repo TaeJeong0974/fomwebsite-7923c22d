@@ -16,9 +16,28 @@ const SECTION_LABELS: SectionLabel[] = [
 
 const BRAND_TAGLINE = "THE FUTURE OF MARKETING";
 
-const liquidTransition = {
-  duration: 0.7,
-  ease: [0.22, 1, 0.36, 1] as const,
+// Typewriter animation for each character
+const TypewriterText = ({ text }: { text: string }) => {
+  const characters = text.split("");
+  
+  return (
+    <span className="text-[10px] font-display font-semibold tracking-[0.25em] text-foreground whitespace-nowrap">
+      {characters.map((char, index) => (
+        <motion.span
+          key={`${text}-${index}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{
+            duration: 0.05,
+            delay: index * 0.04,
+            ease: "easeOut",
+          }}
+        >
+          {char}
+        </motion.span>
+      ))}
+    </span>
+  );
 };
 
 const StickyVerticalText = () => {
@@ -79,7 +98,7 @@ const StickyVerticalText = () => {
         </div>
       </motion.div>
 
-      {/* Right side - Section indicator (changes) */}
+      {/* Right side - Section indicator (changes with typewriter effect) */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -93,16 +112,15 @@ const StickyVerticalText = () => {
           }}
         >
           <AnimatePresence mode="wait">
-            <motion.span
+            <motion.div
               key={currentLabel}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] as const }}
-              className="text-[10px] font-display font-semibold tracking-[0.25em] text-foreground whitespace-nowrap"
+              transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
             >
-              {currentLabel}
-            </motion.span>
+              <TypewriterText text={currentLabel} />
+            </motion.div>
           </AnimatePresence>
         </div>
       </motion.div>
