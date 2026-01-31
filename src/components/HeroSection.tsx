@@ -66,7 +66,7 @@ const HeroSection = () => {
           >
             {/* "Your Host" label in first column, aligned to bottom of logo */}
             <div className="hidden md:flex md:items-end">
-              <p className="text-label">Your Host</p>
+              <p className="text-label -mb-1">Your Host</p>
             </div>
             {/* Logo spans columns 2-3 */}
             <div className="md:col-span-2 flex justify-center">
