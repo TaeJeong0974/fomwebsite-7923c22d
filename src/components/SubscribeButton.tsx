@@ -86,7 +86,7 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
-                  className="w-full px-4 py-2.5 text-sm glass rounded-full text-white placeholder:text-white/40 focus-ring hover-transition"
+                  className="w-full px-4 py-2.5 text-sm font-mono bg-black/60 border border-white/10 rounded-full text-white placeholder:text-white/40 focus-ring hover-transition"
                 />
                 <button
                   type="submit"
