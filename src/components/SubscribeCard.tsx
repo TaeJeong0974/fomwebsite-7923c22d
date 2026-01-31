@@ -34,19 +34,31 @@ const SubscribeCard = () => {
 
   return (
     <div className="card-image group cursor-pointer hover-scale overflow-hidden">
-      {/* Animated background */}
-      <motion.div
+      {/* Static background image */}
+      <div
         className="absolute inset-0 z-0"
         style={{
           backgroundImage: `url(${subscribeBg})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
-        initial={{ scale: 1 }}
-        whileHover={{ scale: 1.05 }}
-        transition={{ 
-          duration: 1, 
-          ease: [0.22, 1, 0.36, 1] 
+      />
+      {/* Animated color overlay */}
+      <motion.div
+        className="absolute inset-0 z-[1] mix-blend-overlay"
+        animate={{
+          background: [
+            'linear-gradient(135deg, rgba(180, 180, 190, 0.6) 0%, rgba(220, 160, 150, 0.5) 50%, rgba(190, 190, 200, 0.6) 100%)',
+            'linear-gradient(135deg, rgba(200, 170, 160, 0.5) 0%, rgba(180, 180, 200, 0.6) 50%, rgba(220, 150, 140, 0.5) 100%)',
+            'linear-gradient(135deg, rgba(190, 190, 210, 0.6) 0%, rgba(210, 140, 130, 0.5) 50%, rgba(180, 180, 190, 0.6) 100%)',
+            'linear-gradient(135deg, rgba(180, 180, 190, 0.6) 0%, rgba(220, 160, 150, 0.5) 50%, rgba(190, 190, 200, 0.6) 100%)',
+          ],
+        }}
+        transition={{
+          duration: 8,
+          ease: 'easeInOut',
+          repeat: Infinity,
+          repeatType: 'loop',
         }}
       />
       <AnimatePresence mode="wait">
