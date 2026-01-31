@@ -6,7 +6,7 @@ const EventsSection = () => {
       <div className="container mx-auto container-padding">
         <div className="relative">
           {/* Title - overlaps video */}
-          <h2 className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-bold leading-[0.85] tracking-tight mb-[-3rem] sm:mb-[-5rem] lg:mb-[-8rem] xl:mb-[-10rem] relative z-10">
+          <h2 className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-medium leading-[0.85] tracking-tight mb-[-3rem] sm:mb-[-5rem] lg:mb-[-8rem] xl:mb-[-10rem] relative z-10">
             FOM<br />2025
           </h2>
 
