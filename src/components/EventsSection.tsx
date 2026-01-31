@@ -52,14 +52,14 @@ const Layout1 = () => (
 const Layout3 = () => (
   <div className="relative">
     {/* Title - overlaps video */}
-    <h2 className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-bold leading-[0.85] tracking-tight mb-[-2rem] sm:mb-[-3rem] lg:mb-[-5rem] relative z-10">
+    <h2 className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-bold leading-[0.85] tracking-tight mb-[-3rem] sm:mb-[-5rem] lg:mb-[-8rem] xl:mb-[-10rem] relative z-10">
       FOM<br />2025
     </h2>
 
     {/* Video and Copy side by side */}
     <div className="relative flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-0">
       {/* Copy - Left side, aligned with bottom of video */}
-      <div className="hidden lg:flex flex-col justify-end w-1/4 pr-8 pb-2">
+      <div className="hidden lg:flex flex-col justify-end w-1/4 pr-12 pb-4">
         <span className="text-label text-muted-foreground">Past Event · San Francisco, CA</span>
         <p className="text-body-sm text-muted-foreground mt-3">
           An evening of insights, networking, and conversations about the future of AI in marketing.
