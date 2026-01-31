@@ -14,11 +14,11 @@ const MouseFollowImage = ({ isHovered, mouseX, mouseY, imageSrc, name }: MouseFo
   <AnimatePresence>
     {isHovered && (
       <motion.div
-        initial={{ opacity: 0, scale: 0.92 }}
+        initial={{ opacity: 0, scale: 0.96 }}
         animate={{ 
           opacity: 1, 
           scale: 1,
-          transition: { duration: 2.5, ease: liquidEase }
+          transition: { duration: 0.4, ease: liquidEase }
         }}
         exit={{ 
           opacity: 0, 
