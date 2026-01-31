@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Play, X, ArrowUp, Maximize, PictureInPicture2 } from "lucide-react";
+import { Play, X, Maximize } from "lucide-react";
 import guestBg from "@/assets/guest-bg.png";
 
-interface VideoScrollOptionsProps {
-  activeOption: 1 | 2 | 3;
+interface FloatingMiniPlayerProps {
+  youtubeUrl?: string;
+  spotifyUrl?: string;
 }
 
-const VideoScrollOptions = ({ activeOption }: VideoScrollOptionsProps) => {
+const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl }: FloatingMiniPlayerProps) => {
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const [isScrolledPast, setIsScrolledPast] = useState(false);
   const [showMiniPlayer, setShowMiniPlayer] = useState(true);
@@ -18,6 +19,10 @@ const VideoScrollOptions = ({ activeOption }: VideoScrollOptionsProps) => {
         const rect = videoContainerRef.current.getBoundingClientRect();
         const isPast = rect.bottom < 100;
         setIsScrolledPast(isPast);
+        // Reset mini player visibility when scrolling back to top
+        if (!isPast) {
+          setShowMiniPlayer(true);
+        }
       }
     };
 
@@ -27,11 +32,6 @@ const VideoScrollOptions = ({ activeOption }: VideoScrollOptionsProps) => {
 
   const scrollToVideo = () => {
     videoContainerRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
-
-  const handlePiP = async () => {
-    // In a real implementation, this would trigger Picture-in-Picture on an actual video element
-    alert('Picture-in-Picture would activate here with a real video');
   };
 
   return (
@@ -55,23 +55,12 @@ const VideoScrollOptions = ({ activeOption }: VideoScrollOptionsProps) => {
               <Play className="w-6 h-6 sm:w-8 sm:h-8 text-white fill-white ml-1" />
             </div>
           </div>
-
-          {/* PiP Button - Option 2 */}
-          {activeOption === 2 && (
-            <button
-              onClick={handlePiP}
-              className="absolute top-4 right-4 p-2.5 rounded-full bg-black/50 backdrop-blur-xl border border-white/20 text-white hover:bg-black/70 transition-all z-10"
-              title="Picture-in-Picture"
-            >
-              <PictureInPicture2 className="w-5 h-5" />
-            </button>
-          )}
         </div>
       </div>
 
-      {/* Option 1: Floating Mini Player */}
+      {/* Floating Mini Player */}
       <AnimatePresence>
-        {activeOption === 1 && isScrolledPast && showMiniPlayer && (
+        {isScrolledPast && showMiniPlayer && (
           <motion.div
             initial={{ opacity: 0, y: 100, scale: 0.8 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -106,6 +95,38 @@ const VideoScrollOptions = ({ activeOption }: VideoScrollOptionsProps) => {
               </div>
             </div>
 
+            {/* Action Buttons Row */}
+            <div className="flex items-center gap-1 p-2 bg-black/90 backdrop-blur-xl">
+              {youtubeUrl && (
+                <a
+                  href={youtubeUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition-all"
+                >
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                  </svg>
+                  YouTube
+                </a>
+              )}
+              {spotifyUrl && (
+                <a
+                  href={spotifyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={(e) => e.stopPropagation()}
+                  className="flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-medium transition-all"
+                >
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+                  </svg>
+                  Spotify
+                </a>
+              )}
+            </div>
+
             {/* Close Button */}
             <button
               onClick={(e) => {
@@ -119,25 +140,8 @@ const VideoScrollOptions = ({ activeOption }: VideoScrollOptionsProps) => {
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Option 3: Back-to-Video FAB */}
-      <AnimatePresence>
-        {activeOption === 3 && isScrolledPast && (
-          <motion.button
-            initial={{ opacity: 0, y: 20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            onClick={scrollToVideo}
-            className="fixed bottom-6 right-6 z-50 flex items-center gap-2 px-5 py-3 rounded-full bg-foreground text-background font-display font-medium text-sm shadow-2xl hover:scale-105 transition-transform"
-          >
-            <ArrowUp className="w-4 h-4" />
-            Back to Video
-          </motion.button>
-        )}
-      </AnimatePresence>
     </>
   );
 };
 
-export default VideoScrollOptions;
+export default FloatingMiniPlayer;
