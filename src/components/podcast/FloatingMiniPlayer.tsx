@@ -133,7 +133,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl }: FloatingMiniPlayerProps)
                 e.stopPropagation();
                 setShowMiniPlayer(false);
               }}
-              className="absolute top-2 right-2 p-1.5 rounded-full bg-black/60 backdrop-blur-xl text-white hover:bg-black/80 transition-all"
+              className="absolute top-2 right-2 w-8 h-8 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/20 transition-all"
             >
               <X className="w-4 h-4" />
             </button>
