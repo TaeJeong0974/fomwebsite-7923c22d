@@ -19,7 +19,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
   const liquidGlassButton = "flex items-center justify-center gap-2.5 bg-black/5 backdrop-blur-xl border border-black/10 text-foreground px-5 py-3 rounded-xl text-sm font-medium hover:bg-black/10 hover-transition shadow-sm";
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3 mb-6">
       {/* Subscribe */}
       <motion.button
         onClick={openSubscribe}
