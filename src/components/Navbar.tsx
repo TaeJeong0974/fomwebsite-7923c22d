@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import FomLogo from "@/assets/FOM_Logo.svg";
@@ -25,9 +26,9 @@ const Navbar = () => {
       <nav className="container mx-auto container-padding glass rounded-xl">
         <div className="flex items-center justify-between h-14 lg:h-16">
           {/* Logo */}
-          <a href="/" className="flex items-center focus-ring rounded-lg">
+          <Link to="/" className="flex items-center focus-ring rounded-lg">
             <img src={FomLogo} alt="Future of Marketing" className="h-5 lg:h-6" />
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <ul className="hidden md:flex items-center gap-1">
