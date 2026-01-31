@@ -230,6 +230,7 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
             className="group py-6 sm:py-8 flex items-start justify-between gap-6 hover-transition relative z-10"
           >
             <div className="flex-1 min-w-0 text-left">
+              <p className="text-label mb-2">EP {String(index + 1).padStart(2, '0')}</p>
               <div className="flex items-center gap-3">
                 <h3 className={`font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground ${listHoverColors[index % listHoverColors.length]} transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] leading-[0.95] tracking-tight`}>
                   {episode.name}
@@ -296,6 +297,7 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
               className="group py-6 sm:py-8 flex items-start justify-between gap-6 hover-transition relative z-10"
             >
               <div className="flex-1 min-w-0 text-left">
+                <p className="text-label mb-2">EP {String(globalIndex + 1).padStart(2, '0')}</p>
                 <h3 className={`font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground ${listHoverColors[globalIndex % listHoverColors.length]} transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] leading-[0.95] tracking-tight`}>
                   {episode.name}
                 </h3>
