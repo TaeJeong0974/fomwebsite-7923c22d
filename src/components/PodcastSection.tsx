@@ -202,7 +202,7 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
   };
 
   return (
-    <div className="divide-y divide-border/50">
+    <div className="flex flex-col gap-4">
       {episodes.map((episode, index) => (
         <motion.div 
           key={episode.id} 
@@ -227,42 +227,45 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
           
           <Link 
             to={`/episode/${episode.slug}`} 
-            className="group py-6 sm:py-8 flex items-start justify-between gap-6 hover-transition relative z-10"
+            className="group block p-6 sm:p-8 rounded-2xl bg-muted/50 hover:bg-muted transition-colors duration-300 relative z-10"
           >
-            <div className="flex-1 min-w-0 text-left">
-              <p className="text-label mb-2">EP {String(index + 1).padStart(2, '0')}</p>
-              <div className="flex items-center gap-3">
-                <h3 className={`font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground ${listHoverColors[index % listHoverColors.length]} transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] leading-[0.95] tracking-tight`}>
-                  {episode.name}
+            <div className="flex items-start justify-between gap-6">
+              <div className="flex-1 min-w-0 text-left">
+                <p className="text-label mb-2">EP {String(index + 1).padStart(2, '0')}</p>
+                <h3 className={`font-display text-3xl sm:text-4xl lg:text-5xl text-foreground ${listHoverColors[index % listHoverColors.length]} transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] leading-[1] tracking-tight`}>
+                  <span className="font-medium">{episode.name.split(' ')[0]}</span>{' '}
+                  <span className="font-normal">{episode.name.split(' ').slice(1).join(' ')}</span>
                 </h3>
+                {episode.slug === 'intro-to-fom' ? (
+                  <p className="text-body mt-3 text-muted-foreground">
+                    {podcastHosts.map((h, i) => (
+                      <span key={h.name}>
+                        {h.name}{i < podcastHosts.length - 1 && ', '}
+                      </span>
+                    ))}
+                  </p>
+                ) : (
+                  <p className="text-body mt-3 text-muted-foreground">
+                    {episode.title} <span className="font-medium text-foreground">@ {episode.company}</span>
+                  </p>
+                )}
+              </div>
+              
+              <div className="shrink-0 flex items-center gap-3">
                 {isNewEpisode(episode.publishedDate) && (
                   <span className="glass text-foreground text-xs font-semibold tracking-wide uppercase px-3 pt-2.5 pb-2 rounded-full flex items-center justify-center leading-none">
                     New
                   </span>
                 )}
+                <span 
+                  className="inline-flex items-center justify-center font-display font-semibold uppercase tracking-wider text-xs px-5 py-2.5 rounded-full bg-background border border-border text-foreground group-hover:bg-foreground group-hover:text-background group-hover:border-foreground transition-all duration-300"
+                  onMouseEnter={() => setCtaHovered(index)}
+                  onMouseLeave={() => setCtaHovered(null)}
+                >
+                  Watch Now
+                </span>
               </div>
-              {episode.slug === 'intro-to-fom' ? (
-                <p className="text-body mt-3 text-foreground">
-                  {podcastHosts.map((h, i) => (
-                    <span key={h.name}>
-                      {h.name}{i < podcastHosts.length - 1 && ', '}
-                    </span>
-                  ))}
-                </p>
-              ) : (
-                <p className="text-body mt-3 text-foreground">
-                  {episode.title} <span className="font-medium">@ {episode.company}</span>
-                </p>
-              )}
             </div>
-            
-            <span 
-              className="shrink-0 inline-flex items-center justify-center font-display font-semibold uppercase tracking-wider text-xs px-5 py-2.5 rounded-full bg-black/5 backdrop-blur-xl border border-black/10 text-foreground hover:bg-foreground hover:text-background hover:border-foreground transition-all duration-300"
-              onMouseEnter={() => setCtaHovered(index)}
-              onMouseLeave={() => setCtaHovered(null)}
-            >
-              Watch Now
-            </span>
           </Link>
         </motion.div>
       ))}
@@ -294,25 +297,28 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
             
             <Link 
               to={`/episode/${episode.slug}`} 
-              className="group py-6 sm:py-8 flex items-start justify-between gap-6 hover-transition relative z-10"
+              className="group block p-6 sm:p-8 rounded-2xl bg-muted/50 hover:bg-muted transition-colors duration-300 relative z-10"
             >
-              <div className="flex-1 min-w-0 text-left">
-                <p className="text-label mb-2">EP {String(globalIndex + 1).padStart(2, '0')}</p>
-                <h3 className={`font-display text-4xl sm:text-5xl lg:text-6xl font-semibold text-foreground ${listHoverColors[globalIndex % listHoverColors.length]} transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] leading-[0.95] tracking-tight`}>
-                  {episode.name}
-                </h3>
-                <p className="text-body mt-3 text-foreground">
-                  {episode.title} <span className="font-medium">@ {episode.company}</span>
-                </p>
+              <div className="flex items-start justify-between gap-6">
+                <div className="flex-1 min-w-0 text-left">
+                  <p className="text-label mb-2">EP {String(globalIndex + 1).padStart(2, '0')}</p>
+                  <h3 className={`font-display text-3xl sm:text-4xl lg:text-5xl text-foreground ${listHoverColors[globalIndex % listHoverColors.length]} transition-colors duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] leading-[1] tracking-tight`}>
+                    <span className="font-medium">{episode.name.split(' ')[0]}</span>{' '}
+                    <span className="font-normal">{episode.name.split(' ').slice(1).join(' ')}</span>
+                  </h3>
+                  <p className="text-body mt-3 text-muted-foreground">
+                    {episode.title} <span className="font-medium text-foreground">@ {episode.company}</span>
+                  </p>
+                </div>
+                
+                <span 
+                  className="shrink-0 inline-flex items-center justify-center font-display font-semibold uppercase tracking-wider text-xs px-5 py-2.5 rounded-full bg-background border border-border text-foreground group-hover:bg-foreground group-hover:text-background group-hover:border-foreground transition-all duration-300"
+                  onMouseEnter={() => setCtaHovered(globalIndex)}
+                  onMouseLeave={() => setCtaHovered(null)}
+                >
+                  Coming Soon
+                </span>
               </div>
-              
-              <span 
-                className="shrink-0 inline-flex items-center justify-center font-display font-semibold uppercase tracking-wider text-xs px-5 py-2.5 rounded-full bg-black/5 backdrop-blur-xl border border-black/10 text-foreground hover:bg-foreground hover:text-background hover:border-foreground transition-all duration-300"
-                onMouseEnter={() => setCtaHovered(globalIndex)}
-                onMouseLeave={() => setCtaHovered(null)}
-              >
-                Coming Soon
-              </span>
             </Link>
           </motion.div>
         );
