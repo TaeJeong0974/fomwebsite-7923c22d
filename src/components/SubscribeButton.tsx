@@ -74,7 +74,7 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
               transition={{ duration: 0.15 }}
               className="p-5"
             >
-              <p className="text-label text-white mb-1">Stay Updated</p>
+              <p className="text-[0.8rem] font-medium uppercase tracking-widest text-white mb-1">Stay Updated</p>
               <h3 className="font-display text-lg font-semibold text-white mb-3">
                 Never Miss an Episode
               </h3>
