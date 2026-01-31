@@ -223,6 +223,18 @@
       padding-bottom: 5rem;
     }
   }
+  @media (min-width: 1280px) {
+    .section-spacing {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+  @media (min-width: 1536px) {
+    .section-spacing {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+    }
+  }
 
   .container-padding {
     padding-left: 1rem;
