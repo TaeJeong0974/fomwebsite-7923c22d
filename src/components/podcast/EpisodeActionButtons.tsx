@@ -1,6 +1,5 @@
-import { Bell } from "lucide-react";
+import { Share2 } from "lucide-react";
 import { motion } from "framer-motion";
-import { useSubscribe } from "@/contexts/SubscribeContext";
 
 interface EpisodeActionButtonsProps {
   youtubeUrl: string;
@@ -8,7 +7,21 @@ interface EpisodeActionButtonsProps {
 }
 
 const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsProps) => {
-  const { openSubscribe } = useSubscribe();
+  const handleShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: document.title,
+          url: window.location.href,
+        });
+      } catch (err) {
+        // User cancelled or error
+      }
+    } else {
+      // Fallback: copy to clipboard
+      await navigator.clipboard.writeText(window.location.href);
+    }
+  };
 
   const buttonVariants = {
     initial: { scale: 1 },
@@ -56,17 +69,17 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
         <span className="hidden sm:inline">Listen on Spotify</span>
       </motion.a>
 
-      {/* Subscribe */}
+      {/* Share */}
       <motion.button
-        onClick={openSubscribe}
+        onClick={handleShare}
         className={liquidGlassButton}
         variants={buttonVariants}
         initial="initial"
         whileHover="hover"
         whileTap="tap"
       >
-        <Bell className="w-5 h-5 text-foreground" />
-        <span>Subscribe</span>
+        <Share2 className="w-5 h-5 text-foreground" />
+        <span>Share</span>
       </motion.button>
     </div>
   );
