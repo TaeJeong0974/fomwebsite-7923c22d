@@ -46,7 +46,7 @@ const PodcastSection = () => {
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 lg:mb-12">
           <div>
             <p className="text-label mb-2">WATCH</p>
-            <h2 className="text-display-xl text-foreground font-medium">Podcast</h2>
+            <h2 className="text-display-xl text-foreground" style={{ fontWeight: 500 }}>Podcast</h2>
           </div>
           
           {/* Layout Toggle */}
