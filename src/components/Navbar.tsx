@@ -24,14 +24,14 @@ const Navbar = () => {
       className="sticky top-4 z-50 mx-4 sm:mx-6 lg:mx-8"
     >
       <nav className="container mx-auto container-padding glass rounded-xl">
-        <div className="flex items-center justify-between h-14 lg:h-16">
-          {/* Logo */}
-          <Link to="/" className="flex items-center focus-ring rounded-lg">
+        <div className="grid grid-cols-3 items-center h-14 lg:h-16">
+          {/* Logo - First column */}
+          <Link to="/" className="flex items-center focus-ring rounded-lg justify-self-start">
             <img src={FomLogo} alt="Future of Marketing" className="h-5 lg:h-6" />
           </Link>
 
-          {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-1">
+          {/* Desktop Navigation - Second column, aligned left */}
+          <ul className="hidden md:flex items-center gap-1 justify-self-start">
             {navLinks.map((link, index) => (
               <motion.li 
                 key={link.label}
@@ -53,12 +53,12 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* Desktop CTA */}
+          {/* Desktop CTA - Third column, aligned right */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.5, ease: liquidEase }}
-            className="hidden md:flex items-center justify-center"
+            className="hidden md:flex items-center justify-self-end"
           >
             <SubscribeButton className="btn-base btn-glass btn-md">
               Subscribe
