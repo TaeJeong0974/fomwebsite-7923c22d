@@ -43,7 +43,7 @@ const HeroSection = () => {
           <div className="flex justify-between items-start mb-20 lg:mb-32 pl-4 sm:pl-5 lg:pl-6 pr-4 sm:pr-5 lg:pr-6">
             <motion.h1
               variants={fadeUpVariant}
-              className="font-display text-xl sm:text-2xl md:text-3xl lg:text-[2rem] text-foreground font-medium uppercase tracking-tight leading-[1.1]"
+              className="font-display text-lg sm:text-xl md:text-2xl lg:text-[1.75rem] text-foreground font-medium uppercase tracking-tight leading-[1.1]"
             >
               A Podcast<br />
               Series on How<br />
