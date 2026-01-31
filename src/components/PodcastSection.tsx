@@ -114,10 +114,10 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
     {episodes.slice(0, 4).map((episode, index) => (
       <motion.div 
         key={episode.id} 
-        initial={{ opacity: 0, y: 20 }} 
+        initial={{ opacity: 0, y: 30 }} 
         whileInView={{ opacity: 1, y: 0 }} 
         viewport={{ once: true, amount: 0.15 }} 
-        transition={{ duration: 0.4, delay: index * 0.05, ease: liquidEase }}
+        transition={{ duration: 1.0, delay: Math.floor(index / 3) * 0.18, ease: liquidEase }}
       >
         <PodcastCard episode={episode} isNew={isNewEpisode(episode.publishedDate)} />
       </motion.div>
@@ -126,20 +126,20 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
     {comingSoonEpisodes.map((episode, idx) => (
       <motion.div 
         key={`coming-soon-${episode.id}`} 
-        initial={{ opacity: 0, y: 20 }} 
+        initial={{ opacity: 0, y: 30 }} 
         whileInView={{ opacity: 1, y: 0 }} 
         viewport={{ once: true, amount: 0.15 }} 
-        transition={{ duration: 0.4, delay: (episodes.slice(0, 4).length + idx) * 0.05, ease: liquidEase }}
+        transition={{ duration: 1.0, delay: (episodes.slice(0, 4).length + idx) * 0.18, ease: liquidEase }}
       >
         <PodcastCard episode={episode} isUpcoming />
       </motion.div>
     ))}
     
     <motion.div 
-      initial={{ opacity: 0, y: 20, scale: 0.98 }} 
+      initial={{ opacity: 0, y: 30, scale: 0.98 }} 
       whileInView={{ opacity: 1, y: 0, scale: 1 }} 
       viewport={{ once: true, amount: 0.15 }} 
-      transition={{ duration: 0.4, delay: 0.25, ease: liquidEase }}
+      transition={{ duration: 1.0, delay: 0.9, ease: liquidEase }}
     >
       <SubscribeCard />
     </motion.div>
@@ -170,10 +170,10 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
         return (
           <motion.div 
             key={episode.id} 
-            initial={{ opacity: 0, y: 20 }} 
+            initial={{ opacity: 0, y: 30 }} 
             whileInView={{ opacity: 1, y: 0 }} 
             viewport={{ once: true, amount: 0.3 }} 
-            transition={{ duration: 0.4, delay: index * 0.04, ease: liquidEase }}
+            transition={{ duration: 0.9, delay: index * 0.12, ease: liquidEase }}
             className="relative"
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
