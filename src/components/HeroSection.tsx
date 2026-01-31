@@ -39,9 +39,9 @@ const HeroSection = () => {
           animate="visible"
           variants={staggerContainer}
         >
-          {/* Top section with tagline and logo */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start mb-16 lg:mb-24">
-            {/* Left: Tagline */}
+          {/* Top section with tagline and logo - aligned to 3-column host grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 grid-gap items-end mb-16 lg:mb-24">
+            {/* Left: Tagline - takes first column */}
             <motion.h1
               variants={fadeUpVariant}
               className="font-display text-xl sm:text-2xl md:text-3xl lg:text-[2rem] text-foreground font-medium uppercase tracking-tight leading-[1.1]"
@@ -52,15 +52,15 @@ const HeroSection = () => {
               Marketing
             </motion.h1>
 
-            {/* Right: Large FOM Icon */}
+            {/* Right: Large FOM Icon - spans columns 2-3 (aligned with Ethan & Camille) */}
             <motion.div
               variants={fadeUpVariant}
-              className="flex justify-center lg:justify-end"
+              className="md:col-span-2 flex justify-center md:justify-end"
             >
               <img 
                 src={FOMIcon} 
                 alt="Future of Marketing" 
-                className="w-full max-w-md lg:max-w-lg h-auto text-foreground"
+                className="w-full max-w-full h-auto text-foreground"
               />
             </motion.div>
           </div>
