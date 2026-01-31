@@ -254,14 +254,14 @@
   }
   @media (min-width: 1280px) {
     .container-padding {
-      padding-left: 3rem;
-      padding-right: 3rem;
+      padding-left: 4rem;
+      padding-right: 4rem;
     }
   }
   @media (min-width: 1536px) {
     .container-padding {
-      padding-left: 4rem;
-      padding-right: 4rem;
+      padding-left: 6rem;
+      padding-right: 6rem;
     }
   }
 
