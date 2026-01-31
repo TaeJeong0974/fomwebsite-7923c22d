@@ -100,6 +100,9 @@ const HeroSection = () => {
                           src={host.image} 
                           alt={host.name}
                           className="w-full h-full object-cover"
+                          loading="eager"
+                          fetchPriority="high"
+                          decoding="async"
                         />
                         <div className="card-overlay" />
                       </div>
