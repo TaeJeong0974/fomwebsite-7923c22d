@@ -417,7 +417,7 @@
     position: relative;
     overflow: hidden;
     border-radius: 0.75rem;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 3 / 4;
   }
 
   .card-overlay {
