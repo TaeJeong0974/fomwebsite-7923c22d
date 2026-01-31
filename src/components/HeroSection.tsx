@@ -62,7 +62,7 @@ const HeroSection = () => {
           {/* Large FOM Icon with "Your Host" label in first column */}
           <motion.div
             variants={fadeUpVariant}
-            className="grid grid-cols-1 md:grid-cols-3 grid-gap items-end mb-16 lg:mb-24 pt-8 lg:pt-16"
+            className="grid grid-cols-1 md:grid-cols-3 grid-gap items-end mb-10 lg:mb-14 pt-8 lg:pt-16"
           >
             {/* "Your Hosts" label in first column, aligned to bottom of logo */}
             <div className="hidden md:block self-end">
