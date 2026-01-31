@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import PodcastSection from "@/components/PodcastSection";
 import EventsSection from "@/components/EventsSection";
 import CTASection from "@/components/CTASection";
+import AnimationDemo from "@/components/AnimationDemo";
 
 const Index = () => {
   return (
@@ -13,6 +14,7 @@ const Index = () => {
         <HeroSection />
         <PodcastSection />
         <EventsSection />
+        <AnimationDemo />
         <CTASection />
       </main>
     </div>
