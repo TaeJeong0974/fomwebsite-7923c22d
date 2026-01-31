@@ -25,11 +25,9 @@ const Navbar = () => {
     setIsOpen(false);
     
     if (isHomePage) {
-      // On homepage, just scroll to section
       const element = document.querySelector(href);
       element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
-      // On other pages, navigate home then scroll
       navigate('/');
       requestAnimationFrame(() => {
         setTimeout(() => {
@@ -47,15 +45,16 @@ const Navbar = () => {
       variants={fadeDownVariant}
       className="sticky top-4 z-50 container mx-auto container-padding"
     >
-      <nav className="glass rounded-xl py-3 lg:py-4">
-        <div className="grid grid-cols-3 items-center grid-gap">
-          {/* Logo - First column, with left padding for pill aesthetics */}
-          <Link to="/" className="flex items-center focus-ring rounded-lg justify-self-start pl-4 sm:pl-5 lg:pl-6">
+      {/* Glass pill with visual padding, grid aligned to page content */}
+      <nav className="glass rounded-xl">
+        <div className="grid grid-cols-3 items-center grid-gap py-3 lg:py-4 px-4 sm:px-5 lg:px-6">
+          {/* Logo - First column */}
+          <Link to="/" className="flex items-center focus-ring rounded-lg justify-self-start">
             <img src={FomLogo} alt="Future of Marketing" className="h-5 lg:h-6" />
           </Link>
 
           {/* Desktop Navigation - Second column, aligned left */}
-          <ul className="hidden md:flex items-center gap-1 justify-self-start">
+          <ul className="hidden md:flex items-center gap-1 justify-self-start -ml-4">
             {navLinks.map((link, index) => (
               <motion.li 
                 key={link.label}
@@ -78,12 +77,12 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* Desktop CTA - Third column, aligned right with right padding */}
+          {/* Desktop CTA - Third column, aligned right */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.5, ease: liquidEase }}
-            className="hidden md:flex items-center justify-self-end pr-4 sm:pr-5 lg:pr-6"
+            className="hidden md:flex items-center justify-self-end"
           >
             <SubscribeButton className="btn-base btn-glass btn-md">
               Subscribe
@@ -92,7 +91,7 @@ const Navbar = () => {
 
           {/* Mobile Menu Button - Third column on mobile */}
           <button
-            className="md:hidden p-2 rounded-full hover:bg-secondary/50 hover-transition focus-ring col-start-3 justify-self-end mr-2 sm:mr-3"
+            className="md:hidden p-2 rounded-full hover:bg-secondary/50 hover-transition focus-ring col-start-3 justify-self-end"
             onClick={() => setIsOpen(!isOpen)}
             aria-label="Toggle menu"
           >
@@ -102,7 +101,7 @@ const Navbar = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-border/50">
+          <div className="md:hidden py-4 border-t border-border/50 px-4">
             <ul className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <li key={link.label}>
@@ -115,7 +114,7 @@ const Navbar = () => {
                   </a>
                 </li>
               ))}
-              <li className="pt-3 px-4">
+              <li className="pt-3">
                 <button onClick={openSubscribe} className="btn-base btn-glass btn-md w-full">
                   Subscribe
                 </button>
