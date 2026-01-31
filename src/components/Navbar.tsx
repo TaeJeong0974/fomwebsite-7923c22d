@@ -18,6 +18,7 @@ const Navbar = () => {
     { label: "Podcast", href: "#podcast" },
     { label: "Events", href: "#events" },
     { label: "Contact", href: "#contact" },
+    { label: "🎬 Demos", href: "/animation-demo", isRoute: true },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -68,13 +69,22 @@ const Navbar = () => {
                     ease: liquidEase 
                   }}
                 >
-                  <a
-                    href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
-                    className="text-base font-medium text-foreground hover:text-primary hover:bg-secondary/50 hover-transition px-4 py-2 rounded-full focus-ring"
-                  >
-                    {link.label}
-                  </a>
+                  {link.isRoute ? (
+                    <Link
+                      to={link.href}
+                      className="text-base font-medium text-foreground hover:text-primary hover:bg-secondary/50 hover-transition px-4 py-2 rounded-full focus-ring"
+                    >
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link.href)}
+                      className="text-base font-medium text-foreground hover:text-primary hover:bg-secondary/50 hover-transition px-4 py-2 rounded-full focus-ring"
+                    >
+                      {link.label}
+                    </a>
+                  )}
                 </motion.li>
               ))}
             </ul>
