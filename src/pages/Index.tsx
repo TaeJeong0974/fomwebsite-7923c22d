@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import PodcastSection from "@/components/PodcastSection";
 import EventsSection from "@/components/EventsSection";
 import CTASection from "@/components/CTASection";
+import StickyVerticalText from "@/components/StickyVerticalText";
 
 const Index = () => {
   return (
@@ -11,6 +12,7 @@ const Index = () => {
       <div className="fixed inset-0 -z-10 bg-[#f4f2ef]" />
       
       <Navbar />
+      <StickyVerticalText />
       
       <main>
         <HeroSection />

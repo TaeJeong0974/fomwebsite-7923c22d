@@ -32,7 +32,7 @@ const HeroSection = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   return (
-    <section className="section-spacing">
+    <section id="hero" className="section-spacing">
       <div className="container mx-auto container-padding">
         <motion.div
           initial="hidden"

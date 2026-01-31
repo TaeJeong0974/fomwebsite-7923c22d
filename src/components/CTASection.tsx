@@ -2,7 +2,7 @@ import ListenSubscribeCards from "@/components/ListenSubscribeCards";
 
 const CTASection = () => {
   return (
-    <section className="section-spacing">
+    <section id="cta" className="section-spacing">
       <div className="container mx-auto container-padding">
         <ListenSubscribeCards />
       </div>
