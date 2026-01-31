@@ -66,7 +66,7 @@ const HeroSection = () => {
           >
             {/* "Your Host" label in first column, aligned to bottom of logo */}
             <div className="hidden md:block self-end">
-              <p className="text-label translate-y-2">Your Host</p>
+              <p className="text-label translate-y-2">Your Hosts</p>
             </div>
             {/* Logo spans columns 2-3 */}
             <div className="md:col-span-2 flex justify-center">
@@ -79,7 +79,7 @@ const HeroSection = () => {
           </motion.div>
 
           {/* Mobile: Your Host label */}
-          <p className="text-label mb-4 md:hidden">Your Host</p>
+          <p className="text-label mb-4 md:hidden">Your Hosts</p>
 
           {/* Hosts section */}
           <motion.div variants={fadeUpVariant}>
