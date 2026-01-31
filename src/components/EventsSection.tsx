@@ -1,97 +1,6 @@
 import { useState } from "react";
 import { Play, ChevronLeft, ChevronRight } from "lucide-react";
 
-// Layout 1: Left text, right video with overlapping title
-const Layout1 = () => (
-  <div className="relative grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 items-center">
-    {/* Left Content */}
-    <div className="relative z-10 lg:pr-8">
-      <span className="text-label text-muted-foreground mb-4 block">Past Event</span>
-      <h2 className="text-display-lg lg:text-[5rem] xl:text-[6rem] font-display font-bold leading-[0.9] tracking-tight lg:translate-x-[15%] xl:translate-x-[25%]">
-        FOM<br />2025
-      </h2>
-      <div className="mt-8 max-w-sm">
-        <p className="text-body text-muted-foreground mb-4">
-          San Francisco, CA
-        </p>
-        <p className="text-body-sm text-muted-foreground">
-          An evening of insights, networking, and conversations about the future of AI in marketing.
-        </p>
-        <button className="mt-6 text-label hover:opacity-70 hover-transition flex items-center gap-2 group">
-          Watch Recap
-          <span className="w-8 h-[1px] bg-foreground group-hover:w-12 hover-transition" />
-        </button>
-      </div>
-    </div>
-
-    {/* Right Video */}
-    <div className="relative aspect-[4/5] lg:aspect-[3/4] overflow-hidden rounded-xl group cursor-pointer">
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-        poster="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80"
-      >
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-crowd-at-a-concert-seen-from-behind-4611-large.mp4" type="video/mp4" />
-      </video>
-      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 hover-transition" />
-      
-      {/* Play Button */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center group-hover:scale-110 hover-transition">
-          <Play className="w-8 h-8 text-white fill-white ml-1" />
-        </div>
-      </div>
-    </div>
-  </div>
-);
-
-// Layout 2: Full-width video with centered overlapping title
-const Layout2 = () => (
-  <div className="relative">
-    {/* Video Container */}
-    <div className="relative aspect-[16/9] md:aspect-[21/9] overflow-hidden rounded-xl group cursor-pointer">
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-        poster="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80"
-      >
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-crowd-at-a-concert-seen-from-behind-4611-large.mp4" type="video/mp4" />
-      </video>
-      <div className="absolute inset-0 bg-black/30" />
-      
-      {/* Play Button */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center group-hover:scale-110 hover-transition">
-          <Play className="w-8 h-8 text-white fill-white ml-1" />
-        </div>
-      </div>
-    </div>
-
-    {/* Overlapping Title - Bottom Left */}
-    <div className="absolute bottom-0 left-0 translate-y-1/3 z-10 bg-background p-6 lg:p-10">
-      <span className="text-label text-muted-foreground mb-2 block">Past Event</span>
-      <h2 className="text-display-lg lg:text-[4rem] xl:text-[5rem] font-display font-bold leading-[0.9] tracking-tight">
-        FOM 2025
-      </h2>
-      <p className="text-body-sm text-muted-foreground mt-3">San Francisco, CA</p>
-    </div>
-
-    {/* Watch Button - Bottom Right */}
-    <div className="absolute bottom-0 right-0 translate-y-1/3 z-10 bg-background p-6">
-      <button className="text-label hover:opacity-70 hover-transition flex items-center gap-2 group">
-        Watch Recap
-        <span className="w-8 h-[1px] bg-foreground group-hover:w-12 hover-transition" />
-      </button>
-    </div>
-  </div>
-);
-
 // Layout 3: Stacked with massive overlapping title
 const Layout3 = () => (
   <div className="relative">
@@ -191,59 +100,8 @@ const Layout4 = () => (
   </div>
 );
 
-// Layout 5: Asymmetric with floating card overlay
-const Layout5 = () => (
-  <div className="relative">
-    {/* Video Container */}
-    <div className="relative w-full lg:w-4/5 aspect-[16/9] overflow-hidden rounded-xl group cursor-pointer ml-auto">
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-        poster="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80"
-      >
-        <source src="https://assets.mixkit.co/videos/preview/mixkit-crowd-at-a-concert-seen-from-behind-4611-large.mp4" type="video/mp4" />
-      </video>
-      <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 hover-transition" />
-      
-      {/* Play Button */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center group-hover:scale-110 hover-transition">
-          <Play className="w-8 h-8 text-white fill-white ml-1" />
-        </div>
-      </div>
-    </div>
-
-    {/* Floating Card - overlaps video */}
-    <div className="relative lg:absolute lg:left-0 lg:bottom-0 lg:translate-y-1/4 z-10 bg-foreground text-background p-6 lg:p-10 rounded-xl lg:max-w-md mt-[-2rem] lg:mt-0 mx-4 lg:mx-0 shadow-2xl">
-      <span className="text-label opacity-70 mb-3 block">Past Event</span>
-      <h2 className="text-[2.5rem] lg:text-[3.5rem] font-display font-bold leading-[0.9] tracking-tight">
-        FOM 2025
-      </h2>
-      <p className="text-body-sm opacity-70 mt-4">
-        San Francisco, CA
-      </p>
-      <p className="text-body-sm opacity-70 mt-2">
-        An evening of insights, networking, and conversations about the future of AI in marketing.
-      </p>
-      <button className="mt-6 text-label hover:opacity-70 hover-transition flex items-center gap-2 group">
-        Watch Recap
-        <span className="w-8 h-[1px] bg-background group-hover:w-12 hover-transition" />
-      </button>
-    </div>
-  </div>
-);
-
-const layouts = [Layout1, Layout2, Layout3, Layout4, Layout5];
-const layoutNames = [
-  "Split Grid",
-  "Full Width Overlap",
-  "Massive Title Stack",
-  "Vertical Title",
-  "Floating Card"
-];
+const layouts = [Layout3, Layout4];
+const layoutNames = ["Massive Title Stack", "Vertical Title"];
 
 const EventsSection = () => {
   const [currentLayout, setCurrentLayout] = useState(0);
@@ -264,7 +122,7 @@ const EventsSection = () => {
             <ChevronLeft className="w-5 h-5" />
           </button>
           <div className="text-center min-w-[200px]">
-            <span className="text-label text-muted-foreground">Layout {currentLayout + 1} of 5</span>
+            <span className="text-label text-muted-foreground">Layout {currentLayout + 1} of 2</span>
             <p className="text-body font-medium mt-1">{layoutNames[currentLayout]}</p>
           </div>
           <button 
