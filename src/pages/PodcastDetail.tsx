@@ -1,9 +1,7 @@
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
-import VideoScrollOptions from "@/components/podcast/VideoScrollOptions";
-import VideoOptionsSwitcher from "@/components/podcast/VideoOptionsSwitcher";
+import FloatingMiniPlayer from "@/components/podcast/FloatingMiniPlayer";
 import EpisodeActionButtons from "@/components/podcast/EpisodeActionButtons";
 import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
@@ -15,7 +13,6 @@ import { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes, podcastH
 
 const PodcastDetail = () => {
   const { slug } = useParams();
-  const [activeOption, setActiveOption] = useState<1 | 2 | 3>(1);
   const episode = getEpisodeBySlug(slug || "");
   
   // Get other episodes - always show exactly 3, mixing published and coming soon
@@ -41,19 +38,16 @@ const PodcastDetail = () => {
       {/* Main Content */}
         <div className="lg:col-span-2 space-y-12 sm:space-y-14 lg:space-y-16">
           {/* Video Player */}
-          {/* Demo Switcher */}
-          <VideoOptionsSwitcher 
-            activeOption={activeOption} 
-            onOptionChange={setActiveOption} 
-          />
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="space-y-6"
           >
-            <VideoScrollOptions activeOption={activeOption} />
+            <FloatingMiniPlayer 
+              youtubeUrl={episode.youtubeUrl}
+              spotifyUrl={episode.spotifyUrl}
+            />
             
             {/* Compact Action Buttons */}
             <EpisodeActionButtons 
