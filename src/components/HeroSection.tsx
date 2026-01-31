@@ -186,10 +186,10 @@ const HeroSection = () => {
                         </div>
                         <motion.div
                           animate={{ rotate: isExpanded ? 180 : 0 }}
-                          whileHover={{ scale: isExpanded ? 1 : [1, 1.15, 1] }}
+                          whileHover={{ y: isExpanded ? 0 : -4 }}
                           transition={{ 
                             rotate: { duration: 0.3 },
-                            scale: { duration: 0.6, ease: "easeInOut" }
+                            y: { duration: 0.3, ease: "easeOut" }
                           }}
                           className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20"
                         >
