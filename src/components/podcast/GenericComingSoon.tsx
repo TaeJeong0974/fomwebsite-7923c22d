@@ -1,15 +1,12 @@
 import { Bell } from "lucide-react";
 import { motion } from "framer-motion";
-import Navbar from "@/components/Navbar";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 
 const GenericComingSoon = () => {
   const { openSubscribe } = useSubscribe();
   
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-
+    <div className="min-h-screen">
       <main className="section-spacing">
         <div className="container mx-auto container-padding">
           <motion.div
@@ -18,7 +15,7 @@ const GenericComingSoon = () => {
             transition={{ duration: 0.5 }}
             className="max-w-2xl mx-auto text-center"
           >
-            <div className="w-20 h-20 rounded-full glass-dark mb-6 flex items-center justify-center mx-auto">
+            <div className="w-20 h-20 rounded-full glass mb-6 flex items-center justify-center mx-auto">
               <Bell className="w-8 h-8 text-foreground" />
             </div>
             <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
