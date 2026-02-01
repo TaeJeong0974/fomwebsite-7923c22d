@@ -36,7 +36,7 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
                 <Bell className="w-5 h-5 text-foreground" />
               </div>
               <div>
-                <h4 className="font-display text-lg font-medium text-foreground">Subscribe</h4>
+                <h4 className="font-display text-lg font-medium text-foreground">Get Notified</h4>
                 <p className="text-sm text-muted-foreground">Get notified of new episodes</p>
               </div>
             </div>
