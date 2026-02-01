@@ -37,7 +37,7 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
               </div>
               <div>
                 <h4 className="font-display text-lg font-medium text-foreground">Subscribe</h4>
-                <p className="text-sm text-muted-foreground">Get notified of new episodes</p>
+                <p className="text-sm text-muted-foreground">Get notified</p>
               </div>
             </div>
           </motion.button>
