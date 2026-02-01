@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
@@ -11,10 +10,8 @@ import ComingSoonEpisode from "@/components/podcast/ComingSoonEpisode";
 import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
 import ListenSubscribeCards from "@/components/ListenSubscribeCards";
 import DetailVerticalText from "@/components/podcast/DetailVerticalText";
-import MouseFollowImage from "@/components/podcast/MouseFollowImage";
 import { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes, podcastHosts } from "@/lib/podcastData";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
-import guestBg from "@/assets/guest-bg.png";
 
 const fadeUpVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -22,17 +19,7 @@ const fadeUpVariants = {
 };
 
 const PodcastDetail = () => {
-  const [isHovered, setIsHovered] = useState(false);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const { slug } = useParams();
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top
-    });
-  };
   const episode = getEpisodeBySlug(slug || "");
   
   // Get other episodes - always show exactly 3, mixing published and coming soon
@@ -61,23 +48,8 @@ const PodcastDetail = () => {
       <DetailVerticalText guestName={guestName} />
       
       <EpisodeOverlayLayout>
-        {/* Mouse Follow Image Popup */}
-        <div 
-          className="relative"
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-          onMouseMove={handleMouseMove}
-        >
-          <MouseFollowImage 
-            isHovered={isHovered} 
-            mouseX={mousePosition.x} 
-            mouseY={mousePosition.y} 
-            imageSrc={guestBg}
-            name={episode.name} 
-          />
-          
         {/* Episode Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start relative z-10">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
       {/* Main Content */}
         <div className="lg:col-span-2 space-y-12 sm:space-y-14 lg:space-y-16">
           {/* Video Player */}
@@ -191,7 +163,6 @@ const PodcastDetail = () => {
           </div>
         </motion.div>
       </div>
-        </div>
 
       {/* Related Episodes */}
       <RelatedEpisodes episodes={otherEpisodes} delay={0.4} />
