@@ -38,7 +38,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
       <main className="relative z-10 pt-8 sm:pt-12 pb-6 sm:pb-8">
         {/* White Content Panel */}
         <div className="container mx-auto container-padding">
-          <div className="bg-background rounded-xl shadow-2xl shadow-black/5 p-5 sm:p-8 lg:p-10 relative">
+          <div className="bg-[#f4f2ef] rounded-xl shadow-2xl shadow-black/5 p-5 sm:p-8 lg:p-10 relative">
             {/* Close Button - absolute within panel, sticky while scrolling */}
             <div className="absolute top-0 right-0 bottom-0 w-16 sm:w-20 lg:w-24 pointer-events-none">
               <button
