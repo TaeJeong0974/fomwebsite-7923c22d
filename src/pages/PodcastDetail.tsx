@@ -79,7 +79,7 @@ const PodcastDetail = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, ease: liquidEase }}
+            transition={{ duration: 1.0, delay: 0.15, ease: liquidEase }}
           >
             <EpisodePullQuote
               quote="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
@@ -93,7 +93,7 @@ const PodcastDetail = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, ease: liquidEase }}
+            transition={{ duration: 1.0, delay: 0.3, ease: liquidEase }}
           >
             <h3 className="text-section-header mb-4">
               About This Episode
@@ -109,7 +109,7 @@ const PodcastDetail = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, ease: liquidEase }}
+            transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
           >
             <EpisodeTopics topics={episode.topics} />
           </motion.div>
@@ -122,7 +122,7 @@ const PodcastDetail = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 1.0, delay: 0.1, ease: liquidEase }}
+          transition={{ duration: 1.0, delay: 0.2, ease: liquidEase }}
         >
           {/* Featured Guest - only for guest episodes */}
           {episode.slug !== 'intro-to-fom' && (
