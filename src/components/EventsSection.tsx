@@ -14,9 +14,9 @@ const EventsSection = () => {
     offset: ["start end", "end start"]
   });
   
-  // Video moves slower than scroll (parallax effect)
-  const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-  const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "8%"]);
+  // Video moves slower than scroll (parallax effect) - increased intensity
+  const videoY = useTransform(scrollYProgress, [0, 1], ["-10%", "25%"]);
+  const titleY = useTransform(scrollYProgress, [0, 1], ["-5%", "18%"]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
