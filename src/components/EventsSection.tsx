@@ -53,11 +53,11 @@ const EventsSection = () => {
               className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-semibold tracking-tight overflow-visible"
               style={{
                 background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 20%, rgba(100,120,200,0.9) 30%, rgba(140,100,180,0.9) 45%, rgba(220,120,100,0.9) 60%, rgba(235,160,140,0.85) 75%, rgba(200,140,180,0.9) 90%, rgba(100,140,220,0.85) 100%)',
-                backgroundSize: '100% 100%',
+                backgroundSize: '300% 300%',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 color: 'transparent',
-                animation: 'gradient-reveal-from-black 12s ease-in-out infinite',
+                animation: 'gradient-reveal-once 3s ease-out forwards, gradient-color-shift 10s ease-in-out 3s infinite',
                 lineHeight: 0.95,
                 paddingTop: '0.08em',
                 paddingBottom: '0.02em',

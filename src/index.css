@@ -589,7 +589,16 @@
   }
 }
 
-@keyframes gradient-reveal-from-black {
+@keyframes gradient-reveal-once {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes gradient-color-shift {
   0%, 100% {
     filter: hue-rotate(0deg);
   }
