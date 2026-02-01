@@ -61,7 +61,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, ease: liquidEase }}
+            transition={{ duration: 1.0, delay: 0.15, ease: liquidEase }}
           >
             <EpisodePullQuote
               quote={episode.overview || ""}
@@ -75,7 +75,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, ease: liquidEase }}
+            transition={{ duration: 1.0, delay: 0.3, ease: liquidEase }}
           >
             <h2 className="font-display text-xl font-semibold text-foreground mb-4">
               About This Episode
@@ -91,7 +91,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, ease: liquidEase }}
+            transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
           >
             <EpisodeTopics topics={episode.topics} title="Topics We'll Cover" />
           </motion.div>
@@ -104,7 +104,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 1.0, delay: 0.1, ease: liquidEase }}
+          transition={{ duration: 1.0, delay: 0.2, ease: liquidEase }}
         >
           <EpisodeGuestCard
             name={episode.name}
