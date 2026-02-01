@@ -1,14 +1,40 @@
 import { Play } from "lucide-react";
+import { motion } from "framer-motion";
 
 const EventsSection = () => {
   return (
     <section id="events" className="section-spacing">
       <div className="container mx-auto container-padding">
         <div className="relative">
-          {/* Title - overlaps video */}
-          <h2 className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-medium leading-[0.85] tracking-tight mb-[-3rem] sm:mb-[-5rem] lg:mb-[-8rem] xl:mb-[-10rem] relative z-10">
-            FOM<br />2025
-          </h2>
+          {/* Title - overlaps video with glass effect */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="relative z-10 mb-[-3rem] sm:mb-[-5rem] lg:mb-[-8rem] xl:mb-[-10rem] inline-block"
+          >
+            <h2 className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-medium leading-[0.85] tracking-tight relative">
+              {/* Gradient background with glass effect */}
+              <span className="absolute inset-0 rounded-2xl overflow-hidden -m-4 sm:-m-6 lg:-m-8">
+                {/* Animated gradient */}
+                <span className="absolute inset-0 bg-gradient-to-br from-rose-200/60 via-amber-100/50 to-sky-200/60 animate-gradient-shift" />
+                {/* Glass overlay */}
+                <span className="absolute inset-0 backdrop-blur-xl bg-white/20" />
+                {/* Subtle noise texture */}
+                <span className="absolute inset-0 opacity-30" style={{ 
+                  backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")',
+                  backgroundSize: '128px 128px'
+                }} />
+                {/* Border glow */}
+                <span className="absolute inset-0 rounded-2xl border border-white/40" />
+              </span>
+              {/* Text with slight transparency */}
+              <span className="relative z-10 text-foreground/90 p-4 sm:p-6 lg:p-8 block">
+                FOM<br />2025
+              </span>
+            </h2>
+          </motion.div>
 
           {/* Video and Copy side by side */}
           <div className="relative flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-0">
