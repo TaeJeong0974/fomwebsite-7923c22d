@@ -103,11 +103,12 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
             )}
           </h3>
           
-          {/* Title & Company - always visible below name */}
+          {/* Title & Company - stacked hierarchy */}
           {episode.title && episode.company && (
-            <p className="text-body-sm text-white/80 mt-2">
-              {episode.title} @ {episode.company}
-            </p>
+            <div className="mt-2">
+              <p className="text-sm text-white/70">{episode.title}</p>
+              <p className="text-sm font-medium text-white">{episode.company}</p>
+            </div>
           )}
           
           {/* Hover content - overview and button */}

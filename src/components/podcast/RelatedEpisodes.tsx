@@ -70,8 +70,8 @@ const RelatedEpisodes = ({ episodes, title = "Other Speakers", delay = 0.4 }: Re
                     <span key={i} className={`block ${i === 0 ? 'font-medium' : 'font-normal'}`}>{word}</span>
                   ))}
                 </h3>
-                <p className="text-body-sm text-white mt-1">{ep.title}</p>
-                <p className="text-body-sm font-medium text-white">{ep.company}</p>
+                <p className="text-sm text-white/70 mt-1">{ep.title}</p>
+                <p className="text-sm font-medium text-white">{ep.company}</p>
               </div>
             </div>
           </Link>
