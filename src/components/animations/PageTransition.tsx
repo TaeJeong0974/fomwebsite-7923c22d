@@ -45,8 +45,8 @@ const PageTransition = ({ children }: PageTransitionProps) => {
       {previousPathRef.current === "/" && isTransitioning && (
         <motion.div
           className="fixed inset-0 z-[90]"
-          initial={{ filter: "blur(0px)", opacity: 1 }}
-          animate={{ filter: "blur(20px)", opacity: 0.5 }}
+          initial={{ filter: "blur(0px)", opacity: 1, scale: 1 }}
+          animate={{ filter: "blur(20px)", opacity: 0.5, scale: 0.95 }}
           transition={{ duration: 0.6, ease: liquidEase }}
         />
       )}
