@@ -7,9 +7,8 @@ interface DetailVerticalTextProps {
 
 const BRAND_TAGLINE = "THE FUTURE OF MARKETING";
 
-const DetailVerticalText = ({ guestName, guestTitle }: DetailVerticalTextProps) => {
-  // Format: "NAME | TITLE" for the right side
-  const rightLabel = `${guestName.toUpperCase()} | ${guestTitle.toUpperCase()}`;
+const DetailVerticalText = ({ guestName }: { guestName: string }) => {
+  const rightLabel = guestName.toUpperCase();
 
   return (
     <>
