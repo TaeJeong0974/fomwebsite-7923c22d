@@ -27,26 +27,45 @@ const TypewriterText = ({ text }: { text: string }) => {
   );
 };
 
+const SECTION_LABELS = [
+  { id: "episode-content", label: "GUEST_NAME" }, // Will be replaced with actual guest name
+  { id: "related-episodes", label: "OTHER SPEAKERS" },
+  { id: "stay-connected", label: "STAY CONNECTED" },
+];
+
 const DetailVerticalText = ({ guestName }: { guestName: string }) => {
   const [currentLabel, setCurrentLabel] = useState(guestName.toUpperCase());
+  const [currentNumber, setCurrentNumber] = useState("01");
 
   useEffect(() => {
     const handleScroll = () => {
       const relatedSection = document.getElementById("related-episodes");
-      if (!relatedSection) {
-        setCurrentLabel(guestName.toUpperCase());
-        return;
-      }
-
-      const rect = relatedSection.getBoundingClientRect();
+      const stayConnectedSection = document.getElementById("stay-connected");
       const windowHeight = window.innerHeight;
       
-      // Switch to "OTHER SPEAKERS" when the related section is in view
-      if (rect.top < windowHeight / 2) {
-        setCurrentLabel("OTHER SPEAKERS");
-      } else {
-        setCurrentLabel(guestName.toUpperCase());
+      // Check stay connected section first (lowest priority position)
+      if (stayConnectedSection) {
+        const rect = stayConnectedSection.getBoundingClientRect();
+        if (rect.top < windowHeight / 2) {
+          setCurrentLabel("STAY CONNECTED");
+          setCurrentNumber("03");
+          return;
+        }
       }
+      
+      // Check related episodes section
+      if (relatedSection) {
+        const rect = relatedSection.getBoundingClientRect();
+        if (rect.top < windowHeight / 2) {
+          setCurrentLabel("OTHER SPEAKERS");
+          setCurrentNumber("02");
+          return;
+        }
+      }
+      
+      // Default to guest name
+      setCurrentLabel(guestName.toUpperCase());
+      setCurrentNumber("01");
     };
 
     handleScroll();
@@ -81,23 +100,41 @@ const DetailVerticalText = ({ guestName }: { guestName: string }) => {
         transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
         className="fixed right-8 top-1/2 -translate-y-1/2 z-40 hidden xl:block"
       >
-        <div 
-          className="relative h-40 flex items-center justify-center overflow-hidden"
-          style={{ 
-            writingMode: "vertical-rl",
-          }}
-        >
+        <div className="flex flex-col items-center gap-4">
+          {/* Section number */}
           <AnimatePresence mode="wait">
-            <motion.div
-              key={currentLabel}
+            <motion.span
+              key={`num-${currentNumber}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
+              className="text-[10px] font-display font-semibold tracking-[0.25em] text-foreground"
             >
-              <TypewriterText text={currentLabel} />
-            </motion.div>
+              {currentNumber}
+            </motion.span>
           </AnimatePresence>
+          
+          {/* Divider line */}
+          <div className="w-px h-4 bg-foreground/30" />
+          
+          {/* Section label */}
+          <div 
+            className="relative h-40 flex items-center justify-center overflow-hidden"
+            style={{ writingMode: "vertical-rl" }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentLabel}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
+              >
+                <TypewriterText text={currentLabel} />
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </motion.div>
     </>
