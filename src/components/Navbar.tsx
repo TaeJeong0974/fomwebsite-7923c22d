@@ -71,7 +71,7 @@ const Navbar = () => {
                   <a
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className="text-sm font-medium text-foreground hover:text-foreground/60 hover-transition focus-ring"
+                    className="text-[1.2rem] font-medium text-foreground hover:text-foreground/60 hover-transition focus-ring"
                   >
                     {link.label}
                   </a>
@@ -86,7 +86,7 @@ const Navbar = () => {
               transition={{ duration: 0.5, delay: 0.5, ease: liquidEase }}
               className="hidden md:flex items-center justify-self-end"
             >
-              <SubscribeButton className="text-sm font-medium text-foreground hover:text-foreground/60 hover-transition">
+              <SubscribeButton className="text-[1.2rem] font-medium text-foreground hover:text-foreground/60 hover-transition">
                 Subscribe
               </SubscribeButton>
             </motion.div>
