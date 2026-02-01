@@ -1,5 +1,7 @@
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 import { useSubscribe } from "@/contexts/SubscribeContext";
+import { liquidEase } from "@/components/animations/PageLoadAnimation";
 
 interface ListenSubscribeCardsProps {
   showTitle?: boolean;
@@ -8,6 +10,8 @@ interface ListenSubscribeCardsProps {
 
 const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscribeCardsProps) => {
   const { openSubscribe } = useSubscribe();
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(sectionRef, { once: true, amount: 0.15 });
 
   const linkItems = [
     {
@@ -29,22 +33,54 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
     },
   ];
 
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: liquidEase,
+      },
+    },
+  };
+
   return (
-    <div className={className}>
+    <div ref={sectionRef} className={className}>
       {showTitle && (
-        <p className="text-label mb-6 sm:mb-8">
+        <motion.p 
+          className="text-label mb-6 sm:mb-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, ease: liquidEase }}
+        >
           STAY CONNECTED
-        </p>
+        </motion.p>
       )}
       
       {/* Large stacked links */}
-      <div className="flex flex-col">
-        {linkItems.map((item, index) => (
+      <motion.div 
+        className="flex flex-col"
+        variants={containerVariants}
+        initial="hidden"
+        animate={isInView ? "visible" : "hidden"}
+      >
+        {linkItems.map((item) => (
           item.onClick ? (
             <motion.button
               key={item.label}
               onClick={item.onClick}
               className="group text-left py-3 sm:py-4 border-t border-foreground/10 last:border-b hover-transition"
+              variants={itemVariants}
               whileTap={{ scale: 0.99 }}
             >
               <span className="font-display text-[2rem] sm:text-[3rem] lg:text-[4rem] xl:text-[5rem] font-medium leading-[1.1] tracking-tight text-foreground hover-transition group-hover:text-foreground/60">
@@ -58,6 +94,7 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
               target={item.href?.startsWith('mailto') ? undefined : "_blank"}
               rel={item.href?.startsWith('mailto') ? undefined : "noopener noreferrer"}
               className="group py-3 sm:py-4 border-t border-foreground/10 last:border-b hover-transition"
+              variants={itemVariants}
               whileTap={{ scale: 0.99 }}
             >
               <span className="font-display text-[2rem] sm:text-[3rem] lg:text-[4rem] xl:text-[5rem] font-medium leading-[1.1] tracking-tight text-foreground hover-transition group-hover:text-foreground/60">
@@ -66,7 +103,7 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
             </motion.a>
           )
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };
