@@ -1,7 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
-import Navbar from "@/components/Navbar";
 
 interface EpisodeOverlayLayoutProps {
   children: React.ReactNode;
@@ -35,8 +34,6 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
 
   return (
     <div className="min-h-screen bg-[#f4f2ef] relative">
-      <Navbar />
-
       {/* Floating Panel Container */}
       <main className="relative z-10 pt-8 sm:pt-12 pb-6 sm:pb-8">
         {/* White Content Panel */}
