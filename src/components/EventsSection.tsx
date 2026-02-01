@@ -12,7 +12,16 @@ const EventsSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-medium leading-[0.85] tracking-tight mb-[-3rem] sm:mb-[-5rem] lg:mb-[-8rem] xl:mb-[-10rem] relative z-10 bg-gradient-to-br from-rose-300/80 via-amber-200/70 to-sky-300/80 bg-clip-text text-transparent animate-gradient-shift"
+            className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-medium leading-[0.9] tracking-tight mb-[-3rem] sm:mb-[-5rem] lg:mb-[-8rem] xl:mb-[-10rem] relative z-10 inline-block"
+            style={{
+              background: 'linear-gradient(135deg, rgba(253,164,175,0.85) 0%, rgba(253,224,187,0.75) 50%, rgba(147,197,253,0.85) 100%)',
+              backgroundSize: '200% 200%',
+              WebkitBackgroundClip: 'text',
+              backgroundClip: 'text',
+              color: 'transparent',
+              animation: 'gradient-shift 8s ease-in-out infinite',
+              paddingTop: '0.1em',
+            }}
           >
             FOM<br />2025
           </motion.h2>
