@@ -199,8 +199,8 @@ const PodcastListView = ({
             
             <Link to={`/episode/${episode.slug}`} className="group py-6 sm:py-8 flex items-start justify-between gap-6 hover-transition relative z-10">
               <div className="flex-1 min-w-0 text-left">
-                <p className={`text-label mb-2 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>EP {String(index + 1).padStart(2, '0')}</p>
-                <div className="flex items-center gap-3">
+                <div className="flex items-baseline gap-4">
+                  <span className={`text-label transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>EP {String(index + 1).padStart(2, '0')}</span>
                   <h3 className={`font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
                     {episode.name}
                   </h3>
