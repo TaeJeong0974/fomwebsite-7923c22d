@@ -85,13 +85,6 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
         )}
         
         <div className="card-content-bottom card-padding-lg z-[3]">
-          {/* Title & Company - always visible */}
-          {episode.title && episode.company && (
-            <p className="text-body-sm text-white/80 mb-2">
-              {episode.title} @ {episode.company}
-            </p>
-          )}
-          
           <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl text-white tracking-normal">
             {episode.slug === 'intro-to-fom' ? (
               <>
@@ -109,6 +102,13 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
               ))
             )}
           </h3>
+          
+          {/* Title & Company - always visible below name */}
+          {episode.title && episode.company && (
+            <p className="text-body-sm text-white/80 mt-2">
+              {episode.title} @ {episode.company}
+            </p>
+          )}
           
           {/* Hover content - overview and button */}
           <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
