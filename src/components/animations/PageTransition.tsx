@@ -59,7 +59,7 @@ const PageTransition = ({ children }: PageTransitionProps) => {
           transition={{ duration: 0.6, ease: liquidEase }}
           onAnimationComplete={handleAnimationComplete}
         >
-          <TransitionPattern isExiting={false} />
+          <TransitionPattern />
         </motion.div>
       )}
 
@@ -73,7 +73,7 @@ const PageTransition = ({ children }: PageTransitionProps) => {
           transition={{ duration: 0.6, ease: liquidEase, delay: 0.05 }}
           onAnimationComplete={() => setShowExitWipe(false)}
         >
-          <TransitionPattern isExiting={true} />
+          <TransitionPattern />
         </motion.div>
       )}
     </>
