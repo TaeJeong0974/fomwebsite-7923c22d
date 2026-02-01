@@ -1,4 +1,4 @@
-import { Bell } from "lucide-react";
+import { Bell, Mail } from "lucide-react";
 import { motion } from "framer-motion";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 
@@ -18,8 +18,8 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
         </h2>
       )}
       
-      {/* Three column layout with cards below */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 lg:gap-12">
+      {/* Four column layout with cards below */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 lg:gap-12">
         {/* Subscribe Column */}
         <div className="space-y-4">
           <p className="text-sm text-muted-foreground font-medium uppercase tracking-wider">
@@ -92,6 +92,29 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
               <div>
                 <h4 className="font-display text-lg font-medium text-foreground">Spotify</h4>
                 <p className="text-sm text-muted-foreground">Listen on the go</p>
+              </div>
+            </div>
+          </motion.a>
+        </div>
+
+        {/* Contact Column */}
+        <div className="space-y-4">
+          <p className="text-sm text-muted-foreground font-medium uppercase tracking-wider">
+            Contact
+          </p>
+          <motion.a
+            href="mailto:hello@futureofmarketing.com"
+            className="block w-full glass rounded-xl p-6 text-left hover:bg-foreground/5 hover-transition cursor-pointer group"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-full bg-foreground/10 flex items-center justify-center shrink-0">
+                <Mail className="w-5 h-5 text-foreground" />
+              </div>
+              <div>
+                <h4 className="font-display text-lg font-medium text-foreground">Email Us</h4>
+                <p className="text-sm text-muted-foreground">Get in touch</p>
               </div>
             </div>
           </motion.a>
