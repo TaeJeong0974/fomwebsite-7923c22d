@@ -9,6 +9,12 @@ import GenericComingSoon from "@/components/podcast/GenericComingSoon";
 import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
 import DetailVerticalText from "@/components/podcast/DetailVerticalText";
 import { getEpisodeBySlug, getPublishedEpisodes, PodcastEpisode } from "@/lib/podcastData";
+import { liquidEase } from "@/components/animations/PageLoadAnimation";
+
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 }
+};
 
 interface ComingSoonEpisodeProps {
   episode?: PodcastEpisode;
@@ -39,33 +45,53 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-8 sm:space-y-10 lg:space-y-12">
           {/* Hero Card with Get Notified CTA */}
-          <ComingSoonHeroCard guestFirstName={guestFirstName} />
+          <motion.div
+            variants={fadeUpVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, ease: liquidEase }}
+          >
+            <ComingSoonHeroCard guestFirstName={guestFirstName} />
+          </motion.div>
 
           {/* Pull Quote */}
-          <EpisodePullQuote
-            quote={episode.overview || ""}
-            attribution={episode.name}
-          />
+          <motion.div
+            variants={fadeUpVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, ease: liquidEase }}
+          >
+            <EpisodePullQuote
+              quote={episode.overview || ""}
+              attribution={episode.name}
+            />
+          </motion.div>
 
           {/* About This Episode */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            variants={fadeUpVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, ease: liquidEase }}
           >
             <h2 className="font-display text-xl font-semibold text-foreground mb-4">
               About This Episode
             </h2>
             <div className="text-foreground whitespace-pre-line leading-relaxed">
-              {episode.bio || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
+              {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
             </div>
           </motion.div>
 
           {/* Topics */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            variants={fadeUpVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, ease: liquidEase }}
           >
             <EpisodeTopics topics={episode.topics} title="Topics We'll Cover" />
           </motion.div>
@@ -74,9 +100,11 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
         {/* Sidebar */}
         <motion.div 
           className="space-y-6"
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 1.0, delay: 0.1, ease: liquidEase }}
         >
           <EpisodeGuestCard
             name={episode.name}

@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import { motion } from "framer-motion";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
 import FloatingMiniPlayer from "@/components/podcast/FloatingMiniPlayer";
 import EpisodeActionButtons from "@/components/podcast/EpisodeActionButtons";
@@ -10,6 +11,12 @@ import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
 import ListenSubscribeCards from "@/components/ListenSubscribeCards";
 import DetailVerticalText from "@/components/podcast/DetailVerticalText";
 import { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes, podcastHosts } from "@/lib/podcastData";
+import { liquidEase } from "@/components/animations/PageLoadAnimation";
+
+const fadeUpVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 }
+};
 
 const PodcastDetail = () => {
   const { slug } = useParams();
@@ -46,7 +53,14 @@ const PodcastDetail = () => {
       {/* Main Content */}
         <div className="lg:col-span-2 space-y-12 sm:space-y-14 lg:space-y-16">
           {/* Video Player */}
-          <div className="space-y-6">
+          <motion.div 
+            className="space-y-6"
+            variants={fadeUpVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, ease: liquidEase }}
+          >
             <FloatingMiniPlayer 
               youtubeUrl={episode.youtubeUrl}
               spotifyUrl={episode.spotifyUrl}
@@ -57,32 +71,59 @@ const PodcastDetail = () => {
               youtubeUrl={episode.youtubeUrl}
               spotifyUrl={episode.spotifyUrl}
             />
-          </div>
+          </motion.div>
 
           {/* Pull Quote */}
-          <EpisodePullQuote
-            quote="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
-            attribution={episode.name}
-          />
+          <motion.div
+            variants={fadeUpVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, ease: liquidEase }}
+          >
+            <EpisodePullQuote
+              quote="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+              attribution={episode.name}
+            />
+          </motion.div>
 
           {/* About This Episode */}
-          <div>
+          <motion.div
+            variants={fadeUpVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, ease: liquidEase }}
+          >
             <h3 className="text-section-header mb-4">
               About This Episode
             </h3>
             <div className="text-foreground/80 whitespace-pre-line leading-relaxed text-lg max-w-prose">
               {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
             </div>
-          </div>
+          </motion.div>
 
           {/* Topics */}
-          <div>
+          <motion.div
+            variants={fadeUpVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, ease: liquidEase }}
+          >
             <EpisodeTopics topics={episode.topics} />
-          </div>
+          </motion.div>
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-6">
+        <motion.div 
+          className="space-y-6"
+          variants={fadeUpVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 1.0, delay: 0.1, ease: liquidEase }}
+        >
           {/* Featured Guest - only for guest episodes */}
           {episode.slug !== 'intro-to-fom' && (
             <EpisodeGuestCard
@@ -120,16 +161,24 @@ const PodcastDetail = () => {
               ))}
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* Related Episodes */}
       <RelatedEpisodes episodes={otherEpisodes} delay={0.4} />
 
       {/* Listen & Subscribe Section */}
-      <div id="stay-connected" className="mt-8 sm:mt-12 pt-8 sm:pt-12">
+      <motion.div 
+        id="stay-connected" 
+        className="mt-8 sm:mt-12 pt-8 sm:pt-12"
+        variants={fadeUpVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 1.0, ease: liquidEase }}
+      >
         <ListenSubscribeCards />
-      </div>
+      </motion.div>
     </EpisodeOverlayLayout>
     </>
   );
