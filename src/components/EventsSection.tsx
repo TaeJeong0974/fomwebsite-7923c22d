@@ -6,29 +6,29 @@ const EventsSection = () => {
     <section id="events" className="section-spacing">
       <div className="container mx-auto container-padding">
         <div className="relative">
-          {/* Title - overlaps video with glass text effect */}
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-medium leading-none tracking-tight relative z-10 inline-block"
-            style={{
-              background: 'linear-gradient(135deg, rgba(253,164,175,0.85) 0%, rgba(253,224,187,0.75) 50%, rgba(147,197,253,0.85) 100%)',
-              backgroundSize: '200% 200%',
-              WebkitBackgroundClip: 'text',
-              backgroundClip: 'text',
-              color: 'transparent',
-              animation: 'gradient-shift 8s ease-in-out infinite',
-              marginBottom: '-3rem',
-            }}
-          >
-            <span className="block" style={{ paddingTop: '0.05em' }}>FOM</span>
-            <span className="block" style={{ marginTop: '-0.08em', marginBottom: '-3rem' }}>2025</span>
-          </motion.h2>
-          
-          {/* Spacer for overlap */}
-          <div className="h-0 sm:mb-[-2rem] lg:mb-[-5rem] xl:mb-[-7rem]" />
+          {/* Title wrapper - handles overflow and overlap */}
+          <div className="relative z-10 mb-[-3rem] sm:mb-[-5rem] lg:mb-[-8rem] xl:mb-[-10rem] overflow-visible">
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-medium tracking-tight overflow-visible"
+              style={{
+                background: 'linear-gradient(135deg, rgba(253,164,175,0.85) 0%, rgba(253,224,187,0.75) 50%, rgba(147,197,253,0.85) 100%)',
+                backgroundSize: '200% 200%',
+                WebkitBackgroundClip: 'text',
+                backgroundClip: 'text',
+                color: 'transparent',
+                animation: 'gradient-shift 8s ease-in-out infinite',
+                lineHeight: 0.95,
+                paddingTop: '0.08em',
+                paddingBottom: '0.02em',
+              }}
+            >
+              FOM<br />2025
+            </motion.h2>
+          </div>
 
           {/* Video and Copy side by side */}
           <div className="relative flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-0">
