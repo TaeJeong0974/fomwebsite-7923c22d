@@ -110,7 +110,7 @@ const PodcastGridView = ({
     amount: 0.15
   }} transition={{
     duration: 1.0,
-    delay: Math.floor(index / 3) * 0.18,
+    delay: Math.floor(index / 3) * 0.1,
     ease: liquidEase
   }}>
         <PodcastCard episode={episode} isNew={isNewEpisode(episode.publishedDate)} />
