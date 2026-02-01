@@ -51,7 +51,16 @@ const Navbar = () => {
         <nav className="glass rounded-xl py-3 lg:py-4 px-4 sm:px-5 lg:px-6">
           <div className="grid grid-cols-3 items-center">
             {/* Logo - First column */}
-            <Link to="/" className="flex items-center focus-ring rounded-lg justify-self-start">
+            <Link 
+              to="/" 
+              onClick={(e) => {
+                if (isHomePage) {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
+              className="flex items-center focus-ring rounded-lg justify-self-start"
+            >
               <img src={FomLogo} alt="Future of Marketing" className="h-5 lg:h-6" />
             </Link>
 
