@@ -583,19 +583,9 @@
 @keyframes gradient-shift {
   0%, 100% {
     background-position: 0% 50%;
-    opacity: 0.7;
-  }
-  25% {
-    background-position: 100% 50%;
-    opacity: 0.85;
   }
   50% {
-    background-position: 100% 100%;
-    opacity: 0.7;
-  }
-  75% {
-    background-position: 0% 100%;
-    opacity: 0.85;
+    background-position: 100% 50%;
   }
 }
 
