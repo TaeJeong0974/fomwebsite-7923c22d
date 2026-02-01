@@ -40,6 +40,16 @@ const EventsSection = () => {
 
   return (
     <section ref={sectionRef} id="events" className="section-spacing overflow-hidden">
+      {/* SVG Noise Filter */}
+      <svg className="absolute w-0 h-0" aria-hidden="true">
+        <defs>
+          <filter id="noise-filter">
+            <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        </defs>
+      </svg>
+      
       <div className="container mx-auto container-padding">
         <div className="relative">
           {/* Title wrapper - handles overflow and overlap */}
