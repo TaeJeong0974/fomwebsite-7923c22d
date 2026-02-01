@@ -594,16 +594,16 @@
     background-position: 0% 0%;
   }
   100% {
-    background-position: 100% 100%;
+    background-position: 60% 60%;
   }
 }
 
-@keyframes gradient-color-shift {
+@keyframes gradient-color-loop {
   0%, 100% {
-    filter: hue-rotate(0deg);
+    background-position: 60% 60%;
   }
   50% {
-    filter: hue-rotate(25deg);
+    background-position: 100% 100%;
   }
 }
 
