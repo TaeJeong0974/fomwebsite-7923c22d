@@ -10,8 +10,8 @@ interface PageTransitionProps {
 
 const PageTransition = ({ children }: PageTransitionProps) => {
   const location = useLocation();
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const [displayLocation, setDisplayLocation] = useState(location);
+  const [slideIn, setSlideIn] = useState(false);
   const previousPathRef = useRef(location.pathname);
 
   useEffect(() => {
@@ -21,54 +21,26 @@ const PageTransition = ({ children }: PageTransitionProps) => {
         location.pathname.startsWith("/episode/");
       
       if (isFromHomeToDetail) {
-        // Trigger blur + slide animation for homepage → detail
-        setIsTransitioning(true);
-        
-        // Update location after a brief delay to allow blur to start
-        setTimeout(() => {
-          setDisplayLocation(location);
-          previousPathRef.current = location.pathname;
-        }, 50);
+        setSlideIn(true);
+        setDisplayLocation(location);
+        previousPathRef.current = location.pathname;
       } else {
-        // Instant transition for all other navigations
         setDisplayLocation(location);
         previousPathRef.current = location.pathname;
       }
     }
   }, [location, displayLocation]);
 
-  const isDetailPage = displayLocation.pathname.startsWith("/episode/");
-
   return (
-    <>
-      {/* Homepage with blur effect */}
-      {previousPathRef.current === "/" && isTransitioning && (
-        <motion.div
-          className="fixed inset-0 z-[90]"
-          initial={{ filter: "blur(0px)", opacity: 1, scale: 1 }}
-          animate={{ filter: "blur(20px)", opacity: 0.5, scale: 0.95 }}
-          transition={{ duration: 0.6, ease: liquidEase }}
-        />
-      )}
-
-      {/* Page content */}
-      <AnimatePresence mode="wait">
-        <motion.div 
-          key={displayLocation.pathname}
-          initial={isTransitioning && isDetailPage ? { x: "100%" } : false}
-          animate={{ x: 0 }}
-          transition={{ duration: 0.6, ease: liquidEase }}
-          onAnimationComplete={() => {
-            if (isTransitioning) {
-              setIsTransitioning(false);
-            }
-          }}
-          className={isTransitioning && isDetailPage ? "fixed inset-0 z-[100] bg-background" : ""}
-        >
-          {children}
-        </motion.div>
-      </AnimatePresence>
-    </>
+    <motion.div 
+      key={displayLocation.pathname}
+      initial={slideIn ? { x: "100%" } : false}
+      animate={{ x: 0 }}
+      transition={{ duration: 0.6, ease: liquidEase }}
+      onAnimationComplete={() => setSlideIn(false)}
+    >
+      {children}
+    </motion.div>
   );
 };
 
