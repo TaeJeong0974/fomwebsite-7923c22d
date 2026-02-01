@@ -53,7 +53,7 @@ const EventsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-[3.5rem] sm:text-[5rem] lg:text-[8rem] xl:text-[10rem] font-display font-semibold tracking-tight overflow-visible relative"
+              className="text-[3.5rem] sm:text-[5rem] lg:text-[8rem] xl:text-[10rem] font-display font-semibold tracking-tight overflow-visible fom-title-noise"
               style={{
                 background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 15%, rgba(100,120,200,0.9) 25%, rgba(140,100,180,0.9) 40%, rgba(220,120,100,0.9) 55%, rgba(235,160,140,0.85) 70%, rgba(200,140,180,0.9) 85%, rgba(100,140,220,0.85) 100%)',
                 backgroundSize: '250% 250%',
@@ -68,14 +68,6 @@ const EventsSection = () => {
               }}
             >
               FOM<br />2025
-              {/* Noise overlay */}
-              <span 
-                className="absolute inset-0 pointer-events-none mix-blend-overlay opacity-30"
-                style={{
-                  backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-                  backgroundSize: '150px 150px',
-                }}
-              />
             </motion.h2>
           </motion.div>
 
