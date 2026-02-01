@@ -232,7 +232,7 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     line-height: 1;
-    padding: 0.625rem 0.75rem 0.5rem;
+    padding: 0.5rem 0.75rem;
     border-radius: 9999px;
     background: hsl(var(--glass-bg) / var(--glass-opacity));
     backdrop-filter: blur(var(--glass-blur));
