@@ -101,10 +101,12 @@ const PodcastGridView = ({
 }: PodcastViewProps) => <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-gap">
     {episodes.slice(0, 4).map((episode, index) => <motion.div key={episode.id} initial={{
     opacity: 0,
-    y: 30
+    y: 30,
+    scale: 0.95
   }} whileInView={{
     opacity: 1,
-    y: 0
+    y: 0,
+    scale: 1
   }} viewport={{
     once: true,
     amount: 0.15
@@ -118,16 +120,18 @@ const PodcastGridView = ({
     
     {comingSoonEpisodes.map((episode, idx) => <motion.div key={`coming-soon-${episode.id}`} initial={{
     opacity: 0,
-    y: 30
+    y: 30,
+    scale: 0.95
   }} whileInView={{
     opacity: 1,
-    y: 0
+    y: 0,
+    scale: 1
   }} viewport={{
     once: true,
     amount: 0.15
   }} transition={{
     duration: 1.0,
-    delay: (episodes.slice(0, 4).length + idx) * 0.18,
+    delay: Math.floor((episodes.slice(0, 4).length + idx) / 3) * 0.1,
     ease: liquidEase
   }}>
         <PodcastCard episode={episode} isUpcoming />
