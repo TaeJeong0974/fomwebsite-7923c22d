@@ -7,6 +7,7 @@ import EpisodePullQuote from "@/components/podcast/EpisodePullQuote";
 import ComingSoonHeroCard from "@/components/podcast/ComingSoonHeroCard";
 import GenericComingSoon from "@/components/podcast/GenericComingSoon";
 import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
+import DetailVerticalText from "@/components/podcast/DetailVerticalText";
 import { getEpisodeBySlug, getPublishedEpisodes, PodcastEpisode } from "@/lib/podcastData";
 
 interface ComingSoonEpisodeProps {
@@ -30,8 +31,9 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
   const guestFirstName = episode.name.split(' ')[0];
 
   return (
-    <EpisodeOverlayLayout>
-      {/* Episode Content */}
+    <>
+      <DetailVerticalText guestName={episode.name} />
+      <EpisodeOverlayLayout>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 items-start">
         {/* Main Content */}
         <div className="lg:col-span-2 space-y-8 sm:space-y-10 lg:space-y-12">
@@ -89,6 +91,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
       {/* Related Episodes */}
       <RelatedEpisodes episodes={otherEpisodes} />
     </EpisodeOverlayLayout>
+    </>
   );
 };
 
