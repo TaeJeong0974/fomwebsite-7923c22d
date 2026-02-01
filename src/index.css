@@ -589,6 +589,22 @@
   }
 }
 
+@keyframes gradient-shift-from-black {
+  0% {
+    background-position: 0% 50%;
+    filter: saturate(0) brightness(0.2);
+  }
+  15% {
+    filter: saturate(1) brightness(1);
+  }
+  15%, 100% {
+    background-position: 0% 50%;
+  }
+  57.5% {
+    background-position: 100% 50%;
+  }
+}
+
 .animate-gradient-shift {
   background-size: 200% 200%;
   animation: gradient-shift 8s ease-in-out infinite;
