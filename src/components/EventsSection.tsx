@@ -53,7 +53,7 @@ const EventsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-semibold tracking-tight overflow-visible"
+              className="text-[3.5rem] sm:text-[5rem] lg:text-[8rem] xl:text-[10rem] font-display font-semibold tracking-tight overflow-visible"
               style={{
                 background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 15%, rgba(100,120,200,0.9) 25%, rgba(140,100,180,0.9) 40%, rgba(220,120,100,0.9) 55%, rgba(235,160,140,0.85) 70%, rgba(200,140,180,0.9) 85%, rgba(100,140,220,0.85) 100%)',
                 backgroundSize: '250% 250%',
