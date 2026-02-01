@@ -129,6 +129,7 @@
   body {
     @apply text-foreground;
     font-family: var(--font-body);
+    background-color: #f4f2ef;
     background-image: url('/images/transition-bg-v2.png');
     background-size: auto 100%;
     background-position: left center;
