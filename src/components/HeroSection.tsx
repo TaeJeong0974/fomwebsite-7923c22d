@@ -10,13 +10,13 @@ import { liquidEase } from "@/components/animations/PageLoadAnimation";
 const hosts = [
   {
     name: "Mada Seghete",
-    title: "CEO & Co-Founder, Upside",
+    title: "CMO & Co-Founder, Upside",
     bio: "CEO and co-founder of Upside, a next-gen revenue intelligence platform for B2B leaders. Previously co-founded and was CMO of Branch, helping scale to $100M+ revenue. Cornell Engineering graduate with Masters and MBA from Stanford. Partner at XFactor Ventures investing in women founders and organizes yearly retreats for 100+ women founders.",
     image: hostMada,
   },
   {
     name: "Ethan Smith",
-    title: "Founder & CEO, Graphite",
+    title: "Founder & CMO, Graphite",
     bio: "Founder and CEO of Graphite, a premium Vertical AI Growth Agency that helps companies like Webflow, Notion, MasterClass, and Captions drive sustainable revenue growth via SEO, content, and AEO (Answer Engine Optimization). Ethan is also an adjunct professor at IE Business School.",
     image: hostEthan,
   },
