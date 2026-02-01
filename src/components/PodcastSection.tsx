@@ -200,18 +200,25 @@ const PodcastListView = ({
             <Link to={`/episode/${episode.slug}`} className="group py-6 sm:py-8 flex items-start justify-between gap-6 hover-transition relative z-10">
               <div className="flex-1 min-w-0 text-left">
                 <div className="flex items-start gap-6 sm:gap-8 lg:gap-10">
-                  <span className={`text-label pt-1 sm:pt-2 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>EP {String(index + 1).padStart(2, '0')}</span>
-                  <div className="flex flex-col lg:flex-row lg:items-baseline lg:gap-6">
-                    <h3 className={`font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
-                      {episode.name}
-                    </h3>
-                    <p className={`text-body-sm mt-2 lg:mt-0 text-foreground/60 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
+                  <div className="flex flex-col">
+                    <span className={`text-label pt-1 sm:pt-2 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>EP {String(index + 1).padStart(2, '0')}</span>
+                    <p className={`hidden lg:block text-body-sm mt-3 text-foreground/60 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
                       {isIntroEpisode ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>}
                     </p>
                   </div>
-                  {!isComingSoon && isNewEpisode(episode.publishedDate) && <span className="badge-status mt-1">
-                      New
-                    </span>}
+                  <div className="flex flex-col">
+                    <div className="flex items-start gap-4">
+                      <h3 className={`font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
+                        {episode.name}
+                      </h3>
+                      {!isComingSoon && isNewEpisode(episode.publishedDate) && <span className="badge-status mt-1">
+                          New
+                        </span>}
+                    </div>
+                    <p className={`lg:hidden text-body-sm mt-2 text-foreground/60 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
+                      {isIntroEpisode ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>}
+                    </p>
+                  </div>
                 </div>
               </div>
               
