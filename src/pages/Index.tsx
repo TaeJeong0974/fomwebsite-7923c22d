@@ -1,4 +1,3 @@
-import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import PodcastSection from "@/components/PodcastSection";
 import EventsSection from "@/components/EventsSection";
@@ -11,7 +10,6 @@ const Index = () => {
       {/* Fixed background */}
       <div className="fixed inset-0 -z-10 bg-[#f4f2ef]" />
       
-      <Navbar />
       <StickyVerticalText />
       
       <main>

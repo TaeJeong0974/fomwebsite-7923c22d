@@ -5,6 +5,7 @@ import { SubscribeProvider } from "@/contexts/SubscribeContext";
 import { Toaster } from "sonner";
 import ScrollToTop from "@/components/ScrollToTop";
 import PageTransition from "@/components/animations/PageTransition";
+import Navbar from "@/components/Navbar";
 import Index from "./pages/Index";
 import PodcastDetail from "./pages/PodcastDetail";
 import AnimationDemo from "./pages/AnimationDemo";
@@ -16,14 +17,19 @@ const AppRoutes = () => {
   const location = useLocation();
   
   return (
-    <PageTransition>
-      <Routes location={location} key={location.pathname}>
-        <Route path="/" element={<Index />} />
-        <Route path="/episode/:slug" element={<PodcastDetail />} />
-        <Route path="/animation-demo" element={<AnimationDemo />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </PageTransition>
+    <>
+      {/* Navbar stays fixed, outside of page transitions */}
+      <Navbar />
+      
+      <PageTransition>
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Index />} />
+          <Route path="/episode/:slug" element={<PodcastDetail />} />
+          <Route path="/animation-demo" element={<AnimationDemo />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </PageTransition>
+    </>
   );
 };
 
