@@ -16,8 +16,8 @@ const EpisodeTopics = ({ topics, title = "Topics Covered" }: EpisodeTopicsProps)
       <div className="border-t border-border">
         {/* Table Header */}
         <div className="flex items-center gap-6 py-3 border-b border-border">
-          <span className="w-8 text-xs font-medium text-muted-foreground uppercase tracking-wider">No.</span>
-          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Topic</span>
+          <span className="w-8 text-table-header">No.</span>
+          <span className="text-table-header">Topic</span>
         </div>
         {/* Table Rows */}
         {topics.map((topic, index) => (
