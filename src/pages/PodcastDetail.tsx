@@ -127,7 +127,7 @@ const PodcastDetail = () => {
       <RelatedEpisodes episodes={otherEpisodes} delay={0.4} />
 
       {/* Listen & Subscribe Section */}
-      <div id="stay-connected" className="mt-8 sm:mt-12 pt-8 sm:pt-12 border-t border-border">
+      <div id="stay-connected" className="mt-8 sm:mt-12 pt-8 sm:pt-12">
         <ListenSubscribeCards />
       </div>
     </EpisodeOverlayLayout>
