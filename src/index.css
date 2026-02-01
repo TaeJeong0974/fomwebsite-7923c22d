@@ -129,7 +129,10 @@
   body {
     @apply text-foreground;
     font-family: var(--font-body);
-    background-color: red;
+    background-image: url('/images/transition-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
   }
 
   h1, h2, h3, h4, h5, h6 {
