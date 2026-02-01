@@ -39,8 +39,8 @@ const PodcastDetail = () => {
         <div className="lg:col-span-2 space-y-12 sm:space-y-14 lg:space-y-16">
           {/* Video Player */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
             className="space-y-6"
           >
@@ -64,8 +64,8 @@ const PodcastDetail = () => {
 
           {/* About This Episode */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h3 className="text-section-header mb-4">
@@ -78,8 +78,8 @@ const PodcastDetail = () => {
 
           {/* Topics */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <EpisodeTopics topics={episode.topics} />
@@ -89,8 +89,8 @@ const PodcastDetail = () => {
         {/* Sidebar */}
         <motion.div 
           className="space-y-6"
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
           {/* Featured Guest - only for guest episodes */}
@@ -138,8 +138,8 @@ const PodcastDetail = () => {
 
       {/* Listen & Subscribe Section */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.5 }}
         className="mt-8 sm:mt-12 pt-8 sm:pt-12 border-t border-border"
       >
