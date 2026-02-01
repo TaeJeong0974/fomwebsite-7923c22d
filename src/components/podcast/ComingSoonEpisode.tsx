@@ -8,6 +8,7 @@ import ComingSoonHeroCard from "@/components/podcast/ComingSoonHeroCard";
 import GenericComingSoon from "@/components/podcast/GenericComingSoon";
 import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
 import DetailVerticalText from "@/components/podcast/DetailVerticalText";
+import ListenSubscribeCards from "@/components/ListenSubscribeCards";
 import { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes, PodcastEpisode } from "@/lib/podcastData";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
 
@@ -123,6 +124,19 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
 
       {/* Related Episodes */}
       <RelatedEpisodes episodes={otherEpisodes} />
+
+      {/* Listen & Subscribe Section */}
+      <motion.div 
+        id="stay-connected" 
+        className="mt-8 sm:mt-12 pt-8 sm:pt-12"
+        variants={fadeUpVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 1.0, ease: liquidEase }}
+      >
+        <ListenSubscribeCards />
+      </motion.div>
     </EpisodeOverlayLayout>
     </>
   );
