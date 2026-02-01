@@ -33,7 +33,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
   }, [handleClose]);
 
   return (
-    <div className="min-h-screen bg-[#f4f2ef] relative">
+    <div className="min-h-screen relative">
       {/* Floating Panel Container */}
       <main className="relative z-10 pt-8 sm:pt-12 pb-6 sm:pb-8">
         {/* White Content Panel */}
