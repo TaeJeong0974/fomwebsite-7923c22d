@@ -129,7 +129,7 @@
   body {
     @apply text-foreground;
     font-family: var(--font-body);
-    background-image: url('/images/transition-bg.png');
+    background-image: url('/images/transition-bg-v2.png');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
