@@ -1,40 +1,16 @@
-import { motion } from "framer-motion";
 import transitionPattern from "@/assets/transition-pattern.png";
 
-const liquidEase = [0.22, 1, 0.36, 1] as const;
-
-interface TransitionPatternProps {
-  isExiting?: boolean;
-}
-
-const TransitionPattern = ({ isExiting = false }: TransitionPatternProps) => {
+const TransitionPattern = () => {
   return (
-    <div className="absolute inset-0 overflow-hidden">
-      {/* Animated pattern background */}
-      <motion.div 
-        className="absolute inset-[-20%] w-[140%] h-[140%]"
-        style={{ 
-          backgroundImage: `url(${transitionPattern})`,
-          backgroundSize: '350px 350px',
-          backgroundRepeat: 'repeat',
-          backgroundPosition: 'center',
-        }}
-        initial={{ 
-          scale: isExiting ? 1.1 : 1.2, 
-          opacity: isExiting ? 1 : 0.8,
-          rotate: isExiting ? 0 : -2,
-        }}
-        animate={{ 
-          scale: isExiting ? 1.2 : 1, 
-          opacity: 1,
-          rotate: isExiting ? 2 : 0,
-        }}
-        transition={{ 
-          duration: isExiting ? 0.5 : 0.7, 
-          ease: liquidEase,
-        }}
-      />
-
+    <div 
+      className="absolute inset-0"
+      style={{ 
+        backgroundImage: `url(${transitionPattern})`,
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+      }}
+    >
       {/* Grain texture overlay */}
       <div 
         className="absolute inset-0 pointer-events-none opacity-[0.06] mix-blend-overlay"
