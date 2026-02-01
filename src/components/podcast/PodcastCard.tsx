@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { PodcastEpisode } from "@/lib/podcastData";
 import guestBg from "@/assets/guest-bg.png";
 
-
 interface PodcastCardProps {
   episode: PodcastEpisode;
   isNew?: boolean;
