@@ -8,7 +8,7 @@ import ComingSoonHeroCard from "@/components/podcast/ComingSoonHeroCard";
 import GenericComingSoon from "@/components/podcast/GenericComingSoon";
 import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
 import DetailVerticalText from "@/components/podcast/DetailVerticalText";
-import { getEpisodeBySlug, getPublishedEpisodes, PodcastEpisode } from "@/lib/podcastData";
+import { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes, PodcastEpisode } from "@/lib/podcastData";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
 
 const fadeUpVariants = {
@@ -26,8 +26,12 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
   // Use prop episode or fetch by slug
   const episode = propEpisode || (slug ? getEpisodeBySlug(slug) : undefined);
   
-  // Get other published episodes for "Other Great Speakers"
-  const otherEpisodes = getPublishedEpisodes().slice(0, 3);
+  // Get other episodes - always show exactly 3, mixing published and coming soon, excluding current
+  const allOtherEpisodes = [
+    ...getPublishedEpisodes().filter(ep => ep.slug !== episode?.slug),
+    ...getComingSoonEpisodes().filter(ep => ep.slug !== episode?.slug)
+  ];
+  const otherEpisodes = allOtherEpisodes.slice(0, 3);
   
   // Generic coming soon if no episode found
   if (!episode) {
