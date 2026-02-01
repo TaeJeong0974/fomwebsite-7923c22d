@@ -32,8 +32,8 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
   return (
     <div className={className}>
       {showTitle && (
-        <p className="text-sm text-muted-foreground font-medium uppercase tracking-wider mb-6 sm:mb-8">
-          Stay Connected
+        <p className="text-label mb-6 sm:mb-8">
+          STAY CONNECTED
         </p>
       )}
       
