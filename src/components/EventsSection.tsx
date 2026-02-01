@@ -15,7 +15,7 @@ const EventsSection = () => {
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
               className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-semibold tracking-tight overflow-visible"
               style={{
-                background: 'linear-gradient(180deg, rgba(180,185,195,0.9) 0%, rgba(220,180,170,0.85) 25%, rgba(240,160,150,0.9) 50%, rgba(235,130,120,0.95) 75%, rgba(200,175,185,0.9) 100%)',
+                background: 'linear-gradient(180deg, #b4b9c3 0%, #dcb4aa 25%, #f0a096 50%, #eb8278 75%, #c8afb9 100%)',
                 backgroundSize: '200% 200%',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
