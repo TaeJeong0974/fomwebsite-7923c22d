@@ -28,9 +28,10 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
             <span key={i} className={`block ${i === 0 ? 'font-medium' : 'font-normal'}`}>{word}</span>
           ))}
         </h2>
-        <p className="text-muted-foreground">
-          {title}, {company}
-        </p>
+        <div className="mt-1">
+          <p className="text-sm text-muted-foreground">{title}</p>
+          <p className="text-sm font-medium text-foreground">{company}</p>
+        </div>
         {linkedInUrl && (
           <a
             href={linkedInUrl}
