@@ -53,13 +53,13 @@ const PageTransition = ({ children }: PageTransitionProps) => {
       {/* Wipe overlay with pattern - only for homepage → detail */}
       {isTransitioning && (
         <motion.div
-          className="fixed inset-0 z-[100] origin-right"
+          className="fixed inset-0 z-[100] origin-right overflow-hidden"
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 0.6, ease: liquidEase }}
           onAnimationComplete={handleAnimationComplete}
         >
-          <TransitionPattern />
+          <TransitionPattern isExiting={false} />
         </motion.div>
       )}
 
@@ -67,13 +67,13 @@ const PageTransition = ({ children }: PageTransitionProps) => {
       {showExitWipe && displayLocation.pathname.startsWith("/episode/") && (
         <motion.div
           key={`exit-wipe-${location.pathname}`}
-          className="fixed inset-0 z-[100] origin-left pointer-events-none"
+          className="fixed inset-0 z-[100] origin-left pointer-events-none overflow-hidden"
           initial={{ scaleX: 1 }}
           animate={{ scaleX: 0 }}
           transition={{ duration: 0.6, ease: liquidEase, delay: 0.05 }}
           onAnimationComplete={() => setShowExitWipe(false)}
         >
-          <TransitionPattern animating={false} />
+          <TransitionPattern isExiting={true} />
         </motion.div>
       )}
     </>
