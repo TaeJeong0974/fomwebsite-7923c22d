@@ -1,11 +1,22 @@
 import { useState, useEffect, useRef } from "react";
 import { Play } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const EventsSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
   const [isInView, setIsInView] = useState(false);
+
+  // Parallax scroll effect
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+  
+  // Video moves slower than scroll (parallax effect)
+  const videoY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  const titleY = useTransform(scrollYProgress, [0, 1], ["0%", "8%"]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -26,11 +37,14 @@ const EventsSection = () => {
   }, []);
 
   return (
-    <section id="events" className="section-spacing">
+    <section ref={sectionRef} id="events" className="section-spacing overflow-hidden">
       <div className="container mx-auto container-padding">
         <div className="relative">
           {/* Title wrapper - handles overflow and overlap */}
-          <div className="relative z-10 mb-[-3rem] sm:mb-[-5rem] lg:mb-[-8rem] xl:mb-[-10rem] overflow-visible">
+          <motion.div 
+            className="relative z-10 mb-[-3rem] sm:mb-[-5rem] lg:mb-[-8rem] xl:mb-[-10rem] overflow-visible"
+            style={{ y: titleY }}
+          >
             <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -51,7 +65,7 @@ const EventsSection = () => {
             >
               FOM<br />2025
             </motion.h2>
-          </div>
+          </motion.div>
 
           {/* Video and Copy side by side */}
           <div className="relative flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-0">
@@ -68,7 +82,11 @@ const EventsSection = () => {
             </div>
 
             {/* Video Container */}
-            <div ref={containerRef} className="relative w-full lg:w-3/4 aspect-[16/9] overflow-hidden rounded-xl group cursor-pointer">
+            <motion.div 
+              ref={containerRef} 
+              className="relative w-full lg:w-3/4 aspect-[16/9] overflow-hidden rounded-xl group cursor-pointer"
+              style={{ y: videoY }}
+            >
               {isInView ? (
                 <video
                   ref={videoRef}
@@ -76,7 +94,7 @@ const EventsSection = () => {
                   muted
                   loop
                   playsInline
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover scale-110"
                   poster="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80"
                 >
                   <source src="https://assets.mixkit.co/videos/preview/mixkit-crowd-at-a-concert-seen-from-behind-4611-large.mp4" type="video/mp4" />
@@ -85,7 +103,7 @@ const EventsSection = () => {
                 <img
                   src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80"
                   alt="FOM 2025 Event"
-                  className="absolute inset-0 w-full h-full object-cover"
+                  className="absolute inset-0 w-full h-full object-cover scale-110"
                 />
               )}
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 hover-transition" />
@@ -96,7 +114,7 @@ const EventsSection = () => {
                   <Play className="w-8 h-8 text-white fill-white ml-1" />
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
 
           {/* Mobile Meta info */}
