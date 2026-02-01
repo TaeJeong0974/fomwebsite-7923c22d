@@ -14,6 +14,12 @@ const SECTION_LABELS: SectionLabel[] = [
   { id: "cta", label: "STAY CONNECTED" },
 ];
 
+// Get section number (01, 02, etc.)
+const getSectionNumber = (id: string): string => {
+  const index = SECTION_LABELS.findIndex(s => s.id === id);
+  return String(index + 1).padStart(2, '0');
+};
+
 const BRAND_TAGLINE = "THE FUTURE OF MARKETING";
 
 // Typewriter animation for each character
@@ -77,6 +83,7 @@ const StickyVerticalText = () => {
   }, []);
 
   const currentLabel = SECTION_LABELS.find(s => s.id === currentSection)?.label || "WELCOME";
+  const currentNumber = getSectionNumber(currentSection);
 
   return (
     <>
@@ -105,23 +112,41 @@ const StickyVerticalText = () => {
         transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
         className="fixed right-8 top-1/2 -translate-y-1/2 z-40 hidden xl:block"
       >
-        <div 
-          className="relative h-40 flex items-center justify-center overflow-hidden"
-          style={{ 
-            writingMode: "vertical-rl",
-          }}
-        >
+        <div className="flex flex-col items-center gap-4">
+          {/* Section number */}
           <AnimatePresence mode="wait">
-            <motion.div
-              key={currentLabel}
+            <motion.span
+              key={`num-${currentNumber}`}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
+              className="text-[10px] font-display font-semibold tracking-[0.25em] text-foreground"
             >
-              <TypewriterText text={currentLabel} />
-            </motion.div>
+              {currentNumber}
+            </motion.span>
           </AnimatePresence>
+          
+          {/* Divider line */}
+          <div className="w-px h-4 bg-foreground/30" />
+          
+          {/* Section label */}
+          <div 
+            className="relative h-40 flex items-center justify-center overflow-hidden"
+            style={{ writingMode: "vertical-rl" }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentLabel}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
+              >
+                <TypewriterText text={currentLabel} />
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </motion.div>
     </>
