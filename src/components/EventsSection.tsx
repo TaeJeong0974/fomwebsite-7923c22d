@@ -44,7 +44,7 @@ const EventsSection = () => {
         <div className="relative">
           {/* Title wrapper - handles overflow and overlap */}
           <motion.div 
-            className="relative z-10 mb-[-3rem] sm:mb-[-5rem] lg:mb-[-8rem] xl:mb-[-10rem] overflow-visible"
+            className="relative z-10 mb-[-4rem] sm:mb-[-6rem] lg:mb-[-10rem] xl:mb-[-12rem] overflow-visible"
             style={{ y: titleY }}
           >
             <motion.h2
