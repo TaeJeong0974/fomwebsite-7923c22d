@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
+import TransitionPattern from "./TransitionPattern";
 
 const liquidEase = [0.22, 1, 0.36, 1] as const;
 
@@ -12,6 +13,7 @@ const PageTransition = ({ children }: PageTransitionProps) => {
   const location = useLocation();
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [displayLocation, setDisplayLocation] = useState(location);
+  const [showExitWipe, setShowExitWipe] = useState(false);
   const previousPathRef = useRef(location.pathname);
 
   useEffect(() => {
@@ -23,6 +25,7 @@ const PageTransition = ({ children }: PageTransitionProps) => {
       if (isFromHomeToDetail) {
         // Trigger wipe animation only for homepage → detail
         setIsTransitioning(true);
+        setShowExitWipe(false);
       } else {
         // Instant transition for all other navigations
         setDisplayLocation(location);
@@ -36,6 +39,7 @@ const PageTransition = ({ children }: PageTransitionProps) => {
       setDisplayLocation(location);
       previousPathRef.current = location.pathname;
       setIsTransitioning(false);
+      setShowExitWipe(true);
     }
   };
 
@@ -46,45 +50,31 @@ const PageTransition = ({ children }: PageTransitionProps) => {
         {children}
       </div>
 
-      {/* Wipe overlay - only for homepage → detail */}
+      {/* Wipe overlay with pattern - only for homepage → detail */}
       {isTransitioning && (
-        <>
-          {/* Primary wipe */}
-          <motion.div
-            className="fixed inset-0 bg-foreground z-[100] origin-right"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.5, ease: liquidEase }}
-            onAnimationComplete={handleAnimationComplete}
-          />
-          {/* Secondary wipe for depth */}
-          <motion.div
-            className="fixed inset-0 bg-primary z-[99] origin-right"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.6, ease: liquidEase, delay: 0.05 }}
-          />
-        </>
+        <motion.div
+          className="fixed inset-0 z-[100] origin-right"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 0.6, ease: liquidEase }}
+          onAnimationComplete={handleAnimationComplete}
+        >
+          <TransitionPattern />
+        </motion.div>
       )}
 
       {/* Exit wipe - reveals detail page after transition */}
-      {!isTransitioning && displayLocation.pathname.startsWith("/episode/") && (
-        <>
-          <motion.div
-            key={`exit-primary-${location.pathname}`}
-            className="fixed inset-0 bg-foreground z-[100] origin-left pointer-events-none"
-            initial={{ scaleX: 1 }}
-            animate={{ scaleX: 0 }}
-            transition={{ duration: 0.5, ease: liquidEase, delay: 0.1 }}
-          />
-          <motion.div
-            key={`exit-secondary-${location.pathname}`}
-            className="fixed inset-0 bg-primary z-[99] origin-left pointer-events-none"
-            initial={{ scaleX: 1 }}
-            animate={{ scaleX: 0 }}
-            transition={{ duration: 0.6, ease: liquidEase }}
-          />
-        </>
+      {showExitWipe && displayLocation.pathname.startsWith("/episode/") && (
+        <motion.div
+          key={`exit-wipe-${location.pathname}`}
+          className="fixed inset-0 z-[100] origin-left pointer-events-none"
+          initial={{ scaleX: 1 }}
+          animate={{ scaleX: 0 }}
+          transition={{ duration: 0.6, ease: liquidEase, delay: 0.05 }}
+          onAnimationComplete={() => setShowExitWipe(false)}
+        >
+          <TransitionPattern animating={false} />
+        </motion.div>
       )}
     </>
   );
