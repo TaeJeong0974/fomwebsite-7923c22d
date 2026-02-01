@@ -1,7 +1,30 @@
+import { useState, useEffect, useRef } from "react";
 import { Play } from "lucide-react";
 import { motion } from "framer-motion";
 
 const EventsSection = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isInView, setIsInView] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect(); // Only load once
+        }
+      },
+      { rootMargin: "200px" } // Start loading 200px before visible
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section id="events" className="section-spacing">
       <div className="container mx-auto container-padding">
@@ -45,17 +68,26 @@ const EventsSection = () => {
             </div>
 
             {/* Video Container */}
-            <div className="relative w-full lg:w-3/4 aspect-[16/9] overflow-hidden rounded-xl group cursor-pointer">
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover"
-                poster="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80"
-              >
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-crowd-at-a-concert-seen-from-behind-4611-large.mp4" type="video/mp4" />
-              </video>
+            <div ref={containerRef} className="relative w-full lg:w-3/4 aspect-[16/9] overflow-hidden rounded-xl group cursor-pointer">
+              {isInView ? (
+                <video
+                  ref={videoRef}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover"
+                  poster="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80"
+                >
+                  <source src="https://assets.mixkit.co/videos/preview/mixkit-crowd-at-a-concert-seen-from-behind-4611-large.mp4" type="video/mp4" />
+                </video>
+              ) : (
+                <img
+                  src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80"
+                  alt="FOM 2025 Event"
+                  className="absolute inset-0 w-full h-full object-cover"
+                />
+              )}
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 hover-transition" />
               
               {/* Play Button */}
