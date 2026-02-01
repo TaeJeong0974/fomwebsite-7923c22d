@@ -40,16 +40,6 @@ const EventsSection = () => {
 
   return (
     <section ref={sectionRef} id="events" className="section-spacing overflow-hidden">
-      {/* SVG Noise Filter */}
-      <svg className="absolute w-0 h-0" aria-hidden="true">
-        <defs>
-          <filter id="noise-filter">
-            <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="3" result="noise" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.5" xChannelSelector="R" yChannelSelector="G" />
-          </filter>
-        </defs>
-      </svg>
-      
       <div className="container mx-auto container-padding">
         <div className="relative">
           {/* Title wrapper - handles overflow and overlap */}
@@ -63,7 +53,7 @@ const EventsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-[3.5rem] sm:text-[5rem] lg:text-[8rem] xl:text-[10rem] font-display font-semibold tracking-tight overflow-visible fom-title-noise"
+              className="text-[3.5rem] sm:text-[5rem] lg:text-[8rem] xl:text-[10rem] font-display font-semibold tracking-tight overflow-visible"
               style={{
                 background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 15%, rgba(100,120,200,0.9) 25%, rgba(140,100,180,0.9) 40%, rgba(220,120,100,0.9) 55%, rgba(235,160,140,0.85) 70%, rgba(200,140,180,0.9) 85%, rgba(100,140,220,0.85) 100%)',
                 backgroundSize: '250% 250%',

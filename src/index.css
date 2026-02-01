@@ -612,7 +612,3 @@
   animation: gradient-shift 8s ease-in-out infinite;
 }
 
-/* Noise filter for FOM title - applied via SVG filter */
-.fom-title-noise {
-  filter: url(#noise-filter);
-}
