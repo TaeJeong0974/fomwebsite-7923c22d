@@ -589,19 +589,21 @@
   }
 }
 
-@keyframes gradient-shift-from-black {
+@keyframes gradient-reveal-from-black {
   0% {
-    background-position: 0% 50%;
-    filter: saturate(0.15) brightness(0.25);
+    background-position: 0% 0%;
   }
-  20% {
-    filter: saturate(1) brightness(1);
+  25% {
+    background-position: 100% 100%;
   }
-  20%, 100% {
-    background-position: 0% 50%;
+  50% {
+    background-position: 50% 50%;
   }
-  60% {
-    background-position: 100% 50%;
+  75% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
   }
 }
 
