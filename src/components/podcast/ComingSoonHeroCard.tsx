@@ -52,11 +52,9 @@ const ComingSoonHeroCard = ({ guestFirstName }: ComingSoonHeroCardProps) => {
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30 group-hover:from-black/95 group-hover:via-black/60 hover-transition" />
       
       {/* Upcoming Badge */}
-      <div className="absolute top-6 left-6 z-10">
-        <span className="bg-foreground px-4 py-2 rounded-full text-sm font-semibold text-background">
-          Upcoming
-        </span>
-      </div>
+      <span className="absolute top-6 left-6 badge-status z-10">
+        Upcoming
+      </span>
 
       {/* Interactive Content */}
       <AnimatePresence mode="wait">
