@@ -8,6 +8,7 @@ import EpisodePullQuote from "@/components/podcast/EpisodePullQuote";
 import ComingSoonEpisode from "@/components/podcast/ComingSoonEpisode";
 import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
 import ListenSubscribeCards from "@/components/ListenSubscribeCards";
+import DetailVerticalText from "@/components/podcast/DetailVerticalText";
 import { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes, podcastHosts } from "@/lib/podcastData";
 
 const PodcastDetail = () => {
@@ -30,9 +31,17 @@ const PodcastDetail = () => {
     return <ComingSoonEpisode episode={episode} />;
   }
 
+  // Determine the right-side label content
+  const guestName = episode.slug === 'intro-to-fom' ? 'INTRO' : episode.name;
+  const guestTitle = episode.slug === 'intro-to-fom' ? 'THE FUTURE OF MARKETING' : `${episode.title}, ${episode.company}`;
+
   return (
-    <EpisodeOverlayLayout>
-      {/* Episode Content */}
+    <>
+      {/* Vertical Text Labels */}
+      <DetailVerticalText guestName={guestName} guestTitle={guestTitle} />
+      
+      <EpisodeOverlayLayout>
+        {/* Episode Content */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
       {/* Main Content */}
         <div className="lg:col-span-2 space-y-12 sm:space-y-14 lg:space-y-16">
@@ -122,6 +131,7 @@ const PodcastDetail = () => {
         <ListenSubscribeCards />
       </div>
     </EpisodeOverlayLayout>
+    </>
   );
 };
 
