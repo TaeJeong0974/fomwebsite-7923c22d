@@ -7,8 +7,6 @@ import StickyVerticalText from "@/components/StickyVerticalText";
 const Index = () => {
   return (
     <div className="min-h-screen relative">
-      {/* Fixed background */}
-      <div className="fixed inset-0 -z-10 bg-[#f4f2ef]" />
       
       <StickyVerticalText />
       

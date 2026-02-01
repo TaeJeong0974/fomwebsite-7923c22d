@@ -18,6 +18,9 @@ const AppRoutes = () => {
   
   return (
     <>
+      {/* Fixed background - stays during transitions */}
+      <div className="fixed inset-0 -z-10 bg-[#f4f2ef]" />
+      
       {/* Navbar stays fixed, outside of page transitions */}
       <Navbar />
       
