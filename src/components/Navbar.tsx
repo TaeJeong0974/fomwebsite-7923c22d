@@ -18,7 +18,6 @@ const Navbar = () => {
     { label: "Podcast", href: "#podcast" },
     { label: "Events", href: "#events" },
     { label: "Contact", href: "#contact" },
-    { label: "Typography Demo", href: "/typography-demo", isRoute: true },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -69,22 +68,13 @@ const Navbar = () => {
                     ease: liquidEase 
                   }}
                 >
-                  {link.isRoute ? (
-                    <Link
-                      to={link.href}
-                      className="text-sm font-medium text-foreground hover:text-foreground/60 hover-transition focus-ring"
-                    >
-                      {link.label}
-                    </Link>
-                  ) : (
-                    <a
-                      href={link.href}
-                      onClick={(e) => handleNavClick(e, link.href)}
-                      className="text-sm font-medium text-foreground hover:text-foreground/60 hover-transition focus-ring"
-                    >
-                      {link.label}
-                    </a>
-                  )}
+                  <a
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className="text-sm font-medium text-foreground hover:text-foreground/60 hover-transition focus-ring"
+                  >
+                    {link.label}
+                  </a>
                 </motion.li>
               ))}
             </ul>
@@ -117,23 +107,13 @@ const Navbar = () => {
               <ul className="flex flex-col gap-1">
                 {navLinks.map((link) => (
                   <li key={link.label}>
-                    {link.isRoute ? (
-                      <Link
-                        to={link.href}
-                        onClick={() => setIsOpen(false)}
-                        className="block py-2 px-4 text-foreground hover:text-primary hover:bg-secondary/50 rounded-xl hover-transition focus-ring"
-                      >
-                        {link.label}
-                      </Link>
-                    ) : (
-                      <a
-                        href={link.href}
-                        onClick={(e) => handleNavClick(e, link.href)}
-                        className="block py-2 px-4 text-foreground hover:text-primary hover:bg-secondary/50 rounded-xl hover-transition focus-ring"
-                      >
-                        {link.label}
-                      </a>
-                    )}
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link.href)}
+                      className="block py-2 px-4 text-foreground hover:text-primary hover:bg-secondary/50 rounded-xl hover-transition focus-ring"
+                    >
+                      {link.label}
+                    </a>
                   </li>
                 ))}
                 <li className="pt-3">
