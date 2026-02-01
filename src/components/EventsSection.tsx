@@ -44,7 +44,7 @@ const EventsSection = () => {
         <div className="relative">
           {/* Title wrapper - handles overflow and overlap */}
           <motion.div 
-            className="relative z-10 mb-[-4rem] sm:mb-[-6rem] lg:mb-[-10rem] xl:mb-[-12rem] overflow-visible"
+            className="relative z-10 mb-[-3rem] sm:mb-[-5rem] lg:mb-[-8rem] xl:mb-[-10rem] overflow-visible"
             style={{ y: titleY }}
           >
             <motion.h2
@@ -53,7 +53,7 @@ const EventsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-[3.5rem] sm:text-[5rem] lg:text-[8rem] xl:text-[10rem] font-display font-semibold tracking-tight overflow-visible"
+              className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-semibold tracking-tight overflow-visible"
               style={{
                 background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 15%, rgba(100,120,200,0.9) 25%, rgba(140,100,180,0.9) 40%, rgba(220,120,100,0.9) 55%, rgba(235,160,140,0.85) 70%, rgba(200,140,180,0.9) 85%, rgba(100,140,220,0.85) 100%)',
                 backgroundSize: '250% 250%',
@@ -61,7 +61,7 @@ const EventsSection = () => {
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 color: 'transparent',
-                animation: isTitleInView ? 'gradient-reveal-once 5s ease-out forwards, gradient-color-loop 18s ease-in-out 5s infinite' : 'none',
+                animation: isTitleInView ? 'gradient-reveal-once 2.5s ease-out forwards, gradient-color-loop 8s ease-in-out 2.5s infinite' : 'none',
                 lineHeight: 0.95,
                 paddingTop: '0.08em',
                 paddingBottom: '0.02em',
