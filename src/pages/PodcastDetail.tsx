@@ -38,7 +38,7 @@ const PodcastDetail = () => {
   return (
     <>
       {/* Vertical Text Labels */}
-      <DetailVerticalText guestName={guestName} guestTitle={guestTitle} />
+      <DetailVerticalText guestName={guestName} />
       
       <EpisodeOverlayLayout>
         {/* Episode Content */}
