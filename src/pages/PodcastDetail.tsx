@@ -170,7 +170,7 @@ const PodcastDetail = () => {
       {/* Listen & Subscribe Section */}
       <motion.div 
         id="stay-connected" 
-        className="mt-8 sm:mt-12 pt-8 sm:pt-12"
+        className="mt-8 sm:mt-10 lg:mt-12 pt-8 sm:pt-10 lg:pt-12"
         variants={fadeUpVariants}
         initial="hidden"
         whileInView="visible"

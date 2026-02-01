@@ -13,7 +13,7 @@ const RelatedEpisodes = ({ episodes, title = "Other Speakers", delay = 0.4 }: Re
   if (episodes.length === 0) return null;
 
   return (
-    <div id="related-episodes" className="mt-8 sm:mt-12 pt-8 sm:pt-12 border-t border-border">
+    <div id="related-episodes" className="mt-8 sm:mt-10 lg:mt-12 pt-8 sm:pt-10 lg:pt-12 border-t border-border">
       <h2 
         className="text-display-xl text-foreground mb-6 sm:mb-8"
         style={{ fontWeight: 500 }}
@@ -40,7 +40,7 @@ const RelatedEpisodes = ({ episodes, title = "Other Speakers", delay = 0.4 }: Re
               <div className="card-overlay-light hover-transition group-hover:opacity-90 z-[2]" />
               
               {ep.comingSoon && (
-                <span className="absolute top-6 left-6 lg:top-8 lg:left-8 badge-status z-[3]">
+                <span className="absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-8 badge-status z-[3]">
                   Upcoming
                 </span>
               )}
