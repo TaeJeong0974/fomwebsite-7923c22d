@@ -33,8 +33,9 @@ const SECTION_LABELS = [
   { id: "stay-connected", label: "STAY CONNECTED" },
 ];
 
-const DetailVerticalText = ({ guestName }: { guestName: string }) => {
-  const [currentLabel, setCurrentLabel] = useState(guestName.toUpperCase());
+const DetailVerticalText = ({ guestName, isUpcoming = false }: { guestName: string; isUpcoming?: boolean }) => {
+  const guestLabel = isUpcoming ? `UPCOMING: ${guestName.toUpperCase()}` : guestName.toUpperCase();
+  const [currentLabel, setCurrentLabel] = useState(guestLabel);
   const [currentNumber, setCurrentNumber] = useState("01");
 
   useEffect(() => {
@@ -63,15 +64,15 @@ const DetailVerticalText = ({ guestName }: { guestName: string }) => {
         }
       }
       
-      // Default to guest name
-      setCurrentLabel(guestName.toUpperCase());
+      // Default to guest name (with UPCOMING prefix if applicable)
+      setCurrentLabel(guestLabel);
       setCurrentNumber("01");
     };
 
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [guestName]);
+  }, [guestLabel]);
 
   return (
     <>
