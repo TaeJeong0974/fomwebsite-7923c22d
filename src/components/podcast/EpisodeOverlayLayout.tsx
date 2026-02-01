@@ -1,25 +1,14 @@
-import { useEffect, useCallback, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
-import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
-import { liquidEase } from "@/components/animations/PageLoadAnimation";
-import guestBg from "@/assets/guest-bg.png";
 
 interface EpisodeOverlayLayoutProps {
   children: React.ReactNode;
 }
 
-
 const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
   const navigate = useNavigate();
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    requestAnimationFrame(() => {
-      setIsVisible(true);
-    });
-  }, []);
 
   const handleClose = useCallback(() => {
     navigate('/');
@@ -46,49 +35,6 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
 
   return (
     <div className="min-h-screen bg-[#f4f2ef] relative">
-      {/* Background cards with staggered fade */}
-      <motion.div
-        initial={{ opacity: 0.7 }}
-        animate={{ opacity: isVisible ? 0.3 : 0.7 }}
-        transition={{ duration: 0.8, ease: liquidEase }}
-        className="fixed inset-0 overflow-hidden pointer-events-none"
-      >
-        <div className="container mx-auto container-padding pt-24">
-          <motion.div 
-            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
-            initial="hidden"
-            animate={isVisible ? "visible" : "hidden"}
-            variants={{
-              hidden: { opacity: 0.6 },
-              visible: {
-                opacity: 0.4,
-                transition: { staggerChildren: 0.03 }
-              }
-            }}
-          >
-            {[...Array(12)].map((_, i) => (
-              <motion.div
-                key={i}
-                variants={{
-                  hidden: { scale: 1, filter: "blur(0px)" },
-                  visible: { scale: 0.95, filter: "blur(8px)" }
-                }}
-                transition={{ duration: 0.6, ease: liquidEase }}
-                className="aspect-[3/4] rounded-xl bg-cover bg-center"
-                style={{ backgroundImage: `url(${guestBg})` }}
-              />
-            ))}
-          </motion.div>
-        </div>
-        {/* Gradient overlay */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isVisible ? 1 : 0 }}
-          transition={{ duration: 0.5 }}
-          className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background/80"
-        />
-      </motion.div>
-      
       <Navbar />
 
       {/* Floating Panel Container */}
