@@ -10,66 +10,6 @@ interface EpisodeOverlayLayoutProps {
   children: React.ReactNode;
 }
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.1,
-    },
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      staggerChildren: 0.05,
-      staggerDirection: -1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { 
-    opacity: 0, 
-    y: 30,
-    scale: 0.96,
-  },
-  visible: { 
-    opacity: 1, 
-    y: 0,
-    scale: 1,
-    transition: {
-      duration: 0.6,
-      ease: liquidEase,
-    },
-  },
-  exit: {
-    opacity: 0,
-    y: -20,
-    transition: {
-      duration: 0.3,
-      ease: liquidEase,
-    },
-  },
-};
-
-const closeButtonVariants = {
-  hidden: { opacity: 0 },
-  visible: { 
-    opacity: 1,
-    transition: {
-      duration: 0.4,
-      ease: liquidEase,
-    },
-  },
-  exit: {
-    opacity: 0,
-    transition: {
-      duration: 0.2,
-      ease: liquidEase,
-    },
-  },
-};
 
 const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
   const navigate = useNavigate();
@@ -153,32 +93,26 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
 
       {/* Floating Panel Container */}
       <main className="relative z-10 pt-8 sm:pt-12 pb-6 sm:pb-8">
-        {/* White Content Panel with cascade reveal */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "exit"}
-          className="container mx-auto container-padding"
-        >
+        {/* White Content Panel */}
+        <div className="container mx-auto container-padding">
           <div className="bg-background rounded-xl shadow-2xl shadow-black/5 p-5 sm:p-8 lg:p-10 relative">
-          {/* Close Button - absolute within panel, sticky while scrolling */}
-          <div className="absolute top-0 right-0 bottom-0 w-16 sm:w-20 lg:w-24 pointer-events-none">
-            <motion.button
-              variants={closeButtonVariants}
-              onClick={handleClose}
-              className="sticky top-20 sm:top-24 lg:top-28 ml-auto mr-4 sm:mr-6 lg:mr-8 mt-4 sm:mt-6 lg:mt-8 pointer-events-auto flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-foreground text-background hover:bg-foreground/80 hover:scale-105 hover-transition shadow-lg"
-              aria-label="Close and return to episodes"
-            >
-              <X size={18} className="sm:w-5 sm:h-5" />
-            </motion.button>
+            {/* Close Button - absolute within panel, sticky while scrolling */}
+            <div className="absolute top-0 right-0 bottom-0 w-16 sm:w-20 lg:w-24 pointer-events-none">
+              <button
+                onClick={handleClose}
+                className="sticky top-20 sm:top-24 lg:top-28 ml-auto mr-4 sm:mr-6 lg:mr-8 mt-4 sm:mt-6 lg:mt-8 pointer-events-auto flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-foreground text-background hover:bg-foreground/80 hover:scale-105 hover-transition shadow-lg"
+                aria-label="Close and return to episodes"
+              >
+                <X size={18} className="sm:w-5 sm:h-5" />
+              </button>
+            </div>
+            
+            {/* Content wrapper - with right padding for button */}
+            <div className="pr-12 sm:pr-14 lg:pr-16">
+              {children}
+            </div>
           </div>
-          
-          {/* Content wrapper for staggered children - with right padding for button */}
-          <motion.div variants={itemVariants} className="pr-12 sm:pr-14 lg:pr-16">
-            {children}
-          </motion.div>
-          </div>
-        </motion.div>
+        </div>
       </main>
     </div>
   );
