@@ -121,7 +121,7 @@ const DetailVerticalText = ({ guestName, isUpcoming = false }: { guestName: stri
           
           {/* Section label */}
           <div 
-            className="relative h-40 flex items-center justify-center overflow-hidden"
+            className="relative h-56 flex items-center justify-center overflow-hidden"
             style={{ writingMode: "vertical-rl" }}
           >
             <AnimatePresence mode="wait">
