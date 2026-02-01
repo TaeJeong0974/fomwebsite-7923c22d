@@ -71,17 +71,15 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
         <div className="card-overlay-light hover-transition group-hover:opacity-90 z-[2]" />
         
         {isNew && (
-          <span className="absolute top-6 right-6 lg:top-8 lg:right-8 glass text-foreground text-xs font-semibold tracking-wide uppercase px-3 pt-2.5 pb-2 rounded-full z-[3] flex items-center justify-center leading-none">
+          <span className="absolute top-6 right-6 lg:top-8 lg:right-8 badge-status z-[3]">
             New
           </span>
         )}
         
         {isUpcoming && (
-          <div className="absolute top-6 left-6 lg:top-8 lg:left-8 z-[3]">
-            <span className="glass text-foreground text-xs font-semibold tracking-wide uppercase px-3 pt-2.5 pb-2 rounded-full flex items-center justify-center leading-none">
-              Upcoming
-            </span>
-          </div>
+          <span className="absolute top-6 left-6 lg:top-8 lg:left-8 badge-status z-[3]">
+            Upcoming
+          </span>
         )}
         
         <div className="card-content-bottom card-padding-lg z-[3]">

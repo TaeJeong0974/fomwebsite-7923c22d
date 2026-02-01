@@ -200,7 +200,7 @@ const PodcastListView = ({
                   <h3 className={`font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
                     {episode.name}
                   </h3>
-                  {!isComingSoon && isNewEpisode(episode.publishedDate) && <span className="glass text-foreground text-xs font-semibold tracking-wide uppercase px-3 pt-2.5 pb-2 rounded-full flex items-center justify-center leading-none">
+                  {!isComingSoon && isNewEpisode(episode.publishedDate) && <span className="badge-status">
                       New
                     </span>}
                 </div>

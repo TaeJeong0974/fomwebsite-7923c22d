@@ -221,6 +221,25 @@
     letter-spacing: 0.05em;
     color: hsl(var(--muted-foreground));
   }
+
+  /* Status Badges - glass pill style for New/Upcoming indicators */
+  .badge-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    padding: 0.625rem 0.75rem 0.5rem;
+    border-radius: 9999px;
+    background: hsl(var(--glass-bg) / var(--glass-opacity));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid hsl(var(--glass-border) / 0.2);
+    color: hsl(var(--foreground));
+  }
 }
 
 /* ==========================================
