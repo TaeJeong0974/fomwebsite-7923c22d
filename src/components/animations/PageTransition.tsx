@@ -1,7 +1,6 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
-import TransitionPattern from "./TransitionPattern";
 
 const liquidEase = [0.22, 1, 0.36, 1] as const;
 
@@ -13,7 +12,6 @@ const PageTransition = ({ children }: PageTransitionProps) => {
   const location = useLocation();
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [displayLocation, setDisplayLocation] = useState(location);
-  const [showExitWipe, setShowExitWipe] = useState(false);
   const previousPathRef = useRef(location.pathname);
 
   useEffect(() => {
@@ -23,9 +21,14 @@ const PageTransition = ({ children }: PageTransitionProps) => {
         location.pathname.startsWith("/episode/");
       
       if (isFromHomeToDetail) {
-        // Trigger wipe animation only for homepage → detail
+        // Trigger blur + slide animation for homepage → detail
         setIsTransitioning(true);
-        setShowExitWipe(false);
+        
+        // Update location after a brief delay to allow blur to start
+        setTimeout(() => {
+          setDisplayLocation(location);
+          previousPathRef.current = location.pathname;
+        }, 50);
       } else {
         // Instant transition for all other navigations
         setDisplayLocation(location);
@@ -34,48 +37,37 @@ const PageTransition = ({ children }: PageTransitionProps) => {
     }
   }, [location, displayLocation]);
 
-  const handleAnimationComplete = () => {
-    if (isTransitioning) {
-      setDisplayLocation(location);
-      previousPathRef.current = location.pathname;
-      setIsTransitioning(false);
-      setShowExitWipe(true);
-    }
-  };
+  const isDetailPage = displayLocation.pathname.startsWith("/episode/");
 
   return (
     <>
-      {/* Page content */}
-      <div key={displayLocation.pathname}>
-        {children}
-      </div>
-
-      {/* Wipe overlay with pattern - only for homepage → detail */}
-      {isTransitioning && (
+      {/* Homepage with blur effect */}
+      {previousPathRef.current === "/" && isTransitioning && (
         <motion.div
-          className="fixed inset-0 z-[100] origin-right overflow-hidden"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
+          className="fixed inset-0 z-[90]"
+          initial={{ filter: "blur(0px)", opacity: 1 }}
+          animate={{ filter: "blur(20px)", opacity: 0.5 }}
           transition={{ duration: 0.6, ease: liquidEase }}
-          onAnimationComplete={handleAnimationComplete}
-        >
-          <TransitionPattern />
-        </motion.div>
+        />
       )}
 
-      {/* Exit wipe - reveals detail page after transition */}
-      {showExitWipe && displayLocation.pathname.startsWith("/episode/") && (
-        <motion.div
-          key={`exit-wipe-${location.pathname}`}
-          className="fixed inset-0 z-[100] origin-left pointer-events-none overflow-hidden"
-          initial={{ scaleX: 1 }}
-          animate={{ scaleX: 0 }}
-          transition={{ duration: 0.6, ease: liquidEase, delay: 0.05 }}
-          onAnimationComplete={() => setShowExitWipe(false)}
+      {/* Page content */}
+      <AnimatePresence mode="wait">
+        <motion.div 
+          key={displayLocation.pathname}
+          initial={isTransitioning && isDetailPage ? { x: "100%" } : false}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.6, ease: liquidEase }}
+          onAnimationComplete={() => {
+            if (isTransitioning) {
+              setIsTransitioning(false);
+            }
+          }}
+          className={isTransitioning && isDetailPage ? "fixed inset-0 z-[100] bg-background" : ""}
         >
-          <TransitionPattern />
+          {children}
         </motion.div>
-      )}
+      </AnimatePresence>
     </>
   );
 };
