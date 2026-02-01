@@ -32,9 +32,9 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
   return (
     <div className={className}>
       {showTitle && (
-        <h2 className="text-[2.5rem] sm:text-[4rem] lg:text-[5rem] xl:text-[6rem] font-display font-medium leading-[0.9] tracking-tight text-foreground mb-8 sm:mb-12">
-          Stay<br />Connected
-        </h2>
+        <p className="text-sm text-muted-foreground font-medium uppercase tracking-wider mb-6 sm:mb-8">
+          Stay Connected
+        </p>
       )}
       
       {/* Large stacked links */}
