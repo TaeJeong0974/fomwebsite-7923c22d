@@ -1,6 +1,5 @@
 import { Play } from "lucide-react";
 import { motion } from "framer-motion";
-import fomTexture from "@/assets/subscribe-bg.png";
 
 const EventsSection = () => {
   return (
@@ -16,12 +15,12 @@ const EventsSection = () => {
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
               className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-semibold tracking-tight overflow-visible"
               style={{
-                backgroundImage: `url(${fomTexture})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                background: 'linear-gradient(180deg, rgba(180,185,195,0.9) 0%, rgba(220,180,170,0.85) 25%, rgba(240,160,150,0.9) 50%, rgba(235,130,120,0.95) 75%, rgba(200,175,185,0.9) 100%)',
+                backgroundSize: '200% 200%',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 color: 'transparent',
+                animation: 'gradient-shift 8s ease-in-out infinite',
                 lineHeight: 0.95,
                 paddingTop: '0.08em',
                 paddingBottom: '0.02em',
