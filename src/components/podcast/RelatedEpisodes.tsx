@@ -13,7 +13,7 @@ const RelatedEpisodes = ({ episodes, title = "Other Speakers", delay = 0.4 }: Re
   if (episodes.length === 0) return null;
 
   return (
-    <div className="mt-8 sm:mt-12 pt-8 sm:pt-12 border-t border-border">
+    <div id="related-episodes" className="mt-8 sm:mt-12 pt-8 sm:pt-12 border-t border-border">
       <h2 
         className="text-display-xl text-foreground mb-6 sm:mb-8"
         style={{ fontWeight: 500 }}
