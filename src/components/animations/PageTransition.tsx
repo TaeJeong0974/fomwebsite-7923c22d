@@ -34,9 +34,9 @@ const PageTransition = ({ children }: PageTransitionProps) => {
   return (
     <motion.div 
       key={displayLocation.pathname}
-      initial={slideIn ? { x: "100%" } : false}
-      animate={{ x: 0 }}
-      transition={{ duration: 0.6, ease: liquidEase }}
+      initial={slideIn ? { x: "8%", opacity: 0 } : false}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ duration: 0.7, ease: liquidEase }}
       onAnimationComplete={() => setSlideIn(false)}
     >
       {children}
