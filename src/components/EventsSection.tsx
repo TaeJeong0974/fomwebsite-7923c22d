@@ -1,12 +1,14 @@
 import { useState, useEffect, useRef } from "react";
 import { Play } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 
 const EventsSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
+  const titleRef = useRef<HTMLHeadingElement>(null);
   const [isInView, setIsInView] = useState(false);
+  const isTitleInView = useInView(titleRef, { once: true, amount: 0.3 });
 
   // Parallax scroll effect
   const { scrollYProgress } = useScroll({
@@ -46,6 +48,7 @@ const EventsSection = () => {
             style={{ y: titleY }}
           >
             <motion.h2
+              ref={titleRef}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.3 }}
@@ -54,10 +57,11 @@ const EventsSection = () => {
               style={{
                 background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 15%, rgba(100,120,200,0.9) 25%, rgba(140,100,180,0.9) 40%, rgba(220,120,100,0.9) 55%, rgba(235,160,140,0.85) 70%, rgba(200,140,180,0.9) 85%, rgba(100,140,220,0.85) 100%)',
                 backgroundSize: '250% 250%',
+                backgroundPosition: isTitleInView ? undefined : '0% 0%',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 color: 'transparent',
-                animation: 'gradient-reveal-once 2.5s ease-out forwards, gradient-color-loop 8s ease-in-out 2.5s infinite',
+                animation: isTitleInView ? 'gradient-reveal-once 2.5s ease-out forwards, gradient-color-loop 8s ease-in-out 2.5s infinite' : 'none',
                 lineHeight: 0.95,
                 paddingTop: '0.08em',
                 paddingBottom: '0.02em',
