@@ -201,16 +201,18 @@ const PodcastListView = ({
               <div className="flex-1 min-w-0 text-left">
                 <div className="flex items-start gap-6 sm:gap-8 lg:gap-10">
                   <span className={`text-label pt-1 sm:pt-2 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>EP {String(index + 1).padStart(2, '0')}</span>
-                  <h3 className={`font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
-                    {episode.name}
-                  </h3>
+                  <div className="flex flex-col lg:flex-row lg:items-baseline lg:gap-6">
+                    <h3 className={`font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
+                      {episode.name}
+                    </h3>
+                    <p className={`text-body-sm mt-2 lg:mt-0 text-foreground/60 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
+                      {isIntroEpisode ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>}
+                    </p>
+                  </div>
                   {!isComingSoon && isNewEpisode(episode.publishedDate) && <span className="badge-status mt-1">
                       New
                     </span>}
                 </div>
-                <p className={`text-body-sm mt-3 text-foreground/60 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
-                  {isIntroEpisode ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>}
-                </p>
               </div>
               
               <span className="shrink-0 w-[145px] text-center inline-flex items-center justify-center font-display font-semibold uppercase tracking-wider text-xs px-5 pt-3 pb-2.5 rounded-full bg-black/5 backdrop-blur-xl border border-black/10 text-foreground group-hover:bg-foreground group-hover:text-background group-hover:border-foreground transition-all duration-300 leading-none" onMouseEnter={() => setCtaHovered(index)} onMouseLeave={() => setCtaHovered(null)}>
