@@ -29,49 +29,58 @@ const RelatedEpisodes = ({ episodes, title = "Other Speakers", delay = 0.4 }: Re
             to={`/episode/${ep.slug}`}
             className="block group"
           >
-            <div className="card-image hover-scale overflow-hidden">
-              {/* Animated background */}
-              <motion.div
-                className="absolute inset-0 z-0"
-                style={{
-                  backgroundImage: `url(${guestBg})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
-                initial={{ scale: 1 }}
-                whileInView={{ scale: 1 }}
-                whileHover={{ scale: 1.05 }}
-                transition={{ 
-                  duration: 1, 
-                  ease: [0.22, 1, 0.36, 1] 
-                }}
-              />
-              <div className="card-overlay-light hover-transition group-hover:opacity-90" />
-              
-              {ep.companyDomain && (
-                <div className="absolute top-4 left-4 glass rounded-full p-2.5 hover-scale-badge z-[3]">
-                  <img 
-                    src={`https://www.google.com/s2/favicons?domain=${ep.companyDomain}&sz=64`} 
-                    alt={ep.company}
-                    className="h-5 w-5 object-contain"
-                  />
-                </div>
-              )}
+            <div 
+              className="card-image hover-scale"
+              style={{
+                backgroundImage: `url(${guestBg})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            >
+              <div className="card-overlay-light hover-transition group-hover:opacity-90 z-[2]" />
               
               {ep.comingSoon && (
-                <span className="absolute top-4 right-4 badge-status z-[3]">
+                <span className="absolute top-6 left-6 lg:top-8 lg:left-8 badge-status z-[3]">
                   Upcoming
                 </span>
               )}
               
               <div className="card-content-bottom card-padding-lg z-[3]">
-                <h3 className="font-display text-2xl sm:text-3xl text-white tracking-normal">
-                  {ep.name.split(' ').map((word, i) => (
-                    <span key={i} className={`block ${i === 0 ? 'font-medium' : 'font-normal'}`}>{word}</span>
-                  ))}
+                <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl text-white tracking-normal">
+                  {ep.slug === 'intro-to-fom' ? (
+                    <>
+                      <span className="block font-semibold">Intro</span>
+                      <span className="block font-normal">to FOM</span>
+                    </>
+                  ) : (
+                    ep.name.split(' ').map((word, i) => (
+                      <span 
+                        key={i} 
+                        className={`block ${i === 0 ? 'font-medium' : 'font-normal'}`}
+                      >
+                        {word}
+                      </span>
+                    ))
+                  )}
                 </h3>
-                <p className="text-sm text-white/70 mt-1">{ep.title}</p>
-                <p className="text-sm font-medium text-white">{ep.company}</p>
+                
+                {/* Title & Company - stacked hierarchy */}
+                {ep.title && ep.company && (
+                  <div className="mt-2">
+                    <p className="text-sm text-white/70">{ep.title}</p>
+                    <p className="text-sm font-medium text-white">{ep.company}</p>
+                  </div>
+                )}
+                
+                {/* Hover content - overview and button */}
+                <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
+                  {!ep.comingSoon && ep.overview && (
+                    <p className="text-body-sm leading-relaxed text-white mb-4">{ep.overview}</p>
+                  )}
+                  <span className="btn-base btn-glass-light btn-sm">
+                    {ep.comingSoon ? "Learn More" : "Watch Now"}
+                  </span>
+                </div>
               </div>
             </div>
           </Link>
