@@ -88,10 +88,9 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl }: FloatingMiniPlayerProps)
                 </div>
               </div>
 
-              {/* Expand hint */}
-              <div className="absolute bottom-2 left-2 flex items-center gap-1.5 text-white/80 text-xs">
+              {/* Expand icon */}
+              <div className="absolute top-2 left-2 w-7 h-7 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white/80 group-hover:text-white group-hover:bg-white/20 transition-all">
                 <Maximize className="w-3.5 h-3.5" />
-                <span>Click to expand</span>
               </div>
             </div>
 
