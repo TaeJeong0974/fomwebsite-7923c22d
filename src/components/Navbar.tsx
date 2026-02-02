@@ -72,7 +72,7 @@ const Navbar = () => {
               }}
               className="flex items-center focus-ring rounded-lg justify-self-start"
             >
-              <img src={FomLogo} alt="Future of Marketing" className="h-12 sm:h-10 lg:h-12" />
+              <img src={FomLogo} alt="Future of Marketing" className="h-14 sm:h-12 lg:h-14" />
             </Link>
 
             {/* Desktop Navigation - Second column, centered */}
@@ -130,7 +130,7 @@ const Navbar = () => {
                     <a
                       href={link.href}
                       onClick={(e) => handleNavClick(e, link.href)}
-                      className="block py-2 px-4 text-foreground hover:text-primary hover:bg-secondary/50 rounded-xl hover-transition focus-ring"
+                      className="block py-2 px-4 text-[1.2em] text-foreground hover:text-primary hover:bg-secondary/50 rounded-xl hover-transition focus-ring"
                     >
                       {link.label}
                     </a>
