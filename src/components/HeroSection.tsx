@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { useRef } from "react";
 import hostMada from "@/assets/host-mada.png";
 import hostEthan from "@/assets/host-ethan.png";
 import hostCamille from "@/assets/host-camille.png";
@@ -32,6 +33,8 @@ const taglineLines = ["A podcast", "series on how", "AI is changing", "marketing
 
 const HeroSection = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const iconRef = useRef<HTMLDivElement>(null);
+  const isIconInView = useInView(iconRef, { once: true, amount: 0.3 });
 
   return (
     <section id="hero" className="pt-8 lg:pt-12 pb-14 lg:pb-20">
@@ -120,11 +123,24 @@ const HeroSection = () => {
             </motion.p>
           </div>
           {/* Logo spans columns 2-3 */}
-          <div className="md:col-span-2 flex justify-center">
-            <img 
-              src={FOMIcon} 
-              alt="Future of Marketing" 
-              className="w-full max-w-full h-auto text-foreground"
+          <div className="md:col-span-2 flex justify-center" ref={iconRef}>
+            <div 
+              className="w-full max-w-full h-auto"
+              style={{
+                background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 15%, rgba(140,100,180,0.9) 25%, rgba(100,120,200,0.9) 40%, rgba(220,120,100,0.9) 55%, rgba(235,160,140,0.85) 70%, rgba(200,140,180,0.9) 85%, rgba(100,140,220,0.85) 100%)',
+                backgroundSize: '250% 250%',
+                backgroundPosition: isIconInView ? undefined : '0% 0%',
+                WebkitMaskImage: `url(${FOMIcon})`,
+                maskImage: `url(${FOMIcon})`,
+                WebkitMaskRepeat: 'no-repeat',
+                maskRepeat: 'no-repeat',
+                WebkitMaskSize: 'contain',
+                maskSize: 'contain',
+                WebkitMaskPosition: 'center',
+                maskPosition: 'center',
+                animation: isIconInView ? 'gradient-reveal-once 8s ease-out forwards, gradient-color-loop 12s ease-in-out 8s infinite' : 'none',
+                aspectRatio: '4.5 / 1',
+              }}
             />
           </div>
         </motion.div>
