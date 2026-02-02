@@ -13,7 +13,7 @@ const Index = () => {
       
       <StickyVerticalText />
       
-      <main className="pt-16">
+      <main>
         <HeroSection />
         <PodcastSection />
         <Suspense fallback={<div className="min-h-[50vh]" />}>
