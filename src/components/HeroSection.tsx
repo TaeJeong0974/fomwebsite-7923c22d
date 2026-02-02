@@ -201,7 +201,7 @@ const HeroSection = () => {
                     style={{ width: 'calc(88% - 8px)', scrollSnapAlign: 'start' }}
                   >
                     <div 
-                      className="card-base card-image hover-scale cursor-pointer"
+                      className="card-base relative overflow-hidden rounded-xl aspect-[3/4] hover-scale cursor-pointer"
                       onClick={() => setExpandedIndex(isExpanded ? null : index)}
                     >
                       <div className="absolute inset-0">
