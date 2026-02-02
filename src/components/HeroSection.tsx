@@ -92,8 +92,8 @@ const HeroSection = () => {
         >
           {/* Empty first column */}
           <div className="hidden md:block" />
-          {/* FOM Icon - spans columns 2-3 */}
-          <div className="md:col-span-2 flex justify-center" ref={iconRef}>
+          {/* FOM Icon - spans columns 2-3 to match host cards 2 and 3 */}
+          <div className="md:col-span-2" ref={iconRef}>
             <div 
               className="w-full max-w-full h-auto"
               style={{
