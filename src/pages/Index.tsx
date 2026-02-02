@@ -9,7 +9,7 @@ const CTASection = lazy(() => import("@/components/CTASection"));
 
 const Index = () => {
   return (
-    <div className="min-h-screen relative">
+    <div className="min-h-screen relative overflow-x-hidden">
       
       <StickyVerticalText />
       
