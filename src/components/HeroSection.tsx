@@ -146,8 +146,9 @@ const HeroSection = () => {
               initial={{ scale: 1.15, opacity: 0 }}
               animate={{ 
                 scale: 1, 
-                opacity: 1,
+                opacity: [0, 0, 1],
                 background: [
+                  'radial-gradient(ellipse 60% 120% at 100% 100%, transparent 0%, transparent 25%, transparent 50%)',
                   'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(230, 140, 100, 0.95) 0%, rgba(200, 120, 130, 0.7) 25%, transparent 50%)',
                   'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(200, 130, 150, 0.95) 0%, rgba(140, 130, 170, 0.7) 25%, transparent 50%)',
                   'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(100, 130, 170, 0.95) 0%, rgba(230, 140, 100, 0.7) 25%, transparent 50%)',
@@ -156,8 +157,8 @@ const HeroSection = () => {
               }}
               transition={{ 
                 scale: { duration: 1.2, ease: liquidEase, delay: 1.4 },
-                opacity: { duration: 1.2, ease: liquidEase, delay: 1.4 },
-                background: { duration: 6, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop', delay: 2.6 },
+                opacity: { duration: 3, ease: liquidEase, delay: 2.6, times: [0, 0.3, 1] },
+                background: { duration: 8, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop', delay: 2.6 },
               }}
               style={{
                 WebkitMaskImage: `url(${FOMIcon})`,
