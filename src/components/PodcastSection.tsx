@@ -32,12 +32,12 @@ const PodcastSection = () => {
   const [layout, setLayout] = useState<LayoutType>("grid");
   const publishedEpisodes = getPublishedEpisodes();
   const comingSoonEpisodes = getComingSoonEpisodes();
-  return <section id="podcast" className="pt-8 lg:pt-12 pb-14 lg:pb-20">
+  return <section id="podcast" className="pt-8 md:pt-10 lg:pt-12 pb-14 md:pb-16 lg:pb-20">
       <div className="container mx-auto container-padding">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-6 lg:mb-8">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 sm:gap-6 mb-8 md:mb-10 lg:mb-12">
           <div>
-            <p className="text-label mb-2">FEATURED</p>
+            <p className="text-label mb-2 sm:mb-3">FEATURED</p>
             <h2 className="text-display-xl text-foreground" style={{
             fontWeight: 500
           }}>Guests</h2>

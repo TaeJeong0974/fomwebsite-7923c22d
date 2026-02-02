@@ -325,6 +325,11 @@
   .grid-gap {
     gap: 1rem;
   }
+  @media (min-width: 768px) {
+    .grid-gap {
+      gap: 1.25rem;
+    }
+  }
   @media (min-width: 1024px) {
     .grid-gap {
       gap: 1.5rem;
@@ -332,12 +337,12 @@
   }
   @media (min-width: 1280px) {
     .grid-gap {
-      gap: 2rem;
+      gap: 1.75rem;
     }
   }
   @media (min-width: 1536px) {
     .grid-gap {
-      gap: 2.5rem;
+      gap: 2rem;
     }
   }
 }
