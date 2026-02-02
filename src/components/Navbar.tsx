@@ -4,16 +4,19 @@ import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import FomLogo from "@/assets/FOM_Logo.svg";
 import { useSubscribe } from "@/contexts/SubscribeContext";
+import { useLayoutPrototype } from "@/contexts/LayoutPrototypeContext";
 import SubscribeButton from "@/components/SubscribeButton";
 import { fadeDownVariant, liquidEase } from "@/components/animations/PageLoadAnimation";
 
 const Navbar = () => {
   const { openSubscribe } = useSubscribe();
+  const { variant, cycleVariant } = useLayoutPrototype();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const isHomePage = location.pathname === "/";
+  const isEpisodePage = location.pathname.startsWith("/episode/");
   
   useEffect(() => {
     const handleScroll = () => {
@@ -104,8 +107,17 @@ const Navbar = () => {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.5, ease: liquidEase }}
-              className="hidden md:flex items-center justify-self-end"
+              className="hidden md:flex items-center gap-4 justify-self-end"
             >
+              {/* Layout Prototype Toggle - only on episode pages */}
+              {isEpisodePage && (
+                <button
+                  onClick={cycleVariant}
+                  className="px-3 py-1.5 text-xs font-medium rounded-full bg-primary/10 text-primary hover:bg-primary/20 hover-transition"
+                >
+                  Layout {variant}
+                </button>
+              )}
               <SubscribeButton className="text-[1em] font-medium text-foreground hover:text-foreground/60 hover-transition">
                 Subscribe
               </SubscribeButton>

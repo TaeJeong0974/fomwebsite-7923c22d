@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
 import FloatingMiniPlayer from "@/components/podcast/FloatingMiniPlayer";
-import EpisodeActionButtons from "@/components/podcast/EpisodeActionButtons";
+import EpisodeIntroBlock from "@/components/podcast/EpisodeIntroBlock";
 import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
 import EpisodeHostsCard from "@/components/podcast/EpisodeHostsCard";
@@ -67,18 +67,14 @@ const PodcastDetail = () => {
               spotifyUrl={episode.spotifyUrl}
             />
             
-            {/* Episode Overview + Action Buttons */}
-            <div className="space-y-4">
-              {episode.overview && (
-                <p className="text-foreground/70 text-base sm:text-lg leading-relaxed max-w-prose">
-                  {episode.overview}
-                </p>
-              )}
-              <EpisodeActionButtons 
-                youtubeUrl={episode.youtubeUrl}
-                spotifyUrl={episode.spotifyUrl}
-              />
-            </div>
+            {/* Episode Intro Block with Layout Variants */}
+            <EpisodeIntroBlock
+              overview={episode.overview}
+              guestName={episode.name}
+              isIntro={episode.slug === 'intro-to-fom'}
+              youtubeUrl={episode.youtubeUrl}
+              spotifyUrl={episode.spotifyUrl}
+            />
 
             {/* Hosts - Mobile only, below video */}
             <div className="lg:hidden">
