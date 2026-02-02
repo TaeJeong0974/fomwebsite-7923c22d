@@ -140,11 +140,41 @@ const HeroSection = () => {
                 }}
                 transition={{ duration: 3, ease: 'easeInOut', repeat: Infinity }}
               />
+              {/* Black gradient overlay from top-left to bottom-right - masked by FOM logo */}
+              <div 
+                className="absolute inset-0 hidden md:block"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%)',
+                  maskImage: `url(${FOMIcon})`,
+                  maskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  maskPosition: 'center',
+                  WebkitMaskImage: `url(${FOMIcon})`,
+                  WebkitMaskSize: 'contain',
+                  WebkitMaskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'center',
+                }}
+              />
               {/* Static gradient for mobile - masked by FOM logo */}
               <div 
                 className="absolute inset-0 md:hidden"
                 style={{ 
                   background: 'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
+                  maskImage: `url(${FOMIcon})`,
+                  maskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  maskPosition: 'center',
+                  WebkitMaskImage: `url(${FOMIcon})`,
+                  WebkitMaskSize: 'contain',
+                  WebkitMaskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'center',
+                }}
+              />
+              {/* Mobile black gradient overlay */}
+              <div 
+                className="absolute inset-0 md:hidden"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0) 100%)',
                   maskImage: `url(${FOMIcon})`,
                   maskSize: 'contain',
                   maskRepeat: 'no-repeat',
