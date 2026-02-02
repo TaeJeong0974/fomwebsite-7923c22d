@@ -1,8 +1,7 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
-
-const liquidEase = [0.22, 1, 0.36, 1] as const;
+import { liquidEase } from "@/components/animations/PageLoadAnimation";
 
 interface PageTransitionProps {
   children: React.ReactNode;
