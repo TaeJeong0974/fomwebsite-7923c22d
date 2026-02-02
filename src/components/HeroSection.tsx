@@ -110,35 +110,52 @@ const HeroSection = () => {
               Your Hosts
             </motion.p>
           </div>
-          {/* Logo spans columns 2-3 with animated gradient */}
+          {/* Logo spans columns 2-3 with animated gradient masked by FOM shape */}
           <div className="md:col-span-2 flex justify-center overflow-hidden relative">
-            {/* Animated color gradient background - coral, rose, slate blue */}
-            <motion.div 
-              className="absolute inset-0 hidden md:block"
-              animate={{
-                background: [
-                  'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
-                  'linear-gradient(135deg, rgb(200,140,150) 0%, rgb(130,150,180) 50%, rgb(230,130,110) 100%)',
-                  'linear-gradient(135deg, rgb(130,150,180) 0%, rgb(230,130,110) 50%, rgb(200,140,150) 100%)',
-                  'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
-                ]
-              }}
-              transition={{ duration: 3, ease: 'easeInOut', repeat: Infinity }}
-            />
-            {/* Static gradient for mobile */}
+            {/* Container with gradient masked by FOM logo */}
             <div 
-              className="absolute inset-0 md:hidden"
-              style={{ background: 'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)' }}
-            />
-            {/* 75% black gradient overlay */}
-            <div className="absolute inset-0 bg-black/75" />
-            {/* FOM Logo as mask */}
-            <img 
-              src={FOMIcon} 
-              alt="Future of Marketing"
-              className="w-full max-w-full h-auto relative z-10 mix-blend-screen"
+              className="w-full relative"
               style={{ aspectRatio: '598 / 186' }}
-            />
+            >
+              {/* Animated color gradient - masked by FOM logo shape */}
+              <motion.div 
+                className="absolute inset-0 hidden md:block"
+                style={{
+                  maskImage: `url(${FOMIcon})`,
+                  maskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  maskPosition: 'center',
+                  WebkitMaskImage: `url(${FOMIcon})`,
+                  WebkitMaskSize: 'contain',
+                  WebkitMaskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'center',
+                }}
+                animate={{
+                  background: [
+                    'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
+                    'linear-gradient(135deg, rgb(200,140,150) 0%, rgb(130,150,180) 50%, rgb(230,130,110) 100%)',
+                    'linear-gradient(135deg, rgb(130,150,180) 0%, rgb(230,130,110) 50%, rgb(200,140,150) 100%)',
+                    'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
+                  ]
+                }}
+                transition={{ duration: 3, ease: 'easeInOut', repeat: Infinity }}
+              />
+              {/* Static gradient for mobile - masked by FOM logo */}
+              <div 
+                className="absolute inset-0 md:hidden"
+                style={{ 
+                  background: 'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
+                  maskImage: `url(${FOMIcon})`,
+                  maskSize: 'contain',
+                  maskRepeat: 'no-repeat',
+                  maskPosition: 'center',
+                  WebkitMaskImage: `url(${FOMIcon})`,
+                  WebkitMaskSize: 'contain',
+                  WebkitMaskRepeat: 'no-repeat',
+                  WebkitMaskPosition: 'center',
+                }}
+              />
+            </div>
           </div>
         </motion.div>
 
