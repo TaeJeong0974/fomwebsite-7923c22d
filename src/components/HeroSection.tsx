@@ -42,32 +42,20 @@ const HeroSection = () => {
         {/* Top row: Tagline left, Title right */}
         <div className="flex justify-between items-start mb-20 lg:mb-32 pl-4 sm:pl-5 lg:pl-6 pr-4 sm:pr-5 lg:pr-6">
           {/* Typewriter tagline */}
-          <h1 className="font-display text-base sm:text-lg md:text-xl lg:text-2xl text-foreground font-medium tracking-normal leading-[0.7]">
+          <h1 className="font-display text-base sm:text-lg md:text-xl lg:text-2xl text-foreground font-medium tracking-normal leading-[1.1]">
             {taglineLines.map((line, lineIndex) => (
-              <span key={lineIndex} className="block overflow-hidden">
+              <span key={lineIndex} className="block">
                 <motion.span
                   className="inline-block"
-                  initial={{ y: "100%" }}
-                  animate={{ y: 0 }}
+                  initial={{ y: "100%", opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
                   transition={{ 
                     duration: 0.6, 
                     ease: liquidEase, 
                     delay: 0.3 + lineIndex * 0.15 
                   }}
                 >
-                  {line.split("").map((char, charIndex) => (
-                    <motion.span
-                      key={charIndex}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ 
-                        duration: 0.05, 
-                        delay: 0.3 + lineIndex * 0.15 + charIndex * 0.03 
-                      }}
-                    >
-                      {char}
-                    </motion.span>
-                  ))}
+                  {line}
                 </motion.span>
               </span>
             ))}
