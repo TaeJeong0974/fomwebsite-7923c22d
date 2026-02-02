@@ -53,7 +53,7 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
         }}
         transition={{
           opacity: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-          background: { duration: 6, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop' },
+          background: { duration: 3, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop' },
         }}
       />
       
