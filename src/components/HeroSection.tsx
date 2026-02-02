@@ -120,15 +120,15 @@ const HeroSection = () => {
             </motion.p>
           </div>
           {/* Logo spans columns 2-3 */}
-          <div className="md:col-span-2 flex justify-center overflow-hidden">
+          <div className="md:col-span-2 flex justify-center overflow-hidden relative">
+            {/* Base black layer */}
             <motion.div
               className="w-full max-w-full h-auto"
               initial={{ scale: 1.15, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1.2, ease: liquidEase, delay: 1.4 }}
               style={{
-                background: 'radial-gradient(ellipse at 100% 100%, rgba(140,100,180,0.9) 0%, rgba(100,120,200,0.9) 15%, rgba(220,120,100,0.9) 30%, rgba(0,0,0,1) 50%, rgba(0,0,0,1) 100%)',
-                backgroundSize: '200% 200%',
+                background: 'rgba(0,0,0,1)',
                 WebkitMaskImage: `url(${FOMIcon})`,
                 maskImage: `url(${FOMIcon})`,
                 WebkitMaskRepeat: 'no-repeat',
@@ -138,7 +138,37 @@ const HeroSection = () => {
                 WebkitMaskPosition: 'center',
                 maskPosition: 'center',
                 aspectRatio: '598 / 186',
-                animation: 'gradient-color-loop 12s ease-in-out infinite',
+              }}
+            />
+            {/* Animated color gradient layer - positioned bottom right */}
+            <motion.div
+              className="absolute inset-0 w-full h-full"
+              initial={{ scale: 1.15, opacity: 0 }}
+              animate={{ 
+                scale: 1, 
+                opacity: 1,
+                background: [
+                  'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(220, 50, 50, 0.9) 0%, rgba(140, 60, 180, 0.7) 25%, transparent 50%)',
+                  'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(140, 60, 180, 0.9) 0%, rgba(60, 100, 220, 0.7) 25%, transparent 50%)',
+                  'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(60, 100, 220, 0.9) 0%, rgba(220, 50, 50, 0.7) 25%, transparent 50%)',
+                  'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(220, 50, 50, 0.9) 0%, rgba(140, 60, 180, 0.7) 25%, transparent 50%)',
+                ],
+              }}
+              transition={{ 
+                scale: { duration: 1.2, ease: liquidEase, delay: 1.4 },
+                opacity: { duration: 1.2, ease: liquidEase, delay: 1.4 },
+                background: { duration: 6, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop', delay: 2.6 },
+              }}
+              style={{
+                WebkitMaskImage: `url(${FOMIcon})`,
+                maskImage: `url(${FOMIcon})`,
+                WebkitMaskRepeat: 'no-repeat',
+                maskRepeat: 'no-repeat',
+                WebkitMaskSize: 'contain',
+                maskSize: 'contain',
+                WebkitMaskPosition: 'center',
+                maskPosition: 'center',
+                aspectRatio: '598 / 186',
               }}
             />
           </div>
