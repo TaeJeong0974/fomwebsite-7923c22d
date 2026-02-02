@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -10,9 +10,21 @@ import { fadeDownVariant, liquidEase } from "@/components/animations/PageLoadAni
 const Navbar = () => {
   const { openSubscribe } = useSubscribe();
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const isHomePage = location.pathname === "/";
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check initial position
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
   const navLinks = [
     { label: "Podcast", href: "#podcast" },
@@ -45,10 +57,9 @@ const Navbar = () => {
       variants={fadeDownVariant}
       className="sticky top-4 z-50"
     >
-      {/* Outer container matches page content width */}
       <div className="container mx-auto container-padding">
         {/* Glass pill with inner padding for aesthetics, grid aligned to page content */}
-        <nav className="glass rounded-xl py-3 lg:py-4 px-4 sm:px-5 lg:px-6">
+        <nav className={`rounded-xl py-3 lg:py-4 px-4 sm:px-5 lg:px-6 transition-all duration-300 ${isScrolled ? 'glass' : ''}`}>
           <div className="grid grid-cols-3 items-center">
             {/* Logo - First column */}
             <Link 
