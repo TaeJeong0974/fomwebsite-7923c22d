@@ -148,10 +148,10 @@ const HeroSection = () => {
                 scale: 1, 
                 opacity: 1,
                 background: [
-                  'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(220, 50, 50, 0.9) 0%, rgba(140, 60, 180, 0.7) 25%, transparent 50%)',
-                  'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(140, 60, 180, 0.9) 0%, rgba(60, 100, 220, 0.7) 25%, transparent 50%)',
-                  'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(60, 100, 220, 0.9) 0%, rgba(220, 50, 50, 0.7) 25%, transparent 50%)',
-                  'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(220, 50, 50, 0.9) 0%, rgba(140, 60, 180, 0.7) 25%, transparent 50%)',
+                  'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(230, 140, 100, 0.95) 0%, rgba(200, 120, 130, 0.7) 25%, transparent 50%)',
+                  'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(200, 130, 150, 0.95) 0%, rgba(140, 130, 170, 0.7) 25%, transparent 50%)',
+                  'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(100, 130, 170, 0.95) 0%, rgba(230, 140, 100, 0.7) 25%, transparent 50%)',
+                  'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(230, 140, 100, 0.95) 0%, rgba(200, 120, 130, 0.7) 25%, transparent 50%)',
                 ],
               }}
               transition={{ 
