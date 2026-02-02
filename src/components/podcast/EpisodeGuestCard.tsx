@@ -39,7 +39,7 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
       </motion.div>
       
       {/* Content */}
-      <div className="relative z-10">
+      <div className="relative z-10 flex flex-col">
         {/* Header */}
         <h3 className="text-section-header">Guest</h3>
         
@@ -68,7 +68,7 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
         
         {/* Bio Accordion */}
         {bio && (
-          <div className="mt-6 pt-6 border-t border-border/50">
+          <div className="mt-auto pt-6 border-t border-border/50">
             <button
               onClick={() => setIsExpanded(!isExpanded)}
               className="flex items-center justify-between w-full text-left group"
