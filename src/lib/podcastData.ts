@@ -66,7 +66,7 @@ export const podcastEpisodes: PodcastEpisode[] = [
     title: "",
     company: "",
     companyDomain: "",
-    overview: "Meet the hosts and discover what Future of Marketing is all about.",
+    overview: "Meet Your Hosts: Why We're Building the Future of Marketing",
     bio: "",
     fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
@@ -102,7 +102,7 @@ Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit la
     title: "Chief Marketing Officer",
     company: "Samsara",
     companyDomain: "samsara.com",
-    overview: "Exploring how remote work is reshaping company culture and marketing strategies.",
+    overview: "Scaling to IPO: The Tactical Playbook Behind Samsara's Growth",
     bio: "A builder who moves fast, operates tactically, and earns trust through execution. With nearly 25 years scaling high-growth companies as CMO at Samsara, MongoDB, TripActions/Navan, and leadership roles at DocuSign and G2.",
     fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
@@ -141,7 +141,7 @@ Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit la
     title: "Chief Marketing Officer",
     company: "Notion",
     companyDomain: "notion.so",
-    overview: "Building and nurturing creative communities that drive brand loyalty.",
+    overview: "Community as a Growth Engine: How Notion Built a Movement",
     bio: "A product-minded marketer who turns user communities into growth engines. Previously led marketing at Dropbox and Atlassian, pioneering community-driven strategies that scaled to millions of active users.",
     fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
@@ -171,7 +171,7 @@ Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit la
     title: "Chief Marketing Officer",
     company: "Square",
     companyDomain: "squareup.com",
-    overview: "Building a payments brand that resonates with businesses of all sizes.",
+    overview: "Making Fintech Human: Brand Building at Scale with Square",
     bio: "A fintech brand builder who makes complex financial products accessible to everyday entrepreneurs. Previously CMO at Carta and held leadership roles at PayPal, scaling marketing for millions of businesses.",
     fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
@@ -202,7 +202,7 @@ Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit la
     title: "Chief Marketing Officer",
     company: "Datadog",
     companyDomain: "datadoghq.com",
-    overview: "How observability is transforming the way engineering teams build and ship software.",
+    overview: "Marketing to Engineers: Winning Technical Audiences at Datadog",
     bio: "A technical marketing leader who bridges the gap between engineering and brand. Previously CMO at Twilio and held leadership roles at Salesforce, known for scaling marketing during hypergrowth.",
     fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
