@@ -37,9 +37,9 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl }: FloatingMiniPlayerProps)
   return (
     <>
       {/* Main Video Player */}
-      <div ref={videoContainerRef}>
+      <div ref={videoContainerRef} className="-mx-6 sm:mx-0">
         <div 
-          className="relative aspect-video rounded-xl overflow-hidden group cursor-pointer"
+          className="relative aspect-video sm:rounded-xl overflow-hidden group cursor-pointer"
           style={{
             backgroundImage: `url(${guestBg})`,
             backgroundSize: 'cover',
