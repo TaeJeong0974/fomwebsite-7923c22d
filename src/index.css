@@ -126,6 +126,10 @@
     @apply border-border;
   }
 
+  html, body {
+    overflow-x: hidden;
+  }
+
   body {
     @apply text-foreground;
     font-family: var(--font-body);
