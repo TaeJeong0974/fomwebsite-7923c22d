@@ -62,12 +62,11 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl }: FloatingMiniPlayerProps)
       <AnimatePresence>
         {isScrolledPast && showMiniPlayer && (
           <motion.div
-            initial={{ opacity: 0, x: 100 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: 100 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed bottom-6 right-6 z-50 shadow-2xl rounded-xl overflow-hidden"
-            style={{ width: '320px' }}
+            className="fixed top-32 right-[calc((100vw-1280px)/2+1rem)] z-50 shadow-2xl rounded-xl overflow-hidden max-w-[320px] w-[calc(100vw/3-3rem)] min-w-[280px]"
           >
             <div 
               className="relative aspect-video cursor-pointer group"
