@@ -35,7 +35,7 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
           className="w-full h-auto object-contain object-bottom absolute bottom-0 left-0"
         />
         {/* Gradient overlay on top of image */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,hsl(var(--background))_80%,transparent)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,hsl(var(--background))_60%,transparent)]" />
       </motion.div>
       
       {/* Content */}
