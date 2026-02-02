@@ -12,7 +12,7 @@ interface EpisodeGuestCardProps {
   isUpcoming?: boolean;
 }
 
-const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio }: EpisodeGuestCardProps) => {
+const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming }: EpisodeGuestCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
