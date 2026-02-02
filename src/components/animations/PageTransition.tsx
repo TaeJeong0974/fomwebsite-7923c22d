@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
 import { useEffect, useState, useRef } from "react";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
@@ -11,6 +11,7 @@ const PageTransition = ({ children }: PageTransitionProps) => {
   const location = useLocation();
   const [displayLocation, setDisplayLocation] = useState(location);
   const [slideIn, setSlideIn] = useState(false);
+  const [slideOut, setSlideOut] = useState(false);
   const previousPathRef = useRef(location.pathname);
 
   useEffect(() => {
@@ -19,10 +20,27 @@ const PageTransition = ({ children }: PageTransitionProps) => {
         previousPathRef.current === "/" && 
         location.pathname.startsWith("/episode/");
       
+      const isFromDetailToHome = 
+        previousPathRef.current.startsWith("/episode/") && 
+        location.pathname === "/";
+      
       if (isFromHomeToDetail) {
         setSlideIn(true);
         setDisplayLocation(location);
         previousPathRef.current = location.pathname;
+      } else if (isFromDetailToHome) {
+        setSlideOut(true);
+        // Delay location update to allow exit animation
+        setTimeout(() => {
+          setDisplayLocation(location);
+          previousPathRef.current = location.pathname;
+          setSlideOut(false);
+          // Scroll to podcast section after transition
+          setTimeout(() => {
+            const element = document.querySelector('#podcast');
+            element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }, 400);
       } else {
         setDisplayLocation(location);
         previousPathRef.current = location.pathname;
@@ -31,15 +49,20 @@ const PageTransition = ({ children }: PageTransitionProps) => {
   }, [location, displayLocation]);
 
   return (
-    <motion.div 
-      key={displayLocation.pathname}
-      initial={slideIn ? { x: "50%", opacity: 0 } : false}
-      animate={{ x: 0, opacity: 1 }}
-      transition={{ duration: 0.7, ease: liquidEase }}
-      onAnimationComplete={() => setSlideIn(false)}
-    >
-      {children}
-    </motion.div>
+    <AnimatePresence mode="wait">
+      <motion.div 
+        key={displayLocation.pathname}
+        initial={slideIn ? { x: "50%", opacity: 0 } : false}
+        animate={{ x: 0, opacity: 1 }}
+        exit={slideOut ? { x: "50%", opacity: 0 } : undefined}
+        transition={{ duration: 0.7, ease: liquidEase }}
+        onAnimationComplete={() => {
+          setSlideIn(false);
+        }}
+      >
+        {children}
+      </motion.div>
+    </AnimatePresence>
   );
 };
 
