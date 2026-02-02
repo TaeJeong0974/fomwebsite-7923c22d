@@ -17,7 +17,7 @@ const Navbar = () => {
   const navLinks = [
     { label: "Podcast", href: "#podcast" },
     { label: "Events", href: "#events" },
-    { label: "Contact", href: "#contact" },
+    { label: "Connect", href: "#contact" },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
