@@ -52,10 +52,10 @@ const PageTransition = ({ children }: PageTransitionProps) => {
     <AnimatePresence mode="wait">
       <motion.div 
         key={displayLocation.pathname}
-        initial={slideIn ? { x: "50%", opacity: 0 } : false}
+        initial={slideIn ? { x: "50%", opacity: 0 } : { opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
-        exit={slideOut ? { x: "50%", opacity: 0 } : undefined}
-        transition={{ duration: 0.7, ease: liquidEase }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: slideIn ? 0.7 : 0.4, ease: liquidEase }}
         onAnimationComplete={() => {
           setSlideIn(false);
         }}
