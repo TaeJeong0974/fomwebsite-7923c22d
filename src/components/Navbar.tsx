@@ -55,7 +55,7 @@ const Navbar = () => {
       initial="hidden"
       animate="visible"
       variants={fadeDownVariant}
-      className="sticky top-4 z-50"
+      className="sticky top-0 lg:top-4 z-50"
     >
       <div className="container mx-auto container-padding">
         {/* Nav with glass effect on scroll */}
