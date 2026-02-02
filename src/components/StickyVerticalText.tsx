@@ -22,29 +22,8 @@ const getSectionNumber = (id: string): string => {
 
 const BRAND_TAGLINE = "THE FUTURE OF MARKETING";
 
-// Typewriter animation for each character
-const TypewriterText = ({ text }: { text: string }) => {
-  const characters = text.split("");
-  
-  return (
-    <span className="text-[10px] font-display font-semibold tracking-[0.25em] text-foreground whitespace-nowrap">
-      {characters.map((char, index) => (
-        <motion.span
-          key={`${text}-${index}`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{
-            duration: 0.05,
-            delay: index * 0.04,
-            ease: "easeOut",
-          }}
-        >
-          {char}
-        </motion.span>
-      ))}
-    </span>
-  );
-};
+// Shared typography class for vertical labels
+const VERTICAL_TEXT_CLASS = "text-[10px] font-display font-semibold tracking-[0.2em] text-foreground whitespace-nowrap uppercase";
 
 const StickyVerticalText = () => {
   const [currentSection, setCurrentSection] = useState<string>("hero");
@@ -96,7 +75,7 @@ const StickyVerticalText = () => {
         style={{ transform: "translateY(-50%)" }}
       >
         <div 
-          className="text-[10px] font-display font-semibold tracking-[0.25em] text-foreground whitespace-nowrap"
+          className={VERTICAL_TEXT_CLASS}
           style={{ 
             writingMode: "vertical-rl",
             transform: "rotate(180deg)",
@@ -106,7 +85,7 @@ const StickyVerticalText = () => {
         </div>
       </motion.div>
 
-      {/* Right side - Section indicator (changes with typewriter effect) */}
+      {/* Right side - Section indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -123,7 +102,7 @@ const StickyVerticalText = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
-              className="text-[10px] font-display font-semibold tracking-[0.25em] text-foreground"
+              className={VERTICAL_TEXT_CLASS}
             >
               {currentNumber}
             </motion.span>
@@ -138,15 +117,16 @@ const StickyVerticalText = () => {
             style={{ writingMode: "vertical-rl", height: "160px" }}
           >
             <AnimatePresence mode="wait">
-              <motion.div
+              <motion.span
                 key={currentLabel}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
+                className={VERTICAL_TEXT_CLASS}
               >
-                <TypewriterText text={currentLabel} />
-              </motion.div>
+                {currentLabel}
+              </motion.span>
             </AnimatePresence>
           </div>
         </div>
