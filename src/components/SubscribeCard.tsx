@@ -34,14 +34,13 @@ const SubscribeCard = () => {
 
   return (
     <div className="card-image group cursor-pointer hover-scale overflow-hidden">
-      {/* Static background image */}
-      <div
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: `url(${subscribeBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
+      {/* Static background image - lazy loaded */}
+      <img
+        src={subscribeBg}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 w-full h-full object-cover z-0"
       />
       {/* Animated color overlay */}
       <motion.div
