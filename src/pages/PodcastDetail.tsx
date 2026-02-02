@@ -82,7 +82,7 @@ const PodcastDetail = () => {
             </div>
           </motion.div>
 
-          {/* Pull Quote */}
+          {/* Topics */}
           <motion.div
             variants={fadeInVariants}
             initial="hidden"
@@ -90,13 +90,10 @@ const PodcastDetail = () => {
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 1.0, delay: 0.15, ease: liquidEase }}
           >
-            <EpisodePullQuote
-              quote="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
-              attribution={episode.name}
-            />
+            <EpisodeTopics topics={episode.topics} />
           </motion.div>
 
-          {/* Topics */}
+          {/* Pull Quote */}
           <motion.div
             variants={fadeInVariants}
             initial="hidden"
@@ -104,7 +101,10 @@ const PodcastDetail = () => {
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 1.0, delay: 0.3, ease: liquidEase }}
           >
-            <EpisodeTopics topics={episode.topics} />
+            <EpisodePullQuote
+              quote="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+              attribution={episode.name}
+            />
           </motion.div>
 
           {/* About This Episode */}
