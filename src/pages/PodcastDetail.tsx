@@ -52,7 +52,7 @@ const PodcastDetail = () => {
         {/* Episode Content */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
       {/* Main Content */}
-        <div className="lg:col-span-2 space-y-12 sm:space-y-14 lg:space-y-16">
+        <div className="lg:col-span-2 space-y-8 sm:space-y-12 lg:space-y-16">
           {/* Video Player */}
           <motion.div 
             className="space-y-6"
