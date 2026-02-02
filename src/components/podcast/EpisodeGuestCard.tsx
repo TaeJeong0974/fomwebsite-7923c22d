@@ -74,15 +74,15 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
               className="flex items-center justify-between w-full text-left group"
             >
               <span className="text-sm font-medium text-foreground">About {name.split(' ')[0]}</span>
-              <motion.div
-                animate={{ rotate: isExpanded ? 180 : 0 }}
-                whileHover={{ scale: isExpanded ? 1 : [1, 1.15, 1] }}
-                transition={{ 
-                  rotate: { duration: 0.3 },
-                  scale: { duration: 0.6, ease: "easeInOut" }
-                }}
-                className="rounded-full p-1.5 bg-foreground/5 backdrop-blur-xl border border-border/20"
-              >
+                <motion.div
+                  animate={{ rotate: isExpanded ? 180 : 0 }}
+                  whileHover={{ scale: isExpanded ? 1 : [1, 1.15, 1] }}
+                  transition={{ 
+                    rotate: { duration: 0.3 },
+                    scale: { duration: 0.6, ease: "easeInOut" }
+                  }}
+                  className="rounded-full p-1.5 bg-foreground/5 backdrop-blur-xl border border-border/20 hover:bg-foreground hover:border-foreground group-hover:text-background transition-colors duration-300"
+                >
                 <ChevronDown className="h-4 w-4 text-foreground" />
               </motion.div>
             </button>
