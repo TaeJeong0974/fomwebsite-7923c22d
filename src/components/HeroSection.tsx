@@ -112,53 +112,11 @@ const HeroSection = () => {
           </div>
           {/* Logo spans columns 2-3 */}
           <div className="md:col-span-2 flex justify-center overflow-hidden relative">
-            {/* Base black layer */}
-            <motion.div
+            <img 
+              src={FOMIcon} 
+              alt="Future of Marketing"
               className="w-full max-w-full h-auto"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 1.2, ease: liquidEase, delay: 1.4 }}
-              style={{
-                background: 'rgba(0,0,0,1)',
-                WebkitMaskImage: `url(${FOMIcon})`,
-                maskImage: `url(${FOMIcon})`,
-                WebkitMaskRepeat: 'no-repeat',
-                maskRepeat: 'no-repeat',
-                WebkitMaskSize: 'contain',
-                maskSize: 'contain',
-                WebkitMaskPosition: 'center',
-                maskPosition: 'center',
-                aspectRatio: '598 / 186',
-              }}
-            />
-            {/* Animated color gradient layer - positioned bottom right */}
-            <motion.div
-              className="absolute inset-0 w-full h-full"
-              initial={{ opacity: 0 }}
-              animate={{ 
-                opacity: 1,
-                background: [
-                  'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(235, 150, 90, 1) 0%, rgba(235, 150, 90, 0.8) 15%, rgba(210, 130, 120, 0.5) 30%, transparent 45%)',
-                  'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(190, 130, 160, 1) 0%, rgba(190, 130, 160, 0.8) 15%, rgba(150, 130, 180, 0.5) 30%, transparent 45%)',
-                  'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(90, 130, 180, 1) 0%, rgba(90, 130, 180, 0.8) 15%, rgba(120, 140, 190, 0.5) 30%, transparent 45%)',
-                  'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(235, 150, 90, 1) 0%, rgba(235, 150, 90, 0.8) 15%, rgba(210, 130, 120, 0.5) 30%, transparent 45%)',
-                ],
-              }}
-              transition={{ 
-                opacity: { duration: 2, ease: liquidEase, delay: 2.6 },
-                background: { duration: 8, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop', delay: 2.6 },
-              }}
-              style={{
-                WebkitMaskImage: `url(${FOMIcon})`,
-                maskImage: `url(${FOMIcon})`,
-                WebkitMaskRepeat: 'no-repeat',
-                maskRepeat: 'no-repeat',
-                WebkitMaskSize: 'contain',
-                maskSize: 'contain',
-                WebkitMaskPosition: 'center',
-                maskPosition: 'center',
-                aspectRatio: '598 / 186',
-              }}
+              style={{ aspectRatio: '598 / 186' }}
             />
           </div>
         </motion.div>
