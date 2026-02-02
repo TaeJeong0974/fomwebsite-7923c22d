@@ -2,6 +2,7 @@ import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface LinkItem {
   label: string;
@@ -13,16 +14,17 @@ interface LinkItem {
 interface AnimatedLinkProps {
   item: LinkItem;
   variants: any;
+  isMobile: boolean;
 }
 
-const AnimatedLink = ({ item, variants }: AnimatedLinkProps) => {
+const AnimatedLink = ({ item, variants, isMobile }: AnimatedLinkProps) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const content = (
     <motion.span 
       className="font-display text-[2rem] sm:text-[3rem] lg:text-[4rem] xl:text-[5rem] font-medium leading-[1.1] tracking-tight inline-block"
       initial={false}
-      animate={isHovered ? {
+      animate={isHovered && !isMobile ? {
         color: item.hoverColors,
         x: 8,
       } : {
@@ -30,10 +32,10 @@ const AnimatedLink = ({ item, variants }: AnimatedLinkProps) => {
         x: 0,
       }}
       transition={{ 
-        color: isHovered 
+        color: isHovered && !isMobile
           ? { duration: 3, ease: 'easeInOut', repeat: Infinity }
           : { duration: 0.15, ease: liquidEase },
-        x: { duration: isHovered ? 0.4 : 0.15, ease: liquidEase },
+        x: { duration: isHovered && !isMobile ? 0.4 : 0.15, ease: liquidEase },
       }}
     >
       {item.label}
@@ -78,6 +80,7 @@ interface ListenSubscribeCardsProps {
 
 const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscribeCardsProps) => {
   const { openSubscribe } = useSubscribe();
+  const isMobile = useIsMobile();
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.15 });
 
@@ -147,7 +150,7 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
         animate={isInView ? "visible" : "hidden"}
       >
         {linkItems.map((item) => (
-          <AnimatedLink key={item.label} item={item} variants={itemVariants} />
+          <AnimatedLink key={item.label} item={item} variants={itemVariants} isMobile={isMobile} />
         ))}
       </motion.div>
     </div>
