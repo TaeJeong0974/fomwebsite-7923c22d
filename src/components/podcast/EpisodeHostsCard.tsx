@@ -27,7 +27,7 @@ const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
         <img 
           src={teaserBg} 
           alt="" 
-          className="w-full h-full object-cover"
+          className="w-full h-auto object-contain object-bottom absolute bottom-0 left-0"
         />
       </motion.div>
       
