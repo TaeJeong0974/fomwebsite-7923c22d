@@ -24,7 +24,9 @@ const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
         animate={{ opacity: isHovered ? 1 : 0 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
-        <img 
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-background/80" />
+        <img
           src={teaserBg} 
           alt="" 
           className="w-full h-auto object-contain object-bottom absolute bottom-0 left-0"
