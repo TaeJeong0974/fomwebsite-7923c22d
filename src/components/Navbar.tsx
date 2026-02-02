@@ -72,7 +72,7 @@ const Navbar = () => {
               }}
               className="flex items-center focus-ring rounded-lg justify-self-start"
             >
-              <img src={FomLogo} alt="Future of Marketing" className="h-14 sm:h-12 lg:h-14" />
+              <img src={FomLogo} alt="Future of Marketing" className="h-14 sm:h-10 lg:h-12" />
             </Link>
 
             {/* Desktop Navigation - Second column, centered */}
