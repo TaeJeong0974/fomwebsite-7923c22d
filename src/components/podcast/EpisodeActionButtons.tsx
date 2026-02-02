@@ -22,10 +22,10 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
     tap: { scale: 0.98 },
   };
 
-  const liquidGlassButton = "flex items-center justify-center gap-2.5 bg-black/5 backdrop-blur-xl border border-black/10 text-foreground px-5 py-3 rounded-xl text-sm font-medium hover:bg-black/10 hover-transition shadow-sm";
+  const liquidGlassButton = "flex-1 flex items-center justify-center gap-2 bg-black/5 backdrop-blur-xl border border-black/10 text-foreground px-3 sm:px-5 py-3 rounded-xl text-sm font-medium hover:bg-black/10 hover-transition shadow-sm";
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-3">
+    <div className="flex gap-2 sm:gap-3">
       {/* YouTube */}
       <motion.a
         href={youtubeUrl}
@@ -40,8 +40,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
         <svg className="w-5 h-5 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor">
           <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
         </svg>
-        <span className="sm:hidden">YouTube</span>
-        <span className="hidden sm:inline">Watch on YouTube</span>
+        <span className="hidden sm:inline">YouTube</span>
       </motion.a>
 
       {/* Spotify */}
@@ -58,8 +57,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
         <svg className="w-5 h-5 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
         </svg>
-        <span className="sm:hidden">Spotify</span>
-        <span className="hidden sm:inline">Listen on Spotify</span>
+        <span className="hidden sm:inline">Spotify</span>
       </motion.a>
 
       {/* Share */}
@@ -94,7 +92,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
               className="flex items-center gap-2.5"
             >
               <Share2 className="w-5 h-5 text-foreground" />
-              <span>Share</span>
+              <span className="hidden sm:inline">Share</span>
             </motion.div>
           )}
         </AnimatePresence>
