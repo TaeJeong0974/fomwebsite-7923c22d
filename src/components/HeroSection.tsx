@@ -88,42 +88,10 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: liquidEase, delay: 1.4 }}
-          className="grid grid-cols-1 md:grid-cols-3 grid-gap items-end mb-12 lg:mb-16 pt-8 lg:pt-16"
+          className="mb-12 lg:mb-16 pt-8 lg:pt-16"
         >
-          {/* "Your Hosts" label in first column, aligned to bottom of logo */}
-          <div className="hidden md:flex items-center gap-3 self-end">
-            <motion.svg 
-              width="16" 
-              height="40" 
-              viewBox="0 0 16 40" 
-              fill="none" 
-              className="text-foreground"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1, y: [0, 6, 0] }}
-              transition={{ 
-                opacity: { duration: 0.5, delay: 2 },
-                y: { duration: 1.5, repeat: Infinity, ease: liquidEase, delay: 2.5 }
-              }}
-            >
-              <path 
-                d="M8 0 L8 32 M2 26 L8 34 L14 26" 
-                stroke="currentColor" 
-                strokeWidth="1.5" 
-                strokeLinecap="round" 
-                strokeLinejoin="round"
-              />
-            </motion.svg>
-            <motion.p 
-              className="text-label translate-y-2"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 2 }}
-            >
-              Your Hosts
-            </motion.p>
-          </div>
-          {/* Logo spans columns 2-3 */}
-          <div className="md:col-span-2 flex justify-center" ref={iconRef}>
+          {/* FOM Icon - full width */}
+          <div className="flex justify-center" ref={iconRef}>
             <div 
               className="w-full max-w-full h-auto"
               style={{
@@ -144,6 +112,39 @@ const HeroSection = () => {
             />
           </div>
         </motion.div>
+
+        {/* Your Hosts label with arrow */}
+        <div className="hidden md:flex items-center gap-3 mb-4">
+          <motion.svg 
+            width="16" 
+            height="40" 
+            viewBox="0 0 16 40" 
+            fill="none" 
+            className="text-foreground"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, y: [0, 6, 0] }}
+            transition={{ 
+              opacity: { duration: 0.5, delay: 2 },
+              y: { duration: 1.5, repeat: Infinity, ease: liquidEase, delay: 2.5 }
+            }}
+          >
+            <path 
+              d="M8 0 L8 32 M2 26 L8 34 L14 26" 
+              stroke="currentColor" 
+              strokeWidth="1.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            />
+          </motion.svg>
+          <motion.p 
+            className="text-label translate-y-2"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5, delay: 2 }}
+          >
+            Your Hosts
+          </motion.p>
+        </div>
 
         {/* Mobile: Your Host label */}
         <motion.p 
