@@ -76,7 +76,7 @@ const Navbar = () => {
             </Link>
 
             {/* Desktop Navigation - Second column, centered */}
-            <ul className="hidden md:flex items-center gap-6 justify-self-center">
+            <ul className="hidden md:flex items-center gap-6 justify-self-start">
               {navLinks.map((link, index) => (
                 <motion.li 
                   key={link.label}
