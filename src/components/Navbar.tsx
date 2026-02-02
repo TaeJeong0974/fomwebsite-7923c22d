@@ -55,11 +55,11 @@ const Navbar = () => {
       initial="hidden"
       animate="visible"
       variants={fadeDownVariant}
-      className="sticky top-0 lg:top-4 z-50"
+      className={`z-50 transition-all duration-300 ${isScrolled ? 'fixed top-0 left-0 right-0' : 'relative'}`}
     >
       <div className="container mx-auto container-padding">
         {/* Nav with glass effect on scroll */}
-        <nav className={`rounded-xl py-3 lg:py-4 transition-all duration-300 glass bg-background/80 backdrop-blur-xl px-4 sm:px-5 lg:px-6 ${isScrolled ? '' : 'lg:bg-transparent lg:backdrop-blur-none lg:border-transparent lg:shadow-none lg:px-0'}`}>
+        <nav className={`rounded-xl py-3 lg:py-4 transition-all duration-300 ${isScrolled ? 'glass bg-background/80 backdrop-blur-xl px-4 sm:px-5 lg:px-6 mt-4' : ''}`}>
           <div className={`grid grid-cols-3 items-center ${isScrolled ? '' : 'px-0'}`}>
             {/* Logo - First column */}
             <Link 
