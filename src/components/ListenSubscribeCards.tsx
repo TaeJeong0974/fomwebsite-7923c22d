@@ -1,7 +1,68 @@
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
+
+interface LinkItem {
+  label: string;
+  onClick?: () => void;
+  href?: string;
+  hoverColor: string;
+  glowColor: string;
+}
+
+interface AnimatedLinkProps {
+  item: LinkItem;
+  variants: any;
+}
+
+const AnimatedLink = ({ item, variants }: AnimatedLinkProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const content = (
+    <motion.span 
+      className="font-display text-[2rem] sm:text-[3rem] lg:text-[4rem] xl:text-[5rem] font-medium leading-[1.1] tracking-tight inline-block"
+      animate={{
+        color: isHovered ? item.hoverColor : 'hsl(240, 10%, 10%)',
+        textShadow: isHovered ? `0 0 30px ${item.glowColor}, 0 0 60px ${item.glowColor}` : '0 0 0px transparent',
+        x: isHovered ? 8 : 0,
+      }}
+      transition={{ duration: 0.4, ease: liquidEase }}
+    >
+      {item.label}
+    </motion.span>
+  );
+
+  if (item.onClick) {
+    return (
+      <motion.button
+        onClick={item.onClick}
+        className="text-left py-3 sm:py-4 border-t border-foreground/10 last:border-b"
+        variants={variants}
+        whileTap={{ scale: 0.99 }}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        {content}
+      </motion.button>
+    );
+  }
+
+  return (
+    <motion.a
+      href={item.href}
+      target={item.href?.startsWith('mailto') ? undefined : "_blank"}
+      rel={item.href?.startsWith('mailto') ? undefined : "noopener noreferrer"}
+      className="block py-3 sm:py-4 border-t border-foreground/10 last:border-b"
+      variants={variants}
+      whileTap={{ scale: 0.99 }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {content}
+    </motion.a>
+  );
+};
 
 interface ListenSubscribeCardsProps {
   showTitle?: boolean;
@@ -13,27 +74,31 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
   const sectionRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(sectionRef, { once: true, amount: 0.15 });
 
-  const linkItems = [
+  const linkItems: LinkItem[] = [
     {
       label: "Subscribe",
       onClick: openSubscribe,
       href: undefined,
-      hoverColor: "group-hover:text-[rgb(235,150,90)]", // warm coral
+      hoverColor: "rgb(235,150,90)", // warm coral
+      glowColor: "rgba(235,150,90,0.3)",
     },
     {
       label: "YouTube",
       href: "https://youtube.com/@futureofmarketing",
-      hoverColor: "group-hover:text-[rgb(190,130,160)]", // dusty rose
+      hoverColor: "rgb(190,130,160)", // dusty rose
+      glowColor: "rgba(190,130,160,0.3)",
     },
     {
       label: "Spotify",
       href: "https://open.spotify.com/show/futureofmarketing",
-      hoverColor: "group-hover:text-[rgb(90,130,180)]", // slate blue
+      hoverColor: "rgb(90,130,180)", // slate blue
+      glowColor: "rgba(90,130,180,0.3)",
     },
     {
       label: "Email Us",
       href: "mailto:hello@futureofmarketing.com",
-      hoverColor: "group-hover:text-[rgb(150,130,180)]", // lavender
+      hoverColor: "rgb(150,130,180)", // lavender
+      glowColor: "rgba(150,130,180,0.3)",
     },
   ];
 
@@ -79,33 +144,7 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
         animate={isInView ? "visible" : "hidden"}
       >
         {linkItems.map((item) => (
-          item.onClick ? (
-            <motion.button
-              key={item.label}
-              onClick={item.onClick}
-              className="group text-left py-3 sm:py-4 border-t border-foreground/10 last:border-b hover-transition"
-              variants={itemVariants}
-              whileTap={{ scale: 0.99 }}
-            >
-              <span className={`font-display text-[2rem] sm:text-[3rem] lg:text-[4rem] xl:text-[5rem] font-medium leading-[1.1] tracking-tight text-foreground hover-transition ${item.hoverColor}`}>
-                {item.label}
-              </span>
-            </motion.button>
-          ) : (
-            <motion.a
-              key={item.label}
-              href={item.href}
-              target={item.href?.startsWith('mailto') ? undefined : "_blank"}
-              rel={item.href?.startsWith('mailto') ? undefined : "noopener noreferrer"}
-              className="group py-3 sm:py-4 border-t border-foreground/10 last:border-b hover-transition"
-              variants={itemVariants}
-              whileTap={{ scale: 0.99 }}
-            >
-              <span className={`font-display text-[2rem] sm:text-[3rem] lg:text-[4rem] xl:text-[5rem] font-medium leading-[1.1] tracking-tight text-foreground hover-transition ${item.hoverColor}`}>
-                {item.label}
-              </span>
-            </motion.a>
-          )
+          <AnimatedLink key={item.label} item={item} variants={itemVariants} />
         ))}
       </motion.div>
     </div>
