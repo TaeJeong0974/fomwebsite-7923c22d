@@ -18,18 +18,22 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
       label: "Subscribe",
       onClick: openSubscribe,
       href: undefined,
+      hoverColor: "group-hover:text-[rgb(235,150,90)]", // warm coral
     },
     {
       label: "YouTube",
       href: "https://youtube.com/@futureofmarketing",
+      hoverColor: "group-hover:text-[rgb(190,130,160)]", // dusty rose
     },
     {
       label: "Spotify",
       href: "https://open.spotify.com/show/futureofmarketing",
+      hoverColor: "group-hover:text-[rgb(90,130,180)]", // slate blue
     },
     {
       label: "Email Us",
       href: "mailto:hello@futureofmarketing.com",
+      hoverColor: "group-hover:text-[rgb(150,130,180)]", // lavender
     },
   ];
 
@@ -83,7 +87,7 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
               variants={itemVariants}
               whileTap={{ scale: 0.99 }}
             >
-              <span className="font-display text-[2rem] sm:text-[3rem] lg:text-[4rem] xl:text-[5rem] font-medium leading-[1.1] tracking-tight text-foreground hover-transition group-hover:text-foreground/60">
+              <span className={`font-display text-[2rem] sm:text-[3rem] lg:text-[4rem] xl:text-[5rem] font-medium leading-[1.1] tracking-tight text-foreground hover-transition ${item.hoverColor}`}>
                 {item.label}
               </span>
             </motion.button>
@@ -97,7 +101,7 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
               variants={itemVariants}
               whileTap={{ scale: 0.99 }}
             >
-              <span className="font-display text-[2rem] sm:text-[3rem] lg:text-[4rem] xl:text-[5rem] font-medium leading-[1.1] tracking-tight text-foreground hover-transition group-hover:text-foreground/60">
+              <span className={`font-display text-[2rem] sm:text-[3rem] lg:text-[4rem] xl:text-[5rem] font-medium leading-[1.1] tracking-tight text-foreground hover-transition ${item.hoverColor}`}>
                 {item.label}
               </span>
             </motion.a>
