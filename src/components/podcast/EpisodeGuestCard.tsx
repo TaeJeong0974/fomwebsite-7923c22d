@@ -41,12 +41,10 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
       {/* Content */}
       <div className="relative z-10">
         {/* Header */}
-        <h3 className="text-section-header mb-6">
-          Guest
-        </h3>
+        <h3 className="text-section-header">Guest</h3>
         
         {/* Guest Info */}
-        <div className="space-y-4">
+        <div className="space-y-4 mt-6">
           <h2 className="font-display text-3xl sm:text-4xl text-foreground leading-[0.95] tracking-normal">
             {name.split(' ').map((word, i) => (
               <span key={i} className={`block ${i === 0 ? 'font-medium' : 'font-normal'}`}>{word}</span>
@@ -70,7 +68,7 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
         
         {/* Bio Accordion */}
         {bio && (
-          <div className="pt-4 mt-6 border-t border-border/50">
+          <div className="mt-6 pt-6 border-t border-border/50">
             <button
               onClick={() => setIsExpanded(!isExpanded)}
               className="flex items-center justify-between w-full text-left group"
