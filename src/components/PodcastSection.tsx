@@ -29,7 +29,7 @@ const getEpisodeImage = (slug: string, index: number): string => {
   return EPISODE_IMAGES[slug] || HOST_IMAGES[index % HOST_IMAGES.length];
 };
 const PodcastSection = () => {
-  const [layout, setLayout] = useState<LayoutType>("list");
+  const [layout, setLayout] = useState<LayoutType>("grid");
   const publishedEpisodes = getPublishedEpisodes();
   const comingSoonEpisodes = getComingSoonEpisodes();
   return <section id="podcast" className="pt-8 md:pt-10 lg:pt-12 pb-14 md:pb-16 lg:pb-20">
