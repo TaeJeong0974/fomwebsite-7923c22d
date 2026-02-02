@@ -21,7 +21,11 @@ const EpisodeCardContent = ({
   const textSize = compact 
     ? "text-2xl sm:text-3xl lg:text-4xl" 
     : "text-4xl sm:text-3xl lg:text-4xl";
-  const maxHeight = compact ? "max-h-32" : "max-h-40";
+
+  // Static hover content classes for proper Tailwind JIT detection
+  const hoverContentClasses = compact
+    ? "max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0"
+    : "max-h-40 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:group-hover:max-h-40 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0";
 
   return (
     <div className="card-content-bottom card-padding-lg z-[3]">
@@ -52,8 +56,8 @@ const EpisodeCardContent = ({
         </div>
       )}
       
-      {/* Hover content - overview and button */}
-      <div className={`${maxHeight} mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:${maxHeight} md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0`}>
+      {/* Hover content - overview and button with liquid ease */}
+      <div className={hoverContentClasses}>
         {showOverview && episode.overview && (
           <p className="text-body-sm leading-relaxed text-white mb-4 line-clamp-3">
             {episode.overview}
