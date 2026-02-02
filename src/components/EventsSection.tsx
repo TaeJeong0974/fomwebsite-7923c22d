@@ -55,13 +55,12 @@ const EventsSection = () => {
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
               className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-semibold tracking-tight overflow-visible"
               style={{
-                background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 50%, rgba(235,150,90,1) 60%, rgba(235,150,90,0.8) 65%, rgba(190,130,160,1) 72%, rgba(190,130,160,0.8) 78%, rgba(90,130,180,1) 85%, rgba(90,130,180,0.8) 92%, rgba(120,140,190,0.5) 100%)',
-                backgroundSize: '250% 250%',
-                backgroundPosition: isTitleInView ? undefined : '0% 0%',
+                background: 'linear-gradient(135deg, rgba(235,150,90,1) 0%, rgba(235,150,90,0.9) 15%, rgba(210,130,130,0.9) 30%, rgba(190,130,160,1) 45%, rgba(150,130,180,0.9) 60%, rgba(90,130,180,1) 75%, rgba(90,130,180,0.9) 90%, rgba(120,140,190,0.8) 100%)',
+                backgroundSize: '200% 200%',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 color: 'transparent',
-                animation: isTitleInView ? 'gradient-reveal-once 8s ease-out forwards, gradient-color-loop-no-black 18s linear 8s infinite' : 'none',
+                animation: isTitleInView ? 'gradient-color-loop-no-black 18s linear infinite' : 'none',
                 lineHeight: 0.95,
                 paddingTop: '0.08em',
                 paddingBottom: '0.02em',
