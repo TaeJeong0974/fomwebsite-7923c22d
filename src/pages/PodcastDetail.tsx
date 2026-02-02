@@ -93,7 +93,7 @@ const PodcastDetail = () => {
             />
           </motion.div>
 
-          {/* About This Episode */}
+          {/* Topics */}
           <motion.div
             variants={fadeInVariants}
             initial="hidden"
@@ -101,15 +101,10 @@ const PodcastDetail = () => {
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 1.0, delay: 0.3, ease: liquidEase }}
           >
-            <h3 className="text-section-header mb-4">
-              About This Episode
-            </h3>
-            <div className="text-foreground/80 whitespace-pre-line leading-relaxed text-lg max-w-prose">
-              {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
-            </div>
+            <EpisodeTopics topics={episode.topics} />
           </motion.div>
 
-          {/* Topics */}
+          {/* About This Episode */}
           <motion.div
             variants={fadeInVariants}
             initial="hidden"
@@ -117,7 +112,12 @@ const PodcastDetail = () => {
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
           >
-            <EpisodeTopics topics={episode.topics} />
+            <h3 className="text-section-header mb-4">
+              About This Episode
+            </h3>
+            <div className="text-foreground/80 whitespace-pre-line leading-relaxed text-lg max-w-prose">
+              {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
+            </div>
           </motion.div>
         </div>
 
