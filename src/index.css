@@ -613,11 +613,17 @@
 }
 
 @keyframes gradient-color-loop-no-black {
-  0%, 100% {
+  0% {
     background-position: 70% 70%;
   }
-  50% {
+  33% {
+    background-position: 85% 85%;
+  }
+  66% {
     background-position: 100% 100%;
+  }
+  100% {
+    background-position: 70% 70%;
   }
 }
 
