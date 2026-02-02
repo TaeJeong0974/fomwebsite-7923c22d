@@ -39,14 +39,15 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div 
-        className="card-image hover-scale"
-        style={{
-          backgroundImage: `url(${guestBg})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
+      <div className="card-image hover-scale relative">
+        {/* Lazy loaded background image */}
+        <img
+          src={guestBg}
+          alt=""
+          loading="lazy"
+          decoding="async"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
         {/* Video overlay - only for published episodes with preview */}
         {episode.previewVideoUrl && !isUpcoming && (
           <motion.div
