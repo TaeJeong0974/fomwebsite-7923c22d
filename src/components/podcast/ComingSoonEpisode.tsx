@@ -1,11 +1,12 @@
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Bell } from "lucide-react";
+import { useSubscribe } from "@/contexts/SubscribeContext";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
 import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import EpisodePullQuote from "@/components/podcast/EpisodePullQuote";
 import ComingSoonHeroCard from "@/components/podcast/ComingSoonHeroCard";
-import GenericComingSoon from "@/components/podcast/GenericComingSoon";
 import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
 import DetailVerticalText from "@/components/podcast/DetailVerticalText";
 import ListenSubscribeCards from "@/components/ListenSubscribeCards";
@@ -34,9 +35,41 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
   ];
   const otherEpisodes = allOtherEpisodes.slice(0, 3);
   
+  const { openSubscribe } = useSubscribe();
+  
   // Generic coming soon if no episode found
   if (!episode) {
-    return <GenericComingSoon />;
+    return (
+      <div className="min-h-screen">
+        <main className="section-spacing">
+          <div className="container mx-auto container-padding">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="max-w-2xl mx-auto text-center"
+            >
+              <div className="w-20 h-20 rounded-full glass mb-6 flex items-center justify-center mx-auto">
+                <Bell className="w-8 h-8 text-foreground" />
+              </div>
+              <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+                New Episode<br />Coming Soon
+              </h1>
+              <p className="text-foreground text-lg max-w-md mx-auto mb-8">
+                We're preparing something special. Subscribe to get notified when this episode drops.
+              </p>
+              <button 
+                onClick={openSubscribe}
+                className="btn-base btn-glass btn-lg inline-flex items-center gap-2.5"
+              >
+                <Bell className="w-5 h-5" />
+                Notify Me
+              </button>
+            </motion.div>
+          </div>
+        </main>
+      </div>
+    );
   }
 
   const guestFirstName = episode.name.split(' ')[0];

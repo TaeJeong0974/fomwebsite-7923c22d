@@ -8,7 +8,6 @@ import PageTransition from "@/components/animations/PageTransition";
 import Navbar from "@/components/Navbar";
 import Index from "./pages/Index";
 import PodcastDetail from "./pages/PodcastDetail";
-import AnimationDemo from "./pages/AnimationDemo";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,7 +27,6 @@ const AppRoutes = () => {
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Index />} />
           <Route path="/episode/:slug" element={<PodcastDetail />} />
-          <Route path="/animation-demo" element={<AnimationDemo />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </PageTransition>
