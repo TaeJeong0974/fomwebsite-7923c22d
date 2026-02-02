@@ -26,7 +26,7 @@ const AnimatedLink = ({ item, variants }: AnimatedLinkProps) => {
         x: isHovered ? 8 : 0,
       }}
       transition={{ 
-        color: { duration: 2, ease: 'easeInOut', repeat: isHovered ? Infinity : 0 },
+        color: { duration: 3, ease: 'easeInOut', repeat: isHovered ? Infinity : 0 },
         x: { duration: 0.4, ease: liquidEase },
       }}
     >
@@ -80,22 +80,22 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
       label: "Subscribe",
       onClick: openSubscribe,
       href: undefined,
-      hoverColors: ["rgb(235,150,90)", "rgb(245,170,110)", "rgb(225,130,70)", "rgb(235,150,90)"], // warm coral shades
+      hoverColors: ["rgb(235,150,90)", "rgb(240,160,100)", "rgb(230,140,80)", "rgb(235,150,90)"], // warm coral shades
     },
     {
       label: "YouTube",
       href: "https://youtube.com/@futureofmarketing",
-      hoverColors: ["rgb(190,130,160)", "rgb(210,150,180)", "rgb(170,110,140)", "rgb(190,130,160)"], // dusty rose shades
+      hoverColors: ["rgb(190,130,160)", "rgb(200,140,170)", "rgb(180,120,150)", "rgb(190,130,160)"], // dusty rose shades
     },
     {
       label: "Spotify",
       href: "https://open.spotify.com/show/futureofmarketing",
-      hoverColors: ["rgb(90,130,180)", "rgb(110,150,200)", "rgb(70,110,160)", "rgb(90,130,180)"], // slate blue shades
+      hoverColors: ["rgb(150,130,180)", "rgb(160,140,190)", "rgb(140,120,170)", "rgb(150,130,180)"], // lavender shades
     },
     {
       label: "Email Us",
       href: "mailto:hello@futureofmarketing.com",
-      hoverColors: ["rgb(150,130,180)", "rgb(170,150,200)", "rgb(130,110,160)", "rgb(150,130,180)"], // lavender shades
+      hoverColors: ["rgb(90,130,180)", "rgb(100,140,190)", "rgb(80,120,170)", "rgb(90,130,180)"], // slate blue shades
     },
   ];
 
