@@ -7,8 +7,7 @@ interface LinkItem {
   label: string;
   onClick?: () => void;
   href?: string;
-  hoverColor: string;
-  glowColor: string;
+  hoverColors: string[];
 }
 
 interface AnimatedLinkProps {
@@ -23,11 +22,13 @@ const AnimatedLink = ({ item, variants }: AnimatedLinkProps) => {
     <motion.span 
       className="font-display text-[2rem] sm:text-[3rem] lg:text-[4rem] xl:text-[5rem] font-medium leading-[1.1] tracking-tight inline-block"
       animate={{
-        color: isHovered ? item.hoverColor : 'hsl(240, 10%, 10%)',
-        textShadow: isHovered ? `0 0 30px ${item.glowColor}, 0 0 60px ${item.glowColor}` : '0 0 0px transparent',
+        color: isHovered ? item.hoverColors : 'hsl(240, 10%, 10%)',
         x: isHovered ? 8 : 0,
       }}
-      transition={{ duration: 0.4, ease: liquidEase }}
+      transition={{ 
+        color: { duration: 2, ease: 'easeInOut', repeat: isHovered ? Infinity : 0 },
+        x: { duration: 0.4, ease: liquidEase },
+      }}
     >
       {item.label}
     </motion.span>
@@ -79,26 +80,22 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
       label: "Subscribe",
       onClick: openSubscribe,
       href: undefined,
-      hoverColor: "rgb(235,150,90)", // warm coral
-      glowColor: "rgba(235,150,90,0.3)",
+      hoverColors: ["rgb(235,150,90)", "rgb(245,170,110)", "rgb(225,130,70)", "rgb(235,150,90)"], // warm coral shades
     },
     {
       label: "YouTube",
       href: "https://youtube.com/@futureofmarketing",
-      hoverColor: "rgb(190,130,160)", // dusty rose
-      glowColor: "rgba(190,130,160,0.3)",
+      hoverColors: ["rgb(190,130,160)", "rgb(210,150,180)", "rgb(170,110,140)", "rgb(190,130,160)"], // dusty rose shades
     },
     {
       label: "Spotify",
       href: "https://open.spotify.com/show/futureofmarketing",
-      hoverColor: "rgb(90,130,180)", // slate blue
-      glowColor: "rgba(90,130,180,0.3)",
+      hoverColors: ["rgb(90,130,180)", "rgb(110,150,200)", "rgb(70,110,160)", "rgb(90,130,180)"], // slate blue shades
     },
     {
       label: "Email Us",
       href: "mailto:hello@futureofmarketing.com",
-      hoverColor: "rgb(150,130,180)", // lavender
-      glowColor: "rgba(150,130,180,0.3)",
+      hoverColors: ["rgb(150,130,180)", "rgb(170,150,200)", "rgb(130,110,160)", "rgb(150,130,180)"], // lavender shades
     },
   ];
 
