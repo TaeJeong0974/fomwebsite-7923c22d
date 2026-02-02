@@ -197,28 +197,30 @@ const PodcastListView = ({
       }} className="relative" onMouseEnter={() => setHoveredIndex(index)} onMouseLeave={() => setHoveredIndex(null)} onMouseMove={e => handleMouseMove(index, e)}>
             {mousePositions[index] && <MouseFollowImage isHovered={hoveredIndex === index && ctaHovered !== index} mouseX={mousePositions[index].x} mouseY={mousePositions[index].y} imageSrc={getEpisodeImage(episode.slug, index)} name={episode.name} />}
             
-            <Link to={`/episode/${episode.slug}`} className="group py-6 sm:py-8 flex items-start justify-between gap-6 hover-transition relative z-10">
+            <Link to={`/episode/${episode.slug}`} className="group py-6 sm:py-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-6 hover-transition relative z-10">
               <div className="flex-1 min-w-0 text-left">
-                <div className="flex items-start gap-6 sm:gap-8 lg:gap-10">
+                <div className="flex items-start gap-4 sm:gap-6 lg:gap-10">
                   <span className={`text-label pt-1 sm:pt-2 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>EP {String(index + 1).padStart(2, '0')}</span>
-                  <div className="flex items-start gap-4">
-                    <h3 className={`font-display text-4xl sm:text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
-                      {episode.name}
-                    </h3>
-                    {!isComingSoon && isNewEpisode(episode.publishedDate) && <span className="badge-status mt-1">
-                        New
-                      </span>}
+                  <div className="flex-1">
+                    <div className="flex items-start gap-4">
+                      <h3 className={`font-display text-3xl sm:text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
+                        {episode.name}
+                      </h3>
+                      {!isComingSoon && isNewEpisode(episode.publishedDate) && <span className="badge-status mt-1">
+                          New
+                        </span>}
+                    </div>
+                    <p className={`text-body-sm mt-2 text-foreground/60 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
+                      {isIntroEpisode ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>}
+                    </p>
                   </div>
                   <p className={`hidden lg:block text-body-sm pt-1 sm:pt-2 text-foreground/60 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
                     {isIntroEpisode ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>}
                   </p>
                 </div>
-                <p className={`lg:hidden text-body-sm mt-2 ml-[calc(theme(spacing.6)+3.5rem)] sm:ml-[calc(theme(spacing.8)+3.5rem)] text-foreground/60 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
-                  {isIntroEpisode ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>}
-                </p>
               </div>
               
-              <span className="shrink-0 w-[145px] text-center inline-flex items-center justify-center font-display font-semibold uppercase tracking-wider text-xs px-5 pt-3 pb-2.5 rounded-full bg-black/5 backdrop-blur-xl border border-black/10 text-foreground group-hover:bg-foreground group-hover:text-background group-hover:border-foreground transition-all duration-300 leading-none" onMouseEnter={() => setCtaHovered(index)} onMouseLeave={() => setCtaHovered(null)}>
+              <span className="shrink-0 sm:w-[145px] w-full text-center inline-flex items-center justify-center font-display font-semibold uppercase tracking-wider text-xs px-5 pt-3 pb-2.5 rounded-full bg-black/5 backdrop-blur-xl border border-black/10 text-foreground group-hover:bg-foreground group-hover:text-background group-hover:border-foreground transition-all duration-300 leading-none" onMouseEnter={() => setCtaHovered(index)} onMouseLeave={() => setCtaHovered(null)}>
                 {isComingSoon ? "Coming Soon" : "Watch Now"}
               </span>
             </Link>
