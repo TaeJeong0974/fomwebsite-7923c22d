@@ -40,10 +40,10 @@ const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
         animate={{
           opacity: isHovered ? 0.8 : 0,
           background: isHovered ? [
-            'linear-gradient(135deg, rgba(100, 120, 180, 0.9) 0%, rgba(255, 120, 100, 0.8) 50%, rgba(180, 160, 220, 0.9) 100%)',
-            'linear-gradient(135deg, rgba(255, 140, 120, 0.8) 0%, rgba(120, 100, 200, 0.9) 50%, rgba(255, 100, 130, 0.8) 100%)',
-            'linear-gradient(135deg, rgba(160, 140, 220, 0.9) 0%, rgba(255, 130, 100, 0.8) 50%, rgba(100, 140, 200, 0.9) 100%)',
-            'linear-gradient(135deg, rgba(100, 120, 180, 0.9) 0%, rgba(255, 120, 100, 0.8) 50%, rgba(180, 160, 220, 0.9) 100%)',
+            'linear-gradient(135deg, rgba(220, 50, 50, 0.9) 0%, rgba(140, 60, 180, 0.8) 50%, rgba(60, 100, 220, 0.9) 100%)',
+            'linear-gradient(135deg, rgba(140, 60, 180, 0.9) 0%, rgba(60, 100, 220, 0.8) 50%, rgba(220, 50, 50, 0.9) 100%)',
+            'linear-gradient(135deg, rgba(60, 100, 220, 0.9) 0%, rgba(220, 50, 50, 0.8) 50%, rgba(140, 60, 180, 0.9) 100%)',
+            'linear-gradient(135deg, rgba(220, 50, 50, 0.9) 0%, rgba(140, 60, 180, 0.8) 50%, rgba(60, 100, 220, 0.9) 100%)',
           ] : undefined,
         }}
         transition={{
