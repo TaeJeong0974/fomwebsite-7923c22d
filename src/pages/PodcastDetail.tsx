@@ -67,11 +67,18 @@ const PodcastDetail = () => {
               spotifyUrl={episode.spotifyUrl}
             />
             
-            {/* Compact Action Buttons */}
-            <EpisodeActionButtons 
-              youtubeUrl={episode.youtubeUrl}
-              spotifyUrl={episode.spotifyUrl}
-            />
+            {/* Episode Overview + Action Buttons */}
+            <div className="space-y-4">
+              {episode.overview && (
+                <p className="text-foreground/70 text-base sm:text-lg leading-relaxed max-w-prose">
+                  {episode.overview}
+                </p>
+              )}
+              <EpisodeActionButtons 
+                youtubeUrl={episode.youtubeUrl}
+                spotifyUrl={episode.spotifyUrl}
+              />
+            </div>
 
             {/* Hosts - Mobile only, below video */}
             <div className="lg:hidden">
