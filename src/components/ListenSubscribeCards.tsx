@@ -26,8 +26,10 @@ const AnimatedLink = ({ item, variants }: AnimatedLinkProps) => {
         x: isHovered ? 8 : 0,
       }}
       transition={{ 
-        color: { duration: 3, ease: 'easeInOut', repeat: isHovered ? Infinity : 0 },
-        x: { duration: 0.4, ease: liquidEase },
+        color: isHovered 
+          ? { duration: 3, ease: 'easeInOut', repeat: Infinity }
+          : { duration: 0.15, ease: 'easeOut' },
+        x: { duration: isHovered ? 0.4 : 0.15, ease: liquidEase },
       }}
     >
       {item.label}
