@@ -88,10 +88,12 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: liquidEase, delay: 1.4 }}
-          className="mb-12 lg:mb-16 pt-8 lg:pt-16"
+          className="grid grid-cols-1 md:grid-cols-3 grid-gap items-end mb-12 lg:mb-16 pt-8 lg:pt-16"
         >
-          {/* FOM Icon - full width */}
-          <div className="flex justify-center" ref={iconRef}>
+          {/* Empty first column */}
+          <div className="hidden md:block" />
+          {/* FOM Icon - spans columns 2-3 */}
+          <div className="md:col-span-2 flex justify-center" ref={iconRef}>
             <div 
               className="w-full max-w-full h-auto"
               style={{
