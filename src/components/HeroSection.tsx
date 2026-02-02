@@ -42,7 +42,7 @@ const HeroSection = () => {
         {/* Top row: Tagline left, Title right */}
         <div className="flex justify-between items-start mb-20 lg:mb-32">
           {/* Typewriter tagline */}
-          <h1 className="font-display text-lg sm:text-xl md:text-2xl lg:text-3xl text-foreground font-medium tracking-normal leading-[1.1]">
+          <h1 className="font-display text-sm sm:text-base md:text-lg lg:text-xl text-foreground font-medium tracking-normal leading-[0.95]">
             {taglineLines.map((line, lineIndex) => (
               <span key={lineIndex} className="block">
                 <motion.span
