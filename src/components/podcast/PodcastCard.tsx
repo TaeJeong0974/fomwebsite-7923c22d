@@ -109,10 +109,12 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
             </div>
           )}
           
-          {/* Hover content - overview and button */}
-          <div className="max-h-32 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:max-h-32 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
-            {!isUpcoming && episode.overview && (
-              <p className="text-body-sm leading-relaxed text-white mb-4">{episode.overview}</p>
+          {/* Hover content - bio/overview and button */}
+          <div className="max-h-40 mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:max-h-40 md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0">
+            {(episode.bio || episode.overview) && (
+              <p className="text-body-sm leading-relaxed text-white mb-4 line-clamp-3">
+                {episode.bio || episode.overview}
+              </p>
             )}
             <span className="btn-base btn-glass-light btn-sm">
               {isUpcoming ? "Learn More" : "Watch Now"}
