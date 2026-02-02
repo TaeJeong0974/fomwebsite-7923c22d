@@ -60,7 +60,7 @@ const EventsSection = () => {
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 color: 'transparent',
-                animation: isTitleInView ? 'gradient-color-loop-no-black 18s linear infinite' : 'none',
+                animation: isTitleInView ? 'gradient-color-loop-no-black 6s linear infinite' : 'none',
                 lineHeight: 0.95,
                 paddingTop: '0.08em',
                 paddingBottom: '0.02em',
