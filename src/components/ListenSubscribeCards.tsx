@@ -33,9 +33,9 @@ const AnimatedLink = ({ item, variants, isMobile }: AnimatedLinkProps) => {
       }}
       transition={{ 
         color: isHovered && !isMobile
-          ? { duration: 1.5, ease: 'easeInOut', repeat: Infinity }
+          ? { duration: 4, ease: 'easeInOut', repeat: Infinity }
           : { duration: 0.15, ease: liquidEase },
-        x: { duration: isHovered && !isMobile ? 0.4 : 0.15, ease: liquidEase },
+        x: { duration: isHovered && !isMobile ? 0.6 : 0.15, ease: liquidEase },
       }}
     >
       {item.label}
