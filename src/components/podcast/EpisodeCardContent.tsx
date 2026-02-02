@@ -22,9 +22,9 @@ const EpisodeCardContent = ({
     ? "text-2xl sm:text-3xl lg:text-4xl" 
     : "text-4xl sm:text-3xl lg:text-4xl";
 
-  // Grid-based height animation - content opacity synced with height
-  const hoverWrapperClasses = "grid grid-rows-[1fr] mt-4 md:grid-rows-[0fr] md:mt-0 md:group-hover:grid-rows-[1fr] md:group-hover:mt-4 transition-[grid-template-rows,margin] duration-400 ease-[cubic-bezier(0.22,1,0.36,1)]";
-  const hoverContentClasses = "min-h-0 overflow-hidden";
+  // Grid-based height animation with smoother, longer duration
+  const hoverWrapperClasses = "grid grid-rows-[1fr] mt-4 md:grid-rows-[0fr] md:mt-0 md:group-hover:grid-rows-[1fr] md:group-hover:mt-4 transition-[grid-template-rows,margin] duration-700 ease-[cubic-bezier(0.33,1,0.68,1)]";
+  const hoverContentClasses = "min-h-0 overflow-hidden opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 delay-100 ease-[cubic-bezier(0.33,1,0.68,1)]";
 
   return (
     <div className="card-content-bottom card-padding-lg z-[3]">
