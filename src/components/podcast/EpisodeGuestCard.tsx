@@ -81,10 +81,14 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
                     rotate: { duration: 0.3 },
                     scale: { duration: 0.6, ease: "easeInOut" }
                   }}
-                  className="rounded-full p-1.5 bg-foreground/5 backdrop-blur-xl border border-border/20 hover:bg-foreground hover:border-foreground group-hover:text-background transition-colors duration-300"
+                  className={`rounded-full p-1.5 backdrop-blur-xl border transition-colors duration-300 ${
+                    isHovered 
+                      ? 'bg-foreground border-foreground' 
+                      : 'bg-foreground/5 border-border/20'
+                  }`}
                 >
-                <ChevronDown className="h-4 w-4 text-foreground" />
-              </motion.div>
+                  <ChevronDown className={`h-4 w-4 transition-colors duration-300 ${isHovered ? 'text-background' : 'text-foreground'}`} />
+                </motion.div>
             </button>
             
             <AnimatePresence>
