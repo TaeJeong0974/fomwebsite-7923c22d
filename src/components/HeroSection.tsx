@@ -175,7 +175,26 @@ const HeroSection = () => {
                         fetchPriority="high"
                         decoding="async"
                       />
-                      <div className="card-overlay" />
+                      {/* Animated color gradient - coral, rose, slate blue */}
+                      <motion.div 
+                        className="absolute inset-0 mix-blend-soft-light hidden md:block"
+                        animate={{
+                          background: [
+                            'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
+                            'linear-gradient(135deg, rgb(200,140,150) 0%, rgb(130,150,180) 50%, rgb(230,130,110) 100%)',
+                            'linear-gradient(135deg, rgb(130,150,180) 0%, rgb(230,130,110) 50%, rgb(200,140,150) 100%)',
+                            'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
+                          ]
+                        }}
+                        transition={{ duration: 3, ease: 'easeInOut', repeat: Infinity }}
+                      />
+                      {/* Static gradient for mobile */}
+                      <div 
+                        className="absolute inset-0 mix-blend-soft-light md:hidden"
+                        style={{ background: 'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)' }}
+                      />
+                      {/* 75% black gradient overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-black/20" />
                     </div>
 
                     <div className="card-content-bottom card-padding">
