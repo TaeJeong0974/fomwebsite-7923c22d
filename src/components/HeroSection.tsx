@@ -127,8 +127,8 @@ const HeroSection = () => {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1.2, ease: liquidEase, delay: 1.4 }}
               style={{
-                background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(140,100,180,0.9) 78%, rgba(100,120,200,0.9) 84%, rgba(220,120,100,0.9) 90%, rgba(235,160,140,0.85) 95%, rgba(200,140,180,0.9) 100%)',
-                backgroundSize: '250% 250%',
+                background: 'radial-gradient(ellipse at 100% 100%, rgba(140,100,180,0.9) 0%, rgba(100,120,200,0.9) 15%, rgba(220,120,100,0.9) 30%, rgba(0,0,0,1) 50%, rgba(0,0,0,1) 100%)',
+                backgroundSize: '200% 200%',
                 WebkitMaskImage: `url(${FOMIcon})`,
                 maskImage: `url(${FOMIcon})`,
                 WebkitMaskRepeat: 'no-repeat',
@@ -138,7 +138,7 @@ const HeroSection = () => {
                 WebkitMaskPosition: 'center',
                 maskPosition: 'center',
                 aspectRatio: '598 / 186',
-                animation: 'gradient-reveal-once 8s ease-out 1.4s forwards, gradient-color-loop 12s ease-in-out 9.4s infinite',
+                animation: 'gradient-color-loop 12s ease-in-out infinite',
               }}
             />
           </div>
