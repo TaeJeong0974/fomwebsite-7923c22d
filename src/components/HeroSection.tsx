@@ -129,7 +129,7 @@ const HeroSection = () => {
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 1.2, ease: liquidEase, delay: 1.4 }}
               style={{
-                background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 35%, rgba(140,100,180,0.9) 50%, rgba(0,0,0,1) 60%, rgba(220,120,100,0.9) 70%, rgba(0,0,0,1) 80%, rgba(100,140,220,0.85) 90%, rgba(0,0,0,1) 100%)',
+                background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(140,100,180,0.9) 78%, rgba(100,120,200,0.9) 84%, rgba(220,120,100,0.9) 90%, rgba(235,160,140,0.85) 95%, rgba(200,140,180,0.9) 100%)',
                 backgroundSize: '250% 250%',
                 backgroundPosition: isIconInView ? undefined : '0% 0%',
                 WebkitMaskImage: `url(${FOMIcon})`,
