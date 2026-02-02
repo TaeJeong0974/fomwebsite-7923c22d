@@ -22,7 +22,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
     tap: { scale: 0.98 },
   };
 
-  const liquidGlassButton = "group/btn flex items-center justify-center bg-black/5 backdrop-blur-xl border border-black/10 text-foreground p-3 rounded-xl text-sm font-medium hover:bg-black/10 hover-transition shadow-sm";
+  const liquidGlassButton = "group/btn flex items-center justify-center bg-black/5 backdrop-blur-xl border border-black/10 text-foreground w-12 h-12 rounded-full text-sm font-medium hover:bg-black/10 hover-transition shadow-sm";
 
   // Grid-based width animation for text reveal
   const textWrapperClasses = "grid grid-cols-[0fr] group-hover/btn:grid-cols-[1fr] transition-[grid-template-columns] duration-500 ease-[cubic-bezier(0.33,1,0.68,1)]";
