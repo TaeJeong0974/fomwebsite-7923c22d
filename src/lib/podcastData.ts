@@ -142,7 +142,7 @@ Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit la
     company: "Notion",
     companyDomain: "notion.so",
     overview: "Building and nurturing creative communities that drive brand loyalty.",
-    bio: "Lena Waters is the Chief Marketing Officer at Notion, where she leads the marketing strategy for one of the fastest-growing productivity platforms in the world. Before Notion, Lena held senior marketing roles at Dropbox and Atlassian, where she pioneered community-driven growth strategies. She's a recognized thought leader on building authentic brand communities and product-led marketing.",
+    bio: "A product-minded marketer who turns user communities into growth engines. Previously led marketing at Dropbox and Atlassian, pioneering community-driven strategies that scaled to millions of active users.",
     fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
@@ -172,7 +172,7 @@ Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit la
     company: "Square",
     companyDomain: "squareup.com",
     overview: "Building a payments brand that resonates with businesses of all sizes.",
-    bio: "Lindsey Irvine is the Chief Marketing Officer at Square, where she oversees brand, communications, and marketing for the financial services company serving millions of businesses. With a background in fintech and consumer marketing, Lindsey previously led marketing at Carta and held leadership roles at PayPal. She's passionate about democratizing financial services and making complex products accessible to everyday entrepreneurs.",
+    bio: "A fintech brand builder who makes complex financial products accessible to everyday entrepreneurs. Previously CMO at Carta and held leadership roles at PayPal, scaling marketing for millions of businesses.",
     fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
@@ -203,7 +203,7 @@ Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit la
     company: "Datadog",
     companyDomain: "datadoghq.com",
     overview: "How observability is transforming the way engineering teams build and ship software.",
-    bio: "Sara Varni is the Chief Marketing Officer at Datadog, where she leads global marketing strategy for the cloud monitoring platform trusted by thousands of enterprises. Previously, she served as CMO at Twilio and held leadership roles at Salesforce. Sara is known for her expertise in scaling marketing organizations during hypergrowth and building brands that resonate with technical audiences.",
+    bio: "A technical marketing leader who bridges the gap between engineering and brand. Previously CMO at Twilio and held leadership roles at Salesforce, known for scaling marketing during hypergrowth.",
     fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
