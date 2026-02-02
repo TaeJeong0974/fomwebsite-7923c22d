@@ -29,13 +29,13 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
         animate={{ opacity: isHovered ? 1 : 0 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,hsl(var(--background))_80%,transparent)]" />
         <img
           src={teaserBg} 
           alt="" 
           className="w-full h-auto object-contain object-bottom absolute bottom-0 left-0"
         />
+        {/* Gradient overlay on top of image */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,hsl(var(--background))_80%,transparent)]" />
       </motion.div>
       
       {/* Content */}
