@@ -11,7 +11,6 @@ const EventsSection = () => {
   const [isInView, setIsInView] = useState(false);
   const isMobile = useIsMobile();
   const isTitleInView = useInView(titleRef, { once: true, amount: 0.3 });
-  
 
   // Parallax scroll effect
   const { scrollYProgress } = useScroll({
