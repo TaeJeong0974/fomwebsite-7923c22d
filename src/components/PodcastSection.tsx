@@ -8,6 +8,7 @@ import SubscribeCard from "@/components/SubscribeCard";
 import PodcastCard from "@/components/podcast/PodcastCard";
 import MouseFollowImage from "@/components/podcast/MouseFollowImage";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
+import { useIsMobile } from "@/hooks/use-mobile";
 import hostMada from "@/assets/host-mada.png";
 import hostEthan from "@/assets/host-ethan.png";
 import hostCamille from "@/assets/host-camille.png";
@@ -98,64 +99,74 @@ interface PodcastViewProps {
 const PodcastGridView = ({
   episodes,
   comingSoonEpisodes
-}: PodcastViewProps) => <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-gap">
-    {episodes.slice(0, 4).map((episode, index) => <motion.div key={episode.id} initial={{
-    opacity: 0,
-    y: 30,
-    scale: 0.95
-  }} whileInView={{
-    opacity: 1,
-    y: 0,
-    scale: 1
-  }} viewport={{
-    once: true,
-    amount: 0.15
-  }} transition={{
-    duration: 1.0,
-    delay: Math.floor(index / 3) * 0.1,
-    ease: liquidEase
-  }}>
-        <PodcastCard episode={episode} isNew={isNewEpisode(episode.publishedDate)} />
-      </motion.div>)}
-    
-    {comingSoonEpisodes.map((episode, idx) => <motion.div key={`coming-soon-${episode.id}`} initial={{
-    opacity: 0,
-    y: 30,
-    scale: 0.95
-  }} whileInView={{
-    opacity: 1,
-    y: 0,
-    scale: 1
-  }} viewport={{
-    once: true,
-    amount: 0.15
-  }} transition={{
-    duration: 1.0,
-    delay: Math.floor((episodes.slice(0, 4).length + idx) / 3) * 0.1,
-    ease: liquidEase
-  }}>
-        <PodcastCard episode={episode} isUpcoming />
-      </motion.div>)}
-    
-    <motion.div initial={{
-    opacity: 0,
-    y: 30,
-    scale: 0.98
-  }} whileInView={{
-    opacity: 1,
-    y: 0,
-    scale: 1
-  }} viewport={{
-    once: true,
-    amount: 0.15
-  }} transition={{
-    duration: 1.0,
-    delay: 0.9,
-    ease: liquidEase
-  }}>
-      <SubscribeCard />
-    </motion.div>
-  </div>;
+}: PodcastViewProps) => {
+  const isMobile = useIsMobile();
+  const [showAll, setShowAll] = useState(false);
+  
+  const allCards = [
+    ...episodes.slice(0, 4).map((ep, i) => ({ type: 'episode' as const, episode: ep, index: i })),
+    ...comingSoonEpisodes.map((ep, i) => ({ type: 'coming-soon' as const, episode: ep, index: episodes.slice(0, 4).length + i })),
+  ];
+  
+  // On mobile, show 3 initially; on desktop show all
+  const visibleCards = isMobile && !showAll ? allCards.slice(0, 3) : allCards;
+  const hasMore = isMobile && !showAll && allCards.length > 3;
+  
+  return (
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-gap">
+        {visibleCards.map(({ type, episode, index }) => (
+          <motion.div 
+            key={type === 'coming-soon' ? `coming-soon-${episode.id}` : episode.id} 
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{
+              duration: 1.0,
+              delay: Math.floor(index / 3) * 0.1,
+              ease: liquidEase
+            }}
+          >
+            <PodcastCard 
+              episode={episode} 
+              isNew={type === 'episode' && isNewEpisode(episode.publishedDate)} 
+              isUpcoming={type === 'coming-soon'}
+            />
+          </motion.div>
+        ))}
+        
+        {/* Subscribe card - only show when all cards are visible or on desktop */}
+        {(!isMobile || showAll) && (
+          <motion.div 
+            initial={{ opacity: 0, y: 30, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, delay: 0.9, ease: liquidEase }}
+          >
+            <SubscribeCard />
+          </motion.div>
+        )}
+      </div>
+      
+      {/* Load More button - mobile only */}
+      {hasMore && (
+        <motion.div 
+          className="flex justify-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+        >
+          <button
+            onClick={() => setShowAll(true)}
+            className="btn-base btn-glass btn-md"
+          >
+            Load More
+          </button>
+        </motion.div>
+      )}
+    </div>
+  );
+};
 const PodcastListView = ({
   episodes,
   comingSoonEpisodes
