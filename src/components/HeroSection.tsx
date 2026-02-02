@@ -136,10 +136,10 @@ const HeroSection = () => {
           <div 
             ref={scrollRef}
             className={isMobile 
-              ? "flex gap-4 overflow-x-auto scrollbar-hide -mr-6 pr-6" 
+              ? "flex gap-4 overflow-x-auto scrollbar-hide -mr-6 pr-6 overscroll-x-contain" 
               : "grid grid-cols-1 md:grid-cols-3 grid-gap"
             }
-            style={isMobile ? { scrollSnapType: 'x mandatory' } : undefined}
+            style={isMobile ? { scrollSnapType: 'x mandatory', touchAction: 'pan-x pan-y' } : undefined}
           >
             {hosts.map((host, index) => {
               const firstName = host.name.split(' ')[0];
