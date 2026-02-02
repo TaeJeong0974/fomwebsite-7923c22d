@@ -133,160 +133,89 @@ const HeroSection = () => {
 
         {/* Hosts section */}
         <div id="hosts">
-          {isMobile ? (
-            /* Mobile: horizontal slider with 1.25 cards visible */
-            <div 
-              ref={scrollRef}
-              className="flex gap-4 overflow-x-auto scrollbar-hide -mr-6 pr-6"
-              style={{ scrollSnapType: 'x mandatory' }}
-            >
-              {hosts.map((host, index) => {
-                const firstName = host.name.split(' ')[0];
-                const lastName = host.name.split(' ').slice(1).join(' ');
-                const isExpanded = expandedIndex === index;
-                
-                return (
-                  <motion.article
-                    key={host.name}
-                    initial={{ opacity: 0, y: 60 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ 
-                      duration: 0.8, 
-                      delay: 2 + index * 0.2,
-                      ease: liquidEase 
-                    }}
-                    className="group flex-shrink-0"
-                    style={{ width: 'calc(88% - 8px)', scrollSnapAlign: 'start' }}
+          <div 
+            ref={scrollRef}
+            className={isMobile 
+              ? "flex gap-4 overflow-x-auto scrollbar-hide -mr-6 pr-6" 
+              : "grid grid-cols-1 md:grid-cols-3 grid-gap"
+            }
+            style={isMobile ? { scrollSnapType: 'x mandatory' } : undefined}
+          >
+            {hosts.map((host, index) => {
+              const firstName = host.name.split(' ')[0];
+              const lastName = host.name.split(' ').slice(1).join(' ');
+              const isExpanded = expandedIndex === index;
+              
+              return (
+                <motion.article
+                  key={host.name}
+                  initial={{ opacity: 0, y: 60 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    duration: 0.8, 
+                    delay: 2 + index * 0.2,
+                    ease: liquidEase 
+                  }}
+                  className={isMobile ? "group flex-shrink-0" : "group"}
+                  style={isMobile ? { width: 'calc(88% - 8px)', scrollSnapAlign: 'start' } : undefined}
+                >
+                  <div 
+                    className={isMobile 
+                      ? "card-base relative overflow-hidden rounded-xl aspect-[3/4] hover-scale cursor-pointer"
+                      : "card-base card-image hover-scale cursor-pointer"
+                    }
+                    onClick={() => setExpandedIndex(isExpanded ? null : index)}
                   >
-                    <div 
-                      className="card-base relative overflow-hidden rounded-xl aspect-[3/4] hover-scale cursor-pointer"
-                      onClick={() => setExpandedIndex(isExpanded ? null : index)}
-                    >
-                      <div className="absolute inset-0">
-                        <img 
-                          src={host.image} 
-                          alt={host.name}
-                          className="w-full h-full object-cover"
-                          loading="eager"
-                          fetchPriority="high"
-                          decoding="async"
-                        />
-                        <div className="card-overlay" />
-                      </div>
-
-                      <div className="card-content-bottom card-padding">
-                        <div className="flex items-end justify-between">
-                          <div>
-                            <h3 className="font-display text-white leading-[0.95] tracking-normal">
-                              <span className="block text-2xl sm:text-3xl lg:text-4xl font-medium">{firstName}</span>
-                              <span className="block text-2xl sm:text-3xl lg:text-4xl font-normal">{lastName}</span>
-                            </h3>
-                            <p className="text-body-sm text-white mt-1">{host.title}</p>
-                          </div>
-                          <div
-                            className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20 transition-transform duration-300 ease-out group-hover:-translate-y-1 hover:!-translate-y-1.5"
-                            style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease' }}
-                          >
-                            <ChevronDown className="h-5 w-5 text-white" />
-                          </div>
-                        </div>
-                        
-                        <AnimatePresence>
-                          {isExpanded && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.3 }}
-                              className="overflow-hidden"
-                            >
-                              <p className="text-sm leading-relaxed text-white/90 mt-4" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
-                                {host.bio}
-                              </p>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
+                    <div className="absolute inset-0">
+                      <img 
+                        src={host.image} 
+                        alt={host.name}
+                        className="w-full h-full object-cover"
+                        loading="eager"
+                        fetchPriority="high"
+                        decoding="async"
+                      />
+                      <div className="card-overlay" />
                     </div>
-                  </motion.article>
-                );
-              })}
-            </div>
-          ) : (
-            /* Desktop: 3-column grid */
-            <div className="grid grid-cols-1 md:grid-cols-3 grid-gap">
-              {hosts.map((host, index) => {
-                const firstName = host.name.split(' ')[0];
-                const lastName = host.name.split(' ').slice(1).join(' ');
-                const isExpanded = expandedIndex === index;
-                
-                return (
-                  <motion.article
-                    key={host.name}
-                    initial={{ opacity: 0, y: 60 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ 
-                      duration: 0.8, 
-                      delay: 2 + index * 0.2,
-                      ease: liquidEase 
-                    }}
-                    className="group"
-                  >
-                    <div 
-                      className="card-base card-image hover-scale cursor-pointer"
-                      onClick={() => setExpandedIndex(isExpanded ? null : index)}
-                    >
-                      <div className="absolute inset-0">
-                        <img 
-                          src={host.image} 
-                          alt={host.name}
-                          className="w-full h-full object-cover"
-                          loading="eager"
-                          fetchPriority="high"
-                          decoding="async"
-                        />
-                        <div className="card-overlay" />
-                      </div>
 
-                      <div className="card-content-bottom card-padding">
-                        <div className="flex items-end justify-between">
-                          <div>
-                            <h3 className="font-display text-white leading-[0.95] tracking-normal">
-                              <span className="block text-2xl sm:text-3xl lg:text-4xl font-medium">{firstName}</span>
-                              <span className="block text-2xl sm:text-3xl lg:text-4xl font-normal">{lastName}</span>
-                            </h3>
-                            <p className="text-body-sm text-white mt-1">{host.title}</p>
-                          </div>
-                          <div
-                            className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20 transition-transform duration-300 ease-out group-hover:-translate-y-1 hover:!-translate-y-1.5"
-                            style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease' }}
-                          >
-                            <ChevronDown className="h-5 w-5 text-white" />
-                          </div>
+                    <div className="card-content-bottom card-padding">
+                      <div className="flex items-end justify-between">
+                        <div>
+                          <h3 className="font-display text-white leading-[0.95] tracking-normal">
+                            <span className="block text-2xl sm:text-3xl lg:text-4xl font-medium">{firstName}</span>
+                            <span className="block text-2xl sm:text-3xl lg:text-4xl font-normal">{lastName}</span>
+                          </h3>
+                          <p className="text-body-sm text-white mt-1">{host.title}</p>
                         </div>
-                        
-                        <AnimatePresence>
-                          {isExpanded && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.3 }}
-                              className="overflow-hidden"
-                            >
-                              <p className="text-sm leading-relaxed text-white/90 mt-4" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
-                                {host.bio}
-                              </p>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
+                        <div
+                          className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20 transition-transform duration-300 ease-out group-hover:-translate-y-1 hover:!-translate-y-1.5"
+                          style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease' }}
+                        >
+                          <ChevronDown className="h-5 w-5 text-white" />
+                        </div>
                       </div>
+                      
+                      <AnimatePresence>
+                        {isExpanded && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                            className="overflow-hidden"
+                          >
+                            <p className="text-sm leading-relaxed text-white/90 mt-4" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
+                              {host.bio}
+                            </p>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
                     </div>
-                  </motion.article>
-                );
-              })}
-            </div>
-          )}
+                  </div>
+                </motion.article>
+              );
+            })}
+          </div>
         </div>
       </div>
     </section>
