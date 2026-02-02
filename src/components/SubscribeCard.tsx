@@ -2,14 +2,17 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useSubscribe } from "@/contexts/SubscribeContext";
+import { useSubscriptionForm } from "@/hooks/use-subscription-form";
 import subscribeBg from "@/assets/subscribe-bg.png";
 
 const SubscribeCard = () => {
   const isMobile = useIsMobile();
   const { openSubscribe } = useSubscribe();
   const [showForm, setShowForm] = useState(false);
-  const [email, setEmail] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  
+  const { email, setEmail, isSubmitted, handleSubmit } = useSubscriptionForm({
+    onReset: () => setShowForm(false),
+  });
 
   const handleCardClick = () => {
     if (isMobile) {
@@ -17,19 +20,6 @@ const SubscribeCard = () => {
     } else {
       setShowForm(true);
     }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Connect to backend when Lovable Cloud is enabled
-    setIsSubmitted(true);
-    setEmail("");
-    
-    // Reset after 2.5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setShowForm(false);
-    }, 2500);
   };
 
   return (

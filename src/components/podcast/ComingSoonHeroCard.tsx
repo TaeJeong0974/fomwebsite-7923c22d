@@ -3,6 +3,7 @@ import { Bell } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useSubscriptionForm } from "@/hooks/use-subscription-form";
 import guestBg from "@/assets/guest-bg.png";
 
 interface ComingSoonHeroCardProps {
@@ -13,8 +14,10 @@ const ComingSoonHeroCard = ({ guestFirstName }: ComingSoonHeroCardProps) => {
   const isMobile = useIsMobile();
   const { openSubscribe } = useSubscribe();
   const [showForm, setShowForm] = useState(false);
-  const [email, setEmail] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  
+  const { email, setEmail, isSubmitted, handleSubmit } = useSubscriptionForm({
+    onReset: () => setShowForm(false),
+  });
 
   const handleCardClick = () => {
     if (!showForm && !isSubmitted) {
@@ -24,16 +27,6 @@ const ComingSoonHeroCard = ({ guestFirstName }: ComingSoonHeroCardProps) => {
         setShowForm(true);
       }
     }
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitted(true);
-    setEmail("");
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setShowForm(false);
-    }, 2500);
   };
 
   return (

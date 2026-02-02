@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useSubscribe } from "@/contexts/SubscribeContext";
+import { useSubscriptionForm } from "@/hooks/use-subscription-form";
 import {
   Popover,
   PopoverContent,
@@ -18,27 +19,13 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
   const isMobile = useIsMobile();
   const { openSubscribe } = useSubscribe();
   const [isOpen, setIsOpen] = useState(false);
-  const [email, setEmail] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Connect to backend when Lovable Cloud is enabled
-    setIsSubmitted(true);
-    setEmail("");
-    
-    // Reset after 2.5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setIsOpen(false);
-    }, 2500);
-  };
+  
+  const { email, setEmail, isSubmitted, handleSubmit, reset } = useSubscriptionForm({
+    onReset: () => setIsOpen(false),
+  });
 
   const handleOpenChange = (open: boolean) => {
-    if (!open) {
-      setIsSubmitted(false);
-      setEmail("");
-    }
+    if (!open) reset();
     setIsOpen(open);
   };
 
