@@ -20,15 +20,17 @@ const AnimatedLink = ({ item, variants }: AnimatedLinkProps) => {
 
   const content = (
     <motion.span 
-      className="font-display text-[2rem] sm:text-[3rem] lg:text-[4rem] xl:text-[5rem] font-medium leading-[1.1] tracking-tight inline-block"
-      initial={{ color: 'hsl(240, 10%, 10%)' }}
-      animate={{
-        color: isHovered ? item.hoverColors : 'hsl(240, 10%, 10%)',
-        x: isHovered ? 8 : 0,
+      className="font-display text-[2rem] sm:text-[3rem] lg:text-[4rem] xl:text-[5rem] font-medium leading-[1.1] tracking-tight inline-block text-foreground"
+      animate={isHovered ? {
+        color: item.hoverColors,
+        x: 8,
+      } : {
+        color: 'hsl(240, 10%, 10%)',
+        x: 0,
       }}
       transition={{ 
         color: isHovered 
-          ? { duration: 3, ease: 'easeInOut', repeat: Infinity, delay: 0 }
+          ? { duration: 3, ease: 'easeInOut', repeat: Infinity }
           : { duration: 0.15, ease: 'easeOut' },
         x: { duration: isHovered ? 0.4 : 0.15, ease: liquidEase },
       }}
