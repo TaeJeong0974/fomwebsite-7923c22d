@@ -1,8 +1,7 @@
-import { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
-import FloatingMiniPlayer, { StickyMiniPlayer } from "@/components/podcast/FloatingMiniPlayer";
+import FloatingMiniPlayer from "@/components/podcast/FloatingMiniPlayer";
 import EpisodeActionButtons from "@/components/podcast/EpisodeActionButtons";
 import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
@@ -23,26 +22,6 @@ const fadeInVariants = {
 const PodcastDetail = () => {
   const { slug } = useParams();
   const episode = getEpisodeBySlug(slug || "");
-  const videoRef = useRef<HTMLDivElement>(null);
-  const [isScrolledPast, setIsScrolledPast] = useState(false);
-  const [showMiniPlayer, setShowMiniPlayer] = useState(true);
-
-  // Track when video is scrolled past
-  useEffect(() => {
-    const handleScroll = () => {
-      if (videoRef.current) {
-        const rect = videoRef.current.getBoundingClientRect();
-        const isPast = rect.bottom < 100;
-        setIsScrolledPast(isPast);
-        if (!isPast) {
-          setShowMiniPlayer(true);
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
   
   // Get other episodes - always show exactly 3, mixing published and coming soon
   const allOtherEpisodes = [
@@ -76,7 +55,6 @@ const PodcastDetail = () => {
         <div className="lg:col-span-2 space-y-12 sm:space-y-14 lg:space-y-16">
           {/* Video Player */}
           <motion.div 
-            ref={videoRef}
             className="space-y-6"
             variants={fadeInVariants}
             initial="hidden"
@@ -139,15 +117,14 @@ const PodcastDetail = () => {
         </div>
 
         {/* Sidebar */}
-        <div className="space-y-6 lg:sticky lg:top-24">
-          {/* Sticky Mini Player - appears when scrolled past main video */}
-          <StickyMiniPlayer
-            youtubeUrl={episode.youtubeUrl}
-            spotifyUrl={episode.spotifyUrl}
-            isVisible={isScrolledPast && showMiniPlayer}
-            onClose={() => setShowMiniPlayer(false)}
-          />
-
+        <motion.div 
+          className="space-y-6"
+          variants={fadeInVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 1.0, delay: 0.2, ease: liquidEase }}
+        >
           {/* Featured Guest - only for guest episodes */}
           {episode.slug !== 'intro-to-fom' && (
             <EpisodeGuestCard
@@ -161,7 +138,7 @@ const PodcastDetail = () => {
 
           {/* Your Hosts - always shown */}
           <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
-        </div>
+        </motion.div>
       </div>
 
       {/* Related Episodes */}
