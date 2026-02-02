@@ -58,7 +58,7 @@ const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
         <div className="space-y-5">
           {hosts.map((host, index) => (
             <div key={index} className={index > 0 ? "pt-5 border-t border-border/20" : ""}>
-              <h3 className="font-display text-3xl sm:text-2xl font-medium text-foreground tracking-normal">
+              <h3 className="font-display text-xl sm:text-2xl font-medium text-foreground tracking-normal">
                 {host.name}
               </h3>
               <p className="text-sm text-muted-foreground mt-1">

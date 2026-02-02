@@ -33,7 +33,7 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio }: EpisodeGue
           <span className="text-sm font-medium text-white/70 uppercase tracking-wider mb-4 block">Guest</span>
           
           {/* Guest Info */}
-          <h2 className="font-display text-4xl sm:text-3xl lg:text-4xl text-white leading-[0.95] tracking-normal">
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl text-white leading-[0.95] tracking-normal">
             {name.split(' ').map((word, i) => (
               <span key={i} className={`block ${i === 0 ? 'font-medium' : 'font-normal'}`}>{word}</span>
             ))}
