@@ -124,8 +124,8 @@ const HeroSection = () => {
             {/* Base black layer */}
             <motion.div
               className="w-full max-w-full h-auto"
-              initial={{ scale: 1.15, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ duration: 1.2, ease: liquidEase, delay: 1.4 }}
               style={{
                 background: 'rgba(0,0,0,1)',
@@ -143,9 +143,8 @@ const HeroSection = () => {
             {/* Animated color gradient layer - positioned bottom right */}
             <motion.div
               className="absolute inset-0 w-full h-full"
-              initial={{ scale: 1.15, opacity: 0 }}
+              initial={{ opacity: 0 }}
               animate={{ 
-                scale: 1, 
                 opacity: [0, 0, 1],
                 background: [
                   'radial-gradient(ellipse 60% 120% at 100% 100%, transparent 0%, transparent 25%, transparent 50%)',
@@ -156,7 +155,6 @@ const HeroSection = () => {
                 ],
               }}
               transition={{ 
-                scale: { duration: 1.2, ease: liquidEase, delay: 1.4 },
                 opacity: { duration: 3, ease: liquidEase, delay: 2.6, times: [0, 0.3, 1] },
                 background: { duration: 8, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop', delay: 2.6 },
               }}
