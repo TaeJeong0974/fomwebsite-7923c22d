@@ -69,7 +69,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl }: FloatingMiniPlayerProps)
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 100 }}
             transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed bottom-6 right-6 z-50 shadow-2xl rounded-xl overflow-hidden"
+            className="hidden sm:block fixed bottom-6 right-6 z-50 shadow-2xl rounded-xl overflow-hidden"
             style={{ width: '320px' }}
           >
             <div 
