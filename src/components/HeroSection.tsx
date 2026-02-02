@@ -210,7 +210,7 @@ const HeroSection = () => {
                       ease: liquidEase 
                     }}
                     className="group flex-shrink-0"
-                    style={{ width: 'calc(80% - 8px)', scrollSnapAlign: 'start' }}
+                    style={{ width: 'calc(88% - 8px)', scrollSnapAlign: 'start' }}
                   >
                     <div 
                       className="card-base card-image hover-scale cursor-pointer"
