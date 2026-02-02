@@ -30,7 +30,7 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio }: EpisodeGue
         {/* Content */}
         <div className="card-content-bottom card-padding-lg z-[3]">
           {/* Header */}
-          <span className="text-sm font-medium text-white/70 uppercase tracking-wider mb-4 block">Guest</span>
+          <span className="text-sm font-medium text-white/70 uppercase tracking-wider mb-4 block">Guest Speaker</span>
           
           {/* Guest Info */}
           <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl text-white leading-[0.95] tracking-normal">
