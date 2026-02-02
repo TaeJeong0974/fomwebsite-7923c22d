@@ -92,7 +92,8 @@ const StickyVerticalText = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
-        className="fixed left-8 top-1/2 -translate-y-1/2 z-40 hidden xl:block"
+        className="fixed left-8 top-1/2 z-40 hidden xl:block"
+        style={{ transform: "translateY(-50%)" }}
       >
         <div 
           className="text-[10px] font-display font-semibold tracking-[0.25em] text-foreground whitespace-nowrap"
@@ -110,7 +111,8 @@ const StickyVerticalText = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
-        className="fixed right-8 top-1/2 -translate-y-1/2 z-40 hidden xl:block"
+        className="fixed right-8 top-1/2 z-40 hidden xl:block"
+        style={{ transform: "translateY(-50%)" }}
       >
         <div className="flex flex-col items-center gap-4">
           {/* Section number */}
@@ -130,10 +132,10 @@ const StickyVerticalText = () => {
           {/* Divider line */}
           <div className="w-px h-4 bg-foreground/30" />
           
-          {/* Section label */}
+          {/* Section label - consistent height for all labels */}
           <div 
-            className="relative h-40 flex items-center justify-center overflow-hidden"
-            style={{ writingMode: "vertical-rl" }}
+            className="flex items-center justify-center"
+            style={{ writingMode: "vertical-rl", height: "160px" }}
           >
             <AnimatePresence mode="wait">
               <motion.div
