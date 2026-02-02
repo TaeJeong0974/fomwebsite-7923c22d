@@ -54,7 +54,7 @@ const EpisodeCardContent = ({
       
       {/* Hover content - overview and button */}
       <div className={`${maxHeight} mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:${maxHeight} md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0`}>
-        {showOverview && !isUpcoming && episode.overview && (
+        {showOverview && episode.overview && (
           <p className="text-body-sm leading-relaxed text-white mb-4 line-clamp-3">
             {episode.overview}
           </p>
