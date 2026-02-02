@@ -81,7 +81,7 @@ const DetailVerticalText = ({ guestName, isUpcoming = false }: { guestName: stri
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
-        className="fixed left-12 2xl:left-16 top-1/2 -translate-y-1/2 z-40 hidden xl:block"
+        className="fixed left-16 2xl:left-20 top-1/2 -translate-y-1/2 z-40 hidden xl:block"
       >
         <div 
           className="text-[10px] font-display font-semibold tracking-[0.25em] text-foreground whitespace-nowrap"
@@ -99,7 +99,7 @@ const DetailVerticalText = ({ guestName, isUpcoming = false }: { guestName: stri
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
-        className="fixed right-12 2xl:right-16 top-1/2 -translate-y-1/2 z-40 hidden xl:block"
+        className="fixed right-10 2xl:right-12 top-1/2 -translate-y-1/2 z-40 hidden xl:block"
       >
         <div className="flex flex-col items-center gap-4">
           {/* Section number */}
