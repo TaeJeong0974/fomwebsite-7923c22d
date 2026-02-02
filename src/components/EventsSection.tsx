@@ -76,8 +76,8 @@ const EventsSection = () => {
           <div className="relative flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-0">
             {/* Copy - Left side, aligned with bottom of video */}
             <div className="hidden lg:flex flex-col justify-end w-1/4 pr-12 pb-4">
-              <span className="text-base font-semibold text-muted-foreground">Past Event · San Francisco, CA</span>
-              <p className="text-base text-muted-foreground mt-3">
+              <span className="text-base font-semibold text-foreground">Past Event · San Francisco, CA</span>
+              <p className="text-base text-foreground mt-3">
                 An evening of insights, networking, and conversations about the future of AI in marketing.
               </p>
               <button className="mt-6 text-label hover:opacity-70 hover-transition flex items-center gap-2 group">
@@ -124,8 +124,8 @@ const EventsSection = () => {
 
           {/* Mobile Meta info */}
           <div className="lg:hidden mt-6">
-            <span className="text-base font-semibold text-muted-foreground">Past Event · San Francisco, CA</span>
-            <p className="text-base text-muted-foreground mt-2">
+            <span className="text-base font-semibold text-foreground">Past Event · San Francisco, CA</span>
+            <p className="text-base text-foreground mt-2">
               An evening of insights, networking, and conversations about the future of AI in marketing.
             </p>
             <button className="mt-6 text-label hover:opacity-70 hover-transition flex items-center gap-2 group">
