@@ -1,5 +1,5 @@
-import { useState, useRef } from "react";
-import { motion, AnimatePresence, useInView } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import hostMada from "@/assets/host-mada.png";
 import hostEthan from "@/assets/host-ethan.png";
@@ -32,8 +32,6 @@ const taglineLines = ["A podcast", "series on how", "AI is changing", "marketing
 
 const HeroSection = () => {
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-  const iconRef = useRef<HTMLDivElement>(null);
-  const isIconInView = useInView(iconRef, { once: true, amount: 0.3 });
 
   return (
     <section id="hero" className="pt-8 lg:pt-12 pb-14 lg:pb-20">
@@ -122,7 +120,7 @@ const HeroSection = () => {
             </motion.p>
           </div>
           {/* Logo spans columns 2-3 */}
-          <div ref={iconRef} className="md:col-span-2 flex justify-center overflow-hidden">
+          <div className="md:col-span-2 flex justify-center overflow-hidden">
             <motion.div
               className="w-full max-w-full h-auto"
               initial={{ scale: 1.15, opacity: 0 }}
@@ -131,7 +129,6 @@ const HeroSection = () => {
               style={{
                 background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(140,100,180,0.9) 78%, rgba(100,120,200,0.9) 84%, rgba(220,120,100,0.9) 90%, rgba(235,160,140,0.85) 95%, rgba(200,140,180,0.9) 100%)',
                 backgroundSize: '250% 250%',
-                backgroundPosition: isIconInView ? undefined : '0% 0%',
                 WebkitMaskImage: `url(${FOMIcon})`,
                 maskImage: `url(${FOMIcon})`,
                 WebkitMaskRepeat: 'no-repeat',
@@ -141,7 +138,7 @@ const HeroSection = () => {
                 WebkitMaskPosition: 'center',
                 maskPosition: 'center',
                 aspectRatio: '598 / 186',
-                animation: isIconInView ? 'gradient-reveal-once 8s ease-out forwards, gradient-color-loop 12s ease-in-out 8s infinite' : 'none',
+                animation: 'gradient-reveal-once 8s ease-out 1.4s forwards, gradient-color-loop 12s ease-in-out 9.4s infinite',
               }}
             />
           </div>
