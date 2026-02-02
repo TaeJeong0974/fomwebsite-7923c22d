@@ -120,11 +120,14 @@ const HeroSection = () => {
             </motion.p>
           </div>
           {/* Logo spans columns 2-3 */}
-          <div className="md:col-span-2 flex justify-center">
-            <img 
+          <div className="md:col-span-2 flex justify-center overflow-hidden">
+            <motion.img 
               src={FOMIcon} 
               alt="Future of Marketing" 
               className="w-full max-w-full h-auto text-foreground"
+              initial={{ scale: 1.15, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 1.2, ease: liquidEase, delay: 1.4 }}
             />
           </div>
         </motion.div>
