@@ -72,7 +72,7 @@ const Navbar = () => {
               }}
               className="flex items-center focus-ring rounded-lg justify-self-start"
             >
-              <img src={FomLogo} alt="Future of Marketing" className="h-14 sm:h-10 lg:h-8" />
+              <img src={FomLogo} alt="Future of Marketing" className="h-14 sm:h-10 lg:h-6" />
             </Link>
 
             {/* Desktop Navigation - Second column, centered */}
@@ -91,7 +91,7 @@ const Navbar = () => {
                   <a
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className="text-base lg:text-lg font-medium text-foreground hover:text-foreground/60 hover-transition focus-ring"
+                    className="text-[1em] font-medium text-foreground hover:text-foreground/60 hover-transition focus-ring"
                   >
                     {link.label}
                   </a>
@@ -106,7 +106,7 @@ const Navbar = () => {
               transition={{ duration: 0.5, delay: 0.5, ease: liquidEase }}
               className="hidden md:flex items-center justify-self-end"
             >
-              <SubscribeButton className="text-base lg:text-lg font-medium text-foreground hover:text-foreground/60 hover-transition">
+              <SubscribeButton className="text-[1em] font-medium text-foreground hover:text-foreground/60 hover-transition">
                 Subscribe
               </SubscribeButton>
             </motion.div>
