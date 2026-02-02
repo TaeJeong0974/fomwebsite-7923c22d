@@ -92,6 +92,7 @@ Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit la
     duration: "25 min",
     publishedDate: "Jan 1, 2026",
     comingSoon: false,
+    previewVideoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
     hosts: podcastHosts,
   },
   {
