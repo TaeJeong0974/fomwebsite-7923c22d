@@ -648,6 +648,24 @@
   }
 }
 
+@keyframes gradient-color-loop-with-black {
+  0% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 50% 50%;
+  }
+  50% {
+    background-position: 80% 80%;
+  }
+  75% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
 .animate-gradient-shift {
   background-size: 200% 200%;
   animation: gradient-shift 8s ease-in-out infinite;
