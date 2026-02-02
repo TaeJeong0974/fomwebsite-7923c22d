@@ -89,22 +89,22 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
       label: "Subscribe",
       onClick: openSubscribe,
       href: undefined,
-      hoverColors: ["rgb(235,150,90)", "rgb(240,160,100)", "rgb(230,140,80)", "rgb(235,150,90)"], // warm coral shades
+      hoverColors: ["rgb(255,90,50)", "rgb(255,140,0)", "rgb(255,60,80)", "rgb(255,90,50)"], // vivid orange-red
     },
     {
       label: "YouTube",
       href: "https://youtube.com/@futureofmarketing",
-      hoverColors: ["rgb(190,130,160)", "rgb(200,140,170)", "rgb(180,120,150)", "rgb(190,130,160)"], // dusty rose shades
+      hoverColors: ["rgb(220,50,120)", "rgb(180,40,180)", "rgb(255,80,150)", "rgb(220,50,120)"], // hot pink-magenta
     },
     {
       label: "Spotify",
       href: "https://open.spotify.com/show/futureofmarketing",
-      hoverColors: ["rgb(150,130,180)", "rgb(160,140,190)", "rgb(140,120,170)", "rgb(150,130,180)"], // lavender shades
+      hoverColors: ["rgb(120,40,200)", "rgb(80,60,220)", "rgb(160,50,180)", "rgb(120,40,200)"], // electric purple
     },
     {
       label: "Email Us",
       href: "mailto:hello@futureofmarketing.com",
-      hoverColors: ["rgb(90,130,180)", "rgb(100,140,190)", "rgb(80,120,170)", "rgb(90,130,180)"], // slate blue shades
+      hoverColors: ["rgb(0,120,255)", "rgb(50,80,220)", "rgb(0,180,255)", "rgb(0,120,255)"], // vibrant blue
     },
   ];
 
