@@ -144,7 +144,7 @@ const HeroSection = () => {
               <div 
                 className="absolute inset-0 hidden md:block"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+                  background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)',
                   maskImage: `url(${FOMIcon})`,
                   maskSize: 'contain',
                   maskRepeat: 'no-repeat',
@@ -174,7 +174,7 @@ const HeroSection = () => {
               <div 
                 className="absolute inset-0 md:hidden"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0) 100%)',
+                  background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)',
                   maskImage: `url(${FOMIcon})`,
                   maskSize: 'contain',
                   maskRepeat: 'no-repeat',
