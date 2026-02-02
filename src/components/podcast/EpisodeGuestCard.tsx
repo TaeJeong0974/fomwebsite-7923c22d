@@ -30,7 +30,7 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       >
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-transparent via-transparent to-background/80" />
+        <div className="absolute inset-0 bg-background/80" />
         <img
           src={teaserBg} 
           alt="" 
