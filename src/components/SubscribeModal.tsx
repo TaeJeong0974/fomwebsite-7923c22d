@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Dialog,
@@ -6,6 +5,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { useSubscriptionForm } from "@/hooks/use-subscription-form";
 
 interface SubscribeModalProps {
   open: boolean;
@@ -13,26 +13,13 @@ interface SubscribeModalProps {
 }
 
 const SubscribeModal = ({ open, onOpenChange }: SubscribeModalProps) => {
-  const [email, setEmail] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // TODO: Connect to backend when Lovable Cloud is enabled
-    setIsSubmitted(true);
-    setEmail("");
-    
-    // Reset after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      onOpenChange(false);
-    }, 3000);
-  };
+  const { email, setEmail, isSubmitted, handleSubmit, reset } = useSubscriptionForm({
+    onReset: () => onOpenChange(false),
+    resetDelay: 3000,
+  });
 
   const handleOpenChange = (newOpen: boolean) => {
-    if (!newOpen) {
-      setIsSubmitted(false);
-    }
+    if (!newOpen) reset();
     onOpenChange(newOpen);
   };
 
@@ -60,7 +47,7 @@ const SubscribeModal = ({ open, onOpenChange }: SubscribeModalProps) => {
               </DialogHeader>
 
               <form onSubmit={handleSubmit} className="space-y-4">
-              <input
+                <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
