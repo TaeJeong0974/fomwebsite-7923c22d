@@ -72,6 +72,11 @@ const PodcastDetail = () => {
               youtubeUrl={episode.youtubeUrl}
               spotifyUrl={episode.spotifyUrl}
             />
+
+            {/* Hosts - Mobile only, below video */}
+            <div className="lg:hidden">
+              <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
+            </div>
           </motion.div>
 
           {/* Pull Quote */}
@@ -136,8 +141,10 @@ const PodcastDetail = () => {
             />
           )}
 
-          {/* Your Hosts - always shown */}
-          <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
+          {/* Your Hosts - Desktop only in sidebar */}
+          <div className="hidden lg:block">
+            <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
+          </div>
         </motion.div>
       </div>
 
