@@ -44,7 +44,7 @@ const HeroSection = () => {
           {/* Typewriter tagline */}
           <h1 className="font-display text-sm sm:text-base md:text-lg lg:text-xl text-foreground font-medium tracking-normal">
             {taglineLines.map((line, lineIndex) => (
-              <span key={lineIndex} className="block" style={{ lineHeight: 0.9 }}>
+              <span key={lineIndex} className="block" style={{ lineHeight: 1 }}>
                 <motion.span
                   className="inline-block"
                   initial={{ y: "100%", opacity: 0 }}
