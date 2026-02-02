@@ -195,12 +195,6 @@ const HeroSection = () => {
                         </div>
                       </div>
                       
-                      {/* Podcast title on hover */}
-                      <div className="max-h-0 mt-0 overflow-hidden opacity-0 translate-y-3 transition-all duration-300 ease-out group-hover:max-h-20 group-hover:mt-3 group-hover:opacity-100 group-hover:translate-y-0">
-                        <p className="text-sm text-white/70 uppercase tracking-wider">Host of</p>
-                        <p className="text-sm font-medium text-white">The Future of Marketing</p>
-                      </div>
-                      
                       <AnimatePresence>
                         {isExpanded && (
                           <motion.div

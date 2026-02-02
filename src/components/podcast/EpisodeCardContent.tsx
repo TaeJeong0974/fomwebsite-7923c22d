@@ -52,14 +52,8 @@ const EpisodeCardContent = ({
         </div>
       )}
       
-      {/* Hover content - podcast title, overview and button */}
+      {/* Hover content - overview and button */}
       <div className={`${maxHeight} mt-4 md:max-h-0 md:mt-0 overflow-hidden md:opacity-0 md:translate-y-3 hover-transition md:group-hover:${maxHeight} md:group-hover:mt-4 md:group-hover:opacity-100 md:group-hover:translate-y-0`}>
-        {/* Podcast title */}
-        <div className="mb-3">
-          <p className="text-sm text-white/70 uppercase tracking-wider">Guest on</p>
-          <p className="text-sm font-medium text-white">The Future of Marketing</p>
-        </div>
-        
         {showOverview && !isUpcoming && episode.overview && (
           <p className="text-body-sm leading-relaxed text-white mb-4 line-clamp-3">
             {episode.overview}
