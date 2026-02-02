@@ -14,9 +14,9 @@ import DetailVerticalText from "@/components/podcast/DetailVerticalText";
 import { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes } from "@/lib/podcastData";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
 
-const fadeUpVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0 }
+const fadeInVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 }
 };
 
 const PodcastDetail = () => {
@@ -56,7 +56,7 @@ const PodcastDetail = () => {
           {/* Video Player */}
           <motion.div 
             className="space-y-6"
-            variants={fadeUpVariants}
+            variants={fadeInVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
@@ -76,7 +76,7 @@ const PodcastDetail = () => {
 
           {/* Pull Quote */}
           <motion.div
-            variants={fadeUpVariants}
+            variants={fadeInVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
@@ -90,7 +90,7 @@ const PodcastDetail = () => {
 
           {/* About This Episode */}
           <motion.div
-            variants={fadeUpVariants}
+            variants={fadeInVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
@@ -106,7 +106,7 @@ const PodcastDetail = () => {
 
           {/* Topics */}
           <motion.div
-            variants={fadeUpVariants}
+            variants={fadeInVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
@@ -119,7 +119,7 @@ const PodcastDetail = () => {
         {/* Sidebar */}
         <motion.div 
           className="space-y-6"
-          variants={fadeUpVariants}
+          variants={fadeInVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
@@ -148,7 +148,7 @@ const PodcastDetail = () => {
       <motion.div 
         id="stay-connected" 
         className="mt-8 sm:mt-10 lg:mt-12 pt-8 sm:pt-10 lg:pt-12"
-        variants={fadeUpVariants}
+        variants={fadeInVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.15 }}
