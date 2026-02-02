@@ -220,7 +220,7 @@ const PodcastListView = ({
                 </div>
               </div>
               
-              <span className="shrink-0 sm:w-[145px] w-full text-center inline-flex items-center justify-center font-display font-semibold uppercase tracking-wider text-xs px-5 pt-3 pb-2.5 rounded-full bg-black/5 backdrop-blur-xl border border-black/10 text-foreground group-hover:bg-foreground group-hover:text-background group-hover:border-foreground transition-all duration-300 leading-none" onMouseEnter={() => setCtaHovered(index)} onMouseLeave={() => setCtaHovered(null)}>
+              <span className="shrink-0 sm:w-[145px] sm:ml-0 ml-[calc(theme(spacing.4)+2.5rem)] w-fit text-center inline-flex items-center justify-center font-display font-semibold uppercase tracking-wider text-xs px-5 pt-3 pb-2.5 rounded-full bg-black/5 backdrop-blur-xl border border-black/10 text-foreground group-hover:bg-foreground group-hover:text-background group-hover:border-foreground transition-all duration-300 leading-none" onMouseEnter={() => setCtaHovered(index)} onMouseLeave={() => setCtaHovered(null)}>
                 {isComingSoon ? "Coming Soon" : "Watch Now"}
               </span>
             </Link>
