@@ -18,7 +18,7 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming =
 
   return (
     <div 
-      className="relative overflow-hidden"
+      className="relative glass rounded-xl p-5 sm:p-6 overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
