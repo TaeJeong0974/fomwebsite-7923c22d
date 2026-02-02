@@ -145,9 +145,8 @@ const HeroSection = () => {
               className="absolute inset-0 w-full h-full"
               initial={{ opacity: 0 }}
               animate={{ 
-                opacity: [0, 0, 1],
+                opacity: 1,
                 background: [
-                  'radial-gradient(ellipse 60% 120% at 100% 100%, transparent 0%, transparent 25%, transparent 50%)',
                   'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(235, 150, 90, 1) 0%, rgba(235, 150, 90, 0.8) 15%, rgba(210, 130, 120, 0.5) 30%, transparent 45%)',
                   'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(190, 130, 160, 1) 0%, rgba(190, 130, 160, 0.8) 15%, rgba(150, 130, 180, 0.5) 30%, transparent 45%)',
                   'radial-gradient(ellipse 60% 120% at 100% 100%, rgba(90, 130, 180, 1) 0%, rgba(90, 130, 180, 0.8) 15%, rgba(120, 140, 190, 0.5) 30%, transparent 45%)',
@@ -155,7 +154,7 @@ const HeroSection = () => {
                 ],
               }}
               transition={{ 
-                opacity: { duration: 3, ease: liquidEase, delay: 2.6, times: [0, 0.3, 1] },
+                opacity: { duration: 2, ease: liquidEase, delay: 2.6 },
                 background: { duration: 8, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop', delay: 2.6 },
               }}
               style={{
