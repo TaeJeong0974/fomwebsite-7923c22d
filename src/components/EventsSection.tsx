@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Play } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const EventsSection = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -8,6 +9,8 @@ const EventsSection = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const [isInView, setIsInView] = useState(false);
+  const isMobile = useIsMobile();
+  const isTitleInView = useInView(titleRef, { once: true, amount: 0.3 });
   
 
   // Parallax scroll effect
@@ -55,10 +58,12 @@ const EventsSection = () => {
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
               className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-semibold tracking-tight overflow-visible"
               style={{
-                background: 'linear-gradient(135deg, #eb965a 0%, #d28278 25%, #be82a0 50%, #5a82b4 75%, #788cb4 100%)',
+                background: 'linear-gradient(135deg, rgba(235,150,90,1) 0%, rgba(235,150,90,0.9) 15%, rgba(210,130,130,0.9) 30%, rgba(190,130,160,1) 45%, rgba(150,130,180,0.9) 60%, rgba(90,130,180,1) 75%, rgba(90,130,180,0.9) 90%, rgba(120,140,190,0.8) 100%)',
+                backgroundSize: '200% 200%',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 color: 'transparent',
+                animation: !isMobile && isTitleInView ? 'gradient-color-loop-no-black 3s linear infinite' : 'none',
                 lineHeight: 0.95,
                 paddingTop: '0.08em',
                 paddingBottom: '0.02em',
