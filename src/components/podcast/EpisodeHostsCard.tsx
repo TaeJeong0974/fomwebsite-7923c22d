@@ -13,7 +13,7 @@ const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
 
   return (
     <div 
-      className="relative glass rounded-xl p-6 sm:p-8 space-y-6 overflow-hidden"
+      className="relative glass rounded-xl pt-5 pb-6 px-6 sm:pt-6 sm:pb-8 sm:px-8 overflow-hidden"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
