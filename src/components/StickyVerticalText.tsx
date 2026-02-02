@@ -71,7 +71,7 @@ const StickyVerticalText = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
-        className="fixed top-1/2 z-40 hidden xl:block xl:left-10 2xl:left-16"
+        className="fixed top-1/2 z-40 hidden xl:block xl:left-12 2xl:left-16"
         style={{ transform: "translateY(-50%)" }}
       >
         <div 
@@ -90,7 +90,7 @@ const StickyVerticalText = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
-        className="fixed top-1/2 z-40 hidden xl:block xl:right-10 2xl:right-16"
+        className="fixed top-1/2 z-40 hidden xl:block xl:right-8 2xl:right-12"
         style={{ transform: "translateY(-50%)" }}
       >
         <div className="flex flex-col items-center gap-4">
