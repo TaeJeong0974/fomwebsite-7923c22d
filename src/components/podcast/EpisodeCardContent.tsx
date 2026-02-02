@@ -22,9 +22,8 @@ const EpisodeCardContent = ({
     ? "text-2xl sm:text-3xl lg:text-4xl" 
     : "text-4xl sm:text-3xl lg:text-4xl";
 
-  // Use grid for smooth height animation (no max-height delay)
-  const hoverWrapperClasses = "grid mt-4 md:mt-0 md:grid-rows-[0fr] md:group-hover:grid-rows-[1fr] md:group-hover:mt-4 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]";
-  const hoverContentClasses = "overflow-hidden md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]";
+  // Simple opacity + transform - no height animation for instant response
+  const hoverContentClasses = "mt-4 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]";
 
   return (
     <div className="card-content-bottom card-padding-lg z-[3]">
@@ -55,18 +54,16 @@ const EpisodeCardContent = ({
         </div>
       )}
       
-      {/* Hover content - overview and button with grid-based height animation */}
-      <div className={hoverWrapperClasses}>
-        <div className={hoverContentClasses}>
-          {showOverview && episode.overview && (
-            <p className="text-body-sm leading-relaxed text-white mb-4 line-clamp-3">
-              {episode.overview}
-            </p>
-          )}
-          <span className="btn-base btn-glass-light btn-sm">
-            {isUpcoming ? "Learn More" : "Watch Now"}
-          </span>
-        </div>
+      {/* Hover content - instant opacity + transform, no height delay */}
+      <div className={hoverContentClasses}>
+        {showOverview && episode.overview && (
+          <p className="text-body-sm leading-relaxed text-white mb-4 line-clamp-3">
+            {episode.overview}
+          </p>
+        )}
+        <span className="btn-base btn-glass-light btn-sm">
+          {isUpcoming ? "Learn More" : "Watch Now"}
+        </span>
       </div>
     </div>
   );
