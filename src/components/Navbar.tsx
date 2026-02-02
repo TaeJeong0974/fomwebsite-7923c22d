@@ -58,9 +58,9 @@ const Navbar = () => {
       className="sticky top-4 z-50"
     >
       <div className="container mx-auto container-padding">
-        {/* Glass pill with inner padding for aesthetics, grid aligned to page content */}
-        <nav className={`rounded-xl py-3 lg:py-4 px-4 sm:px-5 lg:px-6 transition-all duration-300 ${isScrolled ? 'glass' : ''}`}>
-          <div className="grid grid-cols-3 items-center">
+        {/* Nav with glass effect on scroll */}
+        <nav className={`rounded-xl py-3 lg:py-4 transition-all duration-300 ${isScrolled ? 'glass px-4 sm:px-5 lg:px-6' : ''}`}>
+          <div className={`grid grid-cols-3 items-center ${isScrolled ? '' : 'px-0'}`}>
             {/* Logo - First column */}
             <Link 
               to="/" 
