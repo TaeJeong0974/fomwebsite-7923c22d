@@ -5,12 +5,13 @@ import FloatingMiniPlayer from "@/components/podcast/FloatingMiniPlayer";
 import EpisodeActionButtons from "@/components/podcast/EpisodeActionButtons";
 import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
+import EpisodeHostsCard from "@/components/podcast/EpisodeHostsCard";
 import EpisodePullQuote from "@/components/podcast/EpisodePullQuote";
 import ComingSoonEpisode from "@/components/podcast/ComingSoonEpisode";
 import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
 import ListenSubscribeCards from "@/components/ListenSubscribeCards";
 import DetailVerticalText from "@/components/podcast/DetailVerticalText";
-import { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes, podcastHosts } from "@/lib/podcastData";
+import { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes } from "@/lib/podcastData";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
 
 const fadeUpVariants = {
@@ -136,31 +137,7 @@ const PodcastDetail = () => {
           )}
 
           {/* Your Hosts - always shown */}
-          <div className="glass rounded-xl p-6 sm:p-8 space-y-6">
-            <h3 className="text-section-header">Hosts</h3>
-            <div className="space-y-5">
-              {(episode.slug === 'intro-to-fom' ? podcastHosts : podcastHosts.slice(0, 2)).map((host, index) => (
-                <div key={index} className={index > 0 ? "pt-5 border-t border-border/20" : ""}>
-                  <h3 className="font-display text-xl sm:text-2xl font-medium text-foreground tracking-normal">
-                    {host.name}
-                  </h3>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    {host.title}, {host.company}
-                  </p>
-                  {host.linkedInUrl && (
-                    <a
-                      href={host.linkedInUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-sm text-muted-foreground hover:text-foreground hover-transition inline-block mt-2"
-                    >
-                      LinkedIn →
-                    </a>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
+          <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
         </motion.div>
       </div>
 
