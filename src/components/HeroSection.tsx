@@ -110,12 +110,33 @@ const HeroSection = () => {
               Your Hosts
             </motion.p>
           </div>
-          {/* Logo spans columns 2-3 */}
+          {/* Logo spans columns 2-3 with animated gradient */}
           <div className="md:col-span-2 flex justify-center overflow-hidden relative">
+            {/* Animated color gradient background - coral, rose, slate blue */}
+            <motion.div 
+              className="absolute inset-0 hidden md:block"
+              animate={{
+                background: [
+                  'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
+                  'linear-gradient(135deg, rgb(200,140,150) 0%, rgb(130,150,180) 50%, rgb(230,130,110) 100%)',
+                  'linear-gradient(135deg, rgb(130,150,180) 0%, rgb(230,130,110) 50%, rgb(200,140,150) 100%)',
+                  'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
+                ]
+              }}
+              transition={{ duration: 3, ease: 'easeInOut', repeat: Infinity }}
+            />
+            {/* Static gradient for mobile */}
+            <div 
+              className="absolute inset-0 md:hidden"
+              style={{ background: 'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)' }}
+            />
+            {/* 75% black gradient overlay */}
+            <div className="absolute inset-0 bg-black/75" />
+            {/* FOM Logo as mask */}
             <img 
               src={FOMIcon} 
               alt="Future of Marketing"
-              className="w-full max-w-full h-auto"
+              className="w-full max-w-full h-auto relative z-10 mix-blend-screen"
               style={{ aspectRatio: '598 / 186' }}
             />
           </div>
@@ -175,26 +196,7 @@ const HeroSection = () => {
                         fetchPriority="high"
                         decoding="async"
                       />
-                      {/* Animated color gradient - coral, rose, slate blue */}
-                      <motion.div 
-                        className="absolute inset-0 mix-blend-soft-light hidden md:block"
-                        animate={{
-                          background: [
-                            'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
-                            'linear-gradient(135deg, rgb(200,140,150) 0%, rgb(130,150,180) 50%, rgb(230,130,110) 100%)',
-                            'linear-gradient(135deg, rgb(130,150,180) 0%, rgb(230,130,110) 50%, rgb(200,140,150) 100%)',
-                            'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
-                          ]
-                        }}
-                        transition={{ duration: 3, ease: 'easeInOut', repeat: Infinity }}
-                      />
-                      {/* Static gradient for mobile */}
-                      <div 
-                        className="absolute inset-0 mix-blend-soft-light md:hidden"
-                        style={{ background: 'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)' }}
-                      />
-                      {/* 75% black gradient overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/40 to-black/20" />
+                      <div className="card-overlay" />
                     </div>
 
                     <div className="card-content-bottom card-padding">
