@@ -307,22 +307,15 @@ const HeroSection = () => {
                         {/* Gradient mask over image */}
                         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,hsl(var(--background))_0%,hsl(var(--background))_40%,hsl(var(--background)/0.8)_60%,hsl(var(--background)/0.3)_80%,transparent_100%)]" />
                         
-                        {/* Animated color overlay */}
+                        {/* Static color overlay */}
                         <motion.div
                           className="absolute inset-0 mix-blend-soft-light rounded-xl"
-                          animate={{
-                            opacity: isFlipped ? 0.8 : 0,
-                            background: isFlipped ? [
-                              'linear-gradient(135deg, rgba(220, 50, 50, 0.9) 0%, rgba(140, 60, 180, 0.8) 50%, rgba(60, 100, 220, 0.9) 100%)',
-                              'linear-gradient(135deg, rgba(140, 60, 180, 0.9) 0%, rgba(60, 100, 220, 0.8) 50%, rgba(220, 50, 50, 0.9) 100%)',
-                              'linear-gradient(135deg, rgba(60, 100, 220, 0.9) 0%, rgba(220, 50, 50, 0.8) 50%, rgba(140, 60, 180, 0.9) 100%)',
-                              'linear-gradient(135deg, rgba(220, 50, 50, 0.9) 0%, rgba(140, 60, 180, 0.8) 50%, rgba(60, 100, 220, 0.9) 100%)',
-                            ] : undefined,
+                          style={{
+                            background: 'linear-gradient(135deg, rgba(220, 50, 50, 0.9) 0%, rgba(140, 60, 180, 0.8) 50%, rgba(60, 100, 220, 0.9) 100%)',
                           }}
-                          transition={{
-                            opacity: { duration: 4, ease: [0.22, 1, 0.36, 1] },
-                            background: { duration: 3, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop' },
-                          }}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: isFlipped ? 0.8 : 0 }}
+                          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                         />
                         
                         {/* Content */}
