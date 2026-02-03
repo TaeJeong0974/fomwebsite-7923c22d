@@ -62,21 +62,16 @@ const PodcastDetail = () => {
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 1.0, ease: liquidEase }}
           >
-            {/* Episode Title & Action Buttons */}
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-              <div className="space-y-1 sm:space-y-2">
-                <span className="text-label text-foreground/60 uppercase tracking-wider text-xs sm:text-sm">
-                  {episode.slug === 'intro-to-fom' ? 'Future of Marketing' : `Episode ${episode.id}`}
-                </span>
-                <h1 className="text-display-lg font-display font-medium text-foreground leading-[0.95]">
-                  {episode.slug === 'intro-to-fom' 
-                    ? 'Meet Your Hosts' 
-                    : episode.overview || episode.name}
-                </h1>
-              </div>
-              <div className="shrink-0">
-                <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
-              </div>
+            {/* Episode Title */}
+            <div className="space-y-1 sm:space-y-2">
+              <span className="text-label text-foreground/60 uppercase tracking-wider text-xs sm:text-sm">
+                {episode.slug === 'intro-to-fom' ? 'Future of Marketing' : `Episode ${episode.id}`}
+              </span>
+              <h1 className="text-display-lg font-display font-medium text-foreground leading-[0.95]">
+                {episode.slug === 'intro-to-fom' 
+                  ? 'Meet Your Hosts' 
+                  : episode.overview || episode.name}
+              </h1>
             </div>
 
             {/* Video Player */}
@@ -84,6 +79,11 @@ const PodcastDetail = () => {
               youtubeUrl={episode.youtubeUrl}
               spotifyUrl={episode.spotifyUrl}
             />
+
+            {/* Action Buttons - After Video */}
+            <div className="pt-2">
+              <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
+            </div>
           </motion.div>
 
           {/* About This Episode */}
