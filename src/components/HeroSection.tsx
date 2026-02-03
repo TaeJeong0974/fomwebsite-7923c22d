@@ -338,7 +338,7 @@ const HeroSection = () => {
                               target="_blank"
                               rel="noopener noreferrer"
                               onClick={(e) => e.stopPropagation()}
-                              className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-foreground/70 hover-transition"
+                              className="mt-4 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-foreground text-background text-sm font-medium hover:bg-foreground/90 hover-transition"
                             >
                               LinkedIn →
                             </a>
