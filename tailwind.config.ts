@@ -62,6 +62,9 @@ export default {
         display: ['var(--font-display)', 'sans-serif'],
         body: ['var(--font-body)', 'sans-serif'],
       },
+      fontSize: {
+        sm: ['1.2rem', { lineHeight: '1.6' }],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 4px)",
