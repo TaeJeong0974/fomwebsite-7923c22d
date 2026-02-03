@@ -20,6 +20,7 @@ export interface PodcastEpisode {
   companyDomain: string;
   overview: string;
   fullDescription: string;
+  pullQuote?: string;
   bio?: string;
   topics: string[];
   chapters: PodcastChapter[];
@@ -68,9 +69,10 @@ export const podcastEpisodes: PodcastEpisode[] = [
     companyDomain: "",
     overview: "Meet Your Hosts: Why We're Building the Future of Marketing",
     bio: "",
-    fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    fullDescription: `In this debut episode, meet the three hosts behind Future of Marketing: Mada Seghete, Ethan Smith, and Camille Ricketts. Each brings a unique perspective from the front lines of B2B growth—from scaling startups to $100M+ in revenue, to leading marketing at iconic companies like Notion and Branch.
 
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.`,
+Together, they discuss why they created this podcast, the burning questions keeping CMOs up at night, and what listeners can expect from upcoming episodes. Whether you're a seasoned marketing leader or an aspiring one, this conversation sets the stage for the tactical, unfiltered insights that define Future of Marketing.`,
+    pullQuote: "The best marketing leaders aren't just creative—they're operators who understand that execution earns trust.",
     topics: [
       "Meet your hosts",
       "What is Future of Marketing?",
@@ -100,9 +102,10 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     companyDomain: "samsara.com",
     overview: "Scaling to IPO: The Tactical Playbook",
     bio: "A builder who moves fast, operates tactically, and earns trust through execution. With nearly 25 years scaling high-growth companies as CMO at Samsara, MongoDB, TripActions/Navan, and leadership roles at DocuSign and G2.",
-    fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    fullDescription: `Meagen Eisenberg has been the CMO behind some of tech's most successful IPOs—Samsara, MongoDB, and TripActions among them. In this episode, she shares the tactical playbook she's refined over 25 years of scaling B2B companies from early stage to public market.
 
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.`,
+From building demand generation engines that actually convert, to hiring and developing world-class marketing teams, Meagen breaks down what it really takes to be a CMO who delivers results. She discusses the importance of earning trust through execution, why speed matters more than perfection, and how to maintain marketing effectiveness while preparing for an IPO.`,
+    pullQuote: "Speed wins. You can always course-correct, but you can't get back the time you spent overthinking.",
     topics: [
       "Building marketing teams at scale",
       "Data-driven marketing strategies",
@@ -135,9 +138,10 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     companyDomain: "notion.so",
     overview: "Community as a Growth Engine: How Notion Built a Movement",
     bio: "A product-minded marketer who turns user communities into growth engines. Previously led marketing at Dropbox and Atlassian, pioneering community-driven strategies that scaled to millions of active users.",
-    fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    fullDescription: `Lena Waters transformed Notion from a beloved tool into a global movement. In this episode, she reveals the strategies behind building one of tech's most passionate user communities—and how that community became Notion's most powerful growth engine.
 
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.`,
+Learn how to cultivate authentic user advocacy, scale user-generated content without losing quality, and create the conditions for organic word-of-mouth that no paid campaign can match. Lena shares hard-won lessons from her time at Dropbox and Atlassian, and explains why community-led growth is the future of B2B marketing.`,
+    pullQuote: "Your users don't just want to use your product—they want to belong to something. Give them that belonging.",
     topics: [
       "Community-led growth strategies",
       "User-generated content at scale",
@@ -161,9 +165,10 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     companyDomain: "squareup.com",
     overview: "Making Fintech Human: Brand Building at Scale with Square",
     bio: "A fintech brand builder who makes complex financial products accessible to everyday entrepreneurs. Previously CMO at Carta and held leadership roles at PayPal, scaling marketing for millions of businesses.",
-    fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    fullDescription: `Financial services marketing is notoriously difficult—but Lindsey Irvine has cracked the code. As CMO of Square, she's made complex fintech products feel approachable, trustworthy, and even delightful for millions of small business owners.
 
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.`,
+In this conversation, Lindsey shares how to build brand trust in an industry where trust is everything, why clarity beats cleverness in financial messaging, and how Square maintains its scrappy startup energy while serving millions of businesses worldwide.`,
+    pullQuote: "In fintech, trust isn't given—it's earned with every interaction. Your brand is your promise kept.",
     topics: [
       "Fintech brand building",
       "Marketing to SMBs",
@@ -188,9 +193,10 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     companyDomain: "datadoghq.com",
     overview: "Marketing to Engineers: Winning Technical Audiences at Datadog",
     bio: "A technical marketing leader who bridges the gap between engineering and brand. Previously CMO at Twilio and held leadership roles at Salesforce, known for scaling marketing during hypergrowth.",
-    fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    fullDescription: `Engineers are the hardest audience to market to—and Sara Varni has mastered it. As CMO of Datadog, she's built a marketing organization that speaks the language of developers without dumbing down the message or resorting to gimmicks.
 
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.`,
+Sara shares the principles behind marketing to technical audiences: leading with value, respecting their intelligence, and building credibility through substance. She discusses how Datadog scaled from startup to public company while maintaining the authenticity that technical buyers demand.`,
+    pullQuote: "Developers can smell marketing BS from a mile away. Lead with value, not hype.",
     topics: [
       "Marketing to developers and engineers",
       "Building trust with technical audiences",
