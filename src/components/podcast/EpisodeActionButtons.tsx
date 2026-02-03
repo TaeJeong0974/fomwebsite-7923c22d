@@ -86,7 +86,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0, opacity: 0 }}
               transition={{ duration: 0.15 }}
-              className="shrink-0"
+              className="flex items-center justify-center shrink-0"
             >
               <Check className="w-5 h-5 text-green-500" />
             </motion.div>
@@ -97,7 +97,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0, opacity: 0 }}
               transition={{ duration: 0.15 }}
-              className="shrink-0"
+              className="flex items-center justify-center shrink-0"
             >
               <Share2 className="w-5 h-5 text-foreground" />
             </motion.div>
