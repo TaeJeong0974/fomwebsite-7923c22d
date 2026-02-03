@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
 import FloatingMiniPlayer from "@/components/podcast/FloatingMiniPlayer";
-import EpisodeIntroBlock from "@/components/podcast/EpisodeIntroBlock";
+import EpisodeActionButtons from "@/components/podcast/EpisodeActionButtons";
 import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
 import EpisodeHostsCard from "@/components/podcast/EpisodeHostsCard";
@@ -53,7 +53,7 @@ const PodcastDetail = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
       {/* Main Content */}
         <div className="lg:col-span-2 space-y-8 sm:space-y-12 lg:space-y-16">
-          {/* Video Player */}
+          {/* Title & Actions before Video */}
           <motion.div 
             className="space-y-4 sm:space-y-6"
             variants={fadeInVariants}
@@ -62,17 +62,25 @@ const PodcastDetail = () => {
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 1.0, ease: liquidEase }}
           >
+            {/* Episode Title & Action Buttons */}
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+              <div className="space-y-1 sm:space-y-2">
+                <span className="text-label text-foreground/60 uppercase tracking-wider text-xs sm:text-sm">
+                  {episode.slug === 'intro-to-fom' ? 'Future of Marketing' : `Episode ${episode.id}`}
+                </span>
+                <h1 className="text-display-lg font-display font-medium text-foreground leading-[0.95]">
+                  {episode.slug === 'intro-to-fom' 
+                    ? 'Meet Your Hosts' 
+                    : episode.overview || episode.name}
+                </h1>
+              </div>
+              <div className="shrink-0">
+                <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
+              </div>
+            </div>
+
+            {/* Video Player */}
             <FloatingMiniPlayer 
-              youtubeUrl={episode.youtubeUrl}
-              spotifyUrl={episode.spotifyUrl}
-            />
-            
-            {/* Episode Intro Block with Layout Variants */}
-            <EpisodeIntroBlock
-              overview={episode.overview}
-              guestName={episode.name}
-              episodeNumber={episode.id}
-              isIntro={episode.slug === 'intro-to-fom'}
               youtubeUrl={episode.youtubeUrl}
               spotifyUrl={episode.spotifyUrl}
             />
