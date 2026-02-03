@@ -231,10 +231,10 @@ const HeroSection = () => {
                 >
                   {/* Card flip container */}
                   <div 
-                    className="relative aspect-[3/4] cursor-pointer transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [@media(hover:hover)]:md:hover:-translate-y-2"
+                    className={`relative aspect-[3/4] cursor-pointer ${isMobile ? '' : 'transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [@media(hover:hover)]:hover:-translate-y-2'}`}
                     style={{ perspective: '1000px' }}
                     onClick={() => setFlippedIndex(isFlipped ? null : index)}
-                    onMouseLeave={() => isFlipped && setFlippedIndex(null)}
+                    onMouseLeave={() => !isMobile && isFlipped && setFlippedIndex(null)}
                   >
                     {/* Inner container that flips */}
                     <motion.div
