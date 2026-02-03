@@ -93,7 +93,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
         >
           {/* Episode Title - Same width as hero card */}
           <div className="lg:col-span-2 space-y-1 sm:space-y-2">
-            <h3 className="text-section-header">
+            <h3 className="text-section-header mb-4">
               Coming Soon
             </h3>
             <h1 className="text-display-lg font-display font-medium text-foreground leading-[1.1]">
