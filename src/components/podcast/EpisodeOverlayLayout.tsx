@@ -14,13 +14,12 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
 
   return (
     <div className="min-h-screen relative">
-      {/* Floating Panel Container */}
+      {/* Content Container */}
       <main className="relative z-10 pt-0 sm:pt-4 lg:pt-8 pb-6 sm:pb-8 lg:pb-12">
-        {/* White Content Panel */}
-        <div className="container mx-auto px-0 sm:container-padding">
+        <div className="container mx-auto px-4 sm:container-padding">
           <div className="relative flex gap-4 items-start">
-            {/* Main Panel */}
-            <div className="flex-1 bg-[#f4f2ef] rounded-none sm:rounded-xl shadow-2xl shadow-black/5 px-6 pt-3 pb-6 sm:p-8 lg:p-10">
+            {/* Main Content */}
+            <div className="flex-1">
               {children}
             </div>
             
