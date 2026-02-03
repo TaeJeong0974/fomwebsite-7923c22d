@@ -327,11 +327,26 @@ const HeroSection = () => {
                         
                         {/* Content */}
                         <div className="relative z-10 p-5 sm:p-6 h-full flex flex-col">
-                          {/* Top row: LinkedIn button on right */}
-                          <div className="flex items-start justify-between mb-4">
+                          {/* Top: Back arrow */}
+                          <div className="flex items-start mb-4">
                             <div className="rounded-full p-2 bg-foreground text-background">
                               <ChevronDown className="h-5 w-5 rotate-90" />
                             </div>
+                          </div>
+                          
+                          {/* Spacer */}
+                          <div className="flex-1" />
+                          
+                          {/* Bottom: Name, title, bio, and LinkedIn */}
+                          <div>
+                            <h3 className="font-display text-foreground leading-[0.95] tracking-normal">
+                              <span className="block text-2xl sm:text-3xl font-medium">{firstName}</span>
+                              <span className="block text-2xl sm:text-3xl font-normal">{lastName}</span>
+                            </h3>
+                            <p className="text-sm text-muted-foreground mt-2">{host.title}</p>
+                            <p className="text-sm leading-relaxed text-foreground/80 mt-4 mb-4">
+                              {host.bio}
+                            </p>
                             {host.linkedInUrl && (
                               <a
                                 href={host.linkedInUrl}
@@ -343,20 +358,6 @@ const HeroSection = () => {
                                 LinkedIn →
                               </a>
                             )}
-                          </div>
-                          
-                          {/* Bio content */}
-                          <p className="text-sm leading-relaxed text-foreground/80 flex-1 overflow-y-auto mb-4">
-                            {host.bio}
-                          </p>
-                          
-                          {/* Bottom: Name and title */}
-                          <div>
-                            <h3 className="font-display text-foreground leading-[0.95] tracking-normal">
-                              <span className="block text-2xl sm:text-3xl font-medium">{firstName}</span>
-                              <span className="block text-2xl sm:text-3xl font-normal">{lastName}</span>
-                            </h3>
-                            <p className="text-sm text-muted-foreground mt-2">{host.title}</p>
                           </div>
                         </div>
                       </div>
