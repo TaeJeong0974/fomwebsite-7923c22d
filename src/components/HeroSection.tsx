@@ -232,130 +232,225 @@ const HeroSection = () => {
                   {/* Card flip container */}
                   <div 
                     className={`relative aspect-[3/4] cursor-pointer ${isMobile ? '' : 'transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] [@media(hover:hover)]:hover:-translate-y-2'}`}
-                    style={{ perspective: '1000px' }}
+                    style={isMobile ? undefined : { perspective: '1000px' }}
                     onClick={() => setFlippedIndex(isFlipped ? null : index)}
                     onMouseLeave={() => !isMobile && isFlipped && setFlippedIndex(null)}
                   >
-                    {/* Inner container that flips */}
-                    <motion.div
-                      className="relative w-full h-full"
-                      style={{ 
-                        transformStyle: 'preserve-3d',
-                        WebkitTransformStyle: 'preserve-3d',
-                      }}
-                      animate={{ rotateY: isFlipped ? 180 : 0 }}
-                      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      {/* Front face - Host image */}
-                      <div 
-                        className="absolute inset-0 card-base card-image rounded-xl overflow-hidden"
-                        style={{ 
-                          backfaceVisibility: 'hidden', 
-                          WebkitBackfaceVisibility: 'hidden',
-                          transform: 'translateZ(0)',
-                        }}
-                      >
-                        <div className="absolute inset-0">
-                          <img 
-                            src={host.image} 
-                            alt={host.name}
-                            className="w-full h-full object-cover transition-transform duration-700 ease-out md:group-hover:scale-105"
-                            loading="eager"
-                            fetchPriority="high"
-                            decoding="async"
-                          />
-                          <div className="card-overlay" />
-                        </div>
-
-                        {/* Arrow button top right - hide when flipped for Safari compatibility */}
-                        <div 
-                          className="absolute top-4 right-4 z-10 transition-opacity duration-300"
-                          style={{ opacity: isFlipped ? 0 : 1 }}
+                    {isMobile ? (
+                      /* Mobile: Simple fade transition */
+                      <>
+                        {/* Front face - Host image */}
+                        <motion.div 
+                          className="absolute inset-0 card-base card-image rounded-xl overflow-hidden"
+                          initial={false}
+                          animate={{ opacity: isFlipped ? 0 : 1 }}
+                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                         >
-                          <div
-                            className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20 transition-transform duration-300 ease-out md:group-hover:-translate-y-1"
-                          >
-                            <ChevronDown className="h-5 w-5 text-white rotate-[-90deg]" />
+                          <div className="absolute inset-0">
+                            <img 
+                              src={host.image} 
+                              alt={host.name}
+                              className="w-full h-full object-cover"
+                              loading="eager"
+                              fetchPriority="high"
+                              decoding="async"
+                            />
+                            <div className="card-overlay" />
                           </div>
-                        </div>
 
-                        <div className="card-content-bottom card-padding">
-                          <div>
-                            <h3 className="font-display text-white leading-[0.95] tracking-normal">
-                              <span className="block text-4xl sm:text-3xl lg:text-4xl font-medium">{firstName}</span>
-                              <span className="block text-4xl sm:text-3xl lg:text-4xl font-normal">{lastName}</span>
-                            </h3>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Back face - Bio with animated background */}
-                      <div 
-                        className="absolute inset-0 glass rounded-xl overflow-hidden"
-                        style={{ 
-                          backfaceVisibility: 'hidden', 
-                          WebkitBackfaceVisibility: 'hidden', 
-                          transform: 'rotateY(180deg) translateZ(0)',
-                        }}
-                      >
-                        {/* Teaser background image */}
-                        <img
-                          src={teaserBg} 
-                          alt="" 
-                          className="w-full h-auto object-contain object-bottom absolute bottom-0 left-0"
-                        />
-                        {/* Gradient mask over image */}
-                        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,hsl(var(--background))_0%,hsl(var(--background))_40%,hsl(var(--background)/0.8)_60%,hsl(var(--background)/0.3)_80%,transparent_100%)]" />
-                        
-                        {/* Static color overlay */}
-                        <motion.div
-                          className="absolute inset-0 mix-blend-soft-light rounded-xl"
-                          style={{
-                            background: 'linear-gradient(135deg, rgba(220, 50, 50, 0.9) 0%, rgba(140, 60, 180, 0.8) 50%, rgba(60, 100, 220, 0.9) 100%)',
-                          }}
-                          initial={{ opacity: 0 }}
-                          animate={{ opacity: isFlipped ? 0.8 : 0 }}
-                          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                        />
-                        
-                        {/* Content */}
-                        <div className="relative z-10 p-5 sm:p-6 h-full flex flex-col">
-                          {/* Arrow button top right - same position as front */}
+                          {/* Arrow button top right */}
                           <div className="absolute top-4 right-4 z-10">
-                            <div className="rounded-full p-2 bg-foreground text-background">
-                              <ChevronDown className="h-5 w-5 rotate-90" />
+                            <div className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20">
+                              <ChevronDown className="h-5 w-5 text-white rotate-[-90deg]" />
                             </div>
                           </div>
-                          
-                          {/* Spacer */}
-                          <div className="flex-1" />
-                          
-                          {/* Bottom: Name, title, bio, and LinkedIn */}
-                          <div>
-                            <h3 className="font-display text-foreground leading-[0.95] tracking-normal">
-                              <span className="block text-2xl sm:text-3xl font-medium">{firstName}</span>
-                              <span className="block text-2xl sm:text-3xl font-normal">{lastName}</span>
+
+                          <div className="card-content-bottom card-padding">
+                            <h3 className="font-display text-white leading-[0.95] tracking-normal">
+                              <span className="block text-4xl font-medium">{firstName}</span>
+                              <span className="block text-4xl font-normal">{lastName}</span>
                             </h3>
-                            <p className="text-sm text-muted-foreground mt-2">{host.title}</p>
-                            <p className="text-sm leading-relaxed text-foreground/80 mt-4">
-                              {host.bio}
-                            </p>
-                            {host.linkedInUrl && (
-                              <a 
-                                href={host.linkedInUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={(e) => e.stopPropagation()}
-                                className="group/linkedin inline-flex items-center gap-0 mt-4 px-4 py-2 bg-foreground text-background text-sm font-medium rounded-full hover:bg-foreground/80 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
-                              >
-                                LinkedIn
-                                <span className="inline-block max-w-0 overflow-hidden opacity-0 group-hover/linkedin:max-w-[20px] group-hover/linkedin:opacity-100 group-hover/linkedin:ml-1.5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] text-xs">→</span>
-                              </a>
-                            )}
+                          </div>
+                        </motion.div>
+
+                        {/* Back face - Bio */}
+                        <motion.div 
+                          className="absolute inset-0 glass rounded-xl overflow-hidden"
+                          initial={false}
+                          animate={{ opacity: isFlipped ? 1 : 0 }}
+                          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                          style={{ pointerEvents: isFlipped ? 'auto' : 'none' }}
+                        >
+                          {/* Teaser background image */}
+                          <img
+                            src={teaserBg} 
+                            alt="" 
+                            className="w-full h-auto object-contain object-bottom absolute bottom-0 left-0"
+                          />
+                          {/* Gradient mask over image */}
+                          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,hsl(var(--background))_0%,hsl(var(--background))_40%,hsl(var(--background)/0.8)_60%,hsl(var(--background)/0.3)_80%,transparent_100%)]" />
+                          
+                          {/* Static color overlay */}
+                          <div
+                            className="absolute inset-0 mix-blend-soft-light rounded-xl opacity-80"
+                            style={{
+                              background: 'linear-gradient(135deg, rgba(220, 50, 50, 0.9) 0%, rgba(140, 60, 180, 0.8) 50%, rgba(60, 100, 220, 0.9) 100%)',
+                            }}
+                          />
+                          
+                          {/* Content */}
+                          <div className="relative z-10 p-5 h-full flex flex-col">
+                            {/* Arrow button top right */}
+                            <div className="absolute top-4 right-4 z-10">
+                              <div className="rounded-full p-2 bg-foreground text-background">
+                                <ChevronDown className="h-5 w-5 rotate-90" />
+                              </div>
+                            </div>
+                            
+                            <div className="flex-1" />
+                            
+                            {/* Bottom: Name, title, bio, and LinkedIn */}
+                            <div>
+                              <h3 className="font-display text-foreground leading-[0.95] tracking-normal">
+                                <span className="block text-2xl font-medium">{firstName}</span>
+                                <span className="block text-2xl font-normal">{lastName}</span>
+                              </h3>
+                              <p className="text-sm text-muted-foreground mt-2">{host.title}</p>
+                              <p className="text-sm leading-relaxed text-foreground/80 mt-4">
+                                {host.bio}
+                              </p>
+                              {host.linkedInUrl && (
+                                <a 
+                                  href={host.linkedInUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={(e) => e.stopPropagation()}
+                                  className="inline-flex items-center mt-4 px-4 py-2 bg-foreground text-background text-sm font-medium rounded-full"
+                                >
+                                  LinkedIn
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        </motion.div>
+                      </>
+                    ) : (
+                      /* Desktop: 3D flip animation */
+                      <motion.div
+                        className="relative w-full h-full"
+                        style={{ 
+                          transformStyle: 'preserve-3d',
+                          WebkitTransformStyle: 'preserve-3d',
+                        }}
+                        animate={{ rotateY: isFlipped ? 180 : 0 }}
+                        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                      >
+                        {/* Front face - Host image */}
+                        <div 
+                          className="absolute inset-0 card-base card-image rounded-xl overflow-hidden"
+                          style={{ 
+                            backfaceVisibility: 'hidden', 
+                            WebkitBackfaceVisibility: 'hidden',
+                            transform: 'translateZ(0)',
+                          }}
+                        >
+                          <div className="absolute inset-0">
+                            <img 
+                              src={host.image} 
+                              alt={host.name}
+                              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                              loading="eager"
+                              fetchPriority="high"
+                              decoding="async"
+                            />
+                            <div className="card-overlay" />
+                          </div>
+
+                          {/* Arrow button top right */}
+                          <div 
+                            className="absolute top-4 right-4 z-10 transition-opacity duration-300"
+                            style={{ opacity: isFlipped ? 0 : 1 }}
+                          >
+                            <div className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20 transition-transform duration-300 ease-out group-hover:-translate-y-1">
+                              <ChevronDown className="h-5 w-5 text-white rotate-[-90deg]" />
+                            </div>
+                          </div>
+
+                          <div className="card-content-bottom card-padding">
+                            <h3 className="font-display text-white leading-[0.95] tracking-normal">
+                              <span className="block text-3xl lg:text-4xl font-medium">{firstName}</span>
+                              <span className="block text-3xl lg:text-4xl font-normal">{lastName}</span>
+                            </h3>
                           </div>
                         </div>
-                      </div>
-                    </motion.div>
+
+                        {/* Back face - Bio */}
+                        <div 
+                          className="absolute inset-0 glass rounded-xl overflow-hidden"
+                          style={{ 
+                            backfaceVisibility: 'hidden', 
+                            WebkitBackfaceVisibility: 'hidden', 
+                            transform: 'rotateY(180deg) translateZ(0)',
+                          }}
+                        >
+                          {/* Teaser background image */}
+                          <img
+                            src={teaserBg} 
+                            alt="" 
+                            className="w-full h-auto object-contain object-bottom absolute bottom-0 left-0"
+                          />
+                          {/* Gradient mask over image */}
+                          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,hsl(var(--background))_0%,hsl(var(--background))_40%,hsl(var(--background)/0.8)_60%,hsl(var(--background)/0.3)_80%,transparent_100%)]" />
+                          
+                          {/* Static color overlay */}
+                          <motion.div
+                            className="absolute inset-0 mix-blend-soft-light rounded-xl"
+                            style={{
+                              background: 'linear-gradient(135deg, rgba(220, 50, 50, 0.9) 0%, rgba(140, 60, 180, 0.8) 50%, rgba(60, 100, 220, 0.9) 100%)',
+                            }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: isFlipped ? 0.8 : 0 }}
+                            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                          />
+                          
+                          {/* Content */}
+                          <div className="relative z-10 p-6 h-full flex flex-col">
+                            {/* Arrow button top right */}
+                            <div className="absolute top-4 right-4 z-10">
+                              <div className="rounded-full p-2 bg-foreground text-background">
+                                <ChevronDown className="h-5 w-5 rotate-90" />
+                              </div>
+                            </div>
+                            
+                            <div className="flex-1" />
+                            
+                            {/* Bottom: Name, title, bio, and LinkedIn */}
+                            <div>
+                              <h3 className="font-display text-foreground leading-[0.95] tracking-normal">
+                                <span className="block text-3xl font-medium">{firstName}</span>
+                                <span className="block text-3xl font-normal">{lastName}</span>
+                              </h3>
+                              <p className="text-sm text-muted-foreground mt-2">{host.title}</p>
+                              <p className="text-sm leading-relaxed text-foreground/80 mt-4">
+                                {host.bio}
+                              </p>
+                              {host.linkedInUrl && (
+                                <a 
+                                  href={host.linkedInUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  onClick={(e) => e.stopPropagation()}
+                                  className="group/linkedin inline-flex items-center gap-0 mt-4 px-4 py-2 bg-foreground text-background text-sm font-medium rounded-full hover:bg-foreground/80 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                                >
+                                  LinkedIn
+                                  <span className="inline-block max-w-0 overflow-hidden opacity-0 group-hover/linkedin:max-w-[20px] group-hover/linkedin:opacity-100 group-hover/linkedin:ml-1.5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] text-xs">→</span>
+                                </a>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    )}
                   </div>
                 </motion.article>
               );
