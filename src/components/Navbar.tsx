@@ -12,6 +12,7 @@ const Navbar = () => {
   const { openSubscribe } = useSubscribe();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("");
   const location = useLocation();
   const navigate = useNavigate();
   const isHomePage = location.pathname === "/";
@@ -19,13 +20,35 @@ const Navbar = () => {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
+      
+      // Only track sections on homepage
+      if (location.pathname !== "/") {
+        setActiveSection("");
+        return;
+      }
+      
+      const sections = ["podcast", "events", "contact"];
+      const windowHeight = window.innerHeight;
+      
+      // Find which section is most visible
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const element = document.getElementById(sections[i]);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top < windowHeight / 2) {
+            setActiveSection(`#${sections[i]}`);
+            return;
+          }
+        }
+      }
+      setActiveSection("");
     };
     
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Check initial position
     
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [location.pathname]);
   
   const navLinks = [
     { label: "Podcast", href: "#podcast" },
@@ -92,7 +115,9 @@ const Navbar = () => {
                   <a
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className="text-[1em] font-medium text-foreground hover:text-foreground/60 hover-transition focus-ring"
+                    className={`text-[1em] font-medium hover:text-foreground/60 hover-transition focus-ring ${
+                      activeSection === link.href ? 'text-foreground' : 'text-foreground/50'
+                    }`}
                   >
                     {link.label}
                   </a>
