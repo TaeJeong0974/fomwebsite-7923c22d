@@ -267,8 +267,11 @@ const HeroSection = () => {
                           <div className="card-overlay" />
                         </div>
 
-                        {/* Arrow button top right */}
-                        <div className="absolute top-4 right-4 z-10">
+                        {/* Arrow button top right - hide when flipped for Safari compatibility */}
+                        <div 
+                          className="absolute top-4 right-4 z-10 transition-opacity duration-300"
+                          style={{ opacity: isFlipped ? 0 : 1 }}
+                        >
                           <div
                             className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20 transition-transform duration-300 ease-out md:group-hover:-translate-y-1"
                           >
