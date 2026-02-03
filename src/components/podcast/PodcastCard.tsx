@@ -44,7 +44,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="card-image hover-scale relative">
+      <div className="card-image md:hover-scale relative">
         {/* Lazy loaded background image */}
         <img
           src={guestBg}
