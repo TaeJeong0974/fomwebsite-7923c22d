@@ -83,7 +83,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       { time: "10:00", title: "Why this podcast?" },
       { time: "18:00", title: "What's coming up" },
     ],
-    youtubeUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    youtubeUrl: "https://www.youtube.com/watch?v=wCDIYvFmgW8",
     spotifyUrl: "https://spotify.com",
     duration: "25 min",
     publishedDate: "Jan 1, 2026",
