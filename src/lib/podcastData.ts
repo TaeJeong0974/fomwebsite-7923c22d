@@ -60,7 +60,7 @@ export const podcastHosts: PodcastHost[] = [
 
 export const podcastEpisodes: PodcastEpisode[] = [
   {
-    id: 1,
+    id: 0,
     slug: "intro-to-fom",
     name: "Intro to FOM",
     title: "",
@@ -92,7 +92,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     hosts: podcastHosts,
   },
   {
-    id: 2,
+    id: 1,
     slug: "meagen-eisenberg",
     name: "Meagen Eisenberg",
     title: "Chief Marketing Officer",
@@ -127,7 +127,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     previewVideoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
   },
   {
-    id: 3,
+    id: 2,
     slug: "lena-waters",
     name: "Lena Waters",
     title: "Chief Marketing Officer",
@@ -153,7 +153,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     linkedInUrl: "https://linkedin.com/in/lenawaters",
   },
   {
-    id: 4,
+    id: 3,
     slug: "lindsey-irvine",
     name: "Lindsey Irvine",
     title: "Chief Marketing Officer",
@@ -180,7 +180,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
   },
   // Coming Soon Episodes
   {
-    id: 5,
+    id: 4,
     slug: "sara-varni",
     name: "Sara Varni",
     title: "Chief Marketing Officer",
