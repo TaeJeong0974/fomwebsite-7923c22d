@@ -39,8 +39,8 @@ const PageTransition = ({ children }: PageTransitionProps) => {
           setTimeout(() => {
             const element = document.querySelector('#podcast');
             element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 100);
-        }, 400);
+          }, 80);
+        }, 280);
       } else {
         setDisplayLocation(location);
         previousPathRef.current = location.pathname;
