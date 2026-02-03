@@ -114,7 +114,7 @@ const PodcastDetail = () => {
             transition={{ duration: 1.0, delay: 0.3, ease: liquidEase }}
           >
             <EpisodePullQuote
-              quote={episode.pullQuote || "The future of marketing belongs to those who combine creativity with operational excellence."}
+              quote="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
               attribution={episode.name}
             />
           </motion.div>
