@@ -113,82 +113,15 @@ const HeroSection = () => {
               Your Hosts
             </motion.p>
           </div>
-          {/* Logo spans columns 2-3 with animated gradient masked by FOM shape */}
+          {/* Logo spans columns 2-3 */}
           <div className="md:col-span-2 flex justify-center overflow-hidden relative">
-            {/* Container with gradient masked by FOM logo */}
-            <div 
-              className="w-full relative"
+            {/* FOM Logo as visible image */}
+            <img 
+              src={FOMIcon} 
+              alt="Future of Marketing"
+              className="w-full h-auto"
               style={{ aspectRatio: '598 / 186' }}
-            >
-              {/* Animated color gradient - masked by FOM logo shape */}
-              <motion.div 
-                className="absolute inset-0 hidden md:block"
-                style={{
-                  maskImage: `url(${FOMIcon})`,
-                  maskSize: 'contain',
-                  maskRepeat: 'no-repeat',
-                  maskPosition: 'center',
-                  WebkitMaskImage: `url(${FOMIcon})`,
-                  WebkitMaskSize: 'contain',
-                  WebkitMaskRepeat: 'no-repeat',
-                  WebkitMaskPosition: 'center',
-                }}
-                animate={{
-                  background: [
-                    'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
-                    'linear-gradient(135deg, rgb(200,140,150) 0%, rgb(130,150,180) 50%, rgb(230,130,110) 100%)',
-                    'linear-gradient(135deg, rgb(130,150,180) 0%, rgb(230,130,110) 50%, rgb(200,140,150) 100%)',
-                    'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
-                  ]
-                }}
-                transition={{ duration: 3, ease: 'easeInOut', repeat: Infinity }}
-              />
-              {/* Black gradient overlay from top-left to bottom-right - masked by FOM logo */}
-              <div 
-                className="absolute inset-0 hidden md:block"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)',
-                  maskImage: `url(${FOMIcon})`,
-                  maskSize: 'contain',
-                  maskRepeat: 'no-repeat',
-                  maskPosition: 'center',
-                  WebkitMaskImage: `url(${FOMIcon})`,
-                  WebkitMaskSize: 'contain',
-                  WebkitMaskRepeat: 'no-repeat',
-                  WebkitMaskPosition: 'center',
-                }}
-              />
-              {/* Static gradient for mobile - masked by FOM logo */}
-              <div 
-                className="absolute inset-0 md:hidden"
-                style={{ 
-                  background: 'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
-                  maskImage: `url(${FOMIcon})`,
-                  maskSize: 'contain',
-                  maskRepeat: 'no-repeat',
-                  maskPosition: 'center',
-                  WebkitMaskImage: `url(${FOMIcon})`,
-                  WebkitMaskSize: 'contain',
-                  WebkitMaskRepeat: 'no-repeat',
-                  WebkitMaskPosition: 'center',
-                }}
-              />
-              {/* Mobile black gradient overlay */}
-              <div 
-                className="absolute inset-0 md:hidden"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)',
-                  maskImage: `url(${FOMIcon})`,
-                  maskSize: 'contain',
-                  maskRepeat: 'no-repeat',
-                  maskPosition: 'center',
-                  WebkitMaskImage: `url(${FOMIcon})`,
-                  WebkitMaskSize: 'contain',
-                  WebkitMaskRepeat: 'no-repeat',
-                  WebkitMaskPosition: 'center',
-                }}
-              />
-            </div>
+            />
           </div>
         </motion.div>
 
