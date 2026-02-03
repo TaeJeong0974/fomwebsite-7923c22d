@@ -53,29 +53,47 @@ const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
       />
       
       {/* Content */}
-      <div className="relative z-10">
-        <h3 className="text-section-header mb-6">Hosts</h3>
-        <div className="space-y-5">
-          {hosts.map((host, index) => (
-            <div key={index} className={index > 0 ? "pt-5 border-t border-border/20" : ""}>
-              <h3 className="font-display text-xl sm:text-2xl font-medium text-foreground tracking-normal">
-                {host.name}
-              </h3>
-              <p className="text-sm text-muted-foreground mt-1">
-                {host.title}, {host.company}
-              </p>
-              {host.linkedInUrl && (
+      <div className="relative z-10 flex flex-col h-full min-h-[280px]">
+        {/* Top: Header and LinkedIn buttons */}
+        <div className="flex items-start justify-between mb-6">
+          <h3 className="text-section-header">Hosts</h3>
+          <div className="flex gap-2">
+            {hosts.map((host, index) => (
+              host.linkedInUrl && (
                 <a
+                  key={index}
                   href={host.linkedInUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-muted-foreground hover:text-foreground hover-transition inline-block mt-2"
+                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-foreground text-background text-sm font-medium hover:bg-foreground/90 hover-transition"
                 >
                   LinkedIn →
                 </a>
-              )}
-            </div>
-          ))}
+              )
+            ))}
+          </div>
+        </div>
+        
+        {/* Spacer */}
+        <div className="flex-1" />
+        
+        {/* Bottom: Names and titles */}
+        <div className="space-y-4">
+          {hosts.map((host, index) => {
+            const [firstName, ...lastNameParts] = host.name.split(' ');
+            const lastName = lastNameParts.join(' ');
+            return (
+              <div key={index} className={index > 0 ? "pt-4 border-t border-border/20" : ""}>
+                <h3 className="font-display text-foreground leading-[0.95] tracking-normal">
+                  <span className="block text-2xl sm:text-3xl font-medium">{firstName}</span>
+                  <span className="block text-2xl sm:text-3xl font-normal">{lastName}</span>
+                </h3>
+                <p className="text-sm text-muted-foreground mt-2">
+                  {host.title}, {host.company}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
