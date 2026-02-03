@@ -315,34 +315,37 @@ const HeroSection = () => {
                         
                         {/* Content */}
                         <div className="relative z-10 p-5 sm:p-6 h-full flex flex-col">
+                          {/* Top row: LinkedIn button on right */}
                           <div className="flex items-start justify-between mb-4">
-                            <div>
-                              <h3 className="font-display text-foreground leading-[0.95] tracking-normal">
-                                <span className="block text-2xl sm:text-3xl font-medium">{firstName}</span>
-                                <span className="block text-2xl sm:text-3xl font-normal">{lastName}</span>
-                              </h3>
-                              <p className="text-sm text-muted-foreground mt-2">{host.title}</p>
-                            </div>
                             <div className="rounded-full p-2 bg-foreground text-background">
                               <ChevronDown className="h-5 w-5 rotate-90" />
                             </div>
+                            {host.linkedInUrl && (
+                              <a
+                                href={host.linkedInUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-foreground text-background text-sm font-medium hover:bg-foreground/90 hover-transition"
+                              >
+                                LinkedIn →
+                              </a>
+                            )}
                           </div>
                           
-                          <p className="text-sm leading-relaxed text-foreground/80 flex-1 overflow-y-auto">
+                          {/* Bio content */}
+                          <p className="text-sm leading-relaxed text-foreground/80 flex-1 overflow-y-auto mb-4">
                             {host.bio}
                           </p>
                           
-                          {host.linkedInUrl && (
-                            <a
-                              href={host.linkedInUrl}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              onClick={(e) => e.stopPropagation()}
-                              className="mt-4 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-foreground text-background text-sm font-medium hover:bg-foreground/90 hover-transition"
-                            >
-                              LinkedIn →
-                            </a>
-                          )}
+                          {/* Bottom: Name and title */}
+                          <div>
+                            <h3 className="font-display text-foreground leading-[0.95] tracking-normal">
+                              <span className="block text-2xl sm:text-3xl font-medium">{firstName}</span>
+                              <span className="block text-2xl sm:text-3xl font-normal">{lastName}</span>
+                            </h3>
+                            <p className="text-sm text-muted-foreground mt-2">{host.title}</p>
+                          </div>
                         </div>
                       </div>
                     </motion.div>
