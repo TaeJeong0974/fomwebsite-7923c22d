@@ -49,125 +49,122 @@ const PodcastDetail = () => {
       <DetailVerticalText guestName={guestName} />
       
       <EpisodeOverlayLayout>
-        {/* Episode Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
-      {/* Main Content */}
-        <div className="lg:col-span-2 space-y-10 sm:space-y-14 lg:space-y-20">
-          {/* Title & Actions before Video */}
-          <motion.div 
-            className="space-y-4 sm:space-y-6"
-            variants={fadeInVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, ease: liquidEase }}
-          >
-            {/* Episode Title */}
-            <div className="space-y-1 sm:space-y-2">
-              <span className="text-label text-foreground/60 uppercase tracking-wider text-xs sm:text-sm">
-                {episode.slug === 'intro-to-fom' ? 'Future of Marketing' : `Episode ${episode.id}`}
-              </span>
-              <h1 className="text-display-lg font-display font-medium text-foreground leading-[0.95]">
-                {episode.slug === 'intro-to-fom' 
-                  ? 'Meet Your Hosts' 
-                  : episode.overview || episode.name}
-              </h1>
-            </div>
-
-            {/* Video Player */}
-            <FloatingMiniPlayer 
-              youtubeUrl={episode.youtubeUrl}
-              spotifyUrl={episode.spotifyUrl}
-            />
-
-            {/* Action Buttons - Mobile only (desktop shows in sidebar) */}
-            <div className="pt-2 lg:hidden">
-              <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
-            </div>
-          </motion.div>
-
-          {/* About This Episode */}
-          <motion.div
-            variants={fadeInVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, delay: 0.15, ease: liquidEase }}
-          >
-            <h3 className="text-section-header mb-4">
-              About This Episode
-            </h3>
-            <div className="text-foreground/80 whitespace-pre-line leading-relaxed text-base lg:text-lg max-w-prose">
-              {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
-            </div>
-          </motion.div>
-
-          {/* Topics */}
-          <motion.div
-            variants={fadeInVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, delay: 0.3, ease: liquidEase }}
-          >
-            <EpisodeTopics topics={episode.topics} />
-          </motion.div>
-
-          {/* Pull Quote */}
-          <motion.div
-            variants={fadeInVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
-          >
-            <EpisodePullQuote
-              quote="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
-              attribution={episode.name}
-            />
-          </motion.div>
-
-          {/* Guest & Hosts - Mobile only, after About section */}
-          <div className="lg:hidden space-y-4">
-            {/* Featured Guest - Mobile */}
-            {episode.slug !== 'intro-to-fom' && (
-              <EpisodeGuestCard
-                name={episode.name}
-                title={episode.title}
-                company={episode.company}
-                linkedInUrl={episode.linkedInUrl}
-                bio={episode.bio}
-              />
-            )}
-            {/* Hosts - Mobile */}
-            <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
+        {/* Title & Action Buttons Row - Above the grid */}
+        <motion.div 
+          className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 sm:gap-6 mb-4 sm:mb-6"
+          variants={fadeInVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 1.0, ease: liquidEase }}
+        >
+          {/* Episode Title */}
+          <div className="space-y-1 sm:space-y-2 lg:flex-1">
+            <span className="text-label text-foreground/60 uppercase tracking-wider text-xs sm:text-sm">
+              {episode.slug === 'intro-to-fom' ? 'Future of Marketing' : `Episode ${episode.id}`}
+            </span>
+            <h1 className="text-display-lg font-display font-medium text-foreground leading-[0.95]">
+              {episode.slug === 'intro-to-fom' 
+                ? 'Meet Your Hosts' 
+                : episode.overview || episode.name}
+            </h1>
           </div>
-        </div>
+          
+          {/* Action Buttons - Desktop only in this row */}
+          <div className="hidden lg:block flex-shrink-0">
+            <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
+          </div>
+        </motion.div>
 
-        {/* Sidebar */}
-        <div className="hidden lg:block relative">
-          {/* Action Buttons - Aligned with H1 */}
-          <motion.div
-            className="absolute top-[1.75rem] left-0 w-full"
+        {/* Video + Sidebar Grid - Now video and cards naturally align */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-10 sm:space-y-14 lg:space-y-20">
+            {/* Video Player */}
+            <motion.div 
+              className="space-y-4 sm:space-y-6"
+              variants={fadeInVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 1.0, ease: liquidEase }}
+            >
+              <FloatingMiniPlayer 
+                youtubeUrl={episode.youtubeUrl}
+                spotifyUrl={episode.spotifyUrl}
+              />
+
+              {/* Action Buttons - Mobile only */}
+              <div className="pt-2 lg:hidden">
+                <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
+              </div>
+            </motion.div>
+
+            {/* About This Episode */}
+            <motion.div
+              variants={fadeInVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 1.0, delay: 0.15, ease: liquidEase }}
+            >
+              <h3 className="text-section-header mb-4">
+                About This Episode
+              </h3>
+              <div className="text-foreground/80 whitespace-pre-line leading-relaxed text-base lg:text-lg max-w-prose">
+                {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
+              </div>
+            </motion.div>
+
+            {/* Topics */}
+            <motion.div
+              variants={fadeInVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 1.0, delay: 0.3, ease: liquidEase }}
+            >
+              <EpisodeTopics topics={episode.topics} />
+            </motion.div>
+
+            {/* Pull Quote */}
+            <motion.div
+              variants={fadeInVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
+            >
+              <EpisodePullQuote
+                quote="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
+                attribution={episode.name}
+              />
+            </motion.div>
+
+            {/* Guest & Hosts - Mobile only */}
+            <div className="lg:hidden space-y-4">
+              {episode.slug !== 'intro-to-fom' && (
+                <EpisodeGuestCard
+                  name={episode.name}
+                  title={episode.title}
+                  company={episode.company}
+                  linkedInUrl={episode.linkedInUrl}
+                  bio={episode.bio}
+                />
+              )}
+              <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
+            </div>
+          </div>
+
+          {/* Sidebar - Cards aligned with video */}
+          <motion.div 
+            className="hidden lg:flex lg:flex-col space-y-6"
             variants={fadeInVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 1.0, delay: 0.1, ease: liquidEase }}
           >
-            <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
-          </motion.div>
-
-          {/* Cards - Aligned with video */}
-          <motion.div 
-            className="space-y-6 mt-24"
-            variants={fadeInVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, delay: 0.2, ease: liquidEase }}
-          >
-            {/* Featured Guest */}
             {episode.slug !== 'intro-to-fom' && (
               <EpisodeGuestCard
                 name={episode.name}
@@ -177,12 +174,9 @@ const PodcastDetail = () => {
                 bio={episode.bio}
               />
             )}
-
-            {/* Your Hosts */}
             <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
           </motion.div>
         </div>
-      </div>
 
       {/* Related Episodes */}
       <RelatedEpisodes episodes={otherEpisodes} delay={0.4} />
