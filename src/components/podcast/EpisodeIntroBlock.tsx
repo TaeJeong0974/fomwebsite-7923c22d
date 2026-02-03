@@ -28,9 +28,9 @@ const EpisodeIntroBlock = ({
   // Variant A: Stacked with large H1-style display
   if (variant === "A") {
     return (
-      <div className="space-y-6">
-        <div className="space-y-2">
-          <span className="text-label text-foreground/60 uppercase tracking-wider">
+      <div className="space-y-4 sm:space-y-6">
+        <div className="space-y-1 sm:space-y-2">
+          <span className="text-label text-foreground/60 uppercase tracking-wider text-xs sm:text-sm">
             {eyebrowText}
           </span>
           <h1 className="text-display-lg font-display font-medium text-foreground leading-[0.95]">
