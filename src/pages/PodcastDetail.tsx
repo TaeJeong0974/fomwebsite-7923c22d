@@ -69,8 +69,8 @@ const PodcastDetail = () => {
         </h1>
       </motion.div>
 
-      {/* Video + Sidebar + Actions Row - Aligned together */}
-      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr_auto] gap-4 sm:gap-6 lg:gap-8 items-start mt-4 sm:mt-6">
+      {/* Video + Sidebar Row - Aligned together */}
+      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-4 sm:gap-6 lg:gap-8 items-start mt-4 sm:mt-6">
         {/* Video Player */}
         <motion.div 
           variants={fadeInVariants}
@@ -90,7 +90,7 @@ const PodcastDetail = () => {
           </div>
         </motion.div>
 
-        {/* Sidebar Cards - Aligned with video */}
+        {/* Sidebar - Action Buttons + Cards */}
         <motion.div 
           className="hidden lg:flex lg:flex-col space-y-6"
           variants={fadeInVariants}
@@ -99,6 +99,9 @@ const PodcastDetail = () => {
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 1.0, delay: 0.2, ease: liquidEase }}
         >
+          {/* Action Buttons - Horizontally at top */}
+          <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
+
           {/* Featured Guest */}
           {episode.slug !== 'intro-to-fom' && (
             <EpisodeGuestCard
@@ -112,18 +115,6 @@ const PodcastDetail = () => {
 
           {/* Your Hosts */}
           <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
-        </motion.div>
-
-        {/* Action Buttons - Desktop only, to the right of sidebar */}
-        <motion.div
-          className="hidden lg:flex flex-col"
-          variants={fadeInVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 1.0, delay: 0.1, ease: liquidEase }}
-        >
-          <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} vertical />
         </motion.div>
       </div>
 
