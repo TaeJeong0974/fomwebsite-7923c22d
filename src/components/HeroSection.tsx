@@ -344,6 +344,17 @@ const HeroSection = () => {
                             <p className="text-sm leading-relaxed text-foreground/80 mt-4">
                               {host.bio}
                             </p>
+                            {host.linkedInUrl && (
+                              <a 
+                                href={host.linkedInUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                onClick={(e) => e.stopPropagation()}
+                                className="inline-block mt-4 text-sm font-medium text-foreground hover:text-foreground/70 transition-colors underline underline-offset-2"
+                              >
+                                LinkedIn →
+                              </a>
+                            )}
                           </div>
                         </div>
                       </div>
