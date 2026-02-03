@@ -29,6 +29,7 @@ const hosts = [
     title: "Partner, XYZ Venture Capital",
     bio: "Partner at XYZ Venture Capital, where she leads investments in product-led growth and go-to-market software startups. Prior, she was the first marketing leader at Notion, building out the brand, community, and more. She also founded First Round Review for First Round Capital, managed communications at Tesla, and reported for the Wall Street Journal.",
     image: hostCamille,
+    linkedInUrl: "https://linkedin.com/in/camillericketts",
   },
 ];
 
