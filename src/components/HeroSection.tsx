@@ -344,20 +344,9 @@ const HeroSection = () => {
                               <span className="block text-2xl sm:text-3xl font-normal">{lastName}</span>
                             </h3>
                             <p className="text-sm text-muted-foreground mt-2">{host.title}</p>
-                            <p className="text-sm leading-relaxed text-foreground/80 mt-4 mb-4">
+                            <p className="text-sm leading-relaxed text-foreground/80 mt-4">
                               {host.bio}
                             </p>
-                            {host.linkedInUrl && (
-                              <a
-                                href={host.linkedInUrl}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                onClick={(e) => e.stopPropagation()}
-                                className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-foreground text-background text-sm font-medium hover:bg-foreground/90 hover-transition"
-                              >
-                                LinkedIn →
-                              </a>
-                            )}
                           </div>
                         </div>
                       </div>
