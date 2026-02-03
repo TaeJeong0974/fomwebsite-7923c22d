@@ -6,6 +6,7 @@ import hostMada from "@/assets/host-mada.png";
 import hostEthan from "@/assets/host-ethan.png";
 import hostCamille from "@/assets/host-camille.png";
 import FOMIcon from "@/assets/FOM_Icon.svg";
+import teaserBg from "@/assets/teaser-bg.png";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
 
 const hosts = [
@@ -32,7 +33,7 @@ const hosts = [
 const taglineLines = ["A podcast", "series on how", "AI is changing", "marketing"];
 
 const HeroSection = () => {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
   const isMobile = useIsMobile();
   const scrollRef = useRef<HTMLDivElement>(null);
 
@@ -212,7 +213,7 @@ const HeroSection = () => {
             {hosts.map((host, index) => {
               const firstName = host.name.split(' ')[0];
               const lastName = host.name.split(' ').slice(1).join(' ');
-              const isExpanded = expandedIndex === index;
+              const isFlipped = flippedIndex === index;
               
               return (
                 <motion.article
@@ -227,58 +228,110 @@ const HeroSection = () => {
                   className={isMobile ? "group flex-shrink-0" : "group"}
                   style={isMobile ? { width: 'calc(88% - 8px)', scrollSnapAlign: 'start' } : undefined}
                 >
+                  {/* Card flip container */}
                   <div 
-                  className={isMobile 
-                    ? "card-base relative overflow-hidden rounded-xl aspect-[3/4] cursor-pointer"
-                    : "card-base card-image hover-scale cursor-pointer"
-                  }
-                    onClick={() => setExpandedIndex(isExpanded ? null : index)}
+                    className={isMobile 
+                      ? "relative aspect-[3/4] cursor-pointer"
+                      : "relative aspect-[3/4] cursor-pointer"
+                    }
+                    style={{ perspective: '1000px' }}
+                    onClick={() => setFlippedIndex(isFlipped ? null : index)}
                   >
-                    <div className="absolute inset-0">
-                      <img 
-                        src={host.image} 
-                        alt={host.name}
-                        className="w-full h-full object-cover"
-                        loading="eager"
-                        fetchPriority="high"
-                        decoding="async"
-                      />
-                      <div className="card-overlay" />
-                    </div>
-
-                    <div className="card-content-bottom card-padding">
-                      <div className="flex items-end justify-between">
-                        <div>
-                          <h3 className="font-display text-white leading-[0.95] tracking-normal">
-                            <span className="block text-4xl sm:text-3xl lg:text-4xl font-medium">{firstName}</span>
-                            <span className="block text-4xl sm:text-3xl lg:text-4xl font-normal">{lastName}</span>
-                          </h3>
-                          <p className="text-body-sm text-white mt-1">{host.title}</p>
+                    {/* Inner container that flips */}
+                    <motion.div
+                      className="relative w-full h-full"
+                      style={{ transformStyle: 'preserve-3d' }}
+                      animate={{ rotateY: isFlipped ? 180 : 0 }}
+                      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      {/* Front face - Host image */}
+                      <div 
+                        className="absolute inset-0 card-base card-image rounded-xl overflow-hidden"
+                        style={{ backfaceVisibility: 'hidden' }}
+                      >
+                        <div className="absolute inset-0">
+                          <img 
+                            src={host.image} 
+                            alt={host.name}
+                            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                            loading="eager"
+                            fetchPriority="high"
+                            decoding="async"
+                          />
+                          <div className="card-overlay" />
                         </div>
-                        <div
-                          className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20 transition-transform duration-300 ease-out group-hover:-translate-y-1 hover:!-translate-y-1.5"
-                          style={{ transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease' }}
-                        >
-                          <ChevronDown className="h-5 w-5 text-white" />
+
+                        <div className="card-content-bottom card-padding">
+                          <div className="flex items-end justify-between">
+                            <div>
+                              <h3 className="font-display text-white leading-[0.95] tracking-normal">
+                                <span className="block text-4xl sm:text-3xl lg:text-4xl font-medium">{firstName}</span>
+                                <span className="block text-4xl sm:text-3xl lg:text-4xl font-normal">{lastName}</span>
+                              </h3>
+                              <p className="text-body-sm text-white mt-1">{host.title}</p>
+                            </div>
+                            <div
+                              className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20 transition-transform duration-300 ease-out group-hover:-translate-y-1"
+                            >
+                              <ChevronDown className="h-5 w-5 text-white rotate-[-90deg]" />
+                            </div>
+                          </div>
                         </div>
                       </div>
-                      
-                      <AnimatePresence>
-                        {isExpanded && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3 }}
-                            className="overflow-hidden"
-                          >
-                            <p className="text-sm leading-relaxed text-white/90 mt-4" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.3)' }}>
-                              {host.bio}
-                            </p>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
+
+                      {/* Back face - Bio with animated background */}
+                      <div 
+                        className="absolute inset-0 glass rounded-xl overflow-hidden"
+                        style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+                      >
+                        {/* Teaser background image */}
+                        <img
+                          src={teaserBg} 
+                          alt="" 
+                          className="w-full h-auto object-contain object-bottom absolute bottom-0 left-0"
+                        />
+                        {/* Gradient mask over image */}
+                        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,hsl(var(--background))_0%,hsl(var(--background))_40%,hsl(var(--background)/0.8)_60%,hsl(var(--background)/0.3)_80%,transparent_100%)]" />
+                        
+                        {/* Animated color overlay */}
+                        <motion.div
+                          className="absolute inset-0 mix-blend-soft-light rounded-xl"
+                          animate={{
+                            opacity: isFlipped ? 0.8 : 0,
+                            background: isFlipped ? [
+                              'linear-gradient(135deg, rgba(220, 50, 50, 0.9) 0%, rgba(140, 60, 180, 0.8) 50%, rgba(60, 100, 220, 0.9) 100%)',
+                              'linear-gradient(135deg, rgba(140, 60, 180, 0.9) 0%, rgba(60, 100, 220, 0.8) 50%, rgba(220, 50, 50, 0.9) 100%)',
+                              'linear-gradient(135deg, rgba(60, 100, 220, 0.9) 0%, rgba(220, 50, 50, 0.8) 50%, rgba(140, 60, 180, 0.9) 100%)',
+                              'linear-gradient(135deg, rgba(220, 50, 50, 0.9) 0%, rgba(140, 60, 180, 0.8) 50%, rgba(60, 100, 220, 0.9) 100%)',
+                            ] : undefined,
+                          }}
+                          transition={{
+                            opacity: { duration: 4, ease: [0.22, 1, 0.36, 1] },
+                            background: { duration: 3, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop' },
+                          }}
+                        />
+                        
+                        {/* Content */}
+                        <div className="relative z-10 p-5 sm:p-6 h-full flex flex-col">
+                          <div className="flex items-start justify-between mb-4">
+                            <div>
+                              <h3 className="font-display text-foreground leading-[0.95] tracking-normal">
+                                <span className="block text-2xl sm:text-3xl font-medium">{firstName}</span>
+                                <span className="block text-2xl sm:text-3xl font-normal">{lastName}</span>
+                              </h3>
+                              <p className="text-sm text-muted-foreground mt-2">{host.title}</p>
+                            </div>
+                            <div className="rounded-full p-2 bg-foreground text-background">
+                              <ChevronDown className="h-5 w-5 rotate-90" />
+                            </div>
+                          </div>
+                          
+                          <p className="text-sm leading-relaxed text-foreground/80 flex-1 overflow-y-auto">
+                            {host.bio}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
                   </div>
                 </motion.article>
               );
