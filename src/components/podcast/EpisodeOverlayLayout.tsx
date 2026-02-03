@@ -17,10 +17,10 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
       {/* Floating Panel Container */}
       <main className="relative z-10 pt-6 sm:pt-8 lg:pt-12 pb-6 sm:pb-8 lg:pb-12">
         {/* White Content Panel */}
-        <div className="container mx-auto container-padding">
+        <div className="container mx-auto px-0 sm:container-padding">
           <div className="relative flex gap-4">
             {/* Main Panel */}
-            <div className="flex-1 bg-[#f4f2ef] rounded-xl shadow-2xl shadow-black/5 p-4 sm:p-8 lg:p-10">
+            <div className="flex-1 bg-[#f4f2ef] rounded-none sm:rounded-xl shadow-2xl shadow-black/5 px-4 py-6 sm:p-8 lg:p-10">
               {children}
             </div>
             
