@@ -30,10 +30,10 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl }: FloatingMiniPlayerProps)
     <>
       {/* Main Video Player - Full width on mobile */}
       <div className="-ml-4 -mr-4 w-[calc(100%+2rem)] sm:ml-0 sm:mr-0 sm:w-full">
-        <div className="relative aspect-video sm:rounded-xl overflow-hidden">
+        <div className="relative aspect-video sm:rounded-xl overflow-hidden bg-black/90 sm:ring-1 sm:ring-white/10 sm:shadow-2xl sm:shadow-black/20">
           {videoId ? (
             <iframe
-              src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1`}
+              src={`https://www.youtube.com/embed/${videoId}?rel=0&modestbranding=1&showinfo=0&color=white`}
               title="Episode Video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
