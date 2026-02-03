@@ -71,7 +71,7 @@ const PodcastDetail = () => {
                 <h1 className="text-display-lg font-display font-medium text-foreground leading-[0.95]">
                   {episode.slug === 'intro-to-fom' 
                     ? 'Meet Your Hosts' 
-                    : episode.name}
+                    : episode.overview || episode.name}
                 </h1>
               </div>
               <div className="shrink-0">
