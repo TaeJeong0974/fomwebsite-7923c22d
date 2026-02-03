@@ -146,7 +146,7 @@ const PodcastDetail = () => {
 
         {/* Sidebar */}
         <motion.div 
-          className="space-y-6 lg:mt-[7rem]"
+          className="space-y-6 lg:mt-[7.75rem]"
           variants={fadeInVariants}
           initial="hidden"
           whileInView="visible"
