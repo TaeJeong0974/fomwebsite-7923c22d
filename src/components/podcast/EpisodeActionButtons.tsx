@@ -6,9 +6,10 @@ import { liquidSpring, buttonVariants, variantClasses } from "@/components/ui/Li
 interface EpisodeActionButtonsProps {
   youtubeUrl: string;
   spotifyUrl: string;
+  vertical?: boolean;
 }
 
-const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsProps) => {
+const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl, vertical = false }: EpisodeActionButtonsProps) => {
   const [copied, setCopied] = useState(false);
 
   const handleShare = async () => {
@@ -24,7 +25,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
   const textClasses = "hidden md:inline overflow-hidden whitespace-nowrap max-w-0 group-hover/btn:max-w-24 opacity-0 group-hover/btn:opacity-100 transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ml-0 group-hover/btn:ml-2";
 
   return (
-    <div className="flex gap-2 sm:gap-3">
+    <div className={`flex gap-2 sm:gap-3 ${vertical ? 'flex-col' : ''}`}>
       {/* YouTube */}
       <motion.a
         href={youtubeUrl}

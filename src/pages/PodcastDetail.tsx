@@ -50,44 +50,29 @@ const PodcastDetail = () => {
       
       <EpisodeOverlayLayout>
         {/* Episode Content */}
-      {/* Title Row with Action Buttons */}
-      <div className="flex items-start justify-between gap-4 lg:gap-8">
-        <motion.div 
-          className="flex-1 space-y-1 sm:space-y-2"
-          variants={fadeInVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 1.0, ease: liquidEase }}
-        >
-          <span className="text-label text-foreground/60 uppercase tracking-wider text-xs sm:text-sm">
-            {episode.slug === 'intro-to-fom' ? 'Future of Marketing' : `Episode ${episode.id}`}
-          </span>
-          <h1 className="text-display-lg font-display font-medium text-foreground leading-[0.95]">
-            {episode.slug === 'intro-to-fom' 
-              ? 'Meet Your Hosts' 
-              : episode.overview || episode.name}
-          </h1>
-        </motion.div>
+      {/* Title Row */}
+      <motion.div 
+        className="space-y-1 sm:space-y-2"
+        variants={fadeInVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.15 }}
+        transition={{ duration: 1.0, ease: liquidEase }}
+      >
+        <span className="text-label text-foreground/60 uppercase tracking-wider text-xs sm:text-sm">
+          {episode.slug === 'intro-to-fom' ? 'Future of Marketing' : `Episode ${episode.id}`}
+        </span>
+        <h1 className="text-display-lg font-display font-medium text-foreground leading-[0.95]">
+          {episode.slug === 'intro-to-fom' 
+            ? 'Meet Your Hosts' 
+            : episode.overview || episode.name}
+        </h1>
+      </motion.div>
 
-        {/* Action Buttons - Desktop only, aligned with title */}
-        <motion.div
-          className="hidden lg:flex flex-shrink-0"
-          variants={fadeInVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 1.0, delay: 0.1, ease: liquidEase }}
-        >
-          <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
-        </motion.div>
-      </div>
-
-      {/* Video + Sidebar Row - Aligned together */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start mt-4 sm:mt-6">
+      {/* Video + Sidebar + Actions Row - Aligned together */}
+      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr_auto] gap-4 sm:gap-6 lg:gap-8 items-start mt-4 sm:mt-6">
         {/* Video Player */}
         <motion.div 
-          className="lg:col-span-2"
           variants={fadeInVariants}
           initial="hidden"
           whileInView="visible"
@@ -127,6 +112,18 @@ const PodcastDetail = () => {
 
           {/* Your Hosts */}
           <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
+        </motion.div>
+
+        {/* Action Buttons - Desktop only, to the right of sidebar */}
+        <motion.div
+          className="hidden lg:flex flex-col"
+          variants={fadeInVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 1.0, delay: 0.1, ease: liquidEase }}
+        >
+          <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} vertical />
         </motion.div>
       </div>
 
