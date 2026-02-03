@@ -160,7 +160,7 @@ const PodcastDetail = () => {
 
           {/* Cards - Aligned with video */}
           <motion.div 
-            className="space-y-6 mt-[2.5rem]"
+            className="space-y-6 mt-[1.25rem]"
             variants={fadeInVariants}
             initial="hidden"
             whileInView="visible"
