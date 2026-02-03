@@ -25,7 +25,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
             </div>
             
             {/* Close Button - Sticky on desktop */}
-            <div className="hidden lg:flex w-12 flex-shrink-0 sticky top-20">
+            <div className="hidden lg:flex w-12 flex-shrink-0 sticky top-20 mt-6">
               <button
                 onClick={handleClose}
                 className="w-12 h-12 rounded-full bg-foreground flex items-center justify-center hover:scale-105 hover-transition"
