@@ -1,7 +1,5 @@
-import { Link } from "react-router-dom";
 import { PodcastEpisode } from "@/lib/podcastData";
-import EpisodeCardContent from "@/components/podcast/EpisodeCardContent";
-import guestBg from "@/assets/guest-bg.png";
+import PodcastCard from "@/components/podcast/PodcastCard";
 
 interface RelatedEpisodesProps {
   episodes: PodcastEpisode[];
@@ -24,30 +22,11 @@ const RelatedEpisodes = ({ episodes, title = "Other Speakers" }: RelatedEpisodes
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
         {episodes.map((ep) => (
-          <Link
+          <PodcastCard
             key={ep.id}
-            to={`/episode/${ep.slug}`}
-            className="block group"
-          >
-            <div 
-              className="card-image hover-scale"
-              style={{
-                backgroundImage: `url(${guestBg})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
-            >
-              <div className="card-overlay-light hover-transition group-hover:opacity-90 z-[2]" />
-              
-              {ep.comingSoon && (
-                <span className="absolute top-4 left-4 sm:top-6 sm:left-6 lg:top-8 lg:left-8 badge-status z-[3]">
-                  Upcoming
-                </span>
-              )}
-              
-              <EpisodeCardContent episode={ep} isUpcoming={ep.comingSoon} compact />
-            </div>
-          </Link>
+            episode={ep}
+            isUpcoming={ep.comingSoon}
+          />
         ))}
       </div>
     </div>
