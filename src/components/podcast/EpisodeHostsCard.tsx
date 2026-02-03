@@ -23,7 +23,7 @@ const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
         className="absolute inset-0 z-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: 4, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       >
         <img
           src={teaserBg} 
@@ -45,25 +45,18 @@ const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
       />
       
       {/* Content */}
-      <div className="relative z-10 flex flex-col h-full min-h-[280px]">
-        {/* Top: Header */}
-        <div className="mb-6">
-          <h3 className="text-section-header">Hosts</h3>
-        </div>
+      <div className="relative z-10 flex flex-col justify-between min-h-[280px]">
+        <h3 className="text-section-header">Hosts</h3>
         
-        {/* Spacer */}
-        <div className="flex-1" />
-        
-        {/* Bottom: Names and titles */}
         <div className="space-y-4">
           {hosts.map((host, index) => {
             const [firstName, ...lastNameParts] = host.name.split(' ');
             const lastName = lastNameParts.join(' ');
             return (
               <div key={index} className={index > 0 ? "pt-4 border-t border-border/20" : ""}>
-                <h3 className="font-display text-foreground leading-[0.95] tracking-normal">
-                  <span className="block text-2xl sm:text-3xl font-medium">{firstName}</span>
-                  <span className="block text-2xl sm:text-3xl font-normal">{lastName}</span>
+                <h3 className="font-display text-2xl sm:text-3xl text-foreground leading-none tracking-normal">
+                  <span className="block font-medium">{firstName}</span>
+                  <span className="block font-normal">{lastName}</span>
                 </h3>
                 <p className="text-sm text-muted-foreground mt-2">
                   {host.title}, {host.company}

@@ -65,7 +65,6 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl }: EpisodeGuestCar
               LinkedIn →
             </a>
           )}
-          
         </div>
       </div>
     </div>
