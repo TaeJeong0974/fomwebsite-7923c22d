@@ -53,9 +53,9 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio }: EpisodeGue
         <div className="flex-1" />
         
         <div>
-          <h3 className="font-display text-foreground leading-[0.95] tracking-normal">
-            <span className="block text-2xl sm:text-3xl font-medium">{firstName}</span>
-            <span className="block text-2xl sm:text-3xl font-normal">{lastName}</span>
+          <h3 className="font-display text-2xl sm:text-3xl text-foreground leading-none tracking-normal">
+            <span className="block font-medium">{firstName}</span>
+            <span className="block font-normal">{lastName}</span>
           </h3>
           <p className="text-sm text-muted-foreground mt-2">{title}</p>
           <p className="text-sm font-medium text-foreground">{company}</p>
