@@ -351,9 +351,10 @@ const HeroSection = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 onClick={(e) => e.stopPropagation()}
-                                className="inline-flex items-center gap-1.5 mt-4 px-4 py-2 bg-foreground text-background text-sm font-medium rounded-full hover:bg-foreground/80 transition-colors"
+                                className="group/linkedin inline-flex items-center gap-0 mt-4 px-4 py-2 bg-foreground text-background text-sm font-medium rounded-full hover:bg-foreground/80 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
                               >
-                                LinkedIn <span className="text-xs">→</span>
+                                LinkedIn
+                                <span className="inline-block max-w-0 overflow-hidden opacity-0 group-hover/linkedin:max-w-[20px] group-hover/linkedin:opacity-100 group-hover/linkedin:ml-1.5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] text-xs">→</span>
                               </a>
                             )}
                           </div>
