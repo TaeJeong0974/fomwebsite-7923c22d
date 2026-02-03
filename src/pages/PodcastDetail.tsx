@@ -148,7 +148,7 @@ const PodcastDetail = () => {
         <div className="hidden lg:flex lg:flex-col">
           {/* Action Buttons - Aligned with H1 */}
           <motion.div
-            className="mt-[2.75rem]"
+            className="mt-[1.75rem]"
             variants={fadeInVariants}
             initial="hidden"
             whileInView="visible"
