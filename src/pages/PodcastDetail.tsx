@@ -52,7 +52,7 @@ const PodcastDetail = () => {
         {/* Episode Content */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
       {/* Main Content */}
-        <div className="lg:col-span-2 space-y-8 sm:space-y-12 lg:space-y-16">
+        <div className="lg:col-span-2 space-y-10 sm:space-y-14 lg:space-y-20">
           {/* Title & Actions before Video */}
           <motion.div 
             className="space-y-4 sm:space-y-6"
@@ -86,13 +86,29 @@ const PodcastDetail = () => {
             />
           </motion.div>
 
-          {/* Topics */}
+          {/* About This Episode */}
           <motion.div
             variants={fadeInVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 1.0, delay: 0.15, ease: liquidEase }}
+          >
+            <h3 className="text-section-header mb-4">
+              About This Episode
+            </h3>
+            <div className="text-foreground/80 whitespace-pre-line leading-relaxed text-lg max-w-prose">
+              {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
+            </div>
+          </motion.div>
+
+          {/* Topics */}
+          <motion.div
+            variants={fadeInVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, delay: 0.3, ease: liquidEase }}
           >
             <EpisodeTopics topics={episode.topics} />
           </motion.div>
@@ -103,29 +119,12 @@ const PodcastDetail = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, delay: 0.3, ease: liquidEase }}
+            transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
           >
             <EpisodePullQuote
               quote="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
               attribution={episode.name}
             />
-          </motion.div>
-
-          {/* About This Episode */}
-          <motion.div
-            className="mt-2 sm:mt-0"
-            variants={fadeInVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
-          >
-            <h3 className="text-section-header mb-4">
-              About This Episode
-            </h3>
-            <div className="text-foreground/80 whitespace-pre-line leading-relaxed text-lg max-w-prose">
-              {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
-            </div>
           </motion.div>
 
           {/* Guest & Hosts - Mobile only, after About section */}
