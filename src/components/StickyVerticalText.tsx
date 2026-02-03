@@ -11,7 +11,7 @@ const SECTION_LABELS: SectionLabel[] = [
   { id: "hosts", label: "HOSTS" },
   { id: "podcast", label: "FEATURED GUESTS" },
   { id: "events", label: "UPCOMING EVENTS" },
-  { id: "cta", label: "STAY CONNECTED" },
+  { id: "contact", label: "STAY CONNECTED" },
 ];
 
 // Get section number (01, 02, etc.)
