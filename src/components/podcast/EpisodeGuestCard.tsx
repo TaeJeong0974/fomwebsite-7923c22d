@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useIsMobile } from "@/hooks/use-mobile";
 import teaserBg from "@/assets/teaser-bg.png";
 
 interface EpisodeGuestCardProps {
@@ -12,6 +13,7 @@ interface EpisodeGuestCardProps {
 
 const EpisodeGuestCard = ({ name, title, company, linkedInUrl }: EpisodeGuestCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const isMobile = useIsMobile();
   
   const [firstName, ...lastNameParts] = name.split(' ');
   const lastName = lastNameParts.join(' ');
@@ -19,8 +21,8 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl }: EpisodeGuestCar
   return (
     <div 
       className="relative glass rounded-xl p-5 sm:p-6 overflow-hidden"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={() => !isMobile && setIsHovered(true)}
+      onMouseLeave={() => !isMobile && setIsHovered(false)}
     >
       {/* Hover Background */}
       <motion.div

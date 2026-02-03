@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { PodcastEpisode } from "@/lib/podcastData";
 import EpisodeCardContent from "@/components/podcast/EpisodeCardContent";
+import { useIsMobile } from "@/hooks/use-mobile";
 import guestBg from "@/assets/guest-bg.png";
 
 interface PodcastCardProps {
@@ -14,8 +15,10 @@ interface PodcastCardProps {
 const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const isMobile = useIsMobile();
 
   const handleMouseEnter = () => {
+    if (isMobile) return;
     setIsHovered(true);
     if (videoRef.current && episode.previewVideoUrl) {
       videoRef.current.currentTime = 0;
@@ -26,6 +29,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
   };
 
   const handleMouseLeave = () => {
+    if (isMobile) return;
     setIsHovered(false);
     if (videoRef.current) {
       videoRef.current.pause();
@@ -69,7 +73,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
           </motion.div>
         )}
 
-        <div className="card-overlay-light hover-transition group-hover:opacity-90 z-[2]" />
+        <div className="card-overlay-light hover-transition md:group-hover:opacity-90 z-[2]" />
         
         {isNew && (
           <span className="absolute top-6 right-6 lg:top-8 lg:right-8 badge-status z-[3]">
