@@ -13,7 +13,7 @@ const hosts = [
   {
     name: "Mada Seghete",
     title: "CEO & Co-Founder, Upside",
-    bio: "CEO and co-founder of Upside, a next-gen revenue intelligence platform for B2B leaders. Previously co-founded and was CMO of Branch, helping scale to $100M+ revenue. Cornell Engineering graduate with Masters and MBA from Stanford. Partner at XFactor Ventures investing in women founders and organizes yearly retreats for 100+ women founders.",
+    bio: "CEO and co-founder of Upside, a next-gen revenue intelligence platform for B2B leaders. Previously co-founded Branch as CMO, scaling it to $100M+ revenue. Partner at XFactor Ventures investing in women founders.",
     image: hostMada,
     linkedInUrl: "https://www.linkedin.com/in/madalina/",
   },
@@ -27,7 +27,7 @@ const hosts = [
   {
     name: "Camille Ricketts",
     title: "Partner, XYZ Venture Capital",
-    bio: "Partner at XYZ Venture Capital, where she leads investments in product-led growth and go-to-market software startups. Prior, she was the first marketing leader at Notion, building out the brand, community, and more. She also founded First Round Review for First Round Capital, managed communications at Tesla, and reported for the Wall Street Journal.",
+    bio: "Partner at XYZ Venture Capital, leading investments in product-led growth and go-to-market software startups. Previously the first marketing leader at Notion, and founder of First Round Review for First Round Capital.",
     image: hostCamille,
     linkedInUrl: "https://linkedin.com/in/camillericketts",
   },
