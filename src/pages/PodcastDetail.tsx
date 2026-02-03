@@ -77,8 +77,19 @@ const PodcastDetail = () => {
               spotifyUrl={episode.spotifyUrl}
             />
 
-            {/* Hosts - Mobile only, below video */}
-            <div className="lg:hidden">
+            {/* Guest & Hosts - Mobile only, below video */}
+            <div className="lg:hidden space-y-4">
+              {/* Featured Guest - Mobile */}
+              {episode.slug !== 'intro-to-fom' && (
+                <EpisodeGuestCard
+                  name={episode.name}
+                  title={episode.title}
+                  company={episode.company}
+                  linkedInUrl={episode.linkedInUrl}
+                  bio={episode.bio}
+                />
+              )}
+              {/* Hosts - Mobile */}
               <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
             </div>
           </motion.div>
@@ -135,15 +146,17 @@ const PodcastDetail = () => {
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 1.0, delay: 0.2, ease: liquidEase }}
         >
-          {/* Featured Guest - only for guest episodes */}
+          {/* Featured Guest - Desktop only in sidebar */}
           {episode.slug !== 'intro-to-fom' && (
-            <EpisodeGuestCard
-              name={episode.name}
-              title={episode.title}
-              company={episode.company}
-              linkedInUrl={episode.linkedInUrl}
-              bio={episode.bio}
-            />
+            <div className="hidden lg:block">
+              <EpisodeGuestCard
+                name={episode.name}
+                title={episode.title}
+                company={episode.company}
+                linkedInUrl={episode.linkedInUrl}
+                bio={episode.bio}
+              />
+            </div>
           )}
 
           {/* Your Hosts - Desktop only in sidebar */}
