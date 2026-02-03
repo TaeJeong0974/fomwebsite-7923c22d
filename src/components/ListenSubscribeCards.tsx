@@ -97,6 +97,11 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
       hoverColors: ["rgb(230,130,110)", "rgb(200,140,130)", "rgb(180,140,150)", "rgb(230,130,110)"], // coral-rose
     },
     {
+      label: "Apple",
+      href: "https://podcasts.apple.com/podcast/futureofmarketing",
+      hoverColors: ["rgb(200,140,180)", "rgb(180,130,170)", "rgb(160,140,190)", "rgb(200,140,180)"], // soft pink-purple
+    },
+    {
       label: "Spotify",
       href: "https://open.spotify.com/show/futureofmarketing",
       hoverColors: ["rgb(180,140,150)", "rgb(150,140,170)", "rgb(130,150,180)", "rgb(180,140,150)"], // dusty mauve-lavender
