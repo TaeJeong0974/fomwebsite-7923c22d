@@ -48,7 +48,7 @@ const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
       
       {/* Content */}
       <div className="relative z-10 flex flex-col justify-between min-h-0 sm:min-h-[280px]">
-        <h3 className="text-section-header mb-4 sm:mb-0">Hosts</h3>
+        <h3 className="text-section-header mb-5 sm:mb-6">Hosts</h3>
         
         <div className="space-y-3 sm:space-y-4">
           {hosts.map((host, index) => {
