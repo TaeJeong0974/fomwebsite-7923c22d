@@ -121,7 +121,7 @@ const PodcastDetail = () => {
 
           {/* About This Episode */}
           <motion.div
-            className="-mt-4 sm:-mt-6 lg:-mt-8"
+            className="mt-2 sm:mt-0"
             variants={fadeInVariants}
             initial="hidden"
             whileInView="visible"
