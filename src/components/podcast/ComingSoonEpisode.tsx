@@ -82,87 +82,108 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
     <>
       <DetailVerticalText guestName={episode.name} isUpcoming />
       <EpisodeOverlayLayout>
-        {/* Episode Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
-        {/* Main Content */}
-        <div className="lg:col-span-2 space-y-10 sm:space-y-14 lg:space-y-20">
-          {/* Hero Card with Get Notified CTA */}
-          <motion.div
-            className="space-y-4 sm:space-y-6"
-            variants={fadeUpVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, ease: liquidEase }}
-          >
-            <ComingSoonHeroCard guestFirstName={guestFirstName} />
-          </motion.div>
-
-          {/* About This Episode */}
-          <motion.div
-            variants={fadeUpVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, delay: 0.15, ease: liquidEase }}
-          >
-            <h3 className="text-section-header mb-4">
-              About This Episode
-            </h3>
-            <div className="text-foreground/80 whitespace-pre-line leading-relaxed text-base lg:text-lg max-w-prose">
-              {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
-            </div>
-          </motion.div>
-
-          {/* Topics */}
-          <motion.div
-            variants={fadeUpVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, delay: 0.3, ease: liquidEase }}
-          >
-            <EpisodeTopics topics={episode.topics} title="Topics We'll Cover" />
-          </motion.div>
-
-          {/* Pull Quote */}
-          <motion.div
-            variants={fadeUpVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
-          >
-            <EpisodePullQuote
-              quote={episode.overview || ""}
-              attribution={episode.name}
-            />
-          </motion.div>
-
-          {/* Guest & Hosts - Mobile only */}
-          <div className="lg:hidden space-y-4">
-            <EpisodeGuestCard
-              name={episode.name}
-              title={episode.title}
-              company={episode.company}
-              linkedInUrl={episode.linkedInUrl}
-              bio={episode.bio}
-            />
-            <EpisodeHostsCard />
-          </div>
-        </div>
-
-        {/* Sidebar */}
+        {/* Title Row - Same grid as content below */}
         <motion.div 
-          className="space-y-6"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-4 sm:mb-6"
           variants={fadeUpVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 1.0, delay: 0.2, ease: liquidEase }}
+          transition={{ duration: 1.0, ease: liquidEase }}
         >
-          {/* Featured Guest - Desktop only in sidebar */}
-          <div className="hidden lg:block">
+          {/* Episode Title - Same width as hero card */}
+          <div className="lg:col-span-2 space-y-1 sm:space-y-2">
+            <span className="text-label text-foreground/60 uppercase tracking-wider text-xs sm:text-sm">
+              Coming Soon
+            </span>
+            <h1 className="text-display-lg font-display font-medium text-foreground leading-[1.1]">
+              {episode.overview || `A Conversation with ${episode.name}`}
+            </h1>
+          </div>
+          
+          {/* Empty sidebar column for alignment */}
+          <div className="hidden lg:block" />
+        </motion.div>
+
+        {/* Hero Card + Sidebar Grid - Now hero and cards naturally align */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
+          {/* Main Content */}
+          <div className="lg:col-span-2 space-y-10 sm:space-y-14 lg:space-y-20">
+            {/* Hero Card with Get Notified CTA */}
+            <motion.div
+              className="space-y-4 sm:space-y-6"
+              variants={fadeUpVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 1.0, ease: liquidEase }}
+            >
+              <ComingSoonHeroCard guestFirstName={guestFirstName} />
+            </motion.div>
+
+            {/* About This Episode */}
+            <motion.div
+              variants={fadeUpVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 1.0, delay: 0.15, ease: liquidEase }}
+            >
+              <h3 className="text-section-header mb-4">
+                About This Episode
+              </h3>
+              <div className="text-foreground/80 whitespace-pre-line leading-relaxed text-base lg:text-lg max-w-prose">
+                {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
+              </div>
+            </motion.div>
+
+            {/* Topics */}
+            <motion.div
+              variants={fadeUpVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 1.0, delay: 0.3, ease: liquidEase }}
+            >
+              <EpisodeTopics topics={episode.topics} title="Topics We'll Cover" />
+            </motion.div>
+
+            {/* Pull Quote */}
+            <motion.div
+              variants={fadeUpVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
+            >
+              <EpisodePullQuote
+                quote={episode.overview || ""}
+                attribution={episode.name}
+              />
+            </motion.div>
+
+            {/* Guest & Hosts - Mobile only */}
+            <div className="lg:hidden space-y-4">
+              <EpisodeGuestCard
+                name={episode.name}
+                title={episode.title}
+                company={episode.company}
+                linkedInUrl={episode.linkedInUrl}
+                bio={episode.bio}
+              />
+              <EpisodeHostsCard />
+            </div>
+          </div>
+
+          {/* Sidebar - Cards aligned with hero card */}
+          <motion.div 
+            className="hidden lg:flex lg:flex-col space-y-6"
+            variants={fadeUpVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, delay: 0.1, ease: liquidEase }}
+          >
             <EpisodeGuestCard
               name={episode.name}
               title={episode.title}
@@ -170,14 +191,9 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
               linkedInUrl={episode.linkedInUrl}
               bio={episode.bio}
             />
-          </div>
-
-          {/* Hosts - Desktop only */}
-          <div className="hidden lg:block">
             <EpisodeHostsCard />
-          </div>
-        </motion.div>
-      </div>
+          </motion.div>
+        </div>
 
       {/* Related Episodes */}
       <RelatedEpisodes episodes={otherEpisodes} />
