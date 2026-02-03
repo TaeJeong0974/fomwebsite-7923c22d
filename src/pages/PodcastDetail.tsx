@@ -48,7 +48,9 @@ const PodcastDetail = () => {
       {/* Vertical Text Labels */}
       <DetailVerticalText guestName={guestName} />
       
-      <EpisodeOverlayLayout>
+      <EpisodeOverlayLayout 
+        actionButtons={<EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />}
+      >
         {/* Episode Content */}
       {/* Title Row */}
       <motion.div 
@@ -90,7 +92,7 @@ const PodcastDetail = () => {
           </div>
         </motion.div>
 
-        {/* Sidebar - Action Buttons + Cards */}
+        {/* Sidebar Cards - Aligned with video */}
         <motion.div 
           className="hidden lg:flex lg:flex-col space-y-6"
           variants={fadeInVariants}
@@ -99,9 +101,6 @@ const PodcastDetail = () => {
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 1.0, delay: 0.2, ease: liquidEase }}
         >
-          {/* Action Buttons - Horizontally at top */}
-          <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
-
           {/* Featured Guest */}
           {episode.slug !== 'intro-to-fom' && (
             <EpisodeGuestCard
