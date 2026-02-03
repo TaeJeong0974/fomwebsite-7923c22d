@@ -180,7 +180,6 @@ const PodcastListView = ({
   comingSoonEpisodes
 }: PodcastViewProps) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [ctaHovered, setCtaHovered] = useState<number | null>(null);
   const [mousePositions, setMousePositions] = useState<Record<number, {
     x: number;
     y: number;
@@ -209,16 +208,6 @@ const PodcastListView = ({
     setHoveredIndex(null);
   };
   
-  const handleCtaEnter = (index: number) => {
-    if (isMobile) return;
-    setCtaHovered(index);
-  };
-  
-  const handleCtaLeave = () => {
-    if (isMobile) return;
-    setCtaHovered(null);
-  };
-  
   const allEpisodes = [...episodes, ...comingSoonEpisodes];
   return <div className="divide-y divide-border/50">
       {allEpisodes.map((episode, index) => {
@@ -238,7 +227,7 @@ const PodcastListView = ({
         delay: index * 0.12,
         ease: liquidEase
       }} className="relative" onMouseEnter={() => handleMouseEnter(index)} onMouseLeave={handleMouseLeave} onMouseMove={e => handleMouseMove(index, e)}>
-            {!isMobile && mousePositions[index] && <MouseFollowImage isHovered={hoveredIndex === index && ctaHovered !== index} mouseX={mousePositions[index].x} mouseY={mousePositions[index].y} imageSrc={getEpisodeImage(episode.slug, index)} name={episode.name} />}
+            {!isMobile && mousePositions[index] && <MouseFollowImage isHovered={hoveredIndex === index} mouseX={mousePositions[index].x} mouseY={mousePositions[index].y} imageSrc={getEpisodeImage(episode.slug, index)} name={episode.name} />}
             
             <Link to={`/episode/${episode.slug}`} className="group py-6 sm:py-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-6 hover-transition relative z-10">
               <div className="flex-1 min-w-0 text-left">
@@ -265,9 +254,6 @@ const PodcastListView = ({
                 </div>
               </div>
               
-              <span className="shrink-0 sm:w-[145px] sm:ml-0 ml-[calc(theme(spacing.4)+2.5rem)] w-fit text-center inline-flex items-center justify-center font-display font-semibold uppercase tracking-wider text-xs px-5 pt-3 pb-2.5 rounded-full bg-black/5 backdrop-blur-xl border border-black/10 text-foreground md:group-hover:bg-foreground md:group-hover:text-background md:group-hover:border-foreground transition-all duration-300 leading-none" onMouseEnter={() => handleCtaEnter(index)} onMouseLeave={handleCtaLeave}>
-                {isComingSoon ? "Coming Soon" : "Watch Now"}
-              </span>
             </Link>
           </motion.div>;
     })}
