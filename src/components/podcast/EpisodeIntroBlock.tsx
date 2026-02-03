@@ -20,10 +20,15 @@ const EpisodeIntroBlock = ({
 }: EpisodeIntroBlockProps) => {
   const { variant } = useLayoutPrototype();
 
-  const eyebrowText = isIntro ? "Future of Marketing" : company || "";
+  // Extract eyebrow from overview (text before the colon)
+  const overviewParts = overview?.split(':') || [];
+  const eyebrowFromOverview = overviewParts.length > 1 ? overviewParts[0] + ':' : '';
+  const headlineFromOverview = overviewParts.length > 1 ? overviewParts.slice(1).join(':').trim() : overview;
+
+  const eyebrowText = isIntro ? "Future of Marketing" : eyebrowFromOverview;
   const displayText = isIntro 
     ? "Meet Your Hosts" 
-    : overview || guestName;
+    : headlineFromOverview || guestName;
 
   // Variant A: Stacked with large H1-style display
   if (variant === "A") {
