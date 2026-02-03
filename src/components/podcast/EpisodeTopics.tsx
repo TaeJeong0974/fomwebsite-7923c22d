@@ -25,7 +25,7 @@ const EpisodeTopics = ({ topics, title = "Topics Covered" }: EpisodeTopicsProps)
             <span className="w-8 text-sm text-muted-foreground tabular-nums">
               {formatNumber(index)}
             </span>
-            <p className="text-lg text-foreground leading-relaxed">{topic}</p>
+            <p className="text-base lg:text-lg text-foreground leading-relaxed">{topic}</p>
           </div>
         ))}
       </div>
