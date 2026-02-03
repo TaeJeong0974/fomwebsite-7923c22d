@@ -22,13 +22,12 @@ const RelatedEpisodes = ({ episodes, title = "Other Speakers" }: RelatedEpisodes
           <span key={i} className="block">{word}</span>
         ))}
       </h2>
-      {/* Horizontal scroll on mobile/tablet, grid on desktop */}
-      <div className="lg:grid lg:grid-cols-3 lg:gap-6 flex lg:flex-none overflow-x-auto lg:overflow-visible gap-4 pb-4 lg:pb-0 -mx-4 px-4 lg:mx-0 lg:px-0 snap-x snap-mandatory overscroll-x-contain">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
         {episodes.map((ep) => (
           <Link
             key={ep.id}
             to={`/episode/${ep.slug}`}
-            className="block group flex-shrink-0 w-[75vw] sm:w-[45vw] lg:w-auto snap-start"
+            className="block group"
           >
             <div 
               className="card-image hover-scale"
