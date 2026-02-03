@@ -68,7 +68,7 @@ const EventsSection = () => {
                 paddingBottom: '0.02em',
               }}
             >
-              FOM<br /><span className="block -mt-4 sm:-mt-6 lg:-mt-10 xl:-mt-12">2025</span>
+              FOM<br /><span className="block -mt-2 sm:-mt-3 lg:-mt-5 xl:-mt-6">2025</span>
             </motion.h2>
           </motion.div>
 
