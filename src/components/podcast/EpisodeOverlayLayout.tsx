@@ -20,7 +20,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
         <div className="container mx-auto container-padding">
           <div className="relative flex gap-4">
             {/* Main Panel */}
-            <div className="flex-1 bg-[#f4f2ef] rounded-xl shadow-2xl shadow-black/5 p-6 sm:p-8 lg:p-10">
+            <div className="flex-1 bg-[#f4f2ef] rounded-xl shadow-2xl shadow-black/5 p-4 sm:p-8 lg:p-10">
               {children}
             </div>
             
