@@ -71,6 +71,7 @@ const PodcastDetail = () => {
             <EpisodeIntroBlock
               overview={episode.overview}
               guestName={episode.name}
+              company={episode.company}
               isIntro={episode.slug === 'intro-to-fom'}
               youtubeUrl={episode.youtubeUrl}
               spotifyUrl={episode.spotifyUrl}
