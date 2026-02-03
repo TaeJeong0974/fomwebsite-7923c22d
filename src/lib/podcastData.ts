@@ -118,7 +118,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
       { time: "35:45", title: "Data-driven decision making" },
       { time: "45:00", title: "Advice for aspiring CMOs" },
     ],
-    youtubeUrl: "https://youtube.com",
+    youtubeUrl: "https://www.youtube.com/watch?v=ZXsQAXx_ao0",
     spotifyUrl: "https://spotify.com",
     duration: "52 min",
     publishedDate: "Jan 15, 2026",
