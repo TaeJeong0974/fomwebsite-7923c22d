@@ -244,13 +244,13 @@ const PodcastListView = ({
               <div className="flex-1 min-w-0 text-left">
                 <div className="flex items-start gap-4 sm:gap-6 lg:gap-10">
                   <span className={`text-label pt-1 sm:pt-2 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>EP {String(index + 1).padStart(2, '0')}</span>
-                  <div className="flex-1">
-                    <div className="flex items-start lg:items-baseline gap-4 lg:gap-6">
+                    <div className="flex-1">
+                    <div className="flex items-start gap-4 lg:gap-6">
                       <h3 className={`font-display text-3xl sm:text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
                         {episode.name}
                       </h3>
                       {/* Desktop: Title & Company inline with name */}
-                      <p className={`hidden lg:block text-body-sm text-foreground/60 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
+                      <p className={`hidden lg:block text-body-sm pt-1 text-foreground/60 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
                         {isIntroEpisode ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>}
                       </p>
                       {!isComingSoon && isNewEpisode(episode.publishedDate) && <span className="badge-status mt-1 lg:mt-0">
