@@ -54,24 +54,9 @@ const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
       
       {/* Content */}
       <div className="relative z-10 flex flex-col h-full min-h-[280px]">
-        {/* Top: Header and LinkedIn buttons */}
-        <div className="flex items-start justify-between mb-6">
+        {/* Top: Header */}
+        <div className="mb-6">
           <h3 className="text-section-header">Hosts</h3>
-          <div className="flex gap-2">
-            {hosts.map((host, index) => (
-              host.linkedInUrl && (
-                <a
-                  key={index}
-                  href={host.linkedInUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-full bg-foreground text-background text-sm font-medium hover:bg-foreground/90 hover-transition"
-                >
-                  LinkedIn →
-                </a>
-              )
-            ))}
-          </div>
         </div>
         
         {/* Spacer */}
