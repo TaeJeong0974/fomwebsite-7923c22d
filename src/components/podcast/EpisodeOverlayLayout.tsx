@@ -5,9 +5,10 @@ import { LiquidButton } from "@/components/ui/LiquidButton";
 interface EpisodeOverlayLayoutProps {
   children: React.ReactNode;
   actionButtons?: React.ReactNode;
+  titleContent?: React.ReactNode;
 }
 
-const EpisodeOverlayLayout = ({ children, actionButtons }: EpisodeOverlayLayoutProps) => {
+const EpisodeOverlayLayout = ({ children, actionButtons, titleContent }: EpisodeOverlayLayoutProps) => {
   const navigate = useNavigate();
 
   const handleClose = () => {
@@ -19,17 +20,25 @@ const EpisodeOverlayLayout = ({ children, actionButtons }: EpisodeOverlayLayoutP
       {/* Content Container */}
       <main className="relative z-10 pt-0 sm:pt-4 lg:pt-8 pb-6 sm:pb-8 lg:pb-12">
         <div className="container mx-auto container-padding">
-          {/* Top Row - Action Buttons + Close Button (Desktop only) */}
-          <div className="hidden lg:flex justify-end items-center gap-4 mb-6">
-            {actionButtons}
-            <LiquidButton
-              onClick={handleClose}
-              variant="dark"
-              size="icon"
-              aria-label="Close and return to homepage"
-            >
-              <X className="h-5 w-5" />
-            </LiquidButton>
+          {/* Top Row - Title + Action Buttons + Close Button */}
+          <div className="flex justify-between items-start gap-4 mb-4 sm:mb-6">
+            {/* Title Content */}
+            <div className="flex-1 min-w-0">
+              {titleContent}
+            </div>
+            
+            {/* Action Buttons + Close (Desktop only) */}
+            <div className="hidden lg:flex items-center gap-4 flex-shrink-0">
+              {actionButtons}
+              <LiquidButton
+                onClick={handleClose}
+                variant="dark"
+                size="icon"
+                aria-label="Close and return to homepage"
+              >
+                <X className="h-5 w-5" />
+              </LiquidButton>
+            </div>
           </div>
 
           {/* Main Content */}

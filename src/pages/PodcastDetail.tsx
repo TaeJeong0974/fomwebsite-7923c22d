@@ -50,26 +50,26 @@ const PodcastDetail = () => {
       
       <EpisodeOverlayLayout 
         actionButtons={<EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />}
+        titleContent={
+          <motion.div 
+            className="space-y-1 sm:space-y-2"
+            variants={fadeInVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, ease: liquidEase }}
+          >
+            <span className="text-label text-foreground/60 uppercase tracking-wider text-xs sm:text-sm">
+              {episode.slug === 'intro-to-fom' ? 'Future of Marketing' : `Episode ${episode.id}`}
+            </span>
+            <h1 className="text-display-lg font-display font-medium text-foreground leading-[0.95]">
+              {episode.slug === 'intro-to-fom' 
+                ? 'Meet Your Hosts' 
+                : episode.overview || episode.name}
+            </h1>
+          </motion.div>
+        }
       >
-        {/* Episode Content */}
-      {/* Title Row */}
-      <motion.div 
-        className="space-y-1 sm:space-y-2"
-        variants={fadeInVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.15 }}
-        transition={{ duration: 1.0, ease: liquidEase }}
-      >
-        <span className="text-label text-foreground/60 uppercase tracking-wider text-xs sm:text-sm">
-          {episode.slug === 'intro-to-fom' ? 'Future of Marketing' : `Episode ${episode.id}`}
-        </span>
-        <h1 className="text-display-lg font-display font-medium text-foreground leading-[0.95]">
-          {episode.slug === 'intro-to-fom' 
-            ? 'Meet Your Hosts' 
-            : episode.overview || episode.name}
-        </h1>
-      </motion.div>
 
       {/* Video + Sidebar Row - Aligned together */}
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-4 sm:gap-6 lg:gap-8 items-start mt-4 sm:mt-6">
