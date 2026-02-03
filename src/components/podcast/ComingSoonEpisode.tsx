@@ -10,6 +10,7 @@ import ComingSoonHeroCard from "@/components/podcast/ComingSoonHeroCard";
 import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
 import DetailVerticalText from "@/components/podcast/DetailVerticalText";
 import ListenSubscribeCards from "@/components/ListenSubscribeCards";
+import { LiquidButton } from "@/components/ui/LiquidButton";
 import { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes, PodcastEpisode } from "@/lib/podcastData";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
 
@@ -58,13 +59,15 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
               <p className="text-foreground text-lg max-w-md mx-auto mb-8">
                 We're preparing something special. Subscribe to get notified when this episode drops.
               </p>
-              <button 
+              <LiquidButton 
                 onClick={openSubscribe}
-                className="btn-base btn-glass btn-lg inline-flex items-center gap-2.5"
+                variant="glass"
+                size="lg"
+                className="gap-2.5"
               >
                 <Bell className="w-5 h-5" />
                 Notify Me
-              </button>
+              </LiquidButton>
             </motion.div>
           </div>
         </main>

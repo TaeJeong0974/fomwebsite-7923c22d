@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 import { useSubscriptionForm } from "@/hooks/use-subscription-form";
+import { LiquidButton } from "@/components/ui/LiquidButton";
 import {
   Popover,
   PopoverContent,
@@ -75,12 +76,14 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
                   required
                   className="w-full px-4 py-2.5 text-sm font-mono bg-white/5 backdrop-blur-xl border border-white/10 rounded-full text-white placeholder:text-white/40 focus-ring hover-transition"
                 />
-                <button
+                <LiquidButton
                   type="submit"
-                  className="w-full btn-base btn-glass-light btn-md"
+                  variant="light"
+                  size="md"
+                  className="w-full"
                 >
                   Subscribe
-                </button>
+                </LiquidButton>
               </form>
               
               <p className="mt-3 text-xs text-white/40 text-center">

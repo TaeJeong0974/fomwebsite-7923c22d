@@ -1,8 +1,10 @@
 import * as React from "react";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import { X } from "lucide-react";
+import { motion } from "framer-motion";
 
 import { cn } from "@/lib/utils";
+import { liquidSpring, buttonVariants } from "@/components/ui/LiquidButton";
 
 const Dialog = DialogPrimitive.Root;
 
@@ -44,9 +46,18 @@ function DialogContent({
         {...props}
       >
         {children}
-        <DialogPrimitive.Close className="absolute right-4 top-4 w-8 h-8 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/20 transition-all focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none">
-          <X className="h-4 w-4" />
-          <span className="sr-only">Close</span>
+        <DialogPrimitive.Close asChild>
+          <motion.button 
+            className="absolute right-4 top-4 w-10 h-10 rounded-full bg-white/15 backdrop-blur-2xl border border-white/25 flex items-center justify-center text-white/80 hover:text-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.2)] hover:bg-white/25 hover:shadow-[0_4px_16px_-4px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.3)] transition-[background,box-shadow] duration-300 focus:outline-none focus-ring"
+            variants={buttonVariants}
+            initial="initial"
+            whileHover="hover"
+            whileTap="tap"
+            transition={liquidSpring}
+          >
+            <X className="h-4 w-4" />
+            <span className="sr-only">Close</span>
+          </motion.button>
         </DialogPrimitive.Close>
       </DialogPrimitive.Content>
     </DialogPortal>
