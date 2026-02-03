@@ -657,22 +657,25 @@
   }
 }
 
-/* Black shows only at start, then cycles between two color tones */
+/* Black shows only at start, then cycles between two color tones forever */
 @keyframes gradient-two-tone-cycle {
   0% {
     background-position: 0% 50%;
   }
-  15% {
-    background-position: 20% 50%;
+  10% {
+    background-position: 25% 50%;
   }
-  50% {
-    background-position: 60% 50%;
+  35% {
+    background-position: 55% 50%;
   }
-  85% {
-    background-position: 20% 50%;
+  65% {
+    background-position: 25% 50%;
+  }
+  90% {
+    background-position: 55% 50%;
   }
   100% {
-    background-position: 20% 50%;
+    background-position: 25% 50%;
   }
 }
 
