@@ -79,11 +79,12 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
       <DetailVerticalText guestName={episode.name} isUpcoming />
       <EpisodeOverlayLayout>
         {/* Episode Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
         {/* Main Content */}
-        <div className="lg:col-span-2 space-y-8 sm:space-y-10 lg:space-y-12">
+        <div className="lg:col-span-2 space-y-10 sm:space-y-14 lg:space-y-20">
           {/* Hero Card with Get Notified CTA */}
           <motion.div
+            className="space-y-4 sm:space-y-6"
             variants={fadeUpVariants}
             initial="hidden"
             whileInView="visible"
@@ -93,7 +94,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
             <ComingSoonHeroCard guestFirstName={guestFirstName} />
           </motion.div>
 
-          {/* Pull Quote */}
+          {/* About This Episode */}
           <motion.div
             variants={fadeUpVariants}
             initial="hidden"
@@ -101,24 +102,10 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 1.0, delay: 0.15, ease: liquidEase }}
           >
-            <EpisodePullQuote
-              quote={episode.overview || ""}
-              attribution={episode.name}
-            />
-          </motion.div>
-
-          {/* About This Episode */}
-          <motion.div
-            variants={fadeUpVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, delay: 0.3, ease: liquidEase }}
-          >
-            <h2 className="font-display text-xl font-semibold text-foreground mb-4">
+            <h3 className="text-section-header mb-4">
               About This Episode
-            </h2>
-            <div className="text-foreground whitespace-pre-line leading-relaxed">
+            </h3>
+            <div className="text-foreground/80 whitespace-pre-line leading-relaxed text-base lg:text-lg max-w-prose">
               {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
             </div>
           </motion.div>
@@ -129,10 +116,35 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
+            transition={{ duration: 1.0, delay: 0.3, ease: liquidEase }}
           >
             <EpisodeTopics topics={episode.topics} title="Topics We'll Cover" />
           </motion.div>
+
+          {/* Pull Quote */}
+          <motion.div
+            variants={fadeUpVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
+          >
+            <EpisodePullQuote
+              quote={episode.overview || ""}
+              attribution={episode.name}
+            />
+          </motion.div>
+
+          {/* Guest Card - Mobile only */}
+          <div className="lg:hidden">
+            <EpisodeGuestCard
+              name={episode.name}
+              title={episode.title}
+              company={episode.company}
+              linkedInUrl={episode.linkedInUrl}
+              bio={episode.bio}
+            />
+          </div>
         </div>
 
         {/* Sidebar */}
@@ -144,13 +156,16 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 1.0, delay: 0.2, ease: liquidEase }}
         >
-          <EpisodeGuestCard
-            name={episode.name}
-            title={episode.title}
-            company={episode.company}
-            linkedInUrl={episode.linkedInUrl}
-            bio={episode.bio}
-          />
+          {/* Featured Guest - Desktop only in sidebar */}
+          <div className="hidden lg:block">
+            <EpisodeGuestCard
+              name={episode.name}
+              title={episode.title}
+              company={episode.company}
+              linkedInUrl={episode.linkedInUrl}
+              bio={episode.bio}
+            />
+          </div>
         </motion.div>
       </div>
 
