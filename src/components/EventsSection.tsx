@@ -57,12 +57,12 @@ const EventsSection = () => {
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
               className="text-[4rem] sm:text-[6rem] lg:text-[10rem] xl:text-[12rem] font-display font-semibold tracking-tight overflow-visible"
               style={{
-                background: 'linear-gradient(135deg, rgba(20,20,20,1) 0%, rgba(50,45,45,1) 15%, rgba(210,130,130,0.95) 30%, rgba(190,130,160,1) 45%, rgba(150,130,180,0.95) 60%, rgba(90,130,180,1) 75%, rgba(150,130,180,0.95) 90%, rgba(210,130,130,0.95) 100%)',
-                backgroundSize: '400% 100%',
+                background: 'linear-gradient(135deg, rgba(20,20,20,1) 0%, rgba(50,45,45,1) 8%, rgba(210,130,130,0.95) 20%, rgba(190,130,160,1) 35%, rgba(150,130,180,0.95) 50%, rgba(90,130,180,1) 65%, rgba(150,130,180,0.95) 80%, rgba(210,130,130,0.95) 100%)',
+                backgroundSize: '500% 100%',
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 color: 'transparent',
-                animation: !isMobile && isTitleInView ? 'gradient-color-cycle 12s ease-in-out infinite' : 'none',
+                animation: !isMobile && isTitleInView ? 'gradient-two-tone-cycle 14s ease-in-out infinite' : 'none',
                 lineHeight: 0.95,
                 paddingTop: '0.08em',
                 paddingBottom: '0.02em',
