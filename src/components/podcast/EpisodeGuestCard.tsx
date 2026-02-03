@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
 import teaserBg from "@/assets/teaser-bg.png";
 
 interface EpisodeGuestCardProps {
@@ -11,8 +10,7 @@ interface EpisodeGuestCardProps {
   bio?: string;
 }
 
-const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio }: EpisodeGuestCardProps) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+const EpisodeGuestCard = ({ name, title, company, linkedInUrl }: EpisodeGuestCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   
   const [firstName, ...lastNameParts] = name.split(' ');
@@ -68,33 +66,6 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio }: EpisodeGue
             </a>
           )}
           
-          {bio && (
-            <div className="pt-4 mt-4 border-t border-border/20">
-              <button
-                onClick={() => setIsExpanded(!isExpanded)}
-                className="flex items-center justify-between w-full text-left"
-              >
-                <span className="text-sm font-medium text-foreground">About {firstName}</span>
-                <motion.div
-                  animate={{ rotate: isExpanded ? 180 : 0 }}
-                  whileHover={{ scale: isExpanded ? 1 : [1, 1.15, 1] }}
-                  transition={{ rotate: { duration: 0.3 }, scale: { duration: 0.6, ease: "easeInOut" } }}
-                  className="rounded-full p-1.5 bg-foreground/10 border border-border/20"
-                >
-                  <ChevronDown className="h-4 w-4 text-foreground" />
-                </motion.div>
-              </button>
-              
-              <div 
-                className="grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.33,1,0.68,1)]"
-                style={{ gridTemplateRows: isExpanded ? '1fr' : '0fr' }}
-              >
-                <div className="overflow-hidden">
-                  <p className="text-sm text-foreground/90 leading-relaxed pt-4">{bio}</p>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>
