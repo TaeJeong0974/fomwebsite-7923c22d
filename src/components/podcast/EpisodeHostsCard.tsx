@@ -47,20 +47,20 @@ const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
       />
       
       {/* Content */}
-      <div className="relative z-10 flex flex-col justify-between min-h-[280px]">
-        <h3 className="text-section-header">Hosts</h3>
+      <div className="relative z-10 flex flex-col justify-between min-h-0 sm:min-h-[280px]">
+        <h3 className="text-section-header mb-4 sm:mb-0">Hosts</h3>
         
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {hosts.map((host, index) => {
             const [firstName, ...lastNameParts] = host.name.split(' ');
             const lastName = lastNameParts.join(' ');
             return (
-              <div key={index} className={index > 0 ? "pt-4 border-t-[1.5px] border-border/40" : ""}>
-                <h3 className="font-display text-2xl sm:text-3xl text-foreground leading-none tracking-normal">
-                  <span className="block font-medium">{firstName}</span>
-                  <span className="block font-normal">{lastName}</span>
+              <div key={index} className={index > 0 ? "pt-3 sm:pt-4 border-t-[1.5px] border-border/40" : ""}>
+                <h3 className="font-display text-xl sm:text-2xl lg:text-3xl text-foreground leading-none tracking-normal">
+                  <span className="inline sm:block font-medium">{firstName} </span>
+                  <span className="inline sm:block font-normal">{lastName}</span>
                 </h3>
-                <p className="text-sm text-muted-foreground mt-2">
+                <p className="text-xs sm:text-sm text-muted-foreground mt-1 sm:mt-2">
                   {host.title}, {host.company}
                 </p>
               </div>
