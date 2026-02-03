@@ -60,7 +60,7 @@ const PodcastDetail = () => {
         >
           {/* Episode Title - Same width as video */}
           <div className="lg:col-span-2 space-y-1 sm:space-y-2">
-            <h3 className="text-section-header">
+            <h3 className="text-section-header mb-4">
               {episode.slug === 'intro-to-fom' ? 'Future of Marketing' : `Episode ${episode.id}`}
             </h3>
             <h1 className="text-display-lg font-display font-medium text-foreground leading-[1.1]">
