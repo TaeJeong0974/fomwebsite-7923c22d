@@ -47,10 +47,8 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio }: EpisodeGue
       />
       
       {/* Content */}
-      <div className="relative z-10 flex flex-col h-full min-h-[280px]">
-        <h3 className="text-section-header mb-6">Guest</h3>
-        
-        <div className="flex-1" />
+      <div className="relative z-10 flex flex-col justify-between min-h-[280px]">
+        <h3 className="text-section-header">Guest</h3>
         
         <div>
           <h3 className="font-display text-2xl sm:text-3xl text-foreground leading-none tracking-normal">
