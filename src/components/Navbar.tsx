@@ -115,8 +115,8 @@ const Navbar = () => {
                   <a
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className={`text-[1em] font-medium hover:text-foreground/60 hover-transition focus-ring ${
-                      activeSection === link.href ? 'text-foreground' : 'text-foreground/50'
+                    className={`text-[1em] font-medium hover-transition focus-ring ${
+                      activeSection === link.href ? 'text-primary' : 'text-foreground hover:text-foreground/60'
                     }`}
                   >
                     {link.label}
