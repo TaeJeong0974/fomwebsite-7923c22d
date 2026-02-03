@@ -247,9 +247,14 @@ const PodcastListView = ({
                         </span>}
                     </div>
                     {/* Mobile: Title & Company below name */}
-                    <p className={`text-body-sm mt-2 text-foreground/60 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] lg:hidden ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
-                      {isIntroEpisode ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>}
-                    </p>
+                    <div className="flex items-center justify-between gap-4 lg:hidden mt-2">
+                      <p className={`text-body-sm text-foreground/60 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
+                        {isIntroEpisode ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>}
+                      </p>
+                      <span className="btn-base btn-primary btn-sm shrink-0">
+                        {isComingSoon ? 'Coming Soon' : 'Watch Now'}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
