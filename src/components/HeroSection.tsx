@@ -15,12 +15,14 @@ const hosts = [
     title: "CEO & Co-Founder, Upside",
     bio: "CEO and co-founder of Upside, a next-gen revenue intelligence platform for B2B leaders. Previously co-founded and was CMO of Branch, helping scale to $100M+ revenue. Cornell Engineering graduate with Masters and MBA from Stanford. Partner at XFactor Ventures investing in women founders and organizes yearly retreats for 100+ women founders.",
     image: hostMada,
+    linkedInUrl: "https://www.linkedin.com/in/madalina/",
   },
   {
     name: "Ethan Smith",
     title: "Founder & CEO, Graphite",
     bio: "Founder and CEO of Graphite, a premium Vertical AI Growth Agency that helps companies like Webflow, Notion, MasterClass, and Captions drive sustainable revenue growth via SEO, content, and AEO (Answer Engine Optimization). Ethan is also an adjunct professor at IE Business School.",
     image: hostEthan,
+    linkedInUrl: "https://www.linkedin.com/in/ethanls/",
   },
   {
     name: "Camille Ricketts",
@@ -329,6 +331,18 @@ const HeroSection = () => {
                           <p className="text-sm leading-relaxed text-foreground/80 flex-1 overflow-y-auto">
                             {host.bio}
                           </p>
+                          
+                          {host.linkedInUrl && (
+                            <a
+                              href={host.linkedInUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              onClick={(e) => e.stopPropagation()}
+                              className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-foreground hover:text-foreground/70 hover-transition"
+                            >
+                              LinkedIn →
+                            </a>
+                          )}
                         </div>
                       </div>
                     </motion.div>
