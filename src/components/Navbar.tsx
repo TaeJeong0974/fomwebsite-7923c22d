@@ -62,7 +62,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto container-padding">
         {/* Nav with glass effect on scroll */}
-        <nav className={`rounded-xl py-3 lg:py-4 transition-all duration-300 ${isScrolled ? 'glass bg-background/80 backdrop-blur-xl px-4 sm:px-5 lg:px-6 mt-4' : ''}`}>
+        <nav className={`rounded-xl py-3 lg:py-4 transition-all duration-300 ${isScrolled ? 'glass bg-background/80 backdrop-blur-xl px-4 sm:px-5 lg:px-6 mt-4' : 'pt-4 lg:pt-6'}`}>
           <div className={`grid grid-cols-3 items-center ${isScrolled ? '' : 'px-0'}`}>
             {/* Logo - First column */}
             <Link 
