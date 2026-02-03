@@ -62,7 +62,7 @@ const EventsSection = () => {
                 WebkitBackgroundClip: 'text',
                 backgroundClip: 'text',
                 color: 'transparent',
-                animation: !isMobile && isTitleInView ? 'gradient-two-tone-cycle 14s ease-in-out infinite' : 'none',
+                animation: !isMobile && isTitleInView ? 'gradient-initial-reveal 2s ease-out forwards, gradient-color-only-cycle 10s ease-in-out 2s infinite' : 'none',
                 lineHeight: 0.95,
                 paddingTop: '0.08em',
                 paddingBottom: '0.02em',
