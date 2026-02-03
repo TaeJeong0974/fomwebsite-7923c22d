@@ -75,7 +75,7 @@ const Navbar = () => {
               }}
               className="flex items-center focus-ring rounded-lg justify-self-start"
             >
-              <img src={FomLogo} alt="Future of Marketing" className="h-6 sm:h-6 lg:h-6 xl:h-7" />
+              <img src={FomLogo} alt="Future of Marketing" className="h-7 sm:h-7 lg:h-7 xl:h-8" />
             </Link>
 
             {/* Desktop Navigation - Second column, centered */}
@@ -129,7 +129,7 @@ const Navbar = () => {
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
             >
-              {isOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
+              {isOpen ? <X className="h-8 w-8" /> : <Menu className="h-8 w-8" />}
             </button>
           </div>
 
