@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import teaserBg from "@/assets/teaser-bg.png";
 
@@ -87,19 +87,14 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio }: EpisodeGue
                 </motion.div>
               </button>
               
-              <AnimatePresence>
-                {isExpanded && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                    className="overflow-hidden"
-                  >
-                    <p className="text-sm text-foreground/90 leading-relaxed pt-4">{bio}</p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              <div 
+                className="grid transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.33,1,0.68,1)]"
+                style={{ gridTemplateRows: isExpanded ? '1fr' : '0fr' }}
+              >
+                <div className="overflow-hidden">
+                  <p className="text-sm text-foreground/90 leading-relaxed pt-4">{bio}</p>
+                </div>
+              </div>
             </div>
           )}
         </div>
