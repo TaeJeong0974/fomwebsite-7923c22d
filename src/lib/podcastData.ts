@@ -66,7 +66,7 @@ export const podcastEpisodes: PodcastEpisode[] = [
     title: "",
     company: "",
     companyDomain: "",
-    overview: "Meet Your Hosts: Why We're Building the Future of Marketing",
+    overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
     bio: "",
     fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
@@ -98,7 +98,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     title: "Chief Marketing Officer",
     company: "Samsara",
     companyDomain: "samsara.com",
-    overview: "Scaling to IPO: The Tactical Playbook",
+    overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
     bio: "A builder who moves fast, operates tactically, and earns trust through execution. With nearly 25 years scaling high-growth companies as CMO at Samsara, MongoDB, TripActions/Navan, and leadership roles at DocuSign and G2.",
     fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
@@ -133,7 +133,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     title: "Chief Marketing Officer",
     company: "Notion",
     companyDomain: "notion.so",
-    overview: "Community as a Growth Engine: How Notion Built a Movement",
+    overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
     bio: "A product-minded marketer who turns user communities into growth engines. Previously led marketing at Dropbox and Atlassian, pioneering community-driven strategies that scaled to millions of active users.",
     fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
@@ -159,7 +159,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     title: "Chief Marketing Officer",
     company: "Square",
     companyDomain: "squareup.com",
-    overview: "Making Fintech Human: Brand Building at Scale with Square",
+    overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
     bio: "A fintech brand builder who makes complex financial products accessible to everyday entrepreneurs. Previously CMO at Carta and held leadership roles at PayPal, scaling marketing for millions of businesses.",
     fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
@@ -186,7 +186,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     title: "Chief Marketing Officer",
     company: "Datadog",
     companyDomain: "datadoghq.com",
-    overview: "Marketing to Engineers: Winning Technical Audiences at Datadog",
+    overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
     bio: "A technical marketing leader who bridges the gap between engineering and brand. Previously CMO at Twilio and held leadership roles at Salesforce, known for scaling marketing during hypergrowth.",
     fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
