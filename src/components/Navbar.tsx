@@ -11,9 +11,21 @@ import { fadeDownVariant, liquidEase } from "@/components/animations/PageLoadAni
 const Navbar = () => {
   const { openSubscribe } = useSubscribe();
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const isHomePage = location.pathname === "/";
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Check initial position
+    
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
   
   const navLinks = [
     { label: "Podcast", href: "#podcast" },
@@ -44,11 +56,12 @@ const Navbar = () => {
       initial="hidden"
       animate="visible"
       variants={fadeDownVariant}
-      className="z-50 relative"
+      className={`z-50 transition-all duration-300 ${isScrolled ? 'fixed top-0 left-0 right-0' : 'relative'}`}
     >
       <div className="container mx-auto container-padding">
-        <nav className="rounded-xl py-2 lg:py-3 pt-2 lg:pt-4">
-          <div className="grid grid-cols-3 items-center px-0">
+        {/* Nav with glass effect on scroll */}
+        <nav className={`rounded-xl py-2 lg:py-3 transition-all duration-300 ${isScrolled ? 'glass bg-background/80 backdrop-blur-xl px-4 sm:px-5 lg:px-6 mt-4' : 'pt-2 lg:pt-4'}`}>
+          <div className={`grid grid-cols-3 items-center ${isScrolled ? '' : 'px-0'}`}>
             {/* Logo - First column */}
             <Link 
               to="/" 
