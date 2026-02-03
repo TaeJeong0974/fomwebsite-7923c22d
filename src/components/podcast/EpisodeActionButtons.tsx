@@ -64,6 +64,23 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
         <span className={textClasses}>Spotify</span>
       </motion.a>
 
+      {/* Apple Podcasts */}
+      <motion.a
+        href="https://podcasts.apple.com/podcast/futureofmarketing"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={liquidGlassButton}
+        variants={buttonVariants}
+        initial="initial"
+        whileHover="hover"
+        whileTap="tap"
+      >
+        <svg className="w-5 h-5 text-[#D56DFB] shrink-0" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M5.34 0A5.328 5.328 0 000 5.34v13.32A5.328 5.328 0 005.34 24h13.32A5.328 5.328 0 0024 18.66V5.34A5.328 5.328 0 0018.66 0zm6.525 2.568c2.336 0 4.448.902 6.056 2.587 1.224 1.272 1.912 2.619 2.264 4.392.12.59-.24 1.2-.828 1.32a1.09 1.09 0 01-1.32-.826c-.25-1.26-.756-2.32-1.663-3.27-1.2-1.254-2.8-1.965-4.51-1.965-3.6 0-6.475 3.24-5.976 6.93.24 1.77 1.08 3.27 2.424 4.38.492.408.564 1.14.156 1.632-.408.492-1.14.564-1.632.156-1.8-1.488-2.94-3.504-3.252-5.832-.672-5.016 3.264-9.504 8.28-9.504zm.12 4.3c.96 0 1.876.36 2.604.98.972.852 1.548 2.172 1.404 3.54-.072.72-.312 1.404-.696 1.992-.492.756-1.092 1.38-1.548 2.064-.348.528-.588 1.176-.588 1.788v.396c0 1.176-.432 2.148-1.416 2.58-.78.348-1.656.276-2.328-.312-.504-.432-.804-1.092-.804-1.8v-.36c0-.756-.264-1.524-.648-2.148-.384-.636-.9-1.152-1.356-1.776-.528-.72-.912-1.572-1.008-2.484-.168-1.608.6-3.18 1.92-4.08a3.937 3.937 0 012.464-.86zm.12 2.4a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z"/>
+        </svg>
+        <span className={textClasses}>Apple</span>
+      </motion.a>
+
       {/* Share */}
       <motion.button
         onClick={handleShare}
