@@ -239,14 +239,21 @@ const HeroSection = () => {
                     {/* Inner container that flips */}
                     <motion.div
                       className="relative w-full h-full"
-                      style={{ transformStyle: 'preserve-3d' }}
+                      style={{ 
+                        transformStyle: 'preserve-3d',
+                        WebkitTransformStyle: 'preserve-3d',
+                      }}
                       animate={{ rotateY: isFlipped ? 180 : 0 }}
                       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                     >
                       {/* Front face - Host image */}
                       <div 
                         className="absolute inset-0 card-base card-image rounded-xl overflow-hidden"
-                        style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
+                        style={{ 
+                          backfaceVisibility: 'hidden', 
+                          WebkitBackfaceVisibility: 'hidden',
+                          transform: 'translateZ(0)',
+                        }}
                       >
                         <div className="absolute inset-0">
                           <img 
@@ -282,7 +289,11 @@ const HeroSection = () => {
                       {/* Back face - Bio with animated background */}
                       <div 
                         className="absolute inset-0 glass rounded-xl overflow-hidden"
-                        style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+                        style={{ 
+                          backfaceVisibility: 'hidden', 
+                          WebkitBackfaceVisibility: 'hidden', 
+                          transform: 'rotateY(180deg) translateZ(0)',
+                        }}
                       >
                         {/* Teaser background image */}
                         <img
