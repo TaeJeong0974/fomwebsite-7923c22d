@@ -158,9 +158,9 @@ const PodcastDetail = () => {
             <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
           </motion.div>
 
-          {/* Cards - Aligned with video */}
+          {/* Cards - Aligned with video top */}
           <motion.div 
-            className="space-y-6 mt-4"
+            className="space-y-6 mt-[4.5rem]"
             variants={fadeInVariants}
             initial="hidden"
             whileInView="visible"
