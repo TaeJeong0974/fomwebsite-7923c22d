@@ -80,8 +80,8 @@ const PodcastDetail = () => {
               spotifyUrl={episode.spotifyUrl}
             />
 
-            {/* Action Buttons - After Video */}
-            <div className="pt-2">
+            {/* Action Buttons - Mobile only (desktop shows in sidebar) */}
+            <div className="pt-2 lg:hidden">
               <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
             </div>
           </motion.div>
@@ -145,17 +145,29 @@ const PodcastDetail = () => {
         </div>
 
         {/* Sidebar */}
-        <motion.div 
-          className="space-y-6 lg:mt-[6.5rem]"
-          variants={fadeInVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 1.0, delay: 0.2, ease: liquidEase }}
-        >
-          {/* Featured Guest - Desktop only in sidebar */}
-          {episode.slug !== 'intro-to-fom' && (
-            <div className="hidden lg:block">
+        <div className="hidden lg:flex lg:flex-col">
+          {/* Action Buttons - Aligned with H1 */}
+          <motion.div
+            variants={fadeInVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, delay: 0.1, ease: liquidEase }}
+          >
+            <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
+          </motion.div>
+
+          {/* Cards - Aligned with video */}
+          <motion.div 
+            className="space-y-6 mt-[4.25rem]"
+            variants={fadeInVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, delay: 0.2, ease: liquidEase }}
+          >
+            {/* Featured Guest */}
+            {episode.slug !== 'intro-to-fom' && (
               <EpisodeGuestCard
                 name={episode.name}
                 title={episode.title}
@@ -163,14 +175,12 @@ const PodcastDetail = () => {
                 linkedInUrl={episode.linkedInUrl}
                 bio={episode.bio}
               />
-            </div>
-          )}
+            )}
 
-          {/* Your Hosts - Desktop only in sidebar */}
-          <div className="hidden lg:block">
+            {/* Your Hosts */}
             <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
 
       {/* Related Episodes */}
