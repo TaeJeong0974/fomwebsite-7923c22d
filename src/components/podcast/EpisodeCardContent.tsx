@@ -55,19 +55,16 @@ const EpisodeCardContent = ({
         </div>
       )}
       
-      {/* Hover content - grid height animation, content always visible inside */}
-      <div className={hoverWrapperClasses}>
-        <div className={hoverContentClasses}>
-          {showOverview && episode.overview && (
-            <p className="text-body-sm leading-relaxed text-white mb-4 line-clamp-3 max-w-[85%]">
+      {/* Overview text - grid height animation, content always visible inside */}
+      {showOverview && episode.overview && (
+        <div className={hoverWrapperClasses}>
+          <div className={hoverContentClasses}>
+            <p className="text-body-sm leading-relaxed text-white line-clamp-3 max-w-[85%]">
               {episode.overview}
             </p>
-          )}
-          <span className="btn-base btn-glass-light btn-sm">
-            {isUpcoming ? "Learn More" : "Watch Now"}
-          </span>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };
