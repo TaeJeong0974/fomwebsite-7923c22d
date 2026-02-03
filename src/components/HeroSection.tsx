@@ -246,7 +246,7 @@ const HeroSection = () => {
                       {/* Front face - Host image */}
                       <div 
                         className="absolute inset-0 card-base card-image rounded-xl overflow-hidden"
-                        style={{ backfaceVisibility: 'hidden' }}
+                        style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden' }}
                       >
                         <div className="absolute inset-0">
                           <img 
@@ -282,7 +282,7 @@ const HeroSection = () => {
                       {/* Back face - Bio with animated background */}
                       <div 
                         className="absolute inset-0 glass rounded-xl overflow-hidden"
-                        style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
+                        style={{ backfaceVisibility: 'hidden', WebkitBackfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
                       >
                         {/* Teaser background image */}
                         <img
