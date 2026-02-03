@@ -30,7 +30,7 @@ const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
           alt="" 
           className="w-full h-auto object-contain object-bottom absolute bottom-0 left-0"
         />
-        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,hsl(var(--background))_0%,hsl(var(--background))_85%,hsl(var(--background)/0.3)_92%,transparent_100%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_bottom,hsl(var(--background))_0%,hsl(var(--background))_90%,hsl(var(--background)/0.3)_95%,transparent_100%)]" />
       </motion.div>
       
       {/* Animated color overlay */}
