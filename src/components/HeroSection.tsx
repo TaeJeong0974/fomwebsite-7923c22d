@@ -327,8 +327,8 @@ const HeroSection = () => {
                         
                         {/* Content */}
                         <div className="relative z-10 p-5 sm:p-6 h-full flex flex-col">
-                          {/* Top: Back arrow */}
-                          <div className="flex items-start mb-4">
+                          {/* Arrow button top right - same position as front */}
+                          <div className="absolute top-4 right-4 z-10">
                             <div className="rounded-full p-2 bg-foreground text-background">
                               <ChevronDown className="h-5 w-5 rotate-90" />
                             </div>
