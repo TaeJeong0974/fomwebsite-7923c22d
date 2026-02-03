@@ -20,7 +20,7 @@ const EpisodeIntroBlock = ({
 }: EpisodeIntroBlockProps) => {
   const { variant } = useLayoutPrototype();
 
-  const eyebrowText = isIntro ? "Future of Marketing" : episodeNumber ? `Episode ${episodeNumber}` : "";
+  const eyebrowText = episodeNumber !== undefined ? `Episode ${episodeNumber}` : "";
   const displayText = isIntro 
     ? "Meet Your Hosts" 
     : overview || guestName;
