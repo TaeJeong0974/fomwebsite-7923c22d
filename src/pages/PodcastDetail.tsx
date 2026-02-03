@@ -48,78 +48,44 @@ const PodcastDetail = () => {
       {/* Vertical Text Labels */}
       <DetailVerticalText guestName={guestName} />
       
-      <EpisodeOverlayLayout 
-        actionButtons={<EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />}
-        titleContent={
+      <EpisodeOverlayLayout>
+        {/* Episode Content */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
+      {/* Main Content */}
+        <div className="lg:col-span-2 space-y-10 sm:space-y-14 lg:space-y-20">
+          {/* Title & Actions before Video */}
           <motion.div 
-            className="space-y-1 sm:space-y-2"
+            className="space-y-4 sm:space-y-6"
             variants={fadeInVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 1.0, ease: liquidEase }}
           >
-            <span className="text-label text-foreground/60 uppercase tracking-wider text-xs sm:text-sm">
-              {episode.slug === 'intro-to-fom' ? 'Future of Marketing' : `Episode ${episode.id}`}
-            </span>
-            <h1 className="text-display-lg font-display font-medium text-foreground leading-[0.95]">
-              {episode.slug === 'intro-to-fom' 
-                ? 'Meet Your Hosts' 
-                : episode.overview || episode.name}
-            </h1>
-          </motion.div>
-        }
-      >
+            {/* Episode Title */}
+            <div className="space-y-1 sm:space-y-2">
+              <span className="text-label text-foreground/60 uppercase tracking-wider text-xs sm:text-sm">
+                {episode.slug === 'intro-to-fom' ? 'Future of Marketing' : `Episode ${episode.id}`}
+              </span>
+              <h1 className="text-display-lg font-display font-medium text-foreground leading-[0.95]">
+                {episode.slug === 'intro-to-fom' 
+                  ? 'Meet Your Hosts' 
+                  : episode.overview || episode.name}
+              </h1>
+            </div>
 
-      {/* Video + Sidebar Row - Aligned together */}
-      <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr] gap-4 sm:gap-6 lg:gap-8 items-start mt-4 sm:mt-6">
-        {/* Video Player */}
-        <motion.div 
-          variants={fadeInVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 1.0, ease: liquidEase }}
-        >
-          <FloatingMiniPlayer 
-            youtubeUrl={episode.youtubeUrl}
-            spotifyUrl={episode.spotifyUrl}
-          />
-
-          {/* Action Buttons - Mobile only */}
-          <div className="pt-4 lg:hidden">
-            <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
-          </div>
-        </motion.div>
-
-        {/* Sidebar Cards - Aligned with video */}
-        <motion.div 
-          className="hidden lg:flex lg:flex-col space-y-6"
-          variants={fadeInVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 1.0, delay: 0.2, ease: liquidEase }}
-        >
-          {/* Featured Guest */}
-          {episode.slug !== 'intro-to-fom' && (
-            <EpisodeGuestCard
-              name={episode.name}
-              title={episode.title}
-              company={episode.company}
-              linkedInUrl={episode.linkedInUrl}
-              bio={episode.bio}
+            {/* Video Player */}
+            <FloatingMiniPlayer 
+              youtubeUrl={episode.youtubeUrl}
+              spotifyUrl={episode.spotifyUrl}
             />
-          )}
 
-          {/* Your Hosts */}
-          <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
-        </motion.div>
-      </div>
+            {/* Action Buttons - Mobile only (desktop shows in sidebar) */}
+            <div className="pt-2 lg:hidden">
+              <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
+            </div>
+          </motion.div>
 
-      {/* Main Content - Below video */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
-        <div className="lg:col-span-2 space-y-10 sm:space-y-14 lg:space-y-20">
           {/* About This Episode */}
           <motion.div
             variants={fadeInVariants}
@@ -161,8 +127,9 @@ const PodcastDetail = () => {
             />
           </motion.div>
 
-          {/* Guest & Hosts - Mobile only */}
+          {/* Guest & Hosts - Mobile only, after About section */}
           <div className="lg:hidden space-y-4">
+            {/* Featured Guest - Mobile */}
             {episode.slug !== 'intro-to-fom' && (
               <EpisodeGuestCard
                 name={episode.name}
@@ -172,8 +139,48 @@ const PodcastDetail = () => {
                 bio={episode.bio}
               />
             )}
+            {/* Hosts - Mobile */}
             <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
           </div>
+        </div>
+
+        {/* Sidebar */}
+        <div className="hidden lg:flex lg:flex-col">
+          {/* Action Buttons - Aligned with H1 */}
+          <motion.div
+            className="mt-[1.75rem]"
+            variants={fadeInVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, delay: 0.1, ease: liquidEase }}
+          >
+            <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
+          </motion.div>
+
+          {/* Cards - Aligned with video */}
+          <motion.div 
+            className="space-y-6 mt-4"
+            variants={fadeInVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, delay: 0.2, ease: liquidEase }}
+          >
+            {/* Featured Guest */}
+            {episode.slug !== 'intro-to-fom' && (
+              <EpisodeGuestCard
+                name={episode.name}
+                title={episode.title}
+                company={episode.company}
+                linkedInUrl={episode.linkedInUrl}
+                bio={episode.bio}
+              />
+            )}
+
+            {/* Your Hosts */}
+            <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
+          </motion.div>
         </div>
       </div>
 
