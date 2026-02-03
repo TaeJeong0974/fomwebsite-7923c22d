@@ -263,20 +263,22 @@ const HeroSection = () => {
                           <div className="card-overlay" />
                         </div>
 
+                        {/* Arrow button top right */}
+                        <div className="absolute top-4 right-4 z-10">
+                          <div
+                            className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20 transition-transform duration-300 ease-out group-hover:-translate-y-1"
+                          >
+                            <ChevronDown className="h-5 w-5 text-white rotate-[-90deg]" />
+                          </div>
+                        </div>
+
                         <div className="card-content-bottom card-padding">
-                          <div className="flex items-end justify-between">
-                            <div>
-                              <h3 className="font-display text-white leading-[0.95] tracking-normal">
-                                <span className="block text-4xl sm:text-3xl lg:text-4xl font-medium">{firstName}</span>
-                                <span className="block text-4xl sm:text-3xl lg:text-4xl font-normal">{lastName}</span>
-                              </h3>
-                              <p className="text-body-sm text-white mt-1">{host.title}</p>
-                            </div>
-                            <div
-                              className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20 transition-transform duration-300 ease-out group-hover:-translate-y-1"
-                            >
-                              <ChevronDown className="h-5 w-5 text-white rotate-[-90deg]" />
-                            </div>
+                          <div>
+                            <h3 className="font-display text-white leading-[0.95] tracking-normal">
+                              <span className="block text-4xl sm:text-3xl lg:text-4xl font-medium">{firstName}</span>
+                              <span className="block text-4xl sm:text-3xl lg:text-4xl font-normal">{lastName}</span>
+                            </h3>
+                            <p className="text-body-sm text-white mt-1">{host.title}</p>
                           </div>
                         </div>
                       </div>
