@@ -4,7 +4,7 @@ import EpisodeActionButtons from "./EpisodeActionButtons";
 interface EpisodeIntroBlockProps {
   overview?: string;
   guestName: string;
-  company?: string;
+  episodeNumber?: number;
   isIntro: boolean;
   youtubeUrl: string;
   spotifyUrl: string;
@@ -13,14 +13,14 @@ interface EpisodeIntroBlockProps {
 const EpisodeIntroBlock = ({ 
   overview, 
   guestName, 
-  company,
+  episodeNumber,
   isIntro,
   youtubeUrl, 
   spotifyUrl 
 }: EpisodeIntroBlockProps) => {
   const { variant } = useLayoutPrototype();
 
-  const eyebrowText = isIntro ? "Future of Marketing" : company || "";
+  const eyebrowText = isIntro ? "Future of Marketing" : episodeNumber ? `Episode ${episodeNumber}` : "";
   const displayText = isIntro 
     ? "Meet Your Hosts" 
     : overview || guestName;
