@@ -56,7 +56,7 @@ const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
             const lastName = lastNameParts.join(' ');
             return (
               <div key={index} className={index > 0 ? "pt-3 sm:pt-4 border-t-[1.5px] border-border/40" : ""}>
-                <h3 className="font-display text-4xl sm:text-3xl lg:text-4xl text-foreground leading-none tracking-normal">
+                <h3 className="font-display text-xl sm:text-2xl lg:text-3xl text-foreground leading-none tracking-normal">
                   <span className="inline sm:block font-medium">{firstName} </span>
                   <span className="inline sm:block font-normal">{lastName}</span>
                 </h3>
