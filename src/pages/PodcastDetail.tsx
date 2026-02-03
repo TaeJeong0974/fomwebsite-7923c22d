@@ -49,17 +49,17 @@ const PodcastDetail = () => {
       <DetailVerticalText guestName={guestName} />
       
       <EpisodeOverlayLayout>
-        {/* Title & Action Buttons Row - Above the grid */}
+        {/* Title & Action Buttons Row - Same grid as content below */}
         <motion.div 
-          className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 sm:gap-6 mb-4 sm:mb-6"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-4 sm:mb-6"
           variants={fadeInVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 1.0, ease: liquidEase }}
         >
-          {/* Episode Title */}
-          <div className="space-y-1 sm:space-y-2 lg:flex-1">
+          {/* Episode Title - Same width as video */}
+          <div className="lg:col-span-2 space-y-1 sm:space-y-2">
             <span className="text-label text-foreground/60 uppercase tracking-wider text-xs sm:text-sm">
               {episode.slug === 'intro-to-fom' ? 'Future of Marketing' : `Episode ${episode.id}`}
             </span>
@@ -70,8 +70,8 @@ const PodcastDetail = () => {
             </h1>
           </div>
           
-          {/* Action Buttons - Desktop only in this row */}
-          <div className="hidden lg:block flex-shrink-0">
+          {/* Action Buttons - Sidebar column */}
+          <div className="hidden lg:block">
             <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
           </div>
         </motion.div>
