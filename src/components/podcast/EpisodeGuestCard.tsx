@@ -20,7 +20,7 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl }: EpisodeGuestCar
 
   return (
     <div 
-      className="relative glass rounded-xl p-5 sm:p-6 overflow-hidden"
+      className="relative glass shadow-none rounded-xl p-5 sm:p-6 overflow-hidden"
       onMouseEnter={() => !isMobile && setIsHovered(true)}
       onMouseLeave={() => !isMobile && setIsHovered(false)}
     >
