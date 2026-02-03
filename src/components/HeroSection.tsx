@@ -288,7 +288,6 @@ const HeroSection = () => {
                               <span className="block text-4xl sm:text-3xl lg:text-4xl font-medium">{firstName}</span>
                               <span className="block text-4xl sm:text-3xl lg:text-4xl font-normal">{lastName}</span>
                             </h3>
-                            <p className="text-body-sm text-white mt-1">{host.title}</p>
                           </div>
                         </div>
                       </div>
