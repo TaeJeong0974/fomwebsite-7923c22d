@@ -23,7 +23,7 @@ const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
         className="absolute inset-0 z-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       >
         <img
           src={teaserBg} 
@@ -47,7 +47,7 @@ const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
           ] : undefined,
         }}
         transition={{
-          opacity: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+          opacity: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
           background: { duration: 3, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop' },
         }}
       />
