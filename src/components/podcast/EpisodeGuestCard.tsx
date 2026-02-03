@@ -47,22 +47,23 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl }: EpisodeGuestCar
       />
       
       {/* Content */}
-      <div className="relative z-10 flex flex-col justify-between min-h-[280px]">
-        <h3 className="text-section-header">Guest</h3>
+      <div className="relative z-10 flex flex-col justify-between min-h-0 sm:min-h-[280px]">
+        <h3 className="text-section-header mb-5 sm:mb-6">Guest</h3>
         
         <div>
           <h3 className="font-display text-xl sm:text-2xl lg:text-3xl text-foreground leading-none tracking-normal">
-            <span className="block font-medium">{firstName}</span>
-            <span className="block font-normal">{lastName}</span>
+            <span className="inline sm:block font-medium">{firstName} </span>
+            <span className="inline sm:block font-normal">{lastName}</span>
           </h3>
-          <p className="text-sm text-muted-foreground mt-2">{title}</p>
-          <p className="text-sm font-medium text-foreground">{company}</p>
+          <p className="text-xs sm:text-sm text-muted-foreground mt-1 sm:mt-2">
+            {title}, {company}
+          </p>
           {linkedInUrl && (
             <a
               href={linkedInUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-muted-foreground hover:text-foreground hover-transition inline-block mt-2"
+              className="text-xs sm:text-sm text-muted-foreground hover:text-foreground hover-transition inline-block mt-2"
             >
               LinkedIn →
             </a>
