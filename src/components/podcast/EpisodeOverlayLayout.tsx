@@ -18,14 +18,14 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
       <main className="relative z-10 pt-0 sm:pt-4 lg:pt-8 pb-6 sm:pb-8 lg:pb-12">
         {/* White Content Panel */}
         <div className="container mx-auto px-0 sm:container-padding">
-          <div className="relative flex gap-4">
+          <div className="relative flex gap-4 items-start">
             {/* Main Panel */}
             <div className="flex-1 bg-[#f4f2ef] rounded-none sm:rounded-xl shadow-2xl shadow-black/5 px-4 pt-3 pb-6 sm:p-8 lg:p-10">
               {children}
             </div>
             
             {/* Close Button - Sticky on desktop */}
-            <div className="hidden lg:block w-12 flex-shrink-0 self-start sticky top-20">
+            <div className="hidden lg:flex w-12 flex-shrink-0 sticky top-20">
               <button
                 onClick={handleClose}
                 className="w-12 h-12 rounded-full bg-foreground flex items-center justify-center hover:scale-105 hover-transition"
