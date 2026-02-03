@@ -76,22 +76,6 @@ const PodcastDetail = () => {
               youtubeUrl={episode.youtubeUrl}
               spotifyUrl={episode.spotifyUrl}
             />
-
-            {/* Guest & Hosts - Mobile only, below video */}
-            <div className="lg:hidden space-y-4">
-              {/* Featured Guest - Mobile */}
-              {episode.slug !== 'intro-to-fom' && (
-                <EpisodeGuestCard
-                  name={episode.name}
-                  title={episode.title}
-                  company={episode.company}
-                  linkedInUrl={episode.linkedInUrl}
-                  bio={episode.bio}
-                />
-              )}
-              {/* Hosts - Mobile */}
-              <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
-            </div>
           </motion.div>
 
           {/* Topics */}
@@ -135,6 +119,22 @@ const PodcastDetail = () => {
               {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
             </div>
           </motion.div>
+
+          {/* Guest & Hosts - Mobile only, after About section */}
+          <div className="lg:hidden space-y-4">
+            {/* Featured Guest - Mobile */}
+            {episode.slug !== 'intro-to-fom' && (
+              <EpisodeGuestCard
+                name={episode.name}
+                title={episode.title}
+                company={episode.company}
+                linkedInUrl={episode.linkedInUrl}
+                bio={episode.bio}
+              />
+            )}
+            {/* Hosts - Mobile */}
+            <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
+          </div>
         </div>
 
         {/* Sidebar */}
