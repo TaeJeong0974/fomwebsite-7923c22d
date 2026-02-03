@@ -6,8 +6,8 @@ import FomLogo from "@/assets/FOM_Logo.svg";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 
 import SubscribeButton from "@/components/SubscribeButton";
+import { LiquidButton } from "@/components/ui/LiquidButton";
 import { fadeDownVariant, liquidEase } from "@/components/animations/PageLoadAnimation";
-
 const Navbar = () => {
   const { openSubscribe } = useSubscribe();
   const [isOpen, setIsOpen] = useState(false);
@@ -143,13 +143,15 @@ const Navbar = () => {
             </motion.div>
 
             {/* Mobile Menu Button - Third column on mobile */}
-            <button
-              className="md:hidden p-2 rounded-full hover:bg-secondary/50 hover-transition focus-ring col-start-3 justify-self-end"
+            <LiquidButton
+              variant="glass"
+              size="icon"
+              className="md:hidden h-10 w-10 col-start-3 justify-self-end"
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
             >
-              {isOpen ? <X className="h-7 w-7" /> : <Menu className="h-7 w-7" />}
-            </button>
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </LiquidButton>
           </div>
 
           {/* Mobile Navigation */}
@@ -168,9 +170,9 @@ const Navbar = () => {
                   </li>
                 ))}
                 <li className="pt-3">
-                  <button onClick={openSubscribe} className="btn-base btn-glass btn-md w-full">
+                  <LiquidButton onClick={openSubscribe} variant="glass" size="lg" className="w-full">
                     Subscribe
-                  </button>
+                  </LiquidButton>
                 </li>
               </ul>
             </div>

@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useSubscriptionForm } from "@/hooks/use-subscription-form";
+import { LiquidButton } from "@/components/ui/LiquidButton";
 import guestBg from "@/assets/guest-bg.png";
 
 interface ComingSoonHeroCardProps {
@@ -63,10 +64,10 @@ const ComingSoonHeroCard = ({ guestFirstName }: ComingSoonHeroCardProps) => {
             <h3 className="font-display text-2xl md:text-3xl font-semibold text-white mb-4 max-w-md">
               Be the first to know when this episode drops.
             </h3>
-            <span className="btn-base btn-glass-light btn-lg self-start inline-flex items-center gap-2">
+            <LiquidButton variant="light" size="lg" className="self-start gap-2">
               <Bell size={18} />
               Get Notified
-            </span>
+            </LiquidButton>
           </motion.div>
         ) : !isSubmitted ? (
           <motion.div
@@ -93,12 +94,13 @@ const ComingSoonHeroCard = ({ guestFirstName }: ComingSoonHeroCardProps) => {
                 className="w-full px-5 py-3 text-body font-mono bg-white/5 backdrop-blur-xl border border-white/10 rounded-full text-white placeholder:text-white/40 focus-ring hover-transition"
               />
               <div className="flex items-center gap-4">
-                <button
+                <LiquidButton
                   type="submit"
-                  className="btn-base btn-glass-light btn-lg"
+                  variant="light"
+                  size="lg"
                 >
                   Notify Me
-                </button>
+                </LiquidButton>
                 <button
                   type="button"
                   onClick={() => setShowForm(false)}

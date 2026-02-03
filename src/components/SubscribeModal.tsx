@@ -6,6 +6,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { useSubscriptionForm } from "@/hooks/use-subscription-form";
+import { LiquidButton } from "@/components/ui/LiquidButton";
 
 interface SubscribeModalProps {
   open: boolean;
@@ -55,12 +56,14 @@ const SubscribeModal = ({ open, onOpenChange }: SubscribeModalProps) => {
                   required
                   className="w-full px-5 py-3 text-body font-mono bg-white/5 backdrop-blur-xl border border-white/10 rounded-full text-white placeholder:text-white/40 focus-ring hover-transition"
                 />
-                <button
+                <LiquidButton
                   type="submit"
-                  className="w-full btn-base btn-glass-light btn-lg"
+                  variant="light"
+                  size="lg"
+                  className="w-full"
                 >
                   Subscribe
-                </button>
+                </LiquidButton>
               </form>
 
               <p className="mt-4 text-body-sm text-white/40 text-center">

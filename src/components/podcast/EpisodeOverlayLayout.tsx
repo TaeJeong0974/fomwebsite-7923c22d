@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { X } from "lucide-react";
+import { LiquidButton } from "@/components/ui/LiquidButton";
 
 interface EpisodeOverlayLayoutProps {
   children: React.ReactNode;
@@ -25,13 +26,14 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
             
             {/* Close Button - Sticky on desktop */}
             <div className="hidden lg:flex w-12 flex-shrink-0 sticky top-28 mt-6">
-              <button
+              <LiquidButton
                 onClick={handleClose}
-                className="w-12 h-12 rounded-full bg-foreground flex items-center justify-center hover:scale-105 hover-transition"
+                variant="dark"
+                size="icon"
                 aria-label="Close and return to homepage"
               >
-                <X className="h-5 w-5 text-white" />
-              </button>
+                <X className="h-5 w-5" />
+              </LiquidButton>
             </div>
           </div>
         </div>
