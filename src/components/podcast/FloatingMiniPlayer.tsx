@@ -39,7 +39,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl }: FloatingMiniPlayerProps)
       {/* Main Video Player - Full width on mobile */}
       <div 
         ref={videoContainerRef} 
-        className="-ml-[calc(1rem+1.5rem)] -mr-[calc(1rem+1.5rem)] w-[calc(100%+1rem+1.5rem+1rem+1.5rem)] sm:ml-0 sm:mr-0 sm:w-full"
+        className="-ml-4 -mr-4 w-[calc(100%+2rem)] sm:ml-0 sm:mr-0 sm:w-full"
       >
         <div 
           className="relative aspect-video sm:rounded-xl overflow-hidden group cursor-pointer"
