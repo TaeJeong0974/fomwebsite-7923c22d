@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { podcastHosts } from "@/lib/podcastData";
+import { useIsMobile } from "@/hooks/use-mobile";
 import teaserBg from "@/assets/teaser-bg.png";
 
 interface EpisodeHostsCardProps {
@@ -9,14 +10,15 @@ interface EpisodeHostsCardProps {
 
 const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const isMobile = useIsMobile();
   const hosts = showAllHosts ? podcastHosts : podcastHosts.slice(0, 2);
 
   // Single card layout for both mobile and desktop
   return (
     <div 
       className="relative glass rounded-xl p-5 sm:p-6 overflow-hidden"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseEnter={() => !isMobile && setIsHovered(true)}
+      onMouseLeave={() => !isMobile && setIsHovered(false)}
     >
       {/* Hover Background */}
       <motion.div

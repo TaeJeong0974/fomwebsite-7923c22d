@@ -243,7 +243,7 @@ const HeroSection = () => {
                 >
                   {/* Card flip container */}
                   <div 
-                    className="relative aspect-[3/4] cursor-pointer transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:-translate-y-2"
+                    className="relative aspect-[3/4] cursor-pointer transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:hover:-translate-y-2"
                     style={{ perspective: '1000px' }}
                     onClick={() => setFlippedIndex(isFlipped ? null : index)}
                     onMouseLeave={() => isFlipped && setFlippedIndex(null)}
@@ -264,7 +264,7 @@ const HeroSection = () => {
                           <img 
                             src={host.image} 
                             alt={host.name}
-                            className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                            className="w-full h-full object-cover transition-transform duration-700 ease-out md:group-hover:scale-105"
                             loading="eager"
                             fetchPriority="high"
                             decoding="async"
@@ -275,7 +275,7 @@ const HeroSection = () => {
                         {/* Arrow button top right */}
                         <div className="absolute top-4 right-4 z-10">
                           <div
-                            className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20 transition-transform duration-300 ease-out group-hover:-translate-y-1"
+                            className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20 transition-transform duration-300 ease-out md:group-hover:-translate-y-1"
                           >
                             <ChevronDown className="h-5 w-5 text-white rotate-[-90deg]" />
                           </div>

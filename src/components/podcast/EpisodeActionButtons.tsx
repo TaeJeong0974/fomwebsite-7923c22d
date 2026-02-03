@@ -22,11 +22,11 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
     tap: { scale: 0.98 },
   };
 
-  // Base pill button with width animation
-  const liquidGlassButton = "group/btn flex items-center justify-center bg-black/5 backdrop-blur-xl border border-black/10 text-foreground h-12 px-3.5 rounded-full text-sm font-medium hover:bg-black/10 transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] shadow-sm";
+  // Base pill button with width animation (hover only on desktop)
+  const liquidGlassButton = "group/btn flex items-center justify-center bg-black/5 backdrop-blur-xl border border-black/10 text-foreground h-12 px-3.5 rounded-full text-sm font-medium md:hover:bg-black/10 transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] shadow-sm";
 
-  // Text that appears on hover with max-width animation
-  const textClasses = "overflow-hidden whitespace-nowrap max-w-0 group-hover/btn:max-w-24 opacity-0 group-hover/btn:opacity-100 transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] ml-0 group-hover/btn:ml-2";
+  // Text that appears on hover with max-width animation (desktop only)
+  const textClasses = "hidden md:inline overflow-hidden whitespace-nowrap max-w-0 group-hover/btn:max-w-24 opacity-0 group-hover/btn:opacity-100 transition-all duration-500 ease-[cubic-bezier(0.33,1,0.68,1)] ml-0 group-hover/btn:ml-2";
 
   return (
     <div className="flex gap-2 sm:gap-3">
