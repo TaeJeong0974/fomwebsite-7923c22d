@@ -53,37 +53,39 @@ const PodcastDetail = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
       {/* Main Content */}
         <div className="lg:col-span-2 space-y-10 sm:space-y-14 lg:space-y-20">
-          {/* Title & Actions before Video */}
+          {/* Episode Title - Own Row */}
           <motion.div 
-            className="space-y-4 sm:space-y-6"
+            className="space-y-1 sm:space-y-2"
             variants={fadeInVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.15 }}
             transition={{ duration: 1.0, ease: liquidEase }}
           >
-            {/* Episode Title */}
-            <div className="space-y-1 sm:space-y-2">
-              <span className="text-label text-foreground/60 uppercase tracking-wider text-xs sm:text-sm">
-                {episode.slug === 'intro-to-fom' ? 'Future of Marketing' : `Episode ${episode.id}`}
-              </span>
-              <h1 className="text-display-lg font-display font-medium text-foreground leading-[0.95]">
-                {episode.slug === 'intro-to-fom' 
-                  ? 'Meet Your Hosts' 
-                  : episode.overview || episode.name}
-              </h1>
-            </div>
+            <span className="text-label text-foreground/60 uppercase tracking-wider text-xs sm:text-sm">
+              {episode.slug === 'intro-to-fom' ? 'Future of Marketing' : `Episode ${episode.id}`}
+            </span>
+            <h1 className="text-display-lg font-display font-medium text-foreground leading-[0.95]">
+              {episode.slug === 'intro-to-fom' 
+                ? 'Meet Your Hosts' 
+                : episode.overview || episode.name}
+            </h1>
+          </motion.div>
 
-            {/* Video Player */}
+          {/* Video Player & Actions */}
+          <motion.div 
+            className="space-y-4 sm:space-y-6"
+            variants={fadeInVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, delay: 0.1, ease: liquidEase }}
+          >
             <FloatingMiniPlayer 
               youtubeUrl={episode.youtubeUrl}
               spotifyUrl={episode.spotifyUrl}
             />
-
-            {/* Action Buttons - After Video */}
-            <div className="pt-2">
-              <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
-            </div>
+            <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
           </motion.div>
 
           {/* About This Episode */}
