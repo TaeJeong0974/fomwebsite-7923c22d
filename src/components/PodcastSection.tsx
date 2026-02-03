@@ -61,9 +61,9 @@ const PodcastSection = () => {
               label
             }) => <Tooltip key={type}>
                   <TooltipTrigger asChild>
-                    <button onClick={() => setLayout(type)} className={`p-2.5 rounded-full transition-all duration-300 flex items-center gap-2 ${layout === type ? "bg-foreground text-background shadow-lg" : "text-foreground hover:bg-foreground/5"}`}>
-                      <Icon className="h-4 w-4" />
-                      <span className="text-xs font-medium pr-1 capitalize">{type}</span>
+                    <button onClick={() => setLayout(type)} className={`p-2.5 rounded-full transition-all duration-300 flex items-center justify-center gap-2 ${layout === type ? "bg-foreground text-background shadow-lg" : "text-foreground hover:bg-foreground/5"}`}>
+                      <Icon className="h-4 w-4 shrink-0" />
+                      <span className="text-xs font-medium pr-1 capitalize leading-none">{type}</span>
                     </button>
                   </TooltipTrigger>
                   <TooltipContent><p>{label}</p></TooltipContent>
