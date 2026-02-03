@@ -4,6 +4,7 @@ import { Bell } from "lucide-react";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
+import EpisodeHostsCard from "@/components/podcast/EpisodeHostsCard";
 import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import EpisodePullQuote from "@/components/podcast/EpisodePullQuote";
 import ComingSoonHeroCard from "@/components/podcast/ComingSoonHeroCard";
@@ -138,8 +139,8 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
             />
           </motion.div>
 
-          {/* Guest Card - Mobile only */}
-          <div className="lg:hidden">
+          {/* Guest & Hosts - Mobile only */}
+          <div className="lg:hidden space-y-4">
             <EpisodeGuestCard
               name={episode.name}
               title={episode.title}
@@ -147,6 +148,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
               linkedInUrl={episode.linkedInUrl}
               bio={episode.bio}
             />
+            <EpisodeHostsCard />
           </div>
         </div>
 
@@ -168,6 +170,11 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
               linkedInUrl={episode.linkedInUrl}
               bio={episode.bio}
             />
+          </div>
+
+          {/* Hosts - Desktop only */}
+          <div className="hidden lg:block">
+            <EpisodeHostsCard />
           </div>
         </motion.div>
       </div>
