@@ -97,7 +97,7 @@ const PodcastDetail = () => {
             <h3 className="text-section-header mb-4">
               About This Episode
             </h3>
-            <div className="text-foreground/80 whitespace-pre-line leading-relaxed text-lg max-w-prose">
+            <div className="text-foreground/80 whitespace-pre-line leading-relaxed text-sm sm:text-base lg:text-lg max-w-prose">
               {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
             </div>
           </motion.div>
