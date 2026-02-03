@@ -150,7 +150,6 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
             company={episode.company}
             linkedInUrl={episode.linkedInUrl}
             bio={episode.bio}
-            isUpcoming
           />
         </motion.div>
       </div>

@@ -9,10 +9,9 @@ interface EpisodeGuestCardProps {
   company: string;
   linkedInUrl?: string;
   bio?: string;
-  isUpcoming?: boolean;
 }
 
-const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming }: EpisodeGuestCardProps) => {
+const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio }: EpisodeGuestCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   
@@ -30,13 +29,9 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming }
         className="absolute inset-0 z-0"
         initial={{ opacity: 0 }}
         animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: 4, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       >
-        <img
-          src={teaserBg} 
-          alt="" 
-          className="w-full h-auto object-contain object-bottom absolute bottom-0 left-0"
-        />
+        <img src={teaserBg} alt="" className="w-full h-auto object-contain object-bottom absolute bottom-0 left-0" />
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,hsl(var(--background))_0%,hsl(var(--background))_50%,hsl(var(--background)/0.8)_65%,hsl(var(--background)/0.3)_85%,transparent_100%)]" />
       </motion.div>
       
@@ -54,58 +49,47 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming }
           ] : undefined,
         }}
         transition={{
-          opacity: { duration: 4, ease: [0.22, 1, 0.36, 1] },
+          opacity: { duration: 0.4, ease: [0.22, 1, 0.36, 1] },
           background: { duration: 3, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop' },
         }}
       />
       
       {/* Content */}
       <div className="relative z-10 flex flex-col h-full min-h-[280px]">
-        {/* Top: Header */}
-        <div className="mb-6">
-          <h3 className="text-section-header">Guest</h3>
-        </div>
+        <h3 className="text-section-header mb-6">Guest</h3>
         
-        {/* Spacer */}
         <div className="flex-1" />
         
-        {/* Bottom: Name and info */}
-        <div className="space-y-4">
-          <div>
-            <h3 className="font-display text-foreground leading-[0.95] tracking-normal">
-              <span className="block text-2xl sm:text-3xl font-medium">{firstName}</span>
-              <span className="block text-2xl sm:text-3xl font-normal">{lastName}</span>
-            </h3>
-            <p className="text-sm text-muted-foreground mt-2">{title}</p>
-            <p className="text-sm font-medium text-foreground">{company}</p>
-            {linkedInUrl && (
-              <a
-                href={linkedInUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-muted-foreground hover:text-foreground hover-transition inline-block mt-2"
-              >
-                LinkedIn →
-              </a>
-            )}
-          </div>
+        <div>
+          <h3 className="font-display text-foreground leading-[0.95] tracking-normal">
+            <span className="block text-2xl sm:text-3xl font-medium">{firstName}</span>
+            <span className="block text-2xl sm:text-3xl font-normal">{lastName}</span>
+          </h3>
+          <p className="text-sm text-muted-foreground mt-2">{title}</p>
+          <p className="text-sm font-medium text-foreground">{company}</p>
+          {linkedInUrl && (
+            <a
+              href={linkedInUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-muted-foreground hover:text-foreground hover-transition inline-block mt-2"
+            >
+              LinkedIn →
+            </a>
+          )}
           
-          {/* Bio Accordion */}
           {bio && (
-            <div className="pt-4 border-t border-border/20">
+            <div className="pt-4 mt-4 border-t border-border/20">
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="flex items-center justify-between w-full text-left group/btn"
+                className="flex items-center justify-between w-full text-left"
               >
                 <span className="text-sm font-medium text-foreground">About {firstName}</span>
                 <motion.div
                   animate={{ rotate: isExpanded ? 180 : 0 }}
                   whileHover={{ scale: isExpanded ? 1 : [1, 1.15, 1] }}
-                  transition={{ 
-                    rotate: { duration: 0.3 },
-                    scale: { duration: 0.6, ease: "easeInOut" }
-                  }}
-                  className="rounded-full p-1.5 bg-foreground/10 backdrop-blur-xl border border-border/20"
+                  transition={{ rotate: { duration: 0.3 }, scale: { duration: 0.6, ease: "easeInOut" } }}
+                  className="rounded-full p-1.5 bg-foreground/10 border border-border/20"
                 >
                   <ChevronDown className="h-4 w-4 text-foreground" />
                 </motion.div>
@@ -120,9 +104,7 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl, bio, isUpcoming }
                     transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                     className="overflow-hidden"
                   >
-                    <p className="text-sm text-foreground/90 leading-relaxed pt-4">
-                      {bio}
-                    </p>
+                    <p className="text-sm text-foreground/90 leading-relaxed pt-4">{bio}</p>
                   </motion.div>
                 )}
               </AnimatePresence>
