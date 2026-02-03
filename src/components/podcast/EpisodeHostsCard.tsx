@@ -36,20 +36,12 @@ const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
       {/* Animated color overlay */}
       <motion.div
         className="absolute inset-0 z-[1] mix-blend-soft-light rounded-xl"
+        style={{
+          background: 'linear-gradient(135deg, rgba(220, 50, 50, 0.9) 0%, rgba(140, 60, 180, 0.8) 50%, rgba(60, 100, 220, 0.9) 100%)',
+        }}
         initial={{ opacity: 0 }}
-        animate={{
-          opacity: isHovered ? 0.8 : 0,
-          background: isHovered ? [
-            'linear-gradient(135deg, rgba(220, 50, 50, 0.9) 0%, rgba(140, 60, 180, 0.8) 50%, rgba(60, 100, 220, 0.9) 100%)',
-            'linear-gradient(135deg, rgba(140, 60, 180, 0.9) 0%, rgba(60, 100, 220, 0.8) 50%, rgba(220, 50, 50, 0.9) 100%)',
-            'linear-gradient(135deg, rgba(60, 100, 220, 0.9) 0%, rgba(220, 50, 50, 0.8) 50%, rgba(140, 60, 180, 0.9) 100%)',
-            'linear-gradient(135deg, rgba(220, 50, 50, 0.9) 0%, rgba(140, 60, 180, 0.8) 50%, rgba(60, 100, 220, 0.9) 100%)',
-          ] : undefined,
-        }}
-        transition={{
-          opacity: { duration: 4, ease: [0.22, 1, 0.36, 1] },
-          background: { duration: 3, ease: 'easeInOut', repeat: Infinity, repeatType: 'loop' },
-        }}
+        animate={{ opacity: isHovered ? 0.8 : 0 }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
       />
       
       {/* Content */}
