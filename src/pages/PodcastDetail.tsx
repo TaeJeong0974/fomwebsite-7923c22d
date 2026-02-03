@@ -63,7 +63,7 @@ const PodcastDetail = () => {
             <span className="text-label text-foreground/60 uppercase tracking-wider text-xs sm:text-sm">
               {episode.slug === 'intro-to-fom' ? 'Future of Marketing' : `Episode ${episode.id}`}
             </span>
-            <h1 className="text-display-lg font-display font-medium text-foreground leading-[0.95]">
+            <h1 className="text-display-lg font-display font-medium text-foreground leading-[1.1]">
               {episode.slug === 'intro-to-fom' 
                 ? 'Meet Your Hosts' 
                 : episode.overview || episode.name}
