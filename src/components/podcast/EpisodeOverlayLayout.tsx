@@ -24,15 +24,17 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
               {children}
             </div>
             
-            {/* Close Button */}
+            {/* Close Button - Sticky on desktop */}
             <div className="hidden lg:block w-12 flex-shrink-0">
-              <button
-                onClick={handleClose}
-                className="w-12 h-12 rounded-full bg-foreground flex items-center justify-center hover:scale-105 hover-transition"
-                aria-label="Close and return to homepage"
-              >
-                <X className="h-5 w-5 text-white" />
-              </button>
+              <div className="sticky top-20">
+                <button
+                  onClick={handleClose}
+                  className="w-12 h-12 rounded-full bg-foreground flex items-center justify-center hover:scale-105 hover-transition"
+                  aria-label="Close and return to homepage"
+                >
+                  <X className="h-5 w-5 text-white" />
+                </button>
+              </div>
             </div>
           </div>
         </div>
