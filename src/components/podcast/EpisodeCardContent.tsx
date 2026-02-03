@@ -59,7 +59,7 @@ const EpisodeCardContent = ({
       <div className={hoverWrapperClasses}>
         <div className={hoverContentClasses}>
           {showOverview && episode.overview && (
-            <p className="text-body-sm leading-relaxed text-white mb-4 line-clamp-3">
+            <p className="text-body-sm leading-relaxed text-white mb-4 line-clamp-3 max-w-[85%]">
               {episode.overview}
             </p>
           )}
