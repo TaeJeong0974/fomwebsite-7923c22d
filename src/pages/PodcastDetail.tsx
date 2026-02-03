@@ -70,8 +70,8 @@ const PodcastDetail = () => {
             </h1>
           </div>
           
-          {/* Action Buttons - Sidebar column */}
-          <div className="hidden lg:block">
+          {/* Action Buttons - Aligned with H1 first line */}
+          <div className="hidden lg:block mt-6 sm:mt-7">
             <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
           </div>
         </motion.div>
