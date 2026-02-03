@@ -115,11 +115,16 @@ const Navbar = () => {
                   <a
                     href={link.href}
                     onClick={(e) => handleNavClick(e, link.href)}
-                    className={`text-[1em] font-medium hover-transition focus-ring ${
+                    className={`relative text-[1em] font-medium focus-ring transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                       activeSection === link.href ? 'text-primary' : 'text-foreground hover:text-foreground/60'
                     }`}
                   >
                     {link.label}
+                    <span 
+                      className={`absolute -bottom-1 left-0 h-[2px] bg-primary transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+                        activeSection === link.href ? 'w-full' : 'w-0'
+                      }`}
+                    />
                   </a>
                 </motion.li>
               ))}
