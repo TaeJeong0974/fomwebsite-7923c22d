@@ -26,7 +26,7 @@ const SubscribeModal = ({ open, onOpenChange }: SubscribeModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-        <DialogContent className="bg-[#3a3a3a]/95 backdrop-blur-2xl border border-white/[0.08] shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_20px_50px_-10px_rgba(0,0,0,0.5)] sm:max-w-md p-0 overflow-hidden top-4 translate-y-0 rounded-2xl sm:top-[50%] sm:translate-y-[-50%]">
+        <DialogContent className="!bg-[#3a3a3a]/95 backdrop-blur-2xl !border-white/[0.08] shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_20px_50px_-10px_rgba(0,0,0,0.5)] sm:max-w-md p-0 overflow-hidden top-4 translate-y-0 rounded-2xl sm:top-[50%] sm:translate-y-[-50%]">
         <AnimatePresence mode="wait">
           {!isSubmitted ? (
             <motion.div
@@ -38,7 +38,7 @@ const SubscribeModal = ({ open, onOpenChange }: SubscribeModalProps) => {
               className="p-8 sm:p-10"
             >
               <DialogHeader className="text-left mb-8">
-                <p className="text-label text-white mb-2">STAY UPDATED</p>
+                <p className="text-[0.8rem] font-medium uppercase tracking-[0.1em] text-white mb-2">STAY UPDATED</p>
                 <DialogTitle className="text-display-md text-white">
                   Never Miss an Episode
                 </DialogTitle>
