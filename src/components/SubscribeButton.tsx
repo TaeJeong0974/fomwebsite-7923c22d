@@ -30,19 +30,34 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
         animate={{ 
           opacity: isHovered ? 1 : 0,
           backgroundColor: isHovered ? [
-            'rgba(218,150,120,0.5)',
-            'rgba(200,140,160,0.5)',
-            'rgba(140,160,190,0.5)',
-            'rgba(218,150,120,0.5)',
-          ] : 'rgba(218,150,120,0.5)'
+            'rgba(218,150,120,1)',
+            'rgba(200,140,160,1)',
+            'rgba(140,160,190,1)',
+            'rgba(218,150,120,1)',
+          ] : 'rgba(218,150,120,1)'
         }}
         transition={{ 
           opacity: { duration: 0.3 },
           backgroundColor: isHovered ? { duration: 3, repeat: Infinity, ease: "easeInOut" } : { duration: 0.15 }
         }}
-        style={{ backdropFilter: 'blur(8px)' }}
       />
-      <span className="relative z-10">{children}</span>
+      {/* Black gradient overlay */}
+      <motion.div 
+        className="absolute inset-0 rounded-lg"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: isHovered ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+        style={{
+          background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%)',
+        }}
+      />
+      <motion.span 
+        className="relative z-10"
+        animate={{ color: isHovered ? '#ffffff' : 'inherit' }}
+        transition={{ duration: 0.3 }}
+      >
+        {children}
+      </motion.span>
     </motion.div>
   );
 };
