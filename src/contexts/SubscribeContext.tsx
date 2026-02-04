@@ -3,7 +3,6 @@ import SubscribeDrawer from "@/components/SubscribeDrawer";
 
 interface SubscribeContextType {
   openSubscribe: () => void;
-  isOpen: boolean;
 }
 
 // Provide a default no-op to prevent errors during HMR/fast refresh
@@ -11,7 +10,6 @@ const SubscribeContext = createContext<SubscribeContextType>({
   openSubscribe: () => {
     console.warn("SubscribeProvider not mounted yet");
   },
-  isOpen: false,
 });
 
 export const useSubscribe = () => {
@@ -28,7 +26,7 @@ export const SubscribeProvider = ({ children }: SubscribeProviderProps) => {
   const openSubscribe = () => setIsOpen(true);
 
   return (
-    <SubscribeContext.Provider value={{ openSubscribe, isOpen }}>
+    <SubscribeContext.Provider value={{ openSubscribe }}>
       {children}
       <SubscribeDrawer open={isOpen} onOpenChange={setIsOpen} />
     </SubscribeContext.Provider>

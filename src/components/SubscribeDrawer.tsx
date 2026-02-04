@@ -1,6 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import { createPortal } from "react-dom";
 import { useSubscriptionForm } from "@/hooks/use-subscription-form";
 import { liquidSpring, buttonVariants } from "@/components/ui/LiquidButton";
 
@@ -43,17 +42,17 @@ const SubscribeDrawer = ({ open, onOpenChange }: SubscribeDrawerProps) => {
     onOpenChange(false);
   };
 
-  return createPortal(
+  return (
     <AnimatePresence>
       {open && (
         <>
-          {/* Backdrop - only on mobile */}
+          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-sm md:hidden"
+            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm"
             onClick={handleClose}
           />
 
@@ -63,7 +62,7 @@ const SubscribeDrawer = ({ open, onOpenChange }: SubscribeDrawerProps) => {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed right-0 top-0 bottom-0 z-[9999] w-full max-w-md bg-[#1a1a1a]/60 backdrop-blur-3xl border-l border-white/[0.08] shadow-[-20px_0_50px_-10px_rgba(0,0,0,0.5)]"
+            className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-md bg-[#1a1a1a]/60 backdrop-blur-3xl border-l border-white/[0.08] shadow-[-20px_0_50px_-10px_rgba(0,0,0,0.5)]"
           >
             {/* Close button */}
             <motion.button
@@ -146,8 +145,7 @@ const SubscribeDrawer = ({ open, onOpenChange }: SubscribeDrawerProps) => {
           </motion.div>
         </>
       )}
-    </AnimatePresence>,
-    document.body
+    </AnimatePresence>
   );
 };
 

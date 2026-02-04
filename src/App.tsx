@@ -1,7 +1,7 @@
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { SubscribeProvider, useSubscribe } from "@/contexts/SubscribeContext";
+import { SubscribeProvider } from "@/contexts/SubscribeContext";
 import { LayoutPrototypeProvider } from "@/contexts/LayoutPrototypeContext";
 import { Toaster } from "sonner";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -15,29 +15,22 @@ const queryClient = new QueryClient();
 
 const AppRoutes = () => {
   const location = useLocation();
-  const { isOpen } = useSubscribe();
   
   return (
     <>
       {/* Fixed background - stays during transitions */}
       <div className="fixed inset-0 -z-10 bg-[#f4f2ef]" />
       
-      {/* Main content wrapper - pushes left on desktop when drawer opens */}
-      <div 
-        className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:data-[drawer-open=true]:-translate-x-[28rem]"
-        data-drawer-open={isOpen}
-      >
-        {/* Navbar stays fixed, outside of page transitions */}
-        <Navbar />
-        
-        <PageTransition>
-          <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<Index />} />
-            <Route path="/episode/:slug" element={<PodcastDetail />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </PageTransition>
-      </div>
+      {/* Navbar stays fixed, outside of page transitions */}
+      <Navbar />
+      
+      <PageTransition>
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Index />} />
+          <Route path="/episode/:slug" element={<PodcastDetail />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </PageTransition>
     </>
   );
 };
