@@ -246,7 +246,7 @@ const PodcastListView = ({
                           New
                         </span>}
                     </div>
-                    {/* Mobile: Title & Company below name */}
+                    {/* Mobile/Tablet: Title & Company below name */}
                     <div className="flex items-center justify-between gap-4 lg:hidden mt-2">
                       <p className={`text-body-sm text-foreground/60 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
                         {isIntroEpisode ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>}
@@ -259,6 +259,12 @@ const PodcastListView = ({
                 </div>
               </div>
               
+              {/* Desktop CTA */}
+              <div className="hidden lg:flex items-center shrink-0">
+                <span className={`btn-base btn-primary btn-sm transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
+                  {isComingSoon ? 'Coming Soon' : 'Watch Now'}
+                </span>
+              </div>
             </Link>
           </motion.div>;
     })}
