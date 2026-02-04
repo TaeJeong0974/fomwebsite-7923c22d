@@ -41,21 +41,21 @@ export const podcastHosts: PodcastHost[] = [
     title: "CEO & Co-Founder",
     company: "Upside",
     linkedInUrl: "https://www.linkedin.com/in/madalina/",
-    bio: "CEO and co-founder of Upside, a next-gen revenue intelligence platform for B2B leaders. Previously co-founded and was CMO of Branch, helping scale to $100M+ revenue.",
-  },
-  {
-    name: "Ethan Smith",
-    title: "Founder & CEO",
-    company: "Graphite",
-    linkedInUrl: "https://www.linkedin.com/in/ethanls/",
-    bio: "Founder and CEO of Graphite, a premium Vertical AI Growth Agency that helps companies like Webflow, Notion, and MasterClass drive sustainable revenue growth.",
+    bio: "Mada Seghete is the CEO and co-founder of Upside, a next-gen revenue intelligence platform for B2B leaders. Previously co-founded and was CMO of Branch, helping scale to $100M+ revenue. Cornell Engineering graduate with Masters and MBA from Stanford. Partner at XFactor Ventures investing in women founders and organizes yearly retreats for 100+ women founders.",
   },
   {
     name: "Camille Ricketts",
     title: "Partner",
     company: "XYZ Venture Capital",
     linkedInUrl: "https://linkedin.com/in/camillericketts",
-    bio: "Partner at XYZ Venture Capital, where she leads investments in product-led growth and go-to-market software startups. Previously the first marketing leader at Notion.",
+    bio: "Camille Ricketts is a Partner at XYZ Venture Capital, where she leads investments in product-led growth and go-to-market software startups. Prior, she was the first marketing leader at Notion, building out the brand, community, and more. She also founded First Round Review for First Round Capital, managed communications at Tesla, and reported for the Wall Street Journal.",
+  },
+  {
+    name: "Ethan Smith",
+    title: "Founder & CEO",
+    company: "Graphite",
+    linkedInUrl: "https://www.linkedin.com/in/ethanls/",
+    bio: "Ethan Smith is Founder and CEO of Graphite, a premium Vertical AI Growth Agency that helps companies like Webflow, Notion, MasterClass, and Captions drive sustainable revenue growth via SEO, content, and AEO (Answer Engine Optimization). Ethan is also an adjunct professor at IE Business School.",
   },
 ];
 

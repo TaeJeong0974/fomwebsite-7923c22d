@@ -7,6 +7,7 @@ import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
 import EpisodeHostsCard from "@/components/podcast/EpisodeHostsCard";
 import EpisodePullQuote from "@/components/podcast/EpisodePullQuote";
+import AboutTheHosts from "@/components/podcast/AboutTheHosts";
 import ComingSoonEpisode from "@/components/podcast/ComingSoonEpisode";
 import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
 import ListenSubscribeCards from "@/components/ListenSubscribeCards";
@@ -138,6 +139,19 @@ const PodcastDetail = () => {
                   quote={episode.pullQuote}
                   attribution={episode.name}
                 />
+              </motion.div>
+            )}
+
+            {/* About the Hosts - Intro episode only */}
+            {episode.slug === 'intro-to-fom' && (
+              <motion.div
+                variants={fadeInVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
+              >
+                <AboutTheHosts />
               </motion.div>
             )}
 
