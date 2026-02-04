@@ -25,6 +25,7 @@ const RelatedEpisodes = ({ episodes, title = "Other Speakers" }: RelatedEpisodes
             key={ep.id}
             episode={ep}
             isUpcoming={ep.comingSoon}
+            showOverview={false}
           />
         ))}
       </div>
