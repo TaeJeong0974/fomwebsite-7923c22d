@@ -34,7 +34,7 @@ const PodcastSection = () => {
   const [layout, setLayout] = useState<LayoutType>("grid");
   const publishedEpisodes = getPublishedEpisodes();
   const comingSoonEpisodes = getComingSoonEpisodes();
-  return <section id="podcast" className="pt-8 md:pt-10 lg:pt-12 pb-14 md:pb-16 lg:pb-20 scroll-mt-24 md:scroll-mt-28">
+  return <section id="podcast" className="pt-16 md:pt-20 lg:pt-24 pb-14 md:pb-16 lg:pb-20 scroll-mt-24 md:scroll-mt-28">
       <div className="container mx-auto container-padding">
         {/* Header */}
         <div className="flex items-end justify-between gap-4 sm:gap-6 mb-8 md:mb-10 lg:mb-12">
