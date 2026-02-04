@@ -64,9 +64,13 @@ const Navbar = () => {
       const element = document.querySelector(href);
       element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } else {
-      // Store the target section in sessionStorage so Index page can scroll to it
-      sessionStorage.setItem('scrollToSection', href);
       navigate('/');
+      requestAnimationFrame(() => {
+        setTimeout(() => {
+          const element = document.querySelector(href);
+          element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+      });
     }
   };
 

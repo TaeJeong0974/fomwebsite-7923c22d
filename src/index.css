@@ -67,8 +67,6 @@
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --success: 160 84% 39%;
-    --success-foreground: 0 0% 100%;
     --border: 240 6% 90%;
     --input: 240 6% 90%;
     --ring: 24 95% 50%;
@@ -114,8 +112,6 @@
     --accent-foreground: 0 0% 98%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --success: 160 84% 45%;
-    --success-foreground: 0 0% 98%;
     --border: 240 6% 18%;
     --input: 240 6% 18%;
     --ring: 24 95% 50%;
@@ -327,12 +323,6 @@
     .container-padding {
       padding-left: 1.5rem;
       padding-right: 1.5rem;
-    }
-  }
-  @media (min-width: 768px) {
-    .container-padding {
-      padding-left: 2rem;
-      padding-right: 2rem;
     }
   }
   @media (min-width: 1024px) {

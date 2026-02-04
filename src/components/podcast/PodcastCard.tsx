@@ -10,10 +10,9 @@ interface PodcastCardProps {
   episode: PodcastEpisode;
   isNew?: boolean;
   isUpcoming?: boolean;
-  showOverview?: boolean;
 }
 
-const PodcastCard = ({ episode, isNew = false, isUpcoming = false, showOverview = true }: PodcastCardProps) => {
+const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const isMobile = useIsMobile();
@@ -45,7 +44,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, showOverview 
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="card-image lg:hover-scale relative">
+      <div className="card-image md:hover-scale relative">
         {/* Lazy loaded background image */}
         <img
           src={guestBg}
@@ -74,7 +73,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, showOverview 
           </motion.div>
         )}
 
-        <div className="card-overlay-light hover-transition lg:group-hover:opacity-90 z-[2]" />
+        <div className="card-overlay-light hover-transition md:group-hover:opacity-90 z-[2]" />
         
         {isNew && (
           <span className="absolute top-6 right-6 lg:top-8 lg:right-8 badge-status z-[3]">
@@ -88,7 +87,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, showOverview 
           </span>
         )}
         
-        <EpisodeCardContent episode={episode} isUpcoming={isUpcoming} showOverview={showOverview} />
+        <EpisodeCardContent episode={episode} isUpcoming={isUpcoming} />
       </div>
     </Link>
   );

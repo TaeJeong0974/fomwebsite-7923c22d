@@ -139,7 +139,6 @@ const PodcastGridView = ({
               episode={episode} 
               isNew={type === 'episode' && isNewEpisode(episode.publishedDate)} 
               isUpcoming={type === 'coming-soon'}
-              showOverview={false}
             />
           </motion.div>
         ))}

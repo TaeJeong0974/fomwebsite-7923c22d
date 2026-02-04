@@ -51,7 +51,7 @@ const PodcastDetail = () => {
       <EpisodeOverlayLayout>
         {/* Title & Action Buttons Row - Same grid as content below */}
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 mb-4 md:mb-6"
+          className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-4 sm:mb-6"
           variants={fadeInVariants}
           initial="hidden"
           whileInView="visible"
@@ -59,7 +59,7 @@ const PodcastDetail = () => {
           transition={{ duration: 1.0, ease: liquidEase }}
         >
           {/* Episode Title - Same width as video */}
-          <div className="md:col-span-2 space-y-1 md:space-y-2">
+          <div className="lg:col-span-2 space-y-1 sm:space-y-2">
             <h3 className="text-section-header mb-4">
               Episode {episode.id}
             </h3>
@@ -71,18 +71,18 @@ const PodcastDetail = () => {
           </div>
           
           {/* Action Buttons - Aligned with H1 first line */}
-          <div className="hidden md:block mt-6 md:mt-7">
+          <div className="hidden lg:block mt-6 sm:mt-7">
             <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
           </div>
         </motion.div>
 
-        {/* Video + Sidebar Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 items-start">
+        {/* Video + Sidebar Grid - Now video and cards naturally align */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
           {/* Main Content */}
-          <div className="md:col-span-2 space-y-10 md:space-y-14 lg:space-y-20">
+          <div className="lg:col-span-2 space-y-10 sm:space-y-14 lg:space-y-20">
             {/* Video Player */}
             <motion.div 
-              className="space-y-4 md:space-y-6"
+              className="space-y-4 sm:space-y-6"
               variants={fadeInVariants}
               initial="hidden"
               whileInView="visible"
@@ -95,7 +95,7 @@ const PodcastDetail = () => {
               />
 
               {/* Action Buttons - Mobile only */}
-              <div className="pt-2 md:hidden">
+              <div className="pt-2 lg:hidden">
                 <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
               </div>
             </motion.div>
@@ -141,8 +141,8 @@ const PodcastDetail = () => {
               />
             </motion.div>
 
-            {/* Guest & Hosts - Mobile only (below md breakpoint) */}
-            <div className="md:hidden space-y-4">
+            {/* Guest & Hosts - Mobile only */}
+            <div className="lg:hidden space-y-4">
               {episode.slug !== 'intro-to-fom' && (
                 <EpisodeGuestCard
                   name={episode.name}
@@ -156,9 +156,9 @@ const PodcastDetail = () => {
             </div>
           </div>
 
-          {/* Sidebar - Cards aligned with video (md and up) */}
+          {/* Sidebar - Cards aligned with video */}
           <motion.div 
-            className="hidden md:flex md:flex-col space-y-4 md:space-y-6"
+            className="hidden lg:flex lg:flex-col space-y-6"
             variants={fadeInVariants}
             initial="hidden"
             whileInView="visible"
