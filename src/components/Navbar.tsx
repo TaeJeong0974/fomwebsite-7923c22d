@@ -93,6 +93,9 @@ const Navbar = () => {
                 if (isHomePage) {
                   e.preventDefault();
                   window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                  // Ensure scroll to top after navigation from detail pages
+                  setTimeout(() => window.scrollTo(0, 0), 0);
                 }
               }}
               className="flex items-center focus-ring rounded-lg"
@@ -120,6 +123,9 @@ const Navbar = () => {
                 if (isHomePage) {
                   e.preventDefault();
                   window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                  // Ensure scroll to top after navigation from detail pages
+                  setTimeout(() => window.scrollTo(0, 0), 0);
                 }
               }}
               className="flex items-center focus-ring rounded-lg justify-self-start"
