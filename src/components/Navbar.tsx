@@ -9,6 +9,62 @@ import SubscribeButton from "@/components/SubscribeButton";
 import { LiquidButton } from "@/components/ui/LiquidButton";
 import { fadeDownVariant, liquidEase } from "@/components/animations/PageLoadAnimation";
 
+// Animated Logo component with gradient reveal on hover
+const AnimatedLogo = ({ className }: { className?: string }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  
+  // Inline SVG data URI for Safari compatibility (same as hero)
+  const svgMask = `url("data:image/svg+xml,%3Csvg width='598' height='186' viewBox='0 0 598 186' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M448.5 0H411.125V186H448.5V0Z' fill='black'/%3E%3Cpath d='M0 -4.57764e-05L0 37.2L149.5 37.2V-4.57764e-05L0 -4.57764e-05Z' fill='black'/%3E%3Cpath d='M0 74.3806L0 111.581L149.5 111.581V74.3806H0Z' fill='black'/%3E%3Cpath d='M0 148.8L0 186H73.6799V148.8H0Z' fill='black'/%3E%3Cpath d='M523.25 0H485.875V186H523.25V0Z' fill='black'/%3E%3Cpath d='M598 0H560.625V186H598V0Z' fill='black'/%3E%3Cpath d='M280.322 37.2C311.238 37.2 336.394 62.2388 336.394 93.0097C336.394 123.781 311.238 148.819 280.322 148.819C249.407 148.819 224.25 123.781 224.25 93.0097C224.25 62.2388 249.407 37.2 280.322 37.2ZM280.322 0C228.705 0 186.875 41.6346 186.875 93.0097C186.875 144.385 228.705 186.019 280.322 186.019C331.939 186.019 373.769 144.385 373.769 93.0097C373.769 41.6346 331.92 0 280.322 0Z' fill='black'/%3E%3C/svg%3E")`;
+  
+  const maskStyles = {
+    maskImage: svgMask,
+    maskSize: 'contain' as const,
+    maskRepeat: 'no-repeat' as const,
+    maskPosition: 'center' as const,
+    WebkitMaskImage: svgMask,
+    WebkitMaskSize: 'contain' as const,
+    WebkitMaskRepeat: 'no-repeat' as const,
+    WebkitMaskPosition: 'center' as const,
+  };
+  
+  return (
+    <div 
+      className={`relative ${className}`}
+      style={{ aspectRatio: '598 / 186' }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Base static logo */}
+      <img 
+        src={FomLogo} 
+        alt="Future of Marketing"
+        className="h-full w-auto transition-opacity duration-300"
+        style={{ opacity: isHovered ? 0 : 1 }}
+      />
+      
+      {/* Animated gradient version - shows on hover */}
+      <motion.div 
+        className="absolute inset-0"
+        style={maskStyles}
+        initial={false}
+        animate={{
+          opacity: isHovered ? 1 : 0,
+          background: isHovered ? [
+            'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
+            'linear-gradient(135deg, rgb(200,140,150) 0%, rgb(130,150,180) 50%, rgb(230,130,110) 100%)',
+            'linear-gradient(135deg, rgb(130,150,180) 0%, rgb(230,130,110) 50%, rgb(200,140,150) 100%)',
+            'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
+          ] : 'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)'
+        }}
+        transition={isHovered ? { 
+          opacity: { duration: 0.3 },
+          background: { duration: 3, ease: 'easeInOut', repeat: Infinity }
+        } : { opacity: { duration: 0.3 } }}
+      />
+    </div>
+  );
+};
+
 const Navbar = () => {
   const { openSubscribe } = useSubscribe();
   const [isOpen, setIsOpen] = useState(false);
@@ -100,7 +156,7 @@ const Navbar = () => {
               }}
               className="flex items-center focus-ring rounded-lg"
             >
-              <img src={FomLogo} alt="Future of Marketing" className="h-6 sm:h-[26px] w-auto" />
+              <AnimatedLogo className="h-6 sm:h-[26px]" />
             </Link>
 
             <LiquidButton
@@ -130,7 +186,7 @@ const Navbar = () => {
               }}
               className="flex items-center focus-ring rounded-lg justify-self-start"
             >
-              <img src={FomLogo} alt="Future of Marketing" className="h-[26px] lg:h-7 w-auto" />
+              <AnimatedLogo className="h-[26px] lg:h-7" />
             </Link>
 
             {/* Desktop Navigation - Second column */}
