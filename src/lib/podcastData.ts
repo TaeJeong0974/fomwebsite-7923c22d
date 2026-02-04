@@ -161,6 +161,7 @@ From the tradeoffs between authenticity and reach to the risks of messy data and
     comingSoon: false,
     linkedInUrl: "https://linkedin.com/in/lenawaters",
     pullQuote: "As AI becomes more agentic and autonomous, it's now more important than ever that we really understand the value we bring as humans—that EQ we need to bring to the table.",
+    hosts: [podcastHosts[2], podcastHosts[0]], // Camille Ricketts, Mada Seghete
   },
   {
     id: 3,

@@ -1,12 +1,14 @@
-import { podcastHosts } from "@/lib/podcastData";
+import { podcastHosts, PodcastHost } from "@/lib/podcastData";
 import SidebarCard from "./SidebarCard";
 
 interface EpisodeHostsCardProps {
   showAllHosts?: boolean;
+  episodeHosts?: PodcastHost[];
 }
 
-const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
-  const hosts = showAllHosts ? podcastHosts : podcastHosts.slice(0, 2);
+const EpisodeHostsCard = ({ showAllHosts = false, episodeHosts }: EpisodeHostsCardProps) => {
+  // Use episode-specific hosts if provided, otherwise fall back to default behavior
+  const hosts = episodeHosts || (showAllHosts ? podcastHosts : podcastHosts.slice(0, 2));
 
   return (
     <SidebarCard title="Hosts">
