@@ -316,7 +316,7 @@ const HeroSection = () => {
                                 <span className="block text-2xl font-normal">{lastName}</span>
                               </h3>
                               <p className="text-sm text-muted-foreground mt-2">{host.title}</p>
-                              <p className="text-sm leading-relaxed text-foreground/80 mt-4">
+                              <p className="text-sm leading-relaxed text-foreground/80 mt-4 md:hidden lg:block">
                                 {host.bio}
                               </p>
                               {host.linkedInUrl && (
@@ -431,7 +431,7 @@ const HeroSection = () => {
                                 <span className="block text-3xl font-normal">{lastName}</span>
                               </h3>
                               <p className="text-sm text-muted-foreground mt-2">{host.title}</p>
-                              <p className="text-sm leading-relaxed text-foreground/80 mt-4">
+                              <p className="text-sm leading-relaxed text-foreground/80 mt-4 hidden lg:block">
                                 {host.bio}
                               </p>
                               {host.linkedInUrl && (
