@@ -24,7 +24,7 @@ const AppRoutes = () => {
       
       {/* Main content wrapper - pushes left on desktop when drawer opens */}
       <div 
-        className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:data-[drawer-open=true]:-translate-x-[200px]"
+        className="transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] md:data-[drawer-open=true]:-translate-x-[28rem]"
         data-drawer-open={isOpen}
       >
         {/* Navbar stays fixed, outside of page transitions */}
