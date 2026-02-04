@@ -55,7 +55,7 @@ const SubscribeDrawer = ({ open, onOpenChange }: SubscribeDrawerProps) => {
             </motion.button>
 
             {/* Content */}
-            <div className="flex flex-col justify-center h-full p-8 sm:p-12">
+            <div className="flex flex-col justify-start pt-20 sm:justify-center sm:pt-0 h-full p-8 sm:p-12">
               <AnimatePresence mode="wait">
                 {!isSubmitted ? (
                   <motion.div
