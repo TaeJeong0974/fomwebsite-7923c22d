@@ -16,7 +16,7 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
   return (
     <motion.div 
       onClick={openSubscribe} 
-      className={`cursor-pointer px-4 pt-2.5 pb-1.5 -mx-4 -my-2 rounded-lg relative ${className}`} 
+      className={`cursor-pointer px-4 pt-2.5 pb-1.5 -mx-4 -my-2 rounded-lg transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${className}`} 
       style={{
         ...style,
         backgroundColor: isHovered ? 'hsl(var(--foreground))' : 'transparent',
@@ -27,9 +27,7 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <span className="transition-colors duration-300">
-        {children}
-      </span>
+      <span>{children}</span>
     </motion.div>
   );
 };
