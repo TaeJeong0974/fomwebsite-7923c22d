@@ -39,7 +39,7 @@ const SubscribeModal = ({ open, onOpenChange }: SubscribeModalProps) => {
             >
               <DialogHeader className="text-left mb-8">
                 <p className="text-[0.8rem] font-medium uppercase tracking-[0.1em] text-white mb-2">STAY UPDATED</p>
-                <DialogTitle className="text-display-md text-white">
+                <DialogTitle className="text-display-md font-semibold text-white">
                   Never Miss an Episode
                 </DialogTitle>
               </DialogHeader>
@@ -79,7 +79,7 @@ const SubscribeModal = ({ open, onOpenChange }: SubscribeModalProps) => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-display-md text-white mb-2">You're In!</h3>
+              <h3 className="text-display-md font-semibold text-white mb-2">You're In!</h3>
               <p className="text-body text-white/60">
                 We'll notify you when new episodes are available.
               </p>

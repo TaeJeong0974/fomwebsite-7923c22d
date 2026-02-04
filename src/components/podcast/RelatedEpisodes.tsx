@@ -11,10 +11,7 @@ const RelatedEpisodes = ({ episodes, title = "Other Speakers" }: RelatedEpisodes
 
   return (
     <div id="related-episodes" className="mt-8 sm:mt-10 lg:mt-12 pt-8 sm:pt-10 lg:pt-12 border-t border-border">
-      <h2 
-        className="text-display-xl text-foreground mb-6 sm:mb-8"
-        style={{ fontWeight: 500 }}
-      >
+      <h2 className="text-display-xl font-medium text-foreground mb-6 sm:mb-8">
         {title.split(' ').map((word, i) => (
           <span key={i} className="block">{word}</span>
         ))}

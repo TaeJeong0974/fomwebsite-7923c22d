@@ -138,7 +138,7 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
     <div ref={sectionRef} className={className}>
       {showTitle && (
         <motion.p 
-          className="text-label mb-6 sm:mb-8"
+          className="text-label font-medium mb-6 sm:mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.6, ease: liquidEase }}

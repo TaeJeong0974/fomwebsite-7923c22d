@@ -91,7 +91,7 @@ const SubscribeDrawer = ({ open, onOpenChange }: SubscribeDrawerProps) => {
                     <motion.p variants={fadeUpItem} className="text-[0.8rem] font-medium uppercase tracking-[0.1em] text-white mb-3">
                       STAY UPDATED
                     </motion.p>
-                    <motion.h2 variants={fadeUpItem} className="text-display-lg text-white mb-6">
+                    <motion.h2 variants={fadeUpItem} className="text-display-lg font-semibold text-white mb-6">
                       Never Miss an Episode
                     </motion.h2>
                     <motion.p variants={fadeUpItem} className="text-body text-white/60 mb-8 max-w-sm">
