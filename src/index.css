@@ -206,7 +206,6 @@
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: hsl(var(--foreground));
   }
 
   /* Body Text */
@@ -251,7 +250,6 @@
     font-family: var(--font-body);
     font-size: 1.125rem;
     line-height: 1.7;
-    color: hsl(var(--foreground));
   }
 
   /* Table Headers - smaller uppercase for data tables */
@@ -259,7 +257,6 @@
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: hsl(var(--muted-foreground));
   }
 
   /* Status Badges - glass pill style for New/Upcoming indicators */
@@ -277,7 +274,6 @@
     backdrop-filter: blur(var(--glass-blur));
     -webkit-backdrop-filter: blur(var(--glass-blur));
     border: 1px solid hsl(var(--glass-border) / 0.2);
-    color: hsl(var(--foreground));
   }
 }
 
