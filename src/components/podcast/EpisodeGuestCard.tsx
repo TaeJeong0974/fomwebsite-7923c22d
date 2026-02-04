@@ -15,11 +15,11 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl }: EpisodeGuestCar
   return (
     <SidebarCard title="Guest">
       <div>
-        <h3 className="font-display text-xl lg:text-3xl text-foreground leading-none tracking-normal">
-          <span className="inline lg:block font-medium">{firstName} </span>
-          <span className="inline lg:block font-normal">{lastName}</span>
+        <h3 className="font-display text-xl md:text-2xl lg:text-3xl text-foreground leading-none tracking-normal">
+          <span className="inline md:block font-medium">{firstName} </span>
+          <span className="inline md:block font-normal">{lastName}</span>
         </h3>
-        <p className="text-xs lg:text-sm text-muted-foreground mt-1 lg:mt-2">
+        <p className="text-xs md:text-sm text-muted-foreground mt-1 md:mt-2">
           {title}, {company}
         </p>
         {linkedInUrl && (
@@ -27,7 +27,7 @@ const EpisodeGuestCard = ({ name, title, company, linkedInUrl }: EpisodeGuestCar
             href={linkedInUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs lg:text-sm text-muted-foreground hover:text-foreground hover-transition inline-block mt-2"
+            className="text-xs md:text-sm text-muted-foreground hover:text-foreground hover-transition inline-block mt-2"
           >
             LinkedIn →
           </a>

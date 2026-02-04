@@ -18,7 +18,7 @@ const SidebarCard = ({ title, children }: SidebarCardProps) => {
 
   return (
     <div 
-      className="relative rounded-xl p-5 lg:p-6 overflow-hidden bg-background/70 backdrop-blur-xl border border-white/20"
+      className="relative rounded-xl p-5 md:p-6 overflow-hidden bg-background/70 backdrop-blur-xl border border-white/20"
       onMouseEnter={() => !isMobile && setIsHovered(true)}
       onMouseLeave={() => !isMobile && setIsHovered(false)}
     >
@@ -49,8 +49,8 @@ const SidebarCard = ({ title, children }: SidebarCardProps) => {
       />
       
       {/* Content */}
-      <div className="relative z-10 flex flex-col justify-between min-h-0 lg:min-h-[280px]">
-        <h3 className="text-section-header mb-5 lg:mb-6">{title}</h3>
+      <div className="relative z-10 flex flex-col justify-between min-h-0 md:min-h-[240px] lg:min-h-[280px]">
+        <h3 className="text-section-header mb-5 md:mb-6">{title}</h3>
         {children}
       </div>
     </div>
