@@ -30,17 +30,17 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
         animate={{ 
           opacity: isHovered ? 1 : 0,
           scale: isHovered ? 1 : 0.95,
-          backgroundColor: isHovered ? [
-            'rgba(218,150,120,1)',
-            'rgba(200,140,160,1)',
-            'rgba(140,160,190,1)',
-            'rgba(218,150,120,1)',
-          ] : 'rgba(218,150,120,1)'
+          background: isHovered ? [
+            'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
+            'linear-gradient(135deg, rgb(200,140,150) 0%, rgb(130,150,180) 50%, rgb(230,130,110) 100%)',
+            'linear-gradient(135deg, rgb(130,150,180) 0%, rgb(230,130,110) 50%, rgb(200,140,150) 100%)',
+            'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
+          ] : 'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)'
         }}
         transition={{ 
           opacity: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
           scale: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
-          backgroundColor: isHovered ? { duration: 3, repeat: Infinity, ease: "easeInOut" } : { duration: 0.15 }
+          background: isHovered ? { duration: 3, repeat: Infinity, ease: "easeInOut" } : { duration: 0.15 }
         }}
       />
       {/* Black gradient overlay */}
@@ -50,7 +50,7 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
         animate={{ opacity: isHovered ? 1 : 0 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         style={{
-          background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%)',
+          background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)',
         }}
       />
       <motion.span 
