@@ -160,6 +160,7 @@ From the tradeoffs between authenticity and reach to the risks of messy data and
     publishedDate: "Coming Soon",
     comingSoon: true,
     linkedInUrl: "https://linkedin.com/in/lenawaters",
+    pullQuote: "This idea now that AI can work alongside you, as we know, it's becoming much more agentic. It's starting to become autonomous. As we become more trusting and open with it, it's going to fill in the gaps that we have. And so, it's now more important than ever that we really understand the value that we bring as humans and that sort of EQ that we need to bring to the table.",
   },
   {
     id: 3,
