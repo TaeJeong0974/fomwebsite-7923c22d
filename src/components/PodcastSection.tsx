@@ -9,6 +9,7 @@ import SubscribeCard from "@/components/SubscribeCard";
 import PodcastCard from "@/components/podcast/PodcastCard";
 import MouseFollowImage from "@/components/podcast/MouseFollowImage";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
+import { LiquidButton } from "@/components/ui/LiquidButton";
 import hostMada from "@/assets/host-mada.png";
 import hostEthan from "@/assets/host-ethan.png";
 import hostCamille from "@/assets/host-camille.png";
@@ -164,12 +165,13 @@ const PodcastGridView = ({
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
         >
-          <button
+          <LiquidButton
+            variant="glass"
+            size="md"
             onClick={() => setShowAll(true)}
-            className="btn-base btn-glass btn-md"
           >
             Load More
-          </button>
+          </LiquidButton>
         </motion.div>
       )}
     </div>
