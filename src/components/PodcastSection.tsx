@@ -47,27 +47,14 @@ const PodcastSection = () => {
           
           {/* Layout Toggle */}
           <TooltipProvider delayDuration={300}>
-            <div className="relative rounded-full p-1.5 flex items-center gap-1 backdrop-blur-xl border border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] overflow-hidden">
-              {/* Animated gradient background */}
-              <motion.div
-                className="absolute inset-0 rounded-full"
-                animate={{
-                  background: [
-                    'linear-gradient(135deg, rgba(230,130,110,0.15) 0%, rgba(200,140,150,0.1) 50%, rgba(130,150,180,0.15) 100%)',
-                    'linear-gradient(135deg, rgba(200,140,150,0.15) 0%, rgba(130,150,180,0.1) 50%, rgba(230,130,110,0.15) 100%)',
-                    'linear-gradient(135deg, rgba(130,150,180,0.15) 0%, rgba(230,130,110,0.1) 50%, rgba(200,140,150,0.15) 100%)',
-                    'linear-gradient(135deg, rgba(230,130,110,0.15) 0%, rgba(200,140,150,0.1) 50%, rgba(130,150,180,0.15) 100%)',
-                  ]
-                }}
-                transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-              />
+            <div className="relative rounded-full p-1.5 flex items-center gap-1 bg-white/10 backdrop-blur-xl border border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
               {/* Sliding highlight */}
               <motion.div
-                className="absolute top-1.5 bottom-1.5 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 shadow-lg"
+                className="absolute top-1 bottom-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 shadow-lg"
                 initial={false}
                 animate={{
-                  left: layout === "grid" ? 6 : "50%",
-                  right: layout === "list" ? 6 : "50%",
+                  left: layout === "grid" ? 4 : "50%",
+                  right: layout === "list" ? 4 : "50%",
                 }}
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
               />
