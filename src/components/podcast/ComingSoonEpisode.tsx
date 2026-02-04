@@ -96,7 +96,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
             <span className="badge-status font-semibold text-foreground mb-4 inline-block">
               Upcoming
             </span>
-            <h1 className="font-display font-medium text-foreground leading-[1.1]" style={{ fontSize: '2.3rem' }}>
+            <h1 className="text-2xl sm:text-3xl lg:text-[2.3rem] font-display font-medium text-foreground leading-[1.1]">
               {episode.overview || `A Conversation with ${episode.name}`}
             </h1>
           </div>
