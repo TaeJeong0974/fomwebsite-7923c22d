@@ -2,18 +2,26 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { podcastHosts } from "@/lib/podcastData";
 import { useIsMobile } from "@/hooks/use-mobile";
+import NameWithLinkedIn from "./NameWithLinkedIn";
 import teaserBg from "@/assets/teaser-bg.png";
+
+type HoverVariant = "underline" | "arrow" | "icon-prefix" | "row-highlight" | "tooltip";
 
 interface EpisodeHostsCardProps {
   showAllHosts?: boolean;
+  demoMode?: boolean;
 }
 
-const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
+// Demo variants for each host position
+const demoVariants: HoverVariant[] = ["underline", "arrow", "icon-prefix", "tooltip"];
+
+const EpisodeHostsCard = ({ showAllHosts = false, demoMode = false }: EpisodeHostsCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const isMobile = useIsMobile();
-  const hosts = showAllHosts ? podcastHosts : podcastHosts.slice(0, 2);
+  
+  // In demo mode, always show all hosts to demonstrate all variants
+  const hosts = demoMode ? podcastHosts : (showAllHosts ? podcastHosts : podcastHosts.slice(0, 2));
 
-  // Single card layout for both mobile and desktop
   return (
     <div 
       className="relative rounded-xl p-5 sm:p-6 overflow-hidden bg-background/70 backdrop-blur-xl border border-white/20"
@@ -54,12 +62,18 @@ const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
           {hosts.map((host, index) => {
             const [firstName, ...lastNameParts] = host.name.split(' ');
             const lastName = lastNameParts.join(' ');
+            
+            // Get variant for demo mode, otherwise use underline as default
+            const variant = demoMode ? demoVariants[index % demoVariants.length] : "underline";
+            
             return (
               <div key={index} className={index > 0 ? "pt-3 sm:pt-4 border-t-[1.5px] border-border/40" : ""}>
-                <h3 className="font-display text-xl sm:text-2xl lg:text-3xl text-foreground leading-none tracking-normal">
-                  <span className="inline sm:block font-medium">{firstName} </span>
-                  <span className="inline sm:block font-normal">{lastName}</span>
-                </h3>
+                <NameWithLinkedIn
+                  firstName={firstName}
+                  lastName={lastName}
+                  linkedInUrl={host.linkedInUrl}
+                  variant={variant}
+                />
                 <p className="text-xs sm:text-sm text-muted-foreground mt-1 sm:mt-2">
                   {host.title}, {host.company}
                 </p>
