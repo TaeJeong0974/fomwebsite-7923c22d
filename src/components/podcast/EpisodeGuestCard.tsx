@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
-import NameWithLinkedIn from "./NameWithLinkedIn";
 import teaserBg from "@/assets/teaser-bg.png";
 
 interface EpisodeGuestCardProps {
@@ -10,16 +9,9 @@ interface EpisodeGuestCardProps {
   company: string;
   linkedInUrl?: string;
   bio?: string;
-  demoVariant?: "underline" | "arrow" | "icon-prefix" | "row-highlight" | "tooltip";
 }
 
-const EpisodeGuestCard = ({ 
-  name, 
-  title, 
-  company, 
-  linkedInUrl,
-  demoVariant = "row-highlight"
-}: EpisodeGuestCardProps) => {
+const EpisodeGuestCard = ({ name, title, company, linkedInUrl }: EpisodeGuestCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const isMobile = useIsMobile();
   
@@ -59,15 +51,23 @@ const EpisodeGuestCard = ({
         <h3 className="text-section-header mb-5 sm:mb-6">Guest</h3>
         
         <div>
-          <NameWithLinkedIn
-            firstName={firstName}
-            lastName={lastName}
-            linkedInUrl={linkedInUrl}
-            variant={demoVariant}
-          />
+          <h3 className="font-display text-xl sm:text-2xl lg:text-3xl text-foreground leading-none tracking-normal">
+            <span className="inline sm:block font-medium">{firstName} </span>
+            <span className="inline sm:block font-normal">{lastName}</span>
+          </h3>
           <p className="text-xs sm:text-sm text-muted-foreground mt-1 sm:mt-2">
             {title}, {company}
           </p>
+          {linkedInUrl && (
+            <a
+              href={linkedInUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs sm:text-sm text-muted-foreground hover:text-foreground hover-transition inline-block mt-2"
+            >
+              LinkedIn →
+            </a>
+          )}
         </div>
       </div>
     </div>
