@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Summit 2025 | The Future of Innovation Conference</title>
-    <meta name="description" content="Join 5,000+ innovators, creators, and visionaries at Summit 2025. March 15-17 in San Francisco. Groundbreaking talks, workshops, and networking." />
+    <meta
+      name="description"
+      content="Join 5,000+ innovators, creators, and visionaries at Summit 2025. March 15-17 in San Francisco. Groundbreaking talks, workshops, and networking."
+    />
     <meta name="author" content="Summit Conference" />
 
     <meta property="og:title" content="Summit 2025 | The Future of Innovation Conference" />
@@ -15,9 +18,33 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@summit2025" />
     <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <script>
+      (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          'gtm.start': new Date().getTime(),
+          event: 'gtm.js'
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-KJNFHT58');
+    </script>
   </head>
 
   <body>
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-KJNFHT58"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+      >
+      </iframe>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
