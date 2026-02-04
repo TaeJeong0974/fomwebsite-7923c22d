@@ -72,14 +72,14 @@ export const podcastEpisodes: PodcastEpisode[] = [
 
 From the tradeoffs between authenticity and reach to the risks of messy data and over-personalization, this episode offers a grounded, practical look at how marketers can move faster without losing what makes their work effective.`,
     topics: [
-      "Why AI adoption in marketing is 12–18 months behind engineering",
-      "How to use AI for value creation, not just cost-cutting",
-      "Why AI is best at divergence (ideas) and humans must own judgment + taste",
-      "The hidden danger of letting AI reason over messy go-to-market data",
-      "When to optimize for algorithms and when to protect your voice",
-      "Why hyper-personalization will feel creepy… until it suddenly doesn't",
-      "How to stay current without trying every new tool",
-      "Why creative directors, writers, and storytellers are becoming more valuable",
+      "Why marketing is 12–18 months behind engineering in AI adoption",
+      "Using AI for value creation, not just cost-cutting",
+      "AI for ideas, humans for judgment and taste",
+      "The danger of AI reasoning over messy GTM data",
+      "Optimizing for algorithms vs. protecting your voice",
+      "When hyper-personalization stops feeling creepy",
+      "Staying current without trying every new tool",
+      "Why storytellers are becoming more valuable, not less",
     ],
     chapters: [
       { time: "0:00", title: "Welcome" },
