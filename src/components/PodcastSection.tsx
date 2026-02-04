@@ -47,17 +47,7 @@ const PodcastSection = () => {
           
           {/* Layout Toggle */}
           <TooltipProvider delayDuration={300}>
-            <div className="relative rounded-full p-1.5 flex items-center gap-1 bg-white/10 backdrop-blur-xl border border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
-              {/* Sliding highlight */}
-              <motion.div
-                className="absolute top-1.5 bottom-1.5 rounded-full bg-white/30 backdrop-blur-sm border border-white/40 shadow-[0_4px_12px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.5)]"
-                initial={false}
-                animate={{
-                  left: layout === "grid" ? 6 : "50%",
-                  right: layout === "list" ? 6 : "50%",
-                }}
-                transition={{ type: "spring", stiffness: 400, damping: 30 }}
-              />
+            <div className="glass rounded-full p-1.5 flex items-center gap-1">
               {[{
               type: "grid" as const,
               icon: LayoutGrid,
@@ -72,9 +62,9 @@ const PodcastSection = () => {
               label
             }) => <Tooltip key={type}>
                   <TooltipTrigger asChild>
-                    <button onClick={() => setLayout(type)} className={`relative z-10 px-4 py-2.5 rounded-full transition-colors duration-300 flex items-center justify-center gap-2.5 ${layout === type ? "text-foreground" : "text-foreground/60 hover:text-foreground/80"}`}>
-                      <Icon className="h-5 w-5 shrink-0" />
-                      <span className="text-sm font-medium pr-0.5 capitalize leading-none translate-y-[1px]">{type}</span>
+                    <button onClick={() => setLayout(type)} className={`p-2.5 rounded-full transition-all duration-300 flex items-center justify-center gap-2 ${layout === type ? "bg-foreground text-background shadow-lg" : "text-foreground hover:bg-foreground/5"}`}>
+                      <Icon className="h-4 w-4 shrink-0" />
+                      <span className="text-xs font-medium pr-1 capitalize leading-none translate-y-[1px]">{type}</span>
                     </button>
                   </TooltipTrigger>
                   <TooltipContent><p>{label}</p></TooltipContent>
