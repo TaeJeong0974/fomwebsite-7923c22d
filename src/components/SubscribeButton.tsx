@@ -29,15 +29,15 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
         initial={{ opacity: 0 }}
         animate={{ 
           opacity: isHovered ? 1 : 0,
-          background: isHovered ? [
-            'linear-gradient(135deg, rgba(200,160,180,0.4), rgba(180,160,200,0.4))',
-            'linear-gradient(135deg, rgba(180,160,200,0.4), rgba(160,180,210,0.4))',
-            'linear-gradient(135deg, rgba(160,180,210,0.4), rgba(200,160,180,0.4))',
-          ] : 'linear-gradient(135deg, rgba(200,160,180,0.4), rgba(180,160,200,0.4))'
+          backgroundColor: isHovered ? [
+            'rgba(200,160,180,0.4)',
+            'rgba(160,180,210,0.4)',
+            'rgba(200,160,180,0.4)',
+          ] : 'rgba(200,160,180,0.4)'
         }}
         transition={{ 
           opacity: { duration: 0.3 },
-          background: isHovered ? { duration: 2, repeat: Infinity, ease: "easeInOut" } : { duration: 0.15 }
+          backgroundColor: isHovered ? { duration: 2, repeat: Infinity, ease: "easeInOut" } : { duration: 0.15 }
         }}
         style={{ backdropFilter: 'blur(8px)' }}
       />
