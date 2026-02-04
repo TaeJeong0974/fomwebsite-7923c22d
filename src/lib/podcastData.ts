@@ -141,7 +141,7 @@ From the tradeoffs between authenticity and reach to the risks of messy data and
     company: "Notion",
     companyDomain: "notion.so",
     overview: "Rethinking Workflows in the Age of AI",
-    bio: "is the Chief Marketing Officer at Notion, where she leads brand, growth, and go-to-market strategy for the workspace platform used by millions worldwide. Previously held marketing leadership roles at Dropbox and Atlassian, pioneering community-driven strategies that scaled to millions of active users.",
+    bio: "is the Chief Marketing Officer at Notion, where she leads global go-to-market strategy as the company evolves from a beloved productivity tool into a leading AI-connected workspace. With over 20 years of experience at companies like Grammarly, Docusign, Responsys, and Lookout, Lena has built and led global teams across growth, demand, and brand, helping organizations scale through major platform shifts while maintaining strong brand affinity.",
     fullDescription: `In this upcoming episode of Future of Marketing, hosts Camille Ricketts and Mada Seghete sit down with Lena Waters, CMO of Notion, to explore how AI is reshaping not just marketing workflows, but how teams work together. They unpack how Notion integrates AI natively into its product and go-to-market, why "show, don't tell" beats traditional enterprise selling, and how to scale brand, PLG, and enterprise motion without losing warmth or clarity.`,
     topics: [
       "Question workflows, don't just automate them",
