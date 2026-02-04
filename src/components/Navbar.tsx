@@ -180,7 +180,7 @@ const Navbar = () => {
                     <a
                       href={link.href}
                       onClick={(e) => handleNavClick(e, link.href)}
-                      className="block py-2 px-4 text-4xl text-foreground hover:text-primary hover:bg-secondary/50 rounded-xl hover-transition focus-ring"
+                      className="block py-2 px-4 text-3xl text-foreground hover:text-primary hover:bg-secondary/50 rounded-xl hover-transition focus-ring"
                     >
                       {link.label}
                     </a>
