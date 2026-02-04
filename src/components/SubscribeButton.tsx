@@ -43,14 +43,15 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
           background: isHovered ? { duration: 3, repeat: Infinity, ease: "easeInOut" } : { duration: 0.15 }
         }}
       />
-      {/* Black gradient overlay */}
+      {/* Glass overlay */}
       <motion.div 
-        className="absolute inset-0 rounded-lg"
+        className="absolute inset-0 rounded-lg backdrop-blur-xl"
         initial={{ opacity: 0 }}
         animate={{ opacity: isHovered ? 1 : 0 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         style={{
-          background: 'linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,0.35) 80%, rgba(0,0,0,0) 100%)',
+          background: 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.03) 100%)',
+          boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.2)',
         }}
       />
       <motion.span 
