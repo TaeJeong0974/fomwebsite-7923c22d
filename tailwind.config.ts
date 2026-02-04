@@ -62,6 +62,18 @@ export default {
         display: ['var(--font-display)', 'sans-serif'],
         body: ['var(--font-body)', 'sans-serif'],
       },
+      boxShadow: {
+        'glass': 'var(--glass-shadow)',
+        'glass-lg': 'var(--glass-shadow-lg)',
+      },
+      transitionTimingFunction: {
+        'smooth': 'cubic-bezier(0.33, 1, 0.68, 1)',
+      },
+      backdropBlur: {
+        'glass': 'var(--glass-blur)',
+        'glass-sm': '12px',
+        'glass-lg': '24px',
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 4px)",
