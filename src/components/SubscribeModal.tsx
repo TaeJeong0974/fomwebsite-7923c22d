@@ -38,7 +38,7 @@ const SubscribeModal = ({ open, onOpenChange }: SubscribeModalProps) => {
               className="p-8 sm:p-10"
             >
               <DialogHeader className="text-left mb-8">
-                <p className="text-label text-white/50 mb-2">STAY UPDATED</p>
+                <p className="text-label text-white mb-2">STAY UPDATED</p>
                 <DialogTitle className="text-display-md text-white">
                   Never Miss an Episode
                 </DialogTitle>
