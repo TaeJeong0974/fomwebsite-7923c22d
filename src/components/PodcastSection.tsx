@@ -169,6 +169,7 @@ const PodcastGridView = ({
             variant="glass"
             size="md"
             onClick={() => setShowAll(true)}
+            className="bg-white/40 hover:bg-white/60 shadow-[0_2px_12px_-2px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.8)] hover:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,1)]"
           >
             Load More
           </LiquidButton>
