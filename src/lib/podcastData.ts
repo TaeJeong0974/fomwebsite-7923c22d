@@ -142,7 +142,7 @@ From the tradeoffs between authenticity and reach to the risks of messy data and
     companyDomain: "notion.so",
     overview: "Rethinking Workflows in the Age of AI",
     bio: "A product-minded marketer who turns user communities into growth engines. Previously led marketing at Dropbox and Atlassian, pioneering community-driven strategies that scaled to millions of active users.",
-    fullDescription: `In this episode of Future of Marketing, hosts Camille Ricketts and Mada Seghete sit down with Lena Waters, CMO of Notion, to explore how AI is reshaping not just marketing workflows, but how teams work together. They unpack how Notion integrates AI natively into its product and go-to-market, why "show, don't tell" beats traditional enterprise selling, and how to scale brand, PLG, and enterprise motion without losing warmth or clarity.`,
+    fullDescription: `In this upcoming episode of Future of Marketing, hosts Camille Ricketts and Mada Seghete sit down with Lena Waters, CMO of Notion, to explore how AI is reshaping not just marketing workflows, but how teams work together. They unpack how Notion integrates AI natively into its product and go-to-market, why "show, don't tell" beats traditional enterprise selling, and how to scale brand, PLG, and enterprise motion without losing warmth or clarity.`,
     topics: [
       "Question workflows, don't just automate them",
       "'Show, don't tell' collapses sales cycles",
