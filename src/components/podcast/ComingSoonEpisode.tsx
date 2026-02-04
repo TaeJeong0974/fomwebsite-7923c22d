@@ -164,6 +164,24 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
               </motion.div>
             )}
 
+            {/* About the Guest */}
+            {episode.bio && (
+              <motion.div
+                variants={fadeUpVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 1.0, delay: 0.5, ease: liquidEase }}
+              >
+                <h3 className="text-section-header font-medium text-foreground mb-5 sm:mb-6">
+                  About the Guest
+                </h3>
+                <p className="text-foreground/80 leading-relaxed text-base lg:text-lg max-w-prose">
+                  <span className="font-medium text-foreground">{episode.name}</span> {episode.bio}
+                </p>
+              </motion.div>
+            )}
+
             {/* Guest & Hosts - Mobile only */}
             <div className="lg:hidden space-y-4">
               <EpisodeGuestCard
