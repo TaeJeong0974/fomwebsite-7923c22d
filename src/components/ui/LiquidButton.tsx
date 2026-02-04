@@ -44,7 +44,7 @@ const LiquidButton = forwardRef<HTMLButtonElement, LiquidButtonProps>(
       <motion.button
         ref={ref}
         className={cn(
-          "inline-flex items-center justify-center rounded-full font-medium transition-[background,box-shadow] duration-300 focus-ring",
+          "inline-flex items-center justify-center rounded-full font-medium transition-[background,box-shadow] duration-300 focus-ring [&>*]:translate-y-[2px]",
           sizeClasses[size],
           variantClasses[variant],
           className
@@ -75,7 +75,7 @@ const LiquidLink = forwardRef<HTMLAnchorElement, LiquidLinkProps>(
       <motion.a
         ref={ref}
         className={cn(
-          "inline-flex items-center justify-center rounded-full font-medium transition-[background,box-shadow] duration-300 focus-ring",
+          "inline-flex items-center justify-center rounded-full font-medium transition-[background,box-shadow] duration-300 focus-ring [&>*]:translate-y-[2px]",
           sizeClasses[size],
           variantClasses[variant],
           className
