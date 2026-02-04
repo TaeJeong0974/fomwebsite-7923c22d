@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { LayoutGrid, List } from "lucide-react";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+
 import { getPublishedEpisodes, getComingSoonEpisodes, PodcastEpisode, podcastHosts } from "@/lib/podcastData";
 import { useIsMobile } from "@/hooks/use-mobile";
 import SubscribeCard from "@/components/SubscribeCard";
@@ -46,31 +46,27 @@ const PodcastSection = () => {
           </div>
           
           {/* Layout Toggle */}
-          <TooltipProvider delayDuration={300}>
-            <div className="glass rounded-full p-1.5 flex items-center gap-1 !shadow-none hover:!shadow-[0_4px_16px_-4px_rgba(0,0,0,0.15)] transition-shadow duration-300">
-              {[{
+          <div className="glass rounded-full p-1.5 flex items-center gap-1 !shadow-none hover:!shadow-[0_4px_16px_-4px_rgba(0,0,0,0.15)] transition-shadow duration-300">
+            {[{
               type: "grid" as const,
               icon: LayoutGrid,
-              label: "Grid view"
             }, {
               type: "list" as const,
               icon: List,
-              label: "List view"
             }].map(({
               type,
               icon: Icon,
-              label
-            }) => <Tooltip key={type}>
-                  <TooltipTrigger asChild>
-                    <button onClick={() => setLayout(type)} className={`p-2.5 rounded-full transition-all duration-300 flex items-center justify-center gap-2 ${layout === type ? "bg-foreground text-background shadow-lg" : "text-foreground hover:bg-foreground/5"}`}>
-                      <Icon className="h-4 w-4 shrink-0" />
-                      <span className="text-xs font-medium pr-1 capitalize leading-none translate-y-[1px]">{type}</span>
-                    </button>
-                  </TooltipTrigger>
-                  <TooltipContent><p>{label}</p></TooltipContent>
-                </Tooltip>)}
-            </div>
-          </TooltipProvider>
+            }) => (
+              <button 
+                key={type}
+                onClick={() => setLayout(type)} 
+                className={`p-2.5 rounded-full transition-all duration-300 flex items-center justify-center gap-2 ${layout === type ? "bg-foreground text-background shadow-lg" : "text-foreground hover:bg-foreground/5"}`}
+              >
+                <Icon className="h-4 w-4 shrink-0" />
+                <span className="text-xs font-medium pr-1 capitalize leading-none translate-y-[1px]">{type}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Animated Layout Switch */}
