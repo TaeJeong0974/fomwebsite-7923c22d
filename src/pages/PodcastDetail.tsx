@@ -115,17 +115,6 @@ const PodcastDetail = () => {
               </div>
             </motion.div>
 
-            {/* Topics */}
-            <motion.div
-              variants={fadeInVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 1.0, delay: 0.3, ease: liquidEase }}
-            >
-              <EpisodeTopics topics={episode.topics} />
-            </motion.div>
-
             {/* Pull Quote */}
             {episode.pullQuote && (
               <motion.div
@@ -133,7 +122,7 @@ const PodcastDetail = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
+                transition={{ duration: 1.0, delay: 0.3, ease: liquidEase }}
               >
                 <EpisodePullQuote
                   quote={episode.pullQuote}
@@ -141,6 +130,17 @@ const PodcastDetail = () => {
                 />
               </motion.div>
             )}
+
+            {/* Topics */}
+            <motion.div
+              variants={fadeInVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
+            >
+              <EpisodeTopics topics={episode.topics} />
+            </motion.div>
 
             {/* About the Guest - Non-intro episodes with bio */}
             {episode.slug !== 'intro-to-fom' && episode.bio && (
