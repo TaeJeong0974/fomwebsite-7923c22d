@@ -66,11 +66,11 @@ export const podcastEpisodes: PodcastEpisode[] = [
     title: "",
     company: "",
     companyDomain: "",
-    overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
+    overview: "Cutting through the AI hype to discuss what's actually changing inside modern marketing teams",
     bio: "",
-    fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+    fullDescription: `In this launch episode of Future of Marketing, Camille Ricketts, Ethan Smith, and Mada Seghete cut through the AI hype to discuss what's actually changing inside modern marketing teams. Drawing from real operator experience, they explore why marketing lags engineering in AI adoption, where AI creates real leverage (idea generation and pattern discovery), and why human judgment, taste, and storytelling matter more than ever.
 
-Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.`,
+From the tradeoffs between authenticity and reach to the risks of messy data and over-personalization, this episode offers a grounded, practical look at how marketers can move faster without losing what makes their work effective.`,
     topics: [
       "Meet your hosts",
       "What is Future of Marketing?",
