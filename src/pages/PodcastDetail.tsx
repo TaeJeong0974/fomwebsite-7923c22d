@@ -106,7 +106,7 @@ const PodcastDetail = () => {
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 1.0, delay: 0.15, ease: liquidEase }}
             >
-              <h3 className="text-section-header mb-4">
+              <h3 className="text-section-header font-medium text-foreground mb-5 sm:mb-6">
                 About This Episode
               </h3>
               <div className="text-foreground/80 whitespace-pre-line leading-relaxed text-base lg:text-lg max-w-prose">
