@@ -33,7 +33,7 @@ const EpisodeIntroBlock = ({
           <h3 className="text-section-header mb-4">
             {eyebrowText}
           </h3>
-          <h1 className="text-display-lg font-display font-medium text-foreground leading-[0.95]">
+          <h1 className="text-display-lg font-display font-normal text-foreground leading-[1.15]">
             {displayText}
           </h1>
         </div>
@@ -51,7 +51,7 @@ const EpisodeIntroBlock = ({
             <h3 className="text-section-header mb-4">
               {eyebrowText}
             </h3>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-medium text-foreground leading-[1.1]">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-display font-normal text-foreground leading-[1.15]">
               {displayText}
             </h1>
           </div>
@@ -70,7 +70,7 @@ const EpisodeIntroBlock = ({
         <h3 className="text-section-header mb-4">
           {eyebrowText}
         </h3>
-        <h1 className="text-display-lg font-display font-medium text-foreground leading-[0.95] mx-auto">
+        <h1 className="text-display-lg font-display font-normal text-foreground leading-[1.15] mx-auto">
           {displayText}
         </h1>
       </div>
