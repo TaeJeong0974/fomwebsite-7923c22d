@@ -149,18 +149,20 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
             </motion.div>
 
             {/* Pull Quote */}
-            <motion.div
-              variants={fadeUpVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
-            >
-              <EpisodePullQuote
-                quote={episode.overview || ""}
-                attribution={episode.name}
-              />
-            </motion.div>
+            {episode.pullQuote && (
+              <motion.div
+                variants={fadeUpVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
+              >
+                <EpisodePullQuote
+                  quote={episode.pullQuote}
+                  attribution={episode.name}
+                />
+              </motion.div>
+            )}
 
             {/* Guest & Hosts - Mobile only */}
             <div className="lg:hidden space-y-4">
