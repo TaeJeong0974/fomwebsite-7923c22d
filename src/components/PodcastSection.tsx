@@ -50,11 +50,11 @@ const PodcastSection = () => {
             <div className="relative rounded-full p-1.5 flex items-center gap-1 bg-white/10 backdrop-blur-xl border border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
               {/* Sliding highlight */}
               <motion.div
-                className="absolute top-1 bottom-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 shadow-lg"
+                className="absolute top-1.5 bottom-1.5 rounded-full bg-white/30 backdrop-blur-sm border border-white/40 shadow-[0_4px_12px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.5)]"
                 initial={false}
                 animate={{
-                  left: layout === "grid" ? 4 : "50%",
-                  right: layout === "list" ? 4 : "50%",
+                  left: layout === "grid" ? 6 : "50%",
+                  right: layout === "list" ? 6 : "50%",
                 }}
                 transition={{ type: "spring", stiffness: 400, damping: 30 }}
               />
