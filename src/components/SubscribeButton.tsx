@@ -10,7 +10,7 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
   const { openSubscribe } = useSubscribe();
 
   return (
-    <div onClick={openSubscribe} className={className} style={style}>
+    <div onClick={openSubscribe} className={`cursor-pointer ${className}`} style={style}>
       {children}
     </div>
   );
