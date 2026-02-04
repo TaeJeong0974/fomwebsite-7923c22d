@@ -152,7 +152,10 @@ const PodcastDetail = () => {
                   bio={episode.bio}
                 />
               )}
-              <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
+              <EpisodeHostsCard 
+                showAllHosts={episode.slug === 'intro-to-fom'} 
+                episodeHosts={episode.hosts}
+              />
             </div>
           </div>
 
@@ -174,7 +177,10 @@ const PodcastDetail = () => {
                 bio={episode.bio}
               />
             )}
-            <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
+            <EpisodeHostsCard 
+              showAllHosts={episode.slug === 'intro-to-fom'} 
+              episodeHosts={episode.hosts}
+            />
           </motion.div>
         </div>
 
