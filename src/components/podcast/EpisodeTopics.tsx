@@ -10,14 +10,14 @@ const EpisodeTopics = ({ topics, title = "Topics Covered" }: EpisodeTopicsProps)
 
   return (
     <div className="max-w-prose">
-      <h3 className="text-section-header font-medium mb-6">
+      <h3 className="text-section-header font-medium text-foreground mb-6">
         {title}
       </h3>
       <div className="border-t border-border">
         {/* Table Header */}
         <div className="flex items-center gap-6 py-3 border-b border-border">
-          <span className="w-8 text-table-header font-medium">No.</span>
-          <span className="text-table-header font-medium">Topic</span>
+          <span className="w-8 text-table-header font-medium text-muted-foreground">No.</span>
+          <span className="text-table-header font-medium text-muted-foreground">Topic</span>
         </div>
         {/* Table Rows */}
         {topics.map((topic, index) => (

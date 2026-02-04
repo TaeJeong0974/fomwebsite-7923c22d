@@ -10,7 +10,7 @@ const EpisodePullQuote = ({ quote, attribution }: EpisodePullQuoteProps) => {
         "{quote}"
       </p>
       <footer>
-        <cite className="text-label font-medium not-italic">
+        <cite className="text-label font-medium text-foreground not-italic">
           — {attribution}
         </cite>
       </footer>
