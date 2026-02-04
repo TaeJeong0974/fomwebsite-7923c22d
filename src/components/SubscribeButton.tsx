@@ -37,7 +37,7 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
         }}
         transition={{ 
           opacity: { duration: 0.3 },
-          backgroundColor: isHovered ? { duration: 2, repeat: Infinity, ease: "easeInOut" } : { duration: 0.15 }
+          backgroundColor: isHovered ? { duration: 4, repeat: Infinity, ease: "easeInOut" } : { duration: 0.15 }
         }}
         style={{ backdropFilter: 'blur(8px)' }}
       />
