@@ -316,7 +316,7 @@ const HeroSection = () => {
                                 <span className="block text-2xl font-normal">{lastName}</span>
                               </h3>
                               <p className="text-sm text-muted-foreground mt-2">{host.title}</p>
-                              <p className="text-sm leading-relaxed text-foreground/80 mt-4">
+                              <p className="hidden lg:block text-sm leading-relaxed text-foreground/80 mt-4">
                                 {host.bio}
                               </p>
                               {host.linkedInUrl && (
