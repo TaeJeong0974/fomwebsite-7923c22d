@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from "react";
-import SubscribeModal from "@/components/SubscribeModal";
+import SubscribeDrawer from "@/components/SubscribeDrawer";
 
 interface SubscribeContextType {
   openSubscribe: () => void;
@@ -28,7 +28,7 @@ export const SubscribeProvider = ({ children }: SubscribeProviderProps) => {
   return (
     <SubscribeContext.Provider value={{ openSubscribe }}>
       {children}
-      <SubscribeModal open={isOpen} onOpenChange={setIsOpen} />
+      <SubscribeDrawer open={isOpen} onOpenChange={setIsOpen} />
     </SubscribeContext.Provider>
   );
 };
