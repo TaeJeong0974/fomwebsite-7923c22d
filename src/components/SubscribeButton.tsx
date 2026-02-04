@@ -48,7 +48,7 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
         </div>
       </PopoverTrigger>
       <PopoverContent 
-        className="w-80 p-0 bg-[#3a3a3a]/95 backdrop-blur-2xl border border-white/[0.08] shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_20px_50px_-10px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden"
+        className="w-80 p-0 !bg-[#3a3a3a]/95 backdrop-blur-2xl !border-white/[0.08] shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_20px_50px_-10px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden"
         align="end"
         sideOffset={8}
       >
@@ -62,7 +62,7 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
               transition={{ duration: 0.15 }}
               className="p-6"
             >
-              <p className="text-label text-white mb-1">STAY UPDATED</p>
+              <p className="text-[0.8rem] font-medium uppercase tracking-[0.1em] text-white mb-1">STAY UPDATED</p>
               <h3 className="font-display text-lg font-semibold text-white mb-4">
                 Never Miss an Episode
               </h3>
