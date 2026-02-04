@@ -165,7 +165,7 @@ const Navbar = () => {
               transition={{ duration: 0.5, delay: 0.5, ease: liquidEase }}
               className="flex items-center gap-4 justify-self-end"
             >
-              <SubscribeButton className="text-[1em] font-medium text-foreground hover:text-foreground/60 hover-transition">
+              <SubscribeButton className="text-[1em] font-medium text-foreground">
                 Subscribe
               </SubscribeButton>
             </motion.div>
