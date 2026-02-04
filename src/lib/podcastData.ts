@@ -141,7 +141,7 @@ From the tradeoffs between authenticity and reach to the risks of messy data and
     company: "Notion",
     companyDomain: "notion.so",
     overview: "Rethinking Workflows in the Age of AI",
-    bio: "A product-minded marketer who turns user communities into growth engines. Previously led marketing at Dropbox and Atlassian, pioneering community-driven strategies that scaled to millions of active users.",
+    bio: "is the Chief Marketing Officer at Notion, where she leads brand, growth, and go-to-market strategy for the workspace platform used by millions worldwide. Previously held marketing leadership roles at Dropbox and Atlassian, pioneering community-driven strategies that scaled to millions of active users.",
     fullDescription: `In this upcoming episode of Future of Marketing, hosts Camille Ricketts and Mada Seghete sit down with Lena Waters, CMO of Notion, to explore how AI is reshaping not just marketing workflows, but how teams work together. They unpack how Notion integrates AI natively into its product and go-to-market, why "show, don't tell" beats traditional enterprise selling, and how to scale brand, PLG, and enterprise motion without losing warmth or clarity.`,
     topics: [
       "Question workflows, don't just automate them",
@@ -168,7 +168,7 @@ From the tradeoffs between authenticity and reach to the risks of messy data and
     company: "Square",
     companyDomain: "squareup.com",
     overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
-    bio: "A fintech brand builder who makes complex financial products accessible to everyday entrepreneurs. Previously CMO at Carta and held leadership roles at PayPal, scaling marketing for millions of businesses.",
+    bio: "is the Chief Marketing Officer at Square, where she leads brand, communications, and marketing strategy for the financial services and digital payments company. Previously served as CMO at Carta and held leadership roles at PayPal, known for making complex financial products accessible to everyday entrepreneurs.",
     fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.`,
@@ -195,7 +195,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     company: "Datadog",
     companyDomain: "datadoghq.com",
     overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation",
-    bio: "A technical marketing leader who bridges the gap between engineering and brand. Previously CMO at Twilio and held leadership roles at Salesforce, known for scaling marketing during hypergrowth.",
+    bio: "is the Chief Marketing Officer at Datadog, where she leads global marketing for the cloud monitoring and security platform. Previously served as CMO at Twilio and held leadership roles at Salesforce, known for bridging the gap between engineering and brand while scaling marketing during hypergrowth.",
     fullDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
 
 Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.`,
