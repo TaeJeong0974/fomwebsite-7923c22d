@@ -47,7 +47,7 @@ const PodcastSection = () => {
           
           {/* Layout Toggle */}
           <TooltipProvider delayDuration={300}>
-            <div className="glass rounded-full p-1.5 flex items-center gap-1 hover:shadow-[0_4px_16px_-4px_rgba(0,0,0,0.15)] transition-shadow duration-300">
+            <div className="glass rounded-full p-1.5 flex items-center gap-1 shadow-none hover:shadow-[0_4px_16px_-4px_rgba(0,0,0,0.15)] transition-shadow duration-300">
               {[{
               type: "grid" as const,
               icon: LayoutGrid,
