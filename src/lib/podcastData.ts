@@ -212,7 +212,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     duration: "",
     publishedDate: "Coming Soon",
     comingSoon: true,
-    linkedInUrl: "https://linkedin.com/in/saravarni",
+    linkedInUrl: "https://www.linkedin.com/in/saravarnibright/",
     pullQuote: "When you're marketing to developers, authenticity isn't just nice to have—it's the only thing that works.",
   },
 ];
