@@ -44,7 +44,8 @@ const LiquidButton = forwardRef<HTMLButtonElement, LiquidButtonProps>(
       <motion.button
         ref={ref}
         className={cn(
-          "inline-flex items-center justify-center rounded-full font-medium transition-[background,box-shadow] duration-300 focus-ring [&>*]:translate-y-[2px]",
+          "inline-flex items-center justify-center rounded-full font-medium transition-[background,box-shadow] duration-300 focus-ring",
+          size !== "icon" && "[&>*]:translate-y-[2px]",
           sizeClasses[size],
           variantClasses[variant],
           className
