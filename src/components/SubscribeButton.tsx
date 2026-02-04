@@ -16,24 +16,18 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
   return (
     <motion.div 
       onClick={openSubscribe} 
-      className={`cursor-pointer px-4 pt-2.5 pb-1.5 -mx-4 -my-2 rounded-lg relative overflow-hidden ${className}`} 
-      style={style}
+      className={`cursor-pointer px-4 pt-2.5 pb-1.5 -mx-4 -my-2 rounded-lg relative ${className}`} 
+      style={{
+        ...style,
+        backgroundColor: isHovered ? 'hsl(var(--foreground))' : 'transparent',
+        color: isHovered ? 'hsl(var(--background))' : undefined,
+      }}
       whileTap={{ scale: 0.96 }}
       transition={liquidSpring}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Black fill background on hover */}
-      <motion.div 
-        className="absolute inset-0 rounded-lg bg-foreground"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-      />
-      <span 
-        className="relative z-10 transition-colors duration-300"
-        style={{ color: isHovered ? 'hsl(var(--background))' : undefined }}
-      >
+      <span className="transition-colors duration-300">
         {children}
       </span>
     </motion.div>
