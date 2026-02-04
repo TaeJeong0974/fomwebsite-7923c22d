@@ -126,18 +126,20 @@ const PodcastDetail = () => {
             </motion.div>
 
             {/* Pull Quote */}
-            <motion.div
-              variants={fadeInVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
-            >
-              <EpisodePullQuote
-                quote="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris."
-                attribution={episode.name}
-              />
-            </motion.div>
+            {episode.pullQuote && (
+              <motion.div
+                variants={fadeInVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
+              >
+                <EpisodePullQuote
+                  quote={episode.pullQuote}
+                  attribution={episode.name}
+                />
+              </motion.div>
+            )}
 
             {/* Guest & Hosts - Mobile only */}
             <div className="lg:hidden space-y-4">
