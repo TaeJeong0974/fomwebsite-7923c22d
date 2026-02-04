@@ -30,7 +30,10 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
         animate={{ opacity: isHovered ? 1 : 0 }}
         transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
       />
-      <span className={`relative z-10 transition-colors duration-300 ${isHovered ? 'text-background' : ''}`}>
+      <span 
+        className="relative z-10 transition-colors duration-300"
+        style={{ color: isHovered ? 'hsl(var(--background))' : undefined }}
+      >
         {children}
       </span>
     </motion.div>
