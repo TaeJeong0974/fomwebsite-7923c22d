@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { Linkedin } from "lucide-react";
 import { podcastHosts } from "@/lib/podcastData";
 import { useIsMobile } from "@/hooks/use-mobile";
 import teaserBg from "@/assets/teaser-bg.png";
@@ -10,10 +11,10 @@ interface EpisodeHostsCardProps {
 
 const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [hoveredHostIndex, setHoveredHostIndex] = useState<number | null>(null);
   const isMobile = useIsMobile();
   const hosts = showAllHosts ? podcastHosts : podcastHosts.slice(0, 2);
 
-  // Single card layout for both mobile and desktop
   return (
     <div 
       className="relative rounded-xl p-5 sm:p-6 overflow-hidden bg-background/70 backdrop-blur-xl border border-white/20"
@@ -54,12 +55,38 @@ const EpisodeHostsCard = ({ showAllHosts = false }: EpisodeHostsCardProps) => {
           {hosts.map((host, index) => {
             const [firstName, ...lastNameParts] = host.name.split(' ');
             const lastName = lastNameParts.join(' ');
+            const isNameHovered = hoveredHostIndex === index;
+            
             return (
               <div key={index} className={index > 0 ? "pt-3 sm:pt-4 border-t-[1.5px] border-border/40" : ""}>
-                <h3 className="font-display text-xl sm:text-2xl lg:text-3xl text-foreground leading-none tracking-normal">
-                  <span className="inline sm:block font-medium">{firstName} </span>
-                  <span className="inline sm:block font-normal">{lastName}</span>
-                </h3>
+                {host.linkedInUrl ? (
+                  <a
+                    href={host.linkedInUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-2"
+                    onMouseEnter={() => setHoveredHostIndex(index)}
+                    onMouseLeave={() => setHoveredHostIndex(null)}
+                  >
+                    <h3 className="font-display text-xl sm:text-2xl lg:text-3xl text-foreground leading-none tracking-normal group-hover:text-foreground/80 transition-colors duration-200">
+                      <span className="inline sm:block font-medium">{firstName} </span>
+                      <span className="inline sm:block font-normal">{lastName}</span>
+                    </h3>
+                    <motion.span
+                      initial={{ opacity: 0, x: -8 }}
+                      animate={{ opacity: isNameHovered ? 1 : 0, x: isNameHovered ? 0 : -8 }}
+                      transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                      className="flex items-center"
+                    >
+                      <Linkedin className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground" />
+                    </motion.span>
+                  </a>
+                ) : (
+                  <h3 className="font-display text-xl sm:text-2xl lg:text-3xl text-foreground leading-none tracking-normal">
+                    <span className="inline sm:block font-medium">{firstName} </span>
+                    <span className="inline sm:block font-normal">{lastName}</span>
+                  </h3>
+                )}
                 <p className="text-xs sm:text-sm text-muted-foreground mt-1 sm:mt-2">
                   {host.title}, {host.company}
                 </p>
