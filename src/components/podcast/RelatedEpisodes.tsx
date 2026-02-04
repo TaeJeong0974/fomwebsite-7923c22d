@@ -4,7 +4,6 @@ import PodcastCard from "@/components/podcast/PodcastCard";
 interface RelatedEpisodesProps {
   episodes: PodcastEpisode[];
   title?: string;
-  delay?: number;
 }
 
 const RelatedEpisodes = ({ episodes, title = "Other Speakers" }: RelatedEpisodesProps) => {

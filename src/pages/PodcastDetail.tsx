@@ -179,7 +179,7 @@ const PodcastDetail = () => {
         </div>
 
       {/* Related Episodes */}
-      <RelatedEpisodes episodes={otherEpisodes} delay={0.4} />
+      <RelatedEpisodes episodes={otherEpisodes} />
 
       {/* Listen & Subscribe Section */}
       <motion.div 
