@@ -97,7 +97,7 @@ const Navbar = () => {
               }}
               className="flex items-center focus-ring rounded-lg"
             >
-              <img src={FomLogo} alt="Future of Marketing" className="h-6 w-auto" />
+              <img src={FomLogo} alt="Future of Marketing" className="h-6 sm:h-[26px] w-auto" />
             </Link>
 
             <LiquidButton
@@ -124,7 +124,7 @@ const Navbar = () => {
               }}
               className="flex items-center focus-ring rounded-lg justify-self-start"
             >
-              <img src={FomLogo} alt="Future of Marketing" className="h-7 w-auto" />
+              <img src={FomLogo} alt="Future of Marketing" className="h-[26px] lg:h-7 w-auto" />
             </Link>
 
             {/* Desktop Navigation - Second column */}
