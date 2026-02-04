@@ -54,12 +54,9 @@ const ComingSoonHeroCard = ({ guestFirstName }: ComingSoonHeroCardProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="absolute inset-0 flex flex-col justify-end p-8 z-10"
+            className="absolute inset-0 flex items-center justify-center p-8 z-10"
           >
-            <h3 className="font-display text-2xl md:text-3xl font-semibold text-white mb-4 max-w-md">
-              Be the first to know when this episode drops.
-            </h3>
-            <LiquidButton variant="light" size="lg" className="self-start gap-2">
+            <LiquidButton variant="light" size="lg" className="gap-2">
               <Bell size={18} />
               Get Notified
             </LiquidButton>
