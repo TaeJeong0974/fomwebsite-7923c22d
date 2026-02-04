@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 import { liquidSpring } from "@/components/ui/LiquidButton";
@@ -10,22 +11,35 @@ interface SubscribeButtonProps {
 
 const SubscribeButton = ({ className = "", children = "Subscribe", style }: SubscribeButtonProps) => {
   const { openSubscribe } = useSubscribe();
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.div 
       onClick={openSubscribe} 
-      className={`cursor-pointer px-4 pt-2.5 pb-1.5 -mx-4 -my-2 rounded-lg transition-all duration-500 relative overflow-hidden group ${className}`} 
+      className={`cursor-pointer px-4 pt-2.5 pb-1.5 -mx-4 -my-2 rounded-lg relative overflow-hidden ${className}`} 
       style={style}
       whileTap={{ scale: 0.96 }}
       transition={liquidSpring}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Iridescent glass background */}
-      <div 
-        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-lg"
-        style={{
-          background: 'linear-gradient(135deg, rgba(255,200,200,0.3), rgba(200,220,255,0.3), rgba(220,200,255,0.3), rgba(200,255,220,0.3))',
-          backdropFilter: 'blur(12px)',
+      {/* Animated gradient background */}
+      <motion.div 
+        className="absolute inset-0 rounded-lg"
+        initial={{ opacity: 0 }}
+        animate={{ 
+          opacity: isHovered ? 1 : 0,
+          background: isHovered ? [
+            'linear-gradient(135deg, rgba(200,160,180,0.4), rgba(180,160,200,0.4))',
+            'linear-gradient(135deg, rgba(180,160,200,0.4), rgba(160,180,210,0.4))',
+            'linear-gradient(135deg, rgba(160,180,210,0.4), rgba(200,160,180,0.4))',
+          ] : 'linear-gradient(135deg, rgba(200,160,180,0.4), rgba(180,160,200,0.4))'
         }}
+        transition={{ 
+          opacity: { duration: 0.3 },
+          background: isHovered ? { duration: 4, repeat: Infinity, ease: "easeInOut" } : { duration: 0.15 }
+        }}
+        style={{ backdropFilter: 'blur(8px)' }}
       />
       <span className="relative z-10">{children}</span>
     </motion.div>
