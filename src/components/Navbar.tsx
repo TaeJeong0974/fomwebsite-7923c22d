@@ -8,6 +8,7 @@ import { useSubscribe } from "@/contexts/SubscribeContext";
 import SubscribeButton from "@/components/SubscribeButton";
 import { LiquidButton } from "@/components/ui/LiquidButton";
 import { fadeDownVariant, liquidEase } from "@/components/animations/PageLoadAnimation";
+
 const Navbar = () => {
   const { openSubscribe } = useSubscribe();
   const [isOpen, setIsOpen] = useState(false);
@@ -84,7 +85,34 @@ const Navbar = () => {
       <div className="container mx-auto container-padding">
         {/* Nav with glass effect on scroll */}
         <nav className={`rounded-md py-3 lg:py-4 transition-all duration-300 ${isScrolled ? 'glass bg-background/80 backdrop-blur-xl px-4 sm:px-5 lg:px-6 mt-4' : 'pt-3 lg:pt-5'}`}>
-          <div className={`grid grid-cols-3 items-center ${isScrolled ? '' : 'px-0'}`}>
+          {/* Mobile: Simple flex layout */}
+          <div className="flex items-center justify-between md:hidden">
+            <Link 
+              to="/" 
+              onClick={(e) => {
+                if (isHomePage) {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
+              className="flex items-center focus-ring rounded-lg"
+            >
+              <img src={FomLogo} alt="Future of Marketing" className="h-9 w-auto" />
+            </Link>
+
+            <LiquidButton
+              variant="glass"
+              size="icon"
+              className="h-10 w-10"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle menu"
+            >
+              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </LiquidButton>
+          </div>
+
+          {/* Desktop: Grid layout */}
+          <div className="hidden md:grid grid-cols-3 items-center">
             {/* Logo - First column */}
             <Link 
               to="/" 
@@ -96,11 +124,11 @@ const Navbar = () => {
               }}
               className="flex items-center focus-ring rounded-lg justify-self-start"
             >
-              <img src={FomLogo} alt="Future of Marketing" className="h-9 md:h-7 w-auto" />
+              <img src={FomLogo} alt="Future of Marketing" className="h-7 w-auto" />
             </Link>
 
-            {/* Desktop Navigation - Second column, centered */}
-            <ul className="hidden md:flex items-center gap-6 justify-self-start">
+            {/* Desktop Navigation - Second column */}
+            <ul className="flex items-center gap-6 justify-self-start">
               {navLinks.map((link, index) => (
                 <motion.li 
                   key={link.label}
@@ -130,28 +158,17 @@ const Navbar = () => {
               ))}
             </ul>
 
-            {/* Desktop CTA - Third column, aligned right */}
+            {/* Desktop CTA - Third column */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5, delay: 0.5, ease: liquidEase }}
-              className="hidden md:flex items-center gap-4 justify-self-end"
+              className="flex items-center gap-4 justify-self-end"
             >
               <SubscribeButton className="text-[1em] font-medium text-foreground hover:text-foreground/60 hover-transition">
                 Subscribe
               </SubscribeButton>
             </motion.div>
-
-            {/* Mobile Menu Button - Third column on mobile */}
-            <LiquidButton
-              variant="glass"
-              size="icon"
-              className="md:hidden h-10 w-10 col-start-3 justify-self-end"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle menu"
-            >
-              {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </LiquidButton>
           </div>
 
           {/* Mobile Navigation */}
