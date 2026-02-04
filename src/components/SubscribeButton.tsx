@@ -50,7 +50,7 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
         animate={{ opacity: isHovered ? 1 : 0 }}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         style={{
-          background: 'linear-gradient(135deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.3) 80%, rgba(0,0,0,0) 100%)',
+          background: 'linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 60%, rgba(0,0,0,0.15) 80%, rgba(0,0,0,0) 100%)',
         }}
       />
       <motion.span 
