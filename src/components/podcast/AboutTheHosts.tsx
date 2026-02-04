@@ -10,10 +10,10 @@ const AboutTheHosts = () => {
         {podcastHosts.map((host, index) => (
           <div key={index} className="space-y-2">
             <div className="flex items-baseline gap-2 flex-wrap">
-              <h4 className="font-display text-lg lg:text-xl font-medium text-foreground">
+              <h4 className="font-display text-base lg:text-lg font-medium text-foreground">
                 {host.name}
               </h4>
-              <span className="text-sm text-muted-foreground">
+              <span className="text-base lg:text-lg text-muted-foreground">
                 {host.title}, {host.company}
               </span>
             </div>
