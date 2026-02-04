@@ -9,16 +9,8 @@ const AboutTheHosts = () => {
       <div className="space-y-8">
         {podcastHosts.map((host, index) => (
           <div key={index} className="space-y-2">
-            <div className="flex items-baseline gap-2 flex-wrap">
-              <h4 className="font-display text-base lg:text-lg font-medium text-foreground">
-                {host.name}
-              </h4>
-              <span className="font-display text-base lg:text-lg text-muted-foreground">
-                {host.title}, {host.company}
-              </span>
-            </div>
             <p className="text-foreground/80 leading-relaxed text-base lg:text-lg max-w-prose">
-              {host.bio}
+              <span className="font-medium text-foreground">{host.name}</span> {host.bio}
             </p>
             {host.linkedInUrl && (
               <a
