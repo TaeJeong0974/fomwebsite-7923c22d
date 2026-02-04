@@ -104,7 +104,7 @@ From the tradeoffs between authenticity and reach to the risks of messy data and
     company: "Samsara",
     companyDomain: "samsara.com",
     overview: "Why the Best CMOs Think Like Operators, Not Marketers",
-    bio: "A builder who moves fast, operates tactically, and earns trust through execution. With nearly 25 years scaling high-growth companies as CMO at Samsara, MongoDB, TripActions/Navan, and leadership roles at DocuSign and G2.",
+    bio: "is the Chief Marketing Officer at Samsara, where she leads brand, demand, product marketing, and go-to-market strategy for one of the fastest-growing industrial technology companies. A proven operator and builder, Meagen has helped scale companies across every stage contributing to over 23 successful exits, including IPOs and acquisitions and is known for pairing execution discipline with forward-looking strategy.",
     fullDescription: `In this episode of Future of Marketing, hosts Mada Seghete and Ethan Smith sit down with Meagen Eisenberg, CMO of Samsara, to unpack what it actually takes to build an AI-native marketing team. Meagen shares how she deployed live AI agents across marketing ops, replaced legacy software, and drove 29% YoY growth without growing headcount. The conversation goes beyond tools into culture, accountability, and why creativity and human connection still matter more than ever.`,
     topics: [
       "Operationalizing AI across 95% of the marketing team",
