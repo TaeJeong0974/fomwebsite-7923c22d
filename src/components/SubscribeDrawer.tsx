@@ -47,13 +47,13 @@ const SubscribeDrawer = ({ open, onOpenChange }: SubscribeDrawerProps) => {
     <AnimatePresence>
       {open && (
         <>
-          {/* Backdrop */}
+          {/* Backdrop - only on mobile */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-sm"
+            className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-sm md:hidden"
             onClick={handleClose}
           />
 
