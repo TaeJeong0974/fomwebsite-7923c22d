@@ -48,7 +48,7 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
         </div>
       </PopoverTrigger>
       <PopoverContent 
-        className="w-80 p-0 bg-black/80 backdrop-blur-xl border border-white/10 rounded-xl overflow-hidden"
+        className="w-80 p-0 bg-[#3a3a3a]/95 backdrop-blur-2xl border border-white/[0.08] shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_20px_50px_-10px_rgba(0,0,0,0.5)] rounded-2xl overflow-hidden"
         align="end"
         sideOffset={8}
       >
@@ -60,10 +60,10 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -5 }}
               transition={{ duration: 0.15 }}
-              className="p-5"
+              className="p-6"
             >
-              <p className="text-label text-white mb-1">STAY UPDATED</p>
-              <h3 className="font-display text-lg font-semibold text-white mb-3">
+              <p className="text-label text-white/50 mb-1">STAY UPDATED</p>
+              <h3 className="font-display text-lg font-semibold text-white mb-4">
                 Never Miss an Episode
               </h3>
               
@@ -74,19 +74,17 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
-                  className="w-full px-4 py-2.5 text-sm font-mono bg-white/5 backdrop-blur-xl border border-white/10 rounded-full text-white placeholder:text-white/40 focus-ring hover-transition"
+                  className="w-full px-5 py-3 text-sm font-mono bg-black/40 backdrop-blur-xl border border-white/[0.08] rounded-full text-white placeholder:text-white/30 focus-ring hover-transition shadow-[inset_0_1px_2px_rgba(0,0,0,0.3)]"
                 />
-                <LiquidButton
+                <button
                   type="submit"
-                  variant="light"
-                  size="md"
-                  className="w-full"
+                  className="w-full px-5 py-3 text-sm font-medium bg-black/30 backdrop-blur-xl border border-white/[0.08] rounded-full text-white hover:bg-black/40 hover-transition shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
                 >
                   Subscribe
-                </LiquidButton>
+                </button>
               </form>
               
-              <p className="mt-3 text-xs text-white/40 text-center">
+              <p className="mt-4 text-xs text-white/30 text-center">
                 No spam. Unsubscribe anytime.
               </p>
             </motion.div>
