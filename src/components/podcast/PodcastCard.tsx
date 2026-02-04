@@ -10,9 +10,10 @@ interface PodcastCardProps {
   episode: PodcastEpisode;
   isNew?: boolean;
   isUpcoming?: boolean;
+  showOverview?: boolean;
 }
 
-const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCardProps) => {
+const PodcastCard = ({ episode, isNew = false, isUpcoming = false, showOverview = true }: PodcastCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const isMobile = useIsMobile();
@@ -87,7 +88,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
           </span>
         )}
         
-        <EpisodeCardContent episode={episode} isUpcoming={isUpcoming} />
+        <EpisodeCardContent episode={episode} isUpcoming={isUpcoming} showOverview={showOverview} />
       </div>
     </Link>
   );
