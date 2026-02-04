@@ -97,7 +97,7 @@ const Navbar = () => {
               }}
               className="flex items-center focus-ring rounded-lg"
             >
-              <img src={FomLogo} alt="Future of Marketing" className="h-9 w-auto" />
+              <img src={FomLogo} alt="Future of Marketing" className="h-6 w-auto" />
             </Link>
 
             <LiquidButton
