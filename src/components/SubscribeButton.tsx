@@ -30,14 +30,15 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
         animate={{ 
           opacity: isHovered ? 1 : 0,
           backgroundColor: isHovered ? [
-            'rgba(200,160,180,0.4)',
-            'rgba(160,180,210,0.4)',
-            'rgba(200,160,180,0.4)',
-          ] : 'rgba(200,160,180,0.4)'
+            'rgba(218,150,120,0.5)',
+            'rgba(200,140,160,0.5)',
+            'rgba(140,160,190,0.5)',
+            'rgba(218,150,120,0.5)',
+          ] : 'rgba(218,150,120,0.5)'
         }}
         transition={{ 
           opacity: { duration: 0.3 },
-          backgroundColor: isHovered ? { duration: 4, repeat: Infinity, ease: "easeInOut" } : { duration: 0.15 }
+          backgroundColor: isHovered ? { duration: 3, repeat: Infinity, ease: "easeInOut" } : { duration: 0.15 }
         }}
         style={{ backdropFilter: 'blur(8px)' }}
       />
