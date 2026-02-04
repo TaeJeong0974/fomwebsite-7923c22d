@@ -47,7 +47,7 @@ const PodcastSection = () => {
           
           {/* Layout Toggle */}
           <TooltipProvider delayDuration={300}>
-            <div className="relative rounded-full p-1 flex items-center gap-0.5 bg-white/10 backdrop-blur-xl border border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+            <div className="relative rounded-full p-1.5 flex items-center gap-1 bg-white/10 backdrop-blur-xl border border-white/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
               {/* Sliding highlight */}
               <motion.div
                 className="absolute top-1 bottom-1 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 shadow-lg"
