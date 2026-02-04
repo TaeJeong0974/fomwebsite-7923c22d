@@ -238,7 +238,7 @@ const PodcastListView = ({
                         {episode.name}
                       </h3>
                       {/* Desktop: Title & Company inline with name */}
-                      <p className={`hidden lg:block text-sm pt-1.5 text-foreground/50 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
+                      <p className={`hidden lg:block text-sm pt-1.5 text-foreground transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
                         {isIntroEpisode ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>}
                       </p>
                       {!isComingSoon && isNewEpisode(episode.publishedDate) && <span className="badge-status mt-1 lg:mt-0">
@@ -246,7 +246,7 @@ const PodcastListView = ({
                         </span>}
                     </div>
                     {/* Mobile/Tablet: Title & Company below name */}
-                    <p className={`lg:hidden mt-2 text-sm text-foreground/50 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
+                    <p className={`lg:hidden mt-2 text-sm text-foreground transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
                       {isIntroEpisode ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>}
                     </p>
                   </div>
