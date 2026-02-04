@@ -66,7 +66,7 @@ export const podcastEpisodes: PodcastEpisode[] = [
     title: "",
     company: "",
     companyDomain: "",
-    overview: "Cutting through the AI hype to discuss what's actually changing inside modern marketing teams",
+    overview: "Why Authenticity Beats Automation in Modern Marketing",
     bio: "",
     fullDescription: `In this launch episode of Future of Marketing, Camille Ricketts, Ethan Smith, and Mada Seghete cut through the AI hype to discuss what's actually changing inside modern marketing teams. Drawing from real operator experience, they explore why marketing lags engineering in AI adoption, where AI creates real leverage (idea generation and pattern discovery), and why human judgment, taste, and storytelling matter more than ever.
 
