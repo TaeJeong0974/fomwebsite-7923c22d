@@ -3,6 +3,29 @@ import { X } from "lucide-react";
 import { useSubscriptionForm } from "@/hooks/use-subscription-form";
 import { liquidSpring, buttonVariants } from "@/components/ui/LiquidButton";
 
+const liquidEasing = [0.22, 1, 0.36, 1] as const;
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.08,
+      delayChildren: 0.15,
+    },
+  },
+  exit: { opacity: 0, transition: { duration: 0.15 } },
+};
+
+const fadeUpItem = {
+  hidden: { opacity: 0, y: 16 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { duration: 0.5, ease: liquidEasing },
+  },
+};
+
 interface SubscribeDrawerProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -60,22 +83,22 @@ const SubscribeDrawer = ({ open, onOpenChange }: SubscribeDrawerProps) => {
                 {!isSubmitted ? (
                   <motion.div
                     key="form"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.2, delay: 0.1 }}
+                    variants={staggerContainer}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
                   >
-                    <p className="text-[0.8rem] font-medium uppercase tracking-[0.1em] text-white mb-3">
+                    <motion.p variants={fadeUpItem} className="text-[0.8rem] font-medium uppercase tracking-[0.1em] text-white mb-3">
                       STAY UPDATED
-                    </p>
-                    <h2 className="text-display-lg text-white mb-6">
+                    </motion.p>
+                    <motion.h2 variants={fadeUpItem} className="text-display-lg text-white mb-6">
                       Never Miss an Episode
-                    </h2>
-                    <p className="text-body text-white/60 mb-8 max-w-sm">
+                    </motion.h2>
+                    <motion.p variants={fadeUpItem} className="text-body text-white/60 mb-8 max-w-sm">
                       Get notified when new episodes drop and receive exclusive content.
-                    </p>
+                    </motion.p>
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    <motion.form variants={fadeUpItem} onSubmit={handleSubmit} className="space-y-4">
                       <input
                         type="email"
                         value={email}
@@ -91,30 +114,30 @@ const SubscribeDrawer = ({ open, onOpenChange }: SubscribeDrawerProps) => {
                       >
                         Subscribe
                       </button>
-                    </form>
+                    </motion.form>
 
-                    <p className="mt-6 text-body text-white/30">
+                    <motion.p variants={fadeUpItem} className="mt-6 text-body text-white/30">
                       No spam. Unsubscribe anytime.
-                    </p>
+                    </motion.p>
                   </motion.div>
                 ) : (
                   <motion.div
                     key="success"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.2 }}
+                    variants={staggerContainer}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
                     className="text-center"
                   >
-                    <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-6">
+                    <motion.div variants={fadeUpItem} className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-6">
                       <svg className="w-10 h-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
-                    </div>
-                    <h3 className="text-display-md text-white mb-3">You're In!</h3>
-                    <p className="text-body text-white/60">
+                    </motion.div>
+                    <motion.h3 variants={fadeUpItem} className="text-display-md text-white mb-3">You're In!</motion.h3>
+                    <motion.p variants={fadeUpItem} className="text-body text-white/60">
                       We'll notify you when new episodes are available.
-                    </p>
+                    </motion.p>
                   </motion.div>
                 )}
               </AnimatePresence>
