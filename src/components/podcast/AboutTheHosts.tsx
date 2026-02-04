@@ -13,7 +13,7 @@ const AboutTheHosts = () => {
               <h4 className="font-display text-base lg:text-lg font-medium text-foreground">
                 {host.name}
               </h4>
-              <span className="text-base lg:text-lg text-muted-foreground">
+              <span className="font-display text-base lg:text-lg text-muted-foreground">
                 {host.title}, {host.company}
               </span>
             </div>
