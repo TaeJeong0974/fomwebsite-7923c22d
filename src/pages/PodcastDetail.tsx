@@ -172,9 +172,10 @@ const PodcastDetail = () => {
                 company={episode.company}
                 linkedInUrl={episode.linkedInUrl}
                 bio={episode.bio}
+                demoVariant="row-highlight"
               />
             )}
-            <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} />
+            <EpisodeHostsCard showAllHosts={episode.slug === 'intro-to-fom'} demoMode />
           </motion.div>
         </div>
 
