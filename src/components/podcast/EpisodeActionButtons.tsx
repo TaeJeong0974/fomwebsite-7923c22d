@@ -99,7 +99,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
               transition={{ type: "spring" as const, stiffness: 500, damping: 30 }}
               className="shrink-0"
             >
-              <Check className="w-5 h-5 text-emerald-500" />
+              <Check className="w-5 h-5 text-success" />
             </motion.div>
           ) : (
             <motion.div
@@ -114,7 +114,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
             </motion.div>
           )}
         </AnimatePresence>
-        <span className={`${textClasses} ${copied ? 'text-emerald-500' : ''}`}>
+        <span className={`${textClasses} ${copied ? 'text-success' : ''}`}>
           {copied ? "Copied!" : "Share"}
         </span>
       </motion.button>
