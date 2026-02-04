@@ -44,7 +44,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="card-image md:hover-scale relative">
+      <div className="card-image lg:hover-scale relative">
         {/* Lazy loaded background image */}
         <img
           src={guestBg}
@@ -73,7 +73,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
           </motion.div>
         )}
 
-        <div className="card-overlay-light hover-transition md:group-hover:opacity-90 z-[2]" />
+        <div className="card-overlay-light hover-transition lg:group-hover:opacity-90 z-[2]" />
         
         {isNew && (
           <span className="absolute top-6 right-6 lg:top-8 lg:right-8 badge-status z-[3]">
