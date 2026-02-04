@@ -137,17 +137,6 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
               </div>
             </motion.div>
 
-            {/* Topics */}
-            <motion.div
-              variants={fadeUpVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.15 }}
-              transition={{ duration: 1.0, delay: 0.3, ease: liquidEase }}
-            >
-              <EpisodeTopics topics={episode.topics} title="Topics We'll Cover" />
-            </motion.div>
-
             {/* Pull Quote */}
             {episode.pullQuote && (
               <motion.div
@@ -155,7 +144,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.15 }}
-                transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
+                transition={{ duration: 1.0, delay: 0.3, ease: liquidEase }}
               >
                 <EpisodePullQuote
                   quote={episode.pullQuote}
@@ -163,6 +152,17 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
                 />
               </motion.div>
             )}
+
+            {/* Topics */}
+            <motion.div
+              variants={fadeUpVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 1.0, delay: 0.45, ease: liquidEase }}
+            >
+              <EpisodeTopics topics={episode.topics} title="Topics We'll Cover" />
+            </motion.div>
 
             {/* About the Guest */}
             {episode.bio && (
