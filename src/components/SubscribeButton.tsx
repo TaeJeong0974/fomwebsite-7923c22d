@@ -16,7 +16,6 @@ const SubscribeButton = ({ className = "", children = "Subscribe", style }: Subs
       onClick={openSubscribe} 
       className={`cursor-pointer px-4 py-2 -mx-4 -my-2 rounded-full transition-colors duration-300 hover:bg-foreground hover:text-background ${className}`} 
       style={style}
-      whileHover={{ scale: 1.04 }}
       whileTap={{ scale: 0.96 }}
       transition={liquidSpring}
     >
