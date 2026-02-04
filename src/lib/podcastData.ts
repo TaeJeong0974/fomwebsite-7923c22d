@@ -185,6 +185,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     publishedDate: "Coming Soon",
     comingSoon: true,
     linkedInUrl: "https://linkedin.com/in/lindseyirvine",
+    pullQuote: "The best marketing doesn't feel like marketing—it feels like a service you're providing to your customers.",
   },
   // Coming Soon Episodes
   {
@@ -212,6 +213,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     publishedDate: "Coming Soon",
     comingSoon: true,
     linkedInUrl: "https://linkedin.com/in/saravarni",
+    pullQuote: "When you're marketing to developers, authenticity isn't just nice to have—it's the only thing that works.",
   },
 ];
 
