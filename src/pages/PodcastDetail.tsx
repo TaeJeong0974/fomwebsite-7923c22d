@@ -64,9 +64,7 @@ const PodcastDetail = () => {
               Episode {episode.id}
             </h3>
             <h1 className="text-display-lg font-display font-medium text-foreground leading-[1.1]">
-              {episode.slug === 'intro-to-fom' 
-                ? 'Meet Your Hosts' 
-                : episode.overview || episode.name}
+              {episode.overview || episode.name}
             </h1>
           </div>
           
