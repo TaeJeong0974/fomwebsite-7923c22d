@@ -26,7 +26,7 @@ const SubscribeModal = ({ open, onOpenChange }: SubscribeModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
-      <DialogContent className="bg-black/80 backdrop-blur-xl border border-white/10 sm:max-w-md p-0 overflow-hidden top-4 translate-y-0 rounded-xl sm:top-[50%] sm:translate-y-[-50%]">
+        <DialogContent className="bg-[#3a3a3a]/95 backdrop-blur-2xl border border-white/[0.08] shadow-[0_0_0_1px_rgba(255,255,255,0.05),0_20px_50px_-10px_rgba(0,0,0,0.5)] sm:max-w-md p-0 overflow-hidden top-4 translate-y-0 rounded-2xl sm:top-[50%] sm:translate-y-[-50%]">
         <AnimatePresence mode="wait">
           {!isSubmitted ? (
             <motion.div
@@ -35,16 +35,13 @@ const SubscribeModal = ({ open, onOpenChange }: SubscribeModalProps) => {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="p-6 sm:p-8"
+              className="p-8 sm:p-10"
             >
-              <DialogHeader className="text-left mb-6">
-                <p className="text-label text-white mb-2">STAY UPDATED</p>
+              <DialogHeader className="text-left mb-8">
+                <p className="text-label text-white/50 mb-2">STAY UPDATED</p>
                 <DialogTitle className="text-display-md text-white">
                   Never Miss an Episode
                 </DialogTitle>
-                <p className="mt-2 text-body text-white/60">
-                  Get notified when new episodes drop and receive exclusive content.
-                </p>
               </DialogHeader>
 
               <form onSubmit={handleSubmit} className="space-y-4">
@@ -54,19 +51,17 @@ const SubscribeModal = ({ open, onOpenChange }: SubscribeModalProps) => {
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@example.com"
                   required
-                  className="w-full px-5 py-3 text-body font-mono bg-white/5 backdrop-blur-xl border border-white/10 rounded-full text-white placeholder:text-white/40 focus-ring hover-transition"
+                  className="w-full px-6 py-4 text-body font-mono bg-black/40 backdrop-blur-xl border border-white/[0.08] rounded-full text-white placeholder:text-white/30 focus-ring hover-transition shadow-[inset_0_1px_2px_rgba(0,0,0,0.3)]"
                 />
-                <LiquidButton
+                <button
                   type="submit"
-                  variant="light"
-                  size="lg"
-                  className="w-full"
+                  className="w-full px-6 py-4 text-body font-medium bg-black/30 backdrop-blur-xl border border-white/[0.08] rounded-full text-white hover:bg-black/40 hover-transition shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
                 >
                   Subscribe
-                </LiquidButton>
+                </button>
               </form>
 
-              <p className="mt-4 text-body-sm text-white/40 text-center">
+              <p className="mt-6 text-body text-white/30 text-center">
                 No spam. Unsubscribe anytime.
               </p>
             </motion.div>
