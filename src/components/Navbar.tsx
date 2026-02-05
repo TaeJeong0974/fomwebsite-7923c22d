@@ -55,6 +55,25 @@ const AnimatedLogo = ({ className }: { className?: string }) => {
           background: { duration: 3, ease: 'easeInOut', repeat: Infinity }
         } : { opacity: { duration: 0.3 } }}
       />
+      
+      {/* Black gradient overlay - same as hero, masked by the logo */}
+      <motion.div 
+        className="absolute inset-0 h-full"
+        style={{
+          background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)',
+          maskImage: `url(${FomLogo})`,
+          maskSize: 'contain',
+          maskRepeat: 'no-repeat',
+          maskPosition: 'left center',
+          WebkitMaskImage: `url(${FomLogo})`,
+          WebkitMaskSize: 'contain',
+          WebkitMaskRepeat: 'no-repeat',
+          WebkitMaskPosition: 'left center',
+        }}
+        initial={false}
+        animate={{ opacity: isHovered ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+      />
     </div>
   );
 };
