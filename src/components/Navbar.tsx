@@ -13,6 +13,9 @@ import { fadeDownVariant, liquidEase } from "@/components/animations/PageLoadAni
 const AnimatedLogo = ({ className }: { className?: string }) => {
   const [isHovered, setIsHovered] = useState(false);
   
+  // SVG mask for just the "F" portion of the logo (the three horizontal bars)
+  const fOnlyMask = `url("data:image/svg+xml,%3Csvg width='598' height='186' viewBox='0 0 598 186' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 -4.57764e-05L0 37.2L149.5 37.2V-4.57764e-05L0 -4.57764e-05Z' fill='black'/%3E%3Cpath d='M0 74.3806L0 111.581L149.5 111.581V74.3806H0Z' fill='black'/%3E%3Cpath d='M0 148.8L0 186H73.6799V148.8H0Z' fill='black'/%3E%3C/svg%3E")`;
+  
   return (
     <div 
       className={`relative ${className}`}
@@ -23,19 +26,18 @@ const AnimatedLogo = ({ className }: { className?: string }) => {
       <img 
         src={FomLogo} 
         alt="Future of Marketing"
-        className="h-full w-auto transition-opacity duration-300"
-        style={{ opacity: isHovered ? 0 : 1 }}
+        className="h-full w-auto"
       />
       
-      {/* Animated gradient version - shows on hover, masked by the logo */}
+      {/* Animated gradient version - shows on hover, masked by only the F portion */}
       <motion.div 
         className="absolute inset-0 h-full"
         style={{
-          maskImage: `url(${FomLogo})`,
+          maskImage: fOnlyMask,
           maskSize: 'contain',
           maskRepeat: 'no-repeat',
           maskPosition: 'left center',
-          WebkitMaskImage: `url(${FomLogo})`,
+          WebkitMaskImage: fOnlyMask,
           WebkitMaskSize: 'contain',
           WebkitMaskRepeat: 'no-repeat',
           WebkitMaskPosition: 'left center',
@@ -56,16 +58,16 @@ const AnimatedLogo = ({ className }: { className?: string }) => {
         } : { opacity: { duration: 0.3 } }}
       />
       
-      {/* Black gradient overlay - same as hero, masked by the logo */}
+      {/* Black gradient overlay on F only */}
       <motion.div 
         className="absolute inset-0 h-full"
         style={{
           background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)',
-          maskImage: `url(${FomLogo})`,
+          maskImage: fOnlyMask,
           maskSize: 'contain',
           maskRepeat: 'no-repeat',
           maskPosition: 'left center',
-          WebkitMaskImage: `url(${FomLogo})`,
+          WebkitMaskImage: fOnlyMask,
           WebkitMaskSize: 'contain',
           WebkitMaskRepeat: 'no-repeat',
           WebkitMaskPosition: 'left center',
