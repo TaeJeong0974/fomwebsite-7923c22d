@@ -9,7 +9,7 @@ import SubscribeButton from "@/components/SubscribeButton";
 import { LiquidButton } from "@/components/ui/LiquidButton";
 import { fadeDownVariant, liquidEase } from "@/components/animations/PageLoadAnimation";
 
-// Animated Logo component with simple hover state on shapes
+// Animated Logo component with gradient animation on hover
 const AnimatedLogo = ({ className }: { className?: string }) => {
   const [isHovered, setIsHovered] = useState(false);
   
@@ -29,17 +29,49 @@ const AnimatedLogo = ({ className }: { className?: string }) => {
         className="h-full w-auto"
       />
       
-      {/* Hover color overlay - masked by the shapes only */}
+      {/* Animated gradient overlay - masked by the shapes */}
       <motion.div 
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 h-full"
         style={{
-          background: 'hsl(var(--primary))',
+          aspectRatio: '598 / 186',
           maskImage: fullLogoMask,
-          maskSize: 'contain',
+          maskSize: '100% 100%',
           maskRepeat: 'no-repeat',
           maskPosition: 'left center',
           WebkitMaskImage: fullLogoMask,
-          WebkitMaskSize: 'contain',
+          WebkitMaskSize: '100% 100%',
+          WebkitMaskRepeat: 'no-repeat',
+          WebkitMaskPosition: 'left center',
+        }}
+        initial={{ opacity: 0 }}
+        animate={isHovered ? {
+          opacity: 1,
+          background: [
+            'linear-gradient(135deg, rgb(255,100,80) 0%, rgb(255,60,120) 50%, rgb(100,140,255) 100%)',
+            'linear-gradient(135deg, rgb(255,60,120) 0%, rgb(100,140,255) 50%, rgb(255,180,60) 100%)',
+            'linear-gradient(135deg, rgb(100,140,255) 0%, rgb(255,180,60) 50%, rgb(255,100,80) 100%)',
+            'linear-gradient(135deg, rgb(255,180,60) 0%, rgb(255,100,80) 50%, rgb(255,60,120) 100%)',
+            'linear-gradient(135deg, rgb(255,100,80) 0%, rgb(255,60,120) 50%, rgb(100,140,255) 100%)',
+          ],
+        } : { opacity: 0 }}
+        transition={isHovered ? { 
+          opacity: { duration: 0.25 },
+          background: { duration: 3, ease: 'easeInOut', repeat: Infinity }
+        } : { opacity: { duration: 0.25 } }}
+      />
+      
+      {/* Black gradient overlay for depth */}
+      <motion.div 
+        className="absolute inset-0 h-full"
+        style={{
+          aspectRatio: '598 / 186',
+          background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0) 100%)',
+          maskImage: fullLogoMask,
+          maskSize: '100% 100%',
+          maskRepeat: 'no-repeat',
+          maskPosition: 'left center',
+          WebkitMaskImage: fullLogoMask,
+          WebkitMaskSize: '100% 100%',
           WebkitMaskRepeat: 'no-repeat',
           WebkitMaskPosition: 'left center',
         }}
