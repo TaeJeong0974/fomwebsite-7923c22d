@@ -55,9 +55,9 @@ const AnimatedLogo = ({ className }: { className?: string }) => {
           ],
         } : { opacity: 0 }}
         transition={isHovered ? { 
-          opacity: { duration: 0.25 },
-          background: { duration: 3, ease: 'easeInOut', repeat: Infinity }
-        } : { opacity: { duration: 0.25 } }}
+          opacity: { duration: 0.25, delay: 0.15 },
+          background: { duration: 3, ease: 'easeInOut', repeat: Infinity, delay: 0.15 }
+        } : { opacity: { duration: 0.2 } }}
       />
       
       {/* Black gradient overlay for depth */}
