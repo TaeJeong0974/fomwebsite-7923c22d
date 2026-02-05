@@ -2,15 +2,16 @@ import { NewsletterMention } from "@/lib/podcastData";
 
 interface EpisodeNewslettersProps {
   newsletters: NewsletterMention[];
+  guestFirstName: string;
 }
 
-const EpisodeNewsletters = ({ newsletters }: EpisodeNewslettersProps) => {
+const EpisodeNewsletters = ({ newsletters, guestFirstName }: EpisodeNewslettersProps) => {
   if (!newsletters || newsletters.length === 0) return null;
 
   return (
     <div>
       <h3 className="text-section-header font-medium text-foreground mb-5 sm:mb-6">
-        Newsletters Mentioned
+        {guestFirstName}'s Reco Newsletters
       </h3>
       <ul className="space-y-3">
         {newsletters.map((newsletter) => (

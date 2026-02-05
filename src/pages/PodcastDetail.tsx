@@ -152,7 +152,7 @@ const PodcastDetail = () => {
                 viewport={{ once: true, amount: 0.15 }}
                 transition={{ duration: 1.0, delay: 0.5, ease: liquidEase }}
               >
-                <EpisodeNewsletters newsletters={episode.newslettersMentioned} />
+                <EpisodeNewsletters newsletters={episode.newslettersMentioned} guestFirstName={episode.name.split(' ')[0]} />
               </motion.div>
             )}
 
