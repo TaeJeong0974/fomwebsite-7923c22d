@@ -107,8 +107,8 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
       hoverColors: ["rgb(180,140,150)", "rgb(150,140,170)", "rgb(130,150,180)", "rgb(180,140,150)"], // dusty mauve-lavender
     },
     {
-      label: "Email Us",
-      href: "mailto:hello@futureofmarketing.com",
+      label: "LinkedIn",
+      href: "https://linkedin.com/company/futureofmarketing",
       hoverColors: ["rgb(130,150,180)", "rgb(100,140,175)", "rgb(85,130,170)", "rgb(130,150,180)"], // dusty blue
     },
   ];
