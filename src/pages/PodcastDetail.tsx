@@ -7,6 +7,7 @@ import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
 import EpisodeHostsCard from "@/components/podcast/EpisodeHostsCard";
 import EpisodePullQuote from "@/components/podcast/EpisodePullQuote";
+import EpisodeNewsletters from "@/components/podcast/EpisodeNewsletters";
 import AboutTheHosts from "@/components/podcast/AboutTheHosts";
 import ComingSoonEpisode from "@/components/podcast/ComingSoonEpisode";
 import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
@@ -141,6 +142,19 @@ const PodcastDetail = () => {
             >
               <EpisodeTopics topics={episode.topics} />
             </motion.div>
+
+            {/* Newsletters Mentioned */}
+            {episode.newslettersMentioned && episode.newslettersMentioned.length > 0 && (
+              <motion.div
+                variants={fadeInVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.15 }}
+                transition={{ duration: 1.0, delay: 0.5, ease: liquidEase }}
+              >
+                <EpisodeNewsletters newsletters={episode.newslettersMentioned} />
+              </motion.div>
+            )}
 
             {/* About the Guest - Non-intro episodes with bio */}
             {episode.slug !== 'intro-to-fom' && episode.bio && (
