@@ -1,4 +1,3 @@
-import { ExternalLink } from "lucide-react";
 import { NewsletterMention } from "@/lib/podcastData";
 
 interface EpisodeNewslettersProps {
@@ -21,10 +20,9 @@ const EpisodeNewsletters = ({ newsletters }: EpisodeNewslettersProps) => {
                 href={newsletter.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors duration-300"
+                className="inline-flex items-center gap-2 text-foreground hover:text-primary transition-colors duration-300"
               >
                 <span className="font-medium">{newsletter.name}</span>
-                <ExternalLink className="w-4 h-4 opacity-50 group-hover:opacity-100 transition-opacity" />
                 {newsletter.description && (
                   <span className="text-foreground/60">— {newsletter.description}</span>
                 )}
