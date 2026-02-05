@@ -143,7 +143,7 @@ From the tradeoffs between authenticity and reach to the risks of messy data and
       { name: "The Rundown AI", url: "https://www.therundown.ai/" },
       { name: "Neuron", url: "https://www.neuron.ai/" },
       { name: "AI Fire", url: "https://www.aifire.co/" },
-      { name: "Saster", description: "SaaStr newsletter", url: "https://www.saastr.com/" },
+      { name: "Saster", url: "https://www.saastr.com/" },
     ],
   },
   {
