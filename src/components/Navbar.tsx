@@ -31,7 +31,7 @@ const AnimatedLogo = ({ className }: { className?: string }) => {
       
       {/* Animated gradient version - shows on hover, masked by the full logo */}
       <motion.div 
-        className="absolute inset-0 h-full"
+        className="absolute inset-0 w-full h-full"
         style={{
           maskImage: fullLogoMask,
           maskSize: 'contain',
@@ -42,15 +42,17 @@ const AnimatedLogo = ({ className }: { className?: string }) => {
           WebkitMaskRepeat: 'no-repeat',
           WebkitMaskPosition: 'left center',
         }}
-        initial={false}
-        animate={{
-          opacity: isHovered ? 1 : 0,
-          background: isHovered ? [
+        initial={{ opacity: 0, background: 'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)' }}
+        animate={isHovered ? {
+          opacity: 1,
+          background: [
             'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
             'linear-gradient(135deg, rgb(200,140,150) 0%, rgb(130,150,180) 50%, rgb(230,130,110) 100%)',
             'linear-gradient(135deg, rgb(130,150,180) 0%, rgb(230,130,110) 50%, rgb(200,140,150) 100%)',
             'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
-          ] : 'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)'
+          ],
+        } : {
+          opacity: 0,
         }}
         transition={isHovered ? { 
           opacity: { duration: 0.3 },
@@ -60,7 +62,7 @@ const AnimatedLogo = ({ className }: { className?: string }) => {
       
       {/* Black gradient overlay */}
       <motion.div 
-        className="absolute inset-0 h-full"
+        className="absolute inset-0 w-full h-full"
         style={{
           background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)',
           maskImage: fullLogoMask,
@@ -72,7 +74,7 @@ const AnimatedLogo = ({ className }: { className?: string }) => {
           WebkitMaskRepeat: 'no-repeat',
           WebkitMaskPosition: 'left center',
         }}
-        initial={false}
+        initial={{ opacity: 0 }}
         animate={{ opacity: isHovered ? 1 : 0 }}
         transition={{ duration: 0.3 }}
       />
