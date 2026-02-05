@@ -93,7 +93,7 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
     },
     {
       label: "YouTube",
-      href: "https://youtube.com/@futureofmarketing",
+      href: "https://www.youtube.com/@FutureofMarketingwithAI",
       hoverColors: ["rgb(230,130,110)", "rgb(200,140,130)", "rgb(180,140,150)", "rgb(230,130,110)"], // coral-rose
     },
     {
