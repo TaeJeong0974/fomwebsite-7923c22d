@@ -12,21 +12,27 @@ import { liquidEase } from "@/components/animations/PageLoadAnimation";
 const hosts = [
   {
     name: "Mada Seghete",
-    title: "CEO & Co-Founder, Upside",
+    title: "CEO & Co-Founder",
+    company: "Upside",
+    companyUrl: "https://www.upside.com",
     bio: "CEO and co-founder of Upside, a next-gen revenue intelligence platform for B2B leaders. Previously co-founded Branch as CMO, scaling it to $100M+ revenue. Partner at XFactor Ventures investing in women founders.",
     image: hostMada,
     linkedInUrl: "https://www.linkedin.com/in/madalina/",
   },
   {
     name: "Ethan Smith",
-    title: "Founder & CEO, Graphite",
+    title: "Founder & CEO",
+    company: "Graphite",
+    companyUrl: "https://www.graphite.io",
     bio: "Founder and CEO of Graphite, a premium Vertical AI Growth Agency that helps companies like Webflow, Notion, MasterClass, and Captions drive sustainable revenue growth via SEO, content, and AEO (Answer Engine Optimization). Ethan is also an adjunct professor at IE Business School.",
     image: hostEthan,
     linkedInUrl: "https://www.linkedin.com/in/ethanls/",
   },
   {
     name: "Camille Ricketts",
-    title: "Partner, XYZ Venture Capital",
+    title: "Partner",
+    company: "XYZ Venture Capital",
+    companyUrl: "https://www.xyz.vc",
     bio: "Partner at XYZ Venture Capital, leading investments in product-led growth and go-to-market software startups. Previously the first marketing leader at Notion, and founder of First Round Review for First Round Capital.",
     image: hostCamille,
     linkedInUrl: "https://linkedin.com/in/camillericketts",
@@ -315,7 +321,10 @@ const HeroSection = () => {
                                 <span className="block text-2xl font-medium">{firstName}</span>
                                 <span className="block text-2xl font-normal">{lastName}</span>
                               </h3>
-                              <p className="text-sm text-muted-foreground mt-2">{host.title}</p>
+                              <p className="text-sm text-muted-foreground mt-2">
+                                {host.title},{" "}
+                                <a href={host.companyUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="hover:text-foreground hover-transition">{host.company}</a>
+                              </p>
                               <p className="text-sm leading-relaxed text-foreground/80 mt-4 hidden lg:block">
                                 {host.bio}
                               </p>
@@ -430,7 +439,10 @@ const HeroSection = () => {
                                 <span className="block text-3xl font-medium">{firstName}</span>
                                 <span className="block text-3xl font-normal">{lastName}</span>
                               </h3>
-                              <p className="text-sm text-muted-foreground mt-2">{host.title}</p>
+                              <p className="text-sm text-muted-foreground mt-2">
+                                {host.title},{" "}
+                                <a href={host.companyUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="hover:text-foreground hover-transition">{host.company}</a>
+                              </p>
                               <p className="text-sm leading-relaxed text-foreground/80 mt-4 hidden lg:block">
                                 {host.bio}
                               </p>
