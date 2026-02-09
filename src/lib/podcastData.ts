@@ -7,6 +7,7 @@ export interface PodcastHost {
   name: string;
   title: string;
   company: string;
+  companyUrl?: string;
   linkedInUrl?: string;
   bio?: string;
 }
@@ -47,6 +48,7 @@ export const podcastHosts: PodcastHost[] = [
     name: "Mada Seghete",
     title: "CEO & Co-Founder",
     company: "Upside",
+    companyUrl: "https://www.upside.com",
     linkedInUrl: "https://www.linkedin.com/in/madalina/",
     bio: "is the CEO and co-founder of Upside, a next-gen revenue intelligence platform for B2B leaders. Previously co-founded and was CMO of Branch, helping scale to $100M+ revenue. Cornell Engineering graduate with Masters and MBA from Stanford. Partner at XFactor Ventures investing in women founders and organizes yearly retreats for 100+ women founders.",
   },
@@ -54,6 +56,7 @@ export const podcastHosts: PodcastHost[] = [
     name: "Camille Ricketts",
     title: "Partner",
     company: "XYZ Venture Capital",
+    companyUrl: "https://www.xyz.vc",
     linkedInUrl: "https://linkedin.com/in/camillericketts",
     bio: "is a Partner at XYZ Venture Capital, where she leads investments in product-led growth and go-to-market software startups. Prior, she was the first marketing leader at Notion, building out the brand, community, and more. She also founded First Round Review for First Round Capital, managed communications at Tesla, and reported for the Wall Street Journal.",
   },
@@ -61,6 +64,7 @@ export const podcastHosts: PodcastHost[] = [
     name: "Ethan Smith",
     title: "Founder & CEO",
     company: "Graphite",
+    companyUrl: "https://www.graphite.io",
     linkedInUrl: "https://www.linkedin.com/in/ethanls/",
     bio: "is Founder and CEO of Graphite, a premium Vertical AI Growth Agency that helps companies like Webflow, Notion, MasterClass, and Captions drive sustainable revenue growth via SEO, content, and AEO (Answer Engine Optimization). Ethan is also an adjunct professor at IE Business School.",
   },
