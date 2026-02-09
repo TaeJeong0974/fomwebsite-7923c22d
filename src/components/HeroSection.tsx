@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Linkedin, Globe } from "lucide-react";
+import { ChevronDown, Linkedin, Globe, Building2 } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import hostMada from "@/assets/host-mada.png";
 import hostEthan from "@/assets/host-ethan.png";
@@ -14,7 +14,8 @@ const hosts = [
     name: "Mada Seghete",
     title: "CEO & Co-Founder",
     company: "Upside",
-    companyUrl: "https://madalinaseghete.com/",
+    companyUrl: "https://www.upside.tech/",
+    personalUrl: "https://madalinaseghete.com/",
     bio: "CEO and co-founder of Upside, a next-gen revenue intelligence platform for B2B leaders. Previously co-founded Branch as CMO, scaling it to $100M+ revenue. Partner at XFactor Ventures investing in women founders.",
     image: hostMada,
     linkedInUrl: "https://www.linkedin.com/in/madalina/",
@@ -327,26 +328,19 @@ const HeroSection = () => {
                               <p className="text-sm leading-relaxed text-foreground/80 mt-4 hidden lg:block">
                                 {host.bio}
                               </p>
-                              <div className="flex items-center gap-3 mt-4">
+                              <div className="flex items-center gap-2 mt-4">
                                 {host.linkedInUrl && (
-                                  <a 
-                                    href={host.linkedInUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={(e) => e.stopPropagation()}
-                                    className="rounded-full p-2.5 bg-foreground text-background"
-                                  >
+                                  <a href={host.linkedInUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-foreground text-background">
                                     <Linkedin className="h-4 w-4" />
                                   </a>
                                 )}
                                 {host.companyUrl && (
-                                  <a 
-                                    href={host.companyUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={(e) => e.stopPropagation()}
-                                    className="rounded-full p-2.5 bg-foreground text-background"
-                                  >
+                                  <a href={host.companyUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-foreground text-background">
+                                    <Building2 className="h-4 w-4" />
+                                  </a>
+                                )}
+                                {host.personalUrl && (
+                                  <a href={host.personalUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-foreground text-background">
                                     <Globe className="h-4 w-4" />
                                   </a>
                                 )}
@@ -457,26 +451,19 @@ const HeroSection = () => {
                               <p className="text-sm leading-relaxed text-foreground/80 mt-4 hidden lg:block">
                                 {host.bio}
                               </p>
-                              <div className="flex items-center gap-3 mt-4">
+                              <div className="flex items-center gap-2 mt-4">
                                 {host.linkedInUrl && (
-                                  <a 
-                                    href={host.linkedInUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={(e) => e.stopPropagation()}
-                                    className="rounded-full p-2.5 bg-foreground text-background hover:bg-foreground/80 transition-colors duration-300"
-                                  >
+                                  <a href={host.linkedInUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-foreground text-background hover:bg-foreground/80 transition-colors duration-300">
                                     <Linkedin className="h-4 w-4" />
                                   </a>
                                 )}
                                 {host.companyUrl && (
-                                  <a 
-                                    href={host.companyUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={(e) => e.stopPropagation()}
-                                    className="rounded-full p-2.5 bg-foreground text-background hover:bg-foreground/80 transition-colors duration-300"
-                                  >
+                                  <a href={host.companyUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-foreground text-background hover:bg-foreground/80 transition-colors duration-300">
+                                    <Building2 className="h-4 w-4" />
+                                  </a>
+                                )}
+                                {host.personalUrl && (
+                                  <a href={host.personalUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-foreground text-background hover:bg-foreground/80 transition-colors duration-300">
                                     <Globe className="h-4 w-4" />
                                   </a>
                                 )}
