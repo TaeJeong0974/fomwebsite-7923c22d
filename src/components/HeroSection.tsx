@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Linkedin, Globe } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import hostMada from "@/assets/host-mada.png";
 import hostEthan from "@/assets/host-ethan.png";
@@ -14,7 +14,7 @@ const hosts = [
     name: "Mada Seghete",
     title: "CEO & Co-Founder",
     company: "Upside",
-    companyUrl: "https://www.upside.tech/",
+    companyUrl: "https://madalinaseghete.com/",
     bio: "CEO and co-founder of Upside, a next-gen revenue intelligence platform for B2B leaders. Previously co-founded Branch as CMO, scaling it to $100M+ revenue. Partner at XFactor Ventures investing in women founders.",
     image: hostMada,
     linkedInUrl: "https://www.linkedin.com/in/madalina/",
@@ -335,9 +335,9 @@ const HeroSection = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={(e) => e.stopPropagation()}
-                                    className="inline-flex items-center px-4 py-2 bg-foreground text-background text-sm font-medium rounded-full"
+                                    className="rounded-full p-2.5 bg-foreground text-background"
                                   >
-                                    LinkedIn
+                                    <Linkedin className="h-4 w-4" />
                                   </a>
                                 )}
                                 {host.companyUrl && (
@@ -346,9 +346,9 @@ const HeroSection = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={(e) => e.stopPropagation()}
-                                    className="inline-flex items-center px-4 py-2 bg-foreground text-background text-sm font-medium rounded-full"
+                                    className="rounded-full p-2.5 bg-foreground text-background"
                                   >
-                                    Website
+                                    <Globe className="h-4 w-4" />
                                   </a>
                                 )}
                               </div>
@@ -466,10 +466,9 @@ const HeroSection = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={(e) => e.stopPropagation()}
-                                    className="group/linkedin inline-flex items-center gap-0 px-4 py-2 bg-foreground text-background text-sm font-medium rounded-full hover:bg-foreground/80 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                                    className="rounded-full p-2.5 bg-foreground text-background hover:bg-foreground/80 transition-colors duration-300"
                                   >
-                                    LinkedIn
-                                    <span className="inline-block max-w-0 overflow-hidden opacity-0 group-hover/linkedin:max-w-[20px] group-hover/linkedin:opacity-100 group-hover/linkedin:ml-1.5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] text-xs">→</span>
+                                    <Linkedin className="h-4 w-4" />
                                   </a>
                                 )}
                                 {host.companyUrl && (
@@ -478,10 +477,9 @@ const HeroSection = () => {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     onClick={(e) => e.stopPropagation()}
-                                    className="group/company inline-flex items-center gap-0 px-4 py-2 bg-foreground text-background text-sm font-medium rounded-full hover:bg-foreground/80 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                                    className="rounded-full p-2.5 bg-foreground text-background hover:bg-foreground/80 transition-colors duration-300"
                                   >
-                                    Website
-                                    <span className="inline-block max-w-0 overflow-hidden opacity-0 group-hover/company:max-w-[20px] group-hover/company:opacity-100 group-hover/company:ml-1.5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] text-xs">→</span>
+                                    <Globe className="h-4 w-4" />
                                   </a>
                                 )}
                               </div>
