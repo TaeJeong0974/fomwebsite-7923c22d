@@ -24,7 +24,19 @@ const EpisodeHostsCard = ({ showAllHosts = false, episodeHosts }: EpisodeHostsCa
                 <span className="inline lg:block font-normal">{lastName}</span>
               </h3>
               <p className="text-xs lg:text-sm text-muted-foreground mt-1 lg:mt-2">
-                {host.title}, {host.company}
+                {host.title},{" "}
+                {host.companyUrl ? (
+                  <a
+                    href={host.companyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-foreground hover-transition"
+                  >
+                    {host.company}
+                  </a>
+                ) : (
+                  host.company
+                )}
               </p>
               {host.linkedInUrl && (
                 <a
