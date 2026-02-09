@@ -14,7 +14,7 @@ const hosts = [
     name: "Mada Seghete",
     title: "CEO & Co-Founder",
     company: "Upside",
-    companyUrl: "https://www.upside.com",
+    companyUrl: "https://www.upside.tech/",
     bio: "CEO and co-founder of Upside, a next-gen revenue intelligence platform for B2B leaders. Previously co-founded Branch as CMO, scaling it to $100M+ revenue. Partner at XFactor Ventures investing in women founders.",
     image: hostMada,
     linkedInUrl: "https://www.linkedin.com/in/madalina/",
