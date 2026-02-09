@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Linkedin, Globe, Building2 } from "lucide-react";
+import { ChevronDown, Linkedin, Globe, Building2, Twitter } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import hostMada from "@/assets/host-mada.png";
 import hostEthan from "@/assets/host-ethan.png";
@@ -16,6 +16,7 @@ const hosts = [
     company: "Upside",
     companyUrl: "https://www.upside.tech/",
     personalUrl: "https://madalinaseghete.com/",
+    twitterHandle: "",
     bio: "CEO and co-founder of Upside, a next-gen revenue intelligence platform for B2B leaders. Previously co-founded Branch as CMO, scaling it to $100M+ revenue. Partner at XFactor Ventures investing in women founders.",
     image: hostMada,
     linkedInUrl: "https://www.linkedin.com/in/madalina/",
@@ -34,6 +35,7 @@ const hosts = [
     title: "Partner",
     company: "XYZ Venture Capital",
     companyUrl: "https://www.xyz.vc",
+    twitterHandle: "camillericketts",
     bio: "Partner at XYZ Venture Capital, leading investments in product-led growth and go-to-market software startups. Previously the first marketing leader at Notion, and founder of First Round Review for First Round Capital.",
     image: hostCamille,
     linkedInUrl: "https://linkedin.com/in/camillericketts",
@@ -340,11 +342,16 @@ const HeroSection = () => {
                                   </a>
                                 )}
                                 {host.personalUrl && (
-                                  <a href={host.personalUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-foreground text-background">
-                                    <Globe className="h-4 w-4" />
-                                  </a>
-                                )}
-                              </div>
+                                   <a href={host.personalUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-foreground text-background">
+                                     <Globe className="h-4 w-4" />
+                                   </a>
+                                 )}
+                                 {host.twitterHandle && (
+                                   <a href={`https://x.com/${host.twitterHandle}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-foreground text-background">
+                                     <Twitter className="h-4 w-4" />
+                                   </a>
+                                 )}
+                               </div>
                             </div>
                           </div>
                         </motion.div>
@@ -463,11 +470,16 @@ const HeroSection = () => {
                                   </a>
                                 )}
                                 {host.personalUrl && (
-                                  <a href={host.personalUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-foreground text-background hover:bg-foreground/80 transition-colors duration-300">
-                                    <Globe className="h-4 w-4" />
-                                  </a>
-                                )}
-                              </div>
+                                   <a href={host.personalUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-foreground text-background hover:bg-foreground/80 transition-colors duration-300">
+                                     <Globe className="h-4 w-4" />
+                                   </a>
+                                 )}
+                                 {host.twitterHandle && (
+                                   <a href={`https://x.com/${host.twitterHandle}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-foreground text-background hover:bg-foreground/80 transition-colors duration-300">
+                                     <Twitter className="h-4 w-4" />
+                                   </a>
+                                 )}
+                               </div>
                             </div>
                           </div>
                         </div>
