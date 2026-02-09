@@ -322,8 +322,7 @@ const HeroSection = () => {
                                 <span className="block text-2xl font-normal">{lastName}</span>
                               </h3>
                               <p className="text-sm text-muted-foreground mt-2">
-                                {host.title},{" "}
-                                <a href={host.companyUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="hover:text-foreground hover-transition">{host.company}</a>
+                                {host.title}, {host.company}
                               </p>
                               <p className="text-sm leading-relaxed text-foreground/80 mt-4 hidden lg:block">
                                 {host.bio}
@@ -453,8 +452,7 @@ const HeroSection = () => {
                                 <span className="block text-3xl font-normal">{lastName}</span>
                               </h3>
                               <p className="text-sm text-muted-foreground mt-2">
-                                {host.title},{" "}
-                                <a href={host.companyUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="hover:text-foreground hover-transition">{host.company}</a>
+                                {host.title}, {host.company}
                               </p>
                               <p className="text-sm leading-relaxed text-foreground/80 mt-4 hidden lg:block">
                                 {host.bio}
