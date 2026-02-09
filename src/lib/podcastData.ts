@@ -48,7 +48,7 @@ export const podcastHosts: PodcastHost[] = [
     name: "Mada Seghete",
     title: "CEO & Co-Founder",
     company: "Upside",
-    companyUrl: "https://www.upside.com",
+    companyUrl: "https://www.upside.tech/",
     linkedInUrl: "https://www.linkedin.com/in/madalina/",
     bio: "is the CEO and co-founder of Upside, a next-gen revenue intelligence platform for B2B leaders. Previously co-founded and was CMO of Branch, helping scale to $100M+ revenue. Cornell Engineering graduate with Masters and MBA from Stanford. Partner at XFactor Ventures investing in women founders and organizes yearly retreats for 100+ women founders.",
   },
