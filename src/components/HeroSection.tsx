@@ -328,17 +328,30 @@ const HeroSection = () => {
                               <p className="text-sm leading-relaxed text-foreground/80 mt-4 hidden lg:block">
                                 {host.bio}
                               </p>
-                              {host.linkedInUrl && (
-                                <a 
-                                  href={host.linkedInUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  onClick={(e) => e.stopPropagation()}
-                                  className="inline-flex items-center mt-4 px-4 py-2 bg-foreground text-background text-sm font-medium rounded-full"
-                                >
-                                  LinkedIn
-                                </a>
-                              )}
+                              <div className="flex items-center gap-3 mt-4">
+                                {host.linkedInUrl && (
+                                  <a 
+                                    href={host.linkedInUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={(e) => e.stopPropagation()}
+                                    className="inline-flex items-center px-4 py-2 bg-foreground text-background text-sm font-medium rounded-full"
+                                  >
+                                    LinkedIn
+                                  </a>
+                                )}
+                                {host.companyUrl && (
+                                  <a 
+                                    href={host.companyUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={(e) => e.stopPropagation()}
+                                    className="inline-flex items-center px-4 py-2 bg-foreground text-background text-sm font-medium rounded-full"
+                                  >
+                                    {host.company}
+                                  </a>
+                                )}
+                              </div>
                             </div>
                           </div>
                         </motion.div>
@@ -446,18 +459,32 @@ const HeroSection = () => {
                               <p className="text-sm leading-relaxed text-foreground/80 mt-4 hidden lg:block">
                                 {host.bio}
                               </p>
-                              {host.linkedInUrl && (
-                                <a 
-                                  href={host.linkedInUrl}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  onClick={(e) => e.stopPropagation()}
-                                  className="group/linkedin inline-flex items-center gap-0 mt-4 px-4 py-2 bg-foreground text-background text-sm font-medium rounded-full hover:bg-foreground/80 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
-                                >
-                                  LinkedIn
-                                  <span className="inline-block max-w-0 overflow-hidden opacity-0 group-hover/linkedin:max-w-[20px] group-hover/linkedin:opacity-100 group-hover/linkedin:ml-1.5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] text-xs">→</span>
-                                </a>
-                              )}
+                              <div className="flex items-center gap-3 mt-4">
+                                {host.linkedInUrl && (
+                                  <a 
+                                    href={host.linkedInUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={(e) => e.stopPropagation()}
+                                    className="group/linkedin inline-flex items-center gap-0 px-4 py-2 bg-foreground text-background text-sm font-medium rounded-full hover:bg-foreground/80 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                                  >
+                                    LinkedIn
+                                    <span className="inline-block max-w-0 overflow-hidden opacity-0 group-hover/linkedin:max-w-[20px] group-hover/linkedin:opacity-100 group-hover/linkedin:ml-1.5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] text-xs">→</span>
+                                  </a>
+                                )}
+                                {host.companyUrl && (
+                                  <a 
+                                    href={host.companyUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    onClick={(e) => e.stopPropagation()}
+                                    className="group/company inline-flex items-center gap-0 px-4 py-2 bg-foreground text-background text-sm font-medium rounded-full hover:bg-foreground/80 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"
+                                  >
+                                    {host.company}
+                                    <span className="inline-block max-w-0 overflow-hidden opacity-0 group-hover/company:max-w-[20px] group-hover/company:opacity-100 group-hover/company:ml-1.5 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] text-xs">→</span>
+                                  </a>
+                                )}
+                              </div>
                             </div>
                           </div>
                         </div>
