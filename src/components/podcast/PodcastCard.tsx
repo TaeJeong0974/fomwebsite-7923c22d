@@ -37,6 +37,64 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
     }
   };
 
+  const cardContent = (
+    <div className="card-image md:hover-scale relative">
+      <img
+        src={guestBg}
+        alt=""
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+      {episode.previewVideoUrl && !isUpcoming && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.4 }}
+          className="absolute inset-0 z-[1]"
+        >
+          <video
+            ref={videoRef}
+            muted
+            playsInline
+            className="w-full h-full object-cover"
+            poster={guestBg}
+          >
+            <source src={episode.previewVideoUrl} type="video/mp4" />
+          </video>
+        </motion.div>
+      )}
+
+      <div className="card-overlay-light hover-transition md:group-hover:opacity-90 z-[2]" />
+      
+      {isNew && (
+        <span className="absolute top-6 right-6 lg:top-8 lg:right-8 badge-status font-semibold text-foreground z-[3]">
+          New
+        </span>
+      )}
+      
+      {isUpcoming && (
+        <span className="absolute top-6 left-6 lg:top-8 lg:left-8 badge-status font-semibold text-foreground z-[3]">
+          Upcoming
+        </span>
+      )}
+      
+      <EpisodeCardContent episode={episode} isUpcoming={isUpcoming} />
+    </div>
+  );
+
+  if (isUpcoming) {
+    return (
+      <div
+        className="block group"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
+        {cardContent}
+      </div>
+    );
+  }
+
   return (
     <Link
       to={`/episode/${episode.slug}`}
@@ -44,51 +102,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="card-image md:hover-scale relative">
-        {/* Lazy loaded background image */}
-        <img
-          src={guestBg}
-          alt=""
-          loading="lazy"
-          decoding="async"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
-        {/* Video overlay - only for published episodes with preview */}
-        {episode.previewVideoUrl && !isUpcoming && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isHovered ? 1 : 0 }}
-            transition={{ duration: 0.4 }}
-            className="absolute inset-0 z-[1]"
-          >
-            <video
-              ref={videoRef}
-              muted
-              playsInline
-              className="w-full h-full object-cover"
-              poster={guestBg}
-            >
-              <source src={episode.previewVideoUrl} type="video/mp4" />
-            </video>
-          </motion.div>
-        )}
-
-        <div className="card-overlay-light hover-transition md:group-hover:opacity-90 z-[2]" />
-        
-        {isNew && (
-          <span className="absolute top-6 right-6 lg:top-8 lg:right-8 badge-status font-semibold text-foreground z-[3]">
-            New
-          </span>
-        )}
-        
-        {isUpcoming && (
-          <span className="absolute top-6 left-6 lg:top-8 lg:left-8 badge-status font-semibold text-foreground z-[3]">
-            Upcoming
-          </span>
-        )}
-        
-        <EpisodeCardContent episode={episode} isUpcoming={isUpcoming} />
-      </div>
+      {cardContent}
     </Link>
   );
 };
