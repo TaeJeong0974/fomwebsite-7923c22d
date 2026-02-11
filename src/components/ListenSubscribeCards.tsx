@@ -98,7 +98,7 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
     },
     {
       label: "Apple",
-      href: "https://podcasts.apple.com/podcast/futureofmarketing",
+      href: "https://podcasts.apple.com/us/podcast/future-of-marketing/id1876216633",
       hoverColors: ["rgb(200,140,180)", "rgb(180,130,170)", "rgb(160,140,190)", "rgb(200,140,180)"], // soft pink-purple
     },
     {
