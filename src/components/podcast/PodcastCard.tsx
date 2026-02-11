@@ -38,7 +38,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
   };
 
   const cardContent = (
-    <div className="card-image md:hover-scale relative">
+    <div className={`card-image relative ${isUpcoming ? '' : 'md:hover-scale'}`}>
       <img
         src={guestBg}
         alt=""
@@ -81,9 +81,9 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
       
       <EpisodeCardContent episode={episode} isUpcoming={isUpcoming} />
 
-      {/* Subscribe CTA for upcoming episodes */}
+      {/* Subscribe CTA for upcoming episodes - hover only */}
       {isUpcoming && (
-        <div className="absolute bottom-0 left-0 right-0 z-[4] card-padding-lg pb-6 lg:pb-8">
+        <div className="absolute bottom-0 left-0 right-0 z-[4] card-padding-lg pb-6 lg:pb-8 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 ease-[cubic-bezier(0.33,1,0.68,1)]">
           <button
             onClick={(e) => {
               e.stopPropagation();
