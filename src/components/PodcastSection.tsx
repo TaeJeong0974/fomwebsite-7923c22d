@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { LayoutGrid, List } from "lucide-react";
+import { LayoutGrid, List, Plus, ChevronUp } from "lucide-react";
 
 import { getPublishedEpisodes, getComingSoonEpisodes, PodcastEpisode, podcastHosts } from "@/lib/podcastData";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -111,9 +111,11 @@ const PodcastGridView = ({
     ...comingSoonEpisodes.map((ep, i) => ({ type: 'coming-soon' as const, episode: ep, index: episodes.slice(0, 4).length + i })),
   ];
   
-  const INITIAL_COUNT = isMobileView ? 3 : 6;
-  const visibleCards = showAll ? allCards : allCards.slice(0, INITIAL_COUNT);
-  const hasMore = !showAll && allCards.length > INITIAL_COUNT;
+  const MOBILE_INITIAL = 3;
+  const DESKTOP_INITIAL = 5; // 5 cards + 1 "load more" card = 6 slots
+  const initialCount = isMobileView ? MOBILE_INITIAL : DESKTOP_INITIAL;
+  const hasMore = allCards.length > initialCount;
+  const visibleCards = showAll ? allCards : allCards.slice(0, initialCount);
   
   return (
     <div className="space-y-6">
@@ -138,7 +140,33 @@ const PodcastGridView = ({
           </motion.div>
         ))}
         
-        {/* Subscribe card - only visible when all cards are shown */}
+        {/* Load More / Show Less card in grid */}
+        {hasMore && (
+          <motion.div 
+            initial={{ opacity: 0, y: 30, scale: 0.95 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, delay: 0.15, ease: liquidEase }}
+          >
+            <div
+              onClick={() => setShowAll(!showAll)}
+              className="card-image group cursor-pointer relative flex items-center justify-center bg-foreground/[0.03] border border-foreground/[0.06] hover:bg-foreground/[0.06] hover:border-foreground/[0.1] transition-all duration-500"
+            >
+              <div className="flex flex-col items-center gap-3 text-foreground/60 group-hover:text-foreground transition-colors duration-500">
+                {showAll ? (
+                  <ChevronUp className="w-6 h-6" />
+                ) : (
+                  <Plus className="w-6 h-6" />
+                )}
+                <span className="text-sm font-medium tracking-wide">
+                  {showAll ? 'Show Less' : `${allCards.length - initialCount} More`}
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        )}
+        
+        {/* Subscribe card - last item when expanded */}
         {showAll && (
           <motion.div 
             initial={{ opacity: 0, y: 30, scale: 0.98 }}
@@ -150,25 +178,6 @@ const PodcastGridView = ({
           </motion.div>
         )}
       </div>
-      
-      {/* Load More / Show Less button */}
-      {(hasMore || showAll) && allCards.length > INITIAL_COUNT && (
-        <motion.div 
-          className="flex justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-        >
-          <LiquidButton
-            variant="glass"
-            size="md"
-            onClick={() => setShowAll(!showAll)}
-            className="bg-white/40 hover:bg-white/60 shadow-[0_2px_12px_-2px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.8)] hover:shadow-[0_4px_20px_-4px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,1)]"
-          >
-            <span>{showAll ? 'Show Less' : 'Load More'}</span>
-          </LiquidButton>
-        </motion.div>
-      )}
     </div>
   );
 };
