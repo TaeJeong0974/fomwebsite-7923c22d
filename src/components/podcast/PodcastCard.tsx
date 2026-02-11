@@ -38,7 +38,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
   };
 
   const cardContent = (
-    <div className={`card-image relative ${isUpcoming ? '' : 'md:hover-scale'}`}>
+    <div className="card-image md:hover-scale relative">
       <img
         src={guestBg}
         alt=""
@@ -81,18 +81,22 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
       
       <EpisodeCardContent episode={episode} isUpcoming={isUpcoming} />
 
-      {/* Subscribe CTA for upcoming episodes - hover only */}
+      {/* Subscribe CTA for upcoming episodes - uses same grid animation as overview */}
       {isUpcoming && (
-        <div className="absolute bottom-0 left-0 right-0 z-[4] card-padding-lg pb-6 lg:pb-8 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 ease-[cubic-bezier(0.33,1,0.68,1)]">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              openSubscribe();
-            }}
-            className="btn-base btn-sm bg-white/90 backdrop-blur-sm text-foreground hover:bg-white transition-colors"
-          >
-            Get Notified
-          </button>
+        <div className="absolute bottom-0 left-0 right-0 z-[4] card-padding-lg pb-6 lg:pb-8">
+          <div className="grid grid-rows-[1fr] mt-4 md:grid-rows-[0fr] md:mt-0 md:group-hover:grid-rows-[1fr] md:group-hover:mt-4 transition-[grid-template-rows,margin] duration-700 ease-[cubic-bezier(0.33,1,0.68,1)]">
+            <div className="min-h-0 overflow-hidden opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity duration-500 delay-100 ease-[cubic-bezier(0.33,1,0.68,1)]">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openSubscribe();
+                }}
+                className="btn-base btn-sm bg-white/90 backdrop-blur-sm text-foreground hover:bg-white transition-colors"
+              >
+                Get Notified
+              </button>
+            </div>
+          </div>
         </div>
       )}
     </div>
