@@ -111,9 +111,9 @@ const PodcastGridView = ({
     ...comingSoonEpisodes.map((ep, i) => ({ type: 'coming-soon' as const, episode: ep, index: episodes.slice(0, 4).length + i })),
   ];
   
-  // On mobile, show 3 initially; on desktop show all
-  const visibleCards = isMobileView && !showAll ? allCards.slice(0, 3) : allCards;
-  const hasMore = isMobileView && !showAll && allCards.length > 3;
+  const INITIAL_COUNT = isMobileView ? 3 : 6;
+  const visibleCards = showAll ? allCards : allCards.slice(0, INITIAL_COUNT);
+  const hasMore = !showAll && allCards.length > INITIAL_COUNT;
   
   return (
     <div className="space-y-6">
@@ -138,8 +138,8 @@ const PodcastGridView = ({
           </motion.div>
         ))}
         
-        {/* Subscribe card - only show when all cards are visible or on desktop */}
-        {(!isMobileView || showAll) && (
+        {/* Subscribe card - only show when all cards are visible */}
+        {showAll && (
           <motion.div 
             initial={{ opacity: 0, y: 30, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
