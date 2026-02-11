@@ -247,7 +247,7 @@ const PodcastListView = ({
                   <span className={`text-label pt-0 sm:pt-2 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>EP {String(index + 1).padStart(2, '0')}</span>
                     <div className="flex-1">
                     {(isComingSoon || (!isComingSoon && isNewEpisode(episode.publishedDate))) && (
-                      <div className={`mb-2 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
+                      <div className={`mb-3 sm:mb-4 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
                         {isComingSoon && <span className="badge-status">Upcoming</span>}
                         {!isComingSoon && isNewEpisode(episode.publishedDate) && <span className="badge-status">New</span>}
                       </div>
