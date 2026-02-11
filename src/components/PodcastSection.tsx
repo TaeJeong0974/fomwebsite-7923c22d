@@ -246,6 +246,12 @@ const PodcastListView = ({
                 <div className="flex items-start gap-4 sm:gap-6 lg:gap-10">
                   <span className={`text-label pt-0 sm:pt-2 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>EP {String(index + 1).padStart(2, '0')}</span>
                     <div className="flex-1">
+                    {(isComingSoon || (!isComingSoon && isNewEpisode(episode.publishedDate))) && (
+                      <div className={`mb-2 transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
+                        {isComingSoon && <span className="badge-status">Upcoming</span>}
+                        {!isComingSoon && isNewEpisode(episode.publishedDate) && <span className="badge-status">New</span>}
+                      </div>
+                    )}
                     <div className="flex items-start gap-4 lg:gap-6">
                       <h3 className={`font-display text-3xl sm:text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
                         {episode.name}
@@ -254,8 +260,6 @@ const PodcastListView = ({
                       <p className={`hidden lg:block text-sm pt-1.5 text-foreground transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
                         {isIntroEpisode ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>}
                       </p>
-                      {isComingSoon && <span className="badge-status mt-1 lg:mt-0">Upcoming</span>}
-                      {!isComingSoon && isNewEpisode(episode.publishedDate) && <span className="badge-status mt-1 lg:mt-0">New</span>}
                     </div>
                     {/* Mobile/Tablet: Title & Company below name */}
                     <p className={`lg:hidden mt-2 text-sm text-foreground transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${!isMobile && hoveredIndex !== null && hoveredIndex !== index ? 'opacity-30' : ''}`}>
