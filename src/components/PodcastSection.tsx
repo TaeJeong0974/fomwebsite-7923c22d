@@ -31,8 +31,14 @@ const getEpisodeImage = (slug: string, index: number): string => {
   return EPISODE_IMAGES[slug] || HOST_IMAGES[index % HOST_IMAGES.length];
 };
 const PodcastSection = () => {
+  const isMobile = useIsMobile();
   const [layout, setLayout] = useState<LayoutType>("grid");
   const publishedEpisodes = getPublishedEpisodes();
+
+  // Default to list view on mobile
+  useEffect(() => {
+    setLayout(isMobile ? "list" : "grid");
+  }, [isMobile]);
   const comingSoonEpisodes = getComingSoonEpisodes();
   return <section id="podcast" className="pt-16 md:pt-20 lg:pt-24 pb-14 md:pb-16 lg:pb-20 scroll-mt-24 md:scroll-mt-28">
       <div className="container mx-auto container-padding">
