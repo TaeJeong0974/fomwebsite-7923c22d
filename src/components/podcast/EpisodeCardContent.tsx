@@ -56,7 +56,7 @@ const EpisodeCardContent = ({
       )}
       
       {/* Overview text - grid height animation, content always visible inside */}
-      {showOverview && episode.overview && !isUpcoming && (
+      {showOverview && episode.overview && (
         <div className={hoverWrapperClasses}>
           <div className={hoverContentClasses}>
             <p className="text-body-sm leading-relaxed text-white line-clamp-3 max-w-[85%]">
