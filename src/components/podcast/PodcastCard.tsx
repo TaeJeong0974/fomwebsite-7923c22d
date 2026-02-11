@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { PodcastEpisode } from "@/lib/podcastData";
 import EpisodeCardContent from "@/components/podcast/EpisodeCardContent";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useSubscribe } from "@/contexts/SubscribeContext";
 import guestBg from "@/assets/guest-bg.png";
 
 interface PodcastCardProps {
@@ -16,20 +17,19 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const isMobile = useIsMobile();
+  const { openSubscribe } = useSubscribe();
 
   const handleMouseEnter = () => {
-    if (isMobile) return;
+    if (isMobile || isUpcoming) return;
     setIsHovered(true);
     if (videoRef.current && episode.previewVideoUrl) {
       videoRef.current.currentTime = 0;
-      videoRef.current.play().catch(() => {
-        // Autoplay may be blocked, that's okay
-      });
+      videoRef.current.play().catch(() => {});
     }
   };
 
   const handleMouseLeave = () => {
-    if (isMobile) return;
+    if (isMobile || isUpcoming) return;
     setIsHovered(false);
     if (videoRef.current) {
       videoRef.current.pause();
@@ -80,16 +80,27 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
       )}
       
       <EpisodeCardContent episode={episode} isUpcoming={isUpcoming} />
+
+      {/* Subscribe CTA for upcoming episodes */}
+      {isUpcoming && (
+        <div className="absolute bottom-0 left-0 right-0 z-[4] card-padding-lg pb-6 lg:pb-8">
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              openSubscribe();
+            }}
+            className="btn-base btn-sm bg-white/90 backdrop-blur-sm text-foreground hover:bg-white transition-colors"
+          >
+            Get Notified
+          </button>
+        </div>
+      )}
     </div>
   );
 
   if (isUpcoming) {
     return (
-      <div
-        className="block group"
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+      <div className="block group">
         {cardContent}
       </div>
     );
