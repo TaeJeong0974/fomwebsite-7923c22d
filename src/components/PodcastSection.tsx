@@ -138,17 +138,15 @@ const PodcastGridView = ({
           </motion.div>
         ))}
         
-        {/* Subscribe card - only show when all cards are visible */}
-        {showAll && (
-          <motion.div 
-            initial={{ opacity: 0, y: 30, scale: 0.98 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, delay: 0.9, ease: liquidEase }}
-          >
-            <SubscribeCard />
-          </motion.div>
-        )}
+        {/* Subscribe card - always visible with initial batch */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 1.0, delay: 0.2, ease: liquidEase }}
+        >
+          <SubscribeCard />
+        </motion.div>
       </div>
       
       {/* Load More / Show Less button */}
