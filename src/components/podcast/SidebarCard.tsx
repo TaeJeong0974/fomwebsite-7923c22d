@@ -32,6 +32,8 @@ const SidebarCard = ({ title, children }: SidebarCardProps) => {
         <img 
           src={teaserBg} 
           alt="" 
+          loading="lazy"
+          decoding="async"
           className="w-full h-auto object-contain object-bottom absolute bottom-0 left-0" 
         />
         <div className="absolute inset-0 bg-[linear-gradient(to_bottom,hsl(var(--background))_0%,hsl(var(--background))_50%,hsl(var(--background)/0.8)_65%,hsl(var(--background)/0.3)_85%,transparent_100%)]" />
