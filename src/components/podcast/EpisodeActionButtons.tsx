@@ -63,7 +63,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
 
       {/* Apple Podcasts */}
       <motion.a
-        href="https://podcasts.apple.com/podcast/futureofmarketing"
+        href="https://podcasts.apple.com/us/podcast/future-of-marketing/id1876216633"
         target="_blank"
         rel="noopener noreferrer"
         className={liquidGlassButton}
