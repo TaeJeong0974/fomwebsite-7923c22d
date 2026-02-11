@@ -1,3 +1,4 @@
+import { Bell } from "lucide-react";
 import { PodcastEpisode } from "@/lib/podcastData";
 
 interface EpisodeCardContentProps {
@@ -56,7 +57,16 @@ const EpisodeCardContent = ({
       )}
       
       {/* Overview text - grid height animation, content always visible inside */}
-      {showOverview && episode.overview && (
+      {isUpcoming ? (
+        <div className={hoverWrapperClasses}>
+          <div className={hoverContentClasses}>
+            <span className="inline-flex items-center gap-2 text-sm font-medium text-white">
+              <Bell size={14} />
+              Get Notified
+            </span>
+          </div>
+        </div>
+      ) : showOverview && episode.overview ? (
         <div className={hoverWrapperClasses}>
           <div className={hoverContentClasses}>
             <p className="text-body-sm leading-relaxed text-white line-clamp-3 max-w-[85%]">
@@ -64,7 +74,7 @@ const EpisodeCardContent = ({
             </p>
           </div>
         </div>
-      )}
+      ) : null}
     </div>
   );
 };
