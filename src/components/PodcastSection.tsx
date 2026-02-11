@@ -140,7 +140,19 @@ const PodcastGridView = ({
           </motion.div>
         ))}
         
-        {/* Load More / Show Less card in grid */}
+        {/* Subscribe card - before the toggle card when expanded */}
+        {showAll && (
+          <motion.div 
+            initial={{ opacity: 0, y: 30, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.15 }}
+            transition={{ duration: 1.0, delay: 0.2, ease: liquidEase }}
+          >
+            <SubscribeCard />
+          </motion.div>
+        )}
+
+        {/* Load More / Show Less card - always last in grid */}
         {hasMore && (
           <motion.div 
             initial={{ opacity: 0, y: 30, scale: 0.95 }}
@@ -163,18 +175,6 @@ const PodcastGridView = ({
                 </span>
               </div>
             </div>
-          </motion.div>
-        )}
-        
-        {/* Subscribe card - last item when expanded */}
-        {showAll && (
-          <motion.div 
-            initial={{ opacity: 0, y: 30, scale: 0.98 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, amount: 0.15 }}
-            transition={{ duration: 1.0, delay: 0.2, ease: liquidEase }}
-          >
-            <SubscribeCard />
           </motion.div>
         )}
       </div>
