@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { PodcastEpisode } from "@/lib/podcastData";
 import EpisodeCardContent from "@/components/podcast/EpisodeCardContent";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useSubscribe } from "@/contexts/SubscribeContext";
 import guestBg from "@/assets/guest-bg.png";
 
 interface PodcastCardProps {
@@ -16,6 +17,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const isMobile = useIsMobile();
+  const { openSubscribe } = useSubscribe();
 
   const handleMouseEnter = () => {
     if (isMobile) return;
@@ -86,7 +88,8 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
   if (isUpcoming) {
     return (
       <div
-        className="block group"
+        className="block group cursor-pointer"
+        onClick={openSubscribe}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
