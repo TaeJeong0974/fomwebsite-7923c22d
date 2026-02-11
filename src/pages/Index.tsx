@@ -1,9 +1,9 @@
 import { lazy, Suspense } from "react";
 import HeroSection from "@/components/HeroSection";
-import PodcastSection from "@/components/PodcastSection";
 import StickyVerticalText from "@/components/StickyVerticalText";
 
 // Lazy load below-the-fold sections
+const PodcastSection = lazy(() => import("@/components/PodcastSection"));
 const EventsSection = lazy(() => import("@/components/EventsSection"));
 const CTASection = lazy(() => import("@/components/CTASection"));
 
@@ -15,8 +15,8 @@ const Index = () => {
       
       <main>
         <HeroSection />
-        <PodcastSection />
         <Suspense fallback={<div className="min-h-[50vh]" />}>
+          <PodcastSection />
           <EventsSection />
           <CTASection />
         </Suspense>
