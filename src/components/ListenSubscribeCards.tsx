@@ -108,7 +108,7 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
     },
     {
       label: "LinkedIn",
-      href: "https://linkedin.com/company/futureofmarketing",
+      href: "https://www.linkedin.com/company/f-o-m/about/",
       hoverColors: ["rgb(130,150,180)", "rgb(100,140,175)", "rgb(85,130,170)", "rgb(130,150,180)"], // dusty blue
     },
   ];
