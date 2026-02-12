@@ -7,7 +7,6 @@ import { getPublishedEpisodes, getComingSoonEpisodes, PodcastEpisode, podcastHos
 import { useIsMobile } from "@/hooks/use-mobile";
 import SubscribeCard from "@/components/SubscribeCard";
 import PodcastCard from "@/components/podcast/PodcastCard";
-import MouseFollowImage from "@/components/podcast/MouseFollowImage";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
 import hostMada from "@/assets/host-mada.png";
 import hostEthan from "@/assets/host-ethan.png";
@@ -15,6 +14,15 @@ import hostCamille from "@/assets/host-camille.png";
 import guestBg from "@/assets/guest-bg.png";
 
 type LayoutType = "grid" | "list";
+
+const HOVER_COLORS = [
+  ["#594881", "#805781", "#9A5B77", "#594881"],
+  ["#805781", "#9A5B77", "#AB5866", "#805781"],
+  ["#9A5B77", "#AB5866", "#B45250", "#9A5B77"],
+  ["#AB5866", "#B45250", "#B44C38", "#AB5866"],
+  ["#B45250", "#B44C38", "#594881", "#B45250"],
+  ["#B44C38", "#594881", "#805781", "#B44C38"],
+];
 
 const EPISODE_IMAGES: Record<string, string> = {
   'meagen-eisenberg': guestBg
@@ -175,17 +183,7 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
 
 const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [mousePositions, setMousePositions] = useState<Record<number, { x: number; y: number }>>({});
   const isMobile = useIsMobile();
-  
-  const handleMouseMove = (index: number, e: React.MouseEvent<HTMLDivElement>) => {
-    if (isMobile) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePositions(prev => ({
-      ...prev,
-      [index]: { x: e.clientX - rect.left, y: e.clientY - rect.top }
-    }));
-  };
   
   const allEpisodes = [...episodes, ...comingSoonEpisodes];
 
@@ -196,6 +194,8 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
         const isIntroEpisode = episode.slug === 'intro-to-fom';
         const dim = dimClass(isMobile, hoveredIndex, index);
         const hasBadge = isComingSoon || isNewEpisode(episode.publishedDate);
+        const isHovered = hoveredIndex === index && !isMobile;
+        const colors = HOVER_COLORS[index % HOVER_COLORS.length];
 
         return (
           <motion.div
@@ -207,7 +207,6 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
             className="relative"
             onMouseEnter={() => !isMobile && setHoveredIndex(index)}
             onMouseLeave={() => !isMobile && setHoveredIndex(null)}
-            onMouseMove={e => handleMouseMove(index, e)}
           >
             
             <Link
@@ -233,9 +232,25 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
                   </span>
                   <div className="flex-1">
                     <div className="flex items-start gap-4 lg:gap-6">
-                      <h3 className={`font-display text-3xl sm:text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight list-focus-transition ${dim}`}>
+                      <motion.h3 
+                        className={`font-display text-3xl sm:text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight list-focus-transition ${dim}`}
+                        initial={false}
+                        animate={isHovered ? {
+                          color: colors,
+                          x: 8,
+                        } : {
+                          color: '#1a1a1a',
+                          x: 0,
+                        }}
+                        transition={{
+                          color: isHovered
+                            ? { duration: 4, ease: 'easeInOut', repeat: Infinity }
+                            : { duration: 0.15, ease: liquidEase },
+                          x: { duration: isHovered ? 0.6 : 0.15, ease: liquidEase },
+                        }}
+                      >
                         {episode.name}
-                      </h3>
+                      </motion.h3>
                       {/* Desktop: Title & Company inline */}
                       <p className={`hidden lg:block text-sm pt-1.5 text-foreground list-focus-transition ${dim}`}>
                         {isIntroEpisode 
