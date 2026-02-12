@@ -2,9 +2,9 @@ import { useState, useRef } from "react";
 import { Play } from "lucide-react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
+import fomThumbnail from "@/assets/fom-2025-thumbnail.jpg";
 
 const YOUTUBE_VIDEO_ID = "5E--ZqG5QME";
-const YOUTUBE_THUMBNAIL = `https://img.youtube.com/vi/${YOUTUBE_VIDEO_ID}/maxresdefault.jpg`;
 
 const EventsSection = () => {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -87,7 +87,7 @@ const EventsSection = () => {
               ) : (
                 <>
                   <img
-                    src={YOUTUBE_THUMBNAIL}
+                    src={fomThumbnail}
                     alt="FOM 2025 Event"
                     className="absolute inset-0 w-full h-full object-cover scale-110"
                     loading="lazy"
