@@ -209,15 +209,6 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
             onMouseLeave={() => !isMobile && setHoveredIndex(null)}
             onMouseMove={e => handleMouseMove(index, e)}
           >
-            {!isMobile && mousePositions[index] && (
-              <MouseFollowImage
-                isHovered={hoveredIndex === index}
-                mouseX={mousePositions[index].x}
-                mouseY={mousePositions[index].y}
-                imageSrc={getEpisodeImage(episode.slug, index)}
-                name={episode.name}
-              />
-            )}
             
             <Link
               to={`/episode/${episode.slug}`}
