@@ -273,18 +273,24 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
               {!isComingSoon && (
                 <div className="hidden lg:flex items-center shrink-0">
                   <motion.span
-                    className="text-sm font-display font-semibold uppercase tracking-wider"
+                    className="text-sm font-display font-semibold uppercase tracking-wider rounded-full"
                     initial={false}
                     animate={isHovered ? {
-                      color: colors,
+                      color: '#ffffff',
+                      backgroundColor: '#1a1a1a',
+                      paddingTop: '0.625rem',
+                      paddingBottom: '0.625rem',
+                      paddingLeft: '1.25rem',
+                      paddingRight: '1.25rem',
                     } : {
                       color: '#1a1a1a',
+                      backgroundColor: 'rgba(0,0,0,0)',
+                      paddingTop: '0.625rem',
+                      paddingBottom: '0.625rem',
+                      paddingLeft: '0rem',
+                      paddingRight: '0rem',
                     }}
-                    transition={{
-                      color: isHovered
-                        ? { duration: 4, ease: 'easeInOut', repeat: Infinity }
-                        : { duration: 0.15, ease: liquidEase },
-                    }}
+                    transition={{ duration: 0.4, ease: liquidEase }}
                   >
                     Watch Now
                   </motion.span>
