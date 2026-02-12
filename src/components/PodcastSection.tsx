@@ -41,9 +41,8 @@ const getEpisodeImage = (slug: string, index: number): string => {
 };
 
 /** Returns opacity class for list-view focus-dim effect */
-const dimClass = (isMobile: boolean, hoveredIndex: number | null, index: number): string => {
-  if (isMobile || hoveredIndex === null || hoveredIndex === index) return "";
-  return "opacity-30";
+const dimClass = (): string => {
+  return "";
 };
 
 const PodcastSection = () => {
@@ -192,7 +191,7 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
       {allEpisodes.map((episode, index) => {
         const isComingSoon = episode.comingSoon;
         const isIntroEpisode = episode.slug === 'intro-to-fom';
-        const dim = dimClass(isMobile, hoveredIndex, index);
+        const dim = "";
         const hasBadge = isComingSoon || isNewEpisode(episode.publishedDate);
         const isHovered = hoveredIndex === index && !isMobile;
         const colors = HOVER_COLORS[index % HOVER_COLORS.length];
