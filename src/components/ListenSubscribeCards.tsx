@@ -89,27 +89,27 @@ const ListenSubscribeCards = ({ showTitle = true, className = "" }: ListenSubscr
       label: "Subscribe",
       onClick: openSubscribe,
       href: undefined,
-      hoverColors: ["rgb(218,150,120)", "rgb(230,130,110)", "rgb(200,160,140)", "rgb(218,150,120)"], // warm peach-coral
+      hoverColors: ["#594881", "#805781", "#9A5B77", "#594881"],
     },
     {
       label: "YouTube",
       href: "https://www.youtube.com/@FutureofMarketingwithAI",
-      hoverColors: ["rgb(230,130,110)", "rgb(200,140,130)", "rgb(180,140,150)", "rgb(230,130,110)"], // coral-rose
+      hoverColors: ["#805781", "#9A5B77", "#AB5866", "#805781"],
     },
     {
       label: "Apple",
       href: "https://podcasts.apple.com/us/podcast/future-of-marketing/id1876216633",
-      hoverColors: ["rgb(200,140,180)", "rgb(180,130,170)", "rgb(160,140,190)", "rgb(200,140,180)"], // soft pink-purple
+      hoverColors: ["#9A5B77", "#AB5866", "#B45250", "#9A5B77"],
     },
     {
       label: "Spotify",
       href: "https://open.spotify.com/show/futureofmarketing",
-      hoverColors: ["rgb(180,140,150)", "rgb(150,140,170)", "rgb(130,150,180)", "rgb(180,140,150)"], // dusty mauve-lavender
+      hoverColors: ["#AB5866", "#B45250", "#B44C38", "#AB5866"],
     },
     {
       label: "LinkedIn",
       href: "https://www.linkedin.com/company/f-o-m/about/",
-      hoverColors: ["rgb(130,150,180)", "rgb(100,140,175)", "rgb(85,130,170)", "rgb(130,150,180)"], // dusty blue
+      hoverColors: ["#B45250", "#B44C38", "#594881", "#B45250"],
     },
   ];
 
