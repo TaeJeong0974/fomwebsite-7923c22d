@@ -28,7 +28,7 @@ const AnimatedLink = ({ item, variants, isMobile }: AnimatedLinkProps) => {
         color: item.hoverColors,
         x: 8,
       } : {
-        color: 'hsl(var(--foreground))',
+        color: '#1a1a1a',
         x: 0,
       }}
       transition={{ 
