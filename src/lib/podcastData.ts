@@ -104,7 +104,7 @@ From the tradeoffs between authenticity and reach to the risks of messy data and
     duration: "25 min",
     publishedDate: "Jan 1, 2026",
     comingSoon: false,
-    previewVideoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+    previewVideoUrl: undefined,
     hosts: podcastHosts,
   },
   {
@@ -141,7 +141,7 @@ From the tradeoffs between authenticity and reach to the risks of messy data and
     publishedDate: "Jan 15, 2026",
     comingSoon: false,
     linkedInUrl: "https://linkedin.com/in/meageneisenberg",
-    previewVideoUrl: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+    previewVideoUrl: undefined,
     pullQuote: "I think the key to positioning is understanding the customer. And so you have to do the work for that. You have to be curious. You have to talk with your customers and then you can work with AI to take those insights and build out and understand positioning.",
     newslettersMentioned: [
       { name: "The Rundown AI", url: "https://www.therundown.ai/" },
