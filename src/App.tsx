@@ -10,7 +10,6 @@ import Navbar from "@/components/Navbar";
 import Index from "./pages/Index";
 import PodcastDetail from "./pages/PodcastDetail";
 import Privacy from "./pages/Privacy";
-import Terms from "./pages/Terms";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -31,7 +30,6 @@ const AppRoutes = () => {
           <Route path="/" element={<Index />} />
           <Route path="/episode/:slug" element={<PodcastDetail />} />
           <Route path="/privacy" element={<Privacy />} />
-          <Route path="/terms" element={<Terms />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </PageTransition>

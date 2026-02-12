@@ -5,110 +5,214 @@ const Privacy = () => {
     <main className="min-h-screen pt-32 pb-16">
       <div className="container mx-auto container-padding max-w-3xl">
         <h1 className="font-display text-4xl sm:text-5xl font-bold mb-4">Privacy Policy</h1>
-        <p className="text-foreground/50 mb-12">Last Modified: July 2023</p>
+        <p className="text-foreground/50 mb-12">Last Updated: Jul 04, 2025</p>
 
-        <div className="prose prose-neutral max-w-none space-y-8 text-foreground/70 text-[15px] leading-relaxed">
+        <div className="space-y-10 text-foreground/70 text-[15px] leading-relaxed">
           <p>
-            This Privacy Policy ("Privacy Policy") for Screenplay Studios Inc. dba Graphite ("Company", "we", "us", "our") describes how we collect, use and disclose information about visitors of the Company's website graphite.com (the "Website"), and any content, tools, features and functionality offered on or through our Website are collectively referred to herein as the "Services." For the purposes of this Privacy Policy, "you" and "your" means you as the user of the Services.
-          </p>
-          <p>
-            Please read this Privacy Policy carefully. If you do not want information about you used as described in this Privacy Policy, please do not access or use the Services.
+            This Privacy Notice is designed to help you understand how Graphite Growth, Inc. ("Graphite," "we," "us," or "our") collects, uses, and shares your personal information, and to help you understand and exercise your privacy rights.
           </p>
 
-          <h2 className="font-display text-2xl font-semibold text-foreground mt-12 mb-4">Updating this Privacy Policy</h2>
-          <p>
-            We may modify this Privacy Policy from time to time in which case we will update the "Last Modified" date at the top of this Privacy Policy. The updated Privacy Policy will be effective as of the time of posting, or such later date as may be specified in the updated Privacy Policy. If we make material changes we will notify you and/or take other steps as required by applicable law. If you do not agree to any updates to this Privacy Policy, please do not access or continue to use the Services.
-          </p>
+          <div className="border-t border-foreground/10 pt-2">
+            <p className="text-foreground/40 text-xs uppercase tracking-widest mb-6">Table of Contents</p>
+            <ol className="list-decimal pl-6 space-y-1 text-foreground/50 text-sm">
+              <li>Scope & Updates To This Privacy Policy</li>
+              <li>Personal Information We Collect</li>
+              <li>How We Use Your Information</li>
+              <li>How We Disclose Your Information</li>
+              <li>Your Privacy Choices And Rights</li>
+              <li>International Data Transfers</li>
+              <li>Retention of Personal Information</li>
+              <li>Children's Information</li>
+              <li>Other Provisions</li>
+              <li>Contact Us</li>
+            </ol>
+          </div>
 
-          <h2 className="font-display text-2xl font-semibold text-foreground mt-12 mb-4">Company's Collection and Use of Information</h2>
-          <p>
-            In order to provide you with the Services, we may ask you to provide us with certain details or information about you. Information that you submit through the Services are:
-          </p>
-          <ul className="list-disc pl-6 space-y-2">
-            <li><strong>Contact information:</strong> Name and email address. We collect basic contact details to communicate with you, provide you with the Services, respond to your queries, personalize the Services for you, improve and enhance our Services, market to you, and conduct research and analytics.</li>
-            <li><strong>Professional information:</strong> Company name, division, job title, and other professional information. We collect such information to explore business opportunities and provide the Services to you and existing or prospective businesses.</li>
-            <li><strong>Information about your use of the Services:</strong> Interaction and feedback regarding the Services, including features, search queries within the Services, and certain interactions you make via the Services. We collect this interaction and feedback to provide you with the Services, improve and enhance our Services, conduct research and analytics, and for security purposes.</li>
-            <li><strong>Any other information you choose to provide:</strong> This includes any information you provide to us, for example, when communicating with us.</li>
-          </ul>
-          <p>
-            Our Services may require you to enter certain information about yourself. You may elect not to provide this information, but doing so may prevent you from using or accessing the Services.
-          </p>
+          {/* Section 1 */}
+          <section>
+            <h2 className="font-display text-2xl font-semibold text-foreground mb-4">1. Scope & Updates To This Privacy Policy</h2>
+            <p>
+              This Privacy Policy applies to personal information processed by us, including on our websites, and other online or offline offerings. To make this Privacy Policy easier to read, our websites, and other offerings are collectively called "Services."
+            </p>
+            <p className="mt-4">
+              <strong className="text-foreground">An Important Note:</strong> This Privacy Policy does not apply to any of the personal information that our customers may collect and process using our Services ("Customer Data"). Our customers' respective privacy policies govern their collection and use of Customer Data. Our processing of Customer Data is governed by the contracts that we have in place with our customers, not this Privacy Policy.
+            </p>
+            <p className="mt-4">
+              <strong className="text-foreground">Changes to our Privacy Policy:</strong> We may revise this Privacy Policy from time to time in our sole discretion. If there are any material changes, we will notify you as required by applicable law. You understand and agree that you will be deemed to have accepted the updated Privacy Policy if you continue to use our Services after the new Privacy Policy takes effect.
+            </p>
+          </section>
 
-          <h3 className="font-display text-xl font-semibold text-foreground mt-8 mb-3">Third Party Sources</h3>
-          <p>We may obtain information about you from the following third party sources:</p>
-          <ul className="list-disc pl-6 space-y-2">
-            <li><strong>Service providers:</strong> They collect information, such as your contact information, profile picture, and your affiliated company information, on our behalf to provide our Services.</li>
-            <li><strong>Your employer:</strong> Your contact information in order to provide you with access to the Services, market to you and your organization, and for security purposes.</li>
-            <li><strong>Social networking platforms:</strong> Your contact information and information you post on social networking platforms when you have a publicly-available profile containing information about yourself.</li>
-            <li><strong>Other third parties:</strong> You may choose to elect that certain third parties share information with us, for example, when you choose to access the Services through another service, such as through Single Sign-on or link any social media platforms to your account.</li>
-          </ul>
+          {/* Section 2 */}
+          <section>
+            <h2 className="font-display text-2xl font-semibold text-foreground mb-4">2. Personal Information We Collect</h2>
+            <p>The categories of personal information we collect depend on how you interact with us, our Services, and the requirements of applicable law.</p>
 
-          <h3 className="font-display text-xl font-semibold text-foreground mt-8 mb-3">Usage Data</h3>
-          <p>
-            We also automatically collect certain information about your interaction with the Services ("Usage Data"). To do this, we may use cookies, web beacons/clear gifs, and other tracking technologies ("Tracking Technologies"), including Segment and Google Analytics, to provide and enhance the performance of our Services.
-          </p>
-          <p>We collect the following kinds of Usage Data:</p>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>Unique device identifier</li>
-            <li>Device type</li>
-            <li>IP address</li>
-            <li>Browser type</li>
-            <li>Date and time stamps</li>
-            <li>Operating system</li>
-            <li>Log data</li>
-            <li>Number of visits</li>
-            <li>Language of device</li>
-            <li>Geolocation</li>
-            <li>Other information regarding your interaction with the Services</li>
-          </ul>
+            <h3 className="font-display text-lg font-semibold text-foreground mt-6 mb-3">A. Information You Provide to Us Directly</h3>
+            <ul className="list-disc pl-6 space-y-2">
+              <li><strong>Account Creation.</strong> We may collect information when you create an account, such as your name, email address, username, and password.</li>
+              <li><strong>Billing Information.</strong> We may collect personal information and details associated with payment for our services.</li>
+              <li><strong>Your Communications with Us.</strong> We may collect personal information, such as email address, phone number, business name and its mailing address, when you request information about our Services, register for our newsletter, request support, or otherwise communicate with us.</li>
+              <li><strong>Surveys.</strong> We may contact you to participate in surveys. If you decide to participate, you may be asked to provide certain information, which may include personal information.</li>
+              <li><strong>Interactive Features.</strong> We, and others who use our Services, may collect personal information that you submit or make available through our interactive features (e.g., commenting functionalities, forums, blogs, and social media pages).</li>
+              <li><strong>Conferences, Trade Shows, and Other Events.</strong> We may collect personal information from individuals when we attend or host conferences, trade shows, and other events.</li>
+              <li><strong>Business Development and Strategic Partnerships.</strong> We may collect personal information from individuals and third parties to assess and pursue potential business opportunities.</li>
+              <li><strong>Job Applications.</strong> We may post job openings and opportunities on our Services. If you reply to one of these postings, we will collect and use this information to assess your qualifications.</li>
+            </ul>
 
-          <h2 className="font-display text-2xl font-semibold text-foreground mt-12 mb-4">How the Company Shares Information About You</h2>
-          <p>In certain circumstances, we may share information about you with third parties. Such circumstances may include:</p>
-          <ul className="list-disc pl-6 space-y-2">
-            <li>With vendors or other service providers, such as data analytics vendors, data storage providers, email vendors, and security vendors.</li>
-            <li>When you request us to share certain information with third parties, such as through your use of social media widgets or login integrations.</li>
-            <li>With our affiliates or otherwise within our corporate group.</li>
-            <li>To comply with applicable law or any obligations thereunder, including cooperation with law enforcement, judicial orders, and regulatory inquiries.</li>
-            <li>In connection with an asset sale, merger, bankruptcy, or other business transaction.</li>
-            <li>To enforce any applicable terms of service.</li>
-            <li>To ensure the safety and security of the Company and/or its users.</li>
-            <li>With professional advisors, such as auditors, law firms, or accounting firms.</li>
-          </ul>
+            <h3 className="font-display text-lg font-semibold text-foreground mt-6 mb-3">B. Information Collected Automatically</h3>
+            <ul className="list-disc pl-6 space-y-2">
+              <li><strong>Automatic Data Collection.</strong> We may collect certain information automatically when you use our Services, such as your Internet protocol (IP) address, user settings, MAC address, cookie identifiers, mobile carrier, mobile advertising and other unique identifiers, browser or device information, location information, and Internet service provider.</li>
+              <li><strong>Cookies, Pixel Tags/Web Beacons, and Other Technologies.</strong> We, as well as third parties that provide content, advertising, or other functionality on our Services, may use cookies, pixel tags, and other technologies to automatically collect information through your use of our Services.</li>
+            </ul>
+            <p className="mt-4">Our uses of these Technologies fall into the following general categories:</p>
+            <ul className="list-disc pl-6 space-y-2 mt-2">
+              <li><strong>Operationally Necessary.</strong> Technologies that allow you access to our Services, required to identify irregular behavior, prevent fraudulent activity, improve security, or allow you to make use of our functionality.</li>
+              <li><strong>Performance-Related.</strong> We may use Technologies to assess the performance of our Services, including as part of our analytic practices.</li>
+              <li><strong>Functionality-Related.</strong> Technologies that allow us to offer you enhanced functionality when accessing or using our Services.</li>
+              <li><strong>Advertising- or Targeting-Related.</strong> We may use first party or third-party Technologies to deliver content, including ads relevant to your interests.</li>
+              <li><strong>Analytics.</strong> We may use Technologies and other third-party tools to process analytics information on our Services, including Google Analytics.</li>
+            </ul>
 
-          <h2 className="font-display text-2xl font-semibold text-foreground mt-12 mb-4">Cookies and Other Tracking Technologies</h2>
-          <h3 className="font-display text-xl font-semibold text-foreground mt-8 mb-3">Do Not Track Signals</h3>
-          <p>
-            Your browser settings may also allow you to transmit a "Do Not Track" signal when you visit various websites. Like many websites, our Services are not designed to respond to "Do Not Track" signals received from browsers. To learn more about "Do Not Track" signals, you can visit <a href="http://www.allaboutdnt.com/" className="underline hover:text-foreground transition-colors" target="_blank" rel="noopener noreferrer">http://www.allaboutdnt.com/</a>.
-          </p>
-          <h3 className="font-display text-xl font-semibold text-foreground mt-8 mb-3">Cookies and Other Tracking Technologies</h3>
-          <p>
-            We use cookies and other Tracking Technologies to collect information about your browsing activities over time and across different websites following your use of our Website and Services. You may control the way in which your devices permit the use of Tracking Technologies. If you so choose, you may block or delete our cookies from your browser; however, blocking or deleting cookies may cause some of the Services to work incorrectly.
-          </p>
+            <h3 className="font-display text-lg font-semibold text-foreground mt-6 mb-3">C. Information Collected from Other Sources</h3>
+            <p>
+              We may obtain information about you from other sources, including through third-party services and organizations. For example, if you access our Services through a third-party application, such as an app store, a third-party login service, or a social networking site, we may collect information about you from that third-party application that you have made available via your privacy settings.
+            </p>
+          </section>
 
-          <h2 className="font-display text-2xl font-semibold text-foreground mt-12 mb-4">Third Party Websites and Links</h2>
-          <p>
-            Our Services may contain links and/or features to other websites and/or online platforms operated by third parties. We do not control such other online platforms and are not responsible for their content, their privacy policies, or their use of your information. Our inclusion of such links does not, by itself, imply any endorsement of the content on such platforms or of their owners or operators.
-          </p>
+          {/* Section 3 */}
+          <section>
+            <h2 className="font-display text-2xl font-semibold text-foreground mb-4">3. How We Use Your Information</h2>
+            <p>We use your information for a variety of business purposes, including to provide our Services, for administrative purposes, and to market our products and Services.</p>
 
-          <h2 className="font-display text-2xl font-semibold text-foreground mt-12 mb-4">Data Security & Retention</h2>
-          <p>
-            Please note that any information you send to us electronically, while using the Services or otherwise interacting with us, may not be secure when it is transmitted to us. We recommend that you do not use unsecure channels to communicate sensitive or confidential information to us. Despite our best efforts, no security measures are perfect or impenetrable, and we cannot guarantee "perfect security." We retain your information for as long as is reasonably necessary for the purposes specified in this Privacy Policy.
-          </p>
+            <h3 className="font-display text-lg font-semibold text-foreground mt-6 mb-3">A. Provide Our Services</h3>
+            <ul className="list-disc pl-6 space-y-1">
+              <li>Managing your information and accounts</li>
+              <li>Providing access to certain areas, functionalities, and features of our Services</li>
+              <li>Answering requests for customer or technical support</li>
+              <li>Communicating with you about your account, activities on our Services, and policy changes</li>
+              <li>Processing your financial information and other payment methods</li>
+              <li>Processing applications if you apply for a job</li>
+              <li>Allowing you to register for events</li>
+            </ul>
 
-          <h2 className="font-display text-2xl font-semibold text-foreground mt-12 mb-4">Access to Your Information</h2>
-          <p>
-            You may request to access, transfer or delete any personal information we hold about you by contacting us at the email set forth below.
-          </p>
+            <h3 className="font-display text-lg font-semibold text-foreground mt-6 mb-3">B. Administrative Purposes</h3>
+            <ul className="list-disc pl-6 space-y-1">
+              <li>Pursuing legitimate interests such as direct marketing, research, and development</li>
+              <li>Detecting security incidents, protecting against malicious or fraudulent activity</li>
+              <li>Measuring interest and engagement in our Services</li>
+              <li>Improving, upgrading, or enhancing our Services</li>
+              <li>Developing new products and services</li>
+              <li>Ensuring internal quality control and safety</li>
+              <li>Authenticating and verifying individual identities</li>
+              <li>Debugging to identify and repair errors</li>
+              <li>Enforcing our agreements and policies</li>
+              <li>Carrying out activities required to comply with our legal obligations</li>
+            </ul>
 
-          <h2 className="font-display text-2xl font-semibold text-foreground mt-12 mb-4">United States</h2>
-          <p>
-            The Services are provided from and in the United States. When you access the Services, information about you will be subject to U.S. data privacy laws.
-          </p>
+            <h3 className="font-display text-lg font-semibold text-foreground mt-6 mb-3">C. Marketing and Advertising</h3>
+            <p>
+              We may use personal information to tailor and provide you with content and advertisements. We may provide you with these materials as permitted by applicable law, including through email campaigns, custom audiences advertising, and "interest-based" or "personalized advertising."
+            </p>
 
-          <h2 className="font-display text-2xl font-semibold text-foreground mt-12 mb-4">Contact Us</h2>
-          <p>
-            If you would like to reach out to ask questions regarding information about you that we collect or other questions about this Privacy Policy or your rights, you can email us at <a href="mailto:support@graphite.com" className="underline hover:text-foreground transition-colors">support@graphite.com</a>.
-          </p>
+            <h3 className="font-display text-lg font-semibold text-foreground mt-6 mb-3">D. Other Purposes</h3>
+            <p>
+              We may use personal information and other information about you to create de-identified and/or aggregated information. De-identified and/or aggregated information is not personal information, and we may use, disclose, and retain such information as permitted by applicable laws.
+            </p>
+          </section>
+
+          {/* Section 4 */}
+          <section>
+            <h2 className="font-display text-2xl font-semibold text-foreground mb-4">4. How We Disclose Your Information</h2>
+
+            <h3 className="font-display text-lg font-semibold text-foreground mt-6 mb-3">A. Disclosures to Provide our Services</h3>
+            <ul className="list-disc pl-6 space-y-2">
+              <li><strong>Service Providers.</strong> We may share your personal information with our third-party service providers and vendors that assist us with the provision of our Services.</li>
+              <li><strong>Business Partners.</strong> We may share your personal information with business partners to provide you with a product or service you have requested.</li>
+              <li><strong>Affiliates.</strong> We may share your personal information with our company affiliates.</li>
+              <li><strong>Advertising Partners.</strong> We may share your personal information with third-party advertising partners for purposes of delivering personalized advertisements.</li>
+              <li><strong>APIs/SDKs.</strong> We may use third-party Application Program Interfaces ("APIs") and Software Development Kits ("SDKs") as part of the functionality of our Services.</li>
+            </ul>
+
+            <h3 className="font-display text-lg font-semibold text-foreground mt-6 mb-3">B. Disclosures to Protect Us or Others</h3>
+            <p>
+              We may access, preserve, and disclose any information we store associated with you to external parties if we, in good faith, believe doing so is required or appropriate to: comply with law enforcement or national security requests and legal process; protect your, our, or others' rights, property, or safety; enforce our policies or contracts; collect amounts owed to us; or assist with an investigation or prosecution of suspected or actual illegal activity.
+            </p>
+
+            <h3 className="font-display text-lg font-semibold text-foreground mt-6 mb-3">C. Disclosure in the Event of Merger, Sale, or Other Asset Transfers</h3>
+            <p>
+              If we are involved in a merger, acquisition, financing due diligence, reorganization, bankruptcy, receivership, purchase or sale of assets, or transition of service to another provider, your information may be sold or transferred as part of such a transaction, as permitted by law and/or contract.
+            </p>
+          </section>
+
+          {/* Section 5 */}
+          <section>
+            <h2 className="font-display text-2xl font-semibold text-foreground mb-4">5. Your Privacy Choices And Rights</h2>
+            <ul className="list-disc pl-6 space-y-2">
+              <li><strong>Email Communications.</strong> If you receive an unwanted email from us, you can use the unsubscribe link found at the bottom of the email to opt out of receiving future emails.</li>
+              <li><strong>Text Messages.</strong> You may opt out of receiving text messages from us by following the instructions in the text message you have received from us or by otherwise contacting us.</li>
+              <li><strong>"Do Not Track."</strong> Please note that we do not respond to or honor DNT signals or similar mechanisms transmitted by web browsers.</li>
+              <li><strong>Cookies and Interest-Based Advertising.</strong> You may stop or restrict the placement of Technologies on your device or remove them by adjusting your preferences as your browser or device permits.</li>
+            </ul>
+            <p className="mt-4">
+              <strong className="text-foreground">Your Privacy Rights.</strong> In accordance with applicable law, you may have the right to:
+            </p>
+            <ul className="list-disc pl-6 space-y-2 mt-2">
+              <li>Access Personal Information about you</li>
+              <li>Request Correction of your personal information where it is inaccurate or incomplete</li>
+              <li>Request Deletion of your personal information</li>
+              <li>Request Restriction of or Object to our processing of your personal information</li>
+              <li>Withdraw your Consent to our processing of your personal information</li>
+            </ul>
+          </section>
+
+          {/* Section 6 */}
+          <section>
+            <h2 className="font-display text-2xl font-semibold text-foreground mb-4">6. International Data Transfers</h2>
+            <p>
+              All personal information processed by us may be transferred, processed, and stored anywhere in the world, including, but not limited to, the United States or other countries, which may have data protection laws that are different from the laws where you live. We endeavor to safeguard your personal information consistent with the requirements of applicable laws.
+            </p>
+            <p className="mt-4">
+              If we transfer personal information which originates in the European Economic Area, Switzerland, and/or the United Kingdom to a country that has not been found to provide an adequate level of protection under applicable data protection laws, one of the safeguards we may use to support such transfer is the EU Standard Contractual Clauses.
+            </p>
+          </section>
+
+          {/* Section 7 */}
+          <section>
+            <h2 className="font-display text-2xl font-semibold text-foreground mb-4">7. Retention of Personal Information</h2>
+            <p>
+              We store the personal information we collect as described in this Privacy Notice for as long as you use our Services, or as necessary to fulfill the purpose(s) for which it was collected, provide our Services, resolve disputes, establish legal defenses, conduct audits, pursue legitimate business purposes, enforce our agreements, and comply with applicable laws.
+            </p>
+            <p className="mt-4">
+              To determine the appropriate retention period for personal information, we may consider applicable legal requirements, the amount, nature, and sensitivity of the personal information, certain risk factors, the purposes for which we process your personal information, and whether we can achieve those purposes through other means.
+            </p>
+          </section>
+
+          {/* Section 8 */}
+          <section>
+            <h2 className="font-display text-2xl font-semibold text-foreground mb-4">8. Children's Information</h2>
+            <p>
+              The Services are not directed to children under 13 (or other age as required by local law), and we do not knowingly collect personal information from children. If you are a parent or guardian and believe your child has uploaded personal information to our site without your consent, you may contact us as described in "Contact Us" below.
+            </p>
+          </section>
+
+          {/* Section 9 */}
+          <section>
+            <h2 className="font-display text-2xl font-semibold text-foreground mb-4">9. Other Provisions</h2>
+            <p>
+              <strong className="text-foreground">Supervisory Authority.</strong> If your personal information is subject to the applicable data protection laws of the European Economic Area, Switzerland, or the United Kingdom, you have the right to lodge a complaint with the competent supervisory authority if you believe our processing of your personal information violates applicable law.
+            </p>
+          </section>
+
+          {/* Section 10 */}
+          <section>
+            <h2 className="font-display text-2xl font-semibold text-foreground mb-4">10. Contact Us</h2>
+            <p>
+              If you have any questions about our privacy practices or this Privacy Policy, or to exercise your rights as detailed in this Privacy Policy, please contact us at: <a href="mailto:privacy@graphitehq.com" className="underline hover:text-foreground transition-colors">privacy@graphitehq.com</a>.
+            </p>
+            <p className="mt-4">
+              If you believe you've discovered a potential vulnerability, please let us know by emailing us at <a href="mailto:sec@graphitehq.com" className="underline hover:text-foreground transition-colors">sec@graphitehq.com</a>.
+            </p>
+          </section>
         </div>
       </div>
       <Footer />
