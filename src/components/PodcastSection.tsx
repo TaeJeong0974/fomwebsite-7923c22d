@@ -270,11 +270,13 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
               </div>
               
               {/* Desktop CTA */}
-              <div className="hidden lg:flex items-center shrink-0">
-                <span className={`btn-base btn-primary btn-sm list-focus-transition ${dim}`}>
-                  {isComingSoon ? 'Coming Soon' : 'Watch Now'}
-                </span>
-              </div>
+              {!isComingSoon && (
+                <div className="hidden lg:flex items-center shrink-0">
+                  <span className={`btn-base btn-primary btn-sm list-focus-transition ${dim}`}>
+                    Watch Now
+                  </span>
+                </div>
+              )}
             </Link>
           </motion.div>
         );
