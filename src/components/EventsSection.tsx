@@ -1,14 +1,16 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useRef } from "react";
 import { Play } from "lucide-react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 
+const YOUTUBE_VIDEO_ID = "5E--ZqG5QME";
+const YOUTUBE_THUMBNAIL = `https://img.youtube.com/vi/${YOUTUBE_VIDEO_ID}/maxresdefault.jpg`;
+
 const EventsSection = () => {
-  const videoRef = useRef<HTMLVideoElement>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
-  const [isInView, setIsInView] = useState(false);
   const isMobile = useIsMobile();
   const isTitleInView = useInView(titleRef, { once: true, amount: 0.3 });
 
@@ -18,33 +20,14 @@ const EventsSection = () => {
     offset: ["start end", "end start"]
   });
   
-  // Video moves slower than scroll (parallax effect) - increased intensity
   const videoY = useTransform(scrollYProgress, [0, 1], ["-10%", "25%"]);
   const titleY = useTransform(scrollYProgress, [0, 1], ["-5%", "18%"]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true);
-          observer.disconnect(); // Only load once
-        }
-      },
-      { rootMargin: "200px" } // Start loading 200px before visible
-    );
-
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
 
   return (
     <section ref={sectionRef} id="events" className="section-spacing overflow-hidden">
       <div className="container mx-auto container-padding">
         <div className="relative">
-          {/* Title wrapper - handles overflow and overlap */}
+          {/* Title wrapper */}
           <motion.div 
             className="relative z-10 mb-[-3rem] sm:mb-[-5rem] lg:mb-[-8rem] xl:mb-[-10rem] overflow-visible"
             style={{ y: titleY }}
@@ -74,7 +57,7 @@ const EventsSection = () => {
 
           {/* Video and Copy side by side */}
           <div className="relative flex flex-col lg:flex-row lg:items-end gap-6 lg:gap-0">
-            {/* Copy - Left side, aligned with bottom of video */}
+            {/* Copy - Left side */}
             <div className="hidden lg:flex flex-col justify-end w-1/4 pr-12 pb-4">
               <span className="text-base font-semibold text-foreground">San Francisco, CA</span>
               <p className="text-base text-foreground mt-3">
@@ -86,39 +69,40 @@ const EventsSection = () => {
               </button>
             </div>
 
-            {/* Video Container */}
+            {/* Video Container - YouTube Embed */}
             <motion.div 
               ref={containerRef} 
               className="relative w-full lg:w-3/4 aspect-[16/9] overflow-hidden rounded-xl group cursor-pointer"
               style={{ y: videoY }}
+              onClick={() => !isPlaying && setIsPlaying(true)}
             >
-              {isInView ? (
-                <video
-                  ref={videoRef}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  className="absolute inset-0 w-full h-full object-cover scale-110"
-                  poster="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80"
-                >
-                  <source src="https://assets.mixkit.co/videos/preview/mixkit-crowd-at-a-concert-seen-from-behind-4611-large.mp4" type="video/mp4" />
-                </video>
-              ) : (
-                <img
-                  src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=80"
-                  alt="FOM 2025 Event"
-                  className="absolute inset-0 w-full h-full object-cover scale-110"
+              {isPlaying ? (
+                <iframe
+                  src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&rel=0&modestbranding=1&showinfo=0`}
+                  className="absolute inset-0 w-full h-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title="FOM 2025 Recap"
                 />
+              ) : (
+                <>
+                  <img
+                    src={YOUTUBE_THUMBNAIL}
+                    alt="FOM 2025 Event"
+                    className="absolute inset-0 w-full h-full object-cover scale-110"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 hover-transition" />
+                  
+                  {/* Play Button */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center group-hover:scale-110 hover-transition">
+                      <Play className="w-8 h-8 text-white fill-white ml-1" />
+                    </div>
+                  </div>
+                </>
               )}
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 hover-transition" />
-              
-              {/* Play Button */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-20 h-20 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center group-hover:scale-110 hover-transition">
-                  <Play className="w-8 h-8 text-white fill-white ml-1" />
-                </div>
-              </div>
             </motion.div>
           </div>
 

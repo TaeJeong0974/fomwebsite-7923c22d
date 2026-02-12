@@ -99,7 +99,7 @@ From the tradeoffs between authenticity and reach to the risks of messy data and
       { time: "10:00", title: "Why this podcast?" },
       { time: "18:00", title: "What's coming up" },
     ],
-    youtubeUrl: "https://www.youtube.com/watch?v=5E--ZqG5QME",
+    youtubeUrl: "https://www.youtube.com/watch?v=wCDIYvFmgW8",
     spotifyUrl: "https://spotify.com",
     duration: "25 min",
     publishedDate: "Jan 1, 2026",
