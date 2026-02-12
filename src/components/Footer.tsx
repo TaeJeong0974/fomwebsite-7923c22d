@@ -7,7 +7,6 @@ const Footer = () => {
         <p>© {year} Future of Marketing. All rights reserved.</p>
         <div className="flex items-center gap-4">
           <a href="/privacy" className="hover:text-foreground/60 transition-colors duration-300">Privacy</a>
-          <a href="/terms" className="hover:text-foreground/60 transition-colors duration-300">Terms</a>
         </div>
       </div>
     </footer>
