@@ -272,9 +272,22 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
               {/* Desktop CTA */}
               {!isComingSoon && (
                 <div className="hidden lg:flex items-center shrink-0">
-                  <span className={`btn-base btn-primary btn-sm list-focus-transition ${dim}`}>
+                  <motion.span
+                    className="text-sm font-display font-semibold uppercase tracking-wider"
+                    initial={false}
+                    animate={isHovered ? {
+                      color: colors,
+                    } : {
+                      color: '#1a1a1a',
+                    }}
+                    transition={{
+                      color: isHovered
+                        ? { duration: 4, ease: 'easeInOut', repeat: Infinity }
+                        : { duration: 0.15, ease: liquidEase },
+                    }}
+                  >
                     Watch Now
-                  </span>
+                  </motion.span>
                 </div>
               )}
             </Link>
