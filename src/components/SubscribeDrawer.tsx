@@ -26,6 +26,19 @@ const fadeUpItem = {
   },
 };
 
+const guestHeadlines: Record<string, string> = {
+  Meagen: "Meagen Is Almost Here",
+  Lena: "Stay Tuned for Lena",
+  Dave: "Dave Is on Deck",
+  Sara: "Sara Is Up Next",
+  Kate: "Kate Is in the Works",
+  Idan: "Idan Is Coming Soon",
+  Lindsey: "Don't Miss Lindsey",
+  Sheila: "Sheila Is on the Way",
+  Ceci: "Get Ready for Ceci",
+  Katrina: "Katrina Is Coming Up",
+};
+
 interface SubscribeDrawerProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
@@ -93,7 +106,7 @@ const SubscribeDrawer = ({ open, onOpenChange, guestName }: SubscribeDrawerProps
                       STAY UPDATED
                     </motion.p>
                     <motion.h2 variants={fadeUpItem} className="text-display-lg font-semibold text-white mb-6">
-                      {guestName ? `${guestName} Is Coming Soon` : "Never Miss an Episode"}
+                      {guestName ? (guestHeadlines[guestName] || `${guestName} Is Coming Soon`) : "Never Miss an Episode"}
                     </motion.h2>
                     <motion.p variants={fadeUpItem} className="text-body text-white/60 mb-8 max-w-sm">
                       {guestName ? `Get notified when ${guestName}'s episode drops.` : "Get notified when new episodes drop and receive exclusive content."}
