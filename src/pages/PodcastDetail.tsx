@@ -243,7 +243,7 @@ const PodcastDetail = () => {
         viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: 1.0, ease: liquidEase }}
       >
-        <ListenSubscribeCards />
+        <ListenSubscribeCards guestName={episode.slug !== 'intro-to-fom' ? episode.name.split(' ')[0] : undefined} />
       </motion.div>
     </EpisodeOverlayLayout>
     </>
