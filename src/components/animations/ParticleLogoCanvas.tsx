@@ -114,11 +114,10 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
   const lastTimeRef = useRef<number>(0);
   const PARTICLE_COUNT = 5000;
   const DURATION = 3.5;
-  const WAVE_DURATION = 1.4; // how long the wave stagger spreads across
-  const FADE_OUT_START = 4.0;
-  const FADE_OUT_DURATION = 1.5;
+  const WAVE_DURATION = 1.4;
   const SPRING_STIFFNESS = 12;
   const SPRING_DAMPING = 0.82;
+  const SETTLE_TIME = 4.0; // when particles are considered settled
 
   const initParticles = useCallback(() => {
     if (hasInitRef.current) return;
@@ -183,21 +182,13 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
       const h = canvas.height;
       const dpr = dprRef.current;
 
-      ctx.clearRect(0, 0, w, h);
+      // Once settled, keep running but particles stay in place via spring
+      const allSettled = elapsed > SETTLE_TIME;
 
-      // Global fade-out after particles have settled
-      const globalFade = elapsed > FADE_OUT_START
-        ? Math.max(0, 1 - (elapsed - FADE_OUT_START) / FADE_OUT_DURATION)
-        : 1;
-
-      // Notify parent when particles start fading so logo can appear
-      if (elapsed > FADE_OUT_START && !settledCalledRef.current) {
+      // Notify parent once settled
+      if (allSettled && !settledCalledRef.current) {
         settledCalledRef.current = true;
         onSettled?.();
-      }
-
-      if (globalFade <= 0) {
-        return;
       }
 
       const particles = particlesRef.current;
@@ -206,11 +197,10 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
         const localT = elapsed - p.delay;
         
         if (localT < 0) {
-          // Not started yet — stay at start position
           p.x = p.sx;
           p.y = p.sy;
-        } else {
-          // Spring physics: accelerate toward target, dampen velocity
+        } else if (!allSettled) {
+          // Spring physics while still animating
           const dx = p.tx - p.x;
           const dy = p.ty - p.y;
           p.vx += dx * SPRING_STIFFNESS * dt;
@@ -220,10 +210,11 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
           p.x += p.vx * dt;
           p.y += p.vy * dt;
         }
+        // Once settled, particles stay at their last position (no more physics)
 
         const arrivalT = Math.max(0, Math.min(1, localT / (DURATION * 0.6)));
-        const color = getColor(p.colorIdx + elapsed * 0.3, APPLE_GRADIENT_COLORS);
-        const alpha = (0.3 + arrivalT * 0.7) * globalFade;
+        const color = getColor(p.colorIdx + (allSettled ? SETTLE_TIME : elapsed) * 0.3, APPLE_GRADIENT_COLORS);
+        const alpha = (0.3 + arrivalT * 0.7);
 
         ctx.beginPath();
         ctx.arc(p.x * w, p.y * h, p.size * dpr, 0, Math.PI * 2);
@@ -231,7 +222,10 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
         ctx.fill();
       }
 
-      animRef.current = requestAnimationFrame(draw);
+      // Stop the loop once settled (final frame is already painted)
+      if (!allSettled) {
+        animRef.current = requestAnimationFrame(draw);
+      }
     };
 
     animRef.current = requestAnimationFrame(draw);
