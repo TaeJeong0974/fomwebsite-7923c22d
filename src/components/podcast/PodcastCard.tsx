@@ -92,7 +92,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image }: Podc
     return (
       <div
         className="block group cursor-pointer"
-        onClick={() => openSubscribe(episode.name.split(' ')[0])}
+        onClick={() => openSubscribe({ guestName: episode.name.split(' ')[0], headline: episode.notifyHeadline })}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
