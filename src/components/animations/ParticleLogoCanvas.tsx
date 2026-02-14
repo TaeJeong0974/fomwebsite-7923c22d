@@ -109,7 +109,7 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
   const dprRef = useRef(1);
   const settledCalledRef = useRef(false);
 
-  const PARTICLE_COUNT = 5000;
+  const PARTICLE_COUNT = 10000;
   const DURATION = 3.5;
   const STAGGER_RANGE = 1.8;
   const FADE_OUT_START = 4.0;
@@ -121,9 +121,12 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
 
     const points = sampleLogoPoints(PARTICLE_COUNT);
     particlesRef.current = points.map(([tx, ty]) => {
-      // Scatter widely across the canvas for visible random start
-      const sx = Math.random();
-      const sy = Math.random();
+      // Organic scatter using gaussian-like distribution for natural cloud shape
+      const cx = 0.5, cy = 0.5;
+      const r = Math.sqrt(-2 * Math.log(Math.max(0.001, Math.random()))) * 0.35;
+      const theta = Math.random() * Math.PI * 2;
+      const sx = cx + r * Math.cos(theta) * (1 + Math.random() * 0.3);
+      const sy = cy + r * Math.sin(theta) * (0.8 + Math.random() * 0.4);
       return {
         tx, ty,
         x: sx, y: sy,
