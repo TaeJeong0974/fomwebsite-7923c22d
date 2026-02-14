@@ -93,7 +93,7 @@ const SubscribeDrawer = ({ open, onOpenChange, guestName }: SubscribeDrawerProps
                       STAY UPDATED
                     </motion.p>
                     <motion.h2 variants={fadeUpItem} className="text-display-lg font-semibold text-white mb-6">
-                      {guestName ? `${guestName}'s Episode Is Almost Here` : "Never Miss an Episode"}
+                      {guestName ? `${guestName} Is Coming Soon` : "Never Miss an Episode"}
                     </motion.h2>
                     <motion.p variants={fadeUpItem} className="text-body text-white/60 mb-8 max-w-sm">
                       {guestName ? `Get notified when ${guestName}'s episode drops.` : "Get notified when new episodes drop and receive exclusive content."}
