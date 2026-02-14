@@ -8,8 +8,8 @@ const Footer = () => {
         {/* Top section: tagline + nav columns */}
         <div className="flex flex-col md:flex-row justify-between gap-10 md:gap-16 mb-16 sm:mb-20 lg:mb-28">
           {/* Tagline */}
-          <p className="text-display-md font-normal italic text-foreground/80 max-w-xs">
-            The future satisfies
+          <p className="text-display-md font-normal italic text-foreground/80 max-w-sm">
+            A podcast series on how AI<br />is changing marketing
           </p>
 
           {/* Nav columns */}
