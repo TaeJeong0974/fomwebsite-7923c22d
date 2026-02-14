@@ -112,8 +112,8 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
   const PARTICLE_COUNT = 10000;
   const DURATION = 3.5;
   const STAGGER_RANGE = 1.8;
-  const FADE_OUT_START = 4.0;
-  const FADE_OUT_DURATION = 1.5;
+  const FADE_OUT_START = 3.8;
+  const FADE_OUT_DURATION = 0.6;
 
   const initParticles = useCallback(() => {
     if (hasInitRef.current) return;
