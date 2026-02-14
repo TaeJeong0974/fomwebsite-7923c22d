@@ -13,12 +13,12 @@ export const DEFAULT_GRADIENT_COLORS: number[][] = [
 
 /** Warm palette matching the original site gradient: coral → pink → orange → gold */
 export const APPLE_GRADIENT_COLORS: number[][] = [
-  [120, 80, 200],   // purple
-  [100, 70, 220],   // deeper purple
-  [140, 90, 210],   // soft violet
-  [110, 75, 215],   // mid purple
-  [130, 85, 205],   // lavender purple
-  [120, 80, 200],   // loop back
+  [255, 100, 80],   // coral
+  [255, 60, 120],   // pink
+  [120, 60, 255],   // blue-purple
+  [255, 160, 40],   // orange
+  [255, 180, 60],   // gold
+  [255, 100, 80],   // loop back to coral
 ];
 
 const FALLBACK_COLOR = [255, 100, 80];
@@ -118,7 +118,11 @@ export const buildMeshGradient = (
   const eh = (h: number) => (h * ah).toFixed(1);
 
   return [
-    `radial-gradient(ellipse ${ew(60 + sx)}% ${eh(60 - sy)}% at ${mx * 100}% ${my * 100}%, ${rgba(c0, 1)} 0%, transparent 60%)`,
-    `linear-gradient(${angle}deg, ${rgba(c4, 0.3)} 0%, ${rgba(c0, 0.2)} 100%)`,
+    `radial-gradient(ellipse ${ew(45 + sx)}% ${eh(70 - sy)}% at ${mx * 100 + px * 12}% ${my * 100 + py * 12}%, ${rgba(c0, 1)} 0%, transparent 55%)`,
+    `radial-gradient(ellipse ${ew(80 - sx)}% ${eh(55 + sy)}% at ${100 - mx * 60 + px * 8}% ${100 - my * 60 + py * 8}%, ${rgba(c1, 0.85)} 0%, transparent 55%)`,
+    `radial-gradient(ellipse ${ew(50 + sy)}% ${eh(75 - sx)}% at ${mx * 80 + 10 + px * 5}% ${my * 40 + 30 + py * 5}%, ${rgba(c2, 0.75)} 0%, transparent 60%)`,
+    `radial-gradient(ellipse ${ew(70 - sy)}% ${eh(40 + sx)}% at ${50 + (mx - 0.5) * 40 + px * 3}% ${50 + (my - 0.5) * 40 + py * 3}%, ${rgba(c3, 0.7)} 0%, transparent 50%)`,
+    `radial-gradient(ellipse ${ew(60)}% ${eh(50)}% at ${100 - mx * 100}% ${100 - my * 100}%, rgba(40,10,80,0.7) 0%, transparent 50%)`,
+    `linear-gradient(${angle}deg, ${rgba(c4, 0.5)} 0%, ${rgba(c0, 0.4)} 100%)`,
   ].join(', ');
 };
