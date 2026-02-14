@@ -22,7 +22,8 @@ interface ParticleLogoCanvasProps {
   onSettled?: () => void;
 }
 
-const PARTICLE_COUNT = 6000;
+const PARTICLE_COUNT = 24000;
+const SETTLE_TIME = 3.0; // seconds until animation stops
 
 const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -79,27 +80,32 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
       if (!ctx) return;
 
       const elapsed = (now - startTimeRef.current!) / 1000;
+      const settled = elapsed > SETTLE_TIME;
       const w = canvas.width;
       const h = canvas.height;
       const dpr = dprRef.current;
 
       ctx.clearRect(0, 0, w, h);
 
+      // Slow particles down as we approach settle time
+      const speedFactor = settled ? 0 : Math.max(0, 1 - elapsed / SETTLE_TIME);
+
       const particles = particlesRef.current;
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
 
-        // Gentle drift
-        p.x += p.vx;
-        p.y += p.vy;
+        if (!settled) {
+          p.x += p.vx * speedFactor;
+          p.y += p.vy * speedFactor;
 
-        // Wrap around edges
-        if (p.x < 0) p.x += 1;
-        if (p.x > 1) p.x -= 1;
-        if (p.y < 0) p.y += 1;
-        if (p.y > 1) p.y -= 1;
+          if (p.x < 0) p.x += 1;
+          if (p.x > 1) p.x -= 1;
+          if (p.y < 0) p.y += 1;
+          if (p.y > 1) p.y -= 1;
+        }
 
-        const color = getColor(p.colorIdx + elapsed * 0.15, APPLE_GRADIENT_COLORS);
+        const colorTime = settled ? SETTLE_TIME : elapsed;
+        const color = getColor(p.colorIdx + colorTime * 0.15, APPLE_GRADIENT_COLORS);
 
         ctx.beginPath();
         ctx.arc(p.x * w, p.y * h, p.size * dpr, 0, Math.PI * 2);
@@ -107,7 +113,9 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
         ctx.fill();
       }
 
-      animRef.current = requestAnimationFrame(draw);
+      if (!settled) {
+        animRef.current = requestAnimationFrame(draw);
+      }
     };
 
     animRef.current = requestAnimationFrame(draw);
