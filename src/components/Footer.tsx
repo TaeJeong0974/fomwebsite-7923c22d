@@ -2,20 +2,10 @@ import { useState, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import FomIcon from "@/assets/FOM_Icon.svg";
-import { getColor } from "@/lib/colorUtils";
+import { sampleColors, buildMeshGradient, APPLE_GRADIENT_COLORS } from "@/lib/colorUtils";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 
 const fullLogoMask = `url("data:image/svg+xml,%3Csvg width='598' height='186' viewBox='0 0 598 186' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M448.5 0H411.125V186H448.5V0Z' fill='black'/%3E%3Cpath d='M0 -4.57764e-05L0 37.2L149.5 37.2V-4.57764e-05L0 -4.57764e-05Z' fill='black'/%3E%3Cpath d='M0 74.3806L0 111.581L149.5 111.581V74.3806H0Z' fill='black'/%3E%3Cpath d='M0 148.8L0 186H73.6799V148.8H0Z' fill='black'/%3E%3Cpath d='M523.25 0H485.875V186H523.25V0Z' fill='black'/%3E%3Cpath d='M598 0H560.625V186H598V0Z' fill='black'/%3E%3Cpath d='M280.322 37.2C311.238 37.2 336.394 62.2388 336.394 93.0097C336.394 123.781 311.238 148.819 280.322 148.819C249.407 148.819 224.25 123.781 224.25 93.0097C224.25 62.2388 249.407 37.2 280.322 37.2ZM280.322 0C228.705 0 186.875 41.6346 186.875 93.0097C186.875 144.385 228.705 186.019 280.322 186.019C331.939 186.019 373.769 144.385 373.769 93.0097C373.769 41.6346 331.92 0 280.322 0Z' fill='black'/%3E%3C/svg%3E")`;
-
-// Apple-like cool palette: indigo → violet → teal → cyan
-const APPLE_GRADIENT_COLORS: number[][] = [
-  [88, 86, 214],    // indigo
-  [175, 82, 222],   // violet
-  [50, 173, 230],   // teal-blue
-  [90, 200, 250],   // cyan
-  [100, 210, 185],  // seafoam
-  [88, 86, 214],    // loop back to indigo
-];
 
 const AnimatedFooterLogo = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -23,7 +13,6 @@ const AnimatedFooterLogo = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const animFrameRef = useRef<number>(0);
   const startTimeRef = useRef<number>(0);
-  // Lerped values for smooth mouse follow
   const targetAngleRef = useRef(135);
   const currentAngleRef = useRef(135);
   const targetMouseXRef = useRef(0.5);
@@ -53,9 +42,7 @@ const AnimatedFooterLogo = () => {
       const dt = Math.min((now - lastTime) / 1000, 0.05);
       lastTime = now;
       const elapsed = (now - startTimeRef.current) / 1000;
-      // Slow color cycle for premium feel
       setColorOffset(elapsed * 0.25);
-      // Lerp angle and mouse position for buttery smoothness
       const lerpFactor = 1 - Math.pow(0.05, dt);
       currentAngleRef.current = lerpVal(currentAngleRef.current, targetAngleRef.current, lerpFactor);
       currentMouseXRef.current = lerpVal(currentMouseXRef.current, targetMouseXRef.current, lerpFactor);
@@ -66,39 +53,16 @@ const AnimatedFooterLogo = () => {
     animFrameRef.current = requestAnimationFrame(tick);
   };
 
-  const stopAnimation = () => {
-    cancelAnimationFrame(animFrameRef.current);
-  };
+  const stopAnimation = () => cancelAnimationFrame(animFrameRef.current);
+  const handleEnter = () => { setIsHovered(true); startAnimation(); };
+  const handleLeave = () => { setIsHovered(false); targetAngleRef.current = 135; stopAnimation(); };
 
-  const handleEnter = () => {
-    setIsHovered(true);
-    startAnimation();
-  };
-
-  const handleLeave = () => {
-    setIsHovered(false);
-    targetAngleRef.current = 135;
-    stopAnimation();
-  };
-
-  const angle = currentAngleRef.current;
-  const mx = currentMouseXRef.current;
-  const my = currentMouseYRef.current;
-
-  const c0 = getColor(colorOffset, APPLE_GRADIENT_COLORS);
-  const c1 = getColor(colorOffset + 1, APPLE_GRADIENT_COLORS);
-  const c2 = getColor(colorOffset + 2, APPLE_GRADIENT_COLORS);
-  const c3 = getColor(colorOffset + 3, APPLE_GRADIENT_COLORS);
-  const c4 = getColor(colorOffset + 4, APPLE_GRADIENT_COLORS);
-
-  // Layered radial gradients for mesh effect
-  const meshGradient = [
-    `radial-gradient(ellipse 80% 80% at ${mx * 100}% ${my * 100}%, rgba(${c0.join(',')},0.9) 0%, transparent 70%)`,
-    `radial-gradient(ellipse 60% 70% at ${100 - mx * 60}% ${100 - my * 60}%, rgba(${c1.join(',')},0.8) 0%, transparent 60%)`,
-    `radial-gradient(ellipse 70% 60% at ${mx * 80 + 10}% ${my * 40 + 30}%, rgba(${c2.join(',')},0.7) 0%, transparent 65%)`,
-    `radial-gradient(ellipse 50% 50% at ${50 + (mx - 0.5) * 30}% ${50 + (my - 0.5) * 30}%, rgba(${c3.join(',')},0.6) 0%, transparent 55%)`,
-    `linear-gradient(${angle}deg, rgba(${c4.join(',')},0.4) 0%, rgba(${c0.join(',')},0.3) 100%)`,
-  ].join(', ');
+  const sampled = sampleColors(colorOffset, 5, APPLE_GRADIENT_COLORS);
+  const meshGradient = buildMeshGradient(sampled, {
+    mx: currentMouseXRef.current,
+    my: currentMouseYRef.current,
+    angle: currentAngleRef.current,
+  });
 
   return (
     <div
