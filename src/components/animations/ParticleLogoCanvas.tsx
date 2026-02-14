@@ -121,19 +121,18 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
 
     const points = sampleLogoPoints(PARTICLE_COUNT);
     particlesRef.current = points.map(([tx, ty]) => {
-      // Organic scatter using gaussian-like distribution for natural cloud shape
-      const cx = 0.5, cy = 0.5;
-      const r = Math.sqrt(-2 * Math.log(Math.max(0.001, Math.random()))) * 0.35;
-      const theta = Math.random() * Math.PI * 2;
-      const sx = cx + r * Math.cos(theta) * (1 + Math.random() * 0.3);
-      const sy = cy + r * Math.sin(theta) * (0.8 + Math.random() * 0.4);
+      // Spread across full canvas with organic variation
+      // Use multiple random offsets for a cloud-like, non-uniform feel
+      const r1 = Math.random(), r2 = Math.random(), r3 = Math.random();
+      const sx = (r1 + r2) / 2 * 0.9 + 0.05; // cluster toward center, avoid hard edges
+      const sy = (r2 + r3) / 2 * 0.9 + 0.05;
       return {
         tx, ty,
         x: sx, y: sy,
         sx, sy,
         delay: Math.random() * STAGGER_RANGE,
         size: 1.2,
-        colorIdx: (tx * 4 + ty * 2 + Math.random()) % 4,
+        colorIdx: 0,
       };
     });
   }, []);
@@ -157,6 +156,28 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
     return () => window.removeEventListener("resize", resizeCanvas);
   }, [resizeCanvas]);
 
+  // Init particles on mount and draw them scattered (static)
+  useEffect(() => {
+    initParticles();
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const dpr = dprRef.current;
+    const w = canvas.width;
+    const h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+    const particles = particlesRef.current;
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      ctx.beginPath();
+      ctx.arc(p.sx * w, p.sy * h, p.size * dpr, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgb(0,0,0)';
+      ctx.fill();
+    }
+  }, [initParticles]);
+
+  // Start convergence animation when scrolled into view
   useEffect(() => {
     if (!isInView) return;
     initParticles();
@@ -175,19 +196,16 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
 
       ctx.clearRect(0, 0, w, h);
 
-      // Global fade-out after particles have settled
       const globalFade = elapsed > FADE_OUT_START
         ? Math.max(0, 1 - (elapsed - FADE_OUT_START) / FADE_OUT_DURATION)
         : 1;
 
-      // Notify parent when particles start fading so logo can appear
       if (elapsed > FADE_OUT_START && !settledCalledRef.current) {
         settledCalledRef.current = true;
         onSettled?.();
       }
 
       if (globalFade <= 0) {
-        // Animation complete, stop loop
         return;
       }
 
@@ -195,7 +213,6 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         const t = Math.max(0, Math.min(1, (elapsed - p.delay) / (DURATION - p.delay)));
-        // Smooth ease-in-out for gentler convergence
         const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
         p.x = p.sx + (p.tx - p.sx) * ease;
