@@ -76,7 +76,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image, placeh
     >
       <img
         src={cardImage}
-        alt=""
+        alt={episode.name ? `${episode.name}, ${episode.title} at ${episode.company}` : "Episode thumbnail"}
         loading="lazy"
         decoding="async"
         onLoad={() => setTimeout(() => setShowImage(true), 400)}
@@ -131,7 +131,11 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image, placeh
     return (
       <div
         className="block group cursor-pointer"
+        role="button"
+        tabIndex={0}
+        aria-label={`Upcoming episode with ${episode.name}, ${episode.title} at ${episode.company}. Subscribe for updates.`}
         onClick={() => openSubscribe({ guestName: episode.name.split(' ')[0] })}
+        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSubscribe({ guestName: episode.name.split(' ')[0] }); } }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >
@@ -144,6 +148,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image, placeh
     <Link
       to={`/episode/${episode.slug}`}
       className="block group"
+      aria-label={`Listen to episode with ${episode.name}, ${episode.title} at ${episode.company}`}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
