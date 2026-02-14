@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import { useInView } from "framer-motion";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import FomIcon from "@/assets/FOM_Icon.svg";
@@ -105,6 +106,19 @@ const Footer = () => {
   const navigate = useNavigate();
   const isHomePage = location.pathname === "/";
 
+  const taglineRef = useRef<HTMLParagraphElement>(null);
+  const navRef = useRef<HTMLUListElement>(null);
+  const logoRef = useRef<HTMLDivElement>(null);
+  const taglineInView = useInView(taglineRef, { once: true, amount: 0.15 });
+  const navInView = useInView(navRef, { once: true, amount: 0.15 });
+  const logoInView = useInView(logoRef, { once: true, amount: 0.15 });
+
+  const fadeUp = (inView: boolean, delay = 0): React.CSSProperties => ({
+    opacity: inView ? 1 : 0,
+    transform: inView ? 'translateY(0)' : 'translateY(24px)',
+    transition: `opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1) ${delay}s`,
+  });
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
     if (isHomePage) {
@@ -127,12 +141,16 @@ const Footer = () => {
         {/* Top section: tagline + nav links */}
         <div className="flex flex-col md:flex-row justify-between gap-10 md:gap-16 mb-16 sm:mb-20 lg:mb-28">
           {/* Tagline */}
-          <p className="text-lg sm:text-xl lg:text-2xl font-normal text-foreground max-w-[220px] sm:max-w-[260px]">
+          <p
+            ref={taglineRef}
+            style={fadeUp(taglineInView)}
+            className="text-lg sm:text-xl lg:text-2xl font-normal text-foreground max-w-[220px] sm:max-w-[260px]"
+          >
             A podcast series on how AI is changing marketing
           </p>
 
           {/* Nav links */}
-          <ul className="flex flex-col gap-1 text-body text-foreground/70">
+          <ul ref={navRef} style={fadeUp(navInView, 0.1)} className="flex flex-col gap-1 text-body text-foreground/70">
             <li><a href="#podcast" onClick={(e) => handleNavClick(e, '#podcast')} className="hover:text-foreground transition-colors duration-300">Podcast</a></li>
             <li><a href="#events" onClick={(e) => handleNavClick(e, '#events')} className="hover:text-foreground transition-colors duration-300">Events</a></li>
             <li><a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="hover:text-foreground transition-colors duration-300">Connect</a></li>
@@ -143,7 +161,7 @@ const Footer = () => {
       </div>
 
       {/* Giant FOM logo + copyright */}
-      <div className="container mx-auto container-padding">
+      <div ref={logoRef} style={fadeUp(logoInView, 0.2)} className="container mx-auto container-padding">
         <AnimatedFooterLogo />
         <p className="text-body-sm text-foreground/40 py-6 sm:py-8">© {new Date().getFullYear()} Future of Marketing. All rights reserved.</p>
       </div>
