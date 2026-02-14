@@ -156,6 +156,7 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
             episode={episode} 
             isNew={type === 'episode' && isNewEpisode(episode.publishedDate)} 
             isUpcoming={type === 'coming-soon'}
+            image={getEpisodeImage(episode.slug, index)}
           />
         </motion.div>
       ))}
