@@ -9,32 +9,15 @@ interface PageTransitionProps {
 
 const PageTransition = ({ children }: PageTransitionProps) => {
   const location = useLocation();
-  const previousPathRef = useRef(location.pathname);
-  
-  const isFromHomeToDetail = 
-    previousPathRef.current === "/" && 
-    location.pathname.startsWith("/episode/");
-
-  // Determine animation variants based on navigation direction
-  const initial = isFromHomeToDetail
-    ? { x: "50%", opacity: 0 }
-    : { opacity: 0 };
-
-  // Update ref after reading it
-  const prevPath = previousPathRef.current;
-  previousPathRef.current = location.pathname;
 
   return (
     <AnimatePresence mode="wait">
       <motion.div 
         key={location.pathname}
-        initial={prevPath === location.pathname ? false : initial}
-        animate={{ x: 0, opacity: 1 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ 
-          duration: isFromHomeToDetail ? 0.7 : 0.4, 
-          ease: liquidEase 
-        }}
+        transition={{ duration: 0.4, ease: liquidEase }}
       >
         {children}
       </motion.div>
