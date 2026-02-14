@@ -60,7 +60,7 @@ const StickyBottomBar = ({ youtubeUrl, spotifyUrl, thumbnailUrl, episodeName, ep
             )}
 
             {/* Episode info - hidden on hover */}
-            <div className="flex flex-col mr-2 max-w-[220px] overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/bar:max-w-0 group-hover/bar:mr-0 group-hover/bar:opacity-0">
+            <div className="flex flex-col mr-0 max-w-0 overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] opacity-0 group-hover/bar:max-w-[220px] group-hover/bar:mr-2 group-hover/bar:opacity-100">
               <span className="text-sm font-medium text-foreground truncate whitespace-nowrap">{episodeName}</span>
               <span className="text-xs text-foreground/50 truncate whitespace-nowrap">{episodeTitle}</span>
             </div>
