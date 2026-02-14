@@ -43,6 +43,9 @@ interface Particle {
   size: number;
   // Color index
   colorIdx: number;
+  // Spring velocity
+  vx: number;
+  vy: number;
 }
 
 /**
@@ -108,12 +111,14 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
   const hasInitRef = useRef(false);
   const dprRef = useRef(1);
   const settledCalledRef = useRef(false);
-
+  const lastTimeRef = useRef<number>(0);
   const PARTICLE_COUNT = 5000;
   const DURATION = 3.5;
-  const STAGGER_RANGE = 1.8;
+  const WAVE_DURATION = 1.4; // how long the wave stagger spreads across
   const FADE_OUT_START = 4.0;
   const FADE_OUT_DURATION = 1.5;
+  const SPRING_STIFFNESS = 12;
+  const SPRING_DAMPING = 0.82;
 
   const initParticles = useCallback(() => {
     if (hasInitRef.current) return;
@@ -125,13 +130,18 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
       const dist = 0.05 + Math.random() * 0.2;
       const sx = tx + Math.cos(angle) * dist;
       const sy = ty + Math.sin(angle) * dist;
+      // Wave stagger: delay based on horizontal position (left-to-right sweep)
+      // with a slight random jitter for organic feel
+      const waveDelay = (tx * WAVE_DURATION) + (Math.random() * 0.3);
       return {
         tx, ty,
         x: sx, y: sy,
         sx, sy,
-        delay: Math.random() * STAGGER_RANGE,
+        delay: waveDelay,
         size: 0.8 + Math.random() * 1.2,
         colorIdx: (tx * 4 + ty * 2 + Math.random()) % 4,
+        vx: 0,
+        vy: 0,
       };
     });
   }, []);
@@ -167,6 +177,8 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
       if (!ctx) return;
 
       const elapsed = (now - startTimeRef.current!) / 1000;
+      const dt = Math.min((now - (lastTimeRef.current || now)) / 1000, 0.033);
+      lastTimeRef.current = now;
       const w = canvas.width;
       const h = canvas.height;
       const dpr = dprRef.current;
@@ -185,22 +197,33 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
       }
 
       if (globalFade <= 0) {
-        // Animation complete, stop loop
         return;
       }
 
       const particles = particlesRef.current;
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
-        const t = Math.max(0, Math.min(1, (elapsed - p.delay) / (DURATION - p.delay)));
-        // Smooth ease-in-out for gentler convergence
-        const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        const localT = elapsed - p.delay;
+        
+        if (localT < 0) {
+          // Not started yet — stay at start position
+          p.x = p.sx;
+          p.y = p.sy;
+        } else {
+          // Spring physics: accelerate toward target, dampen velocity
+          const dx = p.tx - p.x;
+          const dy = p.ty - p.y;
+          p.vx += dx * SPRING_STIFFNESS * dt;
+          p.vy += dy * SPRING_STIFFNESS * dt;
+          p.vx *= Math.pow(SPRING_DAMPING, dt * 60);
+          p.vy *= Math.pow(SPRING_DAMPING, dt * 60);
+          p.x += p.vx * dt;
+          p.y += p.vy * dt;
+        }
 
-        p.x = p.sx + (p.tx - p.sx) * ease;
-        p.y = p.sy + (p.ty - p.sy) * ease;
-
+        const arrivalT = Math.max(0, Math.min(1, localT / (DURATION * 0.6)));
         const color = getColor(p.colorIdx + elapsed * 0.3, APPLE_GRADIENT_COLORS);
-        const alpha = (0.4 + ease * 0.6) * globalFade;
+        const alpha = (0.3 + arrivalT * 0.7) * globalFade;
 
         ctx.beginPath();
         ctx.arc(p.x * w, p.y * h, p.size * dpr, 0, Math.PI * 2);
