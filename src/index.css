@@ -389,7 +389,7 @@
   }
 
   .glass-hue-shadow {
-    animation: hue-shadow-cycle 8s ease-in-out infinite;
+    animation: hue-shadow-cycle 16s ease-in-out infinite;
   }
 
   @keyframes hue-shadow-cycle {
