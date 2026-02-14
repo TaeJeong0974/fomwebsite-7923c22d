@@ -2,104 +2,27 @@ import { useRef, useEffect, useCallback } from "react";
 import { useInView } from "framer-motion";
 import { getColor, APPLE_GRADIENT_COLORS } from "@/lib/colorUtils";
 
-/**
- * SVG path data for FOM logo — used to sample target particle positions.
- */
-const FOM_PATHS = [
-  // F top bar
-  "M0,0 L149.5,0 L149.5,37.2 L0,37.2 Z",
-  // F middle bar
-  "M0,74.38 L149.5,74.38 L149.5,111.58 L0,111.58 Z",
-  // F bottom stub
-  "M0,148.8 L73.68,148.8 L73.68,186 L0,186 Z",
-  // O outer
-  "M280.322,0 C228.705,0 186.875,41.6346 186.875,93.0097 C186.875,144.385 228.705,186.019 280.322,186.019 C331.939,186.019 373.769,144.385 373.769,93.0097 C373.769,41.6346 331.92,0 280.322,0 Z",
-  // O inner (hole)
-  "M280.322,37.2 C311.238,37.2 336.394,62.2388 336.394,93.0097 C336.394,123.781 311.238,148.819 280.322,148.819 C249.407,148.819 224.25,123.781 224.25,93.0097 C224.25,62.2388 249.407,37.2 280.322,37.2 Z",
-  // M left bar
-  "M411.125,0 L448.5,0 L448.5,186 L411.125,186 Z",
-  // M middle bar
-  "M485.875,0 L523.25,0 L523.25,186 L485.875,186 Z",
-  // M right bar
-  "M560.625,0 L598,0 L598,186 L560.625,186 Z",
-];
-
 const SVG_WIDTH = 598;
 const SVG_HEIGHT = 186;
 
+/** SVG mask for the FOM logo — used as CSS mask on the canvas */
+const logoMask = `url("data:image/svg+xml,%3Csvg width='598' height='186' viewBox='0 0 598 186' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M448.5 0H411.125V186H448.5V0Z' fill='black'/%3E%3Cpath d='M0 -4.57764e-05L0 37.2L149.5 37.2V-4.57764e-05L0 -4.57764e-05Z' fill='black'/%3E%3Cpath d='M0 74.3806L0 111.581L149.5 111.581V74.3806H0Z' fill='black'/%3E%3Cpath d='M0 148.8L0 186H73.6799V148.8H0Z' fill='black'/%3E%3Cpath d='M523.25 0H485.875V186H523.25V0Z' fill='black'/%3E%3Cpath d='M598 0H560.625V186H598V0Z' fill='black'/%3E%3Cpath d='M280.322 37.2C311.238 37.2 336.394 62.2388 336.394 93.0097C336.394 123.781 311.238 148.819 280.322 148.819C249.407 148.819 224.25 123.781 224.25 93.0097C224.25 62.2388 249.407 37.2 280.322 37.2ZM280.322 0C228.705 0 186.875 41.6346 186.875 93.0097C186.875 144.385 228.705 186.019 280.322 186.019C331.939 186.019 373.769 144.385 373.769 93.0097C373.769 41.6346 331.92 0 280.322 0Z' fill='black'/%3E%3C/svg%3E")`;
+
 interface Particle {
-  // Target position (normalized 0-1)
-  tx: number;
-  ty: number;
-  // Current position
   x: number;
   y: number;
-  // Starting position (random scatter)
-  sx: number;
-  sy: number;
-  // Delay before this particle starts moving (stagger)
-  delay: number;
-  // Size
-  size: number;
-  // Color index
-  colorIdx: number;
-  // Spring velocity
   vx: number;
   vy: number;
-}
-
-/**
- * Sample points from the FOM logo paths using an offscreen canvas.
- */
-function sampleLogoPoints(count: number): Array<[number, number]> {
-  const canvas = document.createElement("canvas");
-  const scale = 2;
-  canvas.width = SVG_WIDTH * scale;
-  canvas.height = SVG_HEIGHT * scale;
-  const ctx = canvas.getContext("2d")!;
-  ctx.scale(scale, scale);
-
-  // Draw filled shape (outer O minus inner O hole)
-  ctx.fillStyle = "black";
-  FOM_PATHS.forEach((d, i) => {
-    const path = new Path2D(d);
-    if (i === 4) {
-      // O inner hole — use evenodd or just clip
-      // We'll handle this by erasing
-      ctx.globalCompositeOperation = "destination-out";
-      ctx.fill(path);
-      ctx.globalCompositeOperation = "source-over";
-    } else {
-      ctx.fill(path);
-    }
-  });
-
-  const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
-  const filled: Array<[number, number]> = [];
-
-  // Sample filled pixels
-  const step = Math.max(1, Math.floor(Math.sqrt((canvas.width * canvas.height) / (count * 4))));
-  for (let y = 0; y < canvas.height; y += step) {
-    for (let x = 0; x < canvas.width; x += step) {
-      const idx = (y * canvas.width + x) * 4;
-      if (imageData.data[idx + 3] > 128) {
-        filled.push([x / canvas.width, y / canvas.height]);
-      }
-    }
-  }
-
-  // If we got too many or too few, randomly sample to target count
-  if (filled.length > count) {
-    const shuffled = filled.sort(() => Math.random() - 0.5);
-    return shuffled.slice(0, count);
-  }
-  return filled;
+  size: number;
+  colorIdx: number;
 }
 
 interface ParticleLogoCanvasProps {
   className?: string;
   onSettled?: () => void;
 }
+
+const PARTICLE_COUNT = 6000;
 
 const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -110,39 +33,19 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
   const isInView = useInView(containerRef, { once: true, amount: 0.15 });
   const hasInitRef = useRef(false);
   const dprRef = useRef(1);
-  const settledCalledRef = useRef(false);
-  const lastTimeRef = useRef<number>(0);
-  const PARTICLE_COUNT = 5000;
-  const DURATION = 3.5;
-  const WAVE_DURATION = 1.4;
-  const SPRING_STIFFNESS = 12;
-  const SPRING_DAMPING = 0.82;
-  const SETTLE_TIME = 4.0; // when particles are considered settled
 
   const initParticles = useCallback(() => {
     if (hasInitRef.current) return;
     hasInitRef.current = true;
 
-    const points = sampleLogoPoints(PARTICLE_COUNT);
-    particlesRef.current = points.map(([tx, ty]) => {
-      const angle = Math.random() * Math.PI * 2;
-      const dist = 0.05 + Math.random() * 0.2;
-      const sx = tx + Math.cos(angle) * dist;
-      const sy = ty + Math.sin(angle) * dist;
-      // Wave stagger: delay based on horizontal position (left-to-right sweep)
-      // with a slight random jitter for organic feel
-      const waveDelay = (tx * WAVE_DURATION) + (Math.random() * 0.3);
-      return {
-        tx, ty,
-        x: sx, y: sy,
-        sx, sy,
-        delay: waveDelay,
-        size: 0.8 + Math.random() * 1.2,
-        colorIdx: (tx * 4 + ty * 2 + Math.random()) % 4,
-        vx: 0,
-        vy: 0,
-      };
-    });
+    particlesRef.current = Array.from({ length: PARTICLE_COUNT }, () => ({
+      x: Math.random(),
+      y: Math.random(),
+      vx: (Math.random() - 0.5) * 0.003,
+      vy: (Math.random() - 0.5) * 0.003,
+      size: 0.6 + Math.random() * 1.4,
+      colorIdx: Math.random() * 4,
+    }));
   }, []);
 
   const resizeCanvas = useCallback(() => {
@@ -176,56 +79,35 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
       if (!ctx) return;
 
       const elapsed = (now - startTimeRef.current!) / 1000;
-      const dt = Math.min((now - (lastTimeRef.current || now)) / 1000, 0.033);
-      lastTimeRef.current = now;
       const w = canvas.width;
       const h = canvas.height;
       const dpr = dprRef.current;
 
-      // Once settled, keep running but particles stay in place via spring
-      const allSettled = elapsed > SETTLE_TIME;
-
-      // Notify parent once settled
-      if (allSettled && !settledCalledRef.current) {
-        settledCalledRef.current = true;
-        onSettled?.();
-      }
+      ctx.clearRect(0, 0, w, h);
 
       const particles = particlesRef.current;
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
-        const localT = elapsed - p.delay;
-        
-        if (localT < 0) {
-          p.x = p.sx;
-          p.y = p.sy;
-        } else if (!allSettled) {
-          // Spring physics while still animating
-          const dx = p.tx - p.x;
-          const dy = p.ty - p.y;
-          p.vx += dx * SPRING_STIFFNESS * dt;
-          p.vy += dy * SPRING_STIFFNESS * dt;
-          p.vx *= Math.pow(SPRING_DAMPING, dt * 60);
-          p.vy *= Math.pow(SPRING_DAMPING, dt * 60);
-          p.x += p.vx * dt;
-          p.y += p.vy * dt;
-        }
-        // Once settled, particles stay at their last position (no more physics)
 
-        const arrivalT = Math.max(0, Math.min(1, localT / (DURATION * 0.6)));
-        const color = getColor(p.colorIdx + (allSettled ? SETTLE_TIME : elapsed) * 0.3, APPLE_GRADIENT_COLORS);
-        const alpha = (0.3 + arrivalT * 0.7);
+        // Gentle drift
+        p.x += p.vx;
+        p.y += p.vy;
+
+        // Wrap around edges
+        if (p.x < 0) p.x += 1;
+        if (p.x > 1) p.x -= 1;
+        if (p.y < 0) p.y += 1;
+        if (p.y > 1) p.y -= 1;
+
+        const color = getColor(p.colorIdx + elapsed * 0.15, APPLE_GRADIENT_COLORS);
 
         ctx.beginPath();
         ctx.arc(p.x * w, p.y * h, p.size * dpr, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${color[0]},${color[1]},${color[2]},${alpha})`;
+        ctx.fillStyle = `rgba(${color[0]},${color[1]},${color[2]},0.85)`;
         ctx.fill();
       }
 
-      // Stop the loop once settled (final frame is already painted)
-      if (!allSettled) {
-        animRef.current = requestAnimationFrame(draw);
-      }
+      animRef.current = requestAnimationFrame(draw);
     };
 
     animRef.current = requestAnimationFrame(draw);
@@ -237,7 +119,15 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
       <canvas
         ref={canvasRef}
         className="w-full"
-        style={{ aspectRatio: `${SVG_WIDTH} / ${SVG_HEIGHT}` }}
+        style={{
+          aspectRatio: `${SVG_WIDTH} / ${SVG_HEIGHT}`,
+          maskImage: logoMask,
+          maskSize: '100% 100%',
+          maskRepeat: 'no-repeat',
+          WebkitMaskImage: logoMask,
+          WebkitMaskSize: '100% 100%',
+          WebkitMaskRepeat: 'no-repeat',
+        }}
       />
     </div>
   );
