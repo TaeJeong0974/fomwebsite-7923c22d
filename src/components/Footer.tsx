@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import FomIcon from "@/assets/FOM_Icon.svg";
@@ -20,6 +20,19 @@ const AnimatedFooterLogo = () => {
   const currentMouseXRef = useRef(0.5);
   const currentMouseYRef = useRef(0.5);
   const [renderTick, setRenderTick] = useState(0);
+  const [aspect, setAspect] = useState(1);
+
+  useEffect(() => {
+    const updateAspect = () => {
+      if (containerRef.current) {
+        const { width, height } = containerRef.current.getBoundingClientRect();
+        if (height > 0) setAspect(width / height);
+      }
+    };
+    updateAspect();
+    window.addEventListener('resize', updateAspect);
+    return () => window.removeEventListener('resize', updateAspect);
+  }, []);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
@@ -62,6 +75,7 @@ const AnimatedFooterLogo = () => {
     mx: currentMouseXRef.current,
     my: currentMouseYRef.current,
     angle: currentAngleRef.current,
+    aspect,
   });
 
   return (
