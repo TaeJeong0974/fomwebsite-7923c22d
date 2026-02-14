@@ -27,16 +27,16 @@ const fadeUpItem = {
 };
 
 const guestHeadlines: Record<string, string> = {
-  Meagen: "Get Notified for Meagen's Episode",
-  Lena: "Get Notified for Lena's Episode",
-  Dave: "Get Notified for Dave's Episode",
-  Sara: "Get Notified for Sara's Episode",
-  Kate: "Get Notified for Kate's Episode",
-  Idan: "Get Notified for Idan's Episode",
-  Lindsey: "Get Notified for Lindsey's Episode",
-  Sheila: "Get Notified for Sheila's Episode",
-  Ceci: "Get Notified for Ceci's Episode",
-  Katrina: "Get Notified for Katrina's Episode",
+  Meagen: "Meagen's Episode Is Almost Ready",
+  Lena: "We'll Let You Know When Lena's Live",
+  Dave: "Dave's Episode Is on Its Way",
+  Sara: "Sara's Conversation Is Coming Soon",
+  Kate: "We're Prepping Kate's Episode Now",
+  Idan: "Idan's Episode Is in the Works",
+  Lindsey: "Lindsey's Chat Is Almost Here",
+  Sheila: "Sheila's Episode Is Right Around the Corner",
+  Ceci: "Ceci's Conversation Is Coming Up",
+  Katrina: "Katrina's Episode Is on the Way",
 };
 
 interface SubscribeDrawerProps {
