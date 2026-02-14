@@ -45,15 +45,20 @@ const AnimatedFooterLogo = () => {
 
   const startAnimation = () => {
     startTimeRef.current = performance.now();
+    let lastTime = performance.now();
     const tick = (now: number) => {
+      const dt = Math.min((now - lastTime) / 16.667, 3); // normalize to 60fps, cap at 3x
+      lastTime = now;
       const elapsed = (now - startTimeRef.current) / 1000;
       // Smooth color cycling with subtle wobble
       colorOffsetRef.current = elapsed * 0.35 + Math.sin(elapsed * 0.7) * 0.15;
-      // Lerp angle toward target for smooth, organic tracking
+      // Eased angle interpolation — faster when far, gentler when close
       const diff = targetAngleRef.current - currentAngleRef.current;
-      // Handle angle wrapping
       const shortDiff = ((diff + 540) % 360) - 180;
-      currentAngleRef.current += shortDiff * 0.06;
+      const absDiff = Math.abs(shortDiff);
+      // Ease factor: ramps from 0.04 (close) to 0.12 (far) for natural motion
+      const easeFactor = 0.04 + 0.08 * Math.min(absDiff / 180, 1);
+      currentAngleRef.current += shortDiff * easeFactor * dt;
       renderAngleRef.current = currentAngleRef.current;
       forceRender(n => n + 1);
       animFrameRef.current = requestAnimationFrame(tick);
