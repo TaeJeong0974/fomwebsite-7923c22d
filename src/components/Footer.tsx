@@ -26,26 +26,36 @@ const getColor = (offset: number) => {
 
 const AnimatedFooterLogo = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const [gradientAngle, setGradientAngle] = useState(135);
-  const [colorOffset, setColorOffset] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const animFrameRef = useRef<number>(0);
   const startTimeRef = useRef<number>(0);
+  const targetAngleRef = useRef(135);
+  const currentAngleRef = useRef(135);
+  const renderAngleRef = useRef(135);
+  const colorOffsetRef = useRef(0);
+  const [, forceRender] = useState(0);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
-    const angle = Math.atan2(y, x) * (180 / Math.PI) + 180;
-    setGradientAngle(angle);
+    targetAngleRef.current = Math.atan2(y, x) * (180 / Math.PI) + 180;
   };
 
   const startAnimation = () => {
     startTimeRef.current = performance.now();
     const tick = (now: number) => {
       const elapsed = (now - startTimeRef.current) / 1000;
-      setColorOffset(elapsed * 0.5); // speed of color cycling
+      // Smooth color cycling with subtle wobble
+      colorOffsetRef.current = elapsed * 0.35 + Math.sin(elapsed * 0.7) * 0.15;
+      // Lerp angle toward target for smooth, organic tracking
+      const diff = targetAngleRef.current - currentAngleRef.current;
+      // Handle angle wrapping
+      const shortDiff = ((diff + 540) % 360) - 180;
+      currentAngleRef.current += shortDiff * 0.06;
+      renderAngleRef.current = currentAngleRef.current;
+      forceRender(n => n + 1);
       animFrameRef.current = requestAnimationFrame(tick);
     };
     animFrameRef.current = requestAnimationFrame(tick);
@@ -62,16 +72,18 @@ const AnimatedFooterLogo = () => {
 
   const handleLeave = () => {
     setIsHovered(false);
-    setGradientAngle(135);
+    targetAngleRef.current = 135;
     stopAnimation();
   };
 
-  const c0 = getColor(colorOffset);
-  const c1 = getColor(colorOffset + 1);
-  const c2 = getColor(colorOffset + 2);
-  const c3 = getColor(colorOffset + 3);
+  const offset = colorOffsetRef.current;
+  const angle = renderAngleRef.current;
+  const c0 = getColor(offset);
+  const c1 = getColor(offset + 0.8);
+  const c2 = getColor(offset + 1.6);
+  const c3 = getColor(offset + 2.4);
 
-  const gradientBg = `linear-gradient(${gradientAngle}deg, rgb(${c0.join(',')}) 0%, rgb(${c1.join(',')}) 33%, rgb(${c2.join(',')}) 66%, rgb(${c3.join(',')}) 100%)`;
+  const gradientBg = `linear-gradient(${angle}deg, rgb(${c0.join(',')}) 0%, rgb(${c1.join(',')}) 33%, rgb(${c2.join(',')}) 66%, rgb(${c3.join(',')}) 100%)`;
 
   return (
     <div
@@ -108,7 +120,7 @@ const AnimatedFooterLogo = () => {
       <motion.div
         className="absolute inset-0 w-full h-full"
         style={{
-          background: `linear-gradient(${gradientAngle}deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0) 100%)`,
+          background: `linear-gradient(${angle}deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0) 100%)`,
           maskImage: fullLogoMask,
           maskSize: '100% 100%',
           maskRepeat: 'no-repeat',
