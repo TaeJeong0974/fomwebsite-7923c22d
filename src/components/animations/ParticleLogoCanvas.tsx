@@ -46,7 +46,7 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
       y: Math.random(),
       vx: (Math.random() - 0.5) * 0.003,
       vy: (Math.random() - 0.5) * 0.003,
-      size: 0.6 + Math.random() * 1.4,
+      size: 1.0 + Math.random() * 1.5,
       colorIdx: Math.random() * 4,
     }));
   }, []);
@@ -123,7 +123,7 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
         const b = Math.round(color[2] * (1 - blackEase));
 
         // Also increase size slightly to fill gaps as it becomes solid
-        const finalSize = p.size + blackEase * 0.8;
+        const finalSize = p.size + blackEase * 3.0;
 
         ctx.beginPath();
         ctx.arc(p.x * w, p.y * h, finalSize * dpr, 0, Math.PI * 2);
