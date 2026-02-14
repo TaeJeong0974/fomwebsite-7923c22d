@@ -141,10 +141,8 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
   ];
   
   const MOBILE_INITIAL = 3;
-  const DESKTOP_INITIAL = 5;
-  const initialCount = isMobile ? MOBILE_INITIAL : DESKTOP_INITIAL;
-  const hasMore = allCards.length > initialCount;
-  const visibleCards = showAll ? allCards : allCards.slice(0, initialCount);
+  const hasMore = isMobile && allCards.length > MOBILE_INITIAL;
+  const visibleCards = isMobile && !showAll ? allCards.slice(0, MOBILE_INITIAL) : allCards;
   
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-gap">
@@ -165,7 +163,18 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
         </motion.div>
       ))}
       
-      {showAll && (
+      {!isMobile && (
+        <motion.div 
+          initial={{ opacity: 0, y: 30, scale: 0.98 }}
+          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 1.0, delay: 0.2, ease: liquidEase }}
+        >
+          <SubscribeCard />
+        </motion.div>
+      )}
+
+      {showAll && isMobile && (
         <motion.div 
           initial={{ opacity: 0, y: 30, scale: 0.98 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -190,7 +199,7 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
             <div className="flex flex-col items-center gap-3 text-foreground/60 group-hover:text-foreground transition-colors duration-500">
               {showAll ? <ChevronUp className="w-6 h-6" /> : <Plus className="w-6 h-6" />}
               <span className="text-sm font-medium tracking-wide">
-                {showAll ? 'Show Less' : `${allCards.length - initialCount} More`}
+                {showAll ? 'Show Less' : `${allCards.length - MOBILE_INITIAL} More`}
               </span>
             </div>
           </div>
