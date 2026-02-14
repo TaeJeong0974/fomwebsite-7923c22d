@@ -11,9 +11,10 @@ interface PodcastCardProps {
   episode: PodcastEpisode;
   isNew?: boolean;
   isUpcoming?: boolean;
+  image?: string;
 }
 
-const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCardProps) => {
+const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image }: PodcastCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const isMobile = useIsMobile();
@@ -39,10 +40,12 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false }: PodcastCard
     }
   };
 
+  const cardImage = image || guestBg;
+
   const cardContent = (
     <div className="card-image md:hover-scale relative">
       <img
-        src={guestBg}
+        src={cardImage}
         alt=""
         loading="lazy"
         decoding="async"
