@@ -15,4 +15,16 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Split heavy vendor deps into their own cached chunks
+          "vendor-react": ["react", "react-dom", "react-router-dom"],
+          "vendor-motion": ["framer-motion"],
+          "vendor-query": ["@tanstack/react-query"],
+        },
+      },
+    },
+  },
 }));
