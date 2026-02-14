@@ -8,9 +8,10 @@ interface StickyBottomBarProps {
   thumbnailUrl: string | null;
   episodeName: string;
   episodeTitle: string;
+  onPlayClick?: () => void;
 }
 
-const StickyBottomBar = ({ youtubeUrl, spotifyUrl, thumbnailUrl, episodeName, episodeTitle }: StickyBottomBarProps) => {
+const StickyBottomBar = ({ youtubeUrl, spotifyUrl, thumbnailUrl, episodeName, episodeTitle, onPlayClick }: StickyBottomBarProps) => {
   const [copied, setCopied] = useState(false);
   const [visible, setVisible] = useState(false);
 
@@ -44,13 +45,13 @@ const StickyBottomBar = ({ youtubeUrl, spotifyUrl, thumbnailUrl, episodeName, ep
           <div className="flex items-center gap-4 px-3 py-2.5 rounded-2xl bg-background/80 backdrop-blur-xl border border-foreground/[0.06] shadow-lg shadow-black/[0.08]">
             {/* Thumbnail - clickable to YouTube */}
             {thumbnailUrl && (
-              <a href={youtubeUrl} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-lg overflow-hidden shrink-0 ring-1 ring-foreground/5 hover:ring-foreground/15 transition-all duration-200 hover:scale-105">
+              <button onClick={onPlayClick} className="w-12 h-12 rounded-lg overflow-hidden shrink-0 ring-1 ring-foreground/5 hover:ring-foreground/15 transition-all duration-200 hover:scale-105 cursor-pointer">
                 <img
                   src={thumbnailUrl}
                   alt={episodeName}
                   className="w-full h-full object-cover"
                 />
-              </a>
+              </button>
             )}
 
             {/* Episode info */}

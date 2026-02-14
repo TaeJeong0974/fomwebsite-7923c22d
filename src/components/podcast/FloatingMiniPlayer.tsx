@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Play } from "lucide-react";
 import guestBg from "@/assets/guest-bg.png";
 
 interface FloatingMiniPlayerProps {
   youtubeUrl?: string;
   spotifyUrl?: string;
+  playTrigger?: number;
 }
 
 // Extract YouTube video ID from various URL formats
@@ -24,9 +25,15 @@ const getYouTubeVideoId = (url: string): string | null => {
   return null;
 };
 
-const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl }: FloatingMiniPlayerProps) => {
+const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger }: FloatingMiniPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoId = youtubeUrl ? getYouTubeVideoId(youtubeUrl) : null;
+
+  useEffect(() => {
+    if (playTrigger && playTrigger > 0) {
+      setIsPlaying(true);
+    }
+  }, [playTrigger]);
   
   // YouTube thumbnail URL
   const thumbnailUrl = videoId 
