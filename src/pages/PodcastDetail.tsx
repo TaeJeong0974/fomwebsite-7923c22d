@@ -1,3 +1,4 @@
+import { useState, useCallback } from "react";
 import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
@@ -24,6 +25,7 @@ const fadeInVariants = {
 
 const PodcastDetail = () => {
   const { slug } = useParams();
+  const [playTrigger, setPlayTrigger] = useState(0);
   const episode = getEpisodeBySlug(slug || "");
   
   // Get other episodes - always show exactly 3, mixing published and coming soon
@@ -63,6 +65,10 @@ const PodcastDetail = () => {
         thumbnailUrl={thumbnailUrl}
         episodeName={episode.name}
         episodeTitle={`${episode.title}, ${episode.company}`}
+        onPlayClick={() => {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          setPlayTrigger(prev => prev + 1);
+        }}
       />
       <EpisodeOverlayLayout>
         {/* Title & Action Buttons Row - Same grid as content below */}
@@ -106,6 +112,7 @@ const PodcastDetail = () => {
               <FloatingMiniPlayer 
                 youtubeUrl={episode.youtubeUrl}
                 spotifyUrl={episode.spotifyUrl}
+                playTrigger={playTrigger}
               />
 
               {/* Action Buttons - Mobile only */}
