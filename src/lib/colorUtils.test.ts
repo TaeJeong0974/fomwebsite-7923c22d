@@ -1,5 +1,12 @@
 import { describe, it, expect } from "vitest";
-import { lerpColor, getColor, DEFAULT_GRADIENT_COLORS } from "@/lib/colorUtils";
+import {
+  lerpColor,
+  getColor,
+  sampleColors,
+  buildMeshGradient,
+  DEFAULT_GRADIENT_COLORS,
+  APPLE_GRADIENT_COLORS,
+} from "@/lib/colorUtils";
 
 describe("lerpColor", () => {
   it("returns color A when t=0", () => {
@@ -15,19 +22,15 @@ describe("lerpColor", () => {
   });
 
   it("handles undefined color A with fallback", () => {
-    const result = lerpColor(undefined, [0, 0, 0], 1);
-    expect(result).toEqual([0, 0, 0]);
+    expect(lerpColor(undefined, [0, 0, 0], 1)).toEqual([0, 0, 0]);
   });
 
   it("handles undefined color B with fallback", () => {
-    const result = lerpColor([0, 0, 0], undefined, 0);
-    expect(result).toEqual([0, 0, 0]);
+    expect(lerpColor([0, 0, 0], undefined, 0)).toEqual([0, 0, 0]);
   });
 
   it("handles both colors undefined", () => {
-    const result = lerpColor(undefined, undefined, 0.5);
-    // Should return fallback color lerped with itself
-    expect(result).toEqual([255, 100, 80]);
+    expect(lerpColor(undefined, undefined, 0.5)).toEqual([255, 100, 80]);
   });
 });
 
@@ -44,7 +47,6 @@ describe("getColor", () => {
 
   it("interpolates at fractional offset 0.5", () => {
     const result = getColor(0.5, colors);
-    // Should be midpoint between colors[0] and colors[1]
     const expected = lerpColor(colors[0], colors[1], 0.5);
     expect(result).toEqual(expected);
   });
@@ -81,7 +83,80 @@ describe("getColor", () => {
   });
 
   it("uses default palette when no colors provided", () => {
-    const result = getColor(0);
-    expect(result).toEqual(DEFAULT_GRADIENT_COLORS[0]);
+    expect(getColor(0)).toEqual(DEFAULT_GRADIENT_COLORS[0]);
+  });
+});
+
+describe("APPLE_GRADIENT_COLORS", () => {
+  it("has at least 5 colors for mesh sampling", () => {
+    expect(APPLE_GRADIENT_COLORS.length).toBeGreaterThanOrEqual(5);
+  });
+
+  it("loops back to first color", () => {
+    expect(APPLE_GRADIENT_COLORS[APPLE_GRADIENT_COLORS.length - 1]).toEqual(
+      APPLE_GRADIENT_COLORS[0]
+    );
+  });
+});
+
+describe("sampleColors", () => {
+  it("returns the requested number of colors", () => {
+    const result = sampleColors(0, 5);
+    expect(result).toHaveLength(5);
+    result.forEach((c) => expect(c).toHaveLength(3));
+  });
+
+  it("works with custom palette", () => {
+    const result = sampleColors(0, 3, APPLE_GRADIENT_COLORS);
+    expect(result).toHaveLength(3);
+  });
+
+  it("handles fractional offsets", () => {
+    const result = sampleColors(1.7, 4);
+    expect(result).toHaveLength(4);
+    result.forEach((c) =>
+      c.forEach((v) => {
+        expect(v).toBeGreaterThanOrEqual(0);
+        expect(v).toBeLessThanOrEqual(255);
+      })
+    );
+  });
+});
+
+describe("buildMeshGradient", () => {
+  const colors = sampleColors(0, 5, APPLE_GRADIENT_COLORS);
+
+  it("returns a non-empty string", () => {
+    const result = buildMeshGradient(colors);
+    expect(result.length).toBeGreaterThan(0);
+  });
+
+  it("contains radial-gradient layers", () => {
+    const result = buildMeshGradient(colors);
+    expect(result).toContain("radial-gradient");
+  });
+
+  it("contains a linear-gradient base layer", () => {
+    const result = buildMeshGradient(colors);
+    expect(result).toContain("linear-gradient");
+  });
+
+  it("responds to mouse position options", () => {
+    const a = buildMeshGradient(colors, { mx: 0, my: 0 });
+    const b = buildMeshGradient(colors, { mx: 1, my: 1 });
+    expect(a).not.toEqual(b);
+  });
+
+  it("responds to angle option", () => {
+    const a = buildMeshGradient(colors, { angle: 0 });
+    const b = buildMeshGradient(colors, { angle: 180 });
+    expect(a).not.toEqual(b);
+  });
+
+  it("handles fewer than 5 colors with fallbacks", () => {
+    const sparse = sampleColors(0, 2);
+    // Should not throw
+    const result = buildMeshGradient(sparse);
+    expect(result).toContain("radial-gradient");
   });
 });
