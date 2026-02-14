@@ -28,6 +28,8 @@ const PodcastDetail = () => {
   const [playTrigger, setPlayTrigger] = useState(0);
   const episode = getEpisodeBySlug(slug || "");
   
+  console.log("[PodcastDetail] slug:", slug, "episode found:", !!episode, "comingSoon:", episode?.comingSoon);
+  
   // Get other episodes - always show exactly 3, mixing published and coming soon
   const allOtherEpisodes = [
     ...getPublishedEpisodes().filter(ep => ep.slug !== slug),
