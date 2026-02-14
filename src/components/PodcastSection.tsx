@@ -323,14 +323,19 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
 
               return isComingSoon ? (
                 <div
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`Upcoming episode with ${episode.name}, ${episode.title} at ${episode.company}. Subscribe for updates.`}
                   className="group py-6 sm:py-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-6 hover-transition relative z-10 cursor-pointer"
                   onClick={() => openSubscribe({ guestName: episode.name.split(' ')[0] })}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSubscribe({ guestName: episode.name.split(' ')[0] }); } }}
                 >
                   {innerContent}
                 </div>
               ) : (
                 <Link
                   to={`/episode/${episode.slug}`}
+                  aria-label={`Listen to episode with ${episode.name}, ${episode.title} at ${episode.company}`}
                   className="group py-6 sm:py-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-6 hover-transition relative z-10"
                 >
                   {innerContent}
