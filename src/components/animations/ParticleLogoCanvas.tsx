@@ -22,7 +22,7 @@ interface ParticleLogoCanvasProps {
   onSettled?: () => void;
 }
 
-const PARTICLE_COUNT = 24000;
+const PARTICLE_COUNT = 40000;
 const SETTLE_TIME = 3.0;
 const BLACK_START = 2.0;
 const BLACK_END = 4.5;
@@ -123,7 +123,7 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
         const b = Math.round(color[2] * (1 - blackEase));
 
         // Also increase size slightly to fill gaps as it becomes solid
-        const finalSize = p.size + blackEase * 3.0;
+        const finalSize = p.size + blackEase * 5.0;
 
         ctx.beginPath();
         ctx.arc(p.x * w, p.y * h, finalSize * dpr, 0, Math.PI * 2);
