@@ -9,23 +9,76 @@ const fullLogoMask = `url("data:image/svg+xml,%3Csvg width='598' height='186' vi
 const AnimatedFooterLogo = () => {
   const [isHovered, setIsHovered] = useState(false);
   const [gradientAngle, setGradientAngle] = useState(135);
+  const [colorOffset, setColorOffset] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
+  const animFrameRef = useRef<number>(0);
+  const startTimeRef = useRef<number>(0);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
-    const angle = 135 + x * 30 + y * 20;
+    const angle = Math.atan2(y, x) * (180 / Math.PI) + 180;
     setGradientAngle(angle);
   };
+
+  // Color cycling via requestAnimationFrame
+  const colors = [
+    [255, 100, 80],
+    [255, 60, 120],
+    [255, 160, 40],
+    [255, 180, 60],
+  ];
+
+  const lerpColor = (a: number[], b: number[], t: number) =>
+    a.map((v, i) => Math.round(v + (b[i] - v) * t));
+
+  const getColor = (offset: number) => {
+    const i = Math.floor(offset) % colors.length;
+    const next = (i + 1) % colors.length;
+    const t = offset - Math.floor(offset);
+    return lerpColor(colors[i], colors[next], t);
+  };
+
+  const startAnimation = () => {
+    startTimeRef.current = performance.now();
+    const tick = (now: number) => {
+      const elapsed = (now - startTimeRef.current) / 1000;
+      setColorOffset(elapsed * 0.5); // speed of color cycling
+      animFrameRef.current = requestAnimationFrame(tick);
+    };
+    animFrameRef.current = requestAnimationFrame(tick);
+  };
+
+  const stopAnimation = () => {
+    cancelAnimationFrame(animFrameRef.current);
+  };
+
+  const handleEnter = () => {
+    setIsHovered(true);
+    startAnimation();
+  };
+
+  const handleLeave = () => {
+    setIsHovered(false);
+    setGradientAngle(135);
+    stopAnimation();
+  };
+
+  const c0 = getColor(colorOffset);
+  const c1 = getColor(colorOffset + 1);
+  const c2 = getColor(colorOffset + 2);
+  const c3 = getColor(colorOffset + 3);
+
+  const gradientBg = `linear-gradient(${gradientAngle}deg, rgb(${c0.join(',')}) 0%, rgb(${c1.join(',')}) 33%, rgb(${c2.join(',')}) 66%, rgb(${c3.join(',')}) 100%)`;
 
   return (
     <div
       ref={containerRef}
       className="relative w-full"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => { setIsHovered(false); setGradientAngle(135); }}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
       onMouseMove={handleMouseMove}
     >
       <img
@@ -37,6 +90,7 @@ const AnimatedFooterLogo = () => {
       <motion.div
         className="absolute inset-0 w-full h-full"
         style={{
+          background: gradientBg,
           maskImage: fullLogoMask,
           maskSize: '100% 100%',
           maskRepeat: 'no-repeat',
@@ -47,20 +101,8 @@ const AnimatedFooterLogo = () => {
           WebkitMaskPosition: 'left center',
         }}
         initial={{ opacity: 0 }}
-        animate={isHovered ? {
-          opacity: 1,
-          background: [
-            `linear-gradient(${gradientAngle}deg, rgb(255,100,80) 0%, rgb(255,60,120) 33%, rgb(255,160,40) 66%, rgb(255,180,60) 100%)`,
-            `linear-gradient(${gradientAngle}deg, rgb(255,60,120) 0%, rgb(255,160,40) 33%, rgb(255,180,60) 66%, rgb(255,100,80) 100%)`,
-            `linear-gradient(${gradientAngle}deg, rgb(255,160,40) 0%, rgb(255,180,60) 33%, rgb(255,100,80) 66%, rgb(255,60,120) 100%)`,
-            `linear-gradient(${gradientAngle}deg, rgb(255,180,60) 0%, rgb(255,100,80) 33%, rgb(255,60,120) 66%, rgb(255,160,40) 100%)`,
-            `linear-gradient(${gradientAngle}deg, rgb(255,100,80) 0%, rgb(255,60,120) 33%, rgb(255,160,40) 66%, rgb(255,180,60) 100%)`,
-          ],
-        } : { opacity: 0 }}
-        transition={isHovered ? {
-          opacity: { duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] },
-          background: { duration: 8, ease: 'linear', repeat: Infinity, delay: 0.15 },
-        } : { opacity: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }}
+        animate={{ opacity: isHovered ? 1 : 0 }}
+        transition={{ opacity: { duration: 0.6, delay: isHovered ? 0.15 : 0, ease: [0.22, 1, 0.36, 1] } }}
       />
       {/* Black gradient overlay for depth */}
       <motion.div
