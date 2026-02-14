@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import FomIcon from "@/assets/FOM_Icon.svg";
 import { sampleColors, buildMeshGradient, APPLE_GRADIENT_COLORS } from "@/lib/colorUtils";
 import { useSubscribe } from "@/contexts/SubscribeContext";
@@ -113,11 +113,15 @@ const AnimatedFooterLogo = () => {
   );
 };
 
+const liquidEase = [0.22, 1, 0.36, 1] as const;
+
 const Footer = () => {
   const { openSubscribe } = useSubscribe();
   const location = useLocation();
   const navigate = useNavigate();
   const isHomePage = location.pathname === "/";
+  const footerRef = useRef<HTMLElement>(null);
+  const isInView = useInView(footerRef, { once: true, amount: 0.15 });
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -136,10 +140,15 @@ const Footer = () => {
   };
 
   return (
-    <footer className="pt-16 sm:pt-20 lg:pt-24 pb-0 overflow-hidden">
+    <footer ref={footerRef} className="pt-16 sm:pt-20 lg:pt-24 pb-0 overflow-hidden">
       <div className="container mx-auto container-padding">
         {/* Top section: tagline + nav links */}
-        <div className="flex flex-col md:flex-row justify-between gap-10 md:gap-16 mb-16 sm:mb-20 lg:mb-28">
+        <motion.div
+          className="flex flex-col md:flex-row justify-between gap-10 md:gap-16 mb-16 sm:mb-20 lg:mb-28"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1, ease: liquidEase }}
+        >
           {/* Tagline */}
           <p className="text-lg sm:text-xl lg:text-2xl font-normal text-foreground max-w-[220px] sm:max-w-[260px]">
             A podcast series on how AI is changing marketing
@@ -153,13 +162,26 @@ const Footer = () => {
             <li><button onClick={openSubscribe} className="relative hover:text-foreground transition-colors duration-300 text-left group inline-flex"><span className="absolute right-full top-1/2 -translate-y-1/2 mr-3 h-[3px] rounded-full w-0 group-hover:w-5 transition-all duration-300 ease-smooth" style={{ backgroundColor: '#B45250' }} />Subscribe</button></li>
             <li><Link to="/privacy" className="relative hover:text-foreground transition-colors duration-300 group inline-flex"><span className="absolute right-full top-1/2 -translate-y-1/2 mr-3 h-[3px] rounded-full w-0 group-hover:w-5 transition-all duration-300 ease-smooth" style={{ backgroundColor: '#3A7CA5' }} />Privacy</Link></li>
           </ul>
-        </div>
+        </motion.div>
       </div>
 
       {/* Giant FOM logo + copyright */}
       <div className="container mx-auto container-padding">
-        <AnimatedFooterLogo />
-        <p className="text-body-sm text-foreground/40 py-6 sm:py-8">© {new Date().getFullYear()} Future of Marketing. All rights reserved.</p>
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1.2, delay: 0.2, ease: liquidEase }}
+        >
+          <AnimatedFooterLogo />
+        </motion.div>
+        <motion.p
+          className="text-body-sm text-foreground/40 py-6 sm:py-8"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8, delay: 0.5, ease: liquidEase }}
+        >
+          © {new Date().getFullYear()} Future of Marketing. All rights reserved.
+        </motion.p>
       </div>
     </footer>
   );
