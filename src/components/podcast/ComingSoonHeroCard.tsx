@@ -9,10 +9,9 @@ import guestBg from "@/assets/guest-bg.png";
 
 interface ComingSoonHeroCardProps {
   guestFirstName: string;
-  notifyHeadline?: string;
 }
 
-const ComingSoonHeroCard = ({ guestFirstName, notifyHeadline }: ComingSoonHeroCardProps) => {
+const ComingSoonHeroCard = ({ guestFirstName }: ComingSoonHeroCardProps) => {
   const isMobile = useIsMobile();
   const { openSubscribe } = useSubscribe();
   const [showForm, setShowForm] = useState(false);
@@ -24,7 +23,7 @@ const ComingSoonHeroCard = ({ guestFirstName, notifyHeadline }: ComingSoonHeroCa
   const handleCardClick = () => {
     if (!showForm && !isSubmitted) {
       if (isMobile) {
-        openSubscribe({ guestName: guestFirstName, headline: notifyHeadline });
+        openSubscribe({ guestName: guestFirstName });
       } else {
         setShowForm(true);
       }

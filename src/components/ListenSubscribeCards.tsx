@@ -77,10 +77,9 @@ interface ListenSubscribeCardsProps {
   showTitle?: boolean;
   className?: string;
   guestName?: string;
-  notifyHeadline?: string;
 }
 
-const ListenSubscribeCards = ({ showTitle = true, className = "", guestName, notifyHeadline }: ListenSubscribeCardsProps) => {
+const ListenSubscribeCards = ({ showTitle = true, className = "", guestName }: ListenSubscribeCardsProps) => {
   const { openSubscribe } = useSubscribe();
   const isMobile = useIsMobile();
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -89,7 +88,7 @@ const ListenSubscribeCards = ({ showTitle = true, className = "", guestName, not
   const linkItems: LinkItem[] = [
     {
       label: "Subscribe",
-      onClick: () => openSubscribe({ guestName, headline: notifyHeadline }),
+      onClick: () => openSubscribe({ guestName }),
       href: undefined,
       hoverColors: ["#594881", "#805781", "#9A5B77", "#594881"],
     },

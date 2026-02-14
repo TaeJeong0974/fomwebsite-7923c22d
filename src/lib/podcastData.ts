@@ -40,7 +40,7 @@ export interface PodcastEpisode {
   hosts?: PodcastHost[];
   pullQuote?: string;
   newslettersMentioned?: NewsletterMention[];
-  notifyHeadline?: string;
+  
 }
 
 // Shared hosts data
@@ -150,7 +150,7 @@ From the tradeoffs between authenticity and reach to the risks of messy data and
       { name: "AI Fire", url: "https://www.aifire.co/" },
       { name: "Saster", url: "https://www.saastr.com/" },
     ],
-    notifyHeadline: "The AI-Native CMO Playbook",
+    
   },
   {
     id: 2,
@@ -178,7 +178,7 @@ From the tradeoffs between authenticity and reach to the risks of messy data and
     linkedInUrl: "https://linkedin.com/in/lenawaters",
     pullQuote: "As AI becomes more agentic and autonomous, it's now more important than ever that we really understand the value we bring as humans—that EQ we need to bring to the table.",
     hosts: [podcastHosts[2], podcastHosts[0]], // Camille Ricketts, Mada Seghete
-    notifyHeadline: "How Notion Rethinks Work with AI",
+    
   },
   {
     id: 3,
@@ -197,7 +197,7 @@ From the tradeoffs between authenticity and reach to the risks of messy data and
     duration: "",
     publishedDate: "Coming Soon",
     comingSoon: true,
-    notifyHeadline: "Building Brand When the Web Is Your Product",
+    
   },
   {
     id: 4,
@@ -225,7 +225,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     comingSoon: true,
     linkedInUrl: "https://www.linkedin.com/in/saravarnibright/",
     pullQuote: "When you're marketing to developers, authenticity isn't just nice to have—it's the only thing that works.",
-    notifyHeadline: "Marketing to Engineers Who See Through Everything",
+    
   },
   {
     id: 5,
@@ -244,7 +244,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     duration: "",
     publishedDate: "Coming Soon",
     comingSoon: true,
-    notifyHeadline: "Letting Your Users Tell the Story",
+    
   },
   {
     id: 6,
@@ -263,7 +263,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     duration: "",
     publishedDate: "Coming Soon",
     comingSoon: true,
-    notifyHeadline: "Scaling Security Marketing at Hyperspeed",
+    
   },
   {
     id: 7,
@@ -291,7 +291,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     comingSoon: true,
     linkedInUrl: "https://linkedin.com/in/lindseyirvine",
     pullQuote: "The best marketing doesn't feel like marketing—it feels like a service you're providing to your customers.",
-    notifyHeadline: "Making Finance Feel Human",
+    
   },
   // Episodes without raw assets
   {
@@ -311,7 +311,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     duration: "",
     publishedDate: "Coming Soon",
     comingSoon: true,
-    notifyHeadline: "Design-Led Growth from the Inside Out",
+    
   },
   {
     id: 9,
@@ -330,7 +330,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     duration: "",
     publishedDate: "Coming Soon",
     comingSoon: true,
-    notifyHeadline: "When Your Users Build the Product",
+    
   },
   {
     id: 10,
@@ -349,7 +349,7 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     duration: "",
     publishedDate: "Coming Soon",
     comingSoon: true,
-    notifyHeadline: "Observability Meets Brand Storytelling",
+    
   },
 ];
 
