@@ -5,7 +5,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import hostMada from "@/assets/host-mada.png";
 import hostEthan from "@/assets/host-ethan.png";
 import hostCamille from "@/assets/host-camille.png";
-import FOMIcon from "@/assets/FOM_Icon.svg";
+
 import teaserBg from "@/assets/teaser-bg.png";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
 
@@ -146,13 +146,6 @@ const HeroSection = () => {
                   className="w-full relative"
                   style={{ aspectRatio: '598 / 186' }}
                 >
-                  {/* Base FOM logo (fallback/foundation) */}
-                  <img 
-                    src={FOMIcon} 
-                    alt="Future of Marketing"
-                    className="absolute inset-0 w-full h-full object-contain opacity-0"
-                  />
-                  
                   {/* Animated color gradient - masked by FOM logo shape */}
                   <motion.div 
                     className="absolute inset-0 hidden md:block"
