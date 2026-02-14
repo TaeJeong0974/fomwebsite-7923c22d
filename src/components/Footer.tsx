@@ -49,13 +49,14 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Giant FOM logo */}
+      {/* Giant FOM logo + copyright */}
       <div className="container mx-auto container-padding">
         <img 
           src={FomIcon} 
           alt="Future of Marketing" 
-          className="w-full select-none pb-8 sm:pb-12 lg:pb-16"
+          className="w-full select-none"
         />
+        <p className="text-body-sm text-foreground/40 py-6 sm:py-8">© {new Date().getFullYear()} Future of Marketing. All rights reserved.</p>
       </div>
     </footer>
   );
