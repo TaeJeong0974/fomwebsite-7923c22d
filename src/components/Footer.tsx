@@ -178,7 +178,7 @@ const Footer = () => {
           className="absolute inset-0 container mx-auto container-padding"
           style={{
             opacity: logoRevealed ? 1 : 0,
-            transition: 'opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1)',
+            transition: 'opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1)',
           }}
         >
           <AnimatedFooterLogo />

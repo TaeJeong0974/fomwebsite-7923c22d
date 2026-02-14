@@ -109,11 +109,11 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
   const dprRef = useRef(1);
   const settledCalledRef = useRef(false);
 
-  const PARTICLE_COUNT = 10000;
+  const PARTICLE_COUNT = 5000;
   const DURATION = 3.5;
   const STAGGER_RANGE = 1.8;
-  const FADE_OUT_START = 3.8;
-  const FADE_OUT_DURATION = 0.6;
+  const FADE_OUT_START = 4.0;
+  const FADE_OUT_DURATION = 1.5;
 
   const initParticles = useCallback(() => {
     if (hasInitRef.current) return;
@@ -121,16 +121,17 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
 
     const points = sampleLogoPoints(PARTICLE_COUNT);
     particlesRef.current = points.map(([tx, ty]) => {
-      // Truly random scatter within padded area — no clustering pattern
-      const sx = Math.random() * 0.7 + 0.15;
-      const sy = Math.random() * 0.7 + 0.15;
+      const angle = Math.random() * Math.PI * 2;
+      const dist = 0.05 + Math.random() * 0.2;
+      const sx = tx + Math.cos(angle) * dist;
+      const sy = ty + Math.sin(angle) * dist;
       return {
         tx, ty,
         x: sx, y: sy,
         sx, sy,
         delay: Math.random() * STAGGER_RANGE,
-        size: 1.2,
-        colorIdx: 0,
+        size: 0.8 + Math.random() * 1.2,
+        colorIdx: (tx * 4 + ty * 2 + Math.random()) % 4,
       };
     });
   }, []);
@@ -154,28 +155,6 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
     return () => window.removeEventListener("resize", resizeCanvas);
   }, [resizeCanvas]);
 
-  // Init particles on mount and draw them scattered (static)
-  useEffect(() => {
-    initParticles();
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-    const dpr = dprRef.current;
-    const w = canvas.width;
-    const h = canvas.height;
-    ctx.clearRect(0, 0, w, h);
-    const particles = particlesRef.current;
-    for (let i = 0; i < particles.length; i++) {
-      const p = particles[i];
-      ctx.beginPath();
-      ctx.arc(p.sx * w, p.sy * h, p.size * dpr, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgb(0,0,0)';
-      ctx.fill();
-    }
-  }, [initParticles]);
-
-  // Start convergence animation when scrolled into view
   useEffect(() => {
     if (!isInView) return;
     initParticles();
@@ -194,16 +173,19 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
 
       ctx.clearRect(0, 0, w, h);
 
+      // Global fade-out after particles have settled
       const globalFade = elapsed > FADE_OUT_START
         ? Math.max(0, 1 - (elapsed - FADE_OUT_START) / FADE_OUT_DURATION)
         : 1;
 
+      // Notify parent when particles start fading so logo can appear
       if (elapsed > FADE_OUT_START && !settledCalledRef.current) {
         settledCalledRef.current = true;
         onSettled?.();
       }
 
       if (globalFade <= 0) {
+        // Animation complete, stop loop
         return;
       }
 
@@ -211,16 +193,18 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         const t = Math.max(0, Math.min(1, (elapsed - p.delay) / (DURATION - p.delay)));
+        // Smooth ease-in-out for gentler convergence
         const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
         p.x = p.sx + (p.tx - p.sx) * ease;
         p.y = p.sy + (p.ty - p.sy) * ease;
 
-        const alpha = globalFade;
+        const color = getColor(p.colorIdx + elapsed * 0.3, APPLE_GRADIENT_COLORS);
+        const alpha = (0.4 + ease * 0.6) * globalFade;
 
         ctx.beginPath();
         ctx.arc(p.x * w, p.y * h, p.size * dpr, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(0,0,0,${alpha})`;
+        ctx.fillStyle = `rgba(${color[0]},${color[1]},${color[2]},${alpha})`;
         ctx.fill();
       }
 
