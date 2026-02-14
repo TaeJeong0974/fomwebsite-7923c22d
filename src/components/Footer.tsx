@@ -42,7 +42,7 @@ const AnimatedFooterLogo = () => {
       const dt = Math.min((now - lastTime) / 1000, 0.05);
       lastTime = now;
       const elapsed = (now - startTimeRef.current) / 1000;
-      setColorOffset(elapsed * 0.25);
+      setColorOffset(elapsed * 0.5);
       const lerpFactor = 1 - Math.pow(0.05, dt);
       currentAngleRef.current = lerpVal(currentAngleRef.current, targetAngleRef.current, lerpFactor);
       currentMouseXRef.current = lerpVal(currentMouseXRef.current, targetMouseXRef.current, lerpFactor);
