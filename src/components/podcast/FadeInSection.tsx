@@ -9,8 +9,8 @@ interface FadeInSectionProps {
 }
 
 const fadeInVariants = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1 },
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0 },
 };
 
 const FadeInSection = ({ children, className, delay = 0, id }: FadeInSectionProps) => (
