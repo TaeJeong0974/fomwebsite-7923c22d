@@ -13,12 +13,12 @@ export const DEFAULT_GRADIENT_COLORS: number[][] = [
 
 /** Warm palette matching the original site gradient: coral → pink → orange → gold */
 export const APPLE_GRADIENT_COLORS: number[][] = [
-  [230, 160, 170],  // dusty pink
-  [230, 160, 170],  // same
-  [230, 160, 170],  // same
-  [230, 160, 170],  // same
-  [230, 160, 170],  // same
-  [230, 160, 170],  // same
+  [120, 80, 200],   // purple
+  [100, 70, 220],   // deeper purple
+  [140, 90, 210],   // soft violet
+  [110, 75, 215],   // mid purple
+  [130, 85, 205],   // lavender purple
+  [120, 80, 200],   // loop back
 ];
 
 const FALLBACK_COLOR = [255, 100, 80];
