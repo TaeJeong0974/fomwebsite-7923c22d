@@ -98,10 +98,10 @@ export const buildMeshGradient = (
   ];
 
   return [
-    `radial-gradient(ellipse 80% 80% at ${mx * 100}% ${my * 100}%, ${rgba(c0, 0.9)} 0%, transparent 70%)`,
-    `radial-gradient(ellipse 60% 70% at ${100 - mx * 60}% ${100 - my * 60}%, ${rgba(c1, 0.8)} 0%, transparent 60%)`,
-    `radial-gradient(ellipse 70% 60% at ${mx * 80 + 10}% ${my * 40 + 30}%, ${rgba(c2, 0.7)} 0%, transparent 65%)`,
-    `radial-gradient(ellipse 50% 50% at ${50 + (mx - 0.5) * 30}% ${50 + (my - 0.5) * 30}%, ${rgba(c3, 0.6)} 0%, transparent 55%)`,
+    `radial-gradient(ellipse 90% 70% at ${mx * 100}% ${my * 100}%, ${rgba(c0, 0.9)} 0%, transparent 65%)`,
+    `radial-gradient(ellipse 55% 85% at ${100 - mx * 60}% ${100 - my * 60}%, ${rgba(c1, 0.8)} 0%, transparent 55%)`,
+    `radial-gradient(ellipse 75% 50% at ${mx * 80 + 10}% ${my * 40 + 30}%, ${rgba(c2, 0.7)} 0%, transparent 60%)`,
+    `radial-gradient(ellipse 40% 65% at ${50 + (mx - 0.5) * 40}% ${50 + (my - 0.5) * 40}%, ${rgba(c3, 0.65)} 0%, transparent 50%)`,
     `linear-gradient(${angle}deg, ${rgba(c4, 0.4)} 0%, ${rgba(c0, 0.3)} 100%)`,
   ].join(', ');
 };
