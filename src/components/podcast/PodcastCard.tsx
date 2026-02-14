@@ -37,13 +37,15 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image }: Podc
     setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
   }, [isMobile]);
 
-  const handleMouseEnter = () => {
+  const handleMouseEnter = (e: React.MouseEvent) => {
     if (isMobile) return;
-    setIsHovered(true);
     if (cardRef.current) {
       const rect = cardRef.current.getBoundingClientRect();
       setCardSize({ w: rect.width, h: rect.height });
+      // Set initial mouse pos to entry point so CTA doesn't jump to (0,0)
+      setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
     }
+    setIsHovered(true);
     if (videoRef.current && episode.previewVideoUrl) {
       videoRef.current.currentTime = 0;
       videoRef.current.play().catch(() => {
