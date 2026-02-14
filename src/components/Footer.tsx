@@ -34,18 +34,14 @@ const Footer = () => {
             A podcast series on how AI is changing marketing
           </p>
 
-          {/* Nav columns */}
-          <div className="flex flex-col sm:flex-row gap-6 sm:gap-16 lg:gap-28">
-            <ul className="flex flex-col gap-2.5 text-body text-foreground/70">
-              <li><a href="#podcast" onClick={(e) => handleNavClick(e, '#podcast')} className="hover:text-foreground transition-colors duration-300">Podcast</a></li>
-              <li><a href="#events" onClick={(e) => handleNavClick(e, '#events')} className="hover:text-foreground transition-colors duration-300">Events</a></li>
-              <li><a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="hover:text-foreground transition-colors duration-300">Connect</a></li>
-            </ul>
-            <ul className="flex flex-col gap-2.5 text-body text-foreground/70">
-              <li><button onClick={openSubscribe} className="hover:text-foreground transition-colors duration-300">Subscribe</button></li>
-              <li><Link to="/privacy" className="hover:text-foreground transition-colors duration-300">Privacy</Link></li>
-            </ul>
-          </div>
+          {/* Nav links */}
+          <ul className="flex flex-col gap-2.5 text-body text-foreground/70">
+            <li><a href="#podcast" onClick={(e) => handleNavClick(e, '#podcast')} className="hover:text-foreground transition-colors duration-300">Podcast</a></li>
+            <li><a href="#events" onClick={(e) => handleNavClick(e, '#events')} className="hover:text-foreground transition-colors duration-300">Events</a></li>
+            <li><a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="hover:text-foreground transition-colors duration-300">Connect</a></li>
+            <li><button onClick={openSubscribe} className="hover:text-foreground transition-colors duration-300 text-left">Subscribe</button></li>
+            <li><Link to="/privacy" className="hover:text-foreground transition-colors duration-300">Privacy</Link></li>
+          </ul>
         </div>
       </div>
 
