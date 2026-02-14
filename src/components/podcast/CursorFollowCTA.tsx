@@ -22,7 +22,7 @@ const CursorFollowCTA = ({ isVisible, x, y, variant = "watch" }: CursorFollowCTA
         opacity: isVisible ? 1 : 0,
         scale: isVisible ? 1 : 0,
         x: x - half,
-        y: y - half,
+        y: y - size - 8,
       }}
       transition={{
         opacity: { duration: 0.2, ease: "easeOut" },
