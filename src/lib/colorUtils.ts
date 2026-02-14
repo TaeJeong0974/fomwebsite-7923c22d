@@ -117,7 +117,7 @@ export const buildMeshGradient = (
   const eh = (h: number) => (h * ah).toFixed(1);
 
   return [
-    `radial-gradient(ellipse ${ew(60 + sx)}% ${eh(90 - sy)}% at ${mx * 100 + px * 12}% ${my * 100 + py * 12}%, ${rgba(c0, 0.9)} 0%, transparent 65%)`,
+    `radial-gradient(ellipse ${ew(45 + sx)}% ${eh(70 - sy)}% at ${mx * 100 + px * 12}% ${my * 100 + py * 12}%, ${rgba(c0, 0.9)} 0%, transparent 60%)`,
     `radial-gradient(ellipse ${ew(80 - sx)}% ${eh(55 + sy)}% at ${100 - mx * 60 + px * 8}% ${100 - my * 60 + py * 8}%, ${rgba(c1, 0.8)} 0%, transparent 55%)`,
     `radial-gradient(ellipse ${ew(50 + sy)}% ${eh(75 - sx)}% at ${mx * 80 + 10 + px * 5}% ${my * 40 + 30 + py * 5}%, ${rgba(c2, 0.7)} 0%, transparent 60%)`,
     `radial-gradient(ellipse ${ew(70 - sy)}% ${eh(40 + sx)}% at ${50 + (mx - 0.5) * 40 + px * 3}% ${50 + (my - 0.5) * 40 + py * 3}%, ${rgba(c3, 0.65)} 0%, transparent 50%)`,
