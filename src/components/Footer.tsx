@@ -35,7 +35,7 @@ const Footer = () => {
           </p>
 
           {/* Nav columns */}
-          <div className="flex gap-16 sm:gap-20 lg:gap-28">
+          <div className="flex flex-col sm:flex-row gap-6 sm:gap-16 lg:gap-28">
             <ul className="flex flex-col gap-2.5 text-body text-foreground/70">
               <li><a href="#podcast" onClick={(e) => handleNavClick(e, '#podcast')} className="hover:text-foreground transition-colors duration-300">Podcast</a></li>
               <li><a href="#events" onClick={(e) => handleNavClick(e, '#events')} className="hover:text-foreground transition-colors duration-300">Events</a></li>
