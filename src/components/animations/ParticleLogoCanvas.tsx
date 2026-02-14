@@ -118,11 +118,13 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
       const blackT = elapsed < BLACK_START ? 0
         : elapsed > BLACK_END ? 1
         : (elapsed - BLACK_START) / (BLACK_END - BLACK_START);
-      // Smooth ease
       const blackEase = blackT * blackT * (3 - 2 * blackT);
 
       // Slow particles down as we approach settle time
       const speedFactor = settled ? 0 : Math.max(0, 1 - elapsed / SETTLE_TIME);
+
+      // Use additive blending for colorful phase, switch to source-over for black
+      ctx.globalCompositeOperation = blackEase > 0.5 ? "source-over" : "lighter";
 
       const particles = particlesRef.current;
       for (let i = 0; i < particles.length; i++) {
@@ -141,19 +143,21 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
         const colorTime = settled ? SETTLE_TIME : elapsed;
         const color = getColor(p.colorIdx + colorTime * 0.15, APPLE_GRADIENT_COLORS);
 
-        // Lerp RGB toward black based on blackEase
+        // Lerp RGB toward black
         const r = Math.round(color[0] * (1 - blackEase));
         const g = Math.round(color[1] * (1 - blackEase));
         const b = Math.round(color[2] * (1 - blackEase));
 
-        // Also increase size slightly to fill gaps as it becomes solid
         const finalSize = p.size + blackEase * 10.0;
+        // Lower alpha in color phase to keep additive blending vibrant
+        const alpha = blackEase > 0.5 ? 1 : 0.15 + blackEase * 0.7;
 
         ctx.beginPath();
         ctx.arc(p.x * w, p.y * h, finalSize * dpr, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${r},${g},${b},${0.85 + blackEase * 0.15})`;
+        ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
         ctx.fill();
       }
+      ctx.globalCompositeOperation = "source-over";
 
       if (!done) {
         animRef.current = requestAnimationFrame(draw);
