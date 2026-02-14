@@ -199,12 +199,11 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
         p.x = p.sx + (p.tx - p.sx) * ease;
         p.y = p.sy + (p.ty - p.sy) * ease;
 
-        const color = getColor(p.colorIdx + elapsed * 0.3, APPLE_GRADIENT_COLORS);
         const alpha = (0.4 + ease * 0.6) * globalFade;
 
         ctx.beginPath();
         ctx.arc(p.x * w, p.y * h, p.size * dpr, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${color[0]},${color[1]},${color[2]},${alpha})`;
+        ctx.fillStyle = `rgba(0,0,0,${alpha})`;
         ctx.fill();
       }
 
