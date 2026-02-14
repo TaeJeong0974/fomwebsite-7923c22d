@@ -90,7 +90,7 @@ const AnimatedFooterLogo = () => {
   const c2 = getColor(offset + 1.6);
   const c3 = getColor(offset + 2.4);
 
-  const gradientBg = `radial-gradient(ellipse 120% 200% at ${pos.x}% ${pos.y}%, rgb(${c0.join(',')}) 0%, rgb(${c1.join(',')}) 30%, rgb(${c2.join(',')}) 60%, rgb(${c3.join(',')}) 100%)`;
+  const gradientBg = `radial-gradient(ellipse 80% 150% at ${pos.x}% ${pos.y}%, rgb(${c0.join(',')}) 0%, rgb(${c1.join(',')}) 20%, rgb(${c2.join(',')}) 40%, rgb(${c3.join(',')}) 60%, rgba(0,0,0,1) 100%)`;
 
   return (
     <div
