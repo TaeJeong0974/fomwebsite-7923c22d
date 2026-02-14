@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { LayoutGrid, List, Plus, ChevronUp } from "lucide-react";
@@ -12,7 +12,6 @@ import { liquidEase } from "@/components/animations/PageLoadAnimation";
 import hostMada from "@/assets/host-mada.png";
 import hostEthan from "@/assets/host-ethan.png";
 import hostCamille from "@/assets/host-camille.png";
-import guestBg from "@/assets/guest-bg.png";
 import guestMeagen from "@/assets/guest-meagen-eisenberg.jpg";
 import guestLena from "@/assets/guest-lena-waters.jpg";
 import guestLindsey from "@/assets/guest-lindsey-irvine.jpg";
@@ -58,11 +57,6 @@ const isNewEpisode = (publishedDate: string): boolean => {
 
 const getEpisodeImage = (slug: string, index: number): string => {
   return EPISODE_IMAGES[slug] || HOST_IMAGES[index % HOST_IMAGES.length];
-};
-
-/** Returns opacity class for list-view focus-dim effect */
-const dimClass = (): string => {
-  return "";
 };
 
 const PodcastSection = () => {
@@ -229,7 +223,6 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
       {allEpisodes.map((episode, index) => {
         const isComingSoon = episode.comingSoon;
         const isIntroEpisode = episode.slug === 'intro-to-fom';
-        const dim = "";
         const hasBadge = isComingSoon || isNewEpisode(episode.publishedDate);
         const isHovered = hoveredIndex === index && !isMobile;
         const colors = HOVER_COLORS[index % HOVER_COLORS.length];
@@ -253,20 +246,20 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
                     {hasBadge && (
                       <div className={`flex gap-4 sm:gap-6 lg:gap-10 ${isComingSoon ? 'lg:hidden' : ''}`}>
                         <span className="text-label invisible" aria-hidden="true">EP 00</span>
-                        <div className={`mb-3 sm:mb-4 list-focus-transition ${dim}`}>
+                        <div className="mb-3 sm:mb-4 list-focus-transition">
                           {isComingSoon && <span className="badge-status">Upcoming</span>}
                           {!isComingSoon && isNewEpisode(episode.publishedDate) && <span className="badge-status">New</span>}
                         </div>
                       </div>
                     )}
                     <div className="flex items-start gap-4 sm:gap-6 lg:gap-10">
-                      <span className={`text-label pt-0 sm:pt-2 list-focus-transition ${dim}`}>
+                      <span className="text-label pt-0 sm:pt-2 list-focus-transition">
                         EP {String(index + 1).padStart(2, '0')}
                       </span>
                       <div className="flex-1">
                         <div className="flex items-start gap-4 lg:gap-6">
                           <motion.h3 
-                            className={`font-display text-3xl sm:text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight list-focus-transition ${dim}`}
+                            className="font-display text-3xl sm:text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight list-focus-transition"
                             initial={false}
                             animate={isHovered ? {
                               color: colors,
@@ -284,14 +277,14 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
                           >
                             {episode.name}
                           </motion.h3>
-                          <p className={`hidden lg:block text-sm pt-1.5 text-foreground list-focus-transition ${dim}`}>
+                          <p className="hidden lg:block text-sm pt-1.5 text-foreground list-focus-transition">
                             {isIntroEpisode 
                               ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) 
                               : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>
                             }
                           </p>
                         </div>
-                        <p className={`lg:hidden mt-2 text-sm text-foreground list-focus-transition ${dim}`}>
+                        <p className="lg:hidden mt-2 text-sm text-foreground list-focus-transition">
                           {isIntroEpisode 
                             ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) 
                             : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>
