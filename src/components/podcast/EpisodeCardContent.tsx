@@ -2,16 +2,16 @@ import { Bell } from "lucide-react";
 import { PodcastEpisode } from "@/lib/podcastData";
 
 const upcomingCTAs: Record<string, string> = {
-  Katrina: "Be the First to Know",
-  Lena: "Don't Miss Lena",
-  Dave: "Get the Drop on Dave",
-  Sara: "Stay in the Loop",
-  Kate: "Be There for Kate",
-  Idan: "Catch Idan's Episode",
-  Lindsey: "Get Lindsey's Insights",
-  Sheila: "Hear from Sheila First",
-  Ceci: "Don't Miss Ceci",
-  Meagen: "Get Notified",
+  Katrina: "Get Notified for Katrina",
+  Lena: "Get Notified for Lena",
+  Dave: "Get Notified for Dave",
+  Sara: "Get Notified for Sara",
+  Kate: "Get Notified for Kate",
+  Idan: "Get Notified for Idan",
+  Lindsey: "Get Notified for Lindsey",
+  Sheila: "Get Notified for Sheila",
+  Ceci: "Get Notified for Ceci",
+  Meagen: "Get Notified for Meagen",
 };
 
 interface EpisodeCardContentProps {
