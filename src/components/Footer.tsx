@@ -50,16 +50,16 @@ const AnimatedFooterLogo = () => {
         animate={isHovered ? {
           opacity: 1,
           background: [
-            `linear-gradient(${gradientAngle}deg, rgb(255,100,80) 0%, rgb(255,60,120) 50%, rgb(100,140,255) 100%)`,
-            `linear-gradient(${gradientAngle}deg, rgb(255,60,120) 0%, rgb(100,140,255) 50%, rgb(255,180,60) 100%)`,
-            `linear-gradient(${gradientAngle}deg, rgb(100,140,255) 0%, rgb(255,180,60) 50%, rgb(255,100,80) 100%)`,
-            `linear-gradient(${gradientAngle}deg, rgb(255,180,60) 0%, rgb(255,100,80) 50%, rgb(255,60,120) 100%)`,
-            `linear-gradient(${gradientAngle}deg, rgb(255,100,80) 0%, rgb(255,60,120) 50%, rgb(100,140,255) 100%)`,
+            `linear-gradient(${gradientAngle}deg, rgb(255,100,80) 0%, rgb(255,60,120) 33%, rgb(100,140,255) 66%, rgb(255,180,60) 100%)`,
+            `linear-gradient(${gradientAngle}deg, rgb(255,60,120) 0%, rgb(100,140,255) 33%, rgb(255,180,60) 66%, rgb(255,100,80) 100%)`,
+            `linear-gradient(${gradientAngle}deg, rgb(100,140,255) 0%, rgb(255,180,60) 33%, rgb(255,100,80) 66%, rgb(255,60,120) 100%)`,
+            `linear-gradient(${gradientAngle}deg, rgb(255,180,60) 0%, rgb(255,100,80) 33%, rgb(255,60,120) 66%, rgb(100,140,255) 100%)`,
+            `linear-gradient(${gradientAngle}deg, rgb(255,100,80) 0%, rgb(255,60,120) 33%, rgb(100,140,255) 66%, rgb(255,180,60) 100%)`,
           ],
         } : { opacity: 0 }}
         transition={isHovered ? {
           opacity: { duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] },
-          background: { duration: 6, ease: 'easeInOut', repeat: Infinity, delay: 0.15 },
+          background: { duration: 8, ease: 'linear', repeat: Infinity, delay: 0.15 },
         } : { opacity: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }}
       />
       {/* Black gradient overlay for depth */}
