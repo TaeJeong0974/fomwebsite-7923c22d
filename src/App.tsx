@@ -1,3 +1,4 @@
+import { lazy, Suspense } from "react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
@@ -7,11 +8,17 @@ import ScrollToTop from "@/components/ScrollToTop";
 import PageTransition from "@/components/animations/PageTransition";
 import Navbar from "@/components/Navbar";
 import Index from "./pages/Index";
-import PodcastDetail from "./pages/PodcastDetail";
-import Privacy from "./pages/Privacy";
-import NotFound from "./pages/NotFound";
+
+// Lazy-load non-homepage routes — these are code-split into separate chunks
+const PodcastDetail = lazy(() => import("./pages/PodcastDetail"));
+const Privacy = lazy(() => import("./pages/Privacy"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
+
+const RouteFallback = () => (
+  <div className="min-h-screen" />
+);
 
 const AppRoutes = () => {
   const location = useLocation();
@@ -25,12 +32,14 @@ const AppRoutes = () => {
       <Navbar />
       
       <PageTransition>
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<Index />} />
-          <Route path="/episode/:slug" element={<PodcastDetail />} />
-          <Route path="/privacy" element={<Privacy />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <Suspense fallback={<RouteFallback />}>
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={<Index />} />
+            <Route path="/episode/:slug" element={<PodcastDetail />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Suspense>
       </PageTransition>
     </>
   );
