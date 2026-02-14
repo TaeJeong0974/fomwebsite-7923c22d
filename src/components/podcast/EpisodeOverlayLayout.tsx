@@ -10,7 +10,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
   const navigate = useNavigate();
 
   const handleClose = () => {
-    navigate("/");
+    navigate("/#podcast");
   };
 
   return (
