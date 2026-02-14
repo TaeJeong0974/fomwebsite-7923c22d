@@ -13,6 +13,7 @@ const PageTransition = ({ children }: PageTransitionProps) => {
   const [slideIn, setSlideIn] = useState(false);
   const [slideOut, setSlideOut] = useState(false);
   const previousPathRef = useRef(location.pathname);
+  const isFirstRender = useRef(true);
 
   useEffect(() => {
     if (location.pathname !== displayLocation.pathname) {
@@ -52,11 +53,12 @@ const PageTransition = ({ children }: PageTransitionProps) => {
     <AnimatePresence mode="wait">
       <motion.div 
         key={displayLocation.pathname}
-        initial={slideIn ? { x: "50%", opacity: 0 } : { opacity: 0 }}
+        initial={isFirstRender.current ? false : (slideIn ? { x: "50%", opacity: 0 } : { opacity: 0 })}
         animate={{ x: 0, opacity: 1 }}
         exit={{ opacity: 0 }}
         transition={{ duration: slideIn ? 0.7 : 0.4, ease: liquidEase }}
         onAnimationComplete={() => {
+          isFirstRender.current = false;
           setSlideIn(false);
         }}
       >
