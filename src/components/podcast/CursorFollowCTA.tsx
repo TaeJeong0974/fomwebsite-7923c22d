@@ -16,7 +16,7 @@ const CursorFollowCTA = ({ isVisible, x, y, variant = "watch" }: CursorFollowCTA
 
   return (
     <motion.div
-      className="absolute top-0 left-0 z-[10] pointer-events-none hidden md:flex items-center justify-center rounded-full bg-foreground shadow-xl"
+      className="absolute top-0 left-0 z-[10] pointer-events-none hidden md:flex items-center justify-center rounded-full bg-white shadow-xl"
       style={{ width: size, height: size }}
       animate={{
         opacity: isVisible ? 1 : 0,
@@ -31,7 +31,7 @@ const CursorFollowCTA = ({ isVisible, x, y, variant = "watch" }: CursorFollowCTA
         y: { type: "spring", stiffness: 250, damping: 24, mass: 0.5 },
       }}
     >
-      <Icon className="w-4 h-4 text-background fill-background" />
+      <Icon className="w-4 h-4 text-foreground fill-foreground" />
     </motion.div>
   );
 };
