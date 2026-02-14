@@ -113,8 +113,6 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image }: Podc
         isVisible={isHovered}
         x={mousePos.x}
         y={mousePos.y}
-        centerX={cardSize.w / 2}
-        centerY={cardSize.h / 2}
         variant={isUpcoming ? "notify" : "watch"}
       />
     </div>
