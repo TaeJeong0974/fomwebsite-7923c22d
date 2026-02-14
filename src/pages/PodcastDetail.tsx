@@ -15,12 +15,15 @@ import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
 import ListenSubscribeCards from "@/components/ListenSubscribeCards";
 import DetailVerticalText from "@/components/podcast/DetailVerticalText";
 import FadeInSection from "@/components/podcast/FadeInSection";
+import useDocumentMeta from "@/hooks/use-document-meta";
 import { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes } from "@/lib/podcastData";
 
+const SITE_URL = "https://fomwebsite.lovable.app";
+
 /** Extract YouTube video ID and build thumbnail URL */
-const getYouTubeThumbnail = (url?: string): string | null => {
+const getYouTubeThumbnail = (url?: string, size: string = "mqdefault"): string | null => {
   const match = url?.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/);
-  return match ? `https://img.youtube.com/vi/${match[1]}/mqdefault.jpg` : null;
+  return match ? `https://img.youtube.com/vi/${match[1]}/${size}.jpg` : null;
 };
 
 const PodcastDetail = () => {
@@ -28,10 +31,27 @@ const PodcastDetail = () => {
   const [playTrigger, setPlayTrigger] = useState(0);
   const episode = getEpisodeBySlug(slug || "");
 
+  const isIntro = !episode?.comingSoon && episode?.slug === "intro-to-fom";
+  const seoTitle = episode
+    ? `${episode.name} — Future of Marketing Podcast`
+    : "Future of Marketing Podcast";
+  const seoDescription = episode
+    ? (episode.overview || `${episode.name}, ${episode.title} at ${episode.company}`)
+    : "The Future of Marketing Podcast";
+  const ogImage = episode?.youtubeUrl
+    ? getYouTubeThumbnail(episode.youtubeUrl, "hqdefault")
+    : null;
+
+  useDocumentMeta({
+    title: seoTitle.length > 60 ? seoTitle.slice(0, 57) + "…" : seoTitle,
+    description: seoDescription.length > 160 ? seoDescription.slice(0, 157) + "…" : seoDescription,
+    ogImage: ogImage || undefined,
+    canonicalUrl: slug ? `${SITE_URL}/episode/${slug}` : undefined,
+  });
+
   if (!episode) return <ComingSoonEpisode />;
   if (episode.comingSoon) return <ComingSoonEpisode episode={episode} />;
 
-  const isIntro = episode.slug === "intro-to-fom";
   const guestName = isIntro ? "INTRO" : episode.name;
   const thumbnailUrl = getYouTubeThumbnail(episode.youtubeUrl);
 
@@ -45,8 +65,37 @@ const PodcastDetail = () => {
     setPlayTrigger(prev => prev + 1);
   };
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "PodcastEpisode",
+    name: episode.overview || episode.name,
+    description: seoDescription,
+    url: `${SITE_URL}/episode/${slug}`,
+    episodeNumber: episode.id,
+    partOfSeries: {
+      "@type": "PodcastSeries",
+      name: "Future of Marketing",
+      url: SITE_URL,
+    },
+    ...(ogImage && { thumbnailUrl: ogImage }),
+    ...(episode.duration && { timeRequired: episode.duration }),
+    ...(episode.publishedDate && { datePublished: episode.publishedDate }),
+    ...(!isIntro && {
+      guest: {
+        "@type": "Person",
+        name: episode.name,
+        jobTitle: episode.title,
+        worksFor: { "@type": "Organization", name: episode.company },
+      },
+    }),
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <DetailVerticalText guestName={guestName} />
 
       <StickyBottomBar
