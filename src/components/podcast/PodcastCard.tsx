@@ -114,7 +114,6 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image }: Podc
           isVisible={isHovered}
           x={mousePos.x}
           y={mousePos.y}
-          variant="watch"
         />
       )}
     </div>

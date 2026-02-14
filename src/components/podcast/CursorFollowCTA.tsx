@@ -1,16 +1,13 @@
 import { motion } from "framer-motion";
-import { Play, Bell } from "lucide-react";
+import { Play } from "lucide-react";
 
 interface CursorFollowCTAProps {
   isVisible: boolean;
   x: number;
   y: number;
-  variant?: "watch" | "notify";
 }
 
-const CursorFollowCTA = ({ isVisible, x, y, variant = "watch" }: CursorFollowCTAProps) => {
-  const Icon = variant === "notify" ? Bell : Play;
-
+const CursorFollowCTA = ({ isVisible, x, y }: CursorFollowCTAProps) => {
   const size = 56;
   const half = size / 2;
 
@@ -31,7 +28,7 @@ const CursorFollowCTA = ({ isVisible, x, y, variant = "watch" }: CursorFollowCTA
         y: { type: "spring", stiffness: 250, damping: 24, mass: 0.5 },
       }}
     >
-      <Icon className="w-4 h-4 text-foreground fill-foreground" />
+      <Play className="w-4 h-4 text-foreground fill-foreground" />
     </motion.div>
   );
 };
