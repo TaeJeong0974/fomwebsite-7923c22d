@@ -42,22 +42,27 @@ const StickyBottomBar = ({ youtubeUrl, spotifyUrl, thumbnailUrl, episodeName, ep
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="hidden lg:block fixed bottom-5 right-5 z-50"
         >
-          <div className="flex items-center gap-4 px-3 py-2.5 rounded-2xl bg-background/80 backdrop-blur-xl border border-foreground/[0.06] shadow-lg shadow-black/[0.08]">
-            {/* Thumbnail - clickable to YouTube */}
+          <div className="group/bar flex items-center gap-4 px-3 py-2.5 rounded-2xl bg-background/80 backdrop-blur-xl border border-foreground/[0.06] shadow-lg shadow-black/[0.08]">
+            {/* Thumbnail with play icon */}
             {thumbnailUrl && (
-              <button onClick={onPlayClick} className="w-12 h-12 rounded-lg overflow-hidden shrink-0 ring-1 ring-foreground/5 hover:ring-foreground/15 transition-all duration-200 hover:scale-105 cursor-pointer">
+              <button onClick={onPlayClick} className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0 ring-1 ring-foreground/5 hover:ring-foreground/15 transition-all duration-200 hover:scale-105 cursor-pointer">
                 <img
                   src={thumbnailUrl}
                   alt={episodeName}
                   className="w-full h-full object-cover"
                 />
+                <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
+                  <svg className="w-5 h-5 text-white ml-0.5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
               </button>
             )}
 
-            {/* Episode info */}
-            <div className="flex flex-col mr-2 max-w-[220px]">
-              <span className="text-sm font-medium text-foreground truncate">{episodeName}</span>
-              <span className="text-xs text-foreground/50 truncate">{episodeTitle}</span>
+            {/* Episode info - hidden on hover */}
+            <div className="flex flex-col mr-2 max-w-[220px] overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover/bar:max-w-0 group-hover/bar:mr-0 group-hover/bar:opacity-0">
+              <span className="text-sm font-medium text-foreground truncate whitespace-nowrap">{episodeName}</span>
+              <span className="text-xs text-foreground/50 truncate whitespace-nowrap">{episodeTitle}</span>
             </div>
 
             {/* Divider */}
