@@ -31,8 +31,12 @@ const AnimatedFooterLogo = () => {
     [255, 180, 60],
   ];
 
-  const lerpColor = (a: number[], b: number[], t: number) =>
-    a.map((v, i) => Math.round(v + (b[i] - v) * t));
+  const fallbackColor = [255, 100, 80];
+  const lerpColor = (a: number[] | undefined, b: number[] | undefined, t: number) => {
+    const safeA = a ?? fallbackColor;
+    const safeB = b ?? fallbackColor;
+    return safeA.map((v, i) => Math.round(v + ((safeB[i] ?? v) - v) * t));
+  };
 
   const getColor = (offset: number) => {
     const len = colors.length;
