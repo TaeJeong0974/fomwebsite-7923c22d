@@ -18,7 +18,6 @@ interface PodcastCardProps {
 
 const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image, placeholderColor }: PodcastCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
   const [showImage, setShowImage] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [cardSize, setCardSize] = useState({ w: 0, h: 0 });
@@ -80,10 +79,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image, placeh
         alt=""
         loading="lazy"
         decoding="async"
-        onLoad={() => {
-          setImageLoaded(true);
-          setTimeout(() => setShowImage(true), 400);
-        }}
+        onLoad={() => setTimeout(() => setShowImage(true), 400)}
         className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${showImage ? 'opacity-100' : 'opacity-0'}`}
       />
       {episode.previewVideoUrl && !isUpcoming && (
