@@ -54,9 +54,9 @@ const StickyBottomBar = ({ youtubeUrl, spotifyUrl, thumbnailUrl, episodeName, ep
             )}
 
             {/* Episode info */}
-            <div className="flex flex-col mr-2 max-w-[200px]">
-              <span className="text-xs font-medium text-foreground truncate">{episodeName}</span>
-              <span className="text-[11px] text-foreground/50 truncate">{episodeTitle}</span>
+            <div className="flex flex-col mr-2 max-w-[220px]">
+              <span className="text-sm font-medium text-foreground truncate">{episodeName}</span>
+              <span className="text-xs text-foreground/50 truncate">{episodeTitle}</span>
             </div>
 
             {/* Divider */}
