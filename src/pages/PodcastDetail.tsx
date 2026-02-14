@@ -103,7 +103,7 @@ const PodcastDetail = () => {
         spotifyUrl={episode.spotifyUrl}
         thumbnailUrl={thumbnailUrl}
         episodeName={episode.name}
-        episodeTitle={`${episode.title}, ${episode.company}`}
+        episodeTitle={isIntro ? (episode.hosts || []).map(h => h.name.split(' ')[0]).join(', ') : `${episode.title}, ${episode.company}`}
         onPlayClick={handlePlayFromBar}
       />
 
