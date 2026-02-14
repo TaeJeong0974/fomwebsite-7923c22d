@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import FomLogo from "@/assets/FOM_Logo.svg";
+import FomIcon from "@/assets/FOM_Icon.svg";
 
 const Footer = () => {
   return (
@@ -32,7 +32,7 @@ const Footer = () => {
       {/* Giant FOM logo - bleeds off bottom */}
       <div className="container mx-auto container-padding">
         <img 
-          src={FomLogo} 
+          src={FomIcon} 
           alt="Future of Marketing" 
           className="w-full translate-y-[15%] select-none"
         />
