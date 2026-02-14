@@ -95,9 +95,10 @@ function sampleLogoPoints(count: number): Array<[number, number]> {
 
 interface ParticleLogoCanvasProps {
   className?: string;
+  onSettled?: () => void;
 }
 
-const ParticleLogoCanvas = ({ className }: ParticleLogoCanvasProps) => {
+const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const particlesRef = useRef<Particle[]>([]);
@@ -106,6 +107,7 @@ const ParticleLogoCanvas = ({ className }: ParticleLogoCanvasProps) => {
   const isInView = useInView(containerRef, { once: true, amount: 0.15 });
   const hasInitRef = useRef(false);
   const dprRef = useRef(1);
+  const settledCalledRef = useRef(false);
 
   const PARTICLE_COUNT = 1000;
   const DURATION = 2.2; // seconds for full build-in
@@ -175,6 +177,12 @@ const ParticleLogoCanvas = ({ className }: ParticleLogoCanvasProps) => {
       const globalFade = elapsed > FADE_OUT_START
         ? Math.max(0, 1 - (elapsed - FADE_OUT_START) / FADE_OUT_DURATION)
         : 1;
+
+      // Notify parent when particles start fading so logo can appear
+      if (elapsed > FADE_OUT_START && !settledCalledRef.current) {
+        settledCalledRef.current = true;
+        onSettled?.();
+      }
 
       if (globalFade <= 0) {
         // Animation complete, stop loop
