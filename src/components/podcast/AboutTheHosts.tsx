@@ -10,7 +10,7 @@ const AboutTheHosts = () => {
         {podcastHosts.map((host, index) => (
           <div key={index} className="space-y-2">
             <p className="text-foreground/80 leading-relaxed text-base lg:text-lg max-w-prose">
-              <span className="font-medium text-foreground">{host.name}</span> {host.bio}
+              <span className="font-medium text-foreground">{host.name.split(' ')[0]}</span> {host.bio}
             </p>
             {host.linkedInUrl && (
               <a
