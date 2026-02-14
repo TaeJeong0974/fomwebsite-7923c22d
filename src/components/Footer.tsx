@@ -174,14 +174,27 @@ const Footer = () => {
         >
           <AnimatedFooterLogo />
         </motion.div>
-        <motion.p
-          className="text-body-sm text-foreground/40 py-6 sm:py-8"
+        <motion.div
+          className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 py-6 sm:py-8"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.5, ease: liquidEase }}
         >
-          © {new Date().getFullYear()} Future of Marketing. All rights reserved.
-        </motion.p>
+          <p className="text-body-sm text-foreground/40">
+            © {new Date().getFullYear()} Future of Marketing. All rights reserved.
+          </p>
+          <p className="text-body-sm text-foreground/40">
+            Brought to you by{" "}
+            <a
+              href="https://www.graphitehq.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition-colors duration-300"
+            >
+              Graphite
+            </a>
+          </p>
+        </motion.div>
       </div>
     </footer>
   );
