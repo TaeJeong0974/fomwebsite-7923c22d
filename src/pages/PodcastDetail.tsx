@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
 import FloatingMiniPlayer from "@/components/podcast/FloatingMiniPlayer";
+import StickyBottomBar from "@/components/podcast/StickyBottomBar";
 import EpisodeActionButtons from "@/components/podcast/EpisodeActionButtons";
 import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
@@ -45,11 +46,24 @@ const PodcastDetail = () => {
   const guestName = episode.slug === 'intro-to-fom' ? 'INTRO' : episode.name;
   const guestTitle = episode.slug === 'intro-to-fom' ? 'THE FUTURE OF MARKETING' : `${episode.title}, ${episode.company}`;
 
+  // YouTube thumbnail
+  const videoIdMatch = episode.youtubeUrl?.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/);
+  const videoId = videoIdMatch ? videoIdMatch[1] : null;
+  const thumbnailUrl = videoId ? `https://img.youtube.com/vi/${videoId}/mqdefault.jpg` : null;
+
   return (
     <>
       {/* Vertical Text Labels */}
       <DetailVerticalText guestName={guestName} />
       
+      {/* Sticky Bottom Bar - Desktop only */}
+      <StickyBottomBar
+        youtubeUrl={episode.youtubeUrl}
+        spotifyUrl={episode.spotifyUrl}
+        thumbnailUrl={thumbnailUrl}
+        episodeName={episode.name}
+        episodeTitle={`${episode.title}, ${episode.company}`}
+      />
       <EpisodeOverlayLayout>
         {/* Title & Action Buttons Row - Same grid as content below */}
         <motion.div 
