@@ -15,7 +15,7 @@ export const DEFAULT_GRADIENT_COLORS: number[][] = [
 export const APPLE_GRADIENT_COLORS: number[][] = [
   [255, 100, 80],   // coral
   [255, 60, 120],   // pink
-  [180, 60, 255],   // purple
+  [120, 60, 255],   // blue-purple
   [255, 160, 40],   // orange
   [255, 180, 60],   // gold
   [255, 100, 80],   // loop back to coral
