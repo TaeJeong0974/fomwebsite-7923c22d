@@ -29,37 +29,39 @@ const AnimatedFooterLogo = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const animFrameRef = useRef<number>(0);
   const startTimeRef = useRef<number>(0);
-  const targetAngleRef = useRef(135);
-  const currentAngleRef = useRef(135);
-  const renderAngleRef = useRef(135);
+  const targetPosRef = useRef({ x: 50, y: 50 });
+  const currentPosRef = useRef({ x: 50, y: 50 });
+  const renderPosRef = useRef({ x: 50, y: 50 });
   const colorOffsetRef = useRef(0);
   const [, forceRender] = useState(0);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    targetAngleRef.current = Math.atan2(y, x) * (180 / Math.PI) + 180;
+    targetPosRef.current = {
+      x: ((e.clientX - rect.left) / rect.width) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100,
+    };
   };
 
   const startAnimation = () => {
     startTimeRef.current = performance.now();
     let lastTime = performance.now();
     const tick = (now: number) => {
-      const dt = Math.min((now - lastTime) / 16.667, 3); // normalize to 60fps, cap at 3x
+      const dt = Math.min((now - lastTime) / 16.667, 3);
       lastTime = now;
       const elapsed = (now - startTimeRef.current) / 1000;
-      // Smooth color cycling with subtle wobble
       colorOffsetRef.current = elapsed * 0.35 + Math.sin(elapsed * 0.7) * 0.15;
-      // Eased angle interpolation — faster when far, gentler when close
-      const diff = targetAngleRef.current - currentAngleRef.current;
-      const shortDiff = ((diff + 540) % 360) - 180;
-      const absDiff = Math.abs(shortDiff);
-      // Ease factor: ramps from 0.04 (close) to 0.12 (far) for natural motion
-      const easeFactor = 0.04 + 0.08 * Math.min(absDiff / 180, 1);
-      currentAngleRef.current += shortDiff * easeFactor * dt;
-      renderAngleRef.current = currentAngleRef.current;
+      // Eased position interpolation
+      const cur = currentPosRef.current;
+      const tgt = targetPosRef.current;
+      const dx = tgt.x - cur.x;
+      const dy = tgt.y - cur.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const easeFactor = 0.04 + 0.08 * Math.min(dist / 100, 1);
+      cur.x += dx * easeFactor * dt;
+      cur.y += dy * easeFactor * dt;
+      renderPosRef.current = { x: cur.x, y: cur.y };
       forceRender(n => n + 1);
       animFrameRef.current = requestAnimationFrame(tick);
     };
@@ -77,18 +79,18 @@ const AnimatedFooterLogo = () => {
 
   const handleLeave = () => {
     setIsHovered(false);
-    targetAngleRef.current = 135;
+    targetPosRef.current = { x: 50, y: 50 };
     stopAnimation();
   };
 
   const offset = colorOffsetRef.current;
-  const angle = renderAngleRef.current;
+  const pos = renderPosRef.current;
   const c0 = getColor(offset);
   const c1 = getColor(offset + 0.8);
   const c2 = getColor(offset + 1.6);
   const c3 = getColor(offset + 2.4);
 
-  const gradientBg = `linear-gradient(${angle}deg, rgb(${c0.join(',')}) 0%, rgb(${c1.join(',')}) 33%, rgb(${c2.join(',')}) 66%, rgb(${c3.join(',')}) 100%)`;
+  const gradientBg = `radial-gradient(ellipse 120% 200% at ${pos.x}% ${pos.y}%, rgb(${c0.join(',')}) 0%, rgb(${c1.join(',')}) 30%, rgb(${c2.join(',')}) 60%, rgb(${c3.join(',')}) 100%)`;
 
   return (
     <div
@@ -125,7 +127,7 @@ const AnimatedFooterLogo = () => {
       <motion.div
         className="absolute inset-0 w-full h-full"
         style={{
-          background: `linear-gradient(${angle}deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0) 100%)`,
+          background: `radial-gradient(ellipse 120% 200% at ${pos.x}% ${pos.y}%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0) 80%)`,
           maskImage: fullLogoMask,
           maskSize: '100% 100%',
           maskRepeat: 'no-repeat',
