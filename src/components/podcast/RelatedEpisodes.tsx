@@ -10,6 +10,7 @@ import guestKate from "@/assets/guest-kate-johnson.jpg";
 import guestSheila from "@/assets/guest-sheila-vashee.jpg";
 import guestCeci from "@/assets/guest-ceci-stallsmith.jpg";
 import guestIdan from "@/assets/guest-idan-koren.jpg";
+import guestKatrina from "@/assets/guest-katrina-wong.jpg";
 import hostMada from "@/assets/host-mada.png";
 import hostEthan from "@/assets/host-ethan.png";
 import hostCamille from "@/assets/host-camille.png";
@@ -24,6 +25,7 @@ const EPISODE_IMAGES: Record<string, string> = {
   'sheila-vashee': guestSheila,
   'ceci-stallsmith': guestCeci,
   'idan-koren': guestIdan,
+  'katrina-wong': guestKatrina,
 };
 const HOST_IMAGES = [hostMada, hostEthan, hostCamille];
 
