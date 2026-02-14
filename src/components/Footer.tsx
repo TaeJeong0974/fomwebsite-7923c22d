@@ -52,15 +52,12 @@ const AnimatedFooterLogo = () => {
       lastTime = now;
       const elapsed = (now - startTimeRef.current) / 1000;
       colorOffsetRef.current = elapsed * 0.35 + Math.sin(elapsed * 0.7) * 0.15;
-      // Eased position interpolation
+      // Smooth exponential position interpolation
       const cur = currentPosRef.current;
       const tgt = targetPosRef.current;
-      const dx = tgt.x - cur.x;
-      const dy = tgt.y - cur.y;
-      const dist = Math.sqrt(dx * dx + dy * dy);
-      const easeFactor = 0.04 + 0.08 * Math.min(dist / 100, 1);
-      cur.x += dx * easeFactor * dt;
-      cur.y += dy * easeFactor * dt;
+      const smoothing = 0.08; // lower = smoother/laggier
+      cur.x += (tgt.x - cur.x) * smoothing * dt;
+      cur.y += (tgt.y - cur.y) * smoothing * dt;
       renderPosRef.current = { x: cur.x, y: cur.y };
       forceRender(n => n + 1);
       animFrameRef.current = requestAnimationFrame(tick);
