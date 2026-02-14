@@ -109,7 +109,7 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
   const dprRef = useRef(1);
   const settledCalledRef = useRef(false);
 
-  const PARTICLE_COUNT = 2500;
+  const PARTICLE_COUNT = 5000;
   const DURATION = 3.0; // seconds for full build-in
   const STAGGER_RANGE = 1.2; // max stagger delay
   const FADE_OUT_START = 3.5; // seconds after start, particles begin fading out
