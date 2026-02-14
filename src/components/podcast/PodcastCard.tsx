@@ -1,6 +1,7 @@
 import { useRef, useState, useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Play } from "lucide-react";
 import { PodcastEpisode } from "@/lib/podcastData";
 import EpisodeCardContent from "@/components/podcast/EpisodeCardContent";
 import CursorFollowCTA from "@/components/podcast/CursorFollowCTA";
@@ -103,10 +104,15 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image, placeh
 
       <div className="card-overlay-light hover-transition md:group-hover:opacity-90 z-[2]" />
       
-      {isNew && (
-        <span className="absolute top-6 right-6 lg:top-8 lg:right-8 badge-status font-semibold text-foreground z-[3]">
-          New
-        </span>
+      {!isUpcoming && (
+        <div className="absolute top-6 right-6 lg:top-8 lg:right-8 z-[3] flex items-center gap-2">
+          {isNew && (
+            <span className="badge-status font-semibold text-foreground">New</span>
+          )}
+          <span className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm shadow-md flex items-center justify-center">
+            <Play className="w-4 h-4 text-foreground fill-foreground ml-0.5" />
+          </span>
+        </div>
       )}
       
       {isUpcoming && (
