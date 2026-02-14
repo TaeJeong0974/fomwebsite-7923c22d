@@ -130,7 +130,7 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
         x: sx, y: sy,
         sx, sy,
         delay: Math.random() * STAGGER_RANGE,
-        size: 0.8 + Math.random() * 1.2,
+        size: 1.2,
         colorIdx: (tx * 4 + ty * 2 + Math.random()) % 4,
       };
     });
@@ -199,7 +199,7 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
         p.x = p.sx + (p.tx - p.sx) * ease;
         p.y = p.sy + (p.ty - p.sy) * ease;
 
-        const alpha = (0.4 + ease * 0.6) * globalFade;
+        const alpha = globalFade;
 
         ctx.beginPath();
         ctx.arc(p.x * w, p.y * h, p.size * dpr, 0, Math.PI * 2);
