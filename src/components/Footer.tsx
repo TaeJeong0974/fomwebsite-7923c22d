@@ -44,7 +44,7 @@ const AnimatedFooterLogo = () => {
           WebkitMaskSize: '100% 100%',
           WebkitMaskRepeat: 'no-repeat',
           WebkitMaskPosition: 'left center',
-          background: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, rgb(255,100,80) 0%, rgb(255,60,120) 25%, rgb(255,160,40) 50%, rgb(255,180,60) 75%, rgb(255,100,80) 100%)`,
+          background: `radial-gradient(200px circle at ${mousePos.x}% ${mousePos.y}%, rgb(255,100,80) 0%, rgb(255,60,120) 30%, rgb(255,160,40) 60%, transparent 100%)`,
         }}
         initial={{ opacity: 0 }}
         animate={{ opacity: isHovered ? 1 : 0 }}
@@ -54,7 +54,7 @@ const AnimatedFooterLogo = () => {
       <motion.div
         className="absolute inset-0 w-full h-full"
         style={{
-          background: `radial-gradient(circle at ${mousePos.x}% ${mousePos.y}%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.6) 60%, rgba(0,0,0,1) 100%)`,
+          background: `radial-gradient(250px circle at ${mousePos.x}% ${mousePos.y}%, transparent 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.85) 70%, rgba(0,0,0,1) 100%)`,
           maskImage: fullLogoMask,
           maskSize: '100% 100%',
           maskRepeat: 'no-repeat',
