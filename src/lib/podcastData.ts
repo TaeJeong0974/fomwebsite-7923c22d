@@ -144,12 +144,7 @@ From the tradeoffs between authenticity and reach to the risks of messy data and
     linkedInUrl: "https://linkedin.com/in/meageneisenberg",
     previewVideoUrl: undefined,
     pullQuote: "I think the key to positioning is understanding the customer. And so you have to do the work for that. You have to be curious. You have to talk with your customers and then you can work with AI to take those insights and build out and understand positioning.",
-    newslettersMentioned: [
-      { name: "The Rundown AI", url: "https://www.therundown.ai/" },
-      { name: "Neuron", url: "https://www.neuron.ai/" },
-      { name: "AI Fire", url: "https://www.aifire.co/" },
-      { name: "Saster", url: "https://www.saastr.com/" },
-    ],
+    newslettersMentioned: [],
     
   },
   {
