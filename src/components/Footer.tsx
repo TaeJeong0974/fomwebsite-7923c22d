@@ -6,60 +6,46 @@ import { useSubscribe } from "@/contexts/SubscribeContext";
 
 const fullLogoMask = `url("data:image/svg+xml,%3Csvg width='598' height='186' viewBox='0 0 598 186' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M448.5 0H411.125V186H448.5V0Z' fill='black'/%3E%3Cpath d='M0 -4.57764e-05L0 37.2L149.5 37.2V-4.57764e-05L0 -4.57764e-05Z' fill='black'/%3E%3Cpath d='M0 74.3806L0 111.581L149.5 111.581V74.3806H0Z' fill='black'/%3E%3Cpath d='M0 148.8L0 186H73.6799V148.8H0Z' fill='black'/%3E%3Cpath d='M523.25 0H485.875V186H523.25V0Z' fill='black'/%3E%3Cpath d='M598 0H560.625V186H598V0Z' fill='black'/%3E%3Cpath d='M280.322 37.2C311.238 37.2 336.394 62.2388 336.394 93.0097C336.394 123.781 311.238 148.819 280.322 148.819C249.407 148.819 224.25 123.781 224.25 93.0097C224.25 62.2388 249.407 37.2 280.322 37.2ZM280.322 0C228.705 0 186.875 41.6346 186.875 93.0097C186.875 144.385 228.705 186.019 280.322 186.019C331.939 186.019 373.769 144.385 373.769 93.0097C373.769 41.6346 331.92 0 280.322 0Z' fill='black'/%3E%3C/svg%3E")`;
 
-const GRADIENT_COLORS = [
-  [255, 100, 80],
-  [255, 60, 120],
-  [255, 160, 40],
-  [255, 180, 60],
-];
-
-const lerpColor = (a: number[], b: number[], t: number) =>
-  a.map((v, i) => Math.round(v + (b[i] - v) * t));
-
-const getColor = (offset: number) => {
-  const len = GRADIENT_COLORS.length;
-  const i = ((Math.floor(offset) % len) + len) % len;
-  const next = (i + 1) % len;
-  const t = offset - Math.floor(offset);
-  return lerpColor(GRADIENT_COLORS[i], GRADIENT_COLORS[next], t);
-};
-
 const AnimatedFooterLogo = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const [gradientAngle, setGradientAngle] = useState(135);
+  const [colorOffset, setColorOffset] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
   const animFrameRef = useRef<number>(0);
   const startTimeRef = useRef<number>(0);
-  const targetPosRef = useRef({ x: 50, y: 50 });
-  const currentPosRef = useRef({ x: 50, y: 50 });
-  const renderPosRef = useRef({ x: 50, y: 50 });
-  const colorOffsetRef = useRef(0);
-  const [, forceRender] = useState(0);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    targetPosRef.current = {
-      x: ((e.clientX - rect.left) / rect.width) * 100,
-      y: ((e.clientY - rect.top) / rect.height) * 100,
-    };
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    const angle = Math.atan2(y, x) * (180 / Math.PI) + 180;
+    setGradientAngle(angle);
+  };
+
+  // Color cycling via requestAnimationFrame
+  const colors = [
+    [255, 100, 80],
+    [255, 60, 120],
+    [255, 160, 40],
+    [255, 180, 60],
+  ];
+
+  const lerpColor = (a: number[], b: number[], t: number) =>
+    a.map((v, i) => Math.round(v + (b[i] - v) * t));
+
+  const getColor = (offset: number) => {
+    const i = Math.floor(offset) % colors.length;
+    const next = (i + 1) % colors.length;
+    const t = offset - Math.floor(offset);
+    return lerpColor(colors[i], colors[next], t);
   };
 
   const startAnimation = () => {
     startTimeRef.current = performance.now();
-    let lastTime = performance.now();
     const tick = (now: number) => {
-      const dt = Math.min((now - lastTime) / 16.667, 3);
-      lastTime = now;
       const elapsed = (now - startTimeRef.current) / 1000;
-      colorOffsetRef.current = elapsed * 0.35 + Math.sin(elapsed * 0.7) * 0.15;
-      // Smooth exponential position interpolation
-      const cur = currentPosRef.current;
-      const tgt = targetPosRef.current;
-      const smoothing = 0.08; // lower = smoother/laggier
-      cur.x += (tgt.x - cur.x) * smoothing * dt;
-      cur.y += (tgt.y - cur.y) * smoothing * dt;
-      renderPosRef.current = { x: cur.x, y: cur.y };
-      forceRender(n => n + 1);
+      setColorOffset(elapsed * 0.5); // speed of color cycling
       animFrameRef.current = requestAnimationFrame(tick);
     };
     animFrameRef.current = requestAnimationFrame(tick);
@@ -76,18 +62,16 @@ const AnimatedFooterLogo = () => {
 
   const handleLeave = () => {
     setIsHovered(false);
-    targetPosRef.current = { x: 50, y: 50 };
+    setGradientAngle(135);
     stopAnimation();
   };
 
-  const offset = colorOffsetRef.current;
-  const pos = renderPosRef.current;
-  const c0 = getColor(offset);
-  const c1 = getColor(offset + 0.8);
-  const c2 = getColor(offset + 1.6);
-  const c3 = getColor(offset + 2.4);
+  const c0 = getColor(colorOffset);
+  const c1 = getColor(colorOffset + 1);
+  const c2 = getColor(colorOffset + 2);
+  const c3 = getColor(colorOffset + 3);
 
-  const gradientBg = `radial-gradient(ellipse 80% 150% at ${pos.x}% ${pos.y}%, rgb(${c0.join(',')}) 0%, rgb(${c1.join(',')}) 20%, rgb(${c2.join(',')}) 40%, rgb(${c3.join(',')}) 60%, rgba(0,0,0,1) 100%)`;
+  const gradientBg = `linear-gradient(${gradientAngle}deg, rgb(${c0.join(',')}) 0%, rgb(${c1.join(',')}) 33%, rgb(${c2.join(',')}) 66%, rgb(${c3.join(',')}) 100%)`;
 
   return (
     <div
@@ -124,7 +108,7 @@ const AnimatedFooterLogo = () => {
       <motion.div
         className="absolute inset-0 w-full h-full"
         style={{
-          background: `radial-gradient(ellipse 120% 200% at ${pos.x}% ${pos.y}%, rgba(0,0,0,1) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0) 80%)`,
+          background: `linear-gradient(${gradientAngle}deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0) 100%)`,
           maskImage: fullLogoMask,
           maskSize: '100% 100%',
           maskRepeat: 'no-repeat',
