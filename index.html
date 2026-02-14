@@ -5,11 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Summit 2025 | The Future of Innovation Conference</title>
 
-    <!-- Preload critical fonts -->
+    <!-- DNS prefetch for third-party origins -->
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+
+    <!-- Preload critical fonts (above-the-fold weights only) -->
     <link rel="preload" href="/fonts/ITC_Avant_Garde_Gothic_Pro-Book.otf" as="font" type="font/otf" crossorigin />
     <link rel="preload" href="/fonts/ITC_Avant_Garde_Gothic_Pro-Medium.otf" as="font" type="font/otf" crossorigin />
-    <link rel="preload" href="/fonts/ITC_Avant_Garde_Gothic_Pro-Demi.otf" as="font" type="font/otf" crossorigin />
-    <link rel="preload" href="/fonts/ITC_Avant_Garde_Gothic_Pro-Bold.otf" as="font" type="font/otf" crossorigin />
+
+    <!-- Preload body background image (discovered late by CSS parser) -->
+    <link rel="preload" href="/images/transition-bg-v2.png" as="image" />
     <meta
       name="description"
       content="Join 5,000+ innovators, creators, and visionaries at Summit 2025. March 15-17 in San Francisco. Groundbreaking talks, workshops, and networking."
