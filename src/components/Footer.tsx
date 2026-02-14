@@ -8,15 +8,16 @@ const fullLogoMask = `url("data:image/svg+xml,%3Csvg width='598' height='186' vi
 
 const AnimatedFooterLogo = () => {
   const [isHovered, setIsHovered] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
+  const [gradientAngle, setGradientAngle] = useState(135);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setMousePos({ x, y });
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    const angle = 135 + x * 30 + y * 20;
+    setGradientAngle(angle);
   };
 
   return (
@@ -24,7 +25,7 @@ const AnimatedFooterLogo = () => {
       ref={containerRef}
       className="relative w-full"
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => { setIsHovered(false); setMousePos({ x: 50, y: 50 }); }}
+      onMouseLeave={() => { setIsHovered(false); setGradientAngle(135); }}
       onMouseMove={handleMouseMove}
     >
       <img
@@ -44,17 +45,28 @@ const AnimatedFooterLogo = () => {
           WebkitMaskSize: '100% 100%',
           WebkitMaskRepeat: 'no-repeat',
           WebkitMaskPosition: 'left center',
-          background: `radial-gradient(200px circle at ${mousePos.x}% ${mousePos.y}%, rgb(255,100,80) 0%, rgb(255,60,120) 30%, rgb(255,160,40) 60%, transparent 100%)`,
         }}
         initial={{ opacity: 0 }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ opacity: { duration: 0.6, delay: isHovered ? 0.15 : 0, ease: [0.22, 1, 0.36, 1] } }}
+        animate={isHovered ? {
+          opacity: 1,
+          background: [
+            `linear-gradient(${gradientAngle}deg, rgb(255,100,80) 0%, rgb(255,60,120) 33%, rgb(255,160,40) 66%, rgb(255,180,60) 100%)`,
+            `linear-gradient(${gradientAngle}deg, rgb(255,60,120) 0%, rgb(255,160,40) 33%, rgb(255,180,60) 66%, rgb(255,100,80) 100%)`,
+            `linear-gradient(${gradientAngle}deg, rgb(255,160,40) 0%, rgb(255,180,60) 33%, rgb(255,100,80) 66%, rgb(255,60,120) 100%)`,
+            `linear-gradient(${gradientAngle}deg, rgb(255,180,60) 0%, rgb(255,100,80) 33%, rgb(255,60,120) 66%, rgb(255,160,40) 100%)`,
+            `linear-gradient(${gradientAngle}deg, rgb(255,100,80) 0%, rgb(255,60,120) 33%, rgb(255,160,40) 66%, rgb(255,180,60) 100%)`,
+          ],
+        } : { opacity: 0 }}
+        transition={isHovered ? {
+          opacity: { duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] },
+          background: { duration: 8, ease: 'linear', repeat: Infinity, delay: 0.15 },
+        } : { opacity: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }}
       />
       {/* Black gradient overlay for depth */}
       <motion.div
         className="absolute inset-0 w-full h-full"
         style={{
-          background: `radial-gradient(250px circle at ${mousePos.x}% ${mousePos.y}%, transparent 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.85) 70%, rgba(0,0,0,1) 100%)`,
+          background: `linear-gradient(${gradientAngle}deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0) 100%)`,
           maskImage: fullLogoMask,
           maskSize: '100% 100%',
           maskRepeat: 'no-repeat',

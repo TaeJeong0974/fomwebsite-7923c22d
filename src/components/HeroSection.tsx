@@ -42,83 +42,6 @@ const hosts = [
   },
 ];
 
-const svgMask = `url("data:image/svg+xml,%3Csvg width='598' height='186' viewBox='0 0 598 186' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M448.5 0H411.125V186H448.5V0Z' fill='black'/%3E%3Cpath d='M0 -4.57764e-05L0 37.2L149.5 37.2V-4.57764e-05L0 -4.57764e-05Z' fill='black'/%3E%3Cpath d='M0 74.3806L0 111.581L149.5 111.581V74.3806H0Z' fill='black'/%3E%3Cpath d='M0 148.8L0 186H73.6799V148.8H0Z' fill='black'/%3E%3Cpath d='M523.25 0H485.875V186H523.25V0Z' fill='black'/%3E%3Cpath d='M598 0H560.625V186H598V0Z' fill='black'/%3E%3Cpath d='M280.322 37.2C311.238 37.2 336.394 62.2388 336.394 93.0097C336.394 123.781 311.238 148.819 280.322 148.819C249.407 148.819 224.25 123.781 224.25 93.0097C224.25 62.2388 249.407 37.2 280.322 37.2ZM280.322 0C228.705 0 186.875 41.6346 186.875 93.0097C186.875 144.385 228.705 186.019 280.322 186.019C331.939 186.019 373.769 144.385 373.769 93.0097C373.769 41.6346 331.92 0 280.322 0Z' fill='black'/%3E%3C/svg%3E")`;
-
-const maskStyles = {
-  maskImage: svgMask,
-  maskSize: 'contain' as const,
-  maskRepeat: 'no-repeat' as const,
-  maskPosition: 'center' as const,
-  WebkitMaskImage: svgMask,
-  WebkitMaskSize: 'contain' as const,
-  WebkitMaskRepeat: 'no-repeat' as const,
-  WebkitMaskPosition: 'center' as const,
-};
-
-const HeroFOMIcon = () => {
-  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
-  const containerRef = useRef<HTMLDivElement>(null);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-    setMousePos({ x, y });
-  };
-
-  return (
-    <div 
-      ref={containerRef}
-      className="md:col-span-2 flex justify-center overflow-hidden relative"
-      onMouseMove={handleMouseMove}
-      onMouseLeave={() => setMousePos({ x: 50, y: 50 })}
-    >
-      <div className="w-full relative" style={{ aspectRatio: '598 / 186' }}>
-        <img 
-          src={FOMIcon} 
-          alt="Future of Marketing"
-          className="absolute inset-0 w-full h-full object-contain opacity-0"
-        />
-        
-        {/* Desktop: Mouse-following radial gradient */}
-        <div 
-          className="absolute inset-0 hidden md:block"
-          style={{
-            ...maskStyles,
-            background: `radial-gradient(200px circle at ${mousePos.x}% ${mousePos.y}%, rgb(255,100,80) 0%, rgb(255,60,120) 30%, rgb(255,160,40) 60%, transparent 100%)`,
-          }}
-        />
-        
-        {/* Desktop: Black depth overlay following mouse */}
-        <div 
-          className="absolute inset-0 hidden md:block"
-          style={{
-            ...maskStyles,
-            background: `radial-gradient(250px circle at ${mousePos.x}% ${mousePos.y}%, transparent 0%, rgba(0,0,0,0.4) 40%, rgba(0,0,0,0.85) 70%, rgba(0,0,0,1) 100%)`,
-          }}
-        />
-        
-        {/* Mobile: Static gradient */}
-        <div 
-          className="absolute inset-0 md:hidden"
-          style={{ 
-            background: 'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
-            ...maskStyles,
-          }}
-        />
-        <div 
-          className="absolute inset-0 md:hidden"
-          style={{
-            background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)',
-            ...maskStyles,
-          }}
-        />
-      </div>
-    </div>
-  );
-};
-
 const taglineLines = ["A podcast", "series on how", "AI is changing", "marketing"];
 
 const HeroSection = () => {
@@ -201,7 +124,80 @@ const HeroSection = () => {
             </motion.p>
           </div>
           {/* Logo spans columns 2-3 with animated gradient masked by FOM shape */}
-          <HeroFOMIcon />
+          <div className="md:col-span-2 flex justify-center overflow-hidden relative">
+            {/* Container with gradient masked by FOM logo */}
+            {(() => {
+              // Inline SVG data URI for Safari compatibility
+              const svgMask = `url("data:image/svg+xml,%3Csvg width='598' height='186' viewBox='0 0 598 186' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M448.5 0H411.125V186H448.5V0Z' fill='black'/%3E%3Cpath d='M0 -4.57764e-05L0 37.2L149.5 37.2V-4.57764e-05L0 -4.57764e-05Z' fill='black'/%3E%3Cpath d='M0 74.3806L0 111.581L149.5 111.581V74.3806H0Z' fill='black'/%3E%3Cpath d='M0 148.8L0 186H73.6799V148.8H0Z' fill='black'/%3E%3Cpath d='M523.25 0H485.875V186H523.25V0Z' fill='black'/%3E%3Cpath d='M598 0H560.625V186H598V0Z' fill='black'/%3E%3Cpath d='M280.322 37.2C311.238 37.2 336.394 62.2388 336.394 93.0097C336.394 123.781 311.238 148.819 280.322 148.819C249.407 148.819 224.25 123.781 224.25 93.0097C224.25 62.2388 249.407 37.2 280.322 37.2ZM280.322 0C228.705 0 186.875 41.6346 186.875 93.0097C186.875 144.385 228.705 186.019 280.322 186.019C331.939 186.019 373.769 144.385 373.769 93.0097C373.769 41.6346 331.92 0 280.322 0Z' fill='black'/%3E%3C/svg%3E")`;
+              
+              const maskStyles = {
+                maskImage: svgMask,
+                maskSize: 'contain' as const,
+                maskRepeat: 'no-repeat' as const,
+                maskPosition: 'center' as const,
+                WebkitMaskImage: svgMask,
+                WebkitMaskSize: 'contain' as const,
+                WebkitMaskRepeat: 'no-repeat' as const,
+                WebkitMaskPosition: 'center' as const,
+              };
+              
+              return (
+                <div 
+                  className="w-full relative"
+                  style={{ aspectRatio: '598 / 186' }}
+                >
+                  {/* Base FOM logo (fallback/foundation) */}
+                  <img 
+                    src={FOMIcon} 
+                    alt="Future of Marketing"
+                    className="absolute inset-0 w-full h-full object-contain opacity-0"
+                  />
+                  
+                  {/* Animated color gradient - masked by FOM logo shape */}
+                  <motion.div 
+                    className="absolute inset-0 hidden md:block"
+                    style={maskStyles}
+                    animate={{
+                      background: [
+                        'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
+                        'linear-gradient(135deg, rgb(200,140,150) 0%, rgb(130,150,180) 50%, rgb(230,130,110) 100%)',
+                        'linear-gradient(135deg, rgb(130,150,180) 0%, rgb(230,130,110) 50%, rgb(200,140,150) 100%)',
+                        'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
+                      ]
+                    }}
+                    transition={{ duration: 3, ease: 'easeInOut', repeat: Infinity }}
+                  />
+                  
+                  {/* Black gradient overlay from top-left to bottom-right - masked by FOM logo */}
+                  <div 
+                    className="absolute inset-0 hidden md:block"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)',
+                      ...maskStyles,
+                    }}
+                  />
+                  
+                  {/* Static gradient for mobile - masked by FOM logo */}
+                  <div 
+                    className="absolute inset-0 md:hidden"
+                    style={{ 
+                      background: 'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
+                      ...maskStyles,
+                    }}
+                  />
+                  
+                  {/* Mobile black gradient overlay */}
+                  <div 
+                    className="absolute inset-0 md:hidden"
+                    style={{
+                      background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)',
+                      ...maskStyles,
+                    }}
+                  />
+                </div>
+              );
+            })()}
+          </div>
         </motion.div>
 
         {/* Mobile: Your Host label */}
