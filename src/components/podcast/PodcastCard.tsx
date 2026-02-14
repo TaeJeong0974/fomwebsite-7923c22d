@@ -1,8 +1,9 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { PodcastEpisode } from "@/lib/podcastData";
 import EpisodeCardContent from "@/components/podcast/EpisodeCardContent";
+import CursorFollowCTA from "@/components/podcast/CursorFollowCTA";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 import guestBg from "@/assets/guest-bg.png";
@@ -16,9 +17,17 @@ interface PodcastCardProps {
 
 const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image }: PodcastCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const videoRef = useRef<HTMLVideoElement>(null);
+  const cardRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const { openSubscribe } = useSubscribe();
+
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (isMobile || !cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  }, [isMobile]);
 
   const handleMouseEnter = () => {
     if (isMobile) return;
@@ -43,7 +52,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image }: Podc
   const cardImage = image || guestBg;
 
   const cardContent = (
-    <div className="card-image md:hover-scale relative">
+    <div className="card-image md:hover-scale relative" ref={cardRef} onMouseMove={handleMouseMove}>
       <img
         src={cardImage}
         alt=""
@@ -85,6 +94,13 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image }: Podc
       )}
       
       <EpisodeCardContent episode={episode} isUpcoming={isUpcoming} />
+      
+      <CursorFollowCTA
+        isVisible={isHovered}
+        x={mousePos.x}
+        y={mousePos.y}
+        variant={isUpcoming ? "notify" : "watch"}
+      />
     </div>
   );
 
