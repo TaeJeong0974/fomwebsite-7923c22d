@@ -109,11 +109,11 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
   const dprRef = useRef(1);
   const settledCalledRef = useRef(false);
 
-  const PARTICLE_COUNT = 1000;
-  const DURATION = 2.2; // seconds for full build-in
-  const STAGGER_RANGE = 1.0; // max stagger delay
-  const FADE_OUT_START = 2.5; // seconds after start, particles begin fading out
-  const FADE_OUT_DURATION = 1.0; // seconds for fade out
+  const PARTICLE_COUNT = 2500;
+  const DURATION = 3.0; // seconds for full build-in
+  const STAGGER_RANGE = 1.2; // max stagger delay
+  const FADE_OUT_START = 3.5; // seconds after start, particles begin fading out
+  const FADE_OUT_DURATION = 1.2; // seconds for fade out
 
   const initParticles = useCallback(() => {
     if (hasInitRef.current) return;
@@ -122,7 +122,7 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
     const points = sampleLogoPoints(PARTICLE_COUNT);
     particlesRef.current = points.map(([tx, ty]) => {
       const angle = Math.random() * Math.PI * 2;
-      const dist = 0.15 + Math.random() * 0.4;
+      const dist = 0.05 + Math.random() * 0.2;
       const sx = tx + Math.cos(angle) * dist;
       const sy = ty + Math.sin(angle) * dist;
       return {
@@ -130,7 +130,7 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
         x: sx, y: sy,
         sx, sy,
         delay: Math.random() * STAGGER_RANGE,
-        size: 1.0 + Math.random() * 1.5,
+        size: 0.8 + Math.random() * 1.2,
         colorIdx: (tx * 4 + ty * 2 + Math.random()) % 4,
       };
     });
