@@ -110,15 +110,10 @@ const PodcastSection = () => {
         <AnimatePresence mode="wait">
           <motion.div
             key={layout}
-            initial={{ opacity: 0, scale: 0.92, filter: "blur(8px)", borderRadius: "24px" }}
-            animate={{ opacity: 1, scale: 1, filter: "blur(0px)", borderRadius: "0px" }}
-            exit={{ opacity: 0, scale: 1.04, filter: "blur(6px)", borderRadius: "16px" }}
-            transition={{ 
-              duration: 0.5, 
-              ease: [0.16, 1, 0.3, 1],
-              scale: { type: "spring", stiffness: 300, damping: 24, mass: 0.8 },
-            }}
-            style={{ overflow: "hidden" }}
+            initial={{ opacity: 0, scale: 0.97, filter: "blur(4px)" }}
+            animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            exit={{ opacity: 0, scale: 0.97, filter: "blur(4px)" }}
+            transition={{ duration: 0.35, ease: liquidEase }}
           >
             {layout === "grid" 
               ? <PodcastGridView episodes={publishedEpisodes} comingSoonEpisodes={comingSoonEpisodes} /> 
