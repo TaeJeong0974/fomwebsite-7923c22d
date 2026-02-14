@@ -5,6 +5,7 @@ import { LayoutGrid, List, Plus, ChevronUp } from "lucide-react";
 
 import { getPublishedEpisodes, getComingSoonEpisodes, PodcastEpisode, podcastHosts } from "@/lib/podcastData";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useSubscribe } from "@/contexts/SubscribeContext";
 import SubscribeCard from "@/components/SubscribeCard";
 import PodcastCard from "@/components/podcast/PodcastCard";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
@@ -219,6 +220,7 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
 const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const isMobile = useIsMobile();
+  const { openSubscribe } = useSubscribe();
   
   const allEpisodes = [...episodes, ...comingSoonEpisodes];
 
@@ -244,95 +246,105 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
             onMouseLeave={() => !isMobile && setHoveredIndex(null)}
           >
             
-            <Link
-              to={`/episode/${episode.slug}`}
-              className="group py-6 sm:py-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-6 hover-transition relative z-10"
-            >
-              <div className="flex-1 min-w-0 text-left">
-                {/* Badge row - uses invisible spacer to align with name */}
-                {hasBadge && (
-                  <div className="flex gap-4 sm:gap-6 lg:gap-10">
-                    <span className="text-label invisible" aria-hidden="true">EP 00</span>
-                    <div className={`mb-3 sm:mb-4 list-focus-transition ${dim}`}>
-                      {isComingSoon && <span className="badge-status">Upcoming</span>}
-                      {!isComingSoon && isNewEpisode(episode.publishedDate) && <span className="badge-status">New</span>}
+            {(() => {
+              const innerContent = (
+                <>
+                  <div className="flex-1 min-w-0 text-left">
+                    {hasBadge && (
+                      <div className="flex gap-4 sm:gap-6 lg:gap-10">
+                        <span className="text-label invisible" aria-hidden="true">EP 00</span>
+                        <div className={`mb-3 sm:mb-4 list-focus-transition ${dim}`}>
+                          {isComingSoon && <span className="badge-status">Upcoming</span>}
+                          {!isComingSoon && isNewEpisode(episode.publishedDate) && <span className="badge-status">New</span>}
+                        </div>
+                      </div>
+                    )}
+                    <div className="flex items-start gap-4 sm:gap-6 lg:gap-10">
+                      <span className={`text-label pt-0 sm:pt-2 list-focus-transition ${dim}`}>
+                        EP {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <div className="flex-1">
+                        <div className="flex items-start gap-4 lg:gap-6">
+                          <motion.h3 
+                            className={`font-display text-3xl sm:text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight list-focus-transition ${dim}`}
+                            initial={false}
+                            animate={isHovered ? {
+                              color: colors,
+                              x: 8,
+                            } : {
+                              color: '#1a1a1a',
+                              x: 0,
+                            }}
+                            transition={{
+                              color: isHovered
+                                ? { duration: 4, ease: 'easeInOut', repeat: Infinity }
+                                : { duration: 0.15, ease: liquidEase },
+                              x: { duration: isHovered ? 0.6 : 0.15, ease: liquidEase },
+                            }}
+                          >
+                            {episode.name}
+                          </motion.h3>
+                          <p className={`hidden lg:block text-sm pt-1.5 text-foreground list-focus-transition ${dim}`}>
+                            {isIntroEpisode 
+                              ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) 
+                              : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>
+                            }
+                          </p>
+                        </div>
+                        <p className={`lg:hidden mt-2 text-sm text-foreground list-focus-transition ${dim}`}>
+                          {isIntroEpisode 
+                            ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) 
+                            : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>
+                          }
+                        </p>
+                      </div>
                     </div>
                   </div>
-                )}
-
-                {/* EP number + Name row */}
-                <div className="flex items-start gap-4 sm:gap-6 lg:gap-10">
-                  <span className={`text-label pt-0 sm:pt-2 list-focus-transition ${dim}`}>
-                    EP {String(index + 1).padStart(2, '0')}
-                  </span>
-                  <div className="flex-1">
-                    <div className="flex items-start gap-4 lg:gap-6">
-                      <motion.h3 
-                        className={`font-display text-3xl sm:text-5xl lg:text-6xl font-semibold leading-[0.95] tracking-tight list-focus-transition ${dim}`}
+                  {!isComingSoon && (
+                    <div className="hidden lg:flex items-center shrink-0">
+                      <motion.span
+                        className="text-sm font-display font-semibold uppercase tracking-wider rounded-full inline-flex items-center justify-center"
                         initial={false}
                         animate={isHovered ? {
-                          color: colors,
-                          x: 8,
+                          color: '#ffffff',
+                          backgroundColor: '#1a1a1a',
+                          paddingTop: '0.75rem',
+                          paddingBottom: '0.625rem',
+                          paddingLeft: '1.25rem',
+                          paddingRight: '1.25rem',
                         } : {
                           color: '#1a1a1a',
-                          x: 0,
+                          backgroundColor: 'rgba(0,0,0,0)',
+                          paddingTop: '0.75rem',
+                          paddingBottom: '0.625rem',
+                          paddingLeft: '0rem',
+                          paddingRight: '0rem',
                         }}
-                        transition={{
-                          color: isHovered
-                            ? { duration: 4, ease: 'easeInOut', repeat: Infinity }
-                            : { duration: 0.15, ease: liquidEase },
-                          x: { duration: isHovered ? 0.6 : 0.15, ease: liquidEase },
-                        }}
+                        transition={{ duration: 0.4, ease: liquidEase }}
                       >
-                        {episode.name}
-                      </motion.h3>
-                      {/* Desktop: Title & Company inline */}
-                      <p className={`hidden lg:block text-sm pt-1.5 text-foreground list-focus-transition ${dim}`}>
-                        {isIntroEpisode 
-                          ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) 
-                          : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>
-                        }
-                      </p>
+                        Watch Now
+                      </motion.span>
                     </div>
-                    {/* Mobile/Tablet: Title & Company below */}
-                    <p className={`lg:hidden mt-2 text-sm text-foreground list-focus-transition ${dim}`}>
-                      {isIntroEpisode 
-                        ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) 
-                        : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>
-                      }
-                    </p>
-                  </div>
+                  )}
+                </>
+              );
+
+              return isComingSoon ? (
+                <div
+                  className="group py-6 sm:py-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-6 hover-transition relative z-10 cursor-pointer"
+                  onClick={() => openSubscribe({ guestName: episode.name.split(' ')[0] })}
+                >
+                  {innerContent}
                 </div>
-              </div>
-              
-              {/* Desktop CTA */}
-              {!isComingSoon && (
-                <div className="hidden lg:flex items-center shrink-0">
-                  <motion.span
-                    className="text-sm font-display font-semibold uppercase tracking-wider rounded-full inline-flex items-center justify-center"
-                    initial={false}
-                    animate={isHovered ? {
-                      color: '#ffffff',
-                      backgroundColor: '#1a1a1a',
-                      paddingTop: '0.75rem',
-                      paddingBottom: '0.625rem',
-                      paddingLeft: '1.25rem',
-                      paddingRight: '1.25rem',
-                    } : {
-                      color: '#1a1a1a',
-                      backgroundColor: 'rgba(0,0,0,0)',
-                      paddingTop: '0.75rem',
-                      paddingBottom: '0.625rem',
-                      paddingLeft: '0rem',
-                      paddingRight: '0rem',
-                    }}
-                    transition={{ duration: 0.4, ease: liquidEase }}
-                  >
-                    Watch Now
-                  </motion.span>
-                </div>
-              )}
-            </Link>
+              ) : (
+                <Link
+                  to={`/episode/${episode.slug}`}
+                  className="group py-6 sm:py-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-6 hover-transition relative z-10"
+                >
+                  {innerContent}
+                </Link>
+              );
+            })()}
           </motion.div>
         );
       })}
