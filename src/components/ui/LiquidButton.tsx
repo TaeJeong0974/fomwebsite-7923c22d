@@ -64,36 +64,5 @@ const LiquidButton = forwardRef<HTMLButtonElement, LiquidButtonProps>(
 );
 LiquidButton.displayName = "LiquidButton";
 
-// Link version
-interface LiquidLinkProps extends Omit<HTMLMotionProps<"a">, "ref"> {
-  variant?: "light" | "dark" | "glass";
-  size?: "sm" | "md" | "lg" | "icon";
-}
-
-const LiquidLink = forwardRef<HTMLAnchorElement, LiquidLinkProps>(
-  ({ className, variant = "glass", size = "md", children, ...props }, ref) => {
-    return (
-      <motion.a
-        ref={ref}
-        className={cn(
-          "inline-flex items-center justify-center rounded-full font-medium transition-[background,box-shadow] duration-300 focus-ring [&>*]:translate-y-[2px]",
-          sizeClasses[size],
-          variantClasses[variant],
-          className
-        )}
-        variants={buttonVariants}
-        initial="initial"
-        whileHover="hover"
-        whileTap="tap"
-        transition={liquidSpring}
-        {...props}
-      >
-        {children}
-      </motion.a>
-    );
-  }
-);
-LiquidLink.displayName = "LiquidLink";
-
-export { LiquidButton, LiquidLink, buttonVariants, variantClasses, sizeClasses };
-export type { LiquidButtonProps, LiquidLinkProps };
+export { LiquidButton, buttonVariants, variantClasses, sizeClasses };
+export type { LiquidButtonProps };
