@@ -110,10 +110,10 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
   const settledCalledRef = useRef(false);
 
   const PARTICLE_COUNT = 5000;
-  const DURATION = 3.0; // seconds for full build-in
-  const STAGGER_RANGE = 1.2; // max stagger delay
-  const FADE_OUT_START = 3.5; // seconds after start, particles begin fading out
-  const FADE_OUT_DURATION = 1.2; // seconds for fade out
+  const DURATION = 3.5;
+  const STAGGER_RANGE = 1.8;
+  const FADE_OUT_START = 4.0;
+  const FADE_OUT_DURATION = 1.5;
 
   const initParticles = useCallback(() => {
     if (hasInitRef.current) return;
@@ -193,7 +193,8 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
       for (let i = 0; i < particles.length; i++) {
         const p = particles[i];
         const t = Math.max(0, Math.min(1, (elapsed - p.delay) / (DURATION - p.delay)));
-        const ease = 1 - Math.pow(1 - t, 3);
+        // Smooth ease-in-out for gentler convergence
+        const ease = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
         p.x = p.sx + (p.tx - p.sx) * ease;
         p.y = p.sy + (p.ty - p.sy) * ease;
