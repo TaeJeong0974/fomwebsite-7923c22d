@@ -1,6 +1,19 @@
 import { Bell } from "lucide-react";
 import { PodcastEpisode } from "@/lib/podcastData";
 
+const upcomingCTAs: Record<string, string> = {
+  Katrina: "Be the First to Know",
+  Lena: "Don't Miss Lena",
+  Dave: "Get the Drop on Dave",
+  Sara: "Stay in the Loop",
+  Kate: "Be There for Kate",
+  Idan: "Catch Idan's Episode",
+  Lindsey: "Get Lindsey's Insights",
+  Sheila: "Hear from Sheila First",
+  Ceci: "Don't Miss Ceci",
+  Meagen: "Get Notified",
+};
+
 interface EpisodeCardContentProps {
   episode: PodcastEpisode;
   isUpcoming?: boolean;
@@ -62,7 +75,7 @@ const EpisodeCardContent = ({
           <div className={hoverContentClasses}>
             <span className="inline-flex items-center gap-2 text-sm font-medium text-white">
               <Bell size={14} />
-              Get Notified
+              {upcomingCTAs[episode.name.split(" ")[0]] || "Get Notified"}
             </span>
           </div>
         </div>
