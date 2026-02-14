@@ -18,6 +18,7 @@ interface PodcastCardProps {
 const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image }: PodcastCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [cardSize, setCardSize] = useState({ w: 0, h: 0 });
   const videoRef = useRef<HTMLVideoElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
@@ -32,6 +33,10 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image }: Podc
   const handleMouseEnter = () => {
     if (isMobile) return;
     setIsHovered(true);
+    if (cardRef.current) {
+      const rect = cardRef.current.getBoundingClientRect();
+      setCardSize({ w: rect.width, h: rect.height });
+    }
     if (videoRef.current && episode.previewVideoUrl) {
       videoRef.current.currentTime = 0;
       videoRef.current.play().catch(() => {
@@ -99,6 +104,8 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image }: Podc
         isVisible={isHovered}
         x={mousePos.x}
         y={mousePos.y}
+        centerX={cardSize.w / 2}
+        centerY={cardSize.h / 2}
         variant={isUpcoming ? "notify" : "watch"}
       />
     </div>
