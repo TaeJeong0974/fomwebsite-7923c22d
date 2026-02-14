@@ -51,8 +51,13 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
               transition={{ duration: 0.5 }}
               className="max-w-2xl mx-auto text-center"
             >
-              <div className="w-20 h-20 rounded-full glass mb-6 flex items-center justify-center mx-auto">
-                <Bell className="w-8 h-8 text-foreground" />
+              <div className="relative w-20 h-20 mb-6 mx-auto flex items-center justify-center">
+                {/* Expanding ring pulse */}
+                <span className="absolute inset-0 rounded-full bg-foreground/5 animate-[ring-ping_2.5s_cubic-bezier(0.22,1,0.36,1)_infinite]" />
+                <span className="absolute inset-0 rounded-full bg-foreground/5 animate-[ring-ping_2.5s_cubic-bezier(0.22,1,0.36,1)_0.8s_infinite]" />
+                <div className="relative w-20 h-20 rounded-full glass flex items-center justify-center">
+                  <Bell className="w-8 h-8 text-foreground animate-[bell-swing_2.5s_ease-in-out_infinite]" />
+                </div>
               </div>
               <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
                 New Episode<br />Coming Soon
