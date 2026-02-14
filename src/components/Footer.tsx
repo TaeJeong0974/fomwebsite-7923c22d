@@ -110,6 +110,7 @@ const Footer = () => {
   const taglineRef = useRef<HTMLParagraphElement>(null);
   const navRef = useRef<HTMLUListElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
+  const [logoRevealed, setLogoRevealed] = useState(false);
   const taglineInView = useInView(taglineRef, { once: true, amount: 0.15 });
   const navInView = useInView(navRef, { once: true, amount: 0.15 });
   const logoInView = useInView(logoRef, { once: true, amount: 0.15 });
@@ -170,10 +171,16 @@ const Footer = () => {
             transition: 'opacity 0.3s ease',
           }}
         >
-          <ParticleLogoCanvas className="relative" />
+          <ParticleLogoCanvas className="relative" onSettled={() => setLogoRevealed(true)} />
         </div>
-        {/* Hover gradient logo layered on top */}
-        <div className="absolute inset-0 container mx-auto container-padding">
+        {/* Solid logo fades in after particles settle */}
+        <div
+          className="absolute inset-0 container mx-auto container-padding"
+          style={{
+            opacity: logoRevealed ? 1 : 0,
+            transition: 'opacity 1s cubic-bezier(0.22, 1, 0.36, 1)',
+          }}
+        >
           <AnimatedFooterLogo />
         </div>
         <p className="text-body-sm text-foreground/40 py-6 sm:py-8">© {new Date().getFullYear()} Future of Marketing. All rights reserved.</p>
