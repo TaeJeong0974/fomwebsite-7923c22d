@@ -121,10 +121,9 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
 
     const points = sampleLogoPoints(PARTICLE_COUNT);
     particlesRef.current = points.map(([tx, ty]) => {
-      const angle = Math.random() * Math.PI * 2;
-      const dist = 0.05 + Math.random() * 0.2;
-      const sx = tx + Math.cos(angle) * dist;
-      const sy = ty + Math.sin(angle) * dist;
+      // Scatter widely across the canvas for visible random start
+      const sx = Math.random();
+      const sy = Math.random();
       return {
         tx, ty,
         x: sx, y: sy,
