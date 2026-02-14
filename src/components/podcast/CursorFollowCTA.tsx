@@ -22,8 +22,8 @@ const CursorFollowCTA = ({ isVisible, x, y }: CursorFollowCTAProps) => {
         y: y - size,
       }}
       transition={{
-        opacity: { duration: 0.2, ease: "easeOut", delay: isVisible ? 0.3 : 0 },
-        scale: { duration: 0.25, ease: [0.22, 1, 0.36, 1], delay: isVisible ? 0.3 : 0 },
+        opacity: { duration: 0.2, ease: "easeOut", delay: isVisible ? 0.15 : 0 },
+        scale: { duration: 0.25, ease: [0.22, 1, 0.36, 1], delay: isVisible ? 0.15 : 0 },
         x: { type: "spring", stiffness: 250, damping: 24, mass: 0.5 },
         y: { type: "spring", stiffness: 250, damping: 24, mass: 0.5 },
       }}
