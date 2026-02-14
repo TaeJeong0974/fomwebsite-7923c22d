@@ -7,32 +7,32 @@ interface CursorFollowCTAProps {
   y: number;
   centerX: number;
   centerY: number;
-  label?: string;
   variant?: "watch" | "notify";
 }
 
-const CursorFollowCTA = ({ isVisible, x, y, centerX, centerY, label, variant = "watch" }: CursorFollowCTAProps) => {
+const CursorFollowCTA = ({ isVisible, x, y, centerX, centerY, variant = "watch" }: CursorFollowCTAProps) => {
   const Icon = variant === "notify" ? Bell : Play;
-  const text = label || (variant === "notify" ? "Get Notified" : "Watch Now");
 
-  const targetX = x - 70;
-  const targetY = y - 24;
-  const originX = centerX - 70;
-  const originY = centerY - 24;
+  // Size of the pill (w-12 h-12 = 48px)
+  const half = 24;
+  const tx = x - half;
+  const ty = y - half;
+  const cx = centerX - half;
+  const cy = centerY - half;
 
   return (
     <motion.div
-      className="absolute top-0 left-0 z-[10] pointer-events-none hidden md:flex items-center gap-2.5 bg-white rounded-full px-5 py-3 shadow-lg"
-      initial={{ opacity: 0, scale: 0.5, x: originX, y: originY }}
+      className="absolute top-0 left-0 z-[10] pointer-events-none hidden md:flex items-center justify-center w-12 h-12 bg-white rounded-full shadow-lg"
+      initial={{ opacity: 0, scale: 0, x: cx, y: cy }}
       animate={{
         opacity: isVisible ? 1 : 0,
-        scale: isVisible ? 1 : 0.5,
-        x: isVisible ? targetX : originX,
-        y: isVisible ? targetY : originY,
+        scale: isVisible ? 1 : 0,
+        x: isVisible ? tx : cx,
+        y: isVisible ? ty : cy,
       }}
       transition={{
-        opacity: { duration: 0.25, ease: "easeOut" },
-        scale: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
+        opacity: { duration: 0.2, ease: "easeOut" },
+        scale: { duration: 0.25, ease: [0.22, 1, 0.36, 1] },
         x: isVisible
           ? { type: "spring", stiffness: 300, damping: 28, mass: 0.5 }
           : { duration: 0.2, ease: [0.22, 1, 0.36, 1] },
@@ -41,8 +41,7 @@ const CursorFollowCTA = ({ isVisible, x, y, centerX, centerY, label, variant = "
           : { duration: 0.2, ease: [0.22, 1, 0.36, 1] },
       }}
     >
-      <Icon className="w-3.5 h-3.5 text-foreground fill-foreground shrink-0" />
-      <span className="text-sm font-display font-semibold text-foreground whitespace-nowrap">{text}</span>
+      <Icon className="w-4 h-4 text-foreground fill-foreground" />
     </motion.div>
   );
 };

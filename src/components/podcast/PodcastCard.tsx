@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { PodcastEpisode } from "@/lib/podcastData";
@@ -23,6 +23,13 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image }: Podc
   const cardRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const { openSubscribe } = useSubscribe();
+
+  useEffect(() => {
+    if (cardRef.current) {
+      const rect = cardRef.current.getBoundingClientRect();
+      setCardSize({ w: rect.width, h: rect.height });
+    }
+  }, []);
 
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
     if (isMobile || !cardRef.current) return;
