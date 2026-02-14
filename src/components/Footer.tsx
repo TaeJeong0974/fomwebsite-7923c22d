@@ -35,9 +35,11 @@ const AnimatedFooterLogo = () => {
     a.map((v, i) => Math.round(v + (b[i] - v) * t));
 
   const getColor = (offset: number) => {
-    const i = Math.floor(offset) % colors.length;
-    const next = (i + 1) % colors.length;
-    const t = offset - Math.floor(offset);
+    const len = colors.length;
+    const normalizedOffset = ((offset % len) + len) % len;
+    const i = Math.floor(normalizedOffset) % len;
+    const next = (i + 1) % len;
+    const t = normalizedOffset - Math.floor(normalizedOffset);
     return lerpColor(colors[i], colors[next], t);
   };
 
