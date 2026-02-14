@@ -30,9 +30,10 @@ interface SubscribeDrawerProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   guestName?: string;
+  headline?: string;
 }
 
-const SubscribeDrawer = ({ open, onOpenChange, guestName }: SubscribeDrawerProps) => {
+const SubscribeDrawer = ({ open, onOpenChange, guestName, headline }: SubscribeDrawerProps) => {
   const { email, setEmail, isSubmitted, handleSubmit, reset } = useSubscriptionForm({
     onReset: () => onOpenChange(false),
     resetDelay: 3000,
@@ -93,7 +94,7 @@ const SubscribeDrawer = ({ open, onOpenChange, guestName }: SubscribeDrawerProps
                       STAY UPDATED
                     </motion.p>
                     <motion.h2 variants={fadeUpItem} className="text-display-lg font-semibold text-white mb-6">
-                      {guestName ? `${guestName} Is Coming Soon` : "Never Miss an Episode"}
+                      {headline || (guestName ? `${guestName} Is Coming Soon` : "Never Miss an Episode")}
                     </motion.h2>
                     <motion.p variants={fadeUpItem} className="text-body text-white/60 mb-8 max-w-sm">
                       {guestName ? `Get notified when ${guestName}'s episode drops.` : "Get notified when new episodes drop and receive exclusive content."}

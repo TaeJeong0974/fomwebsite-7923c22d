@@ -118,7 +118,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 1.0, ease: liquidEase }}
             >
-              <ComingSoonHeroCard guestFirstName={guestFirstName} />
+              <ComingSoonHeroCard guestFirstName={guestFirstName} notifyHeadline={episode.notifyHeadline} />
             </motion.div>
 
             {/* About This Episode */}
@@ -228,7 +228,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
         viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: 1.0, ease: liquidEase }}
       >
-        <ListenSubscribeCards guestName={guestFirstName} />
+        <ListenSubscribeCards guestName={guestFirstName} notifyHeadline={episode.notifyHeadline} />
       </motion.div>
     </EpisodeOverlayLayout>
     </>
