@@ -98,14 +98,18 @@ export const buildMeshGradient = (
   ];
 
   // Derive shape variation from mouse position
-  const sx = mx * 30; // 0-30 range for width variance
-  const sy = my * 30; // 0-30 range for height variance
+  const sx = mx * 30;
+  const sy = my * 30;
+
+  // Parallax offsets — each layer shifts at a different rate
+  const px = (mx - 0.5) * 2; // -1 to 1
+  const py = (my - 0.5) * 2;
 
   return [
-    `radial-gradient(ellipse ${60 + sx}% ${90 - sy}% at ${mx * 100}% ${my * 100}%, ${rgba(c0, 0.9)} 0%, transparent 65%)`,
-    `radial-gradient(ellipse ${80 - sx}% ${55 + sy}% at ${100 - mx * 60}% ${100 - my * 60}%, ${rgba(c1, 0.8)} 0%, transparent 55%)`,
-    `radial-gradient(ellipse ${50 + sy}% ${75 - sx}% at ${mx * 80 + 10}% ${my * 40 + 30}%, ${rgba(c2, 0.7)} 0%, transparent 60%)`,
-    `radial-gradient(ellipse ${70 - sy}% ${40 + sx}% at ${50 + (mx - 0.5) * 40}% ${50 + (my - 0.5) * 40}%, ${rgba(c3, 0.65)} 0%, transparent 50%)`,
+    `radial-gradient(ellipse ${60 + sx}% ${90 - sy}% at ${mx * 100 + px * 12}% ${my * 100 + py * 12}%, ${rgba(c0, 0.9)} 0%, transparent 65%)`,
+    `radial-gradient(ellipse ${80 - sx}% ${55 + sy}% at ${100 - mx * 60 + px * 8}% ${100 - my * 60 + py * 8}%, ${rgba(c1, 0.8)} 0%, transparent 55%)`,
+    `radial-gradient(ellipse ${50 + sy}% ${75 - sx}% at ${mx * 80 + 10 + px * 5}% ${my * 40 + 30 + py * 5}%, ${rgba(c2, 0.7)} 0%, transparent 60%)`,
+    `radial-gradient(ellipse ${70 - sy}% ${40 + sx}% at ${50 + (mx - 0.5) * 40 + px * 3}% ${50 + (my - 0.5) * 40 + py * 3}%, ${rgba(c3, 0.65)} 0%, transparent 50%)`,
     `linear-gradient(${angle}deg, ${rgba(c4, 0.4)} 0%, ${rgba(c0, 0.3)} 100%)`,
   ].join(', ');
 };
