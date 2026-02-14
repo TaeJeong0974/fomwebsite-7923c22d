@@ -86,16 +86,6 @@ const PodcastSection = () => {
           
           {/* Layout Toggle */}
           <div className="glass rounded-full p-1.5 flex items-center gap-1 !shadow-none hover:!shadow-glass transition-shadow duration-300 relative">
-            {/* Fluid sliding indicator */}
-            <motion.div
-              className="absolute top-1.5 bottom-1.5 rounded-full bg-foreground shadow-lg z-0"
-              initial={false}
-              animate={{
-                left: layout === "grid" ? "6px" : "50%",
-                right: layout === "list" ? "6px" : "50%",
-              }}
-              transition={{ type: "spring", stiffness: 350, damping: 30, mass: 0.8 }}
-            />
             {([
               { type: "grid" as const, icon: LayoutGrid },
               { type: "list" as const, icon: List },
@@ -109,8 +99,15 @@ const PodcastSection = () => {
                     : "text-foreground hover:bg-foreground/5"
                 }`}
               >
-                <Icon className="h-4 w-4 shrink-0" />
-                <span className="text-xs font-medium pr-1 capitalize leading-none translate-y-[1px]">{type}</span>
+                {layout === type && (
+                  <motion.div
+                    layoutId="toggle-pill"
+                    className="absolute inset-0 rounded-full bg-foreground shadow-lg"
+                    transition={{ type: "spring", stiffness: 300, damping: 25, mass: 0.8 }}
+                  />
+                )}
+                <Icon className="h-4 w-4 shrink-0 relative z-10" />
+                <span className="text-xs font-medium pr-1 capitalize leading-none translate-y-[1px] relative z-10">{type}</span>
               </button>
             ))}
           </div>
