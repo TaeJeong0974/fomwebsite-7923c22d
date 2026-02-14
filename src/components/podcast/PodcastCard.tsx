@@ -123,13 +123,6 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image, placeh
       
       <EpisodeCardContent episode={episode} isUpcoming={isUpcoming} />
       
-      {!isUpcoming && (
-        <CursorFollowCTA
-          isVisible={isHovered}
-          x={mousePos.x}
-          y={mousePos.y}
-        />
-      )}
     </div>
   );
 
