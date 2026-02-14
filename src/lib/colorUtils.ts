@@ -11,14 +11,13 @@ export const DEFAULT_GRADIENT_COLORS: number[][] = [
   [255, 180, 60],
 ];
 
-/** Apple-inspired cool palette: indigo → violet → teal → cyan → seafoam */
+/** Warm palette matching the original site gradient: coral → pink → orange → gold */
 export const APPLE_GRADIENT_COLORS: number[][] = [
-  [88, 86, 214],    // indigo
-  [175, 82, 222],   // violet
-  [50, 173, 230],   // teal-blue
-  [90, 200, 250],   // cyan
-  [100, 210, 185],  // seafoam
-  [88, 86, 214],    // loop back to indigo
+  [255, 100, 80],   // coral
+  [255, 60, 120],   // pink
+  [255, 160, 40],   // orange
+  [255, 180, 60],   // gold
+  [255, 100, 80],   // loop back to coral
 ];
 
 const FALLBACK_COLOR = [255, 100, 80];
