@@ -13,9 +13,10 @@ interface PodcastCardProps {
   isNew?: boolean;
   isUpcoming?: boolean;
   image?: string;
+  placeholderColor?: string;
 }
 
-const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image }: PodcastCardProps) => {
+const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image, placeholderColor }: PodcastCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [cardSize, setCardSize] = useState({ w: 0, h: 0 });
@@ -66,7 +67,12 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image }: Podc
   const cardImage = image || guestBg;
 
   const cardContent = (
-    <div className="card-image md:hover-scale relative" ref={cardRef} onMouseMove={handleMouseMove}>
+    <div
+      className="card-image md:hover-scale relative"
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      style={placeholderColor ? { backgroundColor: placeholderColor } : undefined}
+    >
       <img
         src={cardImage}
         alt=""
