@@ -228,7 +228,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
         viewport={{ once: true, amount: 0.15 }}
         transition={{ duration: 1.0, ease: liquidEase }}
       >
-        <ListenSubscribeCards />
+        <ListenSubscribeCards guestName={guestFirstName} />
       </motion.div>
     </EpisodeOverlayLayout>
     </>
