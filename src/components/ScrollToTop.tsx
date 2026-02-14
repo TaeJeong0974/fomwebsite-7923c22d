@@ -6,13 +6,13 @@ const ScrollToTop = () => {
 
   useLayoutEffect(() => {
     if (hash) {
-      // Allow the page to render first, then scroll to the element
-      requestAnimationFrame(() => {
+      // Delay to allow page transition and render to complete
+      setTimeout(() => {
         const element = document.querySelector(hash);
         if (element) {
           element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
-      });
+      }, 500);
     } else {
       window.scrollTo({ top: 0, left: 0, behavior: "instant" });
     }
