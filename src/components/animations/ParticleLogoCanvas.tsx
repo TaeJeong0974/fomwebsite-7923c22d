@@ -23,7 +23,9 @@ interface ParticleLogoCanvasProps {
 }
 
 const PARTICLE_COUNT = 24000;
-const SETTLE_TIME = 3.0; // seconds until animation stops
+const SETTLE_TIME = 3.0;
+const BLACK_START = 2.0;
+const BLACK_END = 4.5;
 
 const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -81,11 +83,19 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
 
       const elapsed = (now - startTimeRef.current!) / 1000;
       const settled = elapsed > SETTLE_TIME;
+      const done = elapsed > BLACK_END;
       const w = canvas.width;
       const h = canvas.height;
       const dpr = dprRef.current;
 
       ctx.clearRect(0, 0, w, h);
+
+      // How much to blend toward black (0 = full color, 1 = solid black)
+      const blackT = elapsed < BLACK_START ? 0
+        : elapsed > BLACK_END ? 1
+        : (elapsed - BLACK_START) / (BLACK_END - BLACK_START);
+      // Smooth ease
+      const blackEase = blackT * blackT * (3 - 2 * blackT);
 
       // Slow particles down as we approach settle time
       const speedFactor = settled ? 0 : Math.max(0, 1 - elapsed / SETTLE_TIME);
@@ -107,13 +117,21 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
         const colorTime = settled ? SETTLE_TIME : elapsed;
         const color = getColor(p.colorIdx + colorTime * 0.15, APPLE_GRADIENT_COLORS);
 
+        // Lerp RGB toward black based on blackEase
+        const r = Math.round(color[0] * (1 - blackEase));
+        const g = Math.round(color[1] * (1 - blackEase));
+        const b = Math.round(color[2] * (1 - blackEase));
+
+        // Also increase size slightly to fill gaps as it becomes solid
+        const finalSize = p.size + blackEase * 0.8;
+
         ctx.beginPath();
-        ctx.arc(p.x * w, p.y * h, p.size * dpr, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${color[0]},${color[1]},${color[2]},0.85)`;
+        ctx.arc(p.x * w, p.y * h, finalSize * dpr, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${r},${g},${b},${0.85 + blackEase * 0.15})`;
         ctx.fill();
       }
 
-      if (!settled) {
+      if (!done) {
         animRef.current = requestAnimationFrame(draw);
       }
     };
