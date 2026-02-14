@@ -251,7 +251,7 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
                 <>
                   <div className="flex-1 min-w-0 text-left">
                     {hasBadge && (
-                      <div className="flex gap-4 sm:gap-6 lg:gap-10">
+                      <div className={`flex gap-4 sm:gap-6 lg:gap-10 ${isComingSoon ? 'lg:hidden' : ''}`}>
                         <span className="text-label invisible" aria-hidden="true">EP 00</span>
                         <div className={`mb-3 sm:mb-4 list-focus-transition ${dim}`}>
                           {isComingSoon && <span className="badge-status">Upcoming</span>}
@@ -321,7 +321,7 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
                       }}
                       transition={{ duration: 0.4, ease: liquidEase }}
                     >
-                      {isComingSoon ? 'Get Notified' : 'Watch Now'}
+                      {isComingSoon ? 'Upcoming' : 'Watch Now'}
                     </motion.span>
                   </div>
                 </>
