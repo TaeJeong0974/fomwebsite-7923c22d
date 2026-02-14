@@ -121,10 +121,9 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
 
     const points = sampleLogoPoints(PARTICLE_COUNT);
     particlesRef.current = points.map(([tx, ty]) => {
-      // Spread within inner 70% of canvas for padding from edges
-      const r1 = Math.random(), r2 = Math.random(), r3 = Math.random();
-      const sx = ((r1 + r2) / 2) * 0.6 + 0.2;
-      const sy = ((r2 + r3) / 2) * 0.6 + 0.2;
+      // Truly random scatter within padded area — no clustering pattern
+      const sx = Math.random() * 0.7 + 0.15;
+      const sy = Math.random() * 0.7 + 0.15;
       return {
         tx, ty,
         x: sx, y: sy,
