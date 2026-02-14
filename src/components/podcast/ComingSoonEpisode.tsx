@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Bell } from "lucide-react";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
+import Footer from "@/components/Footer";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
 import EpisodeHostsCard from "@/components/podcast/EpisodeHostsCard";
 import EpisodeTopics from "@/components/podcast/EpisodeTopics";
@@ -236,6 +237,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
         <ListenSubscribeCards guestName={guestFirstName} />
       </motion.div>
     </EpisodeOverlayLayout>
+    <Footer />
     </>
   );
 };
