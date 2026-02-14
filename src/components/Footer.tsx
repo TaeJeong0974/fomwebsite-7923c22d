@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import FomLogo from "@/assets/FOM_Logo.svg";
 
 const Footer = () => {
   return (
@@ -28,11 +29,13 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Giant brand text - bleeds off bottom */}
+      {/* Giant FOM logo - bleeds off bottom */}
       <div className="container mx-auto container-padding">
-        <p className="font-bold text-foreground leading-[0.82] tracking-[-0.03em] text-[15vw] translate-y-[0.15em] select-none">
-          Future of Marketing
-        </p>
+        <img 
+          src={FomLogo} 
+          alt="Future of Marketing" 
+          className="w-full translate-y-[15%] select-none"
+        />
       </div>
     </footer>
   );
