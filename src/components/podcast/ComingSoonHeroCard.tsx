@@ -23,7 +23,7 @@ const ComingSoonHeroCard = ({ guestFirstName }: ComingSoonHeroCardProps) => {
   const handleCardClick = () => {
     if (!showForm && !isSubmitted) {
       if (isMobile) {
-        openSubscribe();
+        openSubscribe(guestFirstName);
       } else {
         setShowForm(true);
       }
