@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Footer from "@/components/Footer";
 import { useParams } from "react-router-dom";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
 import FloatingMiniPlayer from "@/components/podcast/FloatingMiniPlayer";
@@ -210,6 +211,7 @@ const PodcastDetail = () => {
           <ListenSubscribeCards guestName={!isIntro ? episode.name.split(" ")[0] : undefined} />
         </FadeInSection>
       </EpisodeOverlayLayout>
+      <Footer />
     </>
   );
 };
