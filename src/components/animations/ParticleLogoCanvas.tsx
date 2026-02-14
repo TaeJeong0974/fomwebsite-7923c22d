@@ -36,6 +36,8 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
   const isInView = useInView(containerRef, { once: true, amount: 0.15 });
   const hasInitRef = useRef(false);
   const dprRef = useRef(1);
+  const doneRef = useRef(false);
+  const lastElapsedRef = useRef(0);
 
   const initParticles = useCallback(() => {
     if (hasInitRef.current) return;
@@ -51,6 +53,26 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
     }));
   }, []);
 
+  const drawStatic = useCallback(() => {
+    const canvas = canvasRef.current;
+    if (!canvas || !doneRef.current) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    const w = canvas.width;
+    const h = canvas.height;
+    const dpr = dprRef.current;
+    ctx.clearRect(0, 0, w, h);
+    const particles = particlesRef.current;
+    for (let i = 0; i < particles.length; i++) {
+      const p = particles[i];
+      const finalSize = p.size + 8.0;
+      ctx.beginPath();
+      ctx.arc(p.x * w, p.y * h, finalSize * dpr, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(0,0,0,1)`;
+      ctx.fill();
+    }
+  }, []);
+
   const resizeCanvas = useCallback(() => {
     const canvas = canvasRef.current;
     const container = containerRef.current;
@@ -62,7 +84,9 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
     canvas.height = rect.width * (SVG_HEIGHT / SVG_WIDTH) * dpr;
     canvas.style.width = `${rect.width}px`;
     canvas.style.height = `${rect.width * (SVG_HEIGHT / SVG_WIDTH)}px`;
-  }, []);
+    // Redraw if animation already finished
+    drawStatic();
+  }, [drawStatic]);
 
   useEffect(() => {
     resizeCanvas();
@@ -133,6 +157,8 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
 
       if (!done) {
         animRef.current = requestAnimationFrame(draw);
+      } else {
+        doneRef.current = true;
       }
     };
 
