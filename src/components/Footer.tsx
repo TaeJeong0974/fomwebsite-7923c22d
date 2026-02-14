@@ -34,7 +34,7 @@ const Footer = () => {
         <img 
           src={FomIcon} 
           alt="Future of Marketing" 
-          className="w-full translate-y-[15%] select-none"
+          className="w-full select-none pb-8 sm:pb-12 lg:pb-16"
         />
       </div>
     </footer>
