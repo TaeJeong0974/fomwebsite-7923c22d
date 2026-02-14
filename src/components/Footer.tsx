@@ -45,9 +45,9 @@ const AnimatedFooterLogo = () => {
           ],
         } : { opacity: 0 }}
         transition={isHovered ? {
-          opacity: { duration: 0.25, delay: 0.15 },
-          background: { duration: 3, ease: 'easeInOut', repeat: Infinity, delay: 0.15 }
-        } : { opacity: { duration: 0.2 } }}
+          opacity: { duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] },
+          background: { duration: 6, ease: 'easeInOut', repeat: Infinity, delay: 0.15 }
+        } : { opacity: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } }}
       />
       {/* Black gradient overlay for depth */}
       <motion.div
@@ -65,7 +65,7 @@ const AnimatedFooterLogo = () => {
         }}
         initial={{ opacity: 0 }}
         animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       />
     </div>
   );
