@@ -22,10 +22,10 @@ interface ParticleLogoCanvasProps {
   onSettled?: () => void;
 }
 
-const PARTICLE_COUNT = 80000;
+const PARTICLE_COUNT = 30000;
 const SETTLE_TIME = 3.0;
-const BLACK_START = 2.0;
-const BLACK_END = 4.5;
+const BLACK_START = 2.5;
+const BLACK_END = 5.0;
 
 const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -48,7 +48,7 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
       y: Math.random(),
       vx: (Math.random() - 0.5) * 0.003,
       vy: (Math.random() - 0.5) * 0.003,
-      size: 1.0 + Math.random() * 1.5,
+      size: 0.3 + Math.random() * 0.7,
       colorIdx: Math.random() * 4,
     }));
   }, []);
@@ -65,7 +65,7 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
     const particles = particlesRef.current;
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
-      const finalSize = p.size + 8.0;
+      const finalSize = p.size + 10.0;
       ctx.beginPath();
       ctx.arc(p.x * w, p.y * h, finalSize * dpr, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(0,0,0,1)`;
@@ -147,7 +147,7 @@ const ParticleLogoCanvas = ({ className, onSettled }: ParticleLogoCanvasProps) =
         const b = Math.round(color[2] * (1 - blackEase));
 
         // Also increase size slightly to fill gaps as it becomes solid
-        const finalSize = p.size + blackEase * 8.0;
+        const finalSize = p.size + blackEase * 10.0;
 
         ctx.beginPath();
         ctx.arc(p.x * w, p.y * h, finalSize * dpr, 0, Math.PI * 2);
