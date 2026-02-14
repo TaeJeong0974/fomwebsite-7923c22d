@@ -185,14 +185,9 @@ const Footer = () => {
           </p>
           <p className="text-body-sm text-foreground/40">
             Brought to you by{" "}
-            <a
-              href="https://www.graphitehq.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-foreground transition-colors duration-300"
-            >
-              Graphite
-            </a>
+            <a href="https://www.xyzvc.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors duration-300">XYZ Venture Capital</a>,{" "}
+            <a href="https://upside.tech" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors duration-300">Upside</a>,{" "}
+            <a href="https://www.graphitehq.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors duration-300">Graphite</a>
           </p>
         </motion.div>
       </div>
