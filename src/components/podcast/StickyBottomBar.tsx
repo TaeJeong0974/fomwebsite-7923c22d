@@ -42,15 +42,15 @@ const StickyBottomBar = ({ youtubeUrl, spotifyUrl, thumbnailUrl, episodeName, ep
           className="hidden lg:block fixed bottom-5 right-5 z-50"
         >
           <div className="flex items-center gap-4 px-3 py-2.5 rounded-2xl bg-background/80 backdrop-blur-xl border border-foreground/[0.06] shadow-lg shadow-black/[0.08]">
-            {/* Thumbnail */}
+            {/* Thumbnail - clickable to YouTube */}
             {thumbnailUrl && (
-              <div className="w-12 h-12 rounded-lg overflow-hidden shrink-0 ring-1 ring-foreground/5">
+              <a href={youtubeUrl} target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-lg overflow-hidden shrink-0 ring-1 ring-foreground/5 hover:ring-foreground/15 transition-all duration-200 hover:scale-105">
                 <img
                   src={thumbnailUrl}
                   alt={episodeName}
                   className="w-full h-full object-cover"
                 />
-              </div>
+              </a>
             )}
 
             {/* Episode info */}
