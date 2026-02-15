@@ -86,7 +86,7 @@ const PodcastDetail = () => {
         {/* Title & Action Buttons */}
         <FadeInSection className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-10">
           <div className="lg:col-span-2 space-y-1 sm:space-y-2">
-            <h3 className="text-section-header mb-4">Episode {episode.id}{episode.duration && <span className="text-muted-foreground font-normal"> · {episode.duration}</span>}</h3>
+            <h3 className="text-section-header mb-5">Episode {episode.id}{episode.duration && <span className="text-muted-foreground font-normal"> · {episode.duration}</span>}</h3>
             <h1 className="text-display-lg font-display font-medium text-foreground leading-[1.1]">
               {episode.overview || episode.name}
             </h1>
