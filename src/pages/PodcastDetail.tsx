@@ -142,7 +142,7 @@ const PodcastDetail = () => {
                   {episode.bio && episode.companyDomain ? (
                     <>
                       {episode.bio.split(episode.company)[0]}
-                      <a href={`https://${episode.companyDomain}`} target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2 decoration-foreground/30 hover:decoration-foreground transition-colors">{episode.company}</a>
+                      <a href={`https://${episode.companyDomain}`} target="_blank" rel="noopener noreferrer" className="text-foreground underline decoration-wavy underline-offset-4 decoration-foreground/30 hover:decoration-foreground transition-colors">{episode.company}</a>
                       {episode.bio.split(episode.company).slice(1).join(episode.company)}
                     </>
                   ) : episode.bio}
@@ -152,7 +152,7 @@ const PodcastDetail = () => {
                     href={episode.linkedInUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 mt-3 underline decoration-wavy decoration-muted-foreground/40 underline-offset-4 hover:decoration-foreground/60"
+                    className="group text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1 mt-3"
                   >
                     LinkedIn <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
                   </a>
