@@ -8,7 +8,7 @@ import hostCamille from "@/assets/host-camille.png";
 
 import teaserBg from "@/assets/teaser-bg.png";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
-import { fomLogoMask } from "@/lib/logoMask";
+import { fomMaskContainStyles } from "@/lib/logoMask";
 
 const hosts = [
   {
@@ -128,19 +128,6 @@ const HeroSection = () => {
           <div className="md:col-span-2 flex justify-center overflow-hidden relative">
             {/* Container with gradient masked by FOM logo */}
             {(() => {
-              const svgMask = fomLogoMask;
-              
-              const maskStyles = {
-                maskImage: svgMask,
-                maskSize: 'contain' as const,
-                maskRepeat: 'no-repeat' as const,
-                maskPosition: 'center' as const,
-                WebkitMaskImage: svgMask,
-                WebkitMaskSize: 'contain' as const,
-                WebkitMaskRepeat: 'no-repeat' as const,
-                WebkitMaskPosition: 'center' as const,
-              };
-              
               return (
                 <div 
                   className="w-full relative"
@@ -149,7 +136,7 @@ const HeroSection = () => {
                   {/* Animated color gradient - masked by FOM logo shape */}
                   <motion.div 
                     className="absolute inset-0 hidden md:block"
-                    style={maskStyles}
+                    style={fomMaskContainStyles}
                     animate={{
                       background: [
                         'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
@@ -166,7 +153,7 @@ const HeroSection = () => {
                     className="absolute inset-0 hidden md:block"
                     style={{
                       background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)',
-                      ...maskStyles,
+                      ...fomMaskContainStyles,
                     }}
                   />
                   
@@ -175,7 +162,7 @@ const HeroSection = () => {
                     className="absolute inset-0 md:hidden"
                     style={{ 
                       background: 'linear-gradient(135deg, rgb(230,130,110) 0%, rgb(200,140,150) 50%, rgb(130,150,180) 100%)',
-                      ...maskStyles,
+                      ...fomMaskContainStyles,
                     }}
                   />
                   
@@ -184,7 +171,7 @@ const HeroSection = () => {
                     className="absolute inset-0 md:hidden"
                     style={{
                       background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 60%, rgba(0,0,0,0.6) 80%, rgba(0,0,0,0) 100%)',
-                      ...maskStyles,
+                      ...fomMaskContainStyles,
                     }}
                   />
                 </div>
