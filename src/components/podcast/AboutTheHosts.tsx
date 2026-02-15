@@ -1,13 +1,18 @@
-import { podcastHosts } from "@/lib/podcastData";
+import { podcastHosts, PodcastHost } from "@/lib/podcastData";
 
-const AboutTheHosts = () => {
+interface AboutTheHostsProps {
+  hosts?: PodcastHost[];
+}
+
+const AboutTheHosts = ({ hosts }: AboutTheHostsProps) => {
+  const displayHosts = hosts || podcastHosts;
   return (
     <div>
       <h3 className="text-section-header font-medium text-foreground mb-5 sm:mb-6">
         About the Hosts
       </h3>
       <div className="space-y-8">
-        {podcastHosts.map((host, index) => (
+        {displayHosts.map((host, index) => (
           <div key={index} className="space-y-2">
             <p className="text-foreground/80 leading-relaxed text-base lg:text-lg max-w-prose">
               <span className="font-medium text-foreground">{host.name.split(' ')[0]}</span> {host.bio}

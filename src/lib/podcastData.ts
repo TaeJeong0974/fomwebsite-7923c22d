@@ -149,7 +149,7 @@ This episode is a practical blueprint for CMOs and marketing leaders who want AI
     linkedInUrl: "https://linkedin.com/in/meageneisenberg",
     previewVideoUrl: undefined,
     pullQuote: "I think the key to positioning is understanding the customer. And so you have to do the work for that. You have to be curious. You have to talk with your customers and then you can work with AI to take those insights and build out and understand positioning.",
-    newslettersMentioned: [],
+    hosts: [podcastHosts[0], podcastHosts[2]], // Mada Seghete, Ethan Smith
     
   },
   {
