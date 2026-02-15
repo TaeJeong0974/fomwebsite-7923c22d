@@ -72,8 +72,8 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger }: FloatingMin
               
               {/* Play Button */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center group-hover:scale-110 group-hover:bg-white/20 transition-all duration-300 shadow-lg shadow-black/20">
-                  <Play className="w-6 h-6 sm:w-8 sm:h-8 text-white fill-white ml-1" />
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/60 backdrop-blur-2xl border border-white/40 flex items-center justify-center shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)] group-hover:scale-110 group-hover:bg-white/80 group-hover:shadow-[0_4px_16px_-4px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300">
+                  <Play className="w-6 h-6 sm:w-8 sm:h-8 text-foreground fill-foreground ml-1" />
                 </div>
               </div>
             </div>
