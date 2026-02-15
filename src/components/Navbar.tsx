@@ -8,7 +8,7 @@ import { useSubscribe } from "@/contexts/SubscribeContext";
 import SubscribeButton from "@/components/SubscribeButton";
 import { LiquidButton } from "@/components/ui/LiquidButton";
 import { fadeDownVariant, liquidEase } from "@/components/animations/PageLoadAnimation";
-import { fomLogoMask, fomMaskStyles } from "@/lib/logoMask";
+import { fomMaskStyles } from "@/lib/logoMask";
 
 // Animated Logo component with gradient animation on hover
 const AnimatedLogo = ({ className }: { className?: string }) => {
