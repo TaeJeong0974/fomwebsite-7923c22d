@@ -28,6 +28,7 @@ import {
 const PodcastDetail = () => {
   const { slug } = useParams();
   const [playTrigger, setPlayTrigger] = useState(0);
+  const [seekToTime, setSeekToTime] = useState<string | null>(null);
   const episode = getEpisodeBySlug(slug || "");
 
   const isIntro = !episode?.comingSoon && episode?.slug === "intro-to-fom";
@@ -105,7 +106,7 @@ const PodcastDetail = () => {
                 youtubeUrl={episode.youtubeUrl}
                 spotifyUrl={episode.spotifyUrl}
                 playTrigger={playTrigger}
-                chapters={episode.chapters}
+                seekToTime={seekToTime}
               />
               <div className="pt-2 lg:hidden">
                 <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
@@ -127,7 +128,7 @@ const PodcastDetail = () => {
 
             {episode.chapters && episode.chapters.length > 0 && (
               <FadeInSection delay={0.45}>
-                <EpisodeTopics chapters={episode.chapters} />
+                <EpisodeTopics chapters={episode.chapters} onChapterClick={(time) => { setSeekToTime(time); window.scrollTo({ top: 0, behavior: "smooth" }); }} />
               </FadeInSection>
             )}
 
