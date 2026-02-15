@@ -149,6 +149,12 @@ const PodcastDetail = () => {
               </FadeInSection>
             )}
 
+            {!isIntro && episode.hosts && episode.hosts.length > 0 && (
+              <FadeInSection delay={0.55}>
+                <AboutTheHosts hosts={episode.hosts} />
+              </FadeInSection>
+            )}
+
             {/* Guest & Hosts - Mobile only */}
             <div className="lg:hidden space-y-4">
               {!isIntro && (
