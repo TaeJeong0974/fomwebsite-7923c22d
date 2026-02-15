@@ -261,7 +261,7 @@ const HeroSection = () => {
                           </div>
 
                           {/* Arrow button top right */}
-                          <div className="absolute top-4 right-4 z-10">
+                          <div className="absolute top-6 right-6 lg:top-8 lg:right-8 z-10">
                             <div className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20">
                               <ChevronDown className="h-5 w-5 text-white rotate-[-90deg]" />
                             </div>
@@ -303,7 +303,7 @@ const HeroSection = () => {
                           {/* Content */}
                           <div className="relative z-10 p-5 h-full flex flex-col">
                             {/* Arrow button top right */}
-                            <div className="absolute top-4 right-4 z-10">
+                            <div className="absolute top-6 right-6 lg:top-8 lg:right-8 z-10">
                               <div className="rounded-full p-2 bg-foreground text-background">
                                 <ChevronDown className="h-5 w-5 rotate-90" />
                               </div>
@@ -383,7 +383,7 @@ const HeroSection = () => {
 
                           {/* Arrow button top right */}
                           <div 
-                            className="absolute top-4 right-4 z-10 transition-opacity duration-300"
+                            className="absolute top-6 right-6 lg:top-8 lg:right-8 z-10 transition-opacity duration-300"
                             style={{ opacity: isFlipped ? 0 : 1 }}
                           >
                             <div className="rounded-full p-2 bg-white/10 backdrop-blur-xl border border-white/20 transition-transform duration-300 ease-out group-hover:-translate-y-1">
@@ -431,7 +431,7 @@ const HeroSection = () => {
                           {/* Content */}
                           <div className="relative z-10 p-6 h-full flex flex-col">
                             {/* Arrow button top right */}
-                            <div className="absolute top-4 right-4 z-10">
+                            <div className="absolute top-6 right-6 lg:top-8 lg:right-8 z-10">
                               <div className="rounded-full p-2 bg-foreground text-background">
                                 <ChevronDown className="h-5 w-5 rotate-90" />
                               </div>
