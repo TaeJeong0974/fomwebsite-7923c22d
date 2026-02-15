@@ -112,7 +112,7 @@ From the LinkedIn AI content trap to why Reddit might be the most underrated cha
     comingSoon: false,
     previewVideoUrl: undefined,
     hosts: podcastHosts,
-    glowColors: ["#E6826E", "#C88C96", "#8296B4"],
+    glowColors: ["#C4A882", "#8B7D6B", "#D4B896"],
   },
   {
     id: 1,
