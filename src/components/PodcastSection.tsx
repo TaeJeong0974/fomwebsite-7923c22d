@@ -75,8 +75,8 @@ const PodcastSection = () => {
         {/* Header */}
         <div className="flex items-end justify-between gap-4 sm:gap-6 mb-8 md:mb-10 lg:mb-12">
           <div>
-            <p className="text-label font-medium text-foreground mb-2 sm:mb-3">FEATURED</p>
-            <h2 className="text-display-xl font-medium text-foreground">Guests</h2>
+            <p className="text-label font-medium text-foreground mb-2 sm:mb-3">EPISODES</p>
+            <h2 className="text-display-xl font-medium text-foreground">Podcast</h2>
           </div>
           
           {/* Layout Toggle */}
