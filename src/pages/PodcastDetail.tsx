@@ -111,7 +111,7 @@ const PodcastDetail = () => {
               </div>
             </FadeInSection>
 
-            <FadeInSection delay={0.15}>
+            <FadeInSection>
               <h3 className="text-section-header font-medium text-foreground mb-5 sm:mb-6">About This Episode</h3>
               <div className="text-foreground/80 whitespace-pre-line leading-relaxed text-base lg:text-lg max-w-prose">
                 {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}.`}
@@ -119,23 +119,23 @@ const PodcastDetail = () => {
             </FadeInSection>
 
             {episode.pullQuote && (
-              <FadeInSection delay={0.3}>
+              <FadeInSection>
                 <EpisodePullQuote quote={episode.pullQuote} attribution={episode.name} />
               </FadeInSection>
             )}
 
-            <FadeInSection delay={0.45}>
+            <FadeInSection>
               <EpisodeTopics topics={episode.topics} />
             </FadeInSection>
 
             {episode.newslettersMentioned && episode.newslettersMentioned.length > 0 && (
-              <FadeInSection delay={0.5}>
+              <FadeInSection>
                 <EpisodeNewsletters newsletters={episode.newslettersMentioned} guestFirstName={episode.name.split(" ")[0]} />
               </FadeInSection>
             )}
 
             {!isIntro && episode.bio && (
-              <FadeInSection delay={0.5}>
+              <FadeInSection>
                 <h3 className="text-section-header font-medium text-foreground mb-5 sm:mb-6">About the Guest</h3>
                 <p className="text-foreground/80 leading-relaxed text-base lg:text-lg max-w-prose">
                   <span className="font-medium text-foreground">{episode.name}</span> {episode.bio}
@@ -144,13 +144,13 @@ const PodcastDetail = () => {
             )}
 
             {isIntro && (
-              <FadeInSection delay={0.45}>
+              <FadeInSection>
                 <AboutTheHosts />
               </FadeInSection>
             )}
 
             {!isIntro && episode.hosts && episode.hosts.length > 0 && (
-              <FadeInSection delay={0.55}>
+              <FadeInSection>
                 <AboutTheHosts hosts={episode.hosts} />
               </FadeInSection>
             )}
@@ -171,7 +171,7 @@ const PodcastDetail = () => {
           </div>
 
           {/* Sidebar */}
-          <FadeInSection delay={0.1} className="hidden lg:flex lg:flex-col space-y-6">
+          <FadeInSection className="hidden lg:flex lg:flex-col space-y-6">
             {!isIntro && (
               <EpisodeGuestCard
                 name={episode.name}
