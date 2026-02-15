@@ -120,7 +120,7 @@ const PodcastDetail = () => {
 
             {episode.pullQuote && (
               <FadeInSection>
-                <EpisodePullQuote quote={episode.pullQuote} attribution={episode.name} />
+                <EpisodePullQuote quote={episode.pullQuote} attribution={isIntro ? "Ethan Smith" : episode.name} />
               </FadeInSection>
             )}
 
