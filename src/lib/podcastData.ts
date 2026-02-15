@@ -89,14 +89,14 @@ They discuss real use cases for AI (both personal and professional) and outline 
 
 From the LinkedIn AI content trap to why Reddit might be the most underrated channel for market intelligence, the hosts explore the uncomfortable tradeoffs marketers are already facing: how to (and should you) stay authentic in a landscape that's becoming overpersonalized? Along the way, you'll hear why one of our hosts refuses to let AI write their LinkedIn posts (even after one AI-optimized post hit 500K views), how Ethan is using AI to find SEO patterns humans can't see, and why Camille is betting on storytelling talent as the most valuable skill of the next decade.`,
     topics: [
-      "Why marketing is 12–18 months behind engineering in AI adoption",
-      "Using AI for value creation, not just cost-cutting",
-      "AI for ideas, humans for judgment and taste",
-      "The danger of AI reasoning over messy GTM data",
-      "Optimizing for algorithms vs. protecting your voice",
-      "When hyper-personalization stops feeling creepy",
-      "Staying current without trying every new tool",
-      "Why storytellers are becoming more valuable, not less",
+      "Tips to accelerate AI adoption",
+      "What the Future of Marketing looks like",
+      "AI use cases (both personal and professional) for each of the hosts",
+      "Recommendations of when to use and not use AI (i.e., original thought leadership content)",
+      "When to use AI to think outside the box",
+      "The goal of this podcast: have honest conversations about what is happening inside modern marketing teams, without fluff or vendor pitches",
+      "Storytelling and connection vs the risk of over-personalization",
+      "Why creative directors, writers, and storytellers are becoming more valuable (not less)",
     ],
     chapters: [
       { time: "0:00", title: "Welcome" },
