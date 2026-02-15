@@ -115,7 +115,7 @@ From the tradeoffs between authenticity and reach to the risks of messy data and
     title: "Chief Marketing Officer",
     company: "Samsara",
     companyDomain: "samsara.com",
-    overview: "How Samsara's CMO Built an AI-Native Marketing Org",
+    overview: "Why the Best CMOs Think Like Operators, Not Marketers",
     bio: "is the Chief Marketing Officer at Samsara, where she leads brand, demand, product marketing, and go-to-market strategy for one of the fastest-growing industrial technology companies. A proven operator and builder, Meagen has helped scale companies across every stage contributing to over 23 successful exits, including IPOs and acquisitions and is known for pairing execution discipline with forward-looking strategy.",
     fullDescription: `Most marketing teams are "using AI." Very few are actually operationalizing it.
 
