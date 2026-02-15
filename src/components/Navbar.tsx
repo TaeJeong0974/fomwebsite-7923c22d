@@ -138,7 +138,7 @@ const Navbar = () => {
       initial="hidden"
       animate="visible"
       variants={fadeDownVariant}
-      className={`z-50 transition-all duration-300 ${isScrolled ? 'fixed top-0 left-0 right-0' : 'relative'}`}
+      className={`sticky top-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]`}
     >
       <div className="container mx-auto container-padding">
         {/* Nav with glass effect on scroll */}
