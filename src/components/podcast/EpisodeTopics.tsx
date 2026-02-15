@@ -21,7 +21,7 @@ const EpisodeTopics = ({ topics, title = "Topics Covered" }: EpisodeTopicsProps)
         </div>
         {/* Table Rows */}
         {topics.map((topic, index) => (
-          <div key={index} className="flex items-start gap-6 py-4 border-b border-border/60 last:border-b-0">
+          <div key={index} className="flex items-start gap-6 py-5 border-b border-border/60 last:border-b-0">
             <span className="w-8 text-sm text-muted-foreground tabular-nums">
               {formatNumber(index)}
             </span>
