@@ -81,9 +81,13 @@ export const podcastEpisodes: PodcastEpisode[] = [
     companyDomain: "",
     overview: "Why Authenticity Beats Automation in Modern Marketing",
     bio: "",
-    fullDescription: `In this launch episode of Future of Marketing, Camille Ricketts, Ethan Smith, and Mada Seghete cut through the AI hype to discuss what's actually changing inside modern marketing teams. Drawing from real operator experience, they explore why marketing lags engineering in AI adoption, where AI creates real leverage (idea generation and pattern discovery), and why human judgment, taste, and storytelling matter more than ever.
+    fullDescription: `Most marketers aren't being replaced by AI — they're being replaced by marketers who actually know how to use it.
 
-From the tradeoffs between authenticity and reach to the risks of messy data and over-personalization, this episode offers a grounded, practical look at how marketers can move faster without losing what makes their work effective.`,
+In this launch episode of Future of Marketing, hosts Camille Ricketts (Operating Partner, XYZ), Ethan Smith (CEO, Graphite), and Mada Seghete (CEO & Co-Founder, Upside) cut through the AI hype and talk about what they believe is changing inside marketing teams.
+
+They discuss real use cases for AI (both personal and professional) and outline the best ways to tackle early adoption in times riddled with apprehension and uncertainty. Drilling down on why most teams are stuck using AI to make "bad" work faster, they discuss the possibility of using AI as a potential source for unconventional ideas that complement human storytelling.
+
+From the LinkedIn AI content trap to why Reddit might be the most underrated channel for market intelligence, the hosts explore the uncomfortable tradeoffs marketers are already facing: how to (and should you) stay authentic in a landscape that's becoming overpersonalized? Along the way, you'll hear why one of our hosts refuses to let AI write their LinkedIn posts (even after one AI-optimized post hit 500K views), how Ethan is using AI to find SEO patterns humans can't see, and why Camille is betting on storytelling talent as the most valuable skill of the next decade.`,
     topics: [
       "Why marketing is 12–18 months behind engineering in AI adoption",
       "Using AI for value creation, not just cost-cutting",
