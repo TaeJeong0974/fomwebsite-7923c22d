@@ -54,7 +54,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, glowColors }:
           <div
             className="absolute -inset-10 sm:-inset-16 rounded-3xl opacity-60 blur-[80px] sm:blur-[100px] pointer-events-none"
             style={{
-              background: `radial-gradient(ellipse at 20% 40%, ${glowColors[0]} 0%, transparent 55%), radial-gradient(ellipse at 80% 30%, ${glowColors[1] || glowColors[0]} 0%, transparent 55%)${glowColors[2] ? `, radial-gradient(ellipse at 50% 80%, ${glowColors[2]} 0%, transparent 55%)` : ''}`,
+              backgroundColor: glowColors[0],
             }}
           />
         )}
