@@ -29,9 +29,9 @@ const AboutTheHosts = ({ hosts }: AboutTheHostsProps) => {
                 href={host.linkedInUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm text-muted-foreground hover:text-foreground hover-transition inline-block"
+                className="group text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1"
               >
-                LinkedIn →
+                LinkedIn <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
               </a>
             )}
           </div>
