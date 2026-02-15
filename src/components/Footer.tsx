@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import FomIcon from "@/assets/FOM_Icon.svg";
@@ -20,12 +20,24 @@ const maskStyles: React.CSSProperties = {
 
 const AnimatedFooterLogo = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const timerRef = useRef<ReturnType<typeof setTimeout>>();
+
+  const handleEnter = useCallback(() => {
+    clearTimeout(timerRef.current);
+    setIsHovered(true);
+  }, []);
+
+  const handleLeave = useCallback(() => {
+    clearTimeout(timerRef.current);
+    timerRef.current = setTimeout(() => setIsHovered(false), 80);
+  }, []);
 
   return (
     <div
-      className="relative w-full"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className="relative w-full will-change-transform"
+      style={{ transform: 'translateZ(0)' }}
+      onMouseEnter={handleEnter}
+      onMouseLeave={handleLeave}
     >
       <img
         src={FomIcon}
