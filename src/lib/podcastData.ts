@@ -115,18 +115,23 @@ From the tradeoffs between authenticity and reach to the risks of messy data and
     title: "Chief Marketing Officer",
     company: "Samsara",
     companyDomain: "samsara.com",
-    overview: "Why the Best CMOs Think Like Operators, Not Marketers",
+    overview: "How Samsara's CMO Built an AI-Native Marketing Org",
     bio: "is the Chief Marketing Officer at Samsara, where she leads brand, demand, product marketing, and go-to-market strategy for one of the fastest-growing industrial technology companies. A proven operator and builder, Meagen has helped scale companies across every stage contributing to over 23 successful exits, including IPOs and acquisitions and is known for pairing execution discipline with forward-looking strategy.",
-    fullDescription: `In this episode of Future of Marketing, hosts Mada Seghete and Ethan Smith sit down with Meagen Eisenberg, CMO of Samsara, to unpack what it actually takes to build an AI-native marketing team. Meagen shares how she deployed live AI agents across marketing ops, replaced legacy software, and drove 29% YoY growth without growing headcount. The conversation goes beyond tools into culture, accountability, and why creativity and human connection still matter more than ever.`,
+    fullDescription: `Most marketing teams are "using AI." Very few are actually operationalizing it.
+
+In this episode of Future of Marketing, hosts Mada Seghete and Ethan Smith are joined by Meagen Eisenberg, CMO of Samsara, to break down how she rebuilt her marketing org around AI agents and what changed as a result.
+
+Meagen shares exactly how her team deployed 13 live AI marketing agents (with 26 more on the way) to replace expensive SaaS tools, automate 50% of marketing ops tickets, and enable a flat team to drive significant growth in pipeline. The real story isn't the agents themselves - it's the operating model behind them. AI adoption didn't happen organically; it was enforced through training, internal hackathons, performance reviews, and a culture that made daily AI usage non-negotiable.
+
+The conversation tackles the uncomfortable tradeoffs leaders now face: when to build vs. buy, how much technical skill marketers really need, and why AI doesn't eliminate creativity - it removes the production work that held it back. Meagen also explains why she still believes intimate in-person dinners outperform webinars, how Samsara tracks LLM visibility using Lighthouse, an internally built AI tool, and why pipeline per marketer is a key productivity metric.
+
+This episode is a practical blueprint for CMOs and marketing leaders who want AI to move the business, not just the slide deck.`,
     topics: [
       "Operationalizing AI across 95% of the marketing team",
       "Building 13 internal AI agents: build vs. buy",
       "No-code tools for non-technical marketers",
       "Pipeline per employee as the true AI metric",
       "Tracking visibility inside LLMs in real time",
-      "Why creativity becomes more valuable, not less",
-      "In-person dinners over webinars in an AI world",
-      "Hiring for problem solving, not static skills",
     ],
     chapters: [
       { time: "0:00", title: "Introduction" },
