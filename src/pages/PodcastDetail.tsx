@@ -125,9 +125,11 @@ const PodcastDetail = () => {
               </FadeInSection>
             )}
 
-            <FadeInSection delay={0.45}>
-              <EpisodeTopics topics={episode.topics} />
-            </FadeInSection>
+            {episode.chapters && episode.chapters.length > 0 && (
+              <FadeInSection delay={0.45}>
+                <EpisodeTopics chapters={episode.chapters} />
+              </FadeInSection>
+            )}
 
             {episode.newslettersMentioned && episode.newslettersMentioned.length > 0 && (
               <FadeInSection delay={0.5}>
