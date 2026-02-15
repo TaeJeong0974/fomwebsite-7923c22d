@@ -19,7 +19,7 @@ const AboutTheHosts = ({ hosts }: AboutTheHostsProps) => {
               {host.bio && host.companyUrl ? (
                 <>
                   {host.bio.split(host.company)[0]}
-                  <a href={host.companyUrl} target="_blank" rel="noopener noreferrer" className="text-foreground underline decoration-wavy underline-offset-4 decoration-foreground/30 hover:decoration-foreground transition-colors">{host.company}</a>
+                  <a href={host.companyUrl} target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2 decoration-foreground/30 hover:decoration-foreground transition-colors">{host.company}</a>
                   {host.bio.split(host.company).slice(1).join(host.company)}
                 </>
               ) : host.bio}
@@ -29,9 +29,9 @@ const AboutTheHosts = ({ hosts }: AboutTheHostsProps) => {
                 href={host.linkedInUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1"
+                className="text-sm text-muted-foreground hover:text-foreground hover-transition inline-block"
               >
-                LinkedIn <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
+                LinkedIn →
               </a>
             )}
           </div>
