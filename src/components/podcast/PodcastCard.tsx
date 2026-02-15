@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import { PodcastEpisode } from "@/lib/podcastData";
 import EpisodeCardContent from "@/components/podcast/EpisodeCardContent";
-import CursorFollowCTA from "@/components/podcast/CursorFollowCTA";
+
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 import guestBg from "@/assets/guest-bg.png";
