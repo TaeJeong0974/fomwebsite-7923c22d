@@ -5,6 +5,7 @@ import guestBg from "@/assets/guest-bg.png";
 interface FloatingMiniPlayerProps {
   youtubeUrl?: string;
   playTrigger?: number;
+  thumbnailImage?: string;
 }
 
 // Extract YouTube video ID from various URL formats
@@ -24,7 +25,7 @@ const getYouTubeVideoId = (url: string): string | null => {
   return null;
 };
 
-const FloatingMiniPlayer = ({ youtubeUrl, playTrigger }: FloatingMiniPlayerProps) => {
+const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: FloatingMiniPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoId = youtubeUrl ? getYouTubeVideoId(youtubeUrl) : null;
 
@@ -61,7 +62,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger }: FloatingMiniPlayerProps
               className="absolute inset-0 group cursor-pointer"
               onClick={handlePlay}
               style={{
-                backgroundImage: `url(${thumbnailUrl || guestBg})`,
+                backgroundImage: `url(${thumbnailImage || thumbnailUrl || guestBg})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
