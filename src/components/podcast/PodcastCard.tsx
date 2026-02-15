@@ -1,4 +1,4 @@
-import { useRef, useState, useCallback, useEffect } from "react";
+import { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
@@ -20,34 +20,13 @@ interface PodcastCardProps {
 const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image, placeholderColor }: PodcastCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [showImage, setShowImage] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [cardSize, setCardSize] = useState({ w: 0, h: 0 });
   const videoRef = useRef<HTMLVideoElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
   const { openSubscribe } = useSubscribe();
 
-  useEffect(() => {
-    if (cardRef.current) {
-      const rect = cardRef.current.getBoundingClientRect();
-      setCardSize({ w: rect.width, h: rect.height });
-    }
-  }, []);
-
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (isMobile || !cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-  }, [isMobile]);
-
-  const handleMouseEnter = (e: React.MouseEvent) => {
+  const handleMouseEnter = () => {
     if (isMobile) return;
-    if (cardRef.current) {
-      const rect = cardRef.current.getBoundingClientRect();
-      setCardSize({ w: rect.width, h: rect.height });
-      // Set initial mouse pos to entry point so CTA doesn't jump to (0,0)
-      setMousePos({ x: e.clientX - rect.left, y: e.clientY - rect.top });
-    }
     setIsHovered(true);
     if (videoRef.current && episode.previewVideoUrl) {
       videoRef.current.currentTime = 0;
@@ -72,7 +51,6 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image, placeh
     <div
       className="card-image md:hover-scale relative"
       ref={cardRef}
-      onMouseMove={handleMouseMove}
       style={placeholderColor ? { backgroundColor: placeholderColor } : undefined}
     >
       <img

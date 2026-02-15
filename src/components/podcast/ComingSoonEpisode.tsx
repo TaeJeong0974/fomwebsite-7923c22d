@@ -139,7 +139,6 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
                 company={episode.company}
                 companyDomain={episode.companyDomain}
                 linkedInUrl={episode.linkedInUrl}
-                bio={episode.bio}
               />
               <EpisodeHostsCard />
             </div>
@@ -153,7 +152,6 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
               company={episode.company}
               companyDomain={episode.companyDomain}
               linkedInUrl={episode.linkedInUrl}
-              bio={episode.bio}
             />
             <EpisodeHostsCard />
           </FadeInSection>
