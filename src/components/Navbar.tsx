@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import FomLogo from "@/assets/FOM_Logo.svg";
 import { useSubscribe } from "@/contexts/SubscribeContext";
@@ -138,11 +138,11 @@ const Navbar = () => {
       initial="hidden"
       animate="visible"
       variants={fadeDownVariant}
-      className={`sticky top-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]`}
+      className={`z-50 transition-all duration-300 ${isScrolled ? 'fixed top-0 left-0 right-0' : 'relative'}`}
     >
       <div className="container mx-auto container-padding">
         {/* Nav with glass effect on scroll */}
-        <nav className={`rounded-md py-3 lg:py-4 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${isScrolled ? 'glass glass-hue-shadow bg-background/80 backdrop-blur-2xl shadow-[0_8px_32px_-8px_rgba(0,0,0,0.08),0_2px_8px_-2px_rgba(0,0,0,0.04)] px-4 sm:px-5 lg:px-6 mt-4' : 'pt-5 lg:pt-6'}`}>
+        <nav className={`rounded-md py-3 lg:py-4 transition-all duration-300 ${isScrolled ? 'glass glass-hue-shadow bg-background/80 backdrop-blur-xl px-4 sm:px-5 lg:px-6 mt-4' : 'pt-5 lg:pt-6'}`}>
           {/* Mobile: Simple flex layout */}
           <div className="flex items-center justify-between md:hidden">
             <Link 
@@ -235,59 +235,29 @@ const Navbar = () => {
             </motion.div>
           </div>
 
-          {/* Mobile Navigation Drawer */}
-          <AnimatePresence>
-            {isOpen && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: "auto", opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="md:hidden overflow-hidden"
-              >
-                <div className="py-4 border-t border-border/50 mt-3">
-                  <ul className="flex flex-col gap-1">
-                    {navLinks.map((link, index) => (
-                      <motion.li
-                        key={link.label}
-                        initial={{ opacity: 0, x: -16 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        exit={{ opacity: 0, x: -16 }}
-                        transition={{
-                          duration: 0.35,
-                          delay: index * 0.06,
-                          ease: [0.22, 1, 0.36, 1],
-                        }}
-                      >
-                        <a
-                          href={link.href}
-                          onClick={(e) => handleNavClick(e, link.href)}
-                          className="block py-2 text-3xl text-foreground hover:text-primary hover:bg-secondary/50 rounded-xl hover-transition focus-ring"
-                        >
-                          {link.label}
-                        </a>
-                      </motion.li>
-                    ))}
-                    <motion.li
-                      className="pt-3"
-                      initial={{ opacity: 0, x: -16 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: -16 }}
-                      transition={{
-                        duration: 0.35,
-                        delay: navLinks.length * 0.06,
-                        ease: [0.22, 1, 0.36, 1],
-                      }}
+          {/* Mobile Navigation */}
+          {isOpen && (
+            <div className="md:hidden py-4 border-t border-border/50 mt-3">
+              <ul className="flex flex-col gap-1">
+                {navLinks.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link.href)}
+                      className="block py-2 text-3xl text-foreground hover:text-primary hover:bg-secondary/50 rounded-xl hover-transition focus-ring"
                     >
-                      <LiquidButton onClick={openSubscribe} variant="glass" size="lg" className="w-full">
-                        Subscribe
-                      </LiquidButton>
-                    </motion.li>
-                  </ul>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+                <li className="pt-3">
+                  <LiquidButton onClick={openSubscribe} variant="glass" size="lg" className="w-full">
+                    Subscribe
+                  </LiquidButton>
+                </li>
+              </ul>
+            </div>
+          )}
         </nav>
       </div>
     </motion.header>
