@@ -159,7 +159,7 @@ This episode is a practical blueprint for CMOs and marketing leaders who want AI
     previewVideoUrl: undefined,
     pullQuote: "I think the key to positioning is understanding the customer. And so you have to do the work for that. You have to be curious. You have to talk with your customers and then you can work with AI to take those insights and build out and understand positioning.",
     hosts: [podcastHosts[2]], // Ethan Smith
-    
+    glowColors: ["#2E8B57"],
   },
   {
     id: 2,
