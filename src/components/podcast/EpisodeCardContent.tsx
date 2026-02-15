@@ -1,7 +1,7 @@
 import { Bell } from "lucide-react";
 import { PodcastEpisode } from "@/lib/podcastData";
 
-const getUpcomingCTA = (name: string) => `Subscribe for ${name.split(" ")[0]}'s Episode`;
+const getUpcomingCTA = () => "Get Notified";
 
 interface EpisodeCardContentProps {
   episode: PodcastEpisode;
@@ -64,7 +64,7 @@ const EpisodeCardContent = ({
           <div className={hoverContentClasses}>
             <span className="inline-flex items-center gap-2 text-sm font-medium text-white group/bell">
               <Bell size={14} className="md:group-hover:animate-[bell-swing_2.5s_ease-in-out_infinite] origin-top" />
-              {getUpcomingCTA(episode.name)}
+              {getUpcomingCTA()}
             </span>
           </div>
         </div>
