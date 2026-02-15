@@ -162,6 +162,7 @@ const PodcastDetail = () => {
                   name={episode.name}
                   title={episode.title}
                   company={episode.company}
+                  companyDomain={episode.companyDomain}
                   linkedInUrl={episode.linkedInUrl}
                   bio={episode.bio}
                 />
@@ -177,6 +178,7 @@ const PodcastDetail = () => {
                 name={episode.name}
                 title={episode.title}
                 company={episode.company}
+                companyDomain={episode.companyDomain}
                 linkedInUrl={episode.linkedInUrl}
                 bio={episode.bio}
               />
