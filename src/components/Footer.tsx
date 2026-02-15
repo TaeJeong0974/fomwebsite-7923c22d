@@ -1,22 +1,10 @@
 import { useState, useCallback, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import FomIcon from "@/assets/FOM_Icon.svg";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
-
-const fullLogoMask = `url("data:image/svg+xml,%3Csvg width='598' height='186' viewBox='0 0 598 186' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M448.5 0H411.125V186H448.5V0Z' fill='black'/%3E%3Cpath d='M0 -4.57764e-05L0 37.2L149.5 37.2V-4.57764e-05L0 -4.57764e-05Z' fill='black'/%3E%3Cpath d='M0 74.3806L0 111.581L149.5 111.581V74.3806H0Z' fill='black'/%3E%3Cpath d='M0 148.8L0 186H73.6799V148.8H0Z' fill='black'/%3E%3Cpath d='M523.25 0H485.875V186H523.25V0Z' fill='black'/%3E%3Cpath d='M598 0H560.625V186H598V0Z' fill='black'/%3E%3Cpath d='M280.322 37.2C311.238 37.2 336.394 62.2388 336.394 93.0097C336.394 123.781 311.238 148.819 280.322 148.819C249.407 148.819 224.25 123.781 224.25 93.0097C224.25 62.2388 249.407 37.2 280.322 37.2ZM280.322 0C228.705 0 186.875 41.6346 186.875 93.0097C186.875 144.385 228.705 186.019 280.322 186.019C331.939 186.019 373.769 144.385 373.769 93.0097C373.769 41.6346 331.92 0 280.322 0Z' fill='black'/%3E%3C/svg%3E")`;
-
-const maskStyles: React.CSSProperties = {
-  maskImage: fullLogoMask,
-  maskSize: '100% 100%',
-  maskRepeat: 'no-repeat',
-  maskPosition: 'left center',
-  WebkitMaskImage: fullLogoMask,
-  WebkitMaskSize: '100% 100%',
-  WebkitMaskRepeat: 'no-repeat',
-  WebkitMaskPosition: 'left center',
-};
+import { fomMaskStyles } from "@/lib/logoMask";
 
 const AnimatedFooterLogo = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -48,7 +36,7 @@ const AnimatedFooterLogo = () => {
         className="absolute inset-0 w-full h-full pointer-events-none"
         style={{
           aspectRatio: '598 / 186',
-          ...maskStyles,
+          ...fomMaskStyles,
           background: 'linear-gradient(135deg, rgb(255,100,80) 0%, rgb(255,60,120) 25%, rgb(100,140,255) 50%, rgb(255,180,60) 75%, rgb(255,100,80) 100%)',
           backgroundSize: '400% 400%',
           animation: isHovered ? 'footer-gradient-shift 5s ease-in-out infinite' : 'none',
@@ -64,7 +52,7 @@ const AnimatedFooterLogo = () => {
         style={{
           aspectRatio: '598 / 186',
           background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0) 100%)',
-          ...maskStyles,
+          ...fomMaskStyles,
           willChange: 'opacity',
           transform: 'translateZ(0)',
         }}
@@ -81,6 +69,8 @@ const Footer = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isHomePage = location.pathname === "/";
+  const footerRef = useRef<HTMLElement>(null);
+  const isInView = useInView(footerRef, { once: true, amount: 0.15 });
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -99,14 +89,14 @@ const Footer = () => {
   };
 
   return (
-    <footer className="pt-16 sm:pt-20 lg:pt-24 pb-0 overflow-hidden">
+    <footer ref={footerRef} className="pt-16 sm:pt-20 lg:pt-24 pb-0 overflow-hidden">
       <div className="container mx-auto container-padding">
         {/* Top section: tagline + nav links */}
         <motion.div
           className="flex flex-col md:flex-row justify-between gap-10 md:gap-16 mb-16 sm:mb-20 lg:mb-28"
-          initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: liquidEase }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1, ease: liquidEase }}
         >
           {/* Tagline */}
           <p className="text-lg sm:text-xl lg:text-2xl font-normal text-foreground max-w-[220px] sm:max-w-[260px]">
@@ -127,16 +117,16 @@ const Footer = () => {
       {/* Giant FOM logo + copyright */}
       <div className="container mx-auto container-padding">
         <motion.div
-          initial={{ opacity: 0, y: -16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.2, ease: liquidEase }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1.2, delay: 0.2, ease: liquidEase }}
         >
           <AnimatedFooterLogo />
         </motion.div>
         <motion.div
           className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 py-6 sm:py-8"
           initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          animate={isInView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.5, ease: liquidEase }}
         >
           <p className="text-body-sm text-foreground/40">
