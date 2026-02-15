@@ -1,8 +1,8 @@
-import { useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import FomIcon from "@/assets/FOM_Icon.svg";
 import { useSubscribe } from "@/contexts/SubscribeContext";
+import { liquidEase } from "@/components/animations/PageLoadAnimation";
 
 const AnimatedFooterLogo = () => (
     <div className="relative w-full">
@@ -14,15 +14,11 @@ const AnimatedFooterLogo = () => (
   </div>
 );
 
-const liquidEase = [0.22, 1, 0.36, 1] as const;
-
 const Footer = () => {
   const { openSubscribe } = useSubscribe();
   const location = useLocation();
   const navigate = useNavigate();
   const isHomePage = location.pathname === "/";
-  const footerRef = useRef<HTMLElement>(null);
-  const isInView = useInView(footerRef, { once: true, amount: 0.15 });
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -41,14 +37,14 @@ const Footer = () => {
   };
 
   return (
-    <footer ref={footerRef} className="pt-16 sm:pt-20 lg:pt-24 pb-0 overflow-hidden">
+    <footer className="pt-16 sm:pt-20 lg:pt-24 pb-0 overflow-hidden">
       <div className="container mx-auto container-padding">
         {/* Top section: tagline + nav links */}
         <motion.div
           className="flex flex-col md:flex-row justify-between gap-10 md:gap-16 mb-16 sm:mb-20 lg:mb-28"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, ease: liquidEase }}
+          initial={{ opacity: 0, y: -16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: liquidEase }}
         >
           {/* Tagline */}
           <p className="text-lg sm:text-xl lg:text-2xl font-normal text-foreground max-w-[220px] sm:max-w-[260px]">
@@ -69,16 +65,16 @@ const Footer = () => {
       {/* Giant FOM logo + copyright */}
       <div className="container mx-auto container-padding">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1.2, delay: 0.2, ease: liquidEase }}
+          initial={{ opacity: 0, y: -16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.2, ease: liquidEase }}
         >
           <AnimatedFooterLogo />
         </motion.div>
         <motion.div
           className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 py-6 sm:py-8"
           initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5, ease: liquidEase }}
         >
           <p className="text-body-sm text-foreground/40">
