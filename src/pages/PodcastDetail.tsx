@@ -140,6 +140,16 @@ const PodcastDetail = () => {
                 <p className="text-foreground/80 leading-relaxed text-base lg:text-lg max-w-prose">
                   <span className="font-medium text-foreground">{episode.name}</span> {episode.bio}
                 </p>
+                {episode.linkedInUrl && (
+                  <a
+                    href={episode.linkedInUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-muted-foreground hover:text-foreground hover-transition inline-block mt-3"
+                  >
+                    LinkedIn →
+                  </a>
+                )}
               </FadeInSection>
             )}
 
