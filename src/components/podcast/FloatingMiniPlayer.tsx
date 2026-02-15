@@ -1,13 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { Play } from "lucide-react";
-import { PodcastChapter } from "@/lib/podcastData";
 import guestBg from "@/assets/guest-bg.png";
 
 interface FloatingMiniPlayerProps {
   youtubeUrl?: string;
   spotifyUrl?: string;
   playTrigger?: number;
-  chapters?: PodcastChapter[];
+  seekToTime?: string | null;
 }
 
 // Extract YouTube video ID from various URL formats
@@ -35,7 +34,7 @@ const timeToSeconds = (time: string): number => {
   return 0;
 };
 
-const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, chapters }: FloatingMiniPlayerProps) => {
+const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, seekToTime }: FloatingMiniPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [startSeconds, setStartSeconds] = useState(0);
   const iframeKeyRef = useRef(0);
@@ -46,6 +45,15 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, chapters }: F
       setIsPlaying(true);
     }
   }, [playTrigger]);
+
+  useEffect(() => {
+    if (seekToTime) {
+      const seconds = timeToSeconds(seekToTime);
+      setStartSeconds(seconds);
+      iframeKeyRef.current += 1;
+      setIsPlaying(true);
+    }
+  }, [seekToTime]);
   
   // YouTube thumbnail URL
   const thumbnailUrl = videoId 
@@ -56,14 +64,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, chapters }: F
     setIsPlaying(true);
   };
 
-  const handleChapterClick = (time: string) => {
-    const seconds = timeToSeconds(time);
-    setStartSeconds(seconds);
-    iframeKeyRef.current += 1;
-    setIsPlaying(true);
-  };
 
-  const hasChapters = chapters && chapters.length > 0;
 
   return (
     <>
