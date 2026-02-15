@@ -93,12 +93,12 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
               <div
                 className="absolute inset-0 flex items-center justify-center sm:hidden"
               >
-                <div className="w-14 h-14 rounded-full bg-white/60 backdrop-blur-2xl border border-white/40 flex items-center justify-center shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)]">
+                <div className="w-14 h-14 rounded-full bg-white/70 backdrop-blur-2xl border border-white/50 flex items-center justify-center shadow-[0_4px_20px_-4px_rgba(0,0,0,0.25),0_2px_8px_-2px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.7)]">
                   <Play className="w-5 h-5 text-foreground fill-foreground ml-0.5" />
                 </div>
               </div>
               <motion.div
-                className="hidden sm:flex absolute z-10 pointer-events-none items-center justify-center w-14 h-14 rounded-full bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)]"
+                className="hidden sm:flex absolute z-10 pointer-events-none items-center justify-center w-14 h-14 rounded-full bg-white/70 backdrop-blur-2xl border border-white/50 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.25),0_2px_8px_-2px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.7)]"
                 style={{
                   left: springX,
                   top: springY,
