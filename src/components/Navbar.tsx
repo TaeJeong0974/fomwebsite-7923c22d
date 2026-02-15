@@ -8,13 +8,11 @@ import { useSubscribe } from "@/contexts/SubscribeContext";
 import SubscribeButton from "@/components/SubscribeButton";
 import { LiquidButton } from "@/components/ui/LiquidButton";
 import { fadeDownVariant, liquidEase } from "@/components/animations/PageLoadAnimation";
-import { fomLogoMask } from "@/lib/logoMask";
+import { fomLogoMask, fomMaskStyles } from "@/lib/logoMask";
 
 // Animated Logo component with gradient animation on hover
 const AnimatedLogo = ({ className }: { className?: string }) => {
   const [isHovered, setIsHovered] = useState(false);
-  
-  const fullLogoMask = fomLogoMask;
   
   return (
     <div 
@@ -34,14 +32,7 @@ const AnimatedLogo = ({ className }: { className?: string }) => {
         className="absolute inset-0 h-full"
         style={{
           aspectRatio: '598 / 186',
-          maskImage: fullLogoMask,
-          maskSize: '100% 100%',
-          maskRepeat: 'no-repeat',
-          maskPosition: 'left center',
-          WebkitMaskImage: fullLogoMask,
-          WebkitMaskSize: '100% 100%',
-          WebkitMaskRepeat: 'no-repeat',
-          WebkitMaskPosition: 'left center',
+          ...fomMaskStyles,
         }}
         initial={{ opacity: 0 }}
         animate={isHovered ? {
@@ -66,14 +57,7 @@ const AnimatedLogo = ({ className }: { className?: string }) => {
         style={{
           aspectRatio: '598 / 186',
           background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0) 100%)',
-          maskImage: fullLogoMask,
-          maskSize: '100% 100%',
-          maskRepeat: 'no-repeat',
-          maskPosition: 'left center',
-          WebkitMaskImage: fullLogoMask,
-          WebkitMaskSize: '100% 100%',
-          WebkitMaskRepeat: 'no-repeat',
-          WebkitMaskPosition: 'left center',
+          ...fomMaskStyles,
         }}
         initial={{ opacity: 0 }}
         animate={{ opacity: isHovered ? 1 : 0 }}
