@@ -127,11 +127,14 @@ The conversation tackles the uncomfortable tradeoffs leaders now face: when to b
 
 This episode is a practical blueprint for CMOs and marketing leaders who want AI to move the business, not just the slide deck.`,
     topics: [
-      "Operationalizing AI across 95% of the marketing team",
-      "Building 13 internal AI agents: build vs. buy",
-      "No-code tools for non-technical marketers",
-      "Pipeline per employee as the true AI metric",
-      "Tracking visibility inside LLMs in real time",
+      "How Meagen operationalized AI across 95% of her marketing team without waiting for perfect tools",
+      "Why Samsara built 13 internal AI marketing agents (and the real cost of build vs. buy decisions)",
+      "How to get non-technical marketers using AI confidently with no-code tools",
+      "Why pipeline per employee is the metric that can expose whether AI is actually working",
+      "How Samsara tracks and competes for visibility inside LLMs in real time",
+      "What marketing actually automates away and why creativity becomes more valuable",
+      "Why in-person dinners beat webinars in an AI-saturated world",
+      "How to interview and hire for AI-era problem solving, not static skills",
     ],
     chapters: [
       { time: "0:00", title: "Introduction" },
