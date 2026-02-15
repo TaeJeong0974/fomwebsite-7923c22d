@@ -42,7 +42,7 @@ const StickyBottomBar = ({ youtubeUrl, spotifyUrl, thumbnailUrl, episodeName, ep
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="hidden lg:block fixed bottom-10 inset-x-0 mx-auto w-fit z-50"
         >
-          <div className="group/bar flex items-center gap-3 p-2.5 rounded-2xl bg-background/80 backdrop-blur-xl border border-foreground/[0.06] shadow-lg shadow-black/[0.08] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] hover:scale-[1.12]">
+          <div className="group/bar flex items-center gap-3 p-2.5 rounded-2xl bg-background/80 backdrop-blur-xl border border-foreground/[0.06] shadow-lg shadow-black/[0.08] transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] scale-[1.10] hover:scale-[1.22]">
             {/* Thumbnail with play icon */}
             {thumbnailUrl && (
               <button onClick={onPlayClick} className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0 ring-1 ring-foreground/5 hover:ring-foreground/15 transition-all duration-200 hover:scale-105 cursor-pointer">
