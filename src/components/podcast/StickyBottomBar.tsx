@@ -43,7 +43,7 @@ const StickyBottomBar = ({ youtubeUrl, spotifyUrl, thumbnailUrl, episodeName, ep
           className="hidden lg:block fixed bottom-10 inset-x-0 mx-auto w-fit z-50"
         >
             <motion.div
-              className="group/bar flex items-center gap-3 p-2.5 rounded-2xl bg-background/80 backdrop-blur-xl border border-foreground/[0.06] shadow-lg shadow-black/[0.08]"
+              className="group/bar flex items-center gap-3 p-2.5 rounded-2xl bg-background/60 backdrop-blur-2xl border border-white/30 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.5)]"
               initial={{ scale: 1.10 }}
               whileHover={{ scale: 1.22 }}
               whileTap={{ scale: 1.0 }}
