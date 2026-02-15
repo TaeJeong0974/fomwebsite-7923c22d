@@ -47,9 +47,9 @@ const AnimatedFooterLogo = () => {
           ],
         } : { opacity: 0 }}
         transition={isHovered ? {
-          opacity: { duration: 0.25, delay: 0.15 },
-          background: { duration: 3, ease: 'easeInOut', repeat: Infinity, delay: 0.15 }
-        } : { opacity: { duration: 0.2 } }}
+          opacity: { duration: 0.4, delay: 0.15 },
+          background: { duration: 5, ease: 'easeInOut', repeat: Infinity, delay: 0.15 }
+        } : { opacity: { duration: 0.8 } }}
       />
       <motion.div
         className="absolute inset-0 w-full h-full"
@@ -60,7 +60,7 @@ const AnimatedFooterLogo = () => {
         }}
         initial={{ opacity: 0 }}
         animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: 0.25, ease: liquidEase }}
+        transition={{ duration: isHovered ? 0.4 : 0.8, ease: liquidEase }}
       />
     </div>
   );
