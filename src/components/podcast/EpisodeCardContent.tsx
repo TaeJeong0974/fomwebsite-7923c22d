@@ -73,8 +73,8 @@ const EpisodeCardContent = ({
       {isUpcoming ? (
         <div className={hoverWrapperClasses}>
           <div className={hoverContentClasses}>
-            <span className="inline-flex items-center gap-2 text-sm font-medium text-white">
-              <Bell size={14} />
+            <span className="inline-flex items-center gap-2 text-sm font-medium text-white group/bell">
+              <Bell size={14} className="md:group-hover:animate-[bell-swing_2.5s_ease-in-out_infinite] origin-top" />
               {upcomingCTAs[episode.name.split(" ")[0]] || "Get Notified"}
             </span>
           </div>
