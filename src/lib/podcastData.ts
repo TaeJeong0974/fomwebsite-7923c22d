@@ -40,7 +40,7 @@ export interface PodcastEpisode {
   hosts?: PodcastHost[];
   pullQuote?: string;
   newslettersMentioned?: NewsletterMention[];
-  glowColors?: string[];
+  
 }
 
 // Shared hosts data
@@ -112,7 +112,6 @@ From the LinkedIn AI content trap to why Reddit might be the most underrated cha
     comingSoon: false,
     previewVideoUrl: undefined,
     hosts: podcastHosts,
-    glowColors: ["#C4A882", "#8B7D6B", "#D4B896"],
   },
   {
     id: 1,
@@ -159,7 +158,7 @@ This episode is a practical blueprint for CMOs and marketing leaders who want AI
     previewVideoUrl: undefined,
     pullQuote: "I think the key to positioning is understanding the customer. And so you have to do the work for that. You have to be curious. You have to talk with your customers and then you can work with AI to take those insights and build out and understand positioning.",
     hosts: [podcastHosts[2]], // Ethan Smith
-    glowColors: ["#2E8B57"],
+    
   },
   {
     id: 2,

@@ -5,7 +5,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import hostMada from "@/assets/host-mada.png";
 import hostEthan from "@/assets/host-ethan.png";
 import hostCamille from "@/assets/host-camille.png";
-import { GlassButton } from "@/components/ui/GlassButton";
+
 import teaserBg from "@/assets/teaser-bg.png";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
 
@@ -325,25 +325,25 @@ const HeroSection = () => {
                               </p>
                               <div className="flex items-center gap-2 mt-4">
                                 {host.linkedInUrl && (
-                                  <GlassButton as="a" href={host.linkedInUrl} target="_blank" rel="noopener noreferrer" size="md" onClick={(e) => e.stopPropagation()}>
+                                  <a href={host.linkedInUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)] text-foreground hover:bg-white/80 transition-[background,box-shadow] duration-300">
                                     <Linkedin className="h-4 w-4" />
-                                  </GlassButton>
+                                  </a>
                                 )}
                                 {host.companyUrl && (
-                                  <GlassButton as="a" href={host.companyUrl} target="_blank" rel="noopener noreferrer" size="md" onClick={(e) => e.stopPropagation()}>
+                                  <a href={host.companyUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)] text-foreground hover:bg-white/80 transition-[background,box-shadow] duration-300">
                                     <Building2 className="h-4 w-4" />
-                                  </GlassButton>
+                                  </a>
                                 )}
                                 {host.personalUrl && (
-                                  <GlassButton as="a" href={host.personalUrl} target="_blank" rel="noopener noreferrer" size="md" onClick={(e) => e.stopPropagation()}>
-                                    <Globe className="h-4 w-4" />
-                                  </GlassButton>
-                                )}
-                                {host.twitterHandle && (
-                                  <GlassButton as="a" href={`https://x.com/${host.twitterHandle}`} target="_blank" rel="noopener noreferrer" size="md" onClick={(e) => e.stopPropagation()}>
-                                    <Twitter className="h-4 w-4" />
-                                  </GlassButton>
-                                )}
+                                   <a href={host.personalUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)] text-foreground hover:bg-white/80 transition-[background,box-shadow] duration-300">
+                                     <Globe className="h-4 w-4" />
+                                   </a>
+                                 )}
+                                 {host.twitterHandle && (
+                                   <a href={`https://x.com/${host.twitterHandle}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)] text-foreground hover:bg-white/80 transition-[background,box-shadow] duration-300">
+                                     <Twitter className="h-4 w-4" />
+                                   </a>
+                                 )}
                                </div>
                             </div>
                           </div>
@@ -453,25 +453,25 @@ const HeroSection = () => {
                               </p>
                               <div className="flex items-center gap-2 mt-4">
                                 {host.linkedInUrl && (
-                                  <GlassButton as="a" href={host.linkedInUrl} target="_blank" rel="noopener noreferrer" size="md" onClick={(e) => e.stopPropagation()}>
+                                  <a href={host.linkedInUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)] text-foreground hover:bg-white/80 transition-[background,box-shadow] duration-300">
                                     <Linkedin className="h-4 w-4" />
-                                  </GlassButton>
+                                  </a>
                                 )}
                                 {host.companyUrl && (
-                                  <GlassButton as="a" href={host.companyUrl} target="_blank" rel="noopener noreferrer" size="md" onClick={(e) => e.stopPropagation()}>
+                                  <a href={host.companyUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)] text-foreground hover:bg-white/80 transition-[background,box-shadow] duration-300">
                                     <Building2 className="h-4 w-4" />
-                                  </GlassButton>
+                                  </a>
                                 )}
                                 {host.personalUrl && (
-                                  <GlassButton as="a" href={host.personalUrl} target="_blank" rel="noopener noreferrer" size="md" onClick={(e) => e.stopPropagation()}>
-                                    <Globe className="h-4 w-4" />
-                                  </GlassButton>
-                                )}
-                                {host.twitterHandle && (
-                                  <GlassButton as="a" href={`https://x.com/${host.twitterHandle}`} target="_blank" rel="noopener noreferrer" size="md" onClick={(e) => e.stopPropagation()}>
-                                    <Twitter className="h-4 w-4" />
-                                  </GlassButton>
-                                )}
+                                   <a href={host.personalUrl} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)] text-foreground hover:bg-white/80 transition-[background,box-shadow] duration-300">
+                                     <Globe className="h-4 w-4" />
+                                   </a>
+                                 )}
+                                 {host.twitterHandle && (
+                                   <a href={`https://x.com/${host.twitterHandle}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()} className="rounded-full p-2.5 bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)] text-foreground hover:bg-white/80 transition-[background,box-shadow] duration-300">
+                                     <Twitter className="h-4 w-4" />
+                                   </a>
+                                 )}
                                </div>
                             </div>
                           </div>
