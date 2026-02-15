@@ -105,6 +105,7 @@ const PodcastDetail = () => {
                 youtubeUrl={episode.youtubeUrl}
                 spotifyUrl={episode.spotifyUrl}
                 playTrigger={playTrigger}
+                chapters={episode.chapters}
               />
               <div className="pt-2 lg:hidden">
                 <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
