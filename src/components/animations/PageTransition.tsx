@@ -1,6 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useLocation } from "react-router-dom";
-import { useRef } from "react";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
 
 interface PageTransitionProps {
