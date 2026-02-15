@@ -39,7 +39,7 @@ const AnimatedFooterLogo = () => {
           ...fomMaskStyles,
           background: 'linear-gradient(135deg, rgb(255,100,80) 0%, rgb(255,60,120) 25%, rgb(100,140,255) 50%, rgb(255,180,60) 75%, rgb(255,100,80) 100%)',
           backgroundSize: '400% 400%',
-          animation: isHovered ? 'footer-gradient-shift 5s ease-in-out infinite' : 'none',
+          animation: isHovered ? 'footer-gradient-shift 10s ease-in-out infinite' : 'none',
           willChange: 'opacity',
           transform: 'translateZ(0)',
         }}
