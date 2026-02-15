@@ -103,24 +103,6 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, chapters }: F
         </div>
       </div>
 
-      {/* Chapters */}
-      {hasChapters && (
-        <div className="mt-4">
-          <h4 className="text-sm font-medium text-muted-foreground mb-3">Chapters</h4>
-          <div className="flex flex-wrap gap-2">
-            {chapters.map((chapter, i) => (
-              <button
-                key={i}
-                onClick={() => handleChapterClick(chapter.time)}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm bg-background/70 backdrop-blur-sm border border-border hover:bg-accent hover:text-accent-foreground hover-transition"
-              >
-                <span className="text-muted-foreground tabular-nums text-xs">{chapter.time}</span>
-                <span className="text-foreground">{chapter.title}</span>
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
     </>
   );
 };
