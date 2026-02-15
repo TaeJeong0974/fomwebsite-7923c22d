@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Play } from "lucide-react";
 import guestBg from "@/assets/guest-bg.png";
 
@@ -27,6 +27,9 @@ const getYouTubeVideoId = (url: string): string | null => {
 
 const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: FloatingMiniPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const videoId = youtubeUrl ? getYouTubeVideoId(youtubeUrl) : null;
 
   useEffect(() => {
@@ -44,6 +47,15 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
     setIsPlaying(true);
   };
 
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
   return (
     <>
       {/* Main Video Player - Full width on mobile */}
@@ -59,8 +71,12 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
             />
           ) : (
             <div 
+              ref={containerRef}
               className="absolute inset-0 group cursor-pointer"
               onClick={handlePlay}
+              onMouseMove={handleMouseMove}
+              onMouseEnter={() => setIsHovering(true)}
+              onMouseLeave={() => setIsHovering(false)}
               style={{
                 backgroundImage: `url(${thumbnailImage || thumbnailUrl || guestBg})`,
                 backgroundSize: 'cover',
@@ -70,11 +86,24 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
               {/* Subtle overlay for better play button visibility */}
               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
               
-              {/* Play Button */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/60 backdrop-blur-2xl border border-white/40 flex items-center justify-center shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)] group-hover:scale-110 group-hover:bg-white/80 group-hover:shadow-[0_4px_16px_-4px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.8)] transition-all duration-300">
-                  <Play className="w-6 h-6 sm:w-8 sm:h-8 text-foreground fill-foreground ml-1" />
+              {/* Play Button - cursor follow on desktop, centered on mobile */}
+              <div
+                className="absolute inset-0 flex items-center justify-center sm:hidden"
+              >
+                <div className="w-14 h-14 rounded-full bg-white/60 backdrop-blur-2xl border border-white/40 flex items-center justify-center shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)]">
+                  <Play className="w-5 h-5 text-foreground fill-foreground ml-0.5" />
                 </div>
+              </div>
+              <div
+                className="hidden sm:flex absolute z-10 pointer-events-none items-center justify-center w-14 h-14 rounded-full bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)] transition-opacity duration-200"
+                style={{
+                  left: mousePos.x - 28,
+                  top: mousePos.y - 28,
+                  opacity: isHovering ? 1 : 0,
+                  transform: `scale(${isHovering ? 1 : 0.8})`,
+                }}
+              >
+                <Play className="w-5 h-5 text-foreground fill-foreground ml-0.5" />
               </div>
             </div>
           )}
