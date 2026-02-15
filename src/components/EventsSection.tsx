@@ -29,8 +29,8 @@ const EventsSection = () => {
         <div className="relative">
           {/* Title wrapper */}
           <motion.div 
-            className="relative z-10 mb-[-3rem] sm:mb-[-5rem] lg:mb-[-8rem] xl:mb-[-10rem] overflow-visible"
-            style={{ y: titleY }}
+            className="relative z-10 mb-[-3rem] sm:mb-[-5rem] lg:mb-[-8rem] xl:mb-[-10rem] overflow-visible will-change-transform"
+            style={{ y: titleY, translateZ: 0 }}
           >
             <motion.h2
               ref={titleRef}
@@ -49,6 +49,8 @@ const EventsSection = () => {
                 lineHeight: 0.95,
                 paddingTop: '0.08em',
                 paddingBottom: '0.02em',
+                willChange: 'background-position',
+                transform: 'translateZ(0)',
               }}
             >
               FOM<br /><span className="block -mt-2 sm:-mt-3 lg:-mt-5 xl:-mt-6">2025</span>
@@ -72,8 +74,8 @@ const EventsSection = () => {
             {/* Video Container - YouTube Embed */}
             <motion.div 
               ref={containerRef} 
-              className="relative w-full lg:w-3/4 aspect-[16/9] overflow-hidden rounded-xl group cursor-pointer"
-              style={{ y: videoY }}
+              className="relative w-full lg:w-3/4 aspect-[16/9] overflow-hidden rounded-xl group cursor-pointer will-change-transform"
+              style={{ y: videoY, translateZ: 0 }}
               onClick={() => !isPlaying && setIsPlaying(true)}
             >
               {isPlaying ? (
