@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import FomLogo from "@/assets/FOM_Logo.svg";
 import { useSubscribe } from "@/contexts/SubscribeContext";
@@ -235,29 +235,59 @@ const Navbar = () => {
             </motion.div>
           </div>
 
-          {/* Mobile Navigation */}
-          {isOpen && (
-            <div className="md:hidden py-4 border-t border-border/50 mt-3">
-              <ul className="flex flex-col gap-1">
-                {navLinks.map((link) => (
-                  <li key={link.label}>
-                    <a
-                      href={link.href}
-                      onClick={(e) => handleNavClick(e, link.href)}
-                      className="block py-2 text-3xl text-foreground hover:text-primary hover:bg-secondary/50 rounded-xl hover-transition focus-ring"
+          {/* Mobile Navigation Drawer */}
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                initial={{ height: 0, opacity: 0 }}
+                animate={{ height: "auto", opacity: 1 }}
+                exit={{ height: 0, opacity: 0 }}
+                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                className="md:hidden overflow-hidden"
+              >
+                <div className="py-4 border-t border-border/50 mt-3">
+                  <ul className="flex flex-col gap-1">
+                    {navLinks.map((link, index) => (
+                      <motion.li
+                        key={link.label}
+                        initial={{ opacity: 0, x: -16 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -16 }}
+                        transition={{
+                          duration: 0.35,
+                          delay: index * 0.06,
+                          ease: [0.22, 1, 0.36, 1],
+                        }}
+                      >
+                        <a
+                          href={link.href}
+                          onClick={(e) => handleNavClick(e, link.href)}
+                          className="block py-2 text-3xl text-foreground hover:text-primary hover:bg-secondary/50 rounded-xl hover-transition focus-ring"
+                        >
+                          {link.label}
+                        </a>
+                      </motion.li>
+                    ))}
+                    <motion.li
+                      className="pt-3"
+                      initial={{ opacity: 0, x: -16 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -16 }}
+                      transition={{
+                        duration: 0.35,
+                        delay: navLinks.length * 0.06,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
                     >
-                      {link.label}
-                    </a>
-                  </li>
-                ))}
-                <li className="pt-3">
-                  <LiquidButton onClick={openSubscribe} variant="glass" size="lg" className="w-full">
-                    Subscribe
-                  </LiquidButton>
-                </li>
-              </ul>
-            </div>
-          )}
+                      <LiquidButton onClick={openSubscribe} variant="glass" size="lg" className="w-full">
+                        Subscribe
+                      </LiquidButton>
+                    </motion.li>
+                  </ul>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </nav>
       </div>
     </motion.header>
