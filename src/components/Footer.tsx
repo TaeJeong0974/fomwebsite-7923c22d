@@ -45,30 +45,28 @@ const AnimatedFooterLogo = () => {
         className="w-full select-none"
       />
       <motion.div
-        className="absolute inset-0 w-full h-full"
-        style={{ aspectRatio: '598 / 186', ...maskStyles }}
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        style={{
+          aspectRatio: '598 / 186',
+          ...maskStyles,
+          background: 'linear-gradient(135deg, rgb(255,100,80) 0%, rgb(255,60,120) 25%, rgb(100,140,255) 50%, rgb(255,180,60) 75%, rgb(255,100,80) 100%)',
+          backgroundSize: '400% 400%',
+          animation: isHovered ? 'footer-gradient-shift 5s ease-in-out infinite' : 'none',
+          willChange: 'opacity',
+          transform: 'translateZ(0)',
+        }}
         initial={{ opacity: 0 }}
-        animate={isHovered ? {
-          opacity: 1,
-          background: [
-            'linear-gradient(135deg, rgb(255,100,80) 0%, rgb(255,60,120) 50%, rgb(100,140,255) 100%)',
-            'linear-gradient(135deg, rgb(255,60,120) 0%, rgb(100,140,255) 50%, rgb(255,180,60) 100%)',
-            'linear-gradient(135deg, rgb(100,140,255) 0%, rgb(255,180,60) 50%, rgb(255,100,80) 100%)',
-            'linear-gradient(135deg, rgb(255,180,60) 0%, rgb(255,100,80) 50%, rgb(255,60,120) 100%)',
-            'linear-gradient(135deg, rgb(255,100,80) 0%, rgb(255,60,120) 50%, rgb(100,140,255) 100%)',
-          ],
-        } : { opacity: 0 }}
-        transition={isHovered ? {
-          opacity: { duration: 0.4, delay: 0.15 },
-          background: { duration: 5, ease: 'easeInOut', repeat: Infinity, delay: 0.15 }
-        } : { opacity: { duration: 0.8 } }}
+        animate={{ opacity: isHovered ? 1 : 0 }}
+        transition={{ duration: isHovered ? 0.4 : 0.8, delay: isHovered ? 0.15 : 0 }}
       />
       <motion.div
-        className="absolute inset-0 w-full h-full"
+        className="absolute inset-0 w-full h-full pointer-events-none"
         style={{
           aspectRatio: '598 / 186',
           background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0) 100%)',
           ...maskStyles,
+          willChange: 'opacity',
+          transform: 'translateZ(0)',
         }}
         initial={{ opacity: 0 }}
         animate={{ opacity: isHovered ? 1 : 0 }}
