@@ -1,3 +1,4 @@
+import { Linkedin, Building2 } from "lucide-react";
 import { podcastHosts, PodcastHost } from "@/lib/podcastData";
 import SidebarCard from "./SidebarCard";
 
@@ -7,7 +8,6 @@ interface EpisodeHostsCardProps {
 }
 
 const EpisodeHostsCard = ({ showAllHosts = false, episodeHosts }: EpisodeHostsCardProps) => {
-  // Use episode-specific hosts if provided, otherwise fall back to default behavior
   const hosts = episodeHosts || (showAllHosts ? podcastHosts : podcastHosts.slice(0, 2));
 
   return (
@@ -24,29 +24,33 @@ const EpisodeHostsCard = ({ showAllHosts = false, episodeHosts }: EpisodeHostsCa
                 <span className="inline lg:block font-normal">{lastName}</span>
               </h3>
               <p className="text-xs lg:text-sm text-muted-foreground mt-1 lg:mt-2">
-                {host.title},{" "}
-                {host.companyUrl ? (
-                  <a
-                    href={host.companyUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:text-foreground hover-transition"
-                  >
-                    {host.company}
-                  </a>
-                ) : (
-                  host.company
-                )}
+                {host.title}, {host.company}
               </p>
-              {host.linkedInUrl && (
-                <a
-                  href={host.linkedInUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-xs lg:text-sm text-muted-foreground hover:text-foreground hover-transition inline-block mt-2"
-                >
-                  LinkedIn →
-                </a>
+              {(host.linkedInUrl || host.companyUrl) && (
+                <div className="flex items-center gap-2 mt-3">
+                  {host.linkedInUrl && (
+                    <a
+                      href={host.linkedInUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-8 h-8 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-colors"
+                      aria-label={`${host.name} on LinkedIn`}
+                    >
+                      <Linkedin size={14} />
+                    </a>
+                  )}
+                  {host.companyUrl && (
+                    <a
+                      href={host.companyUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-8 h-8 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-colors"
+                      aria-label={`${host.company} website`}
+                    >
+                      <Building2 size={14} />
+                    </a>
+                  )}
+                </div>
               )}
             </div>
           );
