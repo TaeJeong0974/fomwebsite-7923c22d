@@ -1,11 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Play } from "lucide-react";
+import { PodcastChapter } from "@/lib/podcastData";
 import guestBg from "@/assets/guest-bg.png";
 
 interface FloatingMiniPlayerProps {
   youtubeUrl?: string;
   spotifyUrl?: string;
   playTrigger?: number;
+  chapters?: PodcastChapter[];
 }
 
 // Extract YouTube video ID from various URL formats
@@ -25,8 +27,18 @@ const getYouTubeVideoId = (url: string): string | null => {
   return null;
 };
 
-const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger }: FloatingMiniPlayerProps) => {
+// Convert "MM:SS" or "H:MM:SS" to seconds
+const timeToSeconds = (time: string): number => {
+  const parts = time.split(":").map(Number);
+  if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
+  if (parts.length === 2) return parts[0] * 60 + parts[1];
+  return 0;
+};
+
+const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, chapters }: FloatingMiniPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [startSeconds, setStartSeconds] = useState(0);
+  const iframeKeyRef = useRef(0);
   const videoId = youtubeUrl ? getYouTubeVideoId(youtubeUrl) : null;
 
   useEffect(() => {
@@ -44,6 +56,15 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger }: FloatingMin
     setIsPlaying(true);
   };
 
+  const handleChapterClick = (time: string) => {
+    const seconds = timeToSeconds(time);
+    setStartSeconds(seconds);
+    iframeKeyRef.current += 1;
+    setIsPlaying(true);
+  };
+
+  const hasChapters = chapters && chapters.length > 0;
+
   return (
     <>
       {/* Main Video Player - Full width on mobile */}
@@ -51,7 +72,8 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger }: FloatingMin
         <div className="relative aspect-video sm:rounded-xl overflow-hidden bg-black/90 sm:ring-1 sm:ring-white/10 sm:shadow-2xl sm:shadow-black/20">
           {isPlaying && videoId ? (
             <iframe
-              src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1&playsinline=1`}
+              key={iframeKeyRef.current}
+              src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1&playsinline=1&start=${startSeconds}`}
               title="Episode Video"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -80,6 +102,25 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger }: FloatingMin
           )}
         </div>
       </div>
+
+      {/* Chapters */}
+      {hasChapters && (
+        <div className="mt-4">
+          <h4 className="text-sm font-medium text-muted-foreground mb-3">Chapters</h4>
+          <div className="flex flex-wrap gap-2">
+            {chapters.map((chapter, i) => (
+              <button
+                key={i}
+                onClick={() => handleChapterClick(chapter.time)}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm bg-background/70 backdrop-blur-sm border border-border hover:bg-accent hover:text-accent-foreground hover-transition"
+              >
+                <span className="text-muted-foreground tabular-nums text-xs">{chapter.time}</span>
+                <span className="text-foreground">{chapter.title}</span>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </>
   );
 };
