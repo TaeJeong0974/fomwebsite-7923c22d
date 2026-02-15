@@ -27,11 +27,6 @@ const TypewriterText = ({ text }: { text: string }) => {
   );
 };
 
-const SECTION_LABELS = [
-  { id: "episode-content", label: "GUEST_NAME" }, // Will be replaced with actual guest name
-  { id: "related-episodes", label: "OTHER SPEAKERS" },
-  { id: "stay-connected", label: "STAY CONNECTED" },
-];
 
 const DetailVerticalText = ({ guestName, isUpcoming = false }: { guestName: string; isUpcoming?: boolean }) => {
   const guestLabel = isUpcoming ? `UPCOMING: ${guestName.toUpperCase()}` : guestName.toUpperCase();
