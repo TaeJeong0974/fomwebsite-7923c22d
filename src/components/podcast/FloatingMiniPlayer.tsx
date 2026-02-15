@@ -6,6 +6,7 @@ interface FloatingMiniPlayerProps {
   youtubeUrl?: string;
   spotifyUrl?: string;
   playTrigger?: number;
+  glowColors?: string[];
 }
 
 // Extract YouTube video ID from various URL formats
@@ -25,7 +26,7 @@ const getYouTubeVideoId = (url: string): string | null => {
   return null;
 };
 
-const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger }: FloatingMiniPlayerProps) => {
+const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, glowColors }: FloatingMiniPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoId = youtubeUrl ? getYouTubeVideoId(youtubeUrl) : null;
 
@@ -47,8 +48,17 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger }: FloatingMin
   return (
     <>
       {/* Main Video Player - Full width on mobile */}
-      <div className="-ml-4 -mr-4 w-[calc(100%+2rem)] sm:ml-0 sm:mr-0 sm:w-full">
-        <div className="relative aspect-video sm:rounded-xl overflow-hidden bg-black/90 sm:ring-1 sm:ring-white/10 sm:shadow-2xl sm:shadow-black/20">
+      <div className="relative -ml-4 -mr-4 w-[calc(100%+2rem)] sm:ml-0 sm:mr-0 sm:w-full">
+        {/* Ambient glow behind player */}
+        {glowColors && glowColors.length > 0 && (
+          <div
+            className="absolute -inset-10 sm:-inset-16 rounded-3xl opacity-60 blur-[80px] sm:blur-[100px] pointer-events-none"
+            style={{
+              background: `radial-gradient(ellipse at 20% 40%, ${glowColors[0]} 0%, transparent 55%), radial-gradient(ellipse at 80% 30%, ${glowColors[1] || glowColors[0]} 0%, transparent 55%)${glowColors[2] ? `, radial-gradient(ellipse at 50% 80%, ${glowColors[2]} 0%, transparent 55%)` : ''}`,
+            }}
+          />
+        )}
+        <div className="relative z-10 aspect-video sm:rounded-xl overflow-hidden bg-black/90 sm:ring-1 sm:ring-white/10 sm:shadow-2xl sm:shadow-black/20">
           {isPlaying && videoId ? (
             <iframe
               src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1&playsinline=1`}

@@ -100,11 +100,12 @@ const PodcastDetail = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-10 sm:space-y-14 lg:space-y-20">
-            <FadeInSection className="space-y-4 sm:space-y-6">
+            <FadeInSection className="space-y-4 sm:space-y-6 overflow-visible">
               <FloatingMiniPlayer
                 youtubeUrl={episode.youtubeUrl}
                 spotifyUrl={episode.spotifyUrl}
                 playTrigger={playTrigger}
+                glowColors={episode.glowColors}
               />
               <div className="pt-2 lg:hidden">
                 <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
