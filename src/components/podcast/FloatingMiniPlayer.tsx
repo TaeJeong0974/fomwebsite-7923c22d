@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Play } from "lucide-react";
+import { motion, useSpring, useMotionValue } from "framer-motion";
 import guestBg from "@/assets/guest-bg.png";
 
 interface FloatingMiniPlayerProps {
@@ -30,6 +31,9 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const springConfig = { damping: 25, stiffness: 120, mass: 0.8 };
+  const springX = useSpring(useMotionValue(0), springConfig);
+  const springY = useSpring(useMotionValue(0), springConfig);
   const videoId = youtubeUrl ? getYouTubeVideoId(youtubeUrl) : null;
 
   useEffect(() => {
@@ -50,10 +54,11 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
+    const x = e.clientX - rect.left - 28;
+    const y = e.clientY - rect.top - 28;
+    springX.set(x);
+    springY.set(y);
+    setMousePos({ x, y });
   };
 
   return (
@@ -94,17 +99,18 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
                   <Play className="w-5 h-5 text-foreground fill-foreground ml-0.5" />
                 </div>
               </div>
-              <div
-                className="hidden sm:flex absolute z-10 pointer-events-none items-center justify-center w-14 h-14 rounded-full bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)] transition-opacity duration-200"
+              <motion.div
+                className="hidden sm:flex absolute z-10 pointer-events-none items-center justify-center w-14 h-14 rounded-full bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)]"
                 style={{
-                  left: mousePos.x - 28,
-                  top: mousePos.y - 28,
+                  left: springX,
+                  top: springY,
                   opacity: isHovering ? 1 : 0,
-                  transform: `scale(${isHovering ? 1 : 0.8})`,
+                  scale: isHovering ? 1 : 0.8,
                 }}
+                transition={{ opacity: { duration: 0.2 }, scale: { duration: 0.2 } }}
               >
                 <Play className="w-5 h-5 text-foreground fill-foreground ml-0.5" />
-              </div>
+              </motion.div>
             </div>
           )}
         </div>
