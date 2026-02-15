@@ -180,7 +180,6 @@ const PodcastDetail = () => {
                   company={episode.company}
                   companyDomain={episode.companyDomain}
                   linkedInUrl={episode.linkedInUrl}
-                  bio={episode.bio}
                 />
               )}
               <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />
@@ -196,7 +195,6 @@ const PodcastDetail = () => {
                 company={episode.company}
                 companyDomain={episode.companyDomain}
                 linkedInUrl={episode.linkedInUrl}
-                bio={episode.bio}
               />
             )}
             <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />

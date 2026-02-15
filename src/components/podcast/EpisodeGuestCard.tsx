@@ -7,7 +7,6 @@ interface EpisodeGuestCardProps {
   company: string;
   companyDomain?: string;
   linkedInUrl?: string;
-  bio?: string;
 }
 
 const EpisodeGuestCard = ({ name, title, company, companyDomain, linkedInUrl }: EpisodeGuestCardProps) => {
