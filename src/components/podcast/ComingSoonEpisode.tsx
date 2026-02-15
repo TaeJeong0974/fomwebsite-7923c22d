@@ -119,7 +119,14 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
                   About the Guest
                 </h3>
                 <p className="text-foreground/80 leading-relaxed text-base lg:text-lg max-w-prose">
-                  <span className="font-medium text-foreground">{episode.name}</span> {episode.bio}
+                  <span className="font-medium text-foreground">{episode.name}</span>{" "}
+                  {episode.bio && episode.companyDomain ? (
+                    <>
+                      {episode.bio.split(episode.company)[0]}
+                      <a href={`https://${episode.companyDomain}`} target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2 decoration-foreground/30 hover:decoration-foreground transition-colors">{episode.company}</a>
+                      {episode.bio.split(episode.company).slice(1).join(episode.company)}
+                    </>
+                  ) : episode.bio}
                 </p>
               </FadeInSection>
             )}
