@@ -4,7 +4,6 @@ import guestBg from "@/assets/guest-bg.png";
 
 interface FloatingMiniPlayerProps {
   youtubeUrl?: string;
-  spotifyUrl?: string;
   playTrigger?: number;
 }
 
@@ -25,7 +24,7 @@ const getYouTubeVideoId = (url: string): string | null => {
   return null;
 };
 
-const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger }: FloatingMiniPlayerProps) => {
+const FloatingMiniPlayer = ({ youtubeUrl, playTrigger }: FloatingMiniPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoId = youtubeUrl ? getYouTubeVideoId(youtubeUrl) : null;
 

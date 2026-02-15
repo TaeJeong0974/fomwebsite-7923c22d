@@ -103,7 +103,6 @@ const PodcastDetail = () => {
             <FadeInSection className="space-y-4 sm:space-y-6">
               <FloatingMiniPlayer
                 youtubeUrl={episode.youtubeUrl}
-                spotifyUrl={episode.spotifyUrl}
                 playTrigger={playTrigger}
               />
               <div className="pt-2 lg:hidden">
