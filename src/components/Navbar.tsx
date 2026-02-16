@@ -142,7 +142,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto container-padding">
         {/* Nav with glass effect on scroll */}
-        <nav className={`rounded-md py-3 lg:py-4 transition-all duration-500 ease-smooth ${isScrolled ? 'glass glass-hue-shadow bg-background/80 backdrop-blur-xl px-4 sm:px-5 lg:px-6 mt-4' : 'pt-5 lg:pt-6'}`}>
+        <nav className={`rounded-md transition-all duration-500 ease-smooth ${isScrolled ? 'glass glass-hue-shadow bg-background/80 backdrop-blur-xl px-4 sm:px-5 lg:px-6 mt-4 py-2.5 lg:py-3' : 'pt-5 lg:pt-6 py-3 lg:py-4'}`}>
           {/* Mobile: Simple flex layout */}
           <div className="flex items-center justify-between md:hidden">
             <Link 
