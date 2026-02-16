@@ -640,6 +640,12 @@
   }
 }
 
+/* Thick caret */
+.thick-caret {
+  caret-shape: bar;
+  caret-width: 3px;
+}
+
 /* ==========================================
    Glass Title Animation
    ========================================== */
