@@ -104,6 +104,7 @@ const PodcastDetail = () => {
             <FadeInSection className="space-y-4 sm:space-y-6">
               <FloatingMiniPlayer
                 youtubeUrl={episode.youtubeUrl}
+                spotifyUrl={episode.spotifyUrl}
                 playTrigger={playTrigger}
                 thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : undefined}
               />
