@@ -153,7 +153,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
         }`}
         style={{ right: `${pipRight}px`, ...(pipWidth ? { width: `${pipWidth}px` } : {}) }}
       >
-      <div className="rounded-xl p-2.5 bg-background/70 backdrop-blur-xl border border-white/20 shadow-2xl shadow-black/30 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] origin-bottom-right hover:scale-[1.12] hover:-translate-x-2 hover:-translate-y-2">
+      <div className="rounded-2xl p-4 bg-background/70 backdrop-blur-xl border border-white/20 shadow-2xl shadow-black/30 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] origin-bottom-right hover:scale-[1.12] hover:-translate-x-2 hover:-translate-y-2">
           {/* Video */}
           <div
             className="relative w-full aspect-video rounded-lg overflow-hidden bg-neutral-900 ring-1 ring-white/10 cursor-pointer group/pip"
