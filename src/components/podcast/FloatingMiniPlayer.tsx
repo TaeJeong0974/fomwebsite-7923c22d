@@ -82,8 +82,9 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
   // Hide PiP when "More Episodes" section or footer comes into view
   useEffect(() => {
     const relatedSection = document.getElementById('related-episodes');
+    const stayConnected = document.getElementById('stay-connected');
     const footer = document.querySelector('footer');
-    const targets = [relatedSection, footer].filter(Boolean) as Element[];
+    const targets = [relatedSection, stayConnected, footer].filter(Boolean) as Element[];
     if (targets.length === 0) return;
 
     const visibilityMap = new Map<Element, boolean>();
