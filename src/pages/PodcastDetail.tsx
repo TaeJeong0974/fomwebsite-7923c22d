@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import ep1Poster from "@/assets/ep1-poster.png";
 import Footer from "@/components/Footer";
 import { useParams } from "react-router-dom";
@@ -10,7 +10,6 @@ import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
 import EpisodeHostsCard from "@/components/podcast/EpisodeHostsCard";
 import EpisodePullQuote from "@/components/podcast/EpisodePullQuote";
-import EpisodeWatchCard from "@/components/podcast/EpisodeWatchCard";
 import EpisodeNewsletters from "@/components/podcast/EpisodeNewsletters";
 import AboutTheHosts from "@/components/podcast/AboutTheHosts";
 import ComingSoonEpisode from "@/components/podcast/ComingSoonEpisode";
@@ -30,20 +29,7 @@ import {
 const PodcastDetail = () => {
   const { slug } = useParams();
   const [playTrigger, setPlayTrigger] = useState(0);
-  const [videoOffScreen, setVideoOffScreen] = useState(false);
-  const videoRef = useRef<HTMLDivElement>(null);
   const episode = getEpisodeBySlug(slug || "");
-
-  useEffect(() => {
-    const el = videoRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setVideoOffScreen(!entry.isIntersecting),
-      { threshold: 0 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   const isIntro = !episode?.comingSoon && episode?.slug === "intro-to-fom";
   const seo = buildEpisodeSeo(episode);
@@ -116,13 +102,11 @@ const PodcastDetail = () => {
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-10 sm:space-y-14 lg:space-y-20">
             <FadeInSection className="space-y-4 sm:space-y-6">
-              <div ref={videoRef}>
-                <FloatingMiniPlayer
-                  youtubeUrl={episode.youtubeUrl}
-                  playTrigger={playTrigger}
-                  thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : undefined}
-                />
-              </div>
+              <FloatingMiniPlayer
+                youtubeUrl={episode.youtubeUrl}
+                playTrigger={playTrigger}
+                thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : undefined}
+              />
               <div className="pt-2 lg:hidden">
                 <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
               </div>
@@ -205,8 +189,7 @@ const PodcastDetail = () => {
           </div>
 
           {/* Sidebar */}
-          <div className="hidden lg:flex lg:flex-col space-y-6">
-            <FadeInSection>
+          <FadeInSection className="hidden lg:flex lg:flex-col space-y-6">
             {!isIntro && (
               <EpisodeGuestCard
                 name={episode.name}
@@ -216,22 +199,8 @@ const PodcastDetail = () => {
                 linkedInUrl={episode.linkedInUrl}
               />
             )}
-            </FadeInSection>
-            <FadeInSection>
-              <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />
-            </FadeInSection>
-            {videoOffScreen && (
-              <FadeInSection>
-                <EpisodeWatchCard
-                  youtubeUrl={episode.youtubeUrl}
-                  spotifyUrl={episode.spotifyUrl}
-                  thumbnailUrl={thumbnailUrl}
-                  thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : undefined}
-                  onPlayClick={handlePlayFromBar}
-                />
-              </FadeInSection>
-            )}
-          </div>
+            <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />
+          </FadeInSection>
         </div>
 
         <RelatedEpisodes episodes={otherEpisodes} title="More Episodes" />
