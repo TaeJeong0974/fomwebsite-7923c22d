@@ -259,6 +259,16 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
 
   const fieldClass = "w-full px-4 py-3 rounded-xl border border-white/30 bg-white/40 backdrop-blur-sm text-foreground text-body-sm focus:ring-2 focus:ring-primary/30 focus:border-primary/50 outline-none transition-all";
   const labelClass = "text-body-sm font-medium text-muted-foreground";
+  const sectionHeader = (label: string, number?: number) => (
+    <div className="flex items-center gap-3">
+      {number !== undefined && (
+        <span className="flex items-center justify-center w-6 h-6 rounded-full bg-black/[0.06] text-[11px] font-medium text-muted-foreground">{number}</span>
+      )}
+      <h3 className="text-body font-medium text-foreground">{label}</h3>
+      <div className="flex-1 h-px bg-black/[0.08]" />
+    </div>
+  );
+  const sectionDivider = <div className="pt-2 pb-1"><div className="h-px bg-black/[0.06]" /></div>;
 
   return (
     <div>
@@ -269,7 +279,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
 
       <div className="space-y-6 max-w-2xl">
         {/* ── 1. Header ── */}
-        <h3 className="text-body font-medium text-foreground">Header</h3>
+        {sectionHeader("Header", 1)}
         <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5 space-y-4">
           <div className="space-y-2">
             <label className={labelClass}>Status</label>
@@ -327,7 +337,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
         </div>
 
         {/* ── 2. Video ── */}
-        <h3 className="text-body font-medium text-foreground">Video</h3>
+        {sectionHeader("Video", 2)}
         <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5 space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1">
@@ -350,7 +360,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
         </div>
 
         {/* ── 3. About this Episode ── */}
-        <h3 className="text-body font-medium text-foreground">About this Episode</h3>
+        {sectionHeader("About this Episode", 3)}
         <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5 space-y-4">
           <div className="space-y-1">
             <label className={labelClass}>Short Description</label>
@@ -365,7 +375,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
         </div>
 
         {/* ── 4. Quote ── */}
-        <h3 className="text-body font-medium text-foreground">Quote</h3>
+        {sectionHeader("Quote", 4)}
         <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5 space-y-4">
           <div className="space-y-1">
             <textarea className={`${fieldClass} min-h-[80px]`} value={form.pull_quote} onChange={(e) => set("pull_quote", e.target.value)} placeholder="A memorable quote from the episode…" />
@@ -383,7 +393,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
         </div>
 
         {/* ── 5. Topics Covered ── */}
-        <h3 className="text-body font-medium text-foreground">Topics Covered</h3>
+        {sectionHeader("Topics Covered", 5)}
         <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5 space-y-4">
           <div className="flex gap-2">
             <input className={fieldClass} value={topicInput} onChange={(e) => setTopicInput(e.target.value)} placeholder="Add a topic" onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTopic())} />
@@ -396,9 +406,11 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
             onMove={moveTopic}
           />
         </div>
+        {/* ── Group divider: People ── */}
+        {sectionDivider}
 
         {/* ── 6. About the Speaker ── */}
-        <h3 className="text-body font-medium text-foreground">About the Speaker</h3>
+        {sectionHeader("About the Speaker", 6)}
         <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5 space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1">
@@ -442,7 +454,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
         </div>
 
         {/* ── 7. About the Host ── */}
-        <h3 className="text-body font-medium text-foreground">About the Host</h3>
+        {sectionHeader("About the Host", 7)}
         <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5">
           <div className="flex flex-wrap gap-2">
             {allHosts.map((h) => (
@@ -462,9 +474,11 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
             {allHosts.length === 0 && <p className="text-body-sm text-muted-foreground">No hosts available</p>}
           </div>
         </div>
+        {/* ── Group divider: Assets & Publishing ── */}
+        {sectionDivider}
 
         {/* ── 8. Images & SEO ── */}
-        <h3 className="text-body font-medium text-foreground">Images & SEO</h3>
+        {sectionHeader("Images & SEO", 8)}
         <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1">
@@ -495,7 +509,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
         </div>
 
         {/* ── 9. Publishing ── */}
-        <h3 className="text-body font-medium text-foreground">Publishing</h3>
+        {sectionHeader("Publishing", 9)}
         <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5">
           <div className="space-y-1">
             <label className={labelClass}>Publish Date</label>
