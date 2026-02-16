@@ -79,7 +79,7 @@ const SubscribeDrawer = ({ open, onOpenChange, guestName, guestSlug }: Subscribe
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-md bg-[#1a1a1a]/60 backdrop-blur-3xl border-l border-white/[0.08] shadow-[-20px_0_50px_-10px_rgba(0,0,0,0.5)] overflow-hidden"
+            className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-md bg-white backdrop-blur-3xl border-l border-black/[0.08] shadow-[-20px_0_50px_-10px_rgba(0,0,0,0.15)] overflow-hidden"
           >
             {/* Blurred guest background */}
             {guestImage && (
@@ -96,7 +96,7 @@ const SubscribeDrawer = ({ open, onOpenChange, guestName, guestSlug }: Subscribe
             {/* Close button */}
             <motion.button
               onClick={handleClose}
-              className="absolute right-6 top-6 w-10 h-10 rounded-full bg-white/15 backdrop-blur-2xl border border-white/25 flex items-center justify-center text-white/80 hover:text-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.2)] hover:bg-white/25 hover:shadow-[0_4px_16px_-4px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.3)] transition-[background,box-shadow] duration-300 focus:outline-none focus-ring"
+              className="absolute right-6 top-6 w-10 h-10 rounded-full bg-black/5 border border-black/10 flex items-center justify-center text-foreground/60 hover:text-foreground hover:bg-black/10 transition-[background,box-shadow] duration-300 focus:outline-none focus-ring"
               variants={buttonVariants}
               initial="initial"
               whileHover="hover"
@@ -117,13 +117,13 @@ const SubscribeDrawer = ({ open, onOpenChange, guestName, guestSlug }: Subscribe
                     animate="visible"
                     exit="exit"
                   >
-                    <motion.p variants={fadeUpItem} className="text-[0.8rem] font-medium uppercase tracking-[0.1em] text-white mb-3">
+                    <motion.p variants={fadeUpItem} className="text-[0.8rem] font-medium uppercase tracking-[0.1em] text-foreground/50 mb-3">
                       STAY UPDATED
                     </motion.p>
-                    <motion.h2 variants={fadeUpItem} className="text-display-lg font-semibold text-white mb-6">
+                    <motion.h2 variants={fadeUpItem} className="text-display-lg font-semibold text-foreground mb-6">
                       {guestName ? (guestHeadlines[guestName] || `${guestName} Is Coming Soon`) : "Never Miss an Episode"}
                     </motion.h2>
-                    <motion.p variants={fadeUpItem} className="text-body text-white/60 mb-8 max-w-sm">
+                    <motion.p variants={fadeUpItem} className="text-body text-foreground/60 mb-8 max-w-sm">
                       {guestName ? `Get notified when ${guestName}'s episode drops.` : "Get notified when new episodes drop and receive exclusive content."}
                     </motion.p>
 
@@ -135,17 +135,17 @@ const SubscribeDrawer = ({ open, onOpenChange, guestName, guestSlug }: Subscribe
                         placeholder="you@example.com"
                         required
                         autoFocus
-                        className="w-full px-6 py-4 text-body font-mono bg-black/40 backdrop-blur-xl border border-white/[0.08] rounded-full text-white placeholder:text-white/30 focus-ring hover-transition shadow-[inset_0_1px_2px_rgba(0,0,0,0.3)]"
+                        className="w-full px-6 py-4 text-body font-mono bg-black/[0.03] border border-black/10 rounded-full text-foreground placeholder:text-foreground/30 focus-ring hover-transition"
                       />
                       <button
                         type="submit"
-                        className="w-full px-6 py-4 text-body font-medium bg-black/30 backdrop-blur-xl border border-white/[0.08] rounded-full text-white hover:bg-black/40 hover-transition shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]"
+                        className="w-full px-6 py-4 text-body font-medium bg-foreground text-white border border-foreground rounded-full hover:bg-foreground/90 hover-transition"
                       >
                         Subscribe
                       </button>
                     </motion.form>
 
-                    <motion.p variants={fadeUpItem} className="mt-6 text-body text-white/30">
+                    <motion.p variants={fadeUpItem} className="mt-6 text-body text-foreground/30">
                       No spam. Unsubscribe anytime.
                     </motion.p>
                   </motion.div>
@@ -158,15 +158,15 @@ const SubscribeDrawer = ({ open, onOpenChange, guestName, guestSlug }: Subscribe
                     exit="exit"
                     className="text-center"
                   >
-                    <motion.div variants={fadeUpItem} className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-6">
-                      <svg className="w-10 h-10 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </motion.div>
-                    <motion.h3 variants={fadeUpItem} className="text-display-md text-white mb-3">You're In!</motion.h3>
-                    <motion.p variants={fadeUpItem} className="text-body text-white/60">
-                      We'll notify you when new episodes are available.
-                    </motion.p>
+                    <motion.div variants={fadeUpItem} className="w-20 h-20 rounded-full bg-foreground/10 flex items-center justify-center mx-auto mb-6">
+                       <svg className="w-10 h-10 text-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                       </svg>
+                     </motion.div>
+                     <motion.h3 variants={fadeUpItem} className="text-display-md text-foreground mb-3">You're In!</motion.h3>
+                     <motion.p variants={fadeUpItem} className="text-body text-foreground/60">
+                       We'll notify you when new episodes are available.
+                     </motion.p>
                   </motion.div>
                 )}
               </AnimatePresence>
