@@ -17,14 +17,19 @@ const AdminEpisodes = () => {
   const [episodes, setEpisodes] = useState<Episode[]>([]);
   const [editing, setEditing] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const fetchEpisodes = async () => {
-    const { data, error } = await supabase
+    setLoading(true);
+    setError(null);
+    const { data, error: err } = await supabase
       .from("episodes")
       .select("id, slug, title, guest_name, guest_company, published, episode_number")
       .order("episode_number", { ascending: true });
-    if (error) toast.error(error.message);
+    if (err) { setError(err.message); toast.error(err.message); }
     else setEpisodes(data || []);
+    setLoading(false);
   };
 
   useEffect(() => { fetchEpisodes(); }, []);
@@ -38,6 +43,15 @@ const AdminEpisodes = () => {
 
   if (editing) return <EpisodeForm episodeId={editing} onDone={() => { setEditing(null); fetchEpisodes(); }} />;
   if (creating) return <EpisodeForm onDone={() => { setCreating(false); fetchEpisodes(); }} />;
+
+  if (loading) return <div className="py-12 text-center text-muted-foreground text-body-sm">Loading episodes…</div>;
+
+  if (error) return (
+    <div className="py-12 text-center space-y-3">
+      <p className="text-destructive text-body-sm">Failed to load episodes: {error}</p>
+      <button onClick={fetchEpisodes} className="text-body-sm text-primary hover:underline">Retry</button>
+    </div>
+  );
 
   return (
     <div>
