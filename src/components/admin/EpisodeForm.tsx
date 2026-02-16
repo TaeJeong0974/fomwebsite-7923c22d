@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { adminApi } from "@/lib/adminApi";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Upload } from "lucide-react";
+import { Upload, GripVertical, ChevronUp, ChevronDown } from "lucide-react";
 
 interface Props {
   episodeId?: string;
@@ -155,6 +155,14 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
 
   const removeTopic = (i: number) => set("topics", form.topics.filter((_, idx) => idx !== i));
 
+  const moveTopic = (i: number, dir: -1 | 1) => {
+    const next = i + dir;
+    if (next < 0 || next >= form.topics.length) return;
+    const updated = [...form.topics];
+    [updated[i], updated[next]] = [updated[next], updated[i]];
+    set("topics", updated);
+  };
+
   const addNewsletter = () => {
     if (!nlForm.title.trim() || !nlForm.url.trim()) return;
     setNewsletters((prev) => [...prev, { title: nlForm.title.trim(), url: nlForm.url.trim() }]);
@@ -277,12 +285,21 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
           <input className={fieldClass} value={topicInput} onChange={(e) => setTopicInput(e.target.value)} placeholder="Add a topic" onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTopic())} />
           <button type="button" onClick={addTopic} className="px-4 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap">Add</button>
         </div>
-        <div className="flex flex-wrap gap-2">
+        <div className="space-y-1">
           {form.topics.map((t, i) => (
-            <span key={i} className="badge-status gap-2">
-              {t}
-              <button onClick={() => removeTopic(i)} className="text-destructive hover:text-destructive/80">×</button>
-            </span>
+            <div key={i} className="flex items-center gap-2 py-1.5 px-3 rounded-lg bg-secondary/50 border border-border/50 group">
+              <GripVertical className="h-3.5 w-3.5 text-muted-foreground/50 shrink-0" />
+              <span className="text-body-sm text-foreground flex-1">{t}</span>
+              <div className="flex items-center gap-0.5 shrink-0">
+                <button onClick={() => moveTopic(i, -1)} disabled={i === 0} className="p-0.5 rounded text-muted-foreground hover:text-foreground disabled:opacity-30 transition-colors">
+                  <ChevronUp className="h-3.5 w-3.5" />
+                </button>
+                <button onClick={() => moveTopic(i, 1)} disabled={i === form.topics.length - 1} className="p-0.5 rounded text-muted-foreground hover:text-foreground disabled:opacity-30 transition-colors">
+                  <ChevronDown className="h-3.5 w-3.5" />
+                </button>
+                <button onClick={() => removeTopic(i)} className="p-0.5 rounded text-destructive hover:text-destructive/80 transition-colors ml-1">×</button>
+              </div>
+            </div>
           ))}
         </div>
 
