@@ -32,7 +32,7 @@ const EpisodeCardContent = ({
   return (
     <div className="card-content-bottom card-padding-lg z-[3]">
       {/* Default state: Name + Title/Company */}
-      <div className="md:group-hover:opacity-0 transition-opacity duration-500 ease-[cubic-bezier(0.33,1,0.68,1)]">
+      <div className="md:group-hover:opacity-0 transition-opacity duration-500 ease-smooth">
         <h3 className={`font-display ${textSize} text-white leading-[0.95] tracking-normal`}>
           {isIntro ? (
             <>
@@ -61,7 +61,7 @@ const EpisodeCardContent = ({
 
       {/* Hover state: Overview title morphs in */}
       {!isIntro && !isUpcoming && showOverview && episode.overview && (
-        <div className="hidden md:block absolute bottom-0 left-0 right-0 card-padding-lg opacity-0 md:group-hover:opacity-100 translate-y-2 md:group-hover:translate-y-0 transition-all duration-500 delay-100 ease-[cubic-bezier(0.33,1,0.68,1)]">
+        <div className="hidden md:block absolute bottom-0 left-0 right-0 card-padding-lg opacity-0 md:group-hover:opacity-100 translate-y-3 md:group-hover:translate-y-0 transition-all duration-600 delay-150 ease-smooth">
           <p className="font-display text-xl sm:text-2xl lg:text-2xl text-white leading-[1.15] tracking-normal font-medium">
             {episode.overview}
           </p>
