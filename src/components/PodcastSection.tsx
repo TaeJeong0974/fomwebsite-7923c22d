@@ -246,7 +246,7 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
                               x: { duration: isHovered ? 0.6 : 0.15, ease: liquidEase },
                             }}
                           >
-                            {episode.name}
+                            {isIntroEpisode ? 'Introduction' : episode.name}
                           </motion.h3>
                           <p className="hidden lg:block text-sm pt-1.5 text-foreground list-focus-transition">
                             {isIntroEpisode 
