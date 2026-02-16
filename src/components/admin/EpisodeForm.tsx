@@ -337,7 +337,13 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
         </div>
         <div className="space-y-1">
           <label className={labelClass}>Attribution</label>
-          <input className={fieldClass} value={form.pull_quote_attribution} onChange={(e) => set("pull_quote_attribution", e.target.value)} />
+          <select className={`${fieldClass} bg-background`} value={form.pull_quote_attribution} onChange={(e) => set("pull_quote_attribution", e.target.value)}>
+            <option value="">Select speaker…</option>
+            {form.guest_name && <option value={form.guest_name}>{form.guest_name} (Guest)</option>}
+            {allHosts.map((h) => (
+              <option key={h.id} value={h.name}>{h.name} (Host)</option>
+            ))}
+          </select>
         </div>
 
         {/* ── 5. Topics Covered ── */}
