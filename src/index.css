@@ -2,8 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: hsl(24 95% 50%);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(24 95% 42%);
+}
+html {
+  scrollbar-color: hsl(24 95% 50%) transparent;
+  scrollbar-width: thin;
+}
+
 /* ==========================================
-   Font Face Definitions
    ========================================== */
 @font-face {
   font-family: 'ITC Avant Garde Gothic Pro';
