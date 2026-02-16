@@ -83,52 +83,8 @@ export const EpisodeDataProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [episodesRes, hostsRes, episodeHostsRes] = await Promise.all([
-          supabase.from("episodes").select("*").order("episode_number"),
-          supabase.from("hosts").select("*"),
-          supabase.from("episode_hosts").select("episode_id, host_id"),
-        ]);
-
-        if (episodesRes.error || hostsRes.error || episodeHostsRes.error) {
-          console.error("DB fetch failed, using static fallback");
-          setLoading(false);
-          return;
-        }
-
-        // Build host lookup
-        const hostMap = new Map<string, PodcastHost>();
-        for (const h of hostsRes.data) {
-          hostMap.set(h.id, mapDbHost(h));
-        }
-
-        // Build episode -> hosts mapping
-        const episodeHostMap = new Map<string, PodcastHost[]>();
-        for (const eh of episodeHostsRes.data) {
-          const host = hostMap.get(eh.host_id);
-          if (host) {
-            const existing = episodeHostMap.get(eh.episode_id) || [];
-            existing.push(host);
-            episodeHostMap.set(eh.episode_id, existing);
-          }
-        }
-
-        const mappedEpisodes = episodesRes.data.map((row) =>
-          mapDbEpisode(row, episodeHostMap.get(row.id) || [])
-        );
-
-        setEpisodes(mappedEpisodes);
-
-        const allHosts = Array.from(hostMap.values());
-        if (allHosts.length > 0) setHosts(allHosts);
-      } catch (err) {
-        console.error("Failed to fetch episode data:", err);
-      }
-      setLoading(false);
-    };
-
-    fetchData();
+    // DB sync disabled — using static data for now
+    setLoading(false);
   }, []);
 
   const value = useMemo(
