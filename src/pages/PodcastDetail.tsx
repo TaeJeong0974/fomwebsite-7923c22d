@@ -36,11 +36,14 @@ const PodcastDetail = () => {
 
   const isIntro = !episode?.comingSoon && episode?.slug === "intro-to-fom";
   const seo = buildEpisodeSeo(episode);
-  const ogImage = isIntro
-    ? "https://fomwebsite.lovable.app/images/ep0-og.png"
-    : episode?.youtubeUrl
-      ? getYouTubeThumbnail(episode.youtubeUrl, "hqdefault")
-      : null;
+
+  const OG_OVERRIDES: Record<string, string> = {
+    "intro-to-fom": "https://fomwebsite.lovable.app/images/ep0-og.png",
+    "meagen-eisenberg": "https://fomwebsite.lovable.app/images/ep1-og.png",
+  };
+
+  const ogImage = OG_OVERRIDES[episode?.slug || ""]
+    ?? (episode?.youtubeUrl ? getYouTubeThumbnail(episode.youtubeUrl, "hqdefault") : null);
 
   useDocumentMeta({
     title: seo.title,
