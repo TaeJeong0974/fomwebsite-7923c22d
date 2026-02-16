@@ -106,7 +106,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
                   opacity: 0,
                   transform: 'translate(0px, 0px) scale(0.8)',
                   willChange: 'transform, opacity',
-                  transition: 'opacity 150ms ease-out',
+                  transition: 'transform 300ms cubic-bezier(0.22, 1, 0.36, 1), opacity 150ms ease-out',
                 }}
               >
                 <Play className="w-5 h-5 text-foreground fill-foreground ml-0.5" />
