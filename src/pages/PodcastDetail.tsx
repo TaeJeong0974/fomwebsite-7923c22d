@@ -221,17 +221,15 @@ const PodcastDetail = () => {
               <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />
             </FadeInSection>
             {videoOffScreen && (
-              <div className="sticky top-24">
-                <FadeInSection>
-                  <EpisodeWatchCard
-                    youtubeUrl={episode.youtubeUrl}
-                    spotifyUrl={episode.spotifyUrl}
-                    thumbnailUrl={thumbnailUrl}
-                    thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : undefined}
-                    onPlayClick={handlePlayFromBar}
-                  />
-                </FadeInSection>
-              </div>
+              <FadeInSection>
+                <EpisodeWatchCard
+                  youtubeUrl={episode.youtubeUrl}
+                  spotifyUrl={episode.spotifyUrl}
+                  thumbnailUrl={thumbnailUrl}
+                  thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : undefined}
+                  onPlayClick={handlePlayFromBar}
+                />
+              </FadeInSection>
             )}
           </div>
         </div>
