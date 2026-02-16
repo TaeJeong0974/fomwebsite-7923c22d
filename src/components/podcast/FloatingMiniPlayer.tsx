@@ -127,9 +127,9 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
         </div>
       </div>
 
-      {/* Floating PiP Mini Player - always shows on scroll, not just when playing */}
+      {/* Floating PiP Mini Player - aligned to container right edge */}
       <div
-        className={`hidden lg:block fixed bottom-6 right-8 2xl:right-12 z-50 transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        className={`hidden lg:block fixed bottom-6 right-[2rem] xl:right-[4rem] 2xl:right-[6rem] z-50 transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           isPipVisible
             ? 'translate-y-0 opacity-100 scale-100'
             : 'translate-y-4 opacity-0 scale-95 pointer-events-none'
