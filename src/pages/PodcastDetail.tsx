@@ -155,9 +155,9 @@ const PodcastDetail = () => {
                     href={episode.linkedInUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-muted-foreground hover:text-foreground hover-transition inline-block mt-3"
+                    className="group text-sm text-muted-foreground hover:text-foreground hover-transition inline-block mt-3"
                   >
-                    LinkedIn →
+                    LinkedIn <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
                   </a>
                 )}
               </FadeInSection>
