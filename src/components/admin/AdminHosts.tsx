@@ -97,7 +97,7 @@ const AdminHosts = () => {
 
   if (editing) {
     return (
-      <div className="max-w-full space-y-6">
+      <div className="w-full space-y-6">
         <div className="flex items-center justify-between">
           <h2 className="font-semibold text-dark-foreground" style={{ fontSize: 'clamp(1.25rem, 3vw, 2rem)' }}>{editing.id === "new" ? "New Host" : "Edit Host"}</h2>
           <button onClick={cancel} className="text-sm text-gray-400 hover:text-gray-700 transition-colors">← Back</button>
