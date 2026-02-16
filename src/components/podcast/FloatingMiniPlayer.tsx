@@ -93,12 +93,12 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
                 </div>
               </div>
               <div
-                className="hidden sm:flex absolute z-10 pointer-events-none items-center justify-center w-14 h-14 rounded-full bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)] transition-opacity duration-200"
+                className="hidden sm:flex absolute left-0 top-0 z-10 pointer-events-none items-center justify-center w-14 h-14 rounded-full bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)]"
                 style={{
-                  left: mousePos.x - 28,
-                  top: mousePos.y - 28,
+                  transform: `translate(${mousePos.x - 28}px, ${mousePos.y - 28}px) scale(${isHovering ? 1 : 0.8})`,
                   opacity: isHovering ? 1 : 0,
-                  transform: `scale(${isHovering ? 1 : 0.8})`,
+                  willChange: 'transform, opacity',
+                  transition: 'opacity 150ms ease-out',
                 }}
               >
                 <Play className="w-5 h-5 text-foreground fill-foreground ml-0.5" />
