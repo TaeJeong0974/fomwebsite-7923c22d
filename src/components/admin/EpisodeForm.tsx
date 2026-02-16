@@ -290,7 +290,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
   return (
     <div>
       <div className="flex items-center justify-between mb-6">
-        <h2 className="text-section-header font-medium text-foreground">{episodeId ? "Edit Episode" : "New Episode"}</h2>
+        <h2 className="text-section-header font-medium text-dark-foreground">{episodeId ? "Edit Episode" : "New Episode"}</h2>
         <button onClick={onDone} className="text-body-sm text-muted-foreground hover:text-foreground">← Back</button>
       </div>
 

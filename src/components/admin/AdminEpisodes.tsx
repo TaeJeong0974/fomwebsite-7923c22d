@@ -92,7 +92,7 @@ const AdminEpisodes = () => {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-section-header font-medium text-foreground">Episodes</h2>
+        <h2 className="text-section-header font-medium text-dark-foreground">Episodes</h2>
         <button onClick={() => setCreating(true)} className="px-4 py-2.5 rounded-xl bg-foreground text-background text-body-sm font-medium hover:opacity-90 transition-opacity">
           + New Episode
         </button>

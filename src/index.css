@@ -74,6 +74,7 @@ html {
     /* Core Colors */
     --background: 0 0% 100%;
     --foreground: 240 10% 10%;
+    --dark-foreground: 0 0% 0%;
     --card: 0 0% 100%;
     --card-foreground: 240 10% 10%;
     --popover: 0 0% 100%;
@@ -119,6 +120,7 @@ html {
   .dark {
     --background: 240 10% 4%;
     --foreground: 0 0% 98%;
+    --dark-foreground: 0 0% 100%;
     --card: 240 10% 6%;
     --card-foreground: 0 0% 98%;
     --popover: 240 10% 6%;

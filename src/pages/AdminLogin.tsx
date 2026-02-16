@@ -38,7 +38,7 @@ const AdminLogin = () => {
         onSubmit={handleSubmit}
         className="w-full max-w-sm p-8 rounded-2xl glass border border-white/20 shadow-glass space-y-6"
       >
-        <h1 className="text-display-md text-center text-foreground">Admin</h1>
+        <h1 className="text-display-md text-center text-dark-foreground">Admin</h1>
         <div className="space-y-2">
           <label className="text-body-sm text-muted-foreground">Password</label>
           <p className="text-body-sm text-muted-foreground/60 italic">Hint: FOMPODCAST</p>
