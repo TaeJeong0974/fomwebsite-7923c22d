@@ -21,7 +21,7 @@ const FadeInSection = ({ children, className, delay = 0, id, ...rest }: FadeInSe
     variants={fadeInVariants}
     initial="hidden"
     whileInView="visible"
-    viewport={{ once: true, amount: 0.15 }}
+    viewport={{ once: true, amount: 0.05, margin: "100px 0px 0px 0px" }}
     transition={{ duration: 1.0, delay, ease: liquidEase }}
     {...rest}
   >
