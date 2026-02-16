@@ -436,13 +436,13 @@ html {
   }
 
   @keyframes hue-shadow-cycle {
-    0%   { box-shadow: 0 4px 24px -4px hsl(280 70% 50% / 0.25); }
-    16%  { box-shadow: 0 4px 24px -4px hsl(340 80% 55% / 0.25); }
-    33%  { box-shadow: 0 4px 24px -4px hsl(20 90% 55% / 0.25); }
-    50%  { box-shadow: 0 4px 24px -4px hsl(45 90% 50% / 0.25); }
-    66%  { box-shadow: 0 4px 24px -4px hsl(160 60% 45% / 0.25); }
-    83%  { box-shadow: 0 4px 24px -4px hsl(220 70% 55% / 0.25); }
-    100% { box-shadow: 0 4px 24px -4px hsl(280 70% 50% / 0.25); }
+    0%   { box-shadow: 0 2px 12px -3px hsl(280 70% 50% / 0.18); }
+    16%  { box-shadow: 0 2px 12px -3px hsl(340 80% 55% / 0.18); }
+    33%  { box-shadow: 0 2px 12px -3px hsl(20 90% 55% / 0.18); }
+    50%  { box-shadow: 0 2px 12px -3px hsl(45 90% 50% / 0.18); }
+    66%  { box-shadow: 0 2px 12px -3px hsl(160 60% 45% / 0.18); }
+    83%  { box-shadow: 0 2px 12px -3px hsl(220 70% 55% / 0.18); }
+    100% { box-shadow: 0 2px 12px -3px hsl(280 70% 50% / 0.18); }
   }
 
   .glass-subtle {
