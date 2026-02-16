@@ -41,6 +41,7 @@ const AdminLogin = () => {
         <h1 className="text-display-md text-center text-foreground">Admin</h1>
         <div className="space-y-2">
           <label className="text-body-sm text-muted-foreground">Password</label>
+          <p className="text-body-sm text-muted-foreground/60 italic">Hint: FOMPODCAST</p>
           <input
             type="password"
             value={password}
