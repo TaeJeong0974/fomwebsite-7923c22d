@@ -116,13 +116,15 @@ const Footer = () => {
 
       {/* Giant FOM logo + copyright */}
       <div className="container mx-auto container-padding">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1.2, delay: 0.2, ease: liquidEase }}
-        >
-          <AnimatedFooterLogo />
-        </motion.div>
+        {isHomePage && (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1.2, delay: 0.2, ease: liquidEase }}
+          >
+            <AnimatedFooterLogo />
+          </motion.div>
+        )}
         <motion.div
           className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 py-6 sm:py-8"
           initial={{ opacity: 0 }}
