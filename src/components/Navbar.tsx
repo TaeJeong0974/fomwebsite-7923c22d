@@ -138,11 +138,11 @@ const Navbar = () => {
       initial="hidden"
       animate="visible"
       variants={fadeDownVariant}
-      className={`z-50 transition-all duration-300 ${isScrolled ? 'fixed top-0 left-0 right-0' : 'relative'}`}
+      className={`z-50 transition-all duration-500 ease-smooth ${isScrolled ? 'fixed top-0 left-0 right-0' : 'relative'}`}
     >
       <div className="container mx-auto container-padding">
         {/* Nav with glass effect on scroll */}
-        <nav className={`rounded-md py-3 lg:py-4 transition-all duration-300 ${isScrolled ? 'glass glass-hue-shadow bg-background/80 backdrop-blur-xl px-4 sm:px-5 lg:px-6 mt-4' : 'pt-5 lg:pt-6'}`}>
+        <nav className={`rounded-md py-3 lg:py-4 transition-all duration-500 ease-smooth ${isScrolled ? 'glass glass-hue-shadow bg-background/80 backdrop-blur-xl px-4 sm:px-5 lg:px-6 mt-4' : 'pt-5 lg:pt-6'}`}>
           {/* Mobile: Simple flex layout */}
           <div className="flex items-center justify-between md:hidden">
             <Link 
