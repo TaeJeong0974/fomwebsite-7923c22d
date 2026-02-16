@@ -92,7 +92,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
     <>
       {/* Main Video Player - Full width on mobile */}
       <div ref={playerWrapperRef} className="-ml-4 -mr-4 w-[calc(100%+2rem)] sm:ml-0 sm:mr-0 sm:w-full">
-        <div className="relative aspect-video sm:rounded-xl overflow-hidden bg-black/90 sm:ring-1 sm:ring-white/10 sm:shadow-2xl sm:shadow-black/20">
+        <div className="relative aspect-video sm:rounded-xl overflow-hidden bg-neutral-900 sm:ring-1 sm:ring-white/10 sm:shadow-2xl sm:shadow-black/20">
           {isPlaying && videoId ? (
             <iframe
               src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1&playsinline=1`}
@@ -102,18 +102,20 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
               className="absolute inset-0 w-full h-full"
             />
           ) : (
-            <div 
+            <div
               ref={containerRef}
               className="absolute inset-0 group cursor-pointer"
               onClick={handlePlay}
-              style={{
-                backgroundImage: `url(${thumbnailImage || thumbnailUrl || guestBg})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
             >
+              <img
+                src={thumbnailImage || thumbnailUrl || guestBg}
+                alt="Episode thumbnail"
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="eager"
+                decoding="async"
+              />
               {/* Static Play Button - always visible */}
-              <div className="absolute top-6 right-6 lg:top-8 lg:right-8">
+              <div className="absolute top-6 right-6 lg:top-8 lg:right-8 z-10">
                 <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg transition-transform duration-200 group-hover:scale-110">
                   <Play className="w-5 h-5 text-foreground fill-foreground ml-0.5" />
                 </div>
@@ -134,7 +136,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
       <div className="rounded-xl p-2.5 bg-background/70 backdrop-blur-xl border border-white/20 shadow-2xl shadow-black/30">
           {/* Video */}
           <div
-            className="relative w-72 sm:w-80 aspect-video rounded-lg overflow-hidden bg-black ring-1 ring-white/10 cursor-pointer group"
+            className="relative w-72 sm:w-80 aspect-video rounded-lg overflow-hidden bg-neutral-900 ring-1 ring-white/10 cursor-pointer group"
             onClick={handlePipClick}
           >
             {isPlaying && videoId ? (
@@ -145,13 +147,12 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
                 className="absolute inset-0 w-full h-full pointer-events-none"
               />
             ) : (
-              <div
-                className="absolute inset-0"
-                style={{
-                  backgroundImage: `url(${thumbnailImage || thumbnailUrl || guestBg})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
+              <img
+                src={thumbnailImage || thumbnailUrl || guestBg}
+                alt="Episode thumbnail"
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+                decoding="async"
               />
             )}
             {/* Close button */}
