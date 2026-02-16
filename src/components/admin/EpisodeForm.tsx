@@ -94,6 +94,19 @@ const SortableTopicList = ({ topics, onReorder, onRemove, onMove }: {
   );
 };
 
+// ── Glass Section Container ──
+const GlassSection = ({ label, number, children }: { label: string; number: number; children: React.ReactNode }) => (
+  <div className="rounded-2xl border border-white/20 bg-white/30 backdrop-blur-sm shadow-glass overflow-hidden">
+    <div className="flex items-center gap-3 px-5 py-3 border-b border-white/15 bg-white/20">
+      <span className="flex items-center justify-center w-6 h-6 rounded-full bg-foreground/[0.08] text-[11px] font-semibold text-muted-foreground">{number}</span>
+      <h3 className="text-body-sm font-semibold text-foreground tracking-wide uppercase">{label}</h3>
+    </div>
+    <div className="p-5 space-y-4">
+      {children}
+    </div>
+  </div>
+);
+
 const EpisodeForm = ({ episodeId, onDone }: Props) => {
   const [form, setForm] = useState(EMPTY);
   const [topicInput, setTopicInput] = useState("");
@@ -259,16 +272,12 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
 
   const fieldClass = "w-full px-4 py-3 rounded-xl border border-white/30 bg-white/40 backdrop-blur-sm text-foreground text-body-sm focus:ring-2 focus:ring-primary/30 focus:border-primary/50 outline-none transition-all";
   const labelClass = "text-body-sm font-medium text-muted-foreground";
-  const sectionHeader = (label: string, number?: number) => (
-    <div className="flex items-center gap-3">
-      {number !== undefined && (
-        <span className="flex items-center justify-center w-6 h-6 rounded-full bg-black/[0.06] text-[11px] font-medium text-muted-foreground">{number}</span>
-      )}
-      <h3 className="text-body font-medium text-foreground">{label}</h3>
-      <div className="flex-1 h-px bg-black/[0.08]" />
+
+  const groupDivider = (
+    <div className="flex items-center gap-4 py-1">
+      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
     </div>
   );
-  const sectionDivider = <div className="pt-2 pb-1"><div className="h-px bg-black/[0.06]" /></div>;
 
   return (
     <div>
@@ -279,8 +288,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
 
       <div className="space-y-6 max-w-2xl">
         {/* ── 1. Header ── */}
-        {sectionHeader("Header", 1)}
-        <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5 space-y-4">
+        <GlassSection label="Header" number={1}>
           <div className="space-y-2">
             <label className={labelClass}>Status</label>
             <div className="flex gap-2">
@@ -305,7 +313,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
               ))}
             </div>
             <p className="text-xs text-muted-foreground">
-              {form.status === 'upcoming' ? 'Card on homepage, no detail page' : 
+              {form.status === 'upcoming' ? 'Card on homepage, no detail page' :
                form.status === 'published' ? 'Full detail page with video' :
                form.status === 'draft' ? 'Not visible on site' : 'Soft-deleted'}
             </p>
@@ -334,11 +342,10 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
             <input className={fieldClass} value={form.subtitle} onChange={(e) => set("subtitle", e.target.value)} />
             <p className="text-xs text-muted-foreground mt-1">One-line hook shown on cards and as the hero headline</p>
           </div>
-        </div>
+        </GlassSection>
 
         {/* ── 2. Video ── */}
-        {sectionHeader("Video", 2)}
-        <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5 space-y-4">
+        <GlassSection label="Video" number={2}>
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1">
               <label className={labelClass}>YouTube URL</label>
@@ -357,11 +364,10 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
               <input className={fieldClass} value={form.preview_video_url} onChange={(e) => set("preview_video_url", e.target.value)} />
             </div>
           </div>
-        </div>
+        </GlassSection>
 
         {/* ── 3. About this Episode ── */}
-        {sectionHeader("About this Episode", 3)}
-        <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5 space-y-4">
+        <GlassSection label="About this Episode" number={3}>
           <div className="space-y-1">
             <label className={labelClass}>Short Description</label>
             <textarea className={`${fieldClass} min-h-[80px]`} value={form.description} onChange={(e) => set("description", e.target.value)} />
@@ -372,11 +378,10 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
             <textarea className={`${fieldClass} min-h-[160px]`} value={form.full_description} onChange={(e) => set("full_description", e.target.value)} />
             <p className="text-xs text-muted-foreground mt-1">Long-form "About this Episode" section on the detail page</p>
           </div>
-        </div>
+        </GlassSection>
 
         {/* ── 4. Quote ── */}
-        {sectionHeader("Quote", 4)}
-        <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5 space-y-4">
+        <GlassSection label="Quote" number={4}>
           <div className="space-y-1">
             <textarea className={`${fieldClass} min-h-[80px]`} value={form.pull_quote} onChange={(e) => set("pull_quote", e.target.value)} placeholder="A memorable quote from the episode…" />
           </div>
@@ -390,11 +395,10 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
               ))}
             </select>
           </div>
-        </div>
+        </GlassSection>
 
         {/* ── 5. Topics Covered ── */}
-        {sectionHeader("Topics Covered", 5)}
-        <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5 space-y-4">
+        <GlassSection label="Topics Covered" number={5}>
           <div className="flex gap-2">
             <input className={fieldClass} value={topicInput} onChange={(e) => setTopicInput(e.target.value)} placeholder="Add a topic" onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTopic())} />
             <button type="button" onClick={addTopic} className="px-4 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap">Add</button>
@@ -405,13 +409,13 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
             onRemove={removeTopic}
             onMove={moveTopic}
           />
-        </div>
+        </GlassSection>
+
         {/* ── Group divider: People ── */}
-        {sectionDivider}
+        {groupDivider}
 
         {/* ── 6. About the Speaker ── */}
-        {sectionHeader("About the Speaker", 6)}
-        <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5 space-y-4">
+        <GlassSection label="About the Speaker" number={6}>
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1">
               <label className={labelClass}>Name</label>
@@ -451,11 +455,10 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
             </div>
             {form.guest_image_url && <img src={form.guest_image_url} alt="Guest" className="mt-2 h-20 w-20 rounded-xl object-cover border border-white/20" />}
           </div>
-        </div>
+        </GlassSection>
 
         {/* ── 7. About the Host ── */}
-        {sectionHeader("About the Host", 7)}
-        <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5">
+        <GlassSection label="About the Host" number={7}>
           <div className="flex flex-wrap gap-2">
             {allHosts.map((h) => (
               <button
@@ -473,13 +476,13 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
             ))}
             {allHosts.length === 0 && <p className="text-body-sm text-muted-foreground">No hosts available</p>}
           </div>
-        </div>
+        </GlassSection>
+
         {/* ── Group divider: Assets & Publishing ── */}
-        {sectionDivider}
+        {groupDivider}
 
         {/* ── 8. Images & SEO ── */}
-        {sectionHeader("Images & SEO", 8)}
-        <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5">
+        <GlassSection label="Images & SEO" number={8}>
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-1">
               <label className={labelClass}>Poster Image</label>
@@ -506,16 +509,15 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
               {form.og_image_url && <img src={form.og_image_url} alt="OG" className="mt-2 h-20 rounded-xl object-cover border border-white/20" />}
             </div>
           </div>
-        </div>
+        </GlassSection>
 
         {/* ── 9. Publishing ── */}
-        {sectionHeader("Publishing", 9)}
-        <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5">
+        <GlassSection label="Publishing" number={9}>
           <div className="space-y-1">
             <label className={labelClass}>Publish Date</label>
             <input className={fieldClass} type="date" value={form.publish_date} onChange={(e) => set("publish_date", e.target.value)} />
           </div>
-        </div>
+        </GlassSection>
 
         <div className="flex gap-3 pt-4">
           <button onClick={handleSave} disabled={saving} className="px-6 py-3 rounded-xl bg-foreground text-background font-medium hover:opacity-90 disabled:opacity-50 transition-opacity">
