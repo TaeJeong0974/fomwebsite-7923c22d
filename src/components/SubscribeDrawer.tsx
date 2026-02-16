@@ -79,7 +79,7 @@ const SubscribeDrawer = ({ open, onOpenChange, guestName, guestSlug }: Subscribe
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-md bg-white backdrop-blur-3xl border-l border-black/[0.08] shadow-[-20px_0_50px_-10px_rgba(0,0,0,0.15)] overflow-hidden"
+            className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-md bg-white/60 backdrop-blur-2xl border-l border-white/60 shadow-[-20px_0_50px_-10px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.6)] overflow-hidden"
           >
             {/* Blurred guest background */}
             {guestImage && (
