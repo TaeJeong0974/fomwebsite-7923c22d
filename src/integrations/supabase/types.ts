@@ -72,6 +72,7 @@ export type Database = {
           pull_quote_attribution: string | null
           slug: string
           spotify_url: string | null
+          status: string
           subtitle: string | null
           title: string
           topics: Json | null
@@ -102,6 +103,7 @@ export type Database = {
           pull_quote_attribution?: string | null
           slug: string
           spotify_url?: string | null
+          status?: string
           subtitle?: string | null
           title: string
           topics?: Json | null
@@ -132,6 +134,7 @@ export type Database = {
           pull_quote_attribution?: string | null
           slug?: string
           spotify_url?: string | null
+          status?: string
           subtitle?: string | null
           title?: string
           topics?: Json | null

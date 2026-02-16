@@ -30,7 +30,8 @@ const EMPTY = {
   guest_bio: "", guest_image_url: "", guest_linkedin_url: "",
   poster_image_url: "", og_image_url: "", preview_video_url: "",
   apple_url: "", spotify_url: "", youtube_url: "",
-  published: false, publish_date: "",
+  status: "draft" as "published" | "upcoming" | "draft" | "deleted",
+  publish_date: "",
   topics: [] as string[], pull_quote: "", pull_quote_attribution: "",
 };
 
@@ -136,7 +137,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
           apple_url: data.apple_url || "",
           spotify_url: data.spotify_url || "",
           youtube_url: data.youtube_url || "",
-          published: data.published,
+          status: data.status || "draft",
           publish_date: data.publish_date || "",
           topics: (data.topics as string[]) || [],
           pull_quote: data.pull_quote || "",
@@ -184,7 +185,8 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
       apple_url: form.apple_url || null,
       spotify_url: form.spotify_url || null,
       youtube_url: form.youtube_url || null,
-      published: form.published,
+      published: form.status === 'published',
+      status: form.status,
       publish_date: form.publish_date || null,
       topics: form.topics,
       pull_quote: form.pull_quote || null,
@@ -462,9 +464,14 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
             <label className={labelClass}>Publish Date</label>
             <input className={fieldClass} type="date" value={form.publish_date} onChange={(e) => set("publish_date", e.target.value)} />
           </div>
-          <div className="flex items-center gap-3 pt-6">
-            <input type="checkbox" checked={form.published} onChange={(e) => set("published", e.target.checked)} className="w-4 h-4 accent-primary" />
-            <label className={labelClass}>Published</label>
+          <div className="space-y-1">
+            <label className={labelClass}>Status</label>
+            <select className={`${fieldClass} bg-background`} value={form.status} onChange={(e) => set("status", e.target.value)}>
+              <option value="draft">Draft</option>
+              <option value="upcoming">Upcoming</option>
+              <option value="published">Published</option>
+              <option value="deleted">Deleted</option>
+            </select>
           </div>
         </div>
 

@@ -31,7 +31,8 @@ serve(async (req) => {
     if (action === 'list-episodes') {
       const { data, error } = await supabase
         .from('episodes')
-        .select('id, slug, title, guest_name, guest_company, published, episode_number')
+        .select('id, slug, title, guest_name, guest_company, published, status, episode_number')
+        .neq('status', 'deleted')
         .order('episode_number', { ascending: true });
       if (error) return respond(400, { error: error.message });
       return respond(200, { data });
