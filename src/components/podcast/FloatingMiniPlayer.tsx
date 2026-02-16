@@ -7,6 +7,11 @@ interface FloatingMiniPlayerProps {
   spotifyUrl?: string;
   playTrigger?: number;
   thumbnailImage?: string;
+  episodeNumber?: number;
+  guestName?: string;
+  guestTitle?: string;
+  guestCompany?: string;
+  overview?: string;
 }
 
 // Extract YouTube video ID from various URL formats
@@ -26,7 +31,7 @@ const getYouTubeVideoId = (url: string): string | null => {
   return null;
 };
 
-const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImage }: FloatingMiniPlayerProps) => {
+const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImage, episodeNumber, guestName, guestTitle, guestCompany, overview }: FloatingMiniPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showPip, setShowPip] = useState(false);
   const [hideAtBottom, setHideAtBottom] = useState(false);
@@ -165,7 +170,27 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
                 loading="eager"
                 decoding="async"
               />
-              {/* Static Play Button - always visible */}
+              {/* Dynamic text overlay */}
+              {(guestName || overview) && (
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex flex-col justify-end p-5 sm:p-7 lg:p-8">
+                  {episodeNumber !== undefined && (
+                    <span className="text-white/60 text-xs sm:text-sm font-medium tracking-wider uppercase mb-1.5">
+                      Episode {episodeNumber}
+                    </span>
+                  )}
+                  {overview && (
+                    <h2 className="text-white text-lg sm:text-xl lg:text-2xl font-display font-medium leading-tight max-w-[85%]">
+                      {overview}
+                    </h2>
+                  )}
+                  {guestName && (
+                    <p className="text-white/70 text-sm sm:text-base mt-2">
+                      {guestName}{guestTitle && guestCompany ? `, ${guestTitle} at ${guestCompany}` : ''}
+                    </p>
+                  )}
+                </div>
+              )}
+              {/* Play Button */}
               <div className="absolute top-6 right-6 lg:top-8 lg:right-8 z-10">
                 <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg transition-transform duration-200 group-hover:scale-110">
                   <Play className="w-5 h-5 text-foreground fill-foreground ml-0.5" />
