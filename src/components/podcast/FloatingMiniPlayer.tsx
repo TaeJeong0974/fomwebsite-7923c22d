@@ -64,8 +64,10 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
     const timer = setTimeout(() => {
       const related = document.getElementById('related-episodes');
       const connected = document.getElementById('stay-connected');
+      const footer = document.querySelector('footer');
       if (related) bottomTargets.push(related);
       if (connected) bottomTargets.push(connected);
+      if (footer) bottomTargets.push(footer);
 
       const playerVisible = { current: true };
       const bottomVisible = new Set<Element>();
