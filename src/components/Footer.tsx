@@ -100,7 +100,7 @@ const Footer = () => {
         >
           {/* Tagline */}
           <p className="text-lg sm:text-xl lg:text-2xl font-normal text-foreground max-w-[220px] sm:max-w-[260px]">
-            A podcast series on how AI is changing marketing
+            How AI is reshaping marketing, from the leaders living it.
           </p>
 
           {/* Nav links */}
