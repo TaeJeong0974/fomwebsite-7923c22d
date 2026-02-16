@@ -75,7 +75,7 @@ export const podcastEpisodes: PodcastEpisode[] = [
   {
     id: 0,
     slug: "intro-to-fom",
-    name: "Intro to FOM",
+    name: "Introduction to Future of Marketing",
     title: "",
     company: "",
     companyDomain: "",
