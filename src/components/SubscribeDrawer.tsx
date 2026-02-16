@@ -81,17 +81,6 @@ const SubscribeDrawer = ({ open, onOpenChange, guestName, guestSlug }: Subscribe
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
             className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-md bg-white/80 backdrop-blur-2xl border-l border-white/60 shadow-[-20px_0_50px_-10px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.6)] overflow-hidden"
           >
-            {/* Blurred guest background */}
-            {guestImage && (
-              <div className="absolute inset-0 z-0">
-                <img
-                  src={guestImage}
-                  alt=""
-                  className="w-full h-full object-cover scale-125 blur-3xl opacity-10"
-                />
-                <div className="absolute inset-0 bg-black/40" />
-              </div>
-            )}
 
             {/* Close button */}
             <motion.button
