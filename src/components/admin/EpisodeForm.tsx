@@ -2,10 +2,18 @@ import { useEffect, useRef, useState } from "react";
 import { adminApi } from "@/lib/adminApi";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Upload, GripVertical, ChevronUp, ChevronDown } from "lucide-react";
+import { Upload, GripVertical, ChevronUp, ChevronDown, Info } from "lucide-react";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from "@dnd-kit/core";
 import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+
+// ── Inline Hint ──
+const FieldHint = ({ children }: { children: React.ReactNode }) => (
+  <p className="flex items-start gap-1.5 mt-1 text-[11px] leading-snug text-muted-foreground/70">
+    <Info className="h-3 w-3 mt-px shrink-0 text-muted-foreground/50" />
+    <span>{children}</span>
+  </p>
+);
 
 interface Props {
   episodeId?: string;
@@ -322,25 +330,28 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
             <div className="space-y-1">
               <label className={labelClass}>Slug *</label>
               <input className={fieldClass} value={form.slug} onChange={(e) => set("slug", e.target.value)} />
+              <FieldHint>URL-safe identifier — e.g. "sara-varni". Cannot be changed after publish.</FieldHint>
             </div>
             <div className="space-y-1">
               <label className={labelClass}>Episode #</label>
               <input className={fieldClass} type="number" value={form.episode_number} onChange={(e) => set("episode_number", parseInt(e.target.value) || 0)} />
+              <FieldHint>Sequential number shown on cards and detail pages</FieldHint>
             </div>
             <div className="space-y-1">
               <label className={labelClass}>Duration</label>
               <input className={fieldClass} value={form.duration} onChange={(e) => set("duration", e.target.value)} placeholder="e.g. 52 min" />
+              <FieldHint>Approximate length — displayed on episode cards</FieldHint>
             </div>
           </div>
           <div className="space-y-1">
             <label className={labelClass}>Title *</label>
             <input className={fieldClass} value={form.title} onChange={(e) => set("title", e.target.value)} />
-            <p className="text-xs text-muted-foreground mt-1">Guest name or episode name — shown as the page heading</p>
+            <FieldHint>Guest name or episode name — shown as the page heading</FieldHint>
           </div>
           <div className="space-y-1">
             <label className={labelClass}>Overview (Subtitle)</label>
             <input className={fieldClass} value={form.subtitle} onChange={(e) => set("subtitle", e.target.value)} />
-            <p className="text-xs text-muted-foreground mt-1">One-line hook shown on cards and as the hero headline</p>
+            <FieldHint>One-line hook shown on cards and as the hero headline</FieldHint>
           </div>
         </GlassSection>
 
@@ -350,18 +361,22 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
             <div className="space-y-1">
               <label className={labelClass}>YouTube URL</label>
               <input className={fieldClass} value={form.youtube_url} onChange={(e) => set("youtube_url", e.target.value)} />
+              <FieldHint>Full YouTube video URL — used for the embedded player</FieldHint>
             </div>
             <div className="space-y-1">
               <label className={labelClass}>Spotify URL</label>
               <input className={fieldClass} value={form.spotify_url} onChange={(e) => set("spotify_url", e.target.value)} />
+              <FieldHint>Spotify episode link — powers the "Listen on Spotify" button</FieldHint>
             </div>
             <div className="space-y-1">
               <label className={labelClass}>Apple Podcasts URL</label>
               <input className={fieldClass} value={form.apple_url} onChange={(e) => set("apple_url", e.target.value)} />
+              <FieldHint>Apple Podcasts link — powers the "Listen on Apple" button</FieldHint>
             </div>
             <div className="space-y-1">
               <label className={labelClass}>Preview Video URL</label>
               <input className={fieldClass} value={form.preview_video_url} onChange={(e) => set("preview_video_url", e.target.value)} />
+              <FieldHint>Short teaser clip — autoplays on the episode card hover</FieldHint>
             </div>
           </div>
         </GlassSection>
@@ -371,12 +386,12 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
           <div className="space-y-1">
             <label className={labelClass}>Short Description</label>
             <textarea className={`${fieldClass} min-h-[80px]`} value={form.description} onChange={(e) => set("description", e.target.value)} />
-            <p className="text-xs text-muted-foreground mt-1">Used for SEO meta description and card previews</p>
+            <FieldHint>Used for SEO meta description and card previews — keep under 160 characters</FieldHint>
           </div>
           <div className="space-y-1">
             <label className={labelClass}>Full Description</label>
             <textarea className={`${fieldClass} min-h-[160px]`} value={form.full_description} onChange={(e) => set("full_description", e.target.value)} />
-            <p className="text-xs text-muted-foreground mt-1">Long-form "About this Episode" section on the detail page</p>
+            <FieldHint>Long-form "About this Episode" section on the detail page</FieldHint>
           </div>
         </GlassSection>
 
@@ -384,6 +399,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
         <GlassSection label="Quote" number={4}>
           <div className="space-y-1">
             <textarea className={`${fieldClass} min-h-[80px]`} value={form.pull_quote} onChange={(e) => set("pull_quote", e.target.value)} placeholder="A memorable quote from the episode…" />
+            <FieldHint>Highlighted quote shown in a large callout on the detail page</FieldHint>
           </div>
           <div className="space-y-1">
             <label className={labelClass}>Attribution</label>
@@ -394,6 +410,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
                 <option key={h.id} value={h.name}>{h.name} (Host)</option>
               ))}
             </select>
+            <FieldHint>Who said the quote — appears below the pull quote</FieldHint>
           </div>
         </GlassSection>
 
@@ -403,6 +420,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
             <input className={fieldClass} value={topicInput} onChange={(e) => setTopicInput(e.target.value)} placeholder="Add a topic" onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTopic())} />
             <button type="button" onClick={addTopic} className="px-4 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap">Add</button>
           </div>
+          <FieldHint>Key themes discussed — drag to reorder. Shown as pills on the detail page.</FieldHint>
           <SortableTopicList
             topics={form.topics}
             onReorder={(updated) => set("topics", updated)}
@@ -432,6 +450,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
             <div className="space-y-1">
               <label className={labelClass}>Company Domain</label>
               <input className={fieldClass} value={form.guest_company_domain} onChange={(e) => set("guest_company_domain", e.target.value)} placeholder="e.g. samsara.com" />
+              <FieldHint>Used to fetch the company logo via Clearbit</FieldHint>
             </div>
             <div className="col-span-2 space-y-1">
               <label className={labelClass}>LinkedIn URL</label>
@@ -441,7 +460,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
           <div className="space-y-1">
             <label className={labelClass}>Bio</label>
             <textarea className={`${fieldClass} min-h-[80px]`} value={form.guest_bio} onChange={(e) => set("guest_bio", e.target.value)} />
-            <p className="text-xs text-muted-foreground mt-1">Starts with a verb (e.g. "is the CMO at…")</p>
+            <FieldHint>Starts with a verb (e.g. "is the CMO at…") — displayed under the guest photo</FieldHint>
           </div>
           <div className="space-y-1">
             <label className={labelClass}>Guest Image</label>
@@ -476,6 +495,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
             ))}
             {allHosts.length === 0 && <p className="text-body-sm text-muted-foreground">No hosts available</p>}
           </div>
+          <FieldHint>Select one or more hosts for this episode — shown in the "About the Host" section</FieldHint>
         </GlassSection>
 
         {/* ── Group divider: Assets & Publishing ── */}
