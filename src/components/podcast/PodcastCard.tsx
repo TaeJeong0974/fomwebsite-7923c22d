@@ -99,7 +99,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image, placeh
         </span>
       )}
       
-      <EpisodeCardContent episode={episode} isUpcoming={isUpcoming} />
+      <EpisodeCardContent episode={episode} isUpcoming={isUpcoming} isHovered={isHovered} />
       
     </div>
   );
