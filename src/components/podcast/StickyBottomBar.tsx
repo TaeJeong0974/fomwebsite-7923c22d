@@ -40,7 +40,7 @@ const StickyBottomBar = ({ youtubeUrl, spotifyUrl, thumbnailUrl, episodeName, ep
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 100, opacity: 0 }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="hidden lg:block fixed bottom-10 inset-x-0 mx-auto w-fit z-50"
+          className="lg:hidden fixed bottom-6 inset-x-0 mx-auto w-fit z-50"
         >
             <motion.div
               className="group/bar flex items-center gap-3 p-2.5 rounded-2xl bg-background/60 backdrop-blur-2xl border border-white/30 shadow-[0_4px_16px_-4px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.5)]"

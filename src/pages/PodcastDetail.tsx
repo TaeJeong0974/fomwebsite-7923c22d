@@ -70,6 +70,18 @@ const PodcastDetail = () => {
       />
       <DetailVerticalText guestName={guestName} />
 
+      <StickyBottomBar
+        youtubeUrl={episode.youtubeUrl}
+        spotifyUrl={episode.spotifyUrl}
+        thumbnailUrl={thumbnailUrl}
+        episodeName={episode.name}
+        episodeTitle={
+          isIntro
+            ? (episode.hosts || []).map(h => h.name.split(" ")[0]).join(", ")
+            : `${episode.title}, ${episode.company}`
+        }
+        onPlayClick={handlePlayFromBar}
+      />
 
       <EpisodeOverlayLayout>
         {/* Title & Action Buttons */}
