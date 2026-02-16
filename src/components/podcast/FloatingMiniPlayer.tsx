@@ -30,7 +30,8 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
   const [isPlaying, setIsPlaying] = useState(false);
   const [showPip, setShowPip] = useState(false);
   const [pipDismissed, setPipDismissed] = useState(false);
-  const [pipRight, setPipRight] = useState(96); // default 6rem in px
+  const [pipRight, setPipRight] = useState(96);
+  const [pipWidth, setPipWidth] = useState<number | undefined>(undefined);
   const containerRef = useRef<HTMLDivElement>(null);
   const playerWrapperRef = useRef<HTMLDivElement>(null);
   const videoId = youtubeUrl ? getYouTubeVideoId(youtubeUrl) : null;
@@ -42,6 +43,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
       if (sidebar) {
         const rect = sidebar.getBoundingClientRect();
         setPipRight(window.innerWidth - rect.right);
+        setPipWidth(rect.width);
       }
     };
     updatePosition();
@@ -149,12 +151,12 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
             ? 'translate-y-0 opacity-100 scale-100'
             : 'translate-y-4 opacity-0 scale-95 pointer-events-none'
         }`}
-        style={{ right: `${pipRight}px` }}
+        style={{ right: `${pipRight}px`, ...(pipWidth ? { width: `${pipWidth}px` } : {}) }}
       >
       <div className="rounded-xl p-2.5 bg-background/70 backdrop-blur-xl border border-white/20 shadow-2xl shadow-black/30 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] origin-bottom-right hover:scale-[1.12] hover:-translate-x-2 hover:-translate-y-2">
           {/* Video */}
           <div
-            className="relative w-72 sm:w-80 aspect-video rounded-lg overflow-hidden bg-neutral-900 ring-1 ring-white/10 cursor-pointer group/pip"
+            className="relative w-full aspect-video rounded-lg overflow-hidden bg-neutral-900 ring-1 ring-white/10 cursor-pointer group/pip"
             onClick={handlePipClick}
           >
             {isPlaying && videoId ? (
