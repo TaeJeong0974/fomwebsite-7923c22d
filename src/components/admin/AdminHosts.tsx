@@ -99,7 +99,7 @@ const AdminHosts = () => {
     return (
       <div className="max-w-lg space-y-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-section-header font-medium text-foreground">{editing.id === "new" ? "New Host" : "Edit Host"}</h2>
+          <h2 className="text-section-header font-medium text-dark-foreground">{editing.id === "new" ? "New Host" : "Edit Host"}</h2>
           <button onClick={cancel} className="text-body-sm text-muted-foreground hover:text-foreground">← Back</button>
         </div>
         <div className="rounded-2xl border border-white/20 bg-white/30 backdrop-blur-sm shadow-glass overflow-hidden">
@@ -136,7 +136,7 @@ const AdminHosts = () => {
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h2 className="text-section-header font-medium text-foreground">Hosts</h2>
+        <h2 className="text-section-header font-medium text-dark-foreground">Hosts</h2>
         <button onClick={startCreate} className="px-4 py-2.5 rounded-xl bg-foreground text-background text-body-sm font-medium hover:opacity-90 transition-opacity">+ New Host</button>
       </div>
       <div className="rounded-xl overflow-hidden border border-white/20">

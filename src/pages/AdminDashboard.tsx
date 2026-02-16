@@ -28,7 +28,7 @@ const AdminDashboard = () => {
     <div className="min-h-screen bg-background pt-20 pb-10 container-padding">
       <div className="max-w-5xl mx-auto space-y-6">
         <div className="flex items-center justify-between">
-          <h1 className="text-display-md text-foreground" style={{ color: 'hsl(var(--foreground))' }}>CMS Dashboard</h1>
+          <h1 className="text-display-md text-dark-foreground">CMS Dashboard</h1>
           <button onClick={handleLogout} className="text-body-sm text-muted-foreground hover:text-foreground transition-colors">
             Sign Out
           </button>
