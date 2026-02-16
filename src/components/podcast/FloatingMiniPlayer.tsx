@@ -107,7 +107,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
                   opacity: isHovering ? 1 : 0,
                   scale: isHovering ? 1 : 0.8,
                 }}
-                transition={{ opacity: { duration: 0.2, delay: 0.005 }, scale: { duration: 0.2, delay: 0.005 } }}
+                transition={{ opacity: { duration: 0.2, delay: 0.002 }, scale: { duration: 0.2, delay: 0.002 } }}
               >
                 <Play className="w-5 h-5 text-foreground fill-foreground ml-0.5" />
               </motion.div>
