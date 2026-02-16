@@ -183,9 +183,11 @@ const PodcastDetail = () => {
                   company={episode.company}
                   companyDomain={episode.companyDomain}
                   linkedInUrl={episode.linkedInUrl}
+                  youtubeUrl={episode.youtubeUrl}
+                  spotifyUrl={episode.spotifyUrl}
                 />
               )}
-              <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />
+              <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
             </div>
           </div>
 
@@ -198,9 +200,11 @@ const PodcastDetail = () => {
                 company={episode.company}
                 companyDomain={episode.companyDomain}
                 linkedInUrl={episode.linkedInUrl}
+                youtubeUrl={episode.youtubeUrl}
+                spotifyUrl={episode.spotifyUrl}
               />
             )}
-            <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />
+            <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
           </FadeInSection>
         </div>
 
