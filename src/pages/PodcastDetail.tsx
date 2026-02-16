@@ -10,6 +10,7 @@ import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
 import EpisodeHostsCard from "@/components/podcast/EpisodeHostsCard";
 import EpisodePullQuote from "@/components/podcast/EpisodePullQuote";
+import EpisodeWatchCard from "@/components/podcast/EpisodeWatchCard";
 import EpisodeNewsletters from "@/components/podcast/EpisodeNewsletters";
 import AboutTheHosts from "@/components/podcast/AboutTheHosts";
 import ComingSoonEpisode from "@/components/podcast/ComingSoonEpisode";
@@ -200,6 +201,13 @@ const PodcastDetail = () => {
               />
             )}
             <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />
+            <EpisodeWatchCard
+              youtubeUrl={episode.youtubeUrl}
+              spotifyUrl={episode.spotifyUrl}
+              thumbnailUrl={thumbnailUrl}
+              thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : undefined}
+              onPlayClick={handlePlayFromBar}
+            />
           </FadeInSection>
         </div>
 
