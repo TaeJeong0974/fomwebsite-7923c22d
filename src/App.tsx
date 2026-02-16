@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation, Navigate, useParams } from "react-router-dom";
 import { SubscribeProvider } from "@/contexts/SubscribeContext";
 import { Toaster } from "sonner";
 import ScrollToTop from "@/components/ScrollToTop";
@@ -20,6 +20,11 @@ const RouteFallback = () => (
   <div className="min-h-screen" />
 );
 
+const NavigateToSlug = () => {
+  const { slug } = useParams();
+  return <Navigate to={`/podcast/${slug}`} replace />;
+};
+
 const AppRoutes = () => {
   const location = useLocation();
   
@@ -36,6 +41,7 @@ const AppRoutes = () => {
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Index />} />
             <Route path="/podcast/:slug" element={<PodcastDetail />} />
+            <Route path="/episode/:slug" element={<NavigateToSlug />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
