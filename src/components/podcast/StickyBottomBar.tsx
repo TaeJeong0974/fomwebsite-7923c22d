@@ -49,8 +49,7 @@ const StickyBottomBar = ({ youtubeUrl, spotifyUrl, thumbnailUrl, episodeName, ep
               whileTap={{ scale: 1.0 }}
               transition={{ type: "spring", stiffness: 400, damping: 25, mass: 0.8 }}
             >
-            {/* Label + Thumbnail with play icon */}
-            <span className="text-xs font-medium text-foreground/70 pl-1 shrink-0">Now Playing</span>
+            {/* Thumbnail with play icon */}
             {thumbnailUrl && (
               <button onClick={onPlayClick} className="relative w-20 aspect-video rounded-lg overflow-hidden shrink-0 ring-1 ring-foreground/5 hover:ring-foreground/15 transition-all duration-200 hover:scale-105 cursor-pointer">
                 <img
