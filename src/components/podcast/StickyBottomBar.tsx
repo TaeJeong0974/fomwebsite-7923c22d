@@ -51,7 +51,7 @@ const StickyBottomBar = ({ youtubeUrl, spotifyUrl, thumbnailUrl, episodeName, ep
             >
             {/* Thumbnail with play icon */}
             {thumbnailUrl && (
-              <button onClick={onPlayClick} className="relative w-12 h-12 rounded-lg overflow-hidden shrink-0 ring-1 ring-foreground/5 hover:ring-foreground/15 transition-all duration-200 hover:scale-105 cursor-pointer">
+              <button onClick={onPlayClick} className="relative w-20 aspect-video rounded-lg overflow-hidden shrink-0 ring-1 ring-foreground/5 hover:ring-foreground/15 transition-all duration-200 hover:scale-105 cursor-pointer">
                 <img
                   src={thumbnailUrl}
                   alt={episodeName}
