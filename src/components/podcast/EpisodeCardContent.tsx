@@ -1,4 +1,5 @@
 import { Bell } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { PodcastEpisode } from "@/lib/podcastData";
 
 const getUpcomingCTA = () => "Get Notified";
@@ -8,6 +9,7 @@ interface EpisodeCardContentProps {
   isUpcoming?: boolean;
   showOverview?: boolean;
   compact?: boolean;
+  isHovered?: boolean;
 }
 
 /**
@@ -18,7 +20,8 @@ const EpisodeCardContent = ({
   episode, 
   isUpcoming = false, 
   showOverview = true,
-  compact = false 
+  compact = false,
+  isHovered = false,
 }: EpisodeCardContentProps) => {
   const isIntro = episode.slug === 'intro-to-fom';
   const textSize = compact 
@@ -61,10 +64,36 @@ const EpisodeCardContent = ({
 
       {/* Hover state: Overview title morphs in */}
       {!isIntro && !isUpcoming && showOverview && episode.overview && (
-        <div className="hidden md:block absolute bottom-0 left-0 right-0 card-padding-lg opacity-0 md:group-hover:opacity-100 translate-y-3 md:group-hover:translate-y-0 transition-all duration-[800ms] delay-200 ease-smooth">
-          <p className="font-display text-xl sm:text-2xl lg:text-2xl text-white leading-[1.15] tracking-normal font-medium">
-            {episode.overview}
-          </p>
+        <div className="hidden md:block absolute bottom-0 left-0 right-0 card-padding-lg">
+          <AnimatePresence>
+            {isHovered && (
+              <motion.p
+                className="font-display text-xl sm:text-2xl lg:text-2xl text-white leading-[1.15] tracking-normal font-medium"
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                variants={{
+                  hidden: { opacity: 0 },
+                  visible: {
+                    opacity: 1,
+                    transition: { staggerChildren: 0.02, delayChildren: 0.15 },
+                  },
+                }}
+              >
+                {episode.overview.split("").map((char, i) => (
+                  <motion.span
+                    key={i}
+                    variants={{
+                      hidden: { opacity: 0 },
+                      visible: { opacity: 1 },
+                    }}
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </motion.p>
+            )}
+          </AnimatePresence>
         </div>
       )}
 
