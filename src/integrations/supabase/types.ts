@@ -14,16 +14,222 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      episode_hosts: {
+        Row: {
+          episode_id: string
+          host_id: string
+          id: string
+        }
+        Insert: {
+          episode_id: string
+          host_id: string
+          id?: string
+        }
+        Update: {
+          episode_id?: string
+          host_id?: string
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "episode_hosts_episode_id_fkey"
+            columns: ["episode_id"]
+            isOneToOne: false
+            referencedRelation: "episodes"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "episode_hosts_host_id_fkey"
+            columns: ["host_id"]
+            isOneToOne: false
+            referencedRelation: "hosts"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      episodes: {
+        Row: {
+          apple_url: string | null
+          created_at: string
+          description: string | null
+          episode_number: number | null
+          guest_bio: string | null
+          guest_company: string | null
+          guest_image_url: string | null
+          guest_linkedin_url: string | null
+          guest_name: string | null
+          guest_title: string | null
+          id: string
+          og_image_url: string | null
+          poster_image_url: string | null
+          publish_date: string | null
+          published: boolean
+          pull_quote: string | null
+          pull_quote_attribution: string | null
+          slug: string
+          spotify_url: string | null
+          subtitle: string | null
+          title: string
+          topics: Json | null
+          updated_at: string
+          youtube_url: string | null
+        }
+        Insert: {
+          apple_url?: string | null
+          created_at?: string
+          description?: string | null
+          episode_number?: number | null
+          guest_bio?: string | null
+          guest_company?: string | null
+          guest_image_url?: string | null
+          guest_linkedin_url?: string | null
+          guest_name?: string | null
+          guest_title?: string | null
+          id?: string
+          og_image_url?: string | null
+          poster_image_url?: string | null
+          publish_date?: string | null
+          published?: boolean
+          pull_quote?: string | null
+          pull_quote_attribution?: string | null
+          slug: string
+          spotify_url?: string | null
+          subtitle?: string | null
+          title: string
+          topics?: Json | null
+          updated_at?: string
+          youtube_url?: string | null
+        }
+        Update: {
+          apple_url?: string | null
+          created_at?: string
+          description?: string | null
+          episode_number?: number | null
+          guest_bio?: string | null
+          guest_company?: string | null
+          guest_image_url?: string | null
+          guest_linkedin_url?: string | null
+          guest_name?: string | null
+          guest_title?: string | null
+          id?: string
+          og_image_url?: string | null
+          poster_image_url?: string | null
+          publish_date?: string | null
+          published?: boolean
+          pull_quote?: string | null
+          pull_quote_attribution?: string | null
+          slug?: string
+          spotify_url?: string | null
+          subtitle?: string | null
+          title?: string
+          topics?: Json | null
+          updated_at?: string
+          youtube_url?: string | null
+        }
+        Relationships: []
+      }
+      hosts: {
+        Row: {
+          bio: string | null
+          created_at: string
+          id: string
+          image_url: string | null
+          linkedin_url: string | null
+          name: string
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          bio?: string | null
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          linkedin_url?: string | null
+          name: string
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          bio?: string | null
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          linkedin_url?: string | null
+          name?: string
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      newsletter_mentions: {
+        Row: {
+          created_at: string
+          episode_id: string
+          id: string
+          source: string | null
+          title: string
+          url: string
+        }
+        Insert: {
+          created_at?: string
+          episode_id: string
+          id?: string
+          source?: string | null
+          title: string
+          url: string
+        }
+        Update: {
+          created_at?: string
+          episode_id?: string
+          id?: string
+          source?: string | null
+          title?: string
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "newsletter_mentions_episode_id_fkey"
+            columns: ["episode_id"]
+            isOneToOne: false
+            referencedRelation: "episodes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_roles: {
+        Row: {
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_admin: { Args: never; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "moderator" | "user"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +356,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "moderator", "user"],
+    },
   },
 } as const
