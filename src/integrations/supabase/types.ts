@@ -66,6 +66,7 @@ export type Database = {
           og_image_url: string | null
           poster_image_url: string | null
           preview_video_url: string | null
+          promoted_at: string | null
           publish_date: string | null
           published: boolean
           pull_quote: string | null
@@ -97,6 +98,7 @@ export type Database = {
           og_image_url?: string | null
           poster_image_url?: string | null
           preview_video_url?: string | null
+          promoted_at?: string | null
           publish_date?: string | null
           published?: boolean
           pull_quote?: string | null
@@ -128,6 +130,7 @@ export type Database = {
           og_image_url?: string | null
           poster_image_url?: string | null
           preview_video_url?: string | null
+          promoted_at?: string | null
           publish_date?: string | null
           published?: boolean
           pull_quote?: string | null
@@ -175,6 +178,140 @@ export type Database = {
           updated_at?: string
         }
         Relationships: []
+      }
+      live_episode_hosts: {
+        Row: {
+          host_id: string
+          id: string
+          live_episode_id: string
+        }
+        Insert: {
+          host_id: string
+          id?: string
+          live_episode_id: string
+        }
+        Update: {
+          host_id?: string
+          id?: string
+          live_episode_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "live_episode_hosts_host_id_fkey"
+            columns: ["host_id"]
+            isOneToOne: false
+            referencedRelation: "hosts"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "live_episode_hosts_live_episode_id_fkey"
+            columns: ["live_episode_id"]
+            isOneToOne: false
+            referencedRelation: "live_episodes"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      live_episodes: {
+        Row: {
+          apple_url: string | null
+          description: string | null
+          duration: string | null
+          episode_number: number | null
+          full_description: string | null
+          guest_bio: string | null
+          guest_company: string | null
+          guest_company_domain: string | null
+          guest_image_url: string | null
+          guest_linkedin_url: string | null
+          guest_name: string | null
+          guest_title: string | null
+          id: string
+          og_image_url: string | null
+          poster_image_url: string | null
+          preview_video_url: string | null
+          promoted_at: string
+          publish_date: string | null
+          pull_quote: string | null
+          pull_quote_attribution: string | null
+          slug: string
+          spotify_url: string | null
+          staging_id: string
+          status: string
+          subtitle: string | null
+          title: string
+          topics: Json | null
+          youtube_url: string | null
+        }
+        Insert: {
+          apple_url?: string | null
+          description?: string | null
+          duration?: string | null
+          episode_number?: number | null
+          full_description?: string | null
+          guest_bio?: string | null
+          guest_company?: string | null
+          guest_company_domain?: string | null
+          guest_image_url?: string | null
+          guest_linkedin_url?: string | null
+          guest_name?: string | null
+          guest_title?: string | null
+          id?: string
+          og_image_url?: string | null
+          poster_image_url?: string | null
+          preview_video_url?: string | null
+          promoted_at?: string
+          publish_date?: string | null
+          pull_quote?: string | null
+          pull_quote_attribution?: string | null
+          slug: string
+          spotify_url?: string | null
+          staging_id: string
+          status?: string
+          subtitle?: string | null
+          title: string
+          topics?: Json | null
+          youtube_url?: string | null
+        }
+        Update: {
+          apple_url?: string | null
+          description?: string | null
+          duration?: string | null
+          episode_number?: number | null
+          full_description?: string | null
+          guest_bio?: string | null
+          guest_company?: string | null
+          guest_company_domain?: string | null
+          guest_image_url?: string | null
+          guest_linkedin_url?: string | null
+          guest_name?: string | null
+          guest_title?: string | null
+          id?: string
+          og_image_url?: string | null
+          poster_image_url?: string | null
+          preview_video_url?: string | null
+          promoted_at?: string
+          publish_date?: string | null
+          pull_quote?: string | null
+          pull_quote_attribution?: string | null
+          slug?: string
+          spotify_url?: string | null
+          staging_id?: string
+          status?: string
+          subtitle?: string | null
+          title?: string
+          topics?: Json | null
+          youtube_url?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "live_episodes_staging_id_fkey"
+            columns: ["staging_id"]
+            isOneToOne: true
+            referencedRelation: "episodes"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       newsletter_mentions: {
         Row: {
