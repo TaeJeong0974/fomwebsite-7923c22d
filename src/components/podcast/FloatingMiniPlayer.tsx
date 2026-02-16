@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { Play } from "lucide-react";
-import { motion, useSpring, useMotionValue } from "framer-motion";
 import guestBg from "@/assets/guest-bg.png";
 
 interface FloatingMiniPlayerProps {
@@ -31,9 +30,6 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
-  const springConfig = { damping: 30, stiffness: 300, mass: 0.5 };
-  const springX = useSpring(useMotionValue(0), springConfig);
-  const springY = useSpring(useMotionValue(0), springConfig);
   const videoId = youtubeUrl ? getYouTubeVideoId(youtubeUrl) : null;
 
   useEffect(() => {
@@ -54,11 +50,10 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left - 28;
-    const y = e.clientY - rect.top - 28;
-    springX.set(x);
-    springY.set(y);
-    setMousePos({ x, y });
+    setMousePos({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
   };
 
   return (
@@ -88,29 +83,28 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
                 backgroundPosition: 'center',
               }}
             >
+              {/* Subtle overlay for better play button visibility */}
+              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
               
               {/* Play Button - cursor follow on desktop, centered on mobile */}
               <div
                 className="absolute inset-0 flex items-center justify-center sm:hidden"
               >
-                <div className="w-14 h-14 rounded-full bg-white/70 backdrop-blur-2xl border border-white/50 flex items-center justify-center shadow-[0_4px_20px_-4px_rgba(0,0,0,0.25),0_2px_8px_-2px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.7)]">
+                <div className="w-14 h-14 rounded-full bg-white/60 backdrop-blur-2xl border border-white/40 flex items-center justify-center shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)]">
                   <Play className="w-5 h-5 text-foreground fill-foreground ml-0.5" />
                 </div>
               </div>
-              <motion.div
-                className="hidden sm:flex absolute z-10 pointer-events-none items-center justify-center w-14 h-14 rounded-full bg-white/70 backdrop-blur-2xl border border-white/50 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.25),0_2px_8px_-2px_rgba(0,0,0,0.1),inset_0_1px_0_rgba(255,255,255,0.7)]"
+              <div
+                className="hidden sm:flex absolute z-10 pointer-events-none items-center justify-center w-14 h-14 rounded-full bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)] transition-opacity duration-200"
                 style={{
-                  left: springX,
-                  top: springY,
-                }}
-                animate={{
+                  left: mousePos.x - 28,
+                  top: mousePos.y - 28,
                   opacity: isHovering ? 1 : 0,
-                  scale: isHovering ? 1 : 0.8,
+                  transform: `scale(${isHovering ? 1 : 0.8})`,
                 }}
-                transition={{ opacity: { duration: 0.15, delay: 0.05 }, scale: { duration: 0.15, delay: 0.05 } }}
               >
                 <Play className="w-5 h-5 text-foreground fill-foreground ml-0.5" />
-              </motion.div>
+              </div>
             </div>
           )}
         </div>
