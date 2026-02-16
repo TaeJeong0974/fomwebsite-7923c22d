@@ -190,7 +190,7 @@ const PodcastDetail = () => {
           </div>
 
           {/* Sidebar */}
-          <FadeInSection data-pip-anchor className="hidden lg:flex lg:flex-col space-y-6">
+          <FadeInSection data-pip-anchor className="hidden lg:flex lg:flex-col space-y-4">
             {!isIntro && (
               <EpisodeGuestCard
                 name={episode.name}
