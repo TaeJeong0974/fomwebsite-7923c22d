@@ -35,6 +35,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
   const [pipWidth, setPipWidth] = useState<number | undefined>(undefined);
   const containerRef = useRef<HTMLDivElement>(null);
   const playerWrapperRef = useRef<HTMLDivElement>(null);
+  const cleanupRef = useRef<(() => void) | null>(null);
   const videoId = youtubeUrl ? getYouTubeVideoId(youtubeUrl) : null;
 
   // Dynamically align PiP to sidebar column right edge
@@ -59,50 +60,54 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
     }
   }, [playTrigger]);
 
-  // Intersection Observer to detect when main player scrolls out of view
+  // Single observer for all PiP visibility logic
   useEffect(() => {
     if (!playerWrapperRef.current) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // Show PiP when main player is not visible
-        setShowPip(!entry.isIntersecting);
-        // Stop playing when scrolled out of view
-        if (!entry.isIntersecting && isPlaying) {
-          setIsPlaying(false);
-        }
-      },
-      { threshold: 0.3 }
-    );
+    const playerEl = playerWrapperRef.current;
+    const bottomTargets: Element[] = [];
 
-    observer.observe(playerWrapperRef.current);
-    return () => observer.disconnect();
-  }, [isPlaying]);
+    // Delay to ensure DOM is ready
+    const timer = setTimeout(() => {
+      const related = document.getElementById('related-episodes');
+      const connected = document.getElementById('stay-connected');
+      if (related) bottomTargets.push(related);
+      if (connected) bottomTargets.push(connected);
 
-  // Hide PiP when "More Episodes" section or footer comes into view
-  useEffect(() => {
-    const relatedSection = document.getElementById('related-episodes');
-    const stayConnected = document.getElementById('stay-connected');
-    const footer = document.querySelector('footer');
-    const targets = [relatedSection, stayConnected, footer].filter(Boolean) as Element[];
-    if (targets.length === 0) return;
+      const playerVisible = { current: true };
+      const bottomVisible = new Set<Element>();
 
-    const visibilityMap = new Map<Element, boolean>();
-    targets.forEach(el => visibilityMap.set(el, false));
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.target === playerEl) {
+              playerVisible.current = entry.isIntersecting;
+            } else {
+              if (entry.isIntersecting) {
+                bottomVisible.add(entry.target);
+              } else {
+                bottomVisible.delete(entry.target);
+              }
+            }
+          });
+          
+          setShowPip(!playerVisible.current);
+          setHideAtBottom(bottomVisible.size > 0);
+        },
+        { threshold: 0.05 }
+      );
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach(entry => {
-          visibilityMap.set(entry.target, entry.isIntersecting);
-        });
-        const anyVisible = Array.from(visibilityMap.values()).some(Boolean);
-        setHideAtBottom(anyVisible);
-      },
-      { threshold: 0.05 }
-    );
+      observer.observe(playerEl);
+      bottomTargets.forEach(el => observer.observe(el));
 
-    targets.forEach(el => observer.observe(el));
-    return () => observer.disconnect();
+      // Store cleanup ref
+      cleanupRef.current = () => observer.disconnect();
+    }, 500);
+
+    return () => {
+      clearTimeout(timer);
+      cleanupRef.current?.();
+    };
   }, []);
   
   // YouTube thumbnail URL
