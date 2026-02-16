@@ -43,7 +43,7 @@ const hosts = [
   },
 ];
 
-const taglineLines = ["A podcast", "series on how", "AI is changing", "marketing"];
+const taglineLines = ["How AI is", "reshaping marketing,", "from the leaders", "living it."];
 
 const HeroSection = () => {
   const [flippedIndex, setFlippedIndex] = useState<number | null>(null);
