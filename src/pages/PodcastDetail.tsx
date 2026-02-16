@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ep1Poster from "@/assets/ep1-poster.png";
+
 import Footer from "@/components/Footer";
 import { useParams } from "react-router-dom";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
@@ -106,7 +106,11 @@ const PodcastDetail = () => {
                 youtubeUrl={episode.youtubeUrl}
                 spotifyUrl={episode.spotifyUrl}
                 playTrigger={playTrigger}
-                thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : undefined}
+                episodeNumber={episode.id}
+                guestName={episode.name}
+                guestTitle={episode.title}
+                guestCompany={episode.company}
+                overview={episode.overview}
               />
               <div className="pt-2 lg:hidden">
                 <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
