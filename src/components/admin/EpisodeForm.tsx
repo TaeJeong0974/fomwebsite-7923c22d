@@ -294,7 +294,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
         <button onClick={onDone} className="text-body-sm text-muted-foreground hover:text-foreground">← Back</button>
       </div>
 
-      <div className="space-y-6 max-w-2xl">
+      <div className="space-y-8 max-w-2xl">
         {/* ── 1. Header ── */}
         <GlassSection label="Header" number={1}>
           <div className="space-y-2">
