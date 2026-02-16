@@ -167,6 +167,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
 
           {/* Platform icons row below video */}
           <div className="flex items-center gap-1.5 mt-2 px-0.5">
+            <span className="text-[11px] font-medium text-muted-foreground mr-auto">Now Playing</span>
             <a
               href={youtubeUrl}
               target="_blank"
