@@ -31,10 +31,10 @@ const EpisodeGuestCard = ({ name, title, company, companyDomain, linkedInUrl }: 
                 href={linkedInUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-colors"
+                className="w-8 h-8 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-colors"
                 aria-label={`${name} on LinkedIn`}
               >
-                <Linkedin size={16} />
+                <Linkedin size={14} />
               </a>
             )}
             {companyUrl && (
@@ -42,10 +42,10 @@ const EpisodeGuestCard = ({ name, title, company, companyDomain, linkedInUrl }: 
                 href={companyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-colors"
+                className="w-8 h-8 rounded-full border border-border/60 flex items-center justify-center text-muted-foreground hover:text-foreground hover:border-foreground/40 transition-colors"
                 aria-label={`${company} website`}
               >
-                <Building2 size={16} />
+                <Building2 size={14} />
               </a>
             )}
           </div>
