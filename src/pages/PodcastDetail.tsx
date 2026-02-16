@@ -20,7 +20,7 @@ import ListenSubscribeCards from "@/components/ListenSubscribeCards";
 import DetailVerticalText from "@/components/podcast/DetailVerticalText";
 import FadeInSection from "@/components/podcast/FadeInSection";
 import useDocumentMeta from "@/hooks/use-document-meta";
-import { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes } from "@/lib/podcastData";
+import { useEpisodeData } from "@/contexts/EpisodeDataContext";
 import { EPISODE_IMAGES } from "@/lib/episodeImages";
 import {
   getYouTubeThumbnail,
@@ -32,6 +32,7 @@ import {
 const PodcastDetail = () => {
   const { slug } = useParams();
   const [playTrigger, setPlayTrigger] = useState(0);
+  const { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes } = useEpisodeData();
   const episode = getEpisodeBySlug(slug || "");
 
   const isIntro = !episode?.comingSoon && episode?.slug === "the-future-of-marketing";

@@ -1,5 +1,6 @@
 import { Linkedin, Building2 } from "lucide-react";
-import { podcastHosts, PodcastHost } from "@/lib/podcastData";
+import { PodcastHost } from "@/lib/podcastData";
+import { useEpisodeData } from "@/contexts/EpisodeDataContext";
 import SidebarCard from "./SidebarCard";
 
 interface EpisodeHostsCardProps {
@@ -8,7 +9,8 @@ interface EpisodeHostsCardProps {
 }
 
 const EpisodeHostsCard = ({ showAllHosts = false, episodeHosts }: EpisodeHostsCardProps) => {
-  const hosts = episodeHosts || (showAllHosts ? podcastHosts : podcastHosts.slice(0, 2));
+  const { hosts: allHosts } = useEpisodeData();
+  const hosts = episodeHosts || (showAllHosts ? allHosts : allHosts.slice(0, 2));
 
   return (
     <SidebarCard title="Hosts">

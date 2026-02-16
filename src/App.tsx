@@ -3,6 +3,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation, Navigate, useParams } from "react-router-dom";
 import { SubscribeProvider } from "@/contexts/SubscribeContext";
+import { EpisodeDataProvider } from "@/contexts/EpisodeDataContext";
 import { Toaster } from "sonner";
 import ScrollToTop from "@/components/ScrollToTop";
 import PageTransition from "@/components/animations/PageTransition";
@@ -58,23 +59,25 @@ const AppRoutes = () => {
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <SubscribeProvider>
-        <BrowserRouter>
-          <ScrollToTop />
-          <AppRoutes />
-        </BrowserRouter>
-        <Toaster 
-          position="bottom-center" 
-          toastOptions={{
-            style: {
-              background: 'rgba(0, 0, 0, 0.8)',
-              backdropFilter: 'blur(20px)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              color: 'white',
-            },
-          }}
-        />
-      </SubscribeProvider>
+      <EpisodeDataProvider>
+        <SubscribeProvider>
+          <BrowserRouter>
+            <ScrollToTop />
+            <AppRoutes />
+          </BrowserRouter>
+          <Toaster 
+            position="bottom-center" 
+            toastOptions={{
+              style: {
+                background: 'rgba(0, 0, 0, 0.8)',
+                backdropFilter: 'blur(20px)',
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                color: 'white',
+              },
+            }}
+          />
+        </SubscribeProvider>
+      </EpisodeDataProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );
