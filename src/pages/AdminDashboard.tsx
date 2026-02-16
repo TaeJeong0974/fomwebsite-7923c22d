@@ -25,16 +25,16 @@ const AdminDashboard = () => {
   if (loading) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>;
 
   return (
-    <div className="min-h-screen bg-background pt-24 pb-12 container-padding">
-      <div className="max-w-5xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-display-md text-foreground">CMS Dashboard</h1>
+    <div className="min-h-screen bg-background pt-20 pb-10 container-padding">
+      <div className="max-w-5xl mx-auto space-y-6">
+        <div className="flex items-center justify-between">
+          <h1 className="text-display-md text-foreground" style={{ color: 'hsl(var(--foreground))' }}>CMS Dashboard</h1>
           <button onClick={handleLogout} className="text-body-sm text-muted-foreground hover:text-foreground transition-colors">
             Sign Out
           </button>
         </div>
 
-        <div className="flex gap-1 mb-8">
+        <div className="flex gap-1">
           {(["episodes", "hosts"] as const).map((t) => (
             <button
               key={t}
@@ -50,7 +50,7 @@ const AdminDashboard = () => {
           ))}
         </div>
 
-        <div className="glass rounded-2xl border border-white/20 shadow-glass p-6 sm:p-8">
+        <div className="glass rounded-2xl border border-white/20 shadow-glass p-5 sm:p-6">
           {tab === "episodes" && <AdminEpisodes />}
           {tab === "hosts" && <AdminHosts />}
         </div>
