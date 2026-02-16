@@ -34,11 +34,11 @@ const PodcastDetail = () => {
   const [playTrigger, setPlayTrigger] = useState(0);
   const episode = getEpisodeBySlug(slug || "");
 
-  const isIntro = !episode?.comingSoon && episode?.slug === "intro-to-fom";
+  const isIntro = !episode?.comingSoon && episode?.slug === "intro-to-future-of-marketing";
   const seo = buildEpisodeSeo(episode);
 
   const OG_OVERRIDES: Record<string, string> = {
-    "intro-to-fom": "https://fomwebsite.lovable.app/images/ep0-og.png",
+    "intro-to-future-of-marketing": "https://fomwebsite.lovable.app/images/ep0-og.png",
     "meagen-eisenberg": "https://fomwebsite.lovable.app/images/ep1-og.png",
   };
 

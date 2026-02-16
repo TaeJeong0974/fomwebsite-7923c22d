@@ -193,7 +193,7 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
     <div className="divide-y divide-border/50">
       {allEpisodes.map((episode, index) => {
         const isComingSoon = episode.comingSoon;
-        const isIntroEpisode = episode.slug === 'intro-to-fom';
+        const isIntroEpisode = episode.slug === 'intro-to-future-of-marketing';
         const hasBadge = isComingSoon || isNewEpisode(episode.publishedDate);
         const isHovered = hoveredIndex === index && !isMobile;
         const colors = HOVER_COLORS[index % HOVER_COLORS.length];
