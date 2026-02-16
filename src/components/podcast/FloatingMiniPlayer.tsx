@@ -86,9 +86,15 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
     const targets = [relatedSection, footer].filter(Boolean) as Element[];
     if (targets.length === 0) return;
 
+    const visibilityMap = new Map<Element, boolean>();
+    targets.forEach(el => visibilityMap.set(el, false));
+
     const observer = new IntersectionObserver(
       (entries) => {
-        const anyVisible = entries.some(entry => entry.isIntersecting);
+        entries.forEach(entry => {
+          visibilityMap.set(entry.target, entry.isIntersecting);
+        });
+        const anyVisible = Array.from(visibilityMap.values()).some(Boolean);
         setHideAtBottom(anyVisible);
       },
       { threshold: 0.05 }
