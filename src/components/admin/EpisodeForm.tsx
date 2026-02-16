@@ -270,21 +270,21 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
       <div className="space-y-6 max-w-2xl">
         {/* ── 1. Header ── */}
         <h3 className="text-body font-medium text-foreground">Header</h3>
-        <div className="grid grid-cols-4 gap-4">
-          <div className="space-y-1">
-            <label className={labelClass}>Status</label>
-            <select className={`${fieldClass} bg-background`} value={form.status} onChange={(e) => set("status", e.target.value)}>
-              <option value="draft">Draft</option>
-              <option value="upcoming">Upcoming</option>
-              <option value="published">Published</option>
-              <option value="deleted">Deleted</option>
-            </select>
-            <p className="text-xs text-muted-foreground mt-1">
-              {form.status === 'upcoming' ? 'Card on homepage, no detail page' : 
-               form.status === 'published' ? 'Full detail page with video' :
-               form.status === 'draft' ? 'Not visible on site' : 'Soft-deleted'}
-            </p>
-          </div>
+        <div className="space-y-1">
+          <label className={labelClass}>Status</label>
+          <select className={`${fieldClass} bg-background max-w-xs`} value={form.status} onChange={(e) => set("status", e.target.value)}>
+            <option value="draft">Draft</option>
+            <option value="upcoming">Upcoming</option>
+            <option value="published">Published</option>
+            <option value="deleted">Deleted</option>
+          </select>
+          <p className="text-xs text-muted-foreground mt-1">
+            {form.status === 'upcoming' ? 'Card on homepage, no detail page' : 
+             form.status === 'published' ? 'Full detail page with video' :
+             form.status === 'draft' ? 'Not visible on site' : 'Soft-deleted'}
+          </p>
+        </div>
+        <div className="grid grid-cols-3 gap-4">
           <div className="space-y-1">
             <label className={labelClass}>Slug *</label>
             <input className={fieldClass} value={form.slug} onChange={(e) => set("slug", e.target.value)} />
