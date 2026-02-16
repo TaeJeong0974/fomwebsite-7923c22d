@@ -79,19 +79,22 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
     return () => observer.disconnect();
   }, [isPlaying]);
 
-  // Hide PiP when "More Episodes" section comes into view
+  // Hide PiP when "More Episodes" section or footer comes into view
   useEffect(() => {
     const relatedSection = document.getElementById('related-episodes');
-    if (!relatedSection) return;
+    const footer = document.querySelector('footer');
+    const targets = [relatedSection, footer].filter(Boolean) as Element[];
+    if (targets.length === 0) return;
 
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setHideAtBottom(entry.isIntersecting);
+      (entries) => {
+        const anyVisible = entries.some(entry => entry.isIntersecting);
+        setHideAtBottom(anyVisible);
       },
       { threshold: 0.05 }
     );
 
-    observer.observe(relatedSection);
+    targets.forEach(el => observer.observe(el));
     return () => observer.disconnect();
   }, []);
   
