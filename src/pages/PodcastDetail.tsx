@@ -133,7 +133,7 @@ const PodcastDetail = () => {
 
             <FadeInSection>
               <h3 className="text-section-header font-medium text-foreground mb-5 sm:mb-6">About this Episode</h3>
-              <div className="text-foreground/80 whitespace-pre-line leading-[1.85] text-[0.9rem] lg:text-[1.05rem] max-w-prose">
+              <div className="text-foreground/80 whitespace-pre-line text-[0.9rem] lg:text-[1.05rem] max-w-prose">
                 {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}.`}
               </div>
             </FadeInSection>

@@ -183,6 +183,23 @@ html {
     font-family: var(--font-display);
   }
 
+  /* Page-level typography scale — consistent line heights */
+  p, li, dd, blockquote, figcaption {
+    line-height: 1.75;
+  }
+
+  @media (min-width: 640px) {
+    p, li, dd, blockquote, figcaption {
+      line-height: 1.8;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    p, li, dd, blockquote, figcaption {
+      line-height: 1.85;
+    }
+  }
+
   [id] {
     scroll-margin-top: 5rem;
   }
