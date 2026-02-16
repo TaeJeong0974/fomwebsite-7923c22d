@@ -27,9 +27,8 @@ const getYouTubeVideoId = (url: string): string | null => {
 
 const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: FloatingMiniPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const playBtnRef = useRef<HTMLDivElement>(null);
   const videoId = youtubeUrl ? getYouTubeVideoId(youtubeUrl) : null;
 
   useEffect(() => {
@@ -48,12 +47,22 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
+    if (!containerRef.current || !playBtnRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    setMousePos({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    playBtnRef.current.style.transform = `translate(${x - 28}px, ${y - 28}px) scale(1)`;
+  };
+
+  const handleMouseEnter = () => {
+    if (playBtnRef.current) playBtnRef.current.style.opacity = '1';
+  };
+
+  const handleMouseLeave = () => {
+    if (playBtnRef.current) {
+      playBtnRef.current.style.opacity = '0';
+      playBtnRef.current.style.transform = playBtnRef.current.style.transform.replace('scale(1)', 'scale(0.8)');
+    }
   };
 
   return (
@@ -75,28 +84,27 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
               className="absolute inset-0 group cursor-pointer"
               onClick={handlePlay}
               onMouseMove={handleMouseMove}
-              onMouseEnter={() => setIsHovering(true)}
-              onMouseLeave={() => setIsHovering(false)}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
               style={{
                 backgroundImage: `url(${thumbnailImage || thumbnailUrl || guestBg})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
             >
-              
-              {/* Play Button - cursor follow on desktop, centered on mobile */}
-              <div
-                className="absolute inset-0 flex items-center justify-center sm:hidden"
-              >
+              {/* Play Button - centered on mobile */}
+              <div className="absolute inset-0 flex items-center justify-center sm:hidden">
                 <div className="w-14 h-14 rounded-full bg-white/60 backdrop-blur-2xl border border-white/40 flex items-center justify-center shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)]">
                   <Play className="w-5 h-5 text-foreground fill-foreground ml-0.5" />
                 </div>
               </div>
+              {/* Play Button - cursor follow on desktop */}
               <div
+                ref={playBtnRef}
                 className="hidden sm:flex absolute left-0 top-0 z-10 pointer-events-none items-center justify-center w-14 h-14 rounded-full bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)]"
                 style={{
-                  transform: `translate(${mousePos.x - 28}px, ${mousePos.y - 28}px) scale(${isHovering ? 1 : 0.8})`,
-                  opacity: isHovering ? 1 : 0,
+                  opacity: 0,
+                  transform: 'translate(0px, 0px) scale(0.8)',
                   willChange: 'transform, opacity',
                   transition: 'opacity 150ms ease-out',
                 }}
