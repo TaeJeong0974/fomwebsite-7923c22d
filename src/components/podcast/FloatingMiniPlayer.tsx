@@ -74,6 +74,8 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
   const handleDismissPip = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     setPipDismissed(true);
+    // Reappear after 30 seconds
+    setTimeout(() => setPipDismissed(false), 30000);
   }, []);
 
   const handlePipClick = useCallback(() => {
