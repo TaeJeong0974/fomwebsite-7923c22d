@@ -27,7 +27,7 @@ const AdminDashboard = () => {
 
   return (
     <div className="min-h-screen bg-[#f8f9fa] pt-20 sm:pt-24 pb-16 px-4 sm:px-8 lg:px-12">
-      <div className="w-full max-w-[1400px] mx-auto space-y-6">
+      <div className="w-full mx-auto space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
           <h1 className="font-semibold text-dark-foreground tracking-tight" style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}>Content Manager</h1>
