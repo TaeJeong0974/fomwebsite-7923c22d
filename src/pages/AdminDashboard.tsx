@@ -26,7 +26,7 @@ const AdminDashboard = () => {
   if (loading) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>;
 
   return (
-    <div className="min-h-screen bg-[#f8f9fa] pt-16 sm:pt-20 lg:pt-24 pb-12 sm:pb-16">
+    <div className="min-h-screen bg-[#f8f9fa] pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16">
       <div className="container mx-auto container-padding space-y-4 sm:space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
