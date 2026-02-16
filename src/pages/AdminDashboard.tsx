@@ -25,8 +25,8 @@ const AdminDashboard = () => {
   if (loading) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>;
 
   return (
-    <div className="min-h-screen bg-background pt-20 pb-10 container-padding">
-      <div className="max-w-5xl mx-auto space-y-6">
+    <div className="min-h-screen bg-background pt-20 sm:pt-24 pb-12 px-5 sm:px-8 lg:px-12">
+      <div className="max-w-5xl mx-auto space-y-8">
         <div className="flex items-center justify-between">
           <h1 className="text-display-md text-dark-foreground">CMS Dashboard</h1>
           <button onClick={handleLogout} className="text-body-sm text-muted-foreground hover:text-foreground transition-colors">
@@ -34,7 +34,7 @@ const AdminDashboard = () => {
           </button>
         </div>
 
-        <div className="flex gap-1">
+        <div className="flex gap-2">
           {(["episodes", "hosts"] as const).map((t) => (
             <button
               key={t}
