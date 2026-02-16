@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Menu, X, Sun, Moon } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import FomLogo from "@/assets/FOM_Logo.svg";
 import { useSubscribe } from "@/contexts/SubscribeContext";
-import { useFavicon } from "@/hooks/use-favicon";
 
 import SubscribeButton from "@/components/SubscribeButton";
 import { LiquidButton } from "@/components/ui/LiquidButton";
@@ -70,7 +69,6 @@ const AnimatedLogo = ({ className }: { className?: string }) => {
 
 const Navbar = () => {
   const { openSubscribe } = useSubscribe();
-  const { color: faviconColor, toggle: toggleFavicon } = useFavicon();
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
@@ -231,15 +229,6 @@ const Navbar = () => {
               transition={{ duration: 0.5, delay: 0.5, ease: liquidEase }}
               className="flex items-center gap-4 justify-self-end"
             >
-              <LiquidButton
-                variant="glass"
-                size="icon"
-                className="h-9 w-9"
-                onClick={toggleFavicon}
-                aria-label={`Switch favicon to ${faviconColor === 'white' ? 'black' : 'white'}`}
-              >
-                {faviconColor === 'white' ? <Moon className="h-4 w-4" /> : <Sun className="h-4 w-4" />}
-              </LiquidButton>
               <SubscribeButton className="text-[1em] font-medium text-foreground">
                 Subscribe
               </SubscribeButton>
