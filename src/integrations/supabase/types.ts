@@ -52,9 +52,12 @@ export type Database = {
           apple_url: string | null
           created_at: string
           description: string | null
+          duration: string | null
           episode_number: number | null
+          full_description: string | null
           guest_bio: string | null
           guest_company: string | null
+          guest_company_domain: string | null
           guest_image_url: string | null
           guest_linkedin_url: string | null
           guest_name: string | null
@@ -62,6 +65,7 @@ export type Database = {
           id: string
           og_image_url: string | null
           poster_image_url: string | null
+          preview_video_url: string | null
           publish_date: string | null
           published: boolean
           pull_quote: string | null
@@ -78,9 +82,12 @@ export type Database = {
           apple_url?: string | null
           created_at?: string
           description?: string | null
+          duration?: string | null
           episode_number?: number | null
+          full_description?: string | null
           guest_bio?: string | null
           guest_company?: string | null
+          guest_company_domain?: string | null
           guest_image_url?: string | null
           guest_linkedin_url?: string | null
           guest_name?: string | null
@@ -88,6 +95,7 @@ export type Database = {
           id?: string
           og_image_url?: string | null
           poster_image_url?: string | null
+          preview_video_url?: string | null
           publish_date?: string | null
           published?: boolean
           pull_quote?: string | null
@@ -104,9 +112,12 @@ export type Database = {
           apple_url?: string | null
           created_at?: string
           description?: string | null
+          duration?: string | null
           episode_number?: number | null
+          full_description?: string | null
           guest_bio?: string | null
           guest_company?: string | null
+          guest_company_domain?: string | null
           guest_image_url?: string | null
           guest_linkedin_url?: string | null
           guest_name?: string | null
@@ -114,6 +125,7 @@ export type Database = {
           id?: string
           og_image_url?: string | null
           poster_image_url?: string | null
+          preview_video_url?: string | null
           publish_date?: string | null
           published?: boolean
           pull_quote?: string | null
