@@ -63,7 +63,7 @@ const EpisodeCardContent = ({
       </div>
 
       {/* Hover state: Overview title morphs in */}
-      {!isIntro && !isUpcoming && showOverview && episode.overview && (
+      {!isUpcoming && showOverview && episode.overview && (
         <div className="hidden md:block absolute bottom-0 left-0 right-0 card-padding-lg">
           <AnimatePresence>
             {isHovered && (
