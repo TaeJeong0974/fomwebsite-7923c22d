@@ -163,10 +163,10 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
             : 'translate-y-4 opacity-0 scale-95 pointer-events-none'
         }`}
       >
-        <div className="flex flex-col items-end gap-2">
+      <div className="rounded-xl p-2.5 bg-background/70 backdrop-blur-xl border border-white/20 shadow-2xl shadow-black/30">
           {/* Video */}
           <div
-            className="relative w-72 sm:w-80 aspect-video rounded-xl overflow-hidden bg-black shadow-2xl shadow-black/40 ring-1 ring-white/10 cursor-pointer group"
+            className="relative w-72 sm:w-80 aspect-video rounded-lg overflow-hidden bg-black ring-1 ring-white/10 cursor-pointer group"
             onClick={handlePipClick}
           >
             {isPlaying && videoId ? (
@@ -197,12 +197,12 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
           </div>
 
           {/* Platform icons row below video */}
-          <div className="flex items-center gap-1.5">
+          <div className="flex items-center gap-1.5 mt-2 px-0.5">
             <a
               href={youtubeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-foreground/5 backdrop-blur-xl border border-foreground/10 flex items-center justify-center hover:bg-foreground/10 transition-colors duration-200"
+              className="w-8 h-8 rounded-full bg-foreground/5 border border-foreground/10 flex items-center justify-center hover:bg-foreground/10 transition-colors duration-200"
               aria-label="Watch on YouTube"
             >
               <svg className="w-3.5 h-3.5 text-[#FF0000]" viewBox="0 0 24 24" fill="currentColor">
@@ -214,7 +214,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
                 href={spotifyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-8 h-8 rounded-full bg-foreground/5 backdrop-blur-xl border border-foreground/10 flex items-center justify-center hover:bg-foreground/10 transition-colors duration-200"
+                className="w-8 h-8 rounded-full bg-foreground/5 border border-foreground/10 flex items-center justify-center hover:bg-foreground/10 transition-colors duration-200"
                 aria-label="Listen on Spotify"
               >
                 <svg className="w-3.5 h-3.5 text-[#1DB954]" viewBox="0 0 24 24" fill="currentColor">
@@ -226,7 +226,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
               href="https://podcasts.apple.com/us/podcast/future-of-marketing/id1876216633"
               target="_blank"
               rel="noopener noreferrer"
-              className="w-8 h-8 rounded-full bg-foreground/5 backdrop-blur-xl border border-foreground/10 flex items-center justify-center hover:bg-foreground/10 transition-colors duration-200"
+              className="w-8 h-8 rounded-full bg-foreground/5 border border-foreground/10 flex items-center justify-center hover:bg-foreground/10 transition-colors duration-200"
               aria-label="Listen on Apple Podcasts"
             >
               <svg className="w-3.5 h-3.5 text-foreground" viewBox="0 0 24 24" fill="currentColor">
