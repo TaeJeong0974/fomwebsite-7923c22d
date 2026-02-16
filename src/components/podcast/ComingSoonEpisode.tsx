@@ -8,6 +8,7 @@ import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
 import EpisodeHostsCard from "@/components/podcast/EpisodeHostsCard";
 import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import EpisodePullQuote from "@/components/podcast/EpisodePullQuote";
+import GuestBio from "@/components/podcast/GuestBio";
 import ComingSoonHeroCard from "@/components/podcast/ComingSoonHeroCard";
 import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
 import DetailVerticalText from "@/components/podcast/DetailVerticalText";
@@ -115,19 +116,13 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
 
             {episode.bio && (
               <FadeInSection delay={0.5}>
-                <h3 className="text-section-header font-medium text-foreground mb-5 sm:mb-6">
-                  About the Guest
-                </h3>
-                <p className="text-foreground/80 leading-relaxed text-base lg:text-lg max-w-prose">
-                  <span className="font-medium text-foreground">{episode.name}</span>{" "}
-                  {episode.bio && episode.companyDomain ? (
-                    <>
-                      {episode.bio.split(episode.company)[0]}
-                      <a href={`https://${episode.companyDomain}`} target="_blank" rel="noopener noreferrer" className="text-foreground underline underline-offset-2 decoration-foreground/30 hover:decoration-foreground transition-colors">{episode.company}</a>
-                      {episode.bio.split(episode.company).slice(1).join(episode.company)}
-                    </>
-                  ) : episode.bio}
-                </p>
+                <GuestBio
+                  name={episode.name}
+                  bio={episode.bio}
+                  company={episode.company}
+                  companyDomain={episode.companyDomain}
+                  linkedInUrl={episode.linkedInUrl}
+                />
               </FadeInSection>
             )}
 
