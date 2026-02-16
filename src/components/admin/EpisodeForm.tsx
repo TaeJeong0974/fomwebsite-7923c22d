@@ -52,19 +52,19 @@ const SortableTopicItem = ({ id, topic, index, total, onRemove, onMove }: {
   const style = { transform: CSS.Transform.toString(transform), transition, opacity: isDragging ? 0.5 : 1, zIndex: isDragging ? 10 : undefined };
 
   return (
-    <div ref={setNodeRef} style={style} className="flex items-center gap-2 py-1.5 px-3 rounded-xl bg-white/30 border border-white/20 group">
-      <button type="button" {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing touch-none p-0.5 text-muted-foreground/50 hover:text-muted-foreground shrink-0">
+    <div ref={setNodeRef} style={style} className="flex items-center gap-2 py-2 px-3 rounded-xl bg-gray-50 border border-gray-200 group">
+      <button type="button" {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing touch-none p-0.5 text-gray-400 hover:text-gray-600 shrink-0">
         <GripVertical className="h-3.5 w-3.5" />
       </button>
-      <span className="text-body-sm text-foreground flex-1">{topic}</span>
+      <span className="text-sm text-gray-900 flex-1">{topic}</span>
       <div className="flex items-center gap-0.5 shrink-0">
-        <button type="button" onClick={() => onMove(index, -1)} disabled={index === 0} className="p-0.5 rounded text-muted-foreground hover:text-foreground disabled:opacity-30 transition-colors">
+        <button type="button" onClick={() => onMove(index, -1)} disabled={index === 0} className="p-0.5 rounded text-gray-400 hover:text-gray-700 disabled:opacity-30 transition-colors">
           <ChevronUp className="h-3.5 w-3.5" />
         </button>
-        <button type="button" onClick={() => onMove(index, 1)} disabled={index === total - 1} className="p-0.5 rounded text-muted-foreground hover:text-foreground disabled:opacity-30 transition-colors">
+        <button type="button" onClick={() => onMove(index, 1)} disabled={index === total - 1} className="p-0.5 rounded text-gray-400 hover:text-gray-700 disabled:opacity-30 transition-colors">
           <ChevronDown className="h-3.5 w-3.5" />
         </button>
-        <button type="button" onClick={() => onRemove(index)} className="p-0.5 rounded text-destructive hover:text-destructive/80 transition-colors ml-1">×</button>
+        <button type="button" onClick={() => onRemove(index)} className="p-0.5 rounded text-red-400 hover:text-red-600 transition-colors ml-1">×</button>
       </div>
     </div>
   );
@@ -102,14 +102,14 @@ const SortableTopicList = ({ topics, onReorder, onRemove, onMove }: {
   );
 };
 
-// ── Glass Section Container ──
+// ── Section Container — Google-style white card ──
 const GlassSection = ({ label, number, children }: { label: string; number: number; children: React.ReactNode }) => (
-  <div className="rounded-2xl border border-white/20 bg-white/30 backdrop-blur-sm shadow-glass overflow-hidden">
-    <div className="flex items-center gap-3 px-5 py-3 border-b border-white/15 bg-white/20">
-      <span className="flex items-center justify-center w-6 h-6 rounded-full bg-foreground/[0.08] text-[11px] font-semibold text-muted-foreground">{number}</span>
-      <h3 className="text-body-sm font-semibold text-foreground tracking-wide uppercase">{label}</h3>
+  <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+    <div className="flex items-center gap-3 px-6 py-4 border-b border-gray-100">
+      <span className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-100 text-xs font-semibold text-gray-500">{number}</span>
+      <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">{label}</h3>
     </div>
-    <div className="p-5 space-y-4">
+    <div className="p-6 space-y-5">
       {children}
     </div>
   </div>
@@ -278,20 +278,20 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
     setUploading(null);
   };
 
-  const fieldClass = "w-full px-4 py-3 rounded-xl border border-white/30 bg-muted/60 backdrop-blur-sm text-foreground text-body-sm focus:ring-2 focus:ring-primary/30 focus:border-primary/50 outline-none transition-all";
-  const labelClass = "text-body-sm font-medium text-muted-foreground";
+  const fieldClass = "w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary/40 outline-none transition-all placeholder:text-gray-300";
+  const labelClass = "text-sm font-medium text-gray-600";
 
   const groupDivider = (
-    <div className="flex items-center gap-4 py-1">
-      <div className="flex-1 h-px bg-gradient-to-r from-transparent via-foreground/10 to-transparent" />
+    <div className="flex items-center gap-4 py-2">
+      <div className="flex-1 h-px bg-gray-200" />
     </div>
   );
 
   return (
     <div>
-      <div className="flex items-center justify-between mb-6">
-        <h2 className="text-section-header font-medium text-dark-foreground">{episodeId ? "Edit Episode" : "New Episode"}</h2>
-        <button onClick={onDone} className="text-body-sm text-muted-foreground hover:text-foreground">← Back</button>
+      <div className="flex items-center justify-between mb-8">
+        <h2 className="text-lg font-semibold text-dark-foreground">{episodeId ? "Edit Episode" : "New Episode"}</h2>
+        <button onClick={onDone} className="text-sm text-gray-400 hover:text-gray-700 transition-colors">← Back</button>
       </div>
 
       <div className="space-y-8 max-w-2xl">
@@ -301,26 +301,26 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
             <label className={labelClass}>Status</label>
             <div className="flex gap-2">
               {([
-                { value: "draft", label: "Draft", color: "bg-white/40 text-muted-foreground border-white/30" },
+                { value: "draft", label: "Draft", color: "bg-gray-100 text-gray-600 border-gray-200" },
                 { value: "upcoming", label: "Upcoming", color: "bg-amber-50 text-amber-700 border-amber-200" },
                 { value: "published", label: "Published", color: "bg-green-50 text-green-700 border-green-200" },
-                { value: "deleted", label: "Deleted", color: "bg-red-50 text-destructive border-red-200" },
+                { value: "deleted", label: "Deleted", color: "bg-red-50 text-red-700 border-red-200" },
               ] as const).map(({ value, label, color }) => (
                 <button
                   key={value}
                   type="button"
                   onClick={() => set("status", value)}
-                  className={`px-4 py-2 rounded-xl text-body-sm font-medium border transition-all ${
+                  className={`px-4 py-2 rounded-full text-xs font-medium border transition-all ${
                     form.status === value
-                      ? `${color} ring-2 ring-offset-1 ring-foreground/20`
-                      : "bg-white/20 text-muted-foreground border-white/20 hover:border-white/40 opacity-60"
+                      ? `${color} ring-2 ring-offset-1 ring-primary/30`
+                      : "bg-gray-50 text-gray-400 border-gray-100 hover:border-gray-300 opacity-70"
                   }`}
                 >
                   {label}
                 </button>
               ))}
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-[11px] text-gray-400">
               {form.status === 'upcoming' ? 'Card on homepage, no detail page' :
                form.status === 'published' ? 'Full detail page with video' :
                form.status === 'draft' ? 'Not visible on site' : 'Soft-deleted'}
@@ -484,10 +484,10 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
                 key={h.id}
                 type="button"
                 onClick={() => toggleHost(h.id)}
-                className={`px-4 py-2 rounded-lg text-body-sm font-medium transition-colors border ${
+                className={`px-4 py-2 rounded-full text-sm font-medium transition-all border ${
                   selectedHostIds.includes(h.id)
-                    ? "bg-foreground text-background border-foreground"
-                    : "bg-white/30 text-muted-foreground border-white/30 hover:border-white/50"
+                    ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                    : "bg-gray-50 text-gray-500 border-gray-200 hover:border-gray-300"
                 }`}
               >
                 {h.name}
@@ -539,11 +539,11 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
           </div>
         </GlassSection>
 
-        <div className="flex gap-3 pt-4">
-          <button onClick={handleSave} disabled={saving} className="px-6 py-3 rounded-xl bg-foreground text-background font-medium hover:opacity-90 disabled:opacity-50 transition-opacity">
+        <div className="flex gap-3 pt-6">
+          <button onClick={handleSave} disabled={saving} className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-medium shadow-sm hover:shadow-md hover:brightness-105 disabled:opacity-50 transition-all">
             {saving ? "Saving…" : episodeId ? "Update Episode" : "Create Episode"}
           </button>
-          <button onClick={onDone} className="px-6 py-3 rounded-xl border border-white/30 text-foreground text-body-sm hover:bg-white/20 transition-colors">
+          <button onClick={onDone} className="px-6 py-2.5 rounded-full border border-gray-200 text-gray-600 text-sm font-medium hover:bg-gray-50 transition-colors">
             Cancel
           </button>
         </div>
