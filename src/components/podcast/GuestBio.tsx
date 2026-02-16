@@ -15,7 +15,7 @@ const GuestBio = ({ name, bio, company, companyDomain, linkedInUrl }: GuestBioPr
   return (
     <div>
       <h3 className="text-section-header font-medium text-foreground mb-5 sm:mb-6">About the Guest</h3>
-      <p className="text-foreground/80 leading-relaxed text-base lg:text-lg max-w-prose">
+      <p className="text-foreground/80 leading-relaxed text-sm lg:text-base max-w-prose">
         <span className="font-medium text-foreground">{name}</span>{" "}
         {companyDomain ? (
           <>

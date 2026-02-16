@@ -14,7 +14,7 @@ const AboutTheHosts = ({ hosts }: AboutTheHostsProps) => {
       <div className="space-y-8">
         {displayHosts.map((host, index) => (
           <div key={index} className="space-y-2">
-            <p className="text-foreground/80 leading-relaxed text-base lg:text-lg max-w-prose">
+            <p className="text-foreground/80 leading-relaxed text-sm lg:text-base max-w-prose">
               <span className="font-medium text-foreground">{host.name}</span>{" "}
               {host.bio && host.companyUrl ? (
                 <>
