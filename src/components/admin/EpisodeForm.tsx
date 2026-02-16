@@ -320,27 +320,6 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
           ))}
         </div>
 
-        {/* ── 8. Newsletters Mentioned ── */}
-        <hr className="border-border" />
-        <h3 className="text-body font-medium text-foreground">Reco Newsletters</h3>
-        <div className="grid grid-cols-2 gap-2">
-          <input className={fieldClass} value={nlForm.title} onChange={(e) => setNlForm((f) => ({ ...f, title: e.target.value }))} placeholder="Newsletter name" />
-          <div className="flex gap-2">
-            <input className={fieldClass} value={nlForm.url} onChange={(e) => setNlForm((f) => ({ ...f, url: e.target.value }))} placeholder="URL" onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addNewsletter())} />
-            <button type="button" onClick={addNewsletter} className="px-4 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap">Add</button>
-          </div>
-        </div>
-        {newsletters.length > 0 && (
-          <div className="space-y-2">
-            {newsletters.map((nl, i) => (
-              <div key={i} className="flex items-center gap-3 px-4 py-2 rounded-lg border border-border bg-muted/30">
-                <span className="text-body-sm text-foreground flex-1">{nl.title}</span>
-                <a href={nl.url} target="_blank" rel="noopener noreferrer" className="text-body-sm text-primary hover:underline truncate max-w-[200px]">{nl.url}</a>
-                <button onClick={() => removeNewsletter(i)} className="text-destructive hover:text-destructive/80 text-body-sm">×</button>
-              </div>
-            ))}
-          </div>
-        )}
 
         {/* ── 9. Images & SEO ── */}
         <hr className="border-border" />
