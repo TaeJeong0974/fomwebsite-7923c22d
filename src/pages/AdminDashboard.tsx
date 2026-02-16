@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
-import { toast } from "sonner";
 import AdminEpisodes from "@/components/admin/AdminEpisodes";
 import AdminHosts from "@/components/admin/AdminHosts";
 
@@ -11,22 +9,15 @@ const AdminDashboard = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const checkAdmin = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) { navigate("/admin"); return; }
-      const { data: roles } = await supabase
-        .from("user_roles")
-        .select("role")
-        .eq("user_id", user.id)
-        .eq("role", "admin");
-      if (!roles || roles.length === 0) { navigate("/admin"); return; }
-      setLoading(false);
-    };
-    checkAdmin();
+    if (sessionStorage.getItem("fom-admin") !== "true") {
+      navigate("/admin");
+      return;
+    }
+    setLoading(false);
   }, [navigate]);
 
-  const handleLogout = async () => {
-    await supabase.auth.signOut();
+  const handleLogout = () => {
+    sessionStorage.removeItem("fom-admin");
     navigate("/admin");
   };
 
@@ -42,7 +33,6 @@ const AdminDashboard = () => {
           </button>
         </div>
 
-        {/* Tabs */}
         <div className="flex gap-1 mb-8 border-b border-border">
           {(["episodes", "hosts"] as const).map((t) => (
             <button
