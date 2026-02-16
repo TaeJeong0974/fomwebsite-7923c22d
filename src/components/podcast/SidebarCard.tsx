@@ -51,7 +51,7 @@ const SidebarCard = ({ title, children }: SidebarCardProps) => {
       />
       
       {/* Content */}
-      <div className="relative z-10 flex flex-col min-h-0 lg:min-h-[280px]">
+      <div className="relative z-10">
         <h3 className="text-section-header font-medium text-foreground mb-5 lg:mb-6">{title}</h3>
         {children}
       </div>
