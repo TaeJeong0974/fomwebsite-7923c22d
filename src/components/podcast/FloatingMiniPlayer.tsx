@@ -48,15 +48,19 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Show PiP when main player is not visible and video is playing
+        // Show PiP when main player is not visible
         setShowPip(!entry.isIntersecting);
+        // Stop playing when scrolled out of view
+        if (!entry.isIntersecting && isPlaying) {
+          setIsPlaying(false);
+        }
       },
       { threshold: 0.3 }
     );
 
     observer.observe(playerWrapperRef.current);
     return () => observer.disconnect();
-  }, []);
+  }, [isPlaying]);
   
   // YouTube thumbnail URL
   const thumbnailUrl = videoId 
