@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { setAdminPassword } from "@/lib/adminApi";
 import { toast } from "sonner";
 
 const AdminLogin = () => {
@@ -23,7 +24,7 @@ const AdminLogin = () => {
         return;
       }
 
-      sessionStorage.setItem("fom-admin", "true");
+      setAdminPassword(password);
       navigate("/admin/dashboard");
     } catch {
       toast.error("Something went wrong");
