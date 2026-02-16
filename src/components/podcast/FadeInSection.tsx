@@ -6,6 +6,7 @@ interface FadeInSectionProps {
   className?: string;
   delay?: number;
   id?: string;
+  [key: string]: unknown;
 }
 
 const fadeInVariants = {
@@ -13,7 +14,7 @@ const fadeInVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-const FadeInSection = ({ children, className, delay = 0, id }: FadeInSectionProps) => (
+const FadeInSection = ({ children, className, delay = 0, id, ...rest }: FadeInSectionProps) => (
   <motion.div
     id={id}
     className={className}
@@ -22,6 +23,7 @@ const FadeInSection = ({ children, className, delay = 0, id }: FadeInSectionProp
     whileInView="visible"
     viewport={{ once: true, amount: 0.15 }}
     transition={{ duration: 1.0, delay, ease: liquidEase }}
+    {...rest}
   >
     {children}
   </motion.div>
