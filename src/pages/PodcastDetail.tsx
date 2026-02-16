@@ -36,9 +36,11 @@ const PodcastDetail = () => {
 
   const isIntro = !episode?.comingSoon && episode?.slug === "intro-to-fom";
   const seo = buildEpisodeSeo(episode);
-  const ogImage = episode?.youtubeUrl
-    ? getYouTubeThumbnail(episode.youtubeUrl, "hqdefault")
-    : null;
+  const ogImage = isIntro
+    ? "https://fomwebsite.lovable.app/images/ep0-og.png"
+    : episode?.youtubeUrl
+      ? getYouTubeThumbnail(episode.youtubeUrl, "hqdefault")
+      : null;
 
   useDocumentMeta({
     title: seo.title,
