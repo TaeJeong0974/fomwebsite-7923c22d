@@ -6,7 +6,7 @@ interface FloatingMiniPlayerProps {
   youtubeUrl?: string;
   spotifyUrl?: string;
   playTrigger?: number;
-  thumbnailImage?: string;
+  overlayText?: string;
 }
 
 // Extract YouTube video ID from various URL formats
@@ -26,7 +26,7 @@ const getYouTubeVideoId = (url: string): string | null => {
   return null;
 };
 
-const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImage }: FloatingMiniPlayerProps) => {
+const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, overlayText }: FloatingMiniPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showPip, setShowPip] = useState(false);
   const [hideAtBottom, setHideAtBottom] = useState(false);
@@ -159,12 +159,22 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
               onClick={handlePlay}
             >
               <img
-                src={thumbnailImage || thumbnailUrl || guestBg}
+                src={thumbnailUrl || guestBg}
                 alt="Episode thumbnail"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-smooth group-hover:scale-105"
                 loading="eager"
                 decoding="async"
               />
+              {/* Gradient overlay for text legibility */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              {/* Dynamic episode text */}
+              {overlayText && (
+                <div className="absolute bottom-6 left-6 right-20 sm:bottom-8 sm:left-8 sm:right-24 z-10">
+                  <p className="text-white font-display font-medium text-lg sm:text-xl lg:text-2xl leading-snug drop-shadow-lg">
+                    {overlayText}
+                  </p>
+                </div>
+              )}
               {/* Static Play Button - always visible */}
               <div className="absolute top-6 right-6 lg:top-8 lg:right-8 z-10">
                 <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg transition-transform duration-200 group-hover:scale-110">
@@ -200,7 +210,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
               />
             ) : (
               <img
-                src={thumbnailImage || thumbnailUrl || guestBg}
+                src={thumbnailUrl || guestBg}
                 alt="Episode thumbnail"
                 className="absolute inset-0 w-full h-full object-cover"
                 loading="lazy"

@@ -106,7 +106,7 @@ const PodcastDetail = () => {
                 youtubeUrl={episode.youtubeUrl}
                 spotifyUrl={episode.spotifyUrl}
                 playTrigger={playTrigger}
-                thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : undefined}
+                overlayText={episode.overview || episode.name}
               />
               <div className="pt-2 lg:hidden">
                 <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
