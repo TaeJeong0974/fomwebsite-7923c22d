@@ -270,7 +270,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
     setUploading(null);
   };
 
-  const fieldClass = "w-full px-4 py-3 rounded-xl border border-white/30 bg-white/40 backdrop-blur-sm text-foreground text-body-sm focus:ring-2 focus:ring-primary/30 focus:border-primary/50 outline-none transition-all";
+  const fieldClass = "w-full px-4 py-3 rounded-xl border border-white/30 bg-muted/60 backdrop-blur-sm text-foreground text-body-sm focus:ring-2 focus:ring-primary/30 focus:border-primary/50 outline-none transition-all";
   const labelClass = "text-body-sm font-medium text-muted-foreground";
 
   const groupDivider = (
@@ -387,7 +387,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
           </div>
           <div className="space-y-1">
             <label className={labelClass}>Attribution</label>
-            <select className={`${fieldClass} bg-white/40`} value={form.pull_quote_attribution} onChange={(e) => set("pull_quote_attribution", e.target.value)}>
+            <select className={fieldClass} value={form.pull_quote_attribution} onChange={(e) => set("pull_quote_attribution", e.target.value)}>
               <option value="">Select speaker…</option>
               {form.guest_name && <option value={form.guest_name}>{form.guest_name} (Guest)</option>}
               {allHosts.map((h) => (

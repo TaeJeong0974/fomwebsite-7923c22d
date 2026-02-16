@@ -46,7 +46,7 @@ const AdminLogin = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full px-4 py-3 rounded-xl border border-white/30 bg-white/40 backdrop-blur-sm text-foreground focus:ring-2 focus:ring-primary/30 focus:border-primary/50 outline-none transition-all"
+            className="w-full px-4 py-3 rounded-xl border border-white/30 bg-muted/60 backdrop-blur-sm text-foreground focus:ring-2 focus:ring-primary/30 focus:border-primary/50 outline-none transition-all"
           />
         </div>
         <button

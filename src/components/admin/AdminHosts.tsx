@@ -84,7 +84,7 @@ const AdminHosts = () => {
   };
 
   const set = (key: string, value: string) => setForm((f) => ({ ...f, [key]: value }));
-  const fieldClass = "w-full px-4 py-3 rounded-xl border border-white/30 bg-white/40 backdrop-blur-sm text-foreground text-body-sm focus:ring-2 focus:ring-primary/30 focus:border-primary/50 outline-none transition-all";
+  const fieldClass = "w-full px-4 py-3 rounded-xl border border-white/30 bg-muted/60 backdrop-blur-sm text-foreground text-body-sm focus:ring-2 focus:ring-primary/30 focus:border-primary/50 outline-none transition-all";
   const labelClass = "text-body-sm font-medium text-muted-foreground";
 
   if (editing) {
