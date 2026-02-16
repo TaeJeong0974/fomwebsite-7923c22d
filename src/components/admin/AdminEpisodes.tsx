@@ -9,9 +9,17 @@ interface Episode {
   title: string;
   guest_name: string | null;
   guest_company: string | null;
+  status: string;
   published: boolean;
   episode_number: number | null;
 }
+
+const STATUS_STYLES: Record<string, string> = {
+  published: "text-green-600",
+  upcoming: "text-amber-600",
+  draft: "text-muted-foreground",
+  deleted: "text-destructive",
+};
 
 const AdminEpisodes = () => {
   const [episodes, setEpisodes] = useState<Episode[]>([]);
@@ -85,8 +93,8 @@ const AdminEpisodes = () => {
                 <td className="px-4 py-3 text-body-sm text-foreground">{ep.title}</td>
                 <td className="px-4 py-3 text-body-sm text-muted-foreground">{ep.guest_name}{ep.guest_company ? ` (${ep.guest_company})` : ""}</td>
                 <td className="px-4 py-3">
-                  <span className={`badge-status ${ep.published ? "text-green-600" : "text-muted-foreground"}`}>
-                    {ep.published ? "Published" : "Draft"}
+                  <span className={`badge-status capitalize ${STATUS_STYLES[ep.status] || "text-muted-foreground"}`}>
+                    {ep.status || (ep.published ? "published" : "draft")}
                   </span>
                 </td>
                 <td className="px-4 py-3 text-right space-x-2">
