@@ -13,6 +13,8 @@ import Index from "./pages/Index";
 const PodcastDetail = lazy(() => import("./pages/PodcastDetail"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
+const AdminLogin = lazy(() => import("./pages/AdminLogin"));
+const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 
 const queryClient = new QueryClient();
 
@@ -43,6 +45,8 @@ const AppRoutes = () => {
             <Route path="/podcast/:slug" element={<PodcastDetail />} />
             <Route path="/episode/:slug" element={<NavigateToSlug />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
