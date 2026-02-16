@@ -205,7 +205,7 @@ const PodcastDetail = () => {
           </div>
 
           {/* Sidebar */}
-          <div className="hidden lg:flex lg:flex-col space-y-6 sticky top-24 self-start">
+          <div className="hidden lg:flex lg:flex-col space-y-6">
             <FadeInSection>
             {!isIntro && (
               <EpisodeGuestCard
@@ -221,15 +221,17 @@ const PodcastDetail = () => {
               <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />
             </FadeInSection>
             {videoOffScreen && (
-              <FadeInSection>
-                <EpisodeWatchCard
-                  youtubeUrl={episode.youtubeUrl}
-                  spotifyUrl={episode.spotifyUrl}
-                  thumbnailUrl={thumbnailUrl}
-                  thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : undefined}
-                  onPlayClick={handlePlayFromBar}
-                />
-              </FadeInSection>
+              <div className="sticky top-24">
+                <FadeInSection>
+                  <EpisodeWatchCard
+                    youtubeUrl={episode.youtubeUrl}
+                    spotifyUrl={episode.spotifyUrl}
+                    thumbnailUrl={thumbnailUrl}
+                    thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : undefined}
+                    onPlayClick={handlePlayFromBar}
+                  />
+                </FadeInSection>
+              </div>
             )}
           </div>
         </div>
