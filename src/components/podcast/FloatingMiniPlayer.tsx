@@ -166,7 +166,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
                 decoding="async"
               />
               {/* Static Play Button - always visible */}
-              <div className="absolute top-6 right-6 lg:top-8 lg:right-8 z-10">
+              <div className="absolute bottom-6 right-6 lg:bottom-8 lg:right-8 z-10">
                 <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg transition-transform duration-200 group-hover:scale-110">
                   <Play className="w-5 h-5 text-foreground fill-foreground ml-0.5" />
                 </div>
