@@ -102,15 +102,17 @@ const SortableTopicList = ({ topics, onReorder, onRemove, onMove }: {
   );
 };
 
-// ── Section Container — Google-style white card ──
+// ── Section Container — Google-style white card with external label ──
 const GlassSection = ({ label, number, children }: { label: string; number: number; children: React.ReactNode }) => (
-  <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-    <div className="flex items-center gap-3 px-6 py-4 border-b border-gray-100">
-      <span className="flex items-center justify-center w-7 h-7 rounded-full bg-gray-100 text-xs font-semibold text-gray-500">{number}</span>
-      <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-wide">{label}</h3>
+  <div className="space-y-0">
+    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+      <div className="p-6 space-y-5">
+        {children}
+      </div>
     </div>
-    <div className="p-6 space-y-5">
-      {children}
+    <div className="flex items-center gap-2.5 px-2 pt-3">
+      <span className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-100 text-[11px] font-semibold text-gray-400">{number}</span>
+      <span className="text-xs font-medium text-gray-400 uppercase tracking-wide">{label}</span>
     </div>
   </div>
 );
