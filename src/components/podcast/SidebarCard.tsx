@@ -6,13 +6,14 @@ import teaserBg from "@/assets/teaser-bg.png";
 interface SidebarCardProps {
   title: string;
   children: ReactNode;
+  backgroundImage?: string;
 }
 
 /**
  * Shared base component for Guest/Hosts sidebar cards.
  * Handles hover background effect and consistent styling.
  */
-const SidebarCard = ({ title, children }: SidebarCardProps) => {
+const SidebarCard = ({ title, children, backgroundImage }: SidebarCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const isMobile = useIsMobile();
 
@@ -22,6 +23,20 @@ const SidebarCard = ({ title, children }: SidebarCardProps) => {
       onMouseEnter={() => !isMobile && setIsHovered(true)}
       onMouseLeave={() => !isMobile && setIsHovered(false)}
     >
+      {/* Blurred background image */}
+      {backgroundImage && (
+        <div className="absolute inset-0 z-0 overflow-hidden rounded-xl">
+          <img
+            src={backgroundImage}
+            alt=""
+            loading="lazy"
+            decoding="async"
+            className="w-full h-full object-cover scale-110 blur-2xl opacity-30"
+          />
+          <div className="absolute inset-0 bg-background/50" />
+        </div>
+      )}
+
       {/* Hover Background */}
       <motion.div
         className="absolute inset-0 z-0"
