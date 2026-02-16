@@ -225,7 +225,7 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
                     )}
                     <div className="flex items-start gap-4 sm:gap-6 lg:gap-10">
                       <span className="text-label pt-0 sm:pt-2 list-focus-transition">
-                        EP {String(index + 1).padStart(2, '0')}
+                        EP {String(index).padStart(2, '0')}
                       </span>
                       <div className="flex-1">
                         <div className="flex items-start gap-4 lg:gap-6">
