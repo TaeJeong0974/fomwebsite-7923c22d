@@ -94,11 +94,13 @@ const AdminHosts = () => {
           <h2 className="text-section-header font-medium text-foreground">{editing.id === "new" ? "New Host" : "Edit Host"}</h2>
           <button onClick={cancel} className="text-body-sm text-muted-foreground hover:text-foreground">← Back</button>
         </div>
-        <div className="space-y-1"><label className={labelClass}>Name *</label><input className={fieldClass} value={form.name} onChange={(e) => set("name", e.target.value)} /></div>
-        <div className="space-y-1"><label className={labelClass}>Title</label><input className={fieldClass} value={form.title} onChange={(e) => set("title", e.target.value)} /></div>
-        <div className="space-y-1"><label className={labelClass}>Bio</label><textarea className={`${fieldClass} min-h-[80px]`} value={form.bio} onChange={(e) => set("bio", e.target.value)} /></div>
-        <div className="space-y-1"><label className={labelClass}>Image URL</label><input className={fieldClass} value={form.image_url} onChange={(e) => set("image_url", e.target.value)} /></div>
-        <div className="space-y-1"><label className={labelClass}>LinkedIn URL</label><input className={fieldClass} value={form.linkedin_url} onChange={(e) => set("linkedin_url", e.target.value)} /></div>
+        <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5 space-y-4">
+          <div className="space-y-1"><label className={labelClass}>Name *</label><input className={fieldClass} value={form.name} onChange={(e) => set("name", e.target.value)} /></div>
+          <div className="space-y-1"><label className={labelClass}>Title</label><input className={fieldClass} value={form.title} onChange={(e) => set("title", e.target.value)} /></div>
+          <div className="space-y-1"><label className={labelClass}>Bio</label><textarea className={`${fieldClass} min-h-[80px]`} value={form.bio} onChange={(e) => set("bio", e.target.value)} /></div>
+          <div className="space-y-1"><label className={labelClass}>Image URL</label><input className={fieldClass} value={form.image_url} onChange={(e) => set("image_url", e.target.value)} /></div>
+          <div className="space-y-1"><label className={labelClass}>LinkedIn URL</label><input className={fieldClass} value={form.linkedin_url} onChange={(e) => set("linkedin_url", e.target.value)} /></div>
+        </div>
         <div className="flex gap-3">
           <button onClick={save} disabled={saving} className="px-6 py-3 rounded-xl bg-foreground text-background font-medium hover:opacity-90 disabled:opacity-50 transition-opacity">
             {saving ? "Saving…" : "Save"}

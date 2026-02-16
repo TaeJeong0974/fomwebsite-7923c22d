@@ -270,227 +270,237 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
       <div className="space-y-6 max-w-2xl">
         {/* ── 1. Header ── */}
         <h3 className="text-body font-medium text-foreground">Header</h3>
-        <div className="space-y-2">
-          <label className={labelClass}>Status</label>
-          <div className="flex gap-2">
-            {([
-              { value: "draft", label: "Draft", color: "bg-white/40 text-muted-foreground border-white/30" },
-              { value: "upcoming", label: "Upcoming", color: "bg-amber-50 text-amber-700 border-amber-200" },
-              { value: "published", label: "Published", color: "bg-green-50 text-green-700 border-green-200" },
-              { value: "deleted", label: "Deleted", color: "bg-red-50 text-destructive border-red-200" },
-            ] as const).map(({ value, label, color }) => (
-              <button
-                key={value}
-                type="button"
-                onClick={() => set("status", value)}
-                className={`px-4 py-2 rounded-xl text-body-sm font-medium border transition-all ${
-                  form.status === value
-                    ? `${color} ring-2 ring-offset-1 ring-foreground/20`
-                    : "bg-white/20 text-muted-foreground border-white/20 hover:border-white/40 opacity-60"
-                }`}
-              >
-                {label}
-              </button>
-            ))}
+        <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5 space-y-4">
+          <div className="space-y-2">
+            <label className={labelClass}>Status</label>
+            <div className="flex gap-2">
+              {([
+                { value: "draft", label: "Draft", color: "bg-white/40 text-muted-foreground border-white/30" },
+                { value: "upcoming", label: "Upcoming", color: "bg-amber-50 text-amber-700 border-amber-200" },
+                { value: "published", label: "Published", color: "bg-green-50 text-green-700 border-green-200" },
+                { value: "deleted", label: "Deleted", color: "bg-red-50 text-destructive border-red-200" },
+              ] as const).map(({ value, label, color }) => (
+                <button
+                  key={value}
+                  type="button"
+                  onClick={() => set("status", value)}
+                  className={`px-4 py-2 rounded-xl text-body-sm font-medium border transition-all ${
+                    form.status === value
+                      ? `${color} ring-2 ring-offset-1 ring-foreground/20`
+                      : "bg-white/20 text-muted-foreground border-white/20 hover:border-white/40 opacity-60"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+            <p className="text-xs text-muted-foreground">
+              {form.status === 'upcoming' ? 'Card on homepage, no detail page' : 
+               form.status === 'published' ? 'Full detail page with video' :
+               form.status === 'draft' ? 'Not visible on site' : 'Soft-deleted'}
+            </p>
           </div>
-          <p className="text-xs text-muted-foreground">
-            {form.status === 'upcoming' ? 'Card on homepage, no detail page' : 
-             form.status === 'published' ? 'Full detail page with video' :
-             form.status === 'draft' ? 'Not visible on site' : 'Soft-deleted'}
-          </p>
-        </div>
-        <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-4">
+            <div className="space-y-1">
+              <label className={labelClass}>Slug *</label>
+              <input className={fieldClass} value={form.slug} onChange={(e) => set("slug", e.target.value)} />
+            </div>
+            <div className="space-y-1">
+              <label className={labelClass}>Episode #</label>
+              <input className={fieldClass} type="number" value={form.episode_number} onChange={(e) => set("episode_number", parseInt(e.target.value) || 0)} />
+            </div>
+            <div className="space-y-1">
+              <label className={labelClass}>Duration</label>
+              <input className={fieldClass} value={form.duration} onChange={(e) => set("duration", e.target.value)} placeholder="e.g. 52 min" />
+            </div>
+          </div>
           <div className="space-y-1">
-            <label className={labelClass}>Slug *</label>
-            <input className={fieldClass} value={form.slug} onChange={(e) => set("slug", e.target.value)} />
+            <label className={labelClass}>Title *</label>
+            <input className={fieldClass} value={form.title} onChange={(e) => set("title", e.target.value)} />
+            <p className="text-xs text-muted-foreground mt-1">Guest name or episode name — shown as the page heading</p>
           </div>
           <div className="space-y-1">
-            <label className={labelClass}>Episode #</label>
-            <input className={fieldClass} type="number" value={form.episode_number} onChange={(e) => set("episode_number", parseInt(e.target.value) || 0)} />
+            <label className={labelClass}>Overview (Subtitle)</label>
+            <input className={fieldClass} value={form.subtitle} onChange={(e) => set("subtitle", e.target.value)} />
+            <p className="text-xs text-muted-foreground mt-1">One-line hook shown on cards and as the hero headline</p>
           </div>
-          <div className="space-y-1">
-            <label className={labelClass}>Duration</label>
-            <input className={fieldClass} value={form.duration} onChange={(e) => set("duration", e.target.value)} placeholder="e.g. 52 min" />
-          </div>
-        </div>
-        <div className="space-y-1">
-          <label className={labelClass}>Title *</label>
-          <input className={fieldClass} value={form.title} onChange={(e) => set("title", e.target.value)} />
-          <p className="text-xs text-muted-foreground mt-1">Guest name or episode name — shown as the page heading</p>
-        </div>
-        <div className="space-y-1">
-          <label className={labelClass}>Overview (Subtitle)</label>
-          <input className={fieldClass} value={form.subtitle} onChange={(e) => set("subtitle", e.target.value)} />
-          <p className="text-xs text-muted-foreground mt-1">One-line hook shown on cards and as the hero headline</p>
         </div>
 
         {/* ── 2. Video ── */}
-        <hr className="border-white/15" />
         <h3 className="text-body font-medium text-foreground">Video</h3>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-1">
-            <label className={labelClass}>YouTube URL</label>
-            <input className={fieldClass} value={form.youtube_url} onChange={(e) => set("youtube_url", e.target.value)} />
-          </div>
-          <div className="space-y-1">
-            <label className={labelClass}>Spotify URL</label>
-            <input className={fieldClass} value={form.spotify_url} onChange={(e) => set("spotify_url", e.target.value)} />
-          </div>
-          <div className="space-y-1">
-            <label className={labelClass}>Apple Podcasts URL</label>
-            <input className={fieldClass} value={form.apple_url} onChange={(e) => set("apple_url", e.target.value)} />
-          </div>
-          <div className="space-y-1">
-            <label className={labelClass}>Preview Video URL</label>
-            <input className={fieldClass} value={form.preview_video_url} onChange={(e) => set("preview_video_url", e.target.value)} />
+        <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5 space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-1">
+              <label className={labelClass}>YouTube URL</label>
+              <input className={fieldClass} value={form.youtube_url} onChange={(e) => set("youtube_url", e.target.value)} />
+            </div>
+            <div className="space-y-1">
+              <label className={labelClass}>Spotify URL</label>
+              <input className={fieldClass} value={form.spotify_url} onChange={(e) => set("spotify_url", e.target.value)} />
+            </div>
+            <div className="space-y-1">
+              <label className={labelClass}>Apple Podcasts URL</label>
+              <input className={fieldClass} value={form.apple_url} onChange={(e) => set("apple_url", e.target.value)} />
+            </div>
+            <div className="space-y-1">
+              <label className={labelClass}>Preview Video URL</label>
+              <input className={fieldClass} value={form.preview_video_url} onChange={(e) => set("preview_video_url", e.target.value)} />
+            </div>
           </div>
         </div>
 
         {/* ── 3. About this Episode ── */}
-        <hr className="border-white/15" />
         <h3 className="text-body font-medium text-foreground">About this Episode</h3>
-        <div className="space-y-1">
-          <label className={labelClass}>Short Description</label>
-          <textarea className={`${fieldClass} min-h-[80px]`} value={form.description} onChange={(e) => set("description", e.target.value)} />
-          <p className="text-xs text-muted-foreground mt-1">Used for SEO meta description and card previews</p>
-        </div>
-        <div className="space-y-1">
-          <label className={labelClass}>Full Description</label>
-          <textarea className={`${fieldClass} min-h-[160px]`} value={form.full_description} onChange={(e) => set("full_description", e.target.value)} />
-          <p className="text-xs text-muted-foreground mt-1">Long-form "About this Episode" section on the detail page</p>
+        <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5 space-y-4">
+          <div className="space-y-1">
+            <label className={labelClass}>Short Description</label>
+            <textarea className={`${fieldClass} min-h-[80px]`} value={form.description} onChange={(e) => set("description", e.target.value)} />
+            <p className="text-xs text-muted-foreground mt-1">Used for SEO meta description and card previews</p>
+          </div>
+          <div className="space-y-1">
+            <label className={labelClass}>Full Description</label>
+            <textarea className={`${fieldClass} min-h-[160px]`} value={form.full_description} onChange={(e) => set("full_description", e.target.value)} />
+            <p className="text-xs text-muted-foreground mt-1">Long-form "About this Episode" section on the detail page</p>
+          </div>
         </div>
 
         {/* ── 4. Quote ── */}
-        <hr className="border-white/15" />
         <h3 className="text-body font-medium text-foreground">Quote</h3>
-        <div className="space-y-1">
-          <textarea className={`${fieldClass} min-h-[80px]`} value={form.pull_quote} onChange={(e) => set("pull_quote", e.target.value)} placeholder="A memorable quote from the episode…" />
-        </div>
-        <div className="space-y-1">
-          <label className={labelClass}>Attribution</label>
-          <select className={`${fieldClass} bg-white/40`} value={form.pull_quote_attribution} onChange={(e) => set("pull_quote_attribution", e.target.value)}>
-            <option value="">Select speaker…</option>
-            {form.guest_name && <option value={form.guest_name}>{form.guest_name} (Guest)</option>}
-            {allHosts.map((h) => (
-              <option key={h.id} value={h.name}>{h.name} (Host)</option>
-            ))}
-          </select>
+        <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5 space-y-4">
+          <div className="space-y-1">
+            <textarea className={`${fieldClass} min-h-[80px]`} value={form.pull_quote} onChange={(e) => set("pull_quote", e.target.value)} placeholder="A memorable quote from the episode…" />
+          </div>
+          <div className="space-y-1">
+            <label className={labelClass}>Attribution</label>
+            <select className={`${fieldClass} bg-white/40`} value={form.pull_quote_attribution} onChange={(e) => set("pull_quote_attribution", e.target.value)}>
+              <option value="">Select speaker…</option>
+              {form.guest_name && <option value={form.guest_name}>{form.guest_name} (Guest)</option>}
+              {allHosts.map((h) => (
+                <option key={h.id} value={h.name}>{h.name} (Host)</option>
+              ))}
+            </select>
+          </div>
         </div>
 
         {/* ── 5. Topics Covered ── */}
-        <hr className="border-white/15" />
         <h3 className="text-body font-medium text-foreground">Topics Covered</h3>
-        <div className="flex gap-2">
-          <input className={fieldClass} value={topicInput} onChange={(e) => setTopicInput(e.target.value)} placeholder="Add a topic" onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTopic())} />
-          <button type="button" onClick={addTopic} className="px-4 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap">Add</button>
+        <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5 space-y-4">
+          <div className="flex gap-2">
+            <input className={fieldClass} value={topicInput} onChange={(e) => setTopicInput(e.target.value)} placeholder="Add a topic" onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTopic())} />
+            <button type="button" onClick={addTopic} className="px-4 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap">Add</button>
+          </div>
+          <SortableTopicList
+            topics={form.topics}
+            onReorder={(updated) => set("topics", updated)}
+            onRemove={removeTopic}
+            onMove={moveTopic}
+          />
         </div>
-        <SortableTopicList
-          topics={form.topics}
-          onReorder={(updated) => set("topics", updated)}
-          onRemove={removeTopic}
-          onMove={moveTopic}
-        />
 
         {/* ── 6. About the Speaker ── */}
-        <hr className="border-white/15" />
         <h3 className="text-body font-medium text-foreground">About the Speaker</h3>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-1">
-            <label className={labelClass}>Name</label>
-            <input className={fieldClass} value={form.guest_name} onChange={(e) => set("guest_name", e.target.value)} />
+        <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5 space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-1">
+              <label className={labelClass}>Name</label>
+              <input className={fieldClass} value={form.guest_name} onChange={(e) => set("guest_name", e.target.value)} />
+            </div>
+            <div className="space-y-1">
+              <label className={labelClass}>Title</label>
+              <input className={fieldClass} value={form.guest_title} onChange={(e) => set("guest_title", e.target.value)} />
+            </div>
+            <div className="space-y-1">
+              <label className={labelClass}>Company</label>
+              <input className={fieldClass} value={form.guest_company} onChange={(e) => set("guest_company", e.target.value)} />
+            </div>
+            <div className="space-y-1">
+              <label className={labelClass}>Company Domain</label>
+              <input className={fieldClass} value={form.guest_company_domain} onChange={(e) => set("guest_company_domain", e.target.value)} placeholder="e.g. samsara.com" />
+            </div>
+            <div className="col-span-2 space-y-1">
+              <label className={labelClass}>LinkedIn URL</label>
+              <input className={fieldClass} value={form.guest_linkedin_url} onChange={(e) => set("guest_linkedin_url", e.target.value)} />
+            </div>
           </div>
           <div className="space-y-1">
-            <label className={labelClass}>Title</label>
-            <input className={fieldClass} value={form.guest_title} onChange={(e) => set("guest_title", e.target.value)} />
+            <label className={labelClass}>Bio</label>
+            <textarea className={`${fieldClass} min-h-[80px]`} value={form.guest_bio} onChange={(e) => set("guest_bio", e.target.value)} />
+            <p className="text-xs text-muted-foreground mt-1">Starts with a verb (e.g. "is the CMO at…")</p>
           </div>
           <div className="space-y-1">
-            <label className={labelClass}>Company</label>
-            <input className={fieldClass} value={form.guest_company} onChange={(e) => set("guest_company", e.target.value)} />
+            <label className={labelClass}>Guest Image</label>
+            <div className="flex gap-2">
+              <input className={fieldClass} value={form.guest_image_url} onChange={(e) => set("guest_image_url", e.target.value)} placeholder="URL or upload →" />
+              <input ref={guestFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "guest_image_url")} />
+              <button type="button" onClick={() => guestFileRef.current?.click()} disabled={uploading === "guest_image_url"} className="px-3 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap flex items-center gap-1.5 hover:opacity-80 disabled:opacity-50">
+                <Upload className="h-3.5 w-3.5" />
+                {uploading === "guest_image_url" ? "…" : "Upload"}
+              </button>
+            </div>
+            {form.guest_image_url && <img src={form.guest_image_url} alt="Guest" className="mt-2 h-20 w-20 rounded-xl object-cover border border-white/20" />}
           </div>
-          <div className="space-y-1">
-            <label className={labelClass}>Company Domain</label>
-            <input className={fieldClass} value={form.guest_company_domain} onChange={(e) => set("guest_company_domain", e.target.value)} placeholder="e.g. samsara.com" />
-          </div>
-          <div className="col-span-2 space-y-1">
-            <label className={labelClass}>LinkedIn URL</label>
-            <input className={fieldClass} value={form.guest_linkedin_url} onChange={(e) => set("guest_linkedin_url", e.target.value)} />
-          </div>
-        </div>
-        <div className="space-y-1">
-          <label className={labelClass}>Bio</label>
-          <textarea className={`${fieldClass} min-h-[80px]`} value={form.guest_bio} onChange={(e) => set("guest_bio", e.target.value)} />
-          <p className="text-xs text-muted-foreground mt-1">Starts with a verb (e.g. "is the CMO at…")</p>
-        </div>
-        <div className="space-y-1">
-          <label className={labelClass}>Guest Image</label>
-          <div className="flex gap-2">
-            <input className={fieldClass} value={form.guest_image_url} onChange={(e) => set("guest_image_url", e.target.value)} placeholder="URL or upload →" />
-            <input ref={guestFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "guest_image_url")} />
-            <button type="button" onClick={() => guestFileRef.current?.click()} disabled={uploading === "guest_image_url"} className="px-3 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap flex items-center gap-1.5 hover:opacity-80 disabled:opacity-50">
-              <Upload className="h-3.5 w-3.5" />
-              {uploading === "guest_image_url" ? "…" : "Upload"}
-            </button>
-          </div>
-          {form.guest_image_url && <img src={form.guest_image_url} alt="Guest" className="mt-2 h-20 w-20 rounded-xl object-cover border border-white/20" />}
         </div>
 
         {/* ── 7. About the Host ── */}
-        <hr className="border-white/15" />
         <h3 className="text-body font-medium text-foreground">About the Host</h3>
-        <div className="flex flex-wrap gap-2">
-          {allHosts.map((h) => (
-            <button
-              key={h.id}
-              type="button"
-              onClick={() => toggleHost(h.id)}
-              className={`px-4 py-2 rounded-lg text-body-sm font-medium transition-colors border ${
-                selectedHostIds.includes(h.id)
-                  ? "bg-foreground text-background border-foreground"
-                  : "bg-white/30 text-muted-foreground border-white/30 hover:border-white/50"
-              }`}
-            >
-              {h.name}
-            </button>
-          ))}
-          {allHosts.length === 0 && <p className="text-body-sm text-muted-foreground">No hosts available</p>}
+        <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5">
+          <div className="flex flex-wrap gap-2">
+            {allHosts.map((h) => (
+              <button
+                key={h.id}
+                type="button"
+                onClick={() => toggleHost(h.id)}
+                className={`px-4 py-2 rounded-lg text-body-sm font-medium transition-colors border ${
+                  selectedHostIds.includes(h.id)
+                    ? "bg-foreground text-background border-foreground"
+                    : "bg-white/30 text-muted-foreground border-white/30 hover:border-white/50"
+                }`}
+              >
+                {h.name}
+              </button>
+            ))}
+            {allHosts.length === 0 && <p className="text-body-sm text-muted-foreground">No hosts available</p>}
+          </div>
         </div>
 
         {/* ── 8. Images & SEO ── */}
-        <hr className="border-white/15" />
         <h3 className="text-body font-medium text-foreground">Images & SEO</h3>
-        <div className="grid grid-cols-2 gap-4">
-          <div className="space-y-1">
-            <label className={labelClass}>Poster Image</label>
-            <div className="flex gap-2">
-              <input className={fieldClass} value={form.poster_image_url} onChange={(e) => set("poster_image_url", e.target.value)} placeholder="URL or upload →" />
-              <input ref={posterFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "poster_image_url")} />
-              <button type="button" onClick={() => posterFileRef.current?.click()} disabled={uploading === "poster_image_url"} className="px-3 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap flex items-center gap-1.5 hover:opacity-80 disabled:opacity-50">
-                <Upload className="h-3.5 w-3.5" />
-                {uploading === "poster_image_url" ? "…" : "Upload"}
-              </button>
+        <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-1">
+              <label className={labelClass}>Poster Image</label>
+              <div className="flex gap-2">
+                <input className={fieldClass} value={form.poster_image_url} onChange={(e) => set("poster_image_url", e.target.value)} placeholder="URL or upload →" />
+                <input ref={posterFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "poster_image_url")} />
+                <button type="button" onClick={() => posterFileRef.current?.click()} disabled={uploading === "poster_image_url"} className="px-3 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap flex items-center gap-1.5 hover:opacity-80 disabled:opacity-50">
+                  <Upload className="h-3.5 w-3.5" />
+                  {uploading === "poster_image_url" ? "…" : "Upload"}
+                </button>
+              </div>
+              {form.poster_image_url && <img src={form.poster_image_url} alt="Poster" className="mt-2 h-20 rounded-xl object-cover border border-white/20" />}
             </div>
-            {form.poster_image_url && <img src={form.poster_image_url} alt="Poster" className="mt-2 h-20 rounded-xl object-cover border border-white/20" />}
-          </div>
-          <div className="space-y-1">
-            <label className={labelClass}>OG Image</label>
-            <div className="flex gap-2">
-              <input className={fieldClass} value={form.og_image_url} onChange={(e) => set("og_image_url", e.target.value)} placeholder="URL or upload →" />
-              <input ref={ogFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "og_image_url")} />
-              <button type="button" onClick={() => ogFileRef.current?.click()} disabled={uploading === "og_image_url"} className="px-3 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap flex items-center gap-1.5 hover:opacity-80 disabled:opacity-50">
-                <Upload className="h-3.5 w-3.5" />
-                {uploading === "og_image_url" ? "…" : "Upload"}
-              </button>
+            <div className="space-y-1">
+              <label className={labelClass}>OG Image</label>
+              <div className="flex gap-2">
+                <input className={fieldClass} value={form.og_image_url} onChange={(e) => set("og_image_url", e.target.value)} placeholder="URL or upload →" />
+                <input ref={ogFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "og_image_url")} />
+                <button type="button" onClick={() => ogFileRef.current?.click()} disabled={uploading === "og_image_url"} className="px-3 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap flex items-center gap-1.5 hover:opacity-80 disabled:opacity-50">
+                  <Upload className="h-3.5 w-3.5" />
+                  {uploading === "og_image_url" ? "…" : "Upload"}
+                </button>
+              </div>
+              {form.og_image_url && <img src={form.og_image_url} alt="OG" className="mt-2 h-20 rounded-xl object-cover border border-white/20" />}
             </div>
-            {form.og_image_url && <img src={form.og_image_url} alt="OG" className="mt-2 h-20 rounded-xl object-cover border border-white/20" />}
           </div>
         </div>
 
         {/* ── 9. Publishing ── */}
-        <hr className="border-white/15" />
         <h3 className="text-body font-medium text-foreground">Publishing</h3>
-        <div className="space-y-1">
-          <label className={labelClass}>Publish Date</label>
-          <input className={fieldClass} type="date" value={form.publish_date} onChange={(e) => set("publish_date", e.target.value)} />
+        <div className="rounded-2xl bg-black/[0.03] border border-black/[0.06] p-5">
+          <div className="space-y-1">
+            <label className={labelClass}>Publish Date</label>
+            <input className={fieldClass} type="date" value={form.publish_date} onChange={(e) => set("publish_date", e.target.value)} />
+          </div>
         </div>
 
         <div className="flex gap-3 pt-4">
