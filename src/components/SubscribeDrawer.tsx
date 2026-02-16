@@ -124,7 +124,7 @@ const SubscribeDrawer = ({ open, onOpenChange, guestName, guestSlug }: Subscribe
                         placeholder="you@example.com"
                         required
                         autoFocus
-                        className="w-full px-6 py-4 text-body font-mono bg-black/[0.03] border border-black/10 rounded-full text-foreground placeholder:text-foreground/30 focus-ring hover-transition"
+                        className="w-full px-6 py-4 text-body font-mono bg-black/[0.03] border border-black/10 rounded-full text-foreground caret-foreground placeholder:text-foreground/30 focus-ring hover-transition"
                       />
                       <button
                         type="submit"
