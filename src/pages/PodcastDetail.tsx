@@ -205,7 +205,7 @@ const PodcastDetail = () => {
           </div>
 
           {/* Sidebar */}
-          <div className="hidden lg:flex lg:flex-col space-y-6">
+          <div className="hidden lg:flex lg:flex-col space-y-6 sticky top-24 self-start">
             <FadeInSection>
             {!isIntro && (
               <EpisodeGuestCard
