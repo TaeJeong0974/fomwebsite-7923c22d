@@ -30,9 +30,8 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
   const [isPlaying, setIsPlaying] = useState(false);
   const [showPip, setShowPip] = useState(false);
   const [pipDismissed, setPipDismissed] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null); // kept for potential future use
   const playerWrapperRef = useRef<HTMLDivElement>(null);
-  const playBtnRef = useRef<HTMLDivElement>(null);
   const videoId = youtubeUrl ? getYouTubeVideoId(youtubeUrl) : null;
 
   useEffect(() => {
@@ -72,25 +71,6 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
     setPipDismissed(false);
   };
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current || !playBtnRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    playBtnRef.current.style.transform = `translate(${x - 28}px, ${y - 28}px) scale(1)`;
-  };
-
-  const handleMouseEnter = () => {
-    if (playBtnRef.current) playBtnRef.current.style.opacity = '1';
-  };
-
-  const handleMouseLeave = () => {
-    if (playBtnRef.current) {
-      playBtnRef.current.style.opacity = '0';
-      playBtnRef.current.style.transform = playBtnRef.current.style.transform.replace('scale(1)', 'scale(0.8)');
-    }
-  };
-
   const handleDismissPip = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
     setPipDismissed(true);
@@ -126,33 +106,17 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
               ref={containerRef}
               className="absolute inset-0 group cursor-pointer"
               onClick={handlePlay}
-              onMouseMove={handleMouseMove}
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
               style={{
                 backgroundImage: `url(${thumbnailImage || thumbnailUrl || guestBg})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
             >
-              {/* Play Button - centered on mobile */}
-              <div className="absolute inset-0 flex items-center justify-center sm:hidden">
-                <div className="w-14 h-14 rounded-full bg-white/60 backdrop-blur-2xl border border-white/40 flex items-center justify-center shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)]">
+              {/* Static Play Button - always visible */}
+              <div className="absolute top-6 right-6 lg:top-8 lg:right-8">
+                <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg transition-transform duration-200 group-hover:scale-110">
                   <Play className="w-5 h-5 text-foreground fill-foreground ml-0.5" />
                 </div>
-              </div>
-              {/* Play Button - cursor follow on desktop */}
-              <div
-                ref={playBtnRef}
-                className="hidden sm:flex absolute left-0 top-0 z-10 pointer-events-none items-center justify-center w-14 h-14 rounded-full bg-white/60 backdrop-blur-2xl border border-white/40 shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)]"
-                style={{
-                  opacity: 0,
-                  transform: 'translate(0px, 0px) scale(0.8)',
-                  willChange: 'transform, opacity',
-                  transition: 'transform 300ms cubic-bezier(0.22, 1, 0.36, 1), opacity 150ms ease-out',
-                }}
-              >
-                <Play className="w-5 h-5 text-foreground fill-foreground ml-0.5" />
               </div>
             </div>
           )}
