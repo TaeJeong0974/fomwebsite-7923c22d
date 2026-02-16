@@ -12,6 +12,12 @@ interface Host {
   name: string;
 }
 
+interface Newsletter {
+  title: string;
+  url: string;
+  source?: string;
+}
+
 const EMPTY = {
   slug: "", title: "", subtitle: "", episode_number: 0,
   description: "", full_description: "", duration: "",
@@ -29,6 +35,8 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
   const [saving, setSaving] = useState(false);
   const [allHosts, setAllHosts] = useState<Host[]>([]);
   const [selectedHostIds, setSelectedHostIds] = useState<string[]>([]);
+  const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
+  const [nlForm, setNlForm] = useState({ title: "", url: "" });
 
   useEffect(() => {
     adminApi("list-hosts").then((res) => setAllHosts(res.data || [])).catch(() => {});
@@ -36,9 +44,10 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
     if (!episodeId) return;
     const load = async () => {
       try {
-        const [epResult, hostsResult] = await Promise.all([
+        const [epResult, hostsResult, nlResult] = await Promise.all([
           adminApi("get-episode", { id: episodeId }),
           adminApi("get-episode-hosts", { episode_id: episodeId }),
+          adminApi("get-newsletters", { episode_id: episodeId }),
         ]);
         const data = epResult.data;
         if (!data) { toast.error("Failed to load"); onDone(); return; }
@@ -70,6 +79,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
           pull_quote_attribution: data.pull_quote_attribution || "",
         });
         setSelectedHostIds(hostsResult.data || []);
+        setNewsletters((nlResult.data || []).map((n: Newsletter & { id?: string }) => ({ title: n.title, url: n.url, source: n.source })));
       } catch {
         toast.error("Failed to load episode");
         onDone();
@@ -122,7 +132,10 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
       const result = await adminApi("upsert-episode", payload);
       const savedId = episodeId || result.data?.id;
       if (savedId) {
-        await adminApi("set-episode-hosts", { episode_id: savedId, host_ids: selectedHostIds });
+        await Promise.all([
+          adminApi("set-episode-hosts", { episode_id: savedId, host_ids: selectedHostIds }),
+          adminApi("set-newsletters", { episode_id: savedId, newsletters }),
+        ]);
       }
       toast.success(episodeId ? "Updated" : "Created");
       onDone();
@@ -139,6 +152,14 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
   };
 
   const removeTopic = (i: number) => set("topics", form.topics.filter((_, idx) => idx !== i));
+
+  const addNewsletter = () => {
+    if (!nlForm.title.trim() || !nlForm.url.trim()) return;
+    setNewsletters((prev) => [...prev, { title: nlForm.title.trim(), url: nlForm.url.trim() }]);
+    setNlForm({ title: "", url: "" });
+  };
+
+  const removeNewsletter = (i: number) => setNewsletters((prev) => prev.filter((_, idx) => idx !== i));
 
   const fieldClass = "w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground text-body-sm focus:ring-2 focus:ring-primary outline-none";
   const labelClass = "text-body-sm font-medium text-muted-foreground";
@@ -299,7 +320,29 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
           ))}
         </div>
 
-        {/* ── 8. Images & SEO ── */}
+        {/* ── 8. Newsletters Mentioned ── */}
+        <hr className="border-border" />
+        <h3 className="text-body font-medium text-foreground">Reco Newsletters</h3>
+        <div className="grid grid-cols-2 gap-2">
+          <input className={fieldClass} value={nlForm.title} onChange={(e) => setNlForm((f) => ({ ...f, title: e.target.value }))} placeholder="Newsletter name" />
+          <div className="flex gap-2">
+            <input className={fieldClass} value={nlForm.url} onChange={(e) => setNlForm((f) => ({ ...f, url: e.target.value }))} placeholder="URL" onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addNewsletter())} />
+            <button type="button" onClick={addNewsletter} className="px-4 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap">Add</button>
+          </div>
+        </div>
+        {newsletters.length > 0 && (
+          <div className="space-y-2">
+            {newsletters.map((nl, i) => (
+              <div key={i} className="flex items-center gap-3 px-4 py-2 rounded-lg border border-border bg-muted/30">
+                <span className="text-body-sm text-foreground flex-1">{nl.title}</span>
+                <a href={nl.url} target="_blank" rel="noopener noreferrer" className="text-body-sm text-primary hover:underline truncate max-w-[200px]">{nl.url}</a>
+                <button onClick={() => removeNewsletter(i)} className="text-destructive hover:text-destructive/80 text-body-sm">×</button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* ── 9. Images & SEO ── */}
         <hr className="border-border" />
         <h3 className="text-body font-medium text-foreground">Images & SEO</h3>
         <div className="grid grid-cols-2 gap-4">

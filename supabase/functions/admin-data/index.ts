@@ -111,6 +111,32 @@ serve(async (req) => {
       return respond(200, { success: true });
     }
 
+    // Newsletter mentions
+    if (action === 'get-newsletters') {
+      const { data, error } = await supabase
+        .from('newsletter_mentions')
+        .select('id, title, url, source')
+        .eq('episode_id', payload.episode_id)
+        .order('created_at');
+      if (error) return respond(400, { error: error.message });
+      return respond(200, { data });
+    }
+
+    if (action === 'set-newsletters') {
+      await supabase.from('newsletter_mentions').delete().eq('episode_id', payload.episode_id);
+      if (payload.newsletters && payload.newsletters.length > 0) {
+        const rows = payload.newsletters.map((n: { title: string; url: string; source?: string }) => ({
+          episode_id: payload.episode_id,
+          title: n.title,
+          url: n.url,
+          source: n.source || null,
+        }));
+        const { error } = await supabase.from('newsletter_mentions').insert(rows);
+        if (error) return respond(400, { error: error.message });
+      }
+      return respond(200, { success: true });
+    }
+
     return respond(400, { error: 'Unknown action' });
   } catch {
     return respond(400, { error: 'Bad request' });
