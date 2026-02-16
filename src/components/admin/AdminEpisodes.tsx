@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { adminApi } from "@/lib/adminApi";
 import { toast } from "sonner";
 import EpisodeForm from "./EpisodeForm";
 
@@ -23,12 +23,14 @@ const AdminEpisodes = () => {
   const fetchEpisodes = async () => {
     setLoading(true);
     setError(null);
-    const { data, error: err } = await supabase
-      .from("episodes")
-      .select("id, slug, title, guest_name, guest_company, published, episode_number")
-      .order("episode_number", { ascending: true });
-    if (err) { setError(err.message); toast.error(err.message); }
-    else setEpisodes(data || []);
+    try {
+      const result = await adminApi("list-episodes");
+      setEpisodes(result.data || []);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Failed to load";
+      setError(msg);
+      toast.error(msg);
+    }
     setLoading(false);
   };
 
@@ -36,9 +38,13 @@ const AdminEpisodes = () => {
 
   const handleDelete = async (id: string) => {
     if (!confirm("Delete this episode?")) return;
-    const { error } = await supabase.from("episodes").delete().eq("id", id);
-    if (error) toast.error(error.message);
-    else { toast.success("Deleted"); fetchEpisodes(); }
+    try {
+      await adminApi("delete-episode", { id });
+      toast.success("Deleted");
+      fetchEpisodes();
+    } catch (err: unknown) {
+      toast.error(err instanceof Error ? err.message : "Delete failed");
+    }
   };
 
   if (editing) return <EpisodeForm episodeId={editing} onDone={() => { setEditing(null); fetchEpisodes(); }} />;

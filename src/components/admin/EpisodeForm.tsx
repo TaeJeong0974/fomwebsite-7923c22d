@@ -1,10 +1,15 @@
 import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { adminApi } from "@/lib/adminApi";
 import { toast } from "sonner";
 
 interface Props {
   episodeId?: string;
   onDone: () => void;
+}
+
+interface Host {
+  id: string;
+  name: string;
 }
 
 const EMPTY = {
@@ -21,45 +26,66 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
   const [form, setForm] = useState(EMPTY);
   const [topicInput, setTopicInput] = useState("");
   const [saving, setSaving] = useState(false);
+  const [allHosts, setAllHosts] = useState<Host[]>([]);
+  const [selectedHostIds, setSelectedHostIds] = useState<string[]>([]);
 
   useEffect(() => {
+    // Load hosts list
+    adminApi("list-hosts").then((res) => setAllHosts(res.data || [])).catch(() => {});
+
     if (!episodeId) return;
     const load = async () => {
-      const { data, error } = await supabase.from("episodes").select("*").eq("id", episodeId).single();
-      if (error || !data) { toast.error("Failed to load"); onDone(); return; }
-      setForm({
-        slug: data.slug || "",
-        title: data.title || "",
-        subtitle: data.subtitle || "",
-        episode_number: data.episode_number || 0,
-        description: data.description || "",
-        guest_name: data.guest_name || "",
-        guest_title: data.guest_title || "",
-        guest_company: data.guest_company || "",
-        guest_bio: data.guest_bio || "",
-        guest_image_url: data.guest_image_url || "",
-        guest_linkedin_url: data.guest_linkedin_url || "",
-        poster_image_url: data.poster_image_url || "",
-        og_image_url: data.og_image_url || "",
-        apple_url: data.apple_url || "",
-        spotify_url: data.spotify_url || "",
-        youtube_url: data.youtube_url || "",
-        published: data.published,
-        publish_date: data.publish_date || "",
-        topics: (data.topics as string[]) || [],
-        pull_quote: data.pull_quote || "",
-        pull_quote_attribution: data.pull_quote_attribution || "",
-      });
+      try {
+        const [epResult, hostsResult] = await Promise.all([
+          adminApi("get-episode", { id: episodeId }),
+          adminApi("get-episode-hosts", { episode_id: episodeId }),
+        ]);
+        const data = epResult.data;
+        if (!data) { toast.error("Failed to load"); onDone(); return; }
+        setForm({
+          slug: data.slug || "",
+          title: data.title || "",
+          subtitle: data.subtitle || "",
+          episode_number: data.episode_number || 0,
+          description: data.description || "",
+          guest_name: data.guest_name || "",
+          guest_title: data.guest_title || "",
+          guest_company: data.guest_company || "",
+          guest_bio: data.guest_bio || "",
+          guest_image_url: data.guest_image_url || "",
+          guest_linkedin_url: data.guest_linkedin_url || "",
+          poster_image_url: data.poster_image_url || "",
+          og_image_url: data.og_image_url || "",
+          apple_url: data.apple_url || "",
+          spotify_url: data.spotify_url || "",
+          youtube_url: data.youtube_url || "",
+          published: data.published,
+          publish_date: data.publish_date || "",
+          topics: (data.topics as string[]) || [],
+          pull_quote: data.pull_quote || "",
+          pull_quote_attribution: data.pull_quote_attribution || "",
+        });
+        setSelectedHostIds(hostsResult.data || []);
+      } catch {
+        toast.error("Failed to load episode");
+        onDone();
+      }
     };
     load();
   }, [episodeId]);
 
   const set = (key: string, value: unknown) => setForm((f) => ({ ...f, [key]: value }));
 
+  const toggleHost = (hostId: string) => {
+    setSelectedHostIds((prev) =>
+      prev.includes(hostId) ? prev.filter((id) => id !== hostId) : [...prev, hostId]
+    );
+  };
+
   const handleSave = async () => {
     if (!form.slug || !form.title) { toast.error("Slug and title are required"); return; }
     setSaving(true);
-    const payload = {
+    const payload: Record<string, unknown> = {
       slug: form.slug,
       title: form.title,
       subtitle: form.subtitle || null,
@@ -82,13 +108,22 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
       pull_quote: form.pull_quote || null,
       pull_quote_attribution: form.pull_quote_attribution || null,
     };
+    if (episodeId) payload.id = episodeId;
 
-    const { error } = episodeId
-      ? await supabase.from("episodes").update(payload).eq("id", episodeId)
-      : await supabase.from("episodes").insert(payload);
+    try {
+      const result = await adminApi("upsert-episode", payload);
+      const savedId = episodeId || result.data?.id;
 
-    if (error) toast.error(error.message);
-    else { toast.success(episodeId ? "Updated" : "Created"); onDone(); }
+      // Save host mappings
+      if (savedId) {
+        await adminApi("set-episode-hosts", { episode_id: savedId, host_ids: selectedHostIds });
+      }
+
+      toast.success(episodeId ? "Updated" : "Created");
+      onDone();
+    } catch (err: unknown) {
+      toast.error(err instanceof Error ? err.message : "Save failed");
+    }
     setSaving(false);
   };
 
@@ -135,6 +170,26 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
         <div className="space-y-1">
           <label className={labelClass}>Description</label>
           <textarea className={`${fieldClass} min-h-[120px]`} value={form.description} onChange={(e) => set("description", e.target.value)} />
+        </div>
+
+        <hr className="border-border" />
+        <h3 className="text-body font-medium text-foreground">Hosts</h3>
+        <div className="flex flex-wrap gap-2">
+          {allHosts.map((h) => (
+            <button
+              key={h.id}
+              type="button"
+              onClick={() => toggleHost(h.id)}
+              className={`px-4 py-2 rounded-lg text-body-sm font-medium transition-colors border ${
+                selectedHostIds.includes(h.id)
+                  ? "bg-primary text-primary-foreground border-primary"
+                  : "bg-background text-muted-foreground border-border hover:border-primary"
+              }`}
+            >
+              {h.name}
+            </button>
+          ))}
+          {allHosts.length === 0 && <p className="text-body-sm text-muted-foreground">No hosts available</p>}
         </div>
 
         <hr className="border-border" />

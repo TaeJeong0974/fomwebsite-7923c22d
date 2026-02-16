@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { clearAdminSession } from "@/lib/adminApi";
 import AdminEpisodes from "@/components/admin/AdminEpisodes";
 import AdminHosts from "@/components/admin/AdminHosts";
 
@@ -17,7 +18,7 @@ const AdminDashboard = () => {
   }, [navigate]);
 
   const handleLogout = () => {
-    sessionStorage.removeItem("fom-admin");
+    clearAdminSession();
     navigate("/admin");
   };
 

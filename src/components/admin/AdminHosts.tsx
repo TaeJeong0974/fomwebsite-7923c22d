@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { adminApi } from "@/lib/adminApi";
 import { toast } from "sonner";
 
 interface Host {
@@ -21,16 +21,21 @@ const AdminHosts = () => {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const fetch = async () => {
+  const fetchHosts = async () => {
     setLoading(true);
     setError(null);
-    const { data, error: err } = await supabase.from("hosts").select("*").order("name");
-    if (err) { setError(err.message); toast.error(err.message); }
-    else setHosts(data || []);
+    try {
+      const result = await adminApi("list-hosts");
+      setHosts(result.data || []);
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : "Failed to load";
+      setError(msg);
+      toast.error(msg);
+    }
     setLoading(false);
   };
 
-  useEffect(() => { fetch(); }, []);
+  useEffect(() => { fetchHosts(); }, []);
 
   const startEdit = (h: Host) => {
     setEditing(h);
@@ -47,26 +52,35 @@ const AdminHosts = () => {
   const save = async () => {
     if (!form.name) { toast.error("Name is required"); return; }
     setSaving(true);
-    const payload = {
+    const payload: Record<string, unknown> = {
       name: form.name,
       title: form.title || null,
       bio: form.bio || null,
       image_url: form.image_url || null,
       linkedin_url: form.linkedin_url || null,
     };
-    const { error } = editing?.id === "new"
-      ? await supabase.from("hosts").insert(payload)
-      : await supabase.from("hosts").update(payload).eq("id", editing!.id);
-    if (error) toast.error(error.message);
-    else { toast.success("Saved"); setEditing(null); fetch(); }
+    if (editing?.id !== "new") payload.id = editing!.id;
+
+    try {
+      await adminApi("upsert-host", payload);
+      toast.success("Saved");
+      setEditing(null);
+      fetchHosts();
+    } catch (err: unknown) {
+      toast.error(err instanceof Error ? err.message : "Save failed");
+    }
     setSaving(false);
   };
 
   const handleDelete = async (id: string) => {
     if (!confirm("Delete this host?")) return;
-    const { error } = await supabase.from("hosts").delete().eq("id", id);
-    if (error) toast.error(error.message);
-    else { toast.success("Deleted"); fetch(); }
+    try {
+      await adminApi("delete-host", { id });
+      toast.success("Deleted");
+      fetchHosts();
+    } catch (err: unknown) {
+      toast.error(err instanceof Error ? err.message : "Delete failed");
+    }
   };
 
   const set = (key: string, value: string) => setForm((f) => ({ ...f, [key]: value }));
@@ -100,7 +114,7 @@ const AdminHosts = () => {
   if (error) return (
     <div className="py-12 text-center space-y-3">
       <p className="text-destructive text-body-sm">Failed to load hosts: {error}</p>
-      <button onClick={fetch} className="text-body-sm text-primary hover:underline">Retry</button>
+      <button onClick={fetchHosts} className="text-body-sm text-primary hover:underline">Retry</button>
     </div>
   );
 
