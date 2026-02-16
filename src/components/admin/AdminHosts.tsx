@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react";
 import { adminApi } from "@/lib/adminApi";
 import { toast } from "sonner";
+import { Info } from "lucide-react";
+
+const FieldHint = ({ children }: { children: React.ReactNode }) => (
+  <p className="flex items-start gap-1.5 mt-1 text-[11px] leading-snug text-muted-foreground/70">
+    <Info className="h-3 w-3 mt-px shrink-0 text-muted-foreground/50" />
+    <span>{children}</span>
+  </p>
+);
 
 interface Host {
   id: string;
@@ -99,11 +107,11 @@ const AdminHosts = () => {
             <h3 className="text-body-sm font-semibold text-foreground tracking-wide uppercase">Host Details</h3>
           </div>
           <div className="p-5 space-y-4">
-            <div className="space-y-1"><label className={labelClass}>Name *</label><input className={fieldClass} value={form.name} onChange={(e) => set("name", e.target.value)} /></div>
-            <div className="space-y-1"><label className={labelClass}>Title</label><input className={fieldClass} value={form.title} onChange={(e) => set("title", e.target.value)} /></div>
-            <div className="space-y-1"><label className={labelClass}>Bio</label><textarea className={`${fieldClass} min-h-[80px]`} value={form.bio} onChange={(e) => set("bio", e.target.value)} /></div>
-            <div className="space-y-1"><label className={labelClass}>Image URL</label><input className={fieldClass} value={form.image_url} onChange={(e) => set("image_url", e.target.value)} /></div>
-            <div className="space-y-1"><label className={labelClass}>LinkedIn URL</label><input className={fieldClass} value={form.linkedin_url} onChange={(e) => set("linkedin_url", e.target.value)} /></div>
+            <div className="space-y-1"><label className={labelClass}>Name *</label><input className={fieldClass} value={form.name} onChange={(e) => set("name", e.target.value)} /><FieldHint>Display name shown on episode cards and detail pages</FieldHint></div>
+            <div className="space-y-1"><label className={labelClass}>Title</label><input className={fieldClass} value={form.title} onChange={(e) => set("title", e.target.value)} /><FieldHint>Job title — e.g. "Co-founder, Frontlines Media"</FieldHint></div>
+            <div className="space-y-1"><label className={labelClass}>Bio</label><textarea className={`${fieldClass} min-h-[80px]`} value={form.bio} onChange={(e) => set("bio", e.target.value)} /><FieldHint>Short bio shown in the "About the Host" section</FieldHint></div>
+            <div className="space-y-1"><label className={labelClass}>Image URL</label><input className={fieldClass} value={form.image_url} onChange={(e) => set("image_url", e.target.value)} /><FieldHint>Square headshot — used on cards and detail pages</FieldHint></div>
+            <div className="space-y-1"><label className={labelClass}>LinkedIn URL</label><input className={fieldClass} value={form.linkedin_url} onChange={(e) => set("linkedin_url", e.target.value)} /><FieldHint>Full LinkedIn profile URL — linked from the host bio</FieldHint></div>
           </div>
         </div>
         <div className="flex gap-3">
