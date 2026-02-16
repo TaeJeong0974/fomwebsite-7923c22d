@@ -172,7 +172,6 @@ const PodcastDetail = () => {
                   company={episode.company}
                   companyDomain={episode.companyDomain}
                   linkedInUrl={episode.linkedInUrl}
-                  guestImage={EPISODE_IMAGES[episode.slug]}
                 />
               )}
               <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />
@@ -188,7 +187,6 @@ const PodcastDetail = () => {
                 company={episode.company}
                 companyDomain={episode.companyDomain}
                 linkedInUrl={episode.linkedInUrl}
-                guestImage={EPISODE_IMAGES[episode.slug]}
               />
             )}
             <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />
