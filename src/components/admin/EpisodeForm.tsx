@@ -3,6 +3,9 @@ import { adminApi } from "@/lib/adminApi";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
 import { Upload, GripVertical, ChevronUp, ChevronDown } from "lucide-react";
+import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from "@dnd-kit/core";
+import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 interface Props {
   episodeId?: string;
@@ -29,6 +32,65 @@ const EMPTY = {
   apple_url: "", spotify_url: "", youtube_url: "",
   published: false, publish_date: "",
   topics: [] as string[], pull_quote: "", pull_quote_attribution: "",
+};
+
+// ── Sortable Topic Item ──
+const SortableTopicItem = ({ id, topic, index, total, onRemove, onMove }: {
+  id: string; topic: string; index: number; total: number;
+  onRemove: (i: number) => void; onMove: (i: number, dir: -1 | 1) => void;
+}) => {
+  const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id });
+  const style = { transform: CSS.Transform.toString(transform), transition, opacity: isDragging ? 0.5 : 1, zIndex: isDragging ? 10 : undefined };
+
+  return (
+    <div ref={setNodeRef} style={style} className="flex items-center gap-2 py-1.5 px-3 rounded-lg bg-secondary/50 border border-border/50 group">
+      <button type="button" {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing touch-none p-0.5 text-muted-foreground/50 hover:text-muted-foreground shrink-0">
+        <GripVertical className="h-3.5 w-3.5" />
+      </button>
+      <span className="text-body-sm text-foreground flex-1">{topic}</span>
+      <div className="flex items-center gap-0.5 shrink-0">
+        <button type="button" onClick={() => onMove(index, -1)} disabled={index === 0} className="p-0.5 rounded text-muted-foreground hover:text-foreground disabled:opacity-30 transition-colors">
+          <ChevronUp className="h-3.5 w-3.5" />
+        </button>
+        <button type="button" onClick={() => onMove(index, 1)} disabled={index === total - 1} className="p-0.5 rounded text-muted-foreground hover:text-foreground disabled:opacity-30 transition-colors">
+          <ChevronDown className="h-3.5 w-3.5" />
+        </button>
+        <button type="button" onClick={() => onRemove(index)} className="p-0.5 rounded text-destructive hover:text-destructive/80 transition-colors ml-1">×</button>
+      </div>
+    </div>
+  );
+};
+
+// ── Sortable Topic List ──
+const SortableTopicList = ({ topics, onReorder, onRemove, onMove }: {
+  topics: string[]; onReorder: (t: string[]) => void;
+  onRemove: (i: number) => void; onMove: (i: number, dir: -1 | 1) => void;
+}) => {
+  const ids = topics.map((_, i) => `topic-${i}`);
+  const sensors = useSensors(
+    useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
+    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+  );
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over || active.id === over.id) return;
+    const oldIndex = ids.indexOf(active.id as string);
+    const newIndex = ids.indexOf(over.id as string);
+    onReorder(arrayMove(topics, oldIndex, newIndex));
+  };
+
+  return (
+    <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+      <SortableContext items={ids} strategy={verticalListSortingStrategy}>
+        <div className="space-y-1">
+          {topics.map((t, i) => (
+            <SortableTopicItem key={`topic-${i}`} id={`topic-${i}`} topic={t} index={i} total={topics.length} onRemove={onRemove} onMove={onMove} />
+          ))}
+        </div>
+      </SortableContext>
+    </DndContext>
+  );
 };
 
 const EpisodeForm = ({ episodeId, onDone }: Props) => {
@@ -285,23 +347,12 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
           <input className={fieldClass} value={topicInput} onChange={(e) => setTopicInput(e.target.value)} placeholder="Add a topic" onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTopic())} />
           <button type="button" onClick={addTopic} className="px-4 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap">Add</button>
         </div>
-        <div className="space-y-1">
-          {form.topics.map((t, i) => (
-            <div key={i} className="flex items-center gap-2 py-1.5 px-3 rounded-lg bg-secondary/50 border border-border/50 group">
-              <GripVertical className="h-3.5 w-3.5 text-muted-foreground/50 shrink-0" />
-              <span className="text-body-sm text-foreground flex-1">{t}</span>
-              <div className="flex items-center gap-0.5 shrink-0">
-                <button onClick={() => moveTopic(i, -1)} disabled={i === 0} className="p-0.5 rounded text-muted-foreground hover:text-foreground disabled:opacity-30 transition-colors">
-                  <ChevronUp className="h-3.5 w-3.5" />
-                </button>
-                <button onClick={() => moveTopic(i, 1)} disabled={i === form.topics.length - 1} className="p-0.5 rounded text-muted-foreground hover:text-foreground disabled:opacity-30 transition-colors">
-                  <ChevronDown className="h-3.5 w-3.5" />
-                </button>
-                <button onClick={() => removeTopic(i)} className="p-0.5 rounded text-destructive hover:text-destructive/80 transition-colors ml-1">×</button>
-              </div>
-            </div>
-          ))}
-        </div>
+        <SortableTopicList
+          topics={form.topics}
+          onReorder={(updated) => set("topics", updated)}
+          onRemove={removeTopic}
+          onMove={moveTopic}
+        />
 
         {/* ── 6. About the Speaker ── */}
         <hr className="border-border" />
