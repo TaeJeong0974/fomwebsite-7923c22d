@@ -1,5 +1,5 @@
-import { useState, useEffect, useRef } from "react";
-import { Play } from "lucide-react";
+import { useState, useEffect, useRef, useCallback } from "react";
+import { Play, X } from "lucide-react";
 import guestBg from "@/assets/guest-bg.png";
 
 interface FloatingMiniPlayerProps {
@@ -27,15 +27,35 @@ const getYouTubeVideoId = (url: string): string | null => {
 
 const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: FloatingMiniPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [showPip, setShowPip] = useState(false);
+  const [pipDismissed, setPipDismissed] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
+  const playerWrapperRef = useRef<HTMLDivElement>(null);
   const playBtnRef = useRef<HTMLDivElement>(null);
   const videoId = youtubeUrl ? getYouTubeVideoId(youtubeUrl) : null;
 
   useEffect(() => {
     if (playTrigger && playTrigger > 0) {
       setIsPlaying(true);
+      setPipDismissed(false);
     }
   }, [playTrigger]);
+
+  // Intersection Observer to detect when main player scrolls out of view
+  useEffect(() => {
+    if (!playerWrapperRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Show PiP when main player is not visible and video is playing
+        setShowPip(!entry.isIntersecting);
+      },
+      { threshold: 0.3 }
+    );
+
+    observer.observe(playerWrapperRef.current);
+    return () => observer.disconnect();
+  }, []);
   
   // YouTube thumbnail URL
   const thumbnailUrl = videoId 
@@ -44,6 +64,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
 
   const handlePlay = () => {
     setIsPlaying(true);
+    setPipDismissed(false);
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
@@ -65,10 +86,22 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
     }
   };
 
+  const handleDismissPip = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setPipDismissed(true);
+  }, []);
+
+  const handlePipClick = useCallback(() => {
+    // Scroll back to main player
+    playerWrapperRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, []);
+
+  const isPipVisible = isPlaying && showPip && !pipDismissed;
+
   return (
     <>
       {/* Main Video Player - Full width on mobile */}
-      <div className="-ml-4 -mr-4 w-[calc(100%+2rem)] sm:ml-0 sm:mr-0 sm:w-full">
+      <div ref={playerWrapperRef} className="-ml-4 -mr-4 w-[calc(100%+2rem)] sm:ml-0 sm:mr-0 sm:w-full">
         <div className="relative aspect-video sm:rounded-xl overflow-hidden bg-black/90 sm:ring-1 sm:ring-white/10 sm:shadow-2xl sm:shadow-black/20">
           {isPlaying && videoId ? (
             <iframe
@@ -113,6 +146,37 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
               </div>
             </div>
           )}
+        </div>
+      </div>
+
+      {/* Floating PiP Mini Player */}
+      <div
+        className={`fixed bottom-6 right-6 z-50 transition-all duration-500 cubic-bezier(0.22, 1, 0.36, 1) ${
+          isPipVisible
+            ? 'translate-y-0 opacity-100 scale-100'
+            : 'translate-y-4 opacity-0 scale-95 pointer-events-none'
+        }`}
+      >
+        <div
+          className="relative w-72 sm:w-80 aspect-video rounded-xl overflow-hidden bg-black shadow-2xl shadow-black/40 ring-1 ring-white/10 cursor-pointer group"
+          onClick={handlePipClick}
+        >
+          {videoId && (
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=0&playsinline=1`}
+              title="Episode Video (Mini)"
+              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              className="absolute inset-0 w-full h-full pointer-events-none"
+            />
+          )}
+          {/* Close button */}
+          <button
+            onClick={handleDismissPip}
+            className="absolute top-2 right-2 z-10 w-7 h-7 rounded-full bg-black/60 backdrop-blur-xl border border-white/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+            aria-label="Close mini player"
+          >
+            <X className="w-3.5 h-3.5 text-white" />
+          </button>
         </div>
       </div>
     </>
