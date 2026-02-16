@@ -28,7 +28,7 @@ html {
   src: url('/fonts/ITC_Avant_Garde_Gothic_Pro-XLt.otf') format('opentype');
   font-weight: 200;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -37,6 +37,7 @@ html {
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+  size-adjust: 100%;
 }
 
 @font-face {
@@ -45,6 +46,7 @@ html {
   font-weight: 500;
   font-style: normal;
   font-display: swap;
+  size-adjust: 100%;
 }
 
 @font-face {
@@ -53,6 +55,7 @@ html {
   font-weight: 600;
   font-style: normal;
   font-display: swap;
+  size-adjust: 100%;
 }
 
 @font-face {
@@ -60,7 +63,7 @@ html {
   src: url('/fonts/ITC_Avant_Garde_Gothic_Pro-Bold.otf') format('opentype');
   font-weight: 700;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 /* ==========================================
