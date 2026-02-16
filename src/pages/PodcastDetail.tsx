@@ -21,6 +21,7 @@ import DetailVerticalText from "@/components/podcast/DetailVerticalText";
 import FadeInSection from "@/components/podcast/FadeInSection";
 import useDocumentMeta from "@/hooks/use-document-meta";
 import { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes } from "@/lib/podcastData";
+import { EPISODE_IMAGES } from "@/lib/episodeImages";
 import {
   getYouTubeThumbnail,
   buildEpisodeSeo,
@@ -171,6 +172,7 @@ const PodcastDetail = () => {
                   company={episode.company}
                   companyDomain={episode.companyDomain}
                   linkedInUrl={episode.linkedInUrl}
+                  guestImage={EPISODE_IMAGES[episode.slug]}
                 />
               )}
               <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />
@@ -186,6 +188,7 @@ const PodcastDetail = () => {
                 company={episode.company}
                 companyDomain={episode.companyDomain}
                 linkedInUrl={episode.linkedInUrl}
+                guestImage={EPISODE_IMAGES[episode.slug]}
               />
             )}
             <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />
