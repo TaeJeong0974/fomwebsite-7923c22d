@@ -111,8 +111,8 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image, placeh
         role="button"
         tabIndex={0}
         aria-label={`Upcoming episode with ${episode.name}, ${episode.title} at ${episode.company}. Subscribe for updates.`}
-        onClick={() => openSubscribe({ guestName: episode.name.split(' ')[0] })}
-        onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSubscribe({ guestName: episode.name.split(' ')[0] }); } }}
+         onClick={() => openSubscribe({ guestName: episode.name.split(' ')[0], guestSlug: episode.slug })}
+         onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openSubscribe({ guestName: episode.name.split(' ')[0], guestSlug: episode.slug }); } }}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
       >

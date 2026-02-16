@@ -3,6 +3,7 @@ import SubscribeDrawer from "@/components/SubscribeDrawer";
 
 interface SubscribeOptions {
   guestName?: string;
+  guestSlug?: string;
 }
 
 interface SubscribeContextType {
@@ -27,12 +28,15 @@ interface SubscribeProviderProps {
 export const SubscribeProvider = ({ children }: SubscribeProviderProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [guestName, setGuestName] = useState<string | undefined>();
+  const [guestSlug, setGuestSlug] = useState<string | undefined>();
 
   const openSubscribe = (optionsOrEvent?: SubscribeOptions | React.SyntheticEvent) => {
     if (optionsOrEvent && typeof optionsOrEvent === 'object' && 'guestName' in optionsOrEvent) {
       setGuestName(optionsOrEvent.guestName);
+      setGuestSlug((optionsOrEvent as SubscribeOptions).guestSlug);
     } else {
       setGuestName(undefined);
+      setGuestSlug(undefined);
     }
     setIsOpen(true);
   };
@@ -40,7 +44,7 @@ export const SubscribeProvider = ({ children }: SubscribeProviderProps) => {
   return (
     <SubscribeContext.Provider value={{ openSubscribe }}>
       {children}
-      <SubscribeDrawer open={isOpen} onOpenChange={setIsOpen} guestName={guestName} />
+      <SubscribeDrawer open={isOpen} onOpenChange={setIsOpen} guestName={guestName} guestSlug={guestSlug} />
     </SubscribeContext.Provider>
   );
 };
