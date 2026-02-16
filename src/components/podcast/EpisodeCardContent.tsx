@@ -23,7 +23,7 @@ const EpisodeCardContent = ({
   compact = false,
   isHovered = false,
 }: EpisodeCardContentProps) => {
-  const isIntro = episode.slug === 'intro-to-fom';
+  const isIntro = episode.slug === 'intro-to-future-of-marketing';
   const textSize = compact 
     ? "text-2xl sm:text-3xl lg:text-4xl" 
     : "text-4xl sm:text-3xl lg:text-4xl";
