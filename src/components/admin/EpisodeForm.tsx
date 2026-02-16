@@ -9,8 +9,8 @@ import { CSS } from "@dnd-kit/utilities";
 
 // ── Inline Hint ──
 const FieldHint = ({ children }: { children: React.ReactNode }) => (
-  <p className="flex items-start gap-1.5 mt-1 text-[11px] leading-snug text-muted-foreground/70">
-    <Info className="h-3 w-3 mt-px shrink-0 text-muted-foreground/50" />
+  <p className="flex items-start gap-1.5 mt-1 text-xs leading-snug text-gray-500">
+    <Info className="h-3.5 w-3.5 mt-px shrink-0 text-gray-400" />
     <span>{children}</span>
   </p>
 );
