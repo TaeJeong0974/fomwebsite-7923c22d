@@ -18,11 +18,16 @@ const AdminHosts = () => {
   const [editing, setEditing] = useState<Host | null>(null);
   const [form, setForm] = useState(EMPTY);
   const [saving, setSaving] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const fetch = async () => {
-    const { data, error } = await supabase.from("hosts").select("*").order("name");
-    if (error) toast.error(error.message);
+    setLoading(true);
+    setError(null);
+    const { data, error: err } = await supabase.from("hosts").select("*").order("name");
+    if (err) { setError(err.message); toast.error(err.message); }
     else setHosts(data || []);
+    setLoading(false);
   };
 
   useEffect(() => { fetch(); }, []);
@@ -89,6 +94,15 @@ const AdminHosts = () => {
       </div>
     );
   }
+
+  if (loading) return <div className="py-12 text-center text-muted-foreground text-body-sm">Loading hosts…</div>;
+
+  if (error) return (
+    <div className="py-12 text-center space-y-3">
+      <p className="text-destructive text-body-sm">Failed to load hosts: {error}</p>
+      <button onClick={fetch} className="text-body-sm text-primary hover:underline">Retry</button>
+    </div>
+  );
 
   return (
     <div>
