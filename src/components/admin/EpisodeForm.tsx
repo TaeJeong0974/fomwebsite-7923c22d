@@ -102,18 +102,15 @@ const SortableTopicList = ({ topics, onReorder, onRemove, onMove }: {
   );
 };
 
-// ── Section Container — Google-style white card with external label ──
-const GlassSection = ({ label, number, children }: { label: string; number: number; children: React.ReactNode }) => (
-  <div className="space-y-0">
+// ── Section Container — Google-style white card with label below ──
+const GlassSection = ({ label, children }: { label: string; number?: number; children: React.ReactNode }) => (
+  <div>
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
       <div className="p-6 space-y-5">
         {children}
       </div>
     </div>
-    <div className="flex items-center gap-2.5 px-2 pt-3">
-      <span className="flex items-center justify-center w-6 h-6 rounded-full bg-gray-100 text-[11px] font-semibold text-gray-400">{number}</span>
-      <span className="text-xs font-medium text-gray-400 uppercase tracking-wide">{label}</span>
-    </div>
+    <p className="px-2 pt-3 text-xs font-medium text-gray-400 uppercase tracking-wide">{label}</p>
   </div>
 );
 
@@ -296,7 +293,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
         <button onClick={onDone} className="text-sm text-gray-400 hover:text-gray-700 transition-colors">← Back</button>
       </div>
 
-      <div className="space-y-8 max-w-2xl">
+      <div className="space-y-12 max-w-2xl">
         {/* ── 1. Header ── */}
         <GlassSection label="Header" number={1}>
           <div className="space-y-2">
