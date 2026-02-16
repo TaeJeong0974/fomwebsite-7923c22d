@@ -44,7 +44,7 @@ const SortableTopicItem = ({ id, topic, index, total, onRemove, onMove }: {
   const style = { transform: CSS.Transform.toString(transform), transition, opacity: isDragging ? 0.5 : 1, zIndex: isDragging ? 10 : undefined };
 
   return (
-    <div ref={setNodeRef} style={style} className="flex items-center gap-2 py-1.5 px-3 rounded-lg bg-secondary/50 border border-border/50 group">
+    <div ref={setNodeRef} style={style} className="flex items-center gap-2 py-1.5 px-3 rounded-xl bg-white/30 border border-white/20 group">
       <button type="button" {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing touch-none p-0.5 text-muted-foreground/50 hover:text-muted-foreground shrink-0">
         <GripVertical className="h-3.5 w-3.5" />
       </button>
@@ -257,7 +257,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
     setUploading(null);
   };
 
-  const fieldClass = "w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground text-body-sm focus:ring-2 focus:ring-primary outline-none";
+  const fieldClass = "w-full px-4 py-3 rounded-xl border border-white/30 bg-white/40 backdrop-blur-sm text-foreground text-body-sm focus:ring-2 focus:ring-primary/30 focus:border-primary/50 outline-none transition-all";
   const labelClass = "text-body-sm font-medium text-muted-foreground";
 
   return (
@@ -274,7 +274,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
           <label className={labelClass}>Status</label>
           <div className="flex gap-2">
             {([
-              { value: "draft", label: "Draft", color: "bg-muted text-muted-foreground border-border" },
+              { value: "draft", label: "Draft", color: "bg-white/40 text-muted-foreground border-white/30" },
               { value: "upcoming", label: "Upcoming", color: "bg-amber-50 text-amber-700 border-amber-200" },
               { value: "published", label: "Published", color: "bg-green-50 text-green-700 border-green-200" },
               { value: "deleted", label: "Deleted", color: "bg-red-50 text-destructive border-red-200" },
@@ -283,10 +283,10 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
                 key={value}
                 type="button"
                 onClick={() => set("status", value)}
-                className={`px-4 py-2 rounded-lg text-body-sm font-medium border transition-all ${
+                className={`px-4 py-2 rounded-xl text-body-sm font-medium border transition-all ${
                   form.status === value
                     ? `${color} ring-2 ring-offset-1 ring-foreground/20`
-                    : "bg-background text-muted-foreground border-border hover:border-foreground/30 opacity-60"
+                    : "bg-white/20 text-muted-foreground border-white/20 hover:border-white/40 opacity-60"
                 }`}
               >
                 {label}
@@ -325,7 +325,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
         </div>
 
         {/* ── 2. Video ── */}
-        <hr className="border-border" />
+        <hr className="border-white/15" />
         <h3 className="text-body font-medium text-foreground">Video</h3>
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-1">
@@ -347,7 +347,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
         </div>
 
         {/* ── 3. About this Episode ── */}
-        <hr className="border-border" />
+        <hr className="border-white/15" />
         <h3 className="text-body font-medium text-foreground">About this Episode</h3>
         <div className="space-y-1">
           <label className={labelClass}>Short Description</label>
@@ -361,14 +361,14 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
         </div>
 
         {/* ── 4. Quote ── */}
-        <hr className="border-border" />
+        <hr className="border-white/15" />
         <h3 className="text-body font-medium text-foreground">Quote</h3>
         <div className="space-y-1">
           <textarea className={`${fieldClass} min-h-[80px]`} value={form.pull_quote} onChange={(e) => set("pull_quote", e.target.value)} placeholder="A memorable quote from the episode…" />
         </div>
         <div className="space-y-1">
           <label className={labelClass}>Attribution</label>
-          <select className={`${fieldClass} bg-background`} value={form.pull_quote_attribution} onChange={(e) => set("pull_quote_attribution", e.target.value)}>
+          <select className={`${fieldClass} bg-white/40`} value={form.pull_quote_attribution} onChange={(e) => set("pull_quote_attribution", e.target.value)}>
             <option value="">Select speaker…</option>
             {form.guest_name && <option value={form.guest_name}>{form.guest_name} (Guest)</option>}
             {allHosts.map((h) => (
@@ -378,7 +378,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
         </div>
 
         {/* ── 5. Topics Covered ── */}
-        <hr className="border-border" />
+        <hr className="border-white/15" />
         <h3 className="text-body font-medium text-foreground">Topics Covered</h3>
         <div className="flex gap-2">
           <input className={fieldClass} value={topicInput} onChange={(e) => setTopicInput(e.target.value)} placeholder="Add a topic" onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTopic())} />
@@ -392,7 +392,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
         />
 
         {/* ── 6. About the Speaker ── */}
-        <hr className="border-border" />
+        <hr className="border-white/15" />
         <h3 className="text-body font-medium text-foreground">About the Speaker</h3>
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-1">
@@ -431,11 +431,11 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
               {uploading === "guest_image_url" ? "…" : "Upload"}
             </button>
           </div>
-          {form.guest_image_url && <img src={form.guest_image_url} alt="Guest" className="mt-2 h-20 w-20 rounded-lg object-cover border border-border" />}
+          {form.guest_image_url && <img src={form.guest_image_url} alt="Guest" className="mt-2 h-20 w-20 rounded-xl object-cover border border-white/20" />}
         </div>
 
         {/* ── 7. About the Host ── */}
-        <hr className="border-border" />
+        <hr className="border-white/15" />
         <h3 className="text-body font-medium text-foreground">About the Host</h3>
         <div className="flex flex-wrap gap-2">
           {allHosts.map((h) => (
@@ -445,8 +445,8 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
               onClick={() => toggleHost(h.id)}
               className={`px-4 py-2 rounded-lg text-body-sm font-medium transition-colors border ${
                 selectedHostIds.includes(h.id)
-                  ? "bg-primary text-primary-foreground border-primary"
-                  : "bg-background text-muted-foreground border-border hover:border-primary"
+                  ? "bg-foreground text-background border-foreground"
+                  : "bg-white/30 text-muted-foreground border-white/30 hover:border-white/50"
               }`}
             >
               {h.name}
@@ -456,7 +456,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
         </div>
 
         {/* ── 8. Images & SEO ── */}
-        <hr className="border-border" />
+        <hr className="border-white/15" />
         <h3 className="text-body font-medium text-foreground">Images & SEO</h3>
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-1">
@@ -469,7 +469,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
                 {uploading === "poster_image_url" ? "…" : "Upload"}
               </button>
             </div>
-            {form.poster_image_url && <img src={form.poster_image_url} alt="Poster" className="mt-2 h-20 rounded-lg object-cover border border-border" />}
+            {form.poster_image_url && <img src={form.poster_image_url} alt="Poster" className="mt-2 h-20 rounded-xl object-cover border border-white/20" />}
           </div>
           <div className="space-y-1">
             <label className={labelClass}>OG Image</label>
@@ -481,12 +481,12 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
                 {uploading === "og_image_url" ? "…" : "Upload"}
               </button>
             </div>
-            {form.og_image_url && <img src={form.og_image_url} alt="OG" className="mt-2 h-20 rounded-lg object-cover border border-border" />}
+            {form.og_image_url && <img src={form.og_image_url} alt="OG" className="mt-2 h-20 rounded-xl object-cover border border-white/20" />}
           </div>
         </div>
 
         {/* ── 9. Publishing ── */}
-        <hr className="border-border" />
+        <hr className="border-white/15" />
         <h3 className="text-body font-medium text-foreground">Publishing</h3>
         <div className="space-y-1">
           <label className={labelClass}>Publish Date</label>
@@ -494,10 +494,10 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
         </div>
 
         <div className="flex gap-3 pt-4">
-          <button onClick={handleSave} disabled={saving} className="px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 disabled:opacity-50 transition-opacity">
+          <button onClick={handleSave} disabled={saving} className="px-6 py-3 rounded-xl bg-foreground text-background font-medium hover:opacity-90 disabled:opacity-50 transition-opacity">
             {saving ? "Saving…" : episodeId ? "Update Episode" : "Create Episode"}
           </button>
-          <button onClick={onDone} className="px-6 py-3 rounded-lg border border-border text-foreground text-body-sm hover:bg-muted transition-colors">
+          <button onClick={onDone} className="px-6 py-3 rounded-xl border border-white/30 text-foreground text-body-sm hover:bg-white/20 transition-colors">
             Cancel
           </button>
         </div>

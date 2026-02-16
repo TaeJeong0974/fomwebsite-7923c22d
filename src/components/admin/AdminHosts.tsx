@@ -84,7 +84,7 @@ const AdminHosts = () => {
   };
 
   const set = (key: string, value: string) => setForm((f) => ({ ...f, [key]: value }));
-  const fieldClass = "w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground text-body-sm focus:ring-2 focus:ring-primary outline-none";
+  const fieldClass = "w-full px-4 py-3 rounded-xl border border-white/30 bg-white/40 backdrop-blur-sm text-foreground text-body-sm focus:ring-2 focus:ring-primary/30 focus:border-primary/50 outline-none transition-all";
   const labelClass = "text-body-sm font-medium text-muted-foreground";
 
   if (editing) {
@@ -100,10 +100,10 @@ const AdminHosts = () => {
         <div className="space-y-1"><label className={labelClass}>Image URL</label><input className={fieldClass} value={form.image_url} onChange={(e) => set("image_url", e.target.value)} /></div>
         <div className="space-y-1"><label className={labelClass}>LinkedIn URL</label><input className={fieldClass} value={form.linkedin_url} onChange={(e) => set("linkedin_url", e.target.value)} /></div>
         <div className="flex gap-3">
-          <button onClick={save} disabled={saving} className="px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 disabled:opacity-50">
+          <button onClick={save} disabled={saving} className="px-6 py-3 rounded-xl bg-foreground text-background font-medium hover:opacity-90 disabled:opacity-50 transition-opacity">
             {saving ? "Saving…" : "Save"}
           </button>
-          <button onClick={cancel} className="px-6 py-3 rounded-lg border border-border text-foreground text-body-sm hover:bg-muted">Cancel</button>
+          <button onClick={cancel} className="px-6 py-3 rounded-xl border border-white/30 text-foreground text-body-sm hover:bg-white/20 transition-colors">Cancel</button>
         </div>
       </div>
     );
@@ -122,12 +122,12 @@ const AdminHosts = () => {
     <div>
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-section-header font-medium text-foreground">Hosts</h2>
-        <button onClick={startCreate} className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-body-sm font-medium">+ New Host</button>
+        <button onClick={startCreate} className="px-4 py-2.5 rounded-xl bg-foreground text-background text-body-sm font-medium hover:opacity-90 transition-opacity">+ New Host</button>
       </div>
-      <div className="border border-border rounded-xl overflow-hidden">
+      <div className="rounded-xl overflow-hidden border border-white/20">
         <table className="w-full">
           <thead>
-            <tr className="bg-muted">
+            <tr className="bg-white/30 backdrop-blur-sm">
               <th className="text-table-header text-left px-4 py-3 text-muted-foreground">Name</th>
               <th className="text-table-header text-left px-4 py-3 text-muted-foreground">Title</th>
               <th className="text-table-header text-right px-4 py-3 text-muted-foreground">Actions</th>
@@ -135,12 +135,12 @@ const AdminHosts = () => {
           </thead>
           <tbody>
             {hosts.map((h) => (
-              <tr key={h.id} className="border-t border-border hover:bg-muted/50 transition-colors">
+              <tr key={h.id} className="border-t border-white/15 hover:bg-white/20 transition-colors">
                 <td className="px-4 py-3 text-body-sm text-foreground">{h.name}</td>
                 <td className="px-4 py-3 text-body-sm text-muted-foreground">{h.title || "—"}</td>
                 <td className="px-4 py-3 text-right space-x-2">
-                  <button onClick={() => startEdit(h)} className="text-body-sm text-primary hover:underline">Edit</button>
-                  <button onClick={() => handleDelete(h.id)} className="text-body-sm text-destructive hover:underline">Delete</button>
+                  <button onClick={() => startEdit(h)} className="text-body-sm text-foreground/70 hover:text-foreground transition-colors">Edit</button>
+                  <button onClick={() => handleDelete(h.id)} className="text-body-sm text-destructive/70 hover:text-destructive transition-colors">Delete</button>
                 </td>
               </tr>
             ))}
