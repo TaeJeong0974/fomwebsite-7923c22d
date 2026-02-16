@@ -92,7 +92,7 @@ const AdminEpisodes = () => {
   return (
     <div className="space-y-5">
       <div className="flex justify-between items-center">
-        <h2 className="text-lg font-semibold text-dark-foreground">Episodes</h2>
+        <h2 className="font-semibold text-dark-foreground" style={{ fontSize: 'clamp(1.25rem, 3vw, 2rem)' }}>Episodes</h2>
         <button
           onClick={() => setCreating(true)}
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-medium shadow-sm hover:shadow-md hover:brightness-105 transition-all"

@@ -105,7 +105,7 @@ const SortableTopicList = ({ topics, onReorder, onRemove, onMove }: {
 // ── Section Container — Google-style white card with label on top ──
 const GlassSection = ({ label, children }: { label: string; number?: number; children: React.ReactNode }) => (
   <div>
-    <h3 className="text-2xl font-semibold text-dark-foreground mb-2">{label}</h3>
+    <h3 className="font-semibold text-dark-foreground mb-2" style={{ fontSize: 'clamp(1.25rem, 3vw, 2rem)' }}>{label}</h3>
     <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
       <div className="p-6 space-y-5">
         {children}
@@ -289,11 +289,11 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
-        <h2 className="text-[3.375rem] font-semibold text-dark-foreground leading-tight">{episodeId ? "Edit Episode" : "New Episode"}</h2>
+        <h2 className="font-semibold text-dark-foreground leading-tight" style={{ fontSize: 'clamp(2rem, 5vw, 3.375rem)' }}>{episodeId ? "Edit Episode" : "New Episode"}</h2>
         <button onClick={onDone} className="text-sm text-gray-400 hover:text-gray-700 transition-colors">← Back</button>
       </div>
 
-      <div className="space-y-12 max-w-2xl">
+      <div className="space-y-12 w-full">
         {/* ── 1. Header ── */}
         <GlassSection label="Header" number={1}>
           <div className="space-y-2">

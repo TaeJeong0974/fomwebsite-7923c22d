@@ -97,9 +97,9 @@ const AdminHosts = () => {
 
   if (editing) {
     return (
-      <div className="max-w-lg space-y-6">
+      <div className="max-w-full space-y-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-dark-foreground">{editing.id === "new" ? "New Host" : "Edit Host"}</h2>
+          <h2 className="font-semibold text-dark-foreground" style={{ fontSize: 'clamp(1.25rem, 3vw, 2rem)' }}>{editing.id === "new" ? "New Host" : "Edit Host"}</h2>
           <button onClick={cancel} className="text-sm text-gray-400 hover:text-gray-700 transition-colors">← Back</button>
         </div>
         <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
@@ -136,7 +136,7 @@ const AdminHosts = () => {
   return (
     <div className="space-y-5">
       <div className="flex justify-between items-center">
-        <h2 className="text-lg font-semibold text-dark-foreground">Hosts</h2>
+        <h2 className="font-semibold text-dark-foreground" style={{ fontSize: 'clamp(1.25rem, 3vw, 2rem)' }}>Hosts</h2>
         <button
           onClick={startCreate}
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-medium shadow-sm hover:shadow-md hover:brightness-105 transition-all"
