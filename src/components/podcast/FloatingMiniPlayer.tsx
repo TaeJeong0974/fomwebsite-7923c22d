@@ -29,6 +29,7 @@ const getYouTubeVideoId = (url: string): string | null => {
 const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImage }: FloatingMiniPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showPip, setShowPip] = useState(false);
+  const [hideAtBottom, setHideAtBottom] = useState(false);
   const [pipDismissed, setPipDismissed] = useState(false);
   const [pipRight, setPipRight] = useState(96);
   const [pipWidth, setPipWidth] = useState<number | undefined>(undefined);
@@ -77,6 +78,22 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
     observer.observe(playerWrapperRef.current);
     return () => observer.disconnect();
   }, [isPlaying]);
+
+  // Hide PiP when "More Episodes" section comes into view
+  useEffect(() => {
+    const relatedSection = document.getElementById('related-episodes');
+    if (!relatedSection) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setHideAtBottom(entry.isIntersecting);
+      },
+      { threshold: 0.05 }
+    );
+
+    observer.observe(relatedSection);
+    return () => observer.disconnect();
+  }, []);
   
   // YouTube thumbnail URL
   const thumbnailUrl = videoId 
@@ -100,7 +117,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
     playerWrapperRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, []);
 
-  const isPipVisible = showPip && !pipDismissed;
+  const isPipVisible = showPip && !pipDismissed && !hideAtBottom;
 
   const handlePipPlay = useCallback((e: React.MouseEvent) => {
     e.stopPropagation();
