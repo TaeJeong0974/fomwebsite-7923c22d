@@ -30,9 +30,24 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
   const [isPlaying, setIsPlaying] = useState(false);
   const [showPip, setShowPip] = useState(false);
   const [pipDismissed, setPipDismissed] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null); // kept for potential future use
+  const [pipRight, setPipRight] = useState(96); // default 6rem in px
+  const containerRef = useRef<HTMLDivElement>(null);
   const playerWrapperRef = useRef<HTMLDivElement>(null);
   const videoId = youtubeUrl ? getYouTubeVideoId(youtubeUrl) : null;
+
+  // Dynamically align PiP to sidebar column right edge
+  useEffect(() => {
+    const updatePosition = () => {
+      const sidebar = document.querySelector('[data-pip-anchor]');
+      if (sidebar) {
+        const rect = sidebar.getBoundingClientRect();
+        setPipRight(window.innerWidth - rect.right);
+      }
+    };
+    updatePosition();
+    window.addEventListener('resize', updatePosition);
+    return () => window.removeEventListener('resize', updatePosition);
+  }, []);
 
   useEffect(() => {
     if (playTrigger && playTrigger > 0) {
@@ -129,11 +144,12 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
 
       {/* Floating PiP Mini Player - aligned to sidebar column */}
       <div
-        className={`hidden lg:block fixed bottom-6 z-50 transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:right-[6rem] xl:right-[8rem] 2xl:right-[10rem] ${
+        className={`hidden lg:block fixed bottom-6 z-50 transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           isPipVisible
             ? 'translate-y-0 opacity-100 scale-100'
             : 'translate-y-4 opacity-0 scale-95 pointer-events-none'
         }`}
+        style={{ right: `${pipRight}px` }}
       >
       <div className="rounded-xl p-2.5 bg-background/70 backdrop-blur-xl border border-white/20 shadow-2xl shadow-black/30 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] origin-bottom-right hover:scale-[1.12] hover:-translate-x-2 hover:-translate-y-2">
           {/* Video */}
