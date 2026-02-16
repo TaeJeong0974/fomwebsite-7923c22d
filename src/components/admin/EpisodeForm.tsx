@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { adminApi } from "@/lib/adminApi";
+import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import { Upload } from "lucide-react";
 
 interface Props {
   episodeId?: string;
@@ -161,6 +163,28 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
 
   const removeNewsletter = (i: number) => setNewsletters((prev) => prev.filter((_, idx) => idx !== i));
 
+  const [uploading, setUploading] = useState<string | null>(null);
+  const posterFileRef = useRef<HTMLInputElement>(null);
+  const ogFileRef = useRef<HTMLInputElement>(null);
+  const guestFileRef = useRef<HTMLInputElement>(null);
+
+  const handleImageUpload = async (file: File, fieldKey: string) => {
+    if (!file.type.startsWith("image/")) { toast.error("Please select an image file"); return; }
+    setUploading(fieldKey);
+    const ext = file.name.split(".").pop();
+    const path = `${form.slug || "untitled"}/${fieldKey}-${Date.now()}.${ext}`;
+    try {
+      const { error } = await supabase.storage.from("episode-images").upload(path, file, { upsert: true });
+      if (error) throw error;
+      const { data: { publicUrl } } = supabase.storage.from("episode-images").getPublicUrl(path);
+      set(fieldKey, publicUrl);
+      toast.success("Image uploaded");
+    } catch (err: unknown) {
+      toast.error(err instanceof Error ? err.message : "Upload failed");
+    }
+    setUploading(null);
+  };
+
   const fieldClass = "w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground text-body-sm focus:ring-2 focus:ring-primary outline-none";
   const labelClass = "text-body-sm font-medium text-muted-foreground";
 
@@ -293,8 +317,16 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
           <p className="text-xs text-muted-foreground mt-1">Starts with a verb (e.g. "is the CMO at…")</p>
         </div>
         <div className="space-y-1">
-          <label className={labelClass}>Guest Image URL</label>
-          <input className={fieldClass} value={form.guest_image_url} onChange={(e) => set("guest_image_url", e.target.value)} />
+          <label className={labelClass}>Guest Image</label>
+          <div className="flex gap-2">
+            <input className={fieldClass} value={form.guest_image_url} onChange={(e) => set("guest_image_url", e.target.value)} placeholder="URL or upload →" />
+            <input ref={guestFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "guest_image_url")} />
+            <button type="button" onClick={() => guestFileRef.current?.click()} disabled={uploading === "guest_image_url"} className="px-3 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap flex items-center gap-1.5 hover:opacity-80 disabled:opacity-50">
+              <Upload className="h-3.5 w-3.5" />
+              {uploading === "guest_image_url" ? "…" : "Upload"}
+            </button>
+          </div>
+          {form.guest_image_url && <img src={form.guest_image_url} alt="Guest" className="mt-2 h-20 w-20 rounded-lg object-cover border border-border" />}
         </div>
 
         {/* ── 7. About the Host ── */}
@@ -323,12 +355,28 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
         <h3 className="text-body font-medium text-foreground">Images & SEO</h3>
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-1">
-            <label className={labelClass}>Poster Image URL</label>
-            <input className={fieldClass} value={form.poster_image_url} onChange={(e) => set("poster_image_url", e.target.value)} />
+            <label className={labelClass}>Poster Image</label>
+            <div className="flex gap-2">
+              <input className={fieldClass} value={form.poster_image_url} onChange={(e) => set("poster_image_url", e.target.value)} placeholder="URL or upload →" />
+              <input ref={posterFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "poster_image_url")} />
+              <button type="button" onClick={() => posterFileRef.current?.click()} disabled={uploading === "poster_image_url"} className="px-3 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap flex items-center gap-1.5 hover:opacity-80 disabled:opacity-50">
+                <Upload className="h-3.5 w-3.5" />
+                {uploading === "poster_image_url" ? "…" : "Upload"}
+              </button>
+            </div>
+            {form.poster_image_url && <img src={form.poster_image_url} alt="Poster" className="mt-2 h-20 rounded-lg object-cover border border-border" />}
           </div>
           <div className="space-y-1">
-            <label className={labelClass}>OG Image URL</label>
-            <input className={fieldClass} value={form.og_image_url} onChange={(e) => set("og_image_url", e.target.value)} />
+            <label className={labelClass}>OG Image</label>
+            <div className="flex gap-2">
+              <input className={fieldClass} value={form.og_image_url} onChange={(e) => set("og_image_url", e.target.value)} placeholder="URL or upload →" />
+              <input ref={ogFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "og_image_url")} />
+              <button type="button" onClick={() => ogFileRef.current?.click()} disabled={uploading === "og_image_url"} className="px-3 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap flex items-center gap-1.5 hover:opacity-80 disabled:opacity-50">
+                <Upload className="h-3.5 w-3.5" />
+                {uploading === "og_image_url" ? "…" : "Upload"}
+              </button>
+            </div>
+            {form.og_image_url && <img src={form.og_image_url} alt="OG" className="mt-2 h-20 rounded-lg object-cover border border-border" />}
           </div>
         </div>
 
