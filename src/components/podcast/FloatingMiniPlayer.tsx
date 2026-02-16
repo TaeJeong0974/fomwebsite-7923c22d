@@ -83,8 +83,6 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
                 backgroundPosition: 'center',
               }}
             >
-              {/* Subtle overlay for better play button visibility */}
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
               
               {/* Play Button - cursor follow on desktop, centered on mobile */}
               <div
