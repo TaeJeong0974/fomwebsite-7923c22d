@@ -34,13 +34,15 @@ const AdminDashboard = () => {
           </button>
         </div>
 
-        <div className="flex gap-1 mb-8 border-b border-border">
+        <div className="flex gap-1 mb-8">
           {(["episodes", "hosts"] as const).map((t) => (
             <button
               key={t}
               onClick={() => setTab(t)}
-              className={`px-4 py-2 text-body-sm font-medium capitalize transition-colors border-b-2 -mb-px ${
-                tab === t ? "border-primary text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"
+              className={`px-5 py-2.5 rounded-xl text-body-sm font-medium capitalize transition-all ${
+                tab === t
+                  ? "glass border border-white/30 shadow-glass text-foreground"
+                  : "text-muted-foreground hover:text-foreground hover:bg-foreground/5"
               }`}
             >
               {t}
@@ -48,8 +50,10 @@ const AdminDashboard = () => {
           ))}
         </div>
 
-        {tab === "episodes" && <AdminEpisodes />}
-        {tab === "hosts" && <AdminHosts />}
+        <div className="glass rounded-2xl border border-white/20 shadow-glass p-6 sm:p-8">
+          {tab === "episodes" && <AdminEpisodes />}
+          {tab === "hosts" && <AdminHosts />}
+        </div>
       </div>
     </div>
   );

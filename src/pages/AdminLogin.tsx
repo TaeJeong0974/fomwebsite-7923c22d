@@ -36,7 +36,7 @@ const AdminLogin = () => {
     <div className="min-h-screen flex items-center justify-center bg-background">
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-sm p-8 rounded-2xl border border-border bg-card shadow-lg space-y-6"
+        className="w-full max-w-sm p-8 rounded-2xl glass border border-white/20 shadow-glass space-y-6"
       >
         <h1 className="text-display-md text-center text-foreground">Admin</h1>
         <div className="space-y-2">
@@ -46,13 +46,13 @@ const AdminLogin = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full px-4 py-3 rounded-lg border border-input bg-background text-foreground focus:ring-2 focus:ring-primary outline-none"
+            className="w-full px-4 py-3 rounded-xl border border-white/30 bg-white/40 backdrop-blur-sm text-foreground focus:ring-2 focus:ring-primary/30 focus:border-primary/50 outline-none transition-all"
           />
         </div>
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:opacity-90 disabled:opacity-50 transition-opacity"
+          className="w-full py-3 rounded-xl bg-foreground text-background font-medium hover:opacity-90 disabled:opacity-50 transition-opacity"
         >
           {loading ? "Verifying…" : "Enter"}
         </button>

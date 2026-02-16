@@ -93,14 +93,14 @@ const AdminEpisodes = () => {
     <div>
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-section-header font-medium text-foreground">Episodes</h2>
-        <button onClick={() => setCreating(true)} className="px-4 py-2 rounded-lg bg-primary text-primary-foreground text-body-sm font-medium">
+        <button onClick={() => setCreating(true)} className="px-4 py-2.5 rounded-xl bg-foreground text-background text-body-sm font-medium hover:opacity-90 transition-opacity">
           + New Episode
         </button>
       </div>
-      <div className="border border-border rounded-xl overflow-hidden">
+      <div className="rounded-xl overflow-hidden border border-white/20">
         <table className="w-full">
           <thead>
-            <tr className="bg-muted">
+            <tr className="bg-white/30 backdrop-blur-sm">
               <th className="text-table-header text-left px-4 py-3 text-muted-foreground">#</th>
               <th className="text-table-header text-left px-4 py-3 text-muted-foreground">Title</th>
               <th className="text-table-header text-left px-4 py-3 text-muted-foreground">Guest</th>
@@ -116,7 +116,7 @@ const AdminEpisodes = () => {
               const canPromote = ep.status === "published" || ep.status === "upcoming";
 
               return (
-                <tr key={ep.id} className="border-t border-border hover:bg-muted/50 transition-colors">
+                <tr key={ep.id} className="border-t border-white/15 hover:bg-white/20 transition-colors">
                   <td className="px-4 py-3 text-body-sm text-muted-foreground">{ep.episode_number ?? "—"}</td>
                   <td className="px-4 py-3 text-body-sm text-foreground">{ep.title}</td>
                   <td className="px-4 py-3 text-body-sm text-muted-foreground">{ep.guest_name}{ep.guest_company ? ` (${ep.guest_company})` : ""}</td>
@@ -151,8 +151,8 @@ const AdminEpisodes = () => {
                     )}
                   </td>
                   <td className="px-4 py-3 text-right space-x-2">
-                    <button onClick={() => setEditing(ep.id)} className="text-body-sm text-primary hover:underline">Edit</button>
-                    <button onClick={() => handleDelete(ep.id)} className="text-body-sm text-destructive hover:underline">Delete</button>
+                    <button onClick={() => setEditing(ep.id)} className="text-body-sm text-foreground/70 hover:text-foreground transition-colors">Edit</button>
+                    <button onClick={() => handleDelete(ep.id)} className="text-body-sm text-destructive/70 hover:text-destructive transition-colors">Delete</button>
                   </td>
                 </tr>
               );
