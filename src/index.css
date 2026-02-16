@@ -191,6 +191,17 @@ html {
   }
 }
 
+/* Stabilise text elements during font-swap reflow —
+   prevents CSS transitions from retriggering when the
+   custom font loads and changes glyph metrics.          */
+.stable-text {
+  transition: none !important;
+  animation: none !important;
+  will-change: contents;
+  text-rendering: geometricPrecision;
+}
+
+
 /* ==========================================
    Typography Utilities
    ========================================== */
