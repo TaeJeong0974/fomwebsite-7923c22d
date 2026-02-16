@@ -270,15 +270,30 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
       <div className="space-y-6 max-w-2xl">
         {/* ── 1. Header ── */}
         <h3 className="text-body font-medium text-foreground">Header</h3>
-        <div className="space-y-1">
+        <div className="space-y-2">
           <label className={labelClass}>Status</label>
-          <select className={`${fieldClass} bg-background max-w-xs`} value={form.status} onChange={(e) => set("status", e.target.value)}>
-            <option value="draft">Draft</option>
-            <option value="upcoming">Upcoming</option>
-            <option value="published">Published</option>
-            <option value="deleted">Deleted</option>
-          </select>
-          <p className="text-xs text-muted-foreground mt-1">
+          <div className="flex gap-2">
+            {([
+              { value: "draft", label: "Draft", color: "bg-muted text-muted-foreground border-border" },
+              { value: "upcoming", label: "Upcoming", color: "bg-amber-50 text-amber-700 border-amber-200" },
+              { value: "published", label: "Published", color: "bg-green-50 text-green-700 border-green-200" },
+              { value: "deleted", label: "Deleted", color: "bg-red-50 text-destructive border-red-200" },
+            ] as const).map(({ value, label, color }) => (
+              <button
+                key={value}
+                type="button"
+                onClick={() => set("status", value)}
+                className={`px-4 py-2 rounded-lg text-body-sm font-medium border transition-all ${
+                  form.status === value
+                    ? `${color} ring-2 ring-offset-1 ring-foreground/20`
+                    : "bg-background text-muted-foreground border-border hover:border-foreground/30 opacity-60"
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          <p className="text-xs text-muted-foreground">
             {form.status === 'upcoming' ? 'Card on homepage, no detail page' : 
              form.status === 'published' ? 'Full detail page with video' :
              form.status === 'draft' ? 'Not visible on site' : 'Soft-deleted'}
