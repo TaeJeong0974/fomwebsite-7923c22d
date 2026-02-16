@@ -134,7 +134,7 @@ const AdminHosts = () => {
   );
 
   return (
-    <div className="space-y-5">
+    <div className="space-y-4 sm:space-y-5">
       <div className="flex justify-between items-center">
         <h2 className="font-semibold text-dark-foreground" style={{ fontSize: 'clamp(1.25rem, 3vw, 2rem)' }}>Hosts</h2>
         <button
@@ -146,7 +146,7 @@ const AdminHosts = () => {
         </button>
       </div>
 
-      <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+      <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
         <table className="w-full">
           <thead>
             <tr className="border-b border-gray-100">
