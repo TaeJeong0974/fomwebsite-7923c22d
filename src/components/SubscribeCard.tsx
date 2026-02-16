@@ -1,13 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useIsMobile } from "@/hooks/use-mobile";
-import { useSubscribe } from "@/contexts/SubscribeContext";
 import { useSubscriptionForm } from "@/hooks/use-subscription-form";
 import subscribeBg from "@/assets/subscribe-bg.png";
 
 const SubscribeCard = () => {
-  const isMobile = useIsMobile();
-  const { openSubscribe } = useSubscribe();
   const [showForm, setShowForm] = useState(false);
   
   const { email, setEmail, isSubmitted, handleSubmit } = useSubscriptionForm({
@@ -15,11 +11,7 @@ const SubscribeCard = () => {
   });
 
   const handleCardClick = () => {
-    if (isMobile) {
-      openSubscribe();
-    } else {
-      setShowForm(true);
-    }
+    setShowForm(true);
   };
 
   return (
