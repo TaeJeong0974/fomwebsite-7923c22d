@@ -1,11 +1,13 @@
-import { podcastHosts, PodcastHost } from "@/lib/podcastData";
+import { PodcastHost } from "@/lib/podcastData";
+import { useEpisodeData } from "@/contexts/EpisodeDataContext";
 
 interface AboutTheHostsProps {
   hosts?: PodcastHost[];
 }
 
 const AboutTheHosts = ({ hosts }: AboutTheHostsProps) => {
-  const displayHosts = hosts || podcastHosts;
+  const { hosts: allHosts } = useEpisodeData();
+  const displayHosts = hosts || allHosts;
   return (
     <div>
       <h3 className="text-section-header font-medium text-foreground mb-5 sm:mb-6">

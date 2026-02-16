@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { LayoutGrid, List, Plus, ChevronUp } from "lucide-react";
 
-import { getPublishedEpisodes, getComingSoonEpisodes, PodcastEpisode, podcastHosts } from "@/lib/podcastData";
+import { PodcastEpisode } from "@/lib/podcastData";
+import { useEpisodeData } from "@/contexts/EpisodeDataContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 import SubscribeCard from "@/components/SubscribeCard";
@@ -32,6 +33,7 @@ const isNewEpisode = (publishedDate: string): boolean => {
 const PodcastSection = () => {
   const isMobile = useIsMobile();
   const [layout, setLayout] = useState<LayoutType>("grid");
+  const { getPublishedEpisodes, getComingSoonEpisodes, hosts } = useEpisodeData();
   const publishedEpisodes = getPublishedEpisodes();
   const comingSoonEpisodes = getComingSoonEpisodes();
 
@@ -186,6 +188,7 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const isMobile = useIsMobile();
   const { openSubscribe } = useSubscribe();
+  const { hosts } = useEpisodeData();
   
   const allEpisodes = [...episodes, ...comingSoonEpisodes];
 
@@ -250,14 +253,14 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
                           </motion.h3>
                           <p className="hidden lg:block text-sm pt-1.5 text-foreground list-focus-transition">
                             {isIntroEpisode 
-                              ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) 
+                              ? hosts.map((h, i) => <span key={h.name}>{h.name}{i < hosts.length - 1 && ', '}</span>) 
                               : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>
                             }
                           </p>
                         </div>
                         <p className="lg:hidden mt-2 text-sm text-foreground list-focus-transition">
                           {isIntroEpisode 
-                            ? podcastHosts.map((h, i) => <span key={h.name}>{h.name}{i < podcastHosts.length - 1 && ', '}</span>) 
+                            ? hosts.map((h, i) => <span key={h.name}>{h.name}{i < hosts.length - 1 && ', '}</span>) 
                             : <>{episode.title} <span className="font-medium">@ {episode.company}</span></>
                           }
                         </p>

@@ -15,7 +15,8 @@ import DetailVerticalText from "@/components/podcast/DetailVerticalText";
 import ListenSubscribeCards from "@/components/ListenSubscribeCards";
 import FadeInSection from "@/components/podcast/FadeInSection";
 import { LiquidButton } from "@/components/ui/LiquidButton";
-import { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes, PodcastEpisode } from "@/lib/podcastData";
+import { PodcastEpisode } from "@/lib/podcastData";
+import { useEpisodeData } from "@/contexts/EpisodeDataContext";
 
 interface ComingSoonEpisodeProps {
   episode?: PodcastEpisode;
@@ -23,6 +24,7 @@ interface ComingSoonEpisodeProps {
 
 const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => {
   const { slug } = useParams();
+  const { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes } = useEpisodeData();
   const episode = propEpisode || (slug ? getEpisodeBySlug(slug) : undefined);
   const { openSubscribe } = useSubscribe();
 
