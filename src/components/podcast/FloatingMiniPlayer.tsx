@@ -64,7 +64,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
     const timer = setTimeout(() => {
       const related = document.getElementById('related-episodes');
       const connected = document.getElementById('stay-connected');
-      const footer = document.querySelector('footer');
+      const footer = document.getElementById('site-footer');
       if (related) bottomTargets.push(related);
       if (connected) bottomTargets.push(connected);
       if (footer) bottomTargets.push(footer);
@@ -85,7 +85,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
           setShowPip(!playerVisible.current);
           setHideAtBottom(bottomVisible.size > 0);
         },
-        { threshold: 0.05 }
+        { threshold: 0, rootMargin: '100px' }
       );
 
       observer.observe(playerEl);

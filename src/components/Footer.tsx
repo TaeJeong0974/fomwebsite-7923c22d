@@ -89,7 +89,7 @@ const Footer = () => {
   };
 
   return (
-    <footer ref={footerRef} className="pt-16 sm:pt-20 lg:pt-24 pb-0 overflow-hidden">
+    <footer id="site-footer" ref={footerRef} className="pt-16 sm:pt-20 lg:pt-24 pb-0 overflow-hidden">
       <div className="container mx-auto container-padding">
         {/* Top section: tagline + nav links */}
         <motion.div
