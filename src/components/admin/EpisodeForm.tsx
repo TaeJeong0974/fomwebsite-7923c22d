@@ -107,7 +107,7 @@ const GlassSection = ({ label, children }: { label: string; number?: number; chi
   <div>
     <h3 className="font-semibold text-dark-foreground mb-2" style={{ fontSize: 'clamp(1.25rem, 3vw, 2rem)' }}>{label}</h3>
     <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-      <div className="p-4 sm:p-6 space-y-4 sm:space-y-5">
+      <div className="p-4 sm:p-6 space-y-6 sm:space-y-8">
         {children}
       </div>
     </div>
