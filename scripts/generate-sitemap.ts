@@ -6,7 +6,7 @@ import { podcastEpisodes } from "../src/lib/podcastData";
 import { writeFileSync } from "fs";
 import { resolve } from "path";
 
-const SITE_URL = "https://fomwebsite.lovable.app";
+const SITE_URL = "https://fom.xyz";
 const TODAY = new Date().toISOString().split("T")[0];
 
 interface SitemapEntry {
