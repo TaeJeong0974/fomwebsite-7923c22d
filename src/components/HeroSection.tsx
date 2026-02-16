@@ -25,9 +25,9 @@ const hosts = [
   {
     name: "Ethan Smith",
     title: "Founder & CEO",
-    company: "Graphite",
+    company: "Graphite Growth",
     companyUrl: "https://www.graphite.io",
-    bio: "Founder and CEO of Graphite, a premium Vertical AI Growth Agency that helps companies like Webflow, Notion, MasterClass, and Captions drive sustainable revenue growth via SEO, content, and AEO (Answer Engine Optimization). Ethan is also an adjunct professor at IE Business School.",
+    bio: "Founder and CEO of Graphite Growth, a premium Vertical AI Growth Agency that helps companies like Webflow, Notion, MasterClass, and Captions drive sustainable revenue growth via SEO, content, and AEO (Answer Engine Optimization). Ethan is also an adjunct professor at IE Business School.",
     image: hostEthan,
     linkedInUrl: "https://www.linkedin.com/in/ethanls/",
   },

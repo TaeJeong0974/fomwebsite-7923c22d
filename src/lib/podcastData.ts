@@ -64,10 +64,10 @@ export const podcastHosts: PodcastHost[] = [
   {
     name: "Ethan Smith",
     title: "Founder & CEO",
-    company: "Graphite",
+    company: "Graphite Growth",
     companyUrl: "https://www.graphite.io",
     linkedInUrl: "https://www.linkedin.com/in/ethanls/",
-    bio: "is Founder and CEO of Graphite, a premium Vertical AI Growth Agency that helps companies like Webflow, Notion, MasterClass, and Captions drive sustainable revenue growth via SEO, content, and AEO (Answer Engine Optimization). Ethan is also an adjunct professor at IE Business School.",
+    bio: "is Founder and CEO of Graphite Growth, a premium Vertical AI Growth Agency that helps companies like Webflow, Notion, MasterClass, and Captions drive sustainable revenue growth via SEO, content, and AEO (Answer Engine Optimization). Ethan is also an adjunct professor at IE Business School.",
   },
 ];
 
@@ -83,7 +83,7 @@ export const podcastEpisodes: PodcastEpisode[] = [
     bio: "",
     fullDescription: `Most marketers aren't being replaced by AI — they're being replaced by marketers who actually know how to use it.
 
-In this launch episode of Future of Marketing, hosts Camille Ricketts (Operating Partner, XYZ), Ethan Smith (CEO, Graphite), and Mada Seghete (CEO & Co-Founder, Upside) cut through the AI hype and talk about what they believe is changing inside marketing teams.
+In this launch episode of Future of Marketing, hosts Camille Ricketts (Operating Partner, XYZ), Ethan Smith (CEO, Graphite Growth), and Mada Seghete (CEO & Co-Founder, Upside) cut through the AI hype and talk about what they believe is changing inside marketing teams.
 
 They discuss real use cases for AI (both personal and professional) and outline the best ways to tackle early adoption in times riddled with apprehension and uncertainty. Drilling down on why most teams are stuck using AI to make "bad" work faster, they discuss the possibility of using AI as a potential source for unconventional ideas that complement human storytelling.
 
