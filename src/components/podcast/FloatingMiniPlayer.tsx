@@ -129,13 +129,13 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
 
       {/* Floating PiP Mini Player - always shows on scroll, not just when playing */}
       <div
-        className={`hidden lg:block fixed bottom-6 right-6 z-50 transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        className={`hidden lg:block fixed bottom-6 right-8 2xl:right-12 z-50 transition-[transform,opacity] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           isPipVisible
             ? 'translate-y-0 opacity-100 scale-100'
             : 'translate-y-4 opacity-0 scale-95 pointer-events-none'
         }`}
       >
-      <div className="rounded-xl p-2.5 bg-background/70 backdrop-blur-xl border border-white/20 shadow-2xl shadow-black/30 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] origin-bottom-right hover:scale-[1.15]">
+      <div className="rounded-xl p-2.5 bg-background/70 backdrop-blur-xl border border-white/20 shadow-2xl shadow-black/30 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] origin-bottom-right hover:scale-[1.12] hover:-translate-x-2 hover:-translate-y-2">
           {/* Video */}
           <div
             className="relative w-72 sm:w-80 aspect-video rounded-lg overflow-hidden bg-neutral-900 ring-1 ring-white/10 cursor-pointer group/pip"
