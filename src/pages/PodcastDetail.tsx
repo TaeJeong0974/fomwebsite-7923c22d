@@ -204,7 +204,9 @@ const PodcastDetail = () => {
           </FadeInSection>
         </div>
 
-        <RelatedEpisodes episodes={otherEpisodes} title="More Episodes" />
+        <FadeInSection>
+          <RelatedEpisodes episodes={otherEpisodes} title="More Episodes" />
+        </FadeInSection>
 
         <FadeInSection id="stay-connected" className="mt-8 sm:mt-10 lg:mt-12 pt-8 sm:pt-10 lg:pt-12">
           <ListenSubscribeCards guestName={!isIntro ? episode.name.split(" ")[0] : undefined} />
