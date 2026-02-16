@@ -31,35 +31,56 @@ const EpisodeCardContent = ({
 
   return (
     <div className="card-content-bottom card-padding-lg z-[3]">
-      {/* Episode Name */}
-      <h3 className={`font-display ${textSize} text-white leading-[0.95] tracking-normal`}>
-        {isIntro ? (
-          <>
-            <span className="block font-semibold">Intro</span>
-            <span className="block font-normal">to FOM</span>
-          </>
-        ) : (
-          episode.name.split(' ').map((word, i) => (
-            <span 
-              key={i} 
-              className={`block ${i === 0 ? 'font-medium' : 'font-normal'}`}
-            >
-              {word}
-            </span>
-          ))
+      {/* Default state: Name + Title/Company */}
+      <div className="md:group-hover:opacity-0 transition-opacity duration-500 ease-[cubic-bezier(0.33,1,0.68,1)]">
+        <h3 className={`font-display ${textSize} text-white leading-[0.95] tracking-normal`}>
+          {isIntro ? (
+            <>
+              <span className="block font-semibold">Intro</span>
+              <span className="block font-normal">to FOM</span>
+            </>
+          ) : (
+            episode.name.split(' ').map((word, i) => (
+              <span 
+                key={i} 
+                className={`block ${i === 0 ? 'font-medium' : 'font-normal'}`}
+              >
+                {word}
+              </span>
+            ))
+          )}
+        </h3>
+        
+        {episode.title && episode.company && (
+          <div className="mt-2">
+            <p className="text-sm text-white/70">{episode.title}</p>
+            <p className="text-sm font-medium text-white">{episode.company}</p>
+          </div>
         )}
-      </h3>
-      
-      {/* Title & Company - stacked hierarchy */}
-      {episode.title && episode.company && (
-        <div className="mt-2">
-          <p className="text-sm text-white/70">{episode.title}</p>
-          <p className="text-sm font-medium text-white">{episode.company}</p>
+      </div>
+
+      {/* Hover state: Overview title morphs in */}
+      {!isIntro && !isUpcoming && showOverview && episode.overview && (
+        <div className="hidden md:block absolute bottom-0 left-0 right-0 card-padding-lg opacity-0 md:group-hover:opacity-100 translate-y-2 md:group-hover:translate-y-0 transition-all duration-500 delay-100 ease-[cubic-bezier(0.33,1,0.68,1)]">
+          <p className={`font-display ${textSize} text-white leading-[1.05] tracking-normal font-medium`}>
+            {episode.overview}
+          </p>
         </div>
       )}
-      
-      {/* Overview text - grid height animation, content always visible inside */}
-      {isUpcoming ? (
+
+      {/* Mobile: always show overview below */}
+      {!isUpcoming && showOverview && episode.overview && (
+        <div className="grid grid-rows-[1fr] mt-4 md:hidden">
+          <div className="min-h-0 overflow-hidden">
+            <p className="text-body-sm leading-relaxed text-white line-clamp-3 max-w-[85%]">
+              {episode.overview}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Upcoming CTA */}
+      {isUpcoming && (
         <div className={hoverWrapperClasses}>
           <div className={hoverContentClasses}>
             <span className="inline-flex items-center gap-2 text-sm font-medium text-white group/bell">
@@ -68,15 +89,7 @@ const EpisodeCardContent = ({
             </span>
           </div>
         </div>
-      ) : showOverview && episode.overview ? (
-        <div className={hoverWrapperClasses}>
-          <div className={hoverContentClasses}>
-            <p className="text-body-sm leading-relaxed text-white line-clamp-3 max-w-[85%]">
-              {episode.overview}
-            </p>
-          </div>
-        </div>
-      ) : null}
+      )}
     </div>
   );
 };
