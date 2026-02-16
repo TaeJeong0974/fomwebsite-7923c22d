@@ -389,7 +389,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
           </div>
           <div className="space-y-1">
             <label className={labelClass}>Full Description</label>
-            <textarea className={`${fieldClass} min-h-[160px]`} value={form.full_description} onChange={(e) => set("full_description", e.target.value)} />
+            <textarea className={`${fieldClass} min-h-[240px]`} value={form.full_description} onChange={(e) => set("full_description", e.target.value)} />
             <FieldHint>Long-form "About this Episode" section on the detail page</FieldHint>
           </div>
         </GlassSection>
