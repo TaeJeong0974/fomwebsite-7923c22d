@@ -96,7 +96,12 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
     playerWrapperRef.current?.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }, []);
 
-  const isPipVisible = isPlaying && showPip && !pipDismissed;
+  const isPipVisible = showPip && !pipDismissed;
+
+  const handlePipPlay = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsPlaying(true);
+  }, []);
 
   return (
     <>
@@ -149,9 +154,9 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
         </div>
       </div>
 
-      {/* Floating PiP Mini Player */}
+      {/* Floating PiP Mini Player - always shows on scroll, not just when playing */}
       <div
-        className={`fixed bottom-6 right-6 z-50 transition-all duration-500 cubic-bezier(0.22, 1, 0.36, 1) ${
+        className={`fixed bottom-6 right-6 z-50 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           isPipVisible
             ? 'translate-y-0 opacity-100 scale-100'
             : 'translate-y-4 opacity-0 scale-95 pointer-events-none'
@@ -161,13 +166,30 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
           className="relative w-72 sm:w-80 aspect-video rounded-xl overflow-hidden bg-black shadow-2xl shadow-black/40 ring-1 ring-white/10 cursor-pointer group"
           onClick={handlePipClick}
         >
-          {videoId && (
+          {isPlaying && videoId ? (
             <iframe
               src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=0&playsinline=1`}
               title="Episode Video (Mini)"
               allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               className="absolute inset-0 w-full h-full pointer-events-none"
             />
+          ) : (
+            <div
+              className="absolute inset-0 flex items-center justify-center"
+              style={{
+                backgroundImage: `url(${thumbnailImage || thumbnailUrl || guestBg})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
+            >
+              <button
+                onClick={handlePipPlay}
+                className="w-10 h-10 rounded-full bg-white/70 backdrop-blur-xl border border-white/40 flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-200"
+                aria-label="Play video"
+              >
+                <Play className="w-4 h-4 text-foreground fill-foreground ml-0.5" />
+              </button>
+            </div>
           )}
           {/* Close button */}
           <button
