@@ -190,7 +190,8 @@ const PodcastDetail = () => {
           </div>
 
           {/* Sidebar */}
-          <FadeInSection className="hidden lg:flex lg:flex-col space-y-6">
+          <div className="hidden lg:flex lg:flex-col space-y-6">
+            <FadeInSection>
             {!isIntro && (
               <EpisodeGuestCard
                 name={episode.name}
@@ -200,15 +201,20 @@ const PodcastDetail = () => {
                 linkedInUrl={episode.linkedInUrl}
               />
             )}
-            <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />
-            <EpisodeWatchCard
-              youtubeUrl={episode.youtubeUrl}
-              spotifyUrl={episode.spotifyUrl}
-              thumbnailUrl={thumbnailUrl}
-              thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : undefined}
-              onPlayClick={handlePlayFromBar}
-            />
-          </FadeInSection>
+            </FadeInSection>
+            <FadeInSection>
+              <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />
+            </FadeInSection>
+            <FadeInSection>
+              <EpisodeWatchCard
+                youtubeUrl={episode.youtubeUrl}
+                spotifyUrl={episode.spotifyUrl}
+                thumbnailUrl={thumbnailUrl}
+                thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : undefined}
+                onPlayClick={handlePlayFromBar}
+              />
+            </FadeInSection>
+          </div>
         </div>
 
         <RelatedEpisodes episodes={otherEpisodes} title="More Episodes" />
