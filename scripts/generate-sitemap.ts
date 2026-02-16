@@ -24,7 +24,7 @@ const staticPages: SitemapEntry[] = [
 const episodePages: SitemapEntry[] = podcastEpisodes
   .filter((ep) => !ep.comingSoon)
   .map((ep) => ({
-    loc: `/episode/${ep.slug}`,
+    loc: `/podcast/${ep.slug}`,
     lastmod: ep.publishedDate !== "Coming Soon" ? TODAY : undefined,
     changefreq: "monthly" as const,
     priority: "0.8",

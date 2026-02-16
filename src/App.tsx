@@ -35,7 +35,7 @@ const AppRoutes = () => {
         <Suspense fallback={<RouteFallback />}>
           <Routes location={location} key={location.pathname}>
             <Route path="/" element={<Index />} />
-            <Route path="/episode/:slug" element={<PodcastDetail />} />
+            <Route path="/podcast/:slug" element={<PodcastDetail />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
