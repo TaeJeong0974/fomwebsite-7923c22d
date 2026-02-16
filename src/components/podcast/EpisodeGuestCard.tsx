@@ -7,16 +7,15 @@ interface EpisodeGuestCardProps {
   company: string;
   companyDomain?: string;
   linkedInUrl?: string;
-  guestImage?: string;
 }
 
-const EpisodeGuestCard = ({ name, title, company, companyDomain, linkedInUrl, guestImage }: EpisodeGuestCardProps) => {
+const EpisodeGuestCard = ({ name, title, company, companyDomain, linkedInUrl }: EpisodeGuestCardProps) => {
   const [firstName, ...lastNameParts] = name.split(' ');
   const lastName = lastNameParts.join(' ');
   const companyUrl = companyDomain ? `https://${companyDomain}` : undefined;
 
   return (
-    <SidebarCard title="Guest" backgroundImage={guestImage}>
+    <SidebarCard title="Guest">
       <div>
         <h3 className="font-display text-xl lg:text-3xl text-foreground leading-none tracking-normal">
           <span className="inline lg:block font-medium">{firstName} </span>
