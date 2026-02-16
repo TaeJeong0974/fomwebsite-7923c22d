@@ -9,19 +9,7 @@ import { useSubscribe } from "@/contexts/SubscribeContext";
 import SubscribeCard from "@/components/SubscribeCard";
 import PodcastCard from "@/components/podcast/PodcastCard";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
-import hostMada from "@/assets/host-mada.png";
-import hostEthan from "@/assets/host-ethan.png";
-import hostCamille from "@/assets/host-camille.png";
-import guestMeagen from "@/assets/guest-meagen-eisenberg.jpg";
-import guestLena from "@/assets/guest-lena-waters.jpg";
-import guestLindsey from "@/assets/guest-lindsey-irvine.jpg";
-import guestSara from "@/assets/guest-sara-varni.jpg";
-import guestDave from "@/assets/guest-dave-steer.jpg";
-import guestKate from "@/assets/guest-kate-johnson.jpg";
-import guestSheila from "@/assets/guest-sheila-vashee.jpg";
-import guestCeci from "@/assets/guest-ceci-stallsmith.jpg";
-import guestIdan from "@/assets/guest-idan-koren.jpg";
-import guestKatrina from "@/assets/guest-katrina-wong.jpg";
+import { EPISODE_IMAGES, getEpisodeImage } from "@/lib/episodeImages";
 
 type LayoutType = "grid" | "list";
 
@@ -34,29 +22,11 @@ const HOVER_COLORS = [
   ["#B44C38", "#594881", "#805781", "#B44C38"],
 ];
 
-const EPISODE_IMAGES: Record<string, string> = {
-  'meagen-eisenberg': guestMeagen,
-  'lena-waters': guestLena,
-  'lindsey-irvine': guestLindsey,
-  'sara-varni': guestSara,
-  'dave-steer': guestDave,
-  'kate-johnson': guestKate,
-  'sheila-vashee': guestSheila,
-  'ceci-stallsmith': guestCeci,
-  'idan-koren': guestIdan,
-  'katrina-wong': guestKatrina,
-};
-const HOST_IMAGES = [hostMada, hostEthan, hostCamille];
-
 const isNewEpisode = (publishedDate: string): boolean => {
   if (publishedDate === "Coming Soon") return false;
   const published = new Date(publishedDate);
   const diffDays = (Date.now() - published.getTime()) / (1000 * 60 * 60 * 24);
   return diffDays <= 7;
-};
-
-const getEpisodeImage = (slug: string, index: number): string => {
-  return EPISODE_IMAGES[slug] || HOST_IMAGES[index % HOST_IMAGES.length];
 };
 
 const PodcastSection = () => {

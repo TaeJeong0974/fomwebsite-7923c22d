@@ -1,33 +1,6 @@
 import { PodcastEpisode } from "@/lib/podcastData";
 import PodcastCard from "@/components/podcast/PodcastCard";
-
-import guestMeagen from "@/assets/guest-meagen-eisenberg.jpg";
-import guestLena from "@/assets/guest-lena-waters.jpg";
-import guestLindsey from "@/assets/guest-lindsey-irvine.jpg";
-import guestSara from "@/assets/guest-sara-varni.jpg";
-import guestDave from "@/assets/guest-dave-steer.jpg";
-import guestKate from "@/assets/guest-kate-johnson.jpg";
-import guestSheila from "@/assets/guest-sheila-vashee.jpg";
-import guestCeci from "@/assets/guest-ceci-stallsmith.jpg";
-import guestIdan from "@/assets/guest-idan-koren.jpg";
-import guestKatrina from "@/assets/guest-katrina-wong.jpg";
-import hostMada from "@/assets/host-mada.png";
-import hostEthan from "@/assets/host-ethan.png";
-import hostCamille from "@/assets/host-camille.png";
-
-const EPISODE_IMAGES: Record<string, string> = {
-  'meagen-eisenberg': guestMeagen,
-  'lena-waters': guestLena,
-  'lindsey-irvine': guestLindsey,
-  'sara-varni': guestSara,
-  'dave-steer': guestDave,
-  'kate-johnson': guestKate,
-  'sheila-vashee': guestSheila,
-  'ceci-stallsmith': guestCeci,
-  'idan-koren': guestIdan,
-  'katrina-wong': guestKatrina,
-};
-const HOST_IMAGES = [hostMada, hostEthan, hostCamille];
+import { EPISODE_IMAGES, HOST_IMAGES } from "@/lib/episodeImages";
 
 interface RelatedEpisodesProps {
   episodes: PodcastEpisode[];
