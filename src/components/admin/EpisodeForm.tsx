@@ -172,8 +172,8 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
       </div>
 
       <div className="space-y-6 max-w-2xl">
-        {/* ── 1. Episode Identity ── */}
-        <h3 className="text-body font-medium text-foreground">Episode Identity</h3>
+        {/* ── 1. Header ── */}
+        <h3 className="text-body font-medium text-foreground">Header</h3>
         <div className="grid grid-cols-3 gap-4">
           <div className="space-y-1">
             <label className={labelClass}>Slug *</label>
@@ -188,22 +188,20 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
             <input className={fieldClass} value={form.duration} onChange={(e) => set("duration", e.target.value)} placeholder="e.g. 52 min" />
           </div>
         </div>
-
         <div className="space-y-1">
           <label className={labelClass}>Title *</label>
           <input className={fieldClass} value={form.title} onChange={(e) => set("title", e.target.value)} />
           <p className="text-xs text-muted-foreground mt-1">Guest name or episode name — shown as the page heading</p>
         </div>
-
         <div className="space-y-1">
           <label className={labelClass}>Overview (Subtitle)</label>
           <input className={fieldClass} value={form.subtitle} onChange={(e) => set("subtitle", e.target.value)} />
           <p className="text-xs text-muted-foreground mt-1">One-line hook shown on cards and as the hero headline</p>
         </div>
 
-        {/* ── 2. Media & Video ── */}
+        {/* ── 2. Video ── */}
         <hr className="border-border" />
-        <h3 className="text-body font-medium text-foreground">Media & Video</h3>
+        <h3 className="text-body font-medium text-foreground">Video</h3>
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-1">
             <label className={labelClass}>YouTube URL</label>
@@ -223,9 +221,9 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
           </div>
         </div>
 
-        {/* ── 3. About This Episode ── */}
+        {/* ── 3. About this Episode ── */}
         <hr className="border-border" />
-        <h3 className="text-body font-medium text-foreground">About This Episode</h3>
+        <h3 className="text-body font-medium text-foreground">About this Episode</h3>
         <div className="space-y-1">
           <label className={labelClass}>Short Description</label>
           <textarea className={`${fieldClass} min-h-[80px]`} value={form.description} onChange={(e) => set("description", e.target.value)} />
@@ -237,9 +235,9 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
           <p className="text-xs text-muted-foreground mt-1">Long-form "About this Episode" section on the detail page</p>
         </div>
 
-        {/* ── 4. Pull Quote ── */}
+        {/* ── 4. Quote ── */}
         <hr className="border-border" />
-        <h3 className="text-body font-medium text-foreground">Pull Quote</h3>
+        <h3 className="text-body font-medium text-foreground">Quote</h3>
         <div className="space-y-1">
           <textarea className={`${fieldClass} min-h-[80px]`} value={form.pull_quote} onChange={(e) => set("pull_quote", e.target.value)} placeholder="A memorable quote from the episode…" />
         </div>
@@ -248,9 +246,25 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
           <input className={fieldClass} value={form.pull_quote_attribution} onChange={(e) => set("pull_quote_attribution", e.target.value)} />
         </div>
 
-        {/* ── 5. Guest Info ── */}
+        {/* ── 5. Topics Covered ── */}
         <hr className="border-border" />
-        <h3 className="text-body font-medium text-foreground">Guest</h3>
+        <h3 className="text-body font-medium text-foreground">Topics Covered</h3>
+        <div className="flex gap-2">
+          <input className={fieldClass} value={topicInput} onChange={(e) => setTopicInput(e.target.value)} placeholder="Add a topic" onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTopic())} />
+          <button type="button" onClick={addTopic} className="px-4 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap">Add</button>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          {form.topics.map((t, i) => (
+            <span key={i} className="badge-status gap-2">
+              {t}
+              <button onClick={() => removeTopic(i)} className="text-destructive hover:text-destructive/80">×</button>
+            </span>
+          ))}
+        </div>
+
+        {/* ── 6. About the Speaker ── */}
+        <hr className="border-border" />
+        <h3 className="text-body font-medium text-foreground">About the Speaker</h3>
         <div className="grid grid-cols-2 gap-4">
           <div className="space-y-1">
             <label className={labelClass}>Name</label>
@@ -283,9 +297,9 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
           <input className={fieldClass} value={form.guest_image_url} onChange={(e) => set("guest_image_url", e.target.value)} />
         </div>
 
-        {/* ── 6. Hosts ── */}
+        {/* ── 7. About the Host ── */}
         <hr className="border-border" />
-        <h3 className="text-body font-medium text-foreground">Hosts</h3>
+        <h3 className="text-body font-medium text-foreground">About the Host</h3>
         <div className="flex flex-wrap gap-2">
           {allHosts.map((h) => (
             <button
@@ -304,24 +318,7 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
           {allHosts.length === 0 && <p className="text-body-sm text-muted-foreground">No hosts available</p>}
         </div>
 
-        {/* ── 7. Topics Covered ── */}
-        <hr className="border-border" />
-        <h3 className="text-body font-medium text-foreground">Topics Covered</h3>
-        <div className="flex gap-2">
-          <input className={fieldClass} value={topicInput} onChange={(e) => setTopicInput(e.target.value)} placeholder="Add a topic" onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTopic())} />
-          <button type="button" onClick={addTopic} className="px-4 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap">Add</button>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          {form.topics.map((t, i) => (
-            <span key={i} className="badge-status gap-2">
-              {t}
-              <button onClick={() => removeTopic(i)} className="text-destructive hover:text-destructive/80">×</button>
-            </span>
-          ))}
-        </div>
-
-
-        {/* ── 9. Images & SEO ── */}
+        {/* ── 8. Images & SEO ── */}
         <hr className="border-border" />
         <h3 className="text-body font-medium text-foreground">Images & SEO</h3>
         <div className="grid grid-cols-2 gap-4">
