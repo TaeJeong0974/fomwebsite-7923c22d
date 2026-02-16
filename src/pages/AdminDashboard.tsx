@@ -50,7 +50,7 @@ const AdminDashboard = () => {
           ))}
         </div>
 
-        <div className="glass rounded-2xl border border-white/20 shadow-glass p-5 sm:p-6">
+        <div>
           {tab === "episodes" && <AdminEpisodes />}
           {tab === "hosts" && <AdminHosts />}
         </div>
