@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
 import { useSubscriptionForm } from "@/hooks/use-subscription-form";
 import { liquidSpring, buttonVariants } from "@/components/ui/LiquidButton";
+import { EPISODE_IMAGES } from "@/lib/episodeImages";
 
 const liquidEasing = [0.22, 1, 0.36, 1] as const;
 
@@ -43,13 +44,16 @@ interface SubscribeDrawerProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
   guestName?: string;
+  guestSlug?: string;
 }
 
-const SubscribeDrawer = ({ open, onOpenChange, guestName }: SubscribeDrawerProps) => {
+const SubscribeDrawer = ({ open, onOpenChange, guestName, guestSlug }: SubscribeDrawerProps) => {
   const { email, setEmail, isSubmitted, handleSubmit, reset } = useSubscriptionForm({
     onReset: () => onOpenChange(false),
     resetDelay: 3000,
   });
+
+  const guestImage = guestSlug ? EPISODE_IMAGES[guestSlug] : undefined;
 
   const handleClose = () => {
     reset();
@@ -76,8 +80,20 @@ const SubscribeDrawer = ({ open, onOpenChange, guestName }: SubscribeDrawerProps
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 30, stiffness: 300 }}
-            className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-md bg-[#1a1a1a]/60 backdrop-blur-3xl border-l border-white/[0.08] shadow-[-20px_0_50px_-10px_rgba(0,0,0,0.5)]"
+            className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-md bg-[#1a1a1a]/60 backdrop-blur-3xl border-l border-white/[0.08] shadow-[-20px_0_50px_-10px_rgba(0,0,0,0.5)] overflow-hidden"
           >
+            {/* Blurred guest background */}
+            {guestImage && (
+              <div className="absolute inset-0 z-0">
+                <img
+                  src={guestImage}
+                  alt=""
+                  className="w-full h-full object-cover scale-125 blur-3xl opacity-20"
+                />
+                <div className="absolute inset-0 bg-black/40" />
+              </div>
+            )}
+
             {/* Close button */}
             <motion.button
               onClick={handleClose}
