@@ -41,13 +41,15 @@ const AdminDashboard = () => {
         </div>
 
         {/* Tabs — Google-style underline */}
-        <div className="border-b border-border">
+        <div className="border-b border-border -mx-1">
           <div className="flex gap-0">
-            {(["episodes", "hosts"] as const).map((t) => (
+            {(["episodes", "hosts"] as const).map((t, i) => (
               <button
                 key={t}
                 onClick={() => setTab(t)}
-                className={`relative px-6 py-3 text-sm font-medium capitalize transition-colors ${
+                className={`relative py-3 text-sm font-medium capitalize transition-colors ${
+                  i === 0 ? "pl-1 pr-6" : "px-6"
+                } ${
                   tab === t
                     ? "text-primary"
                     : "text-muted-foreground hover:text-foreground"
