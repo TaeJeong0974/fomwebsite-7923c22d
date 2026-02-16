@@ -30,6 +30,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
   const [isPlaying, setIsPlaying] = useState(false);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [imgFailed, setImgFailed] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const springConfig = { damping: 30, stiffness: 300, mass: 0.5 };
   const springX = useSpring(useMotionValue(0), springConfig);
@@ -46,6 +47,19 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
   const thumbnailUrl = videoId 
     ? `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
     : null;
+
+  // Resolve the best available thumbnail, falling back to guestBg
+  const resolvedThumbnail = imgFailed ? guestBg : (thumbnailImage || thumbnailUrl || guestBg);
+
+  // Preload the thumbnail and detect failures
+  useEffect(() => {
+    const src = thumbnailImage || thumbnailUrl;
+    if (!src) return;
+    setImgFailed(false);
+    const img = new Image();
+    img.src = src;
+    img.onerror = () => setImgFailed(true);
+  }, [thumbnailImage, thumbnailUrl]);
 
   const handlePlay = () => {
     setIsPlaying(true);
@@ -83,7 +97,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, playTrigger, thumbnailImage }: Floatin
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
               style={{
-                backgroundImage: `url(${thumbnailImage || thumbnailUrl || guestBg})`,
+                backgroundImage: `url(${resolvedThumbnail})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
