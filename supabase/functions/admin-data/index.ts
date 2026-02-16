@@ -31,7 +31,7 @@ serve(async (req) => {
     if (action === 'list-episodes') {
       const { data, error } = await supabase
         .from('episodes')
-        .select('id, slug, title, guest_name, guest_company, published, status, episode_number')
+        .select('id, slug, title, guest_name, guest_company, published, status, episode_number, promoted_at, updated_at')
         .neq('status', 'deleted')
         .order('episode_number', { ascending: true });
       if (error) return respond(400, { error: error.message });
@@ -135,6 +135,95 @@ serve(async (req) => {
         const { error } = await supabase.from('newsletter_mentions').insert(rows);
         if (error) return respond(400, { error: error.message });
       }
+      return respond(200, { success: true });
+    }
+
+    // Promote episode to live
+    if (action === 'promote-to-live') {
+      const { id } = payload;
+      // Fetch staging episode
+      const { data: ep, error: epErr } = await supabase
+        .from('episodes')
+        .select('*')
+        .eq('id', id)
+        .single();
+      if (epErr || !ep) return respond(400, { error: epErr?.message || 'Episode not found' });
+
+      // Fetch staging hosts
+      const { data: hostLinks } = await supabase
+        .from('episode_hosts')
+        .select('host_id')
+        .eq('episode_id', id);
+
+      // Upsert into live_episodes
+      const liveData = {
+        staging_id: ep.id,
+        slug: ep.slug,
+        title: ep.title,
+        subtitle: ep.subtitle,
+        episode_number: ep.episode_number,
+        description: ep.description,
+        full_description: ep.full_description,
+        duration: ep.duration,
+        guest_name: ep.guest_name,
+        guest_title: ep.guest_title,
+        guest_company: ep.guest_company,
+        guest_company_domain: ep.guest_company_domain,
+        guest_bio: ep.guest_bio,
+        guest_image_url: ep.guest_image_url,
+        guest_linkedin_url: ep.guest_linkedin_url,
+        poster_image_url: ep.poster_image_url,
+        og_image_url: ep.og_image_url,
+        preview_video_url: ep.preview_video_url,
+        apple_url: ep.apple_url,
+        spotify_url: ep.spotify_url,
+        youtube_url: ep.youtube_url,
+        publish_date: ep.publish_date,
+        status: ep.status,
+        topics: ep.topics,
+        pull_quote: ep.pull_quote,
+        pull_quote_attribution: ep.pull_quote_attribution,
+        promoted_at: new Date().toISOString(),
+      };
+
+      const { data: existing } = await supabase
+        .from('live_episodes')
+        .select('id')
+        .eq('staging_id', id)
+        .maybeSingle();
+
+      let liveEpisodeId: string;
+      if (existing) {
+        const { error } = await supabase.from('live_episodes').update(liveData).eq('id', existing.id);
+        if (error) return respond(400, { error: error.message });
+        liveEpisodeId = existing.id;
+      } else {
+        const { data: inserted, error } = await supabase.from('live_episodes').insert(liveData).select('id').single();
+        if (error) return respond(400, { error: error.message });
+        liveEpisodeId = inserted.id;
+      }
+
+      // Sync live host mappings
+      await supabase.from('live_episode_hosts').delete().eq('live_episode_id', liveEpisodeId);
+      if (hostLinks && hostLinks.length > 0) {
+        const rows = hostLinks.map((h: { host_id: string }) => ({
+          live_episode_id: liveEpisodeId,
+          host_id: h.host_id,
+        }));
+        await supabase.from('live_episode_hosts').insert(rows);
+      }
+
+      // Update promoted_at on staging
+      await supabase.from('episodes').update({ promoted_at: new Date().toISOString() }).eq('id', id);
+
+      return respond(200, { success: true, promoted_at: new Date().toISOString() });
+    }
+
+    // Unpromote (remove from live)
+    if (action === 'unpromote-from-live') {
+      const { id } = payload;
+      await supabase.from('live_episodes').delete().eq('staging_id', id);
+      await supabase.from('episodes').update({ promoted_at: null }).eq('id', id);
       return respond(200, { success: true });
     }
 
