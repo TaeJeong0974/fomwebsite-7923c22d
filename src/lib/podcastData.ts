@@ -74,7 +74,7 @@ export const podcastHosts: PodcastHost[] = [
 export const podcastEpisodes: PodcastEpisode[] = [
   {
     id: 0,
-    slug: "intro-to-future-of-marketing",
+    slug: "the-future-of-marketing",
     name: "Introduction to Future of Marketing",
     title: "",
     company: "",

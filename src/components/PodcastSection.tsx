@@ -193,7 +193,7 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
     <div className="divide-y divide-border/50">
       {allEpisodes.map((episode, index) => {
         const isComingSoon = episode.comingSoon;
-        const isIntroEpisode = episode.slug === 'intro-to-future-of-marketing';
+        const isIntroEpisode = episode.slug === 'the-future-of-marketing';
         const hasBadge = isComingSoon || isNewEpisode(episode.publishedDate);
         const isHovered = hoveredIndex === index && !isMobile;
         const colors = HOVER_COLORS[index % HOVER_COLORS.length];
@@ -304,7 +304,7 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
                 </div>
               ) : (
                 <Link
-                  to={`/episode/${episode.slug}`}
+                  to={`/podcast/${episode.slug}`}
                   aria-label={`Listen to episode with ${episode.name}, ${episode.title} at ${episode.company}`}
                   className="group py-6 sm:py-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-6 hover-transition relative z-10"
                 >

@@ -41,7 +41,7 @@ export const buildEpisodeJsonLd = (
   description:
     episode.overview ||
     `${episode.name}, ${episode.title} at ${episode.company}`,
-  url: `${SITE_URL}/episode/${slug}`,
+  url: `${SITE_URL}/podcast/${slug}`,
   episodeNumber: episode.id,
   partOfSeries: {
     "@type": "PodcastSeries",
@@ -63,4 +63,4 @@ export const buildEpisodeJsonLd = (
 
 /** Canonical URL for an episode */
 export const getEpisodeCanonicalUrl = (slug: string) =>
-  `${SITE_URL}/episode/${slug}`;
+  `${SITE_URL}/podcast/${slug}`;

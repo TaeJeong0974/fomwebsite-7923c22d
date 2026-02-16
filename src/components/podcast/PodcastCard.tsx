@@ -123,7 +123,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image, placeh
 
   return (
     <Link
-      to={`/episode/${episode.slug}`}
+      to={`/podcast/${episode.slug}`}
       className="block group"
       aria-label={`Listen to episode with ${episode.name}, ${episode.title} at ${episode.company}`}
       onMouseEnter={handleMouseEnter}
