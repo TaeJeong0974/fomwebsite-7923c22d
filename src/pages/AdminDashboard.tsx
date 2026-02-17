@@ -221,8 +221,8 @@ const DesktopIcon = ({
       <PixelIcon type={type} selected={selected} />
     </div>
     <span
-      className={`text-sm font-bold px-1 ${
-        selected ? "bg-black text-white" : "text-black"
+      className={`text-sm font-bold px-1.5 py-0.5 rounded-sm ${
+        selected ? "bg-black text-white" : "bg-white/80 text-black"
       }`}
       style={macFont}
     >
@@ -419,7 +419,7 @@ const AdminDashboard = () => {
               <PixelIcon type="website" selected={false} />
             </div>
             <span
-              className="text-sm font-bold px-1 text-black"
+              className="text-sm font-bold px-1.5 py-0.5 rounded-sm bg-white/80 text-black"
               style={macFont}
             >
               Website
