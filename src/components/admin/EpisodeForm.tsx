@@ -15,9 +15,21 @@ const FieldHint = ({ children }: { children: React.ReactNode }) => (
   </p>
 );
 
+interface Speaker {
+  id: string;
+  name: string;
+  title: string | null;
+  company: string | null;
+  company_domain: string | null;
+  bio: string | null;
+  image_url: string | null;
+  linkedin_url: string | null;
+}
+
 interface Props {
   episodeId?: string;
   onDone: () => void;
+  onSwitchToSpeakers?: () => void;
 }
 
 interface Host {
@@ -114,17 +126,20 @@ const GlassSection = ({ label, children }: { label: string; number?: number; chi
   </div>
 );
 
-const EpisodeForm = ({ episodeId, onDone }: Props) => {
+const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
   const [form, setForm] = useState(EMPTY);
   const [topicInput, setTopicInput] = useState("");
   const [saving, setSaving] = useState(false);
   const [allHosts, setAllHosts] = useState<Host[]>([]);
+  const [allSpeakers, setAllSpeakers] = useState<Speaker[]>([]);
+  const [selectedSpeakerId, setSelectedSpeakerId] = useState<string | null>(null);
   const [selectedHostIds, setSelectedHostIds] = useState<string[]>([]);
   const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
   const [nlForm, setNlForm] = useState({ title: "", url: "" });
 
   useEffect(() => {
     adminApi("list-hosts").then((res) => setAllHosts(res.data || [])).catch(() => {});
+    adminApi("list-speakers").then((res) => setAllSpeakers(res.data || [])).catch(() => {});
 
     if (!episodeId) return;
     const load = async () => {
@@ -173,7 +188,33 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
     load();
   }, [episodeId]);
 
+  // Auto-match speaker when episode data and speakers list are both loaded
+  useEffect(() => {
+    if (!form.guest_name || allSpeakers.length === 0 || selectedSpeakerId) return;
+    const match = allSpeakers.find((s) => s.name === form.guest_name);
+    if (match) setSelectedSpeakerId(match.id);
+  }, [form.guest_name, allSpeakers]);
+
   const set = (key: string, value: unknown) => setForm((f) => ({ ...f, [key]: value }));
+
+  const applySpeaker = (speaker: Speaker | null) => {
+    if (!speaker) {
+      setSelectedSpeakerId(null);
+      setForm((f) => ({ ...f, guest_name: "", guest_title: "", guest_company: "", guest_company_domain: "", guest_bio: "", guest_image_url: "", guest_linkedin_url: "" }));
+      return;
+    }
+    setSelectedSpeakerId(speaker.id);
+    setForm((f) => ({
+      ...f,
+      guest_name: speaker.name || "",
+      guest_title: speaker.title || "",
+      guest_company: speaker.company || "",
+      guest_company_domain: speaker.company_domain || "",
+      guest_bio: speaker.bio || "",
+      guest_image_url: speaker.image_url || "",
+      guest_linkedin_url: speaker.linkedin_url || "",
+    }));
+  };
 
   const toggleHost = (hostId: string) => {
     setSelectedHostIds((prev) =>
@@ -428,45 +469,59 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
 
         {/* ── 6. About the Speaker ── */}
         <GlassSection label="About the Speaker" number={6}>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="space-y-4">
             <div className="space-y-1">
-              <label className={labelClass}>Name</label>
-              <input className={fieldClass} value={form.guest_name} onChange={(e) => set("guest_name", e.target.value)} />
+              <label className={labelClass}>Select Speaker</label>
+              <div className="flex gap-2">
+                <select
+                  className={fieldClass}
+                  value={selectedSpeakerId || ""}
+                  onChange={(e) => {
+                    const speaker = allSpeakers.find((s) => s.id === e.target.value);
+                    applySpeaker(speaker || null);
+                  }}
+                >
+                  <option value="">— Choose a speaker —</option>
+                  {allSpeakers.map((s) => (
+                    <option key={s.id} value={s.id}>{s.name}{s.company ? ` · ${s.company}` : ""}</option>
+                  ))}
+                </select>
+                {selectedSpeakerId && (
+                  <button
+                    type="button"
+                    onClick={() => applySpeaker(null)}
+                    className="px-3 py-2 rounded-lg border border-red-200 text-red-600 text-sm whitespace-nowrap hover:bg-red-50 transition-colors"
+                  >
+                    Remove
+                  </button>
+                )}
+                {onSwitchToSpeakers && (
+                  <button
+                    type="button"
+                    onClick={onSwitchToSpeakers}
+                    className="px-3 py-2 rounded-lg bg-secondary text-secondary-foreground text-sm whitespace-nowrap hover:opacity-80 transition-colors"
+                  >
+                    + New
+                  </button>
+                )}
+              </div>
+              <FieldHint>Select an existing speaker or create a new one in the Speakers tab</FieldHint>
             </div>
-            <div className="space-y-1">
-              <label className={labelClass}>Title</label>
-              <input className={fieldClass} value={form.guest_title} onChange={(e) => set("guest_title", e.target.value)} />
-            </div>
-            <div className="space-y-1">
-              <label className={labelClass}>Company</label>
-              <input className={fieldClass} value={form.guest_company} onChange={(e) => set("guest_company", e.target.value)} />
-            </div>
-            <div className="space-y-1">
-              <label className={labelClass}>Company Domain</label>
-              <input className={fieldClass} value={form.guest_company_domain} onChange={(e) => set("guest_company_domain", e.target.value)} placeholder="e.g. samsara.com" />
-              <FieldHint>Used to fetch the company logo via Clearbit</FieldHint>
-            </div>
-            <div className="col-span-2 space-y-1">
-              <label className={labelClass}>LinkedIn URL</label>
-              <input className={fieldClass} value={form.guest_linkedin_url} onChange={(e) => set("guest_linkedin_url", e.target.value)} />
-            </div>
-          </div>
-          <div className="space-y-1">
-            <label className={labelClass}>Bio</label>
-            <textarea className={`${fieldClass} min-h-[80px]`} value={form.guest_bio} onChange={(e) => set("guest_bio", e.target.value)} />
-            <FieldHint>Starts with a verb (e.g. "is the CMO at…") — displayed under the guest photo</FieldHint>
-          </div>
-          <div className="space-y-1">
-            <label className={labelClass}>Guest Image</label>
-            <div className="flex gap-2">
-              <input className={fieldClass} value={form.guest_image_url} onChange={(e) => set("guest_image_url", e.target.value)} placeholder="URL or upload →" />
-              <input ref={guestFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "guest_image_url")} />
-              <button type="button" onClick={() => guestFileRef.current?.click()} disabled={uploading === "guest_image_url"} className="px-3 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap flex items-center gap-1.5 hover:opacity-80 disabled:opacity-50">
-                <Upload className="h-3.5 w-3.5" />
-                {uploading === "guest_image_url" ? "…" : "Upload"}
-              </button>
-            </div>
-            {form.guest_image_url && <img src={form.guest_image_url} alt="Guest" className="mt-2 h-20 w-20 rounded-xl object-cover border border-white/20" />}
+
+            {selectedSpeakerId && (
+              <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 space-y-2">
+                <div className="flex items-center gap-3">
+                  {form.guest_image_url && (
+                    <img src={form.guest_image_url} alt={form.guest_name} className="h-12 w-12 rounded-full object-cover border border-gray-200" />
+                  )}
+                  <div>
+                    <p className="text-sm font-medium text-gray-900">{form.guest_name}</p>
+                    <p className="text-xs text-gray-500">{[form.guest_title, form.guest_company].filter(Boolean).join(", ")}</p>
+                  </div>
+                </div>
+                {form.guest_bio && <p className="text-xs text-gray-500 line-clamp-2">{form.guest_bio}</p>}
+              </div>
+            )}
           </div>
         </GlassSection>
 
