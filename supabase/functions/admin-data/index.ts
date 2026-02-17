@@ -207,6 +207,7 @@ serve(async (req) => {
         topics: ep.topics,
         pull_quote: ep.pull_quote,
         pull_quote_attribution: ep.pull_quote_attribution,
+        subscribe_headline: ep.subscribe_headline,
         promoted_at: new Date().toISOString(),
       };
 

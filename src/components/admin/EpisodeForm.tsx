@@ -48,6 +48,7 @@ const EMPTY = {
   status: "draft" as "published" | "upcoming" | "draft" | "deleted",
   publish_date: "",
   topics: [] as string[], pull_quote: "", pull_quote_attribution: "",
+  subscribe_headline: "",
 };
 
 // ── Sortable Topic Item ──
@@ -169,6 +170,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
           topics: (data.topics as string[]) || [],
           pull_quote: data.pull_quote || "",
           pull_quote_attribution: data.pull_quote_attribution || "",
+          subscribe_headline: data.subscribe_headline || "",
         });
         setSelectedHostIds(hostsResult.data || []);
       } catch {
@@ -243,6 +245,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
       topics: form.topics,
       pull_quote: form.pull_quote || null,
       pull_quote_attribution: form.pull_quote_attribution || null,
+      subscribe_headline: form.subscribe_headline || null,
     };
     if (episodeId) payload.id = episodeId;
 
@@ -347,6 +350,14 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
                form.status === 'draft' ? 'Not visible on site' : 'Soft-deleted'}
             </p>
           </div>
+
+          {form.status === 'upcoming' && (
+            <div className="space-y-1">
+              <label className={labelClass}>Subscribe Headline</label>
+              <input className={fieldClass} value={form.subscribe_headline} onChange={(e) => set("subscribe_headline", e.target.value)} placeholder="e.g. We'll Let You Know When Lena's Live" />
+              <FieldHint>Custom headline shown in the subscribe drawer for this upcoming episode</FieldHint>
+            </div>
+          )}
         </GlassSection>
 
         {/* ── 2. Header ── */}
