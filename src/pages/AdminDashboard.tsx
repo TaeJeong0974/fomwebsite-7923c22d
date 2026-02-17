@@ -143,31 +143,45 @@ const PixelIcon = ({ type, selected }: { type: WindowId | "website"; selected: b
         <rect x="4" y="13" width="8" height="1" fill={fill} />
       </svg>
     ),
-    // Microphone icon for Hosts
+    // Floppy disk icon for Hosts
     hosts: (
       <svg width="32" height="32" viewBox="0 0 16 16" fill="none" style={{ imageRendering: "pixelated" }}>
         <rect width="16" height="16" fill={bg} />
-        <rect x="6" y="1" width="4" height="8" rx="0" fill={fill} />
-        <rect x="7" y="2" width="2" height="6" fill={bg} />
-        <rect x="4" y="5" width="1" height="4" fill={fill} />
-        <rect x="11" y="5" width="1" height="4" fill={fill} />
-        <rect x="5" y="9" width="6" height="1" fill={fill} />
-        <rect x="7" y="10" width="2" height="2" fill={fill} />
-        <rect x="5" y="12" width="6" height="1" fill={fill} />
+        {/* Disk body */}
+        <rect x="1" y="1" width="13" height="14" fill={fill} />
+        <rect x="14" y="2" width="1" height="13" fill={fill} />
+        <rect x="2" y="2" width="11" height="12" fill={bg} />
+        {/* Metal slider top */}
+        <rect x="4" y="1" width="7" height="5" fill={fill} />
+        <rect x="5" y="2" width="5" height="3" fill={bg} />
+        <rect x="6" y="2" width="2" height="3" fill={fill} />
+        {/* Label area */}
+        <rect x="3" y="8" width="9" height="6" fill={fill} />
+        <rect x="4" y="9" width="7" height="4" fill={bg} />
+        {/* Bottom edge */}
+        <rect x="1" y="15" width="14" height="1" fill={fill} />
       </svg>
     ),
-    // Person/podium icon for Speakers
+    // Floppy disk icon for Speakers
     speakers: (
       <svg width="32" height="32" viewBox="0 0 16 16" fill="none" style={{ imageRendering: "pixelated" }}>
         <rect width="16" height="16" fill={bg} />
-        <rect x="7" y="1" width="2" height="2" fill={fill} />
-        <rect x="6" y="3" width="4" height="1" fill={fill} />
-        <rect x="5" y="4" width="6" height="3" fill={fill} />
-        <rect x="7" y="7" width="2" height="2" fill={fill} />
-        <rect x="3" y="9" width="10" height="1" fill={fill} />
-        <rect x="4" y="10" width="8" height="1" fill={fill} />
-        <rect x="5" y="11" width="6" height="3" fill={fill} />
-        <rect x="6" y="11" width="4" height="3" fill={bg} />
+        {/* Disk body */}
+        <rect x="1" y="1" width="13" height="14" fill={fill} />
+        <rect x="14" y="2" width="1" height="13" fill={fill} />
+        <rect x="2" y="2" width="11" height="12" fill={bg} />
+        {/* Metal slider top */}
+        <rect x="4" y="1" width="7" height="5" fill={fill} />
+        <rect x="5" y="2" width="5" height="3" fill={bg} />
+        <rect x="6" y="2" width="2" height="3" fill={fill} />
+        {/* Label area */}
+        <rect x="3" y="8" width="9" height="6" fill={fill} />
+        <rect x="4" y="9" width="7" height="4" fill={bg} />
+        {/* Label lines */}
+        <rect x="5" y="10" width="5" height="1" fill={fill} />
+        <rect x="5" y="12" width="3" height="1" fill={fill} />
+        {/* Bottom edge */}
+        <rect x="1" y="15" width="14" height="1" fill={fill} />
       </svg>
     ),
     // Globe/internet icon for Website
