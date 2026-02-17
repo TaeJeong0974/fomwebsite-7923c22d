@@ -419,9 +419,6 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
               <MacButton onClick={() => setShowCardPreview(true)}>
                 👁 Preview Card
               </MacButton>
-              <MacButton onClick={handlePreview} disabled={saving}>
-                👁 Preview Page
-              </MacButton>
               {episodeId && (
                 <MacButton onClick={toggleLivePreview}>
                   {livePreview ? "🔴 Live ON" : "📡 Live Preview"}
