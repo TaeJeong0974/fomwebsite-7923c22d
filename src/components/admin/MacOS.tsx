@@ -332,6 +332,61 @@ export const MacTable = ({ children, className = "" }: { children: ReactNode; cl
   </div>
 );
 
+/* ── Expandable Image Preview ── */
+export const MacImagePreview = ({
+  src,
+  alt = "Preview",
+  className = "h-16 object-cover border border-black",
+}: {
+  src: string;
+  alt?: string;
+  className?: string;
+}) => {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <>
+      <img
+        src={src}
+        alt={alt}
+        className={`${className} cursor-pointer hover:opacity-80 transition-opacity`}
+        onClick={() => setExpanded(true)}
+        title="Click to expand"
+      />
+      {expanded && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 cursor-pointer"
+          onClick={() => setExpanded(false)}
+        >
+          <div
+            className="relative border-2 border-black bg-white p-1 max-w-[90vw] max-h-[90vh]"
+            style={{ boxShadow: "4px 4px 0px #000" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Title bar */}
+            <div
+              className="flex items-center justify-between h-[20px] px-1.5 border-b border-black bg-white mb-1"
+              style={{ fontFamily: "'Chicago', 'Geneva', 'Helvetica Neue', monospace" }}
+            >
+              <button
+                onClick={() => setExpanded(false)}
+                className="w-[11px] h-[11px] border border-black bg-white hover:bg-black flex items-center justify-center shrink-0"
+              />
+              <span className="text-[10px] font-bold truncate px-2">{alt}</span>
+              <div className="w-[11px]" />
+            </div>
+            <img
+              src={src}
+              alt={alt}
+              className="max-w-[85vw] max-h-[80vh] object-contain"
+            />
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
 /* ── Shared font style constant ── */
 export const MAC_FONT = { fontFamily: "'Geneva', 'Helvetica Neue', monospace" } as const;
 export const MAC_TITLE_FONT = { fontFamily: "'Chicago', 'Geneva', 'Helvetica Neue', monospace" } as const;

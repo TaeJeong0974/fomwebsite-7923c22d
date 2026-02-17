@@ -6,7 +6,7 @@ import { PixelUpload, PixelGrip, PixelChevronUp, PixelChevronDown, PixelEye, Pix
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from "@dnd-kit/core";
 import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { MacWindow, MacButton, MacInput, MacTextarea, MacLabel, MacFieldHint, MacSelect, MAC_FONT, MAC_TITLE_FONT } from "./MacOS";
+import { MacWindow, MacButton, MacInput, MacTextarea, MacLabel, MacFieldHint, MacSelect, MacImagePreview, MAC_FONT, MAC_TITLE_FONT } from "./MacOS";
 import PodcastCard from "@/components/podcast/PodcastCard";
 import type { PodcastEpisode } from "@/lib/podcastData";
 import { EPISODE_IMAGES, POSTER_IMAGES, OG_IMAGES } from "@/lib/episodeImages";
@@ -577,7 +577,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
                 </div>
                 {(form.poster_image_url || POSTER_IMAGES[form.slug] || EPISODE_IMAGES[form.slug]) && (
                   <div className="mt-1">
-                    <img src={form.poster_image_url || POSTER_IMAGES[form.slug] || EPISODE_IMAGES[form.slug]} alt="Poster" className="h-16 object-cover border border-black" />
+                    <MacImagePreview src={form.poster_image_url || POSTER_IMAGES[form.slug] || EPISODE_IMAGES[form.slug]} alt="Poster" className="h-16 object-cover border border-black" />
                     {!form.poster_image_url && (POSTER_IMAGES[form.slug] || EPISODE_IMAGES[form.slug]) && (
                       <p className="text-[9px] text-gray-500 mt-0.5" style={macFont}>Using local asset</p>
                     )}
@@ -596,7 +596,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
                 </div>
                 {(form.og_image_url || OG_IMAGES[form.slug]) && (
                   <div className="mt-1">
-                    <img src={form.og_image_url || OG_IMAGES[form.slug]} alt="OG" className="h-16 object-cover border border-black" />
+                    <MacImagePreview src={form.og_image_url || OG_IMAGES[form.slug]} alt="OG Image" className="h-16 object-cover border border-black" />
                     {!form.og_image_url && OG_IMAGES[form.slug] && (
                       <p className="text-[9px] text-gray-500 mt-0.5" style={macFont}>Using local asset</p>
                     )}
