@@ -260,16 +260,21 @@ export const MacSelect = ({
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
 
-  // Extract options from children
+  // Extract options from children (recursively handles fragments, arrays, conditionals)
   const options: { value: string; label: string }[] = [];
   const extractOptions = (nodes: ReactNode) => {
     if (!nodes) return;
-    const arr = Array.isArray(nodes) ? nodes : [nodes];
-    arr.forEach((child) => {
-      if (child && typeof child === "object" && "props" in child && child.type === "option") {
-        options.push({ value: child.props.value ?? "", label: String(child.props.children ?? "") });
+    if (Array.isArray(nodes)) {
+      nodes.forEach(extractOptions);
+      return;
+    }
+    if (typeof nodes === "object" && "props" in nodes) {
+      if (nodes.type === "option") {
+        options.push({ value: nodes.props.value ?? "", label: String(nodes.props.children ?? "") });
+      } else if (nodes.props?.children) {
+        extractOptions(nodes.props.children);
       }
-    });
+    }
   };
   extractOptions(children);
 
@@ -290,7 +295,7 @@ export const MacSelect = ({
   useEffect(() => {
     if (!open) return;
     const handler = (e: MouseEvent) => {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+      if (ref.current && !ref.current.contains(e.target as Node) && buttonRef.current && !buttonRef.current.contains(e.target as Node)) setOpen(false);
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
