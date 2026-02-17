@@ -212,7 +212,7 @@ const PixelIcon = ({ type, selected }: { type: WindowId | "website"; selected: b
   return icons[type];
 };
 
-/* ── Desktop Icon with Floppy Disk wrapper ── */
+/* ── Desktop Icon ── */
 const DesktopIcon = ({
   type,
   label,
@@ -225,52 +225,63 @@ const DesktopIcon = ({
   selected: boolean;
   onClick: () => void;
   onDoubleClick: () => void;
-}) => (
-  <button
-    className="flex flex-col items-center gap-0.5 group"
-    onClick={(e) => { e.stopPropagation(); onClick(); onDoubleClick(); }}
-  >
-    <div className={`relative ${selected ? "invert" : ""}`}>
-      <svg width="40" height="42" viewBox="0 0 40 42" style={{ imageRendering: "pixelated" }}>
-        {/* Disk body */}
-        <rect x="0" y="0" width="36" height="42" fill="black" />
-        <rect x="36" y="4" width="4" height="38" fill="black" />
-        <rect x="36" y="0" width="1" height="4" fill="black" />
-        <rect x="37" y="1" width="1" height="3" fill="black" />
-        <rect x="38" y="2" width="1" height="2" fill="black" />
-        <rect x="39" y="3" width="1" height="1" fill="black" />
-        <rect x="1" y="1" width="34" height="40" fill="white" />
-        <rect x="36" y="5" width="3" height="36" fill="white" />
-        {/* Metal slider area */}
-        <rect x="8" y="1" width="22" height="14" fill="black" />
-        <rect x="9" y="2" width="20" height="12" fill="white" />
-        <rect x="15" y="2" width="6" height="12" fill="black" />
-        <rect x="16" y="3" width="4" height="10" fill="white" />
-        {/* Label area */}
-        <rect x="5" y="22" width="30" height="18" fill="black" />
-        <rect x="6" y="23" width="28" height="16" fill="white" />
-        {/* Label lines */}
-        <rect x="8" y="26" width="24" height="1" fill="black" />
-        <rect x="8" y="30" width="24" height="1" fill="black" />
-        <rect x="8" y="34" width="16" height="1" fill="black" />
-      </svg>
-      {/* Small icon centered in label area */}
-      <div className="absolute flex items-center justify-center" style={{ left: 10, top: 23, width: 20, height: 16 }}>
-        <div className="scale-50 opacity-60">
-          <PixelIcon type={type} selected={false} />
-        </div>
-      </div>
-    </div>
-    <span
-      className={`text-[11px] font-bold px-1.5 py-0.5 ${
-        selected ? "bg-black text-white" : "bg-white/80 text-black"
-      }`}
-      style={macFont}
+}) => {
+  const isFloppy = type === "hosts" || type === "speakers";
+
+  return (
+    <button
+      className="flex flex-col items-center gap-0.5 group"
+      onClick={(e) => { e.stopPropagation(); onClick(); onDoubleClick(); }}
     >
-      {label}
-    </span>
-  </button>
-);
+      <div className={selected ? "invert" : ""}>
+        {isFloppy ? (
+          /* ── Floppy Disk (8-bit bitmap) ── */
+          <svg width="32" height="32" viewBox="0 0 32 32" style={{ imageRendering: "pixelated" }}>
+            <rect x="2" y="2" width="26" height="28" fill="black" />
+            <rect x="28" y="4" width="2" height="26" fill="black" />
+            <rect x="27" y="3" width="1" height="1" fill="black" />
+            <rect x="3" y="3" width="24" height="26" fill="white" />
+            <rect x="28" y="5" width="1" height="24" fill="white" />
+            {/* Metal slider */}
+            <rect x="8" y="2" width="16" height="10" fill="black" />
+            <rect x="9" y="3" width="14" height="8" fill="white" />
+            <rect x="14" y="3" width="4" height="8" fill="black" />
+            <rect x="15" y="4" width="2" height="6" fill="white" />
+            {/* Label */}
+            <rect x="5" y="16" width="22" height="12" fill="black" />
+            <rect x="6" y="17" width="20" height="10" fill="white" />
+            <rect x="8" y="19" width="16" height="1" fill="black" />
+            <rect x="8" y="22" width="16" height="1" fill="black" />
+            <rect x="8" y="25" width="10" height="1" fill="black" />
+          </svg>
+        ) : (
+          /* ── Folder (8-bit bitmap) ── */
+          <svg width="32" height="28" viewBox="0 0 32 28" style={{ imageRendering: "pixelated" }}>
+            {/* Tab */}
+            <rect x="1" y="0" width="10" height="4" fill="black" />
+            <rect x="2" y="1" width="8" height="2" fill="white" />
+            {/* Body outline */}
+            <rect x="0" y="3" width="32" height="25" fill="black" />
+            <rect x="1" y="4" width="30" height="23" fill="white" />
+            {/* Top fold line */}
+            <rect x="1" y="6" width="30" height="1" fill="black" />
+            {/* Shadow */}
+            <rect x="2" y="26" width="30" height="1" fill="#808080" />
+            <rect x="31" y="5" width="1" height="22" fill="#808080" />
+          </svg>
+        )}
+      </div>
+      <span
+        className={`text-[11px] font-bold px-1.5 py-0.5 ${
+          selected ? "bg-black text-white" : "bg-white/80 text-black"
+        }`}
+        style={macFont}
+      >
+        {label}
+      </span>
+    </button>
+  );
+};
 
 /* ── Menu Dropdown ── */
 const MenuDropdown = ({
