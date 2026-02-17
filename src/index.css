@@ -2,18 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Scrollbar — exclude .mac-scrollbar elements */
-:not(.mac-scrollbar)::-webkit-scrollbar {
+/* Custom Scrollbar */
+::-webkit-scrollbar {
   width: 8px;
 }
-:not(.mac-scrollbar)::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: transparent;
 }
-:not(.mac-scrollbar)::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: hsl(24 95% 50%);
   border-radius: 999px;
 }
-:not(.mac-scrollbar)::-webkit-scrollbar-thumb:hover {
+::-webkit-scrollbar-thumb:hover {
   background: hsl(24 95% 42%);
 }
 html {
