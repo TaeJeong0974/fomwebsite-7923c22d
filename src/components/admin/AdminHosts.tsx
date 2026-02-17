@@ -114,11 +114,11 @@ const AdminHosts = () => {
     );
   }
 
-  if (loading) return <div className="py-8 text-center text-sm" style={macFont}>Loading hosts…</div>;
+  if (loading) return <div className="py-8 text-center text-[11px]" style={macFont}>Loading hosts…</div>;
 
   if (error) return (
     <div className="py-8 text-center space-y-2">
-      <p className="text-sm" style={macFont}>Failed to load hosts: {error}</p>
+      <p className="text-[11px]" style={macFont}>Failed to load hosts: {error}</p>
       <MacButton onClick={fetchHosts}>Retry</MacButton>
     </div>
   );
@@ -126,7 +126,7 @@ const AdminHosts = () => {
   return (
     <div className="space-y-3">
       <div className="flex justify-between items-center">
-        <span className="text-sm font-bold" style={{ fontFamily: "'Chicago', 'Geneva', monospace" }}>
+        <span className="text-xs font-bold" style={{ fontFamily: "'Chicago', 'Geneva', monospace" }}>
           Hosts ({hosts.length})
         </span>
         <MacButton primary onClick={startCreate}>+ New</MacButton>
@@ -136,26 +136,26 @@ const AdminHosts = () => {
         <table className="w-full">
           <thead>
             <tr className="border-b-2 border-black bg-white">
-              <th className="text-left px-2 py-2 text-xs font-bold uppercase" style={macFont}>Name</th>
-              <th className="text-left px-2 py-2 text-xs font-bold uppercase" style={macFont}>Title</th>
-              <th className="text-right px-2 py-2 text-xs font-bold uppercase" style={macFont}>Actions</th>
+              <th className="text-left px-2 py-1.5 text-[10px] font-bold uppercase" style={macFont}>Name</th>
+              <th className="text-left px-2 py-1.5 text-[10px] font-bold uppercase" style={macFont}>Title</th>
+              <th className="text-right px-2 py-1.5 text-[10px] font-bold uppercase" style={macFont}>Actions</th>
             </tr>
           </thead>
           <tbody>
             {hosts.map((h) => (
               <tr key={h.id} className="border-b border-black/20 last:border-0 hover:bg-black/5">
-                <td className="px-2 py-2.5 text-sm font-bold" style={macFont}>{h.name}</td>
-                <td className="px-2 py-2.5 text-sm" style={macFont}>{h.title || "—"}</td>
-                <td className="px-2 py-2.5 text-right">
+                <td className="px-2 py-2 text-[11px] font-bold" style={macFont}>{h.name}</td>
+                <td className="px-2 py-2 text-[11px]" style={macFont}>{h.title || "—"}</td>
+                <td className="px-2 py-2 text-right">
                   <div className="inline-flex items-center gap-1">
-                    <MacButton onClick={() => startEdit(h)}>Edit</MacButton>
-                    <MacButton onClick={() => handleDelete(h.id)}>Del</MacButton>
+                    <MacButton onClick={() => startEdit(h)} className="text-[10px] px-2 py-0.5">Edit</MacButton>
+                    <MacButton onClick={() => handleDelete(h.id)} className="text-[10px] px-2 py-0.5">Del</MacButton>
                   </div>
                 </td>
               </tr>
             ))}
             {hosts.length === 0 && (
-              <tr><td colSpan={3} className="px-4 py-8 text-center text-sm text-gray-400" style={macFont}>No hosts yet</td></tr>
+              <tr><td colSpan={3} className="px-4 py-8 text-center text-[11px] text-gray-400" style={macFont}>No hosts yet</td></tr>
             )}
           </tbody>
         </table>
