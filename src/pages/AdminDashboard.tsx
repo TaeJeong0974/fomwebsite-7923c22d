@@ -7,6 +7,7 @@ import AdminSpeakers from "@/components/admin/AdminSpeakers";
 import { MacDesktop, MacMenuBar } from "@/components/admin/MacOS";
 import DraggableWindow from "@/components/admin/DraggableWindow";
 import fomPixelLogo from "@/assets/fom-pixel-logo.png";
+import fomBlackIcon from "/favicon-black.svg";
 
 const macFont = { fontFamily: "'Chicago', 'Geneva', monospace" };
 
@@ -339,7 +340,7 @@ const AdminDashboard = () => {
       {/* Menu Bar */}
       <div className="fixed top-0 left-0 right-0 z-50">
         <MacMenuBar>
-          <img src={fomPixelLogo} alt="FOM" className="h-3.5 w-auto" style={{ imageRendering: "pixelated" }} />
+          <img src={fomBlackIcon} alt="FOM" className="h-3.5 w-auto" />
 
           <MenuDropdown
             label="File"
