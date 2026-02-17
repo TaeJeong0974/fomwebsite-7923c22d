@@ -312,7 +312,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
     <div>
       <div className="flex items-center justify-between mb-8">
         <h2 className="font-semibold text-dark-foreground leading-tight" style={{ fontSize: 'clamp(2rem, 5vw, 3.375rem)' }}>{episodeId ? (form.title || "Untitled Episode") : "New Episode"}</h2>
-        <button onClick={onDone} className="text-sm text-gray-400 hover:text-gray-700 transition-colors">← Back</button>
+        <button onClick={onDone} className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">← Back</button>
       </div>
 
       <div className="space-y-8 sm:space-y-12 w-full">
@@ -438,7 +438,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
         <GlassSection label="Topics Covered" number={5}>
           <div className="flex gap-2">
             <input className={fieldClass} value={topicInput} onChange={(e) => setTopicInput(e.target.value)} placeholder="Add a topic" onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTopic())} />
-            <button type="button" onClick={addTopic} className="px-4 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap">Add</button>
+            <button type="button" onClick={addTopic} className="px-4 py-2.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium whitespace-nowrap hover:opacity-80 transition-colors">Add</button>
           </div>
           <FieldHint>Key themes discussed — drag to reorder. Shown as pills on the detail page.</FieldHint>
           <SortableTopicList
@@ -475,7 +475,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
                   <button
                     type="button"
                     onClick={() => applySpeaker(null)}
-                    className="px-3 py-2 rounded-lg border border-red-200 text-red-600 text-sm whitespace-nowrap hover:bg-red-50 transition-colors"
+                    className="px-4 py-2.5 rounded-full border border-red-200 text-red-600 text-sm font-medium whitespace-nowrap hover:bg-red-50 transition-colors"
                   >
                     Remove
                   </button>
@@ -484,7 +484,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
                   <button
                     type="button"
                     onClick={onSwitchToSpeakers}
-                    className="px-3 py-2 rounded-lg bg-secondary text-secondary-foreground text-sm whitespace-nowrap hover:opacity-80 transition-colors"
+                    className="px-4 py-2.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium whitespace-nowrap hover:opacity-80 transition-colors"
                   >
                     + New
                   </button>
@@ -518,7 +518,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
                 key={h.id}
                 type="button"
                 onClick={() => toggleHost(h.id)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all border ${
+                className={`px-4 py-2 rounded-full text-xs font-medium transition-all border ${
                   selectedHostIds.includes(h.id)
                     ? "bg-primary text-primary-foreground border-primary shadow-sm"
                     : "bg-gray-50 text-gray-500 border-gray-200 hover:border-gray-300"
@@ -543,7 +543,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
               <div className="flex gap-2">
                 <input className={fieldClass} value={form.poster_image_url} onChange={(e) => set("poster_image_url", e.target.value)} placeholder="URL or upload →" />
                 <input ref={posterFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "poster_image_url")} />
-                <button type="button" onClick={() => posterFileRef.current?.click()} disabled={uploading === "poster_image_url"} className="px-3 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap flex items-center gap-1.5 hover:opacity-80 disabled:opacity-50">
+                <button type="button" onClick={() => posterFileRef.current?.click()} disabled={uploading === "poster_image_url"} className="px-4 py-2.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium whitespace-nowrap flex items-center gap-1.5 hover:opacity-80 disabled:opacity-50 transition-colors">
                   <Upload className="h-3.5 w-3.5" />
                   {uploading === "poster_image_url" ? "…" : "Upload"}
                 </button>
@@ -555,7 +555,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
               <div className="flex gap-2">
                 <input className={fieldClass} value={form.og_image_url} onChange={(e) => set("og_image_url", e.target.value)} placeholder="URL or upload →" />
                 <input ref={ogFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "og_image_url")} />
-                <button type="button" onClick={() => ogFileRef.current?.click()} disabled={uploading === "og_image_url"} className="px-3 py-2 rounded-lg bg-secondary text-secondary-foreground text-body-sm whitespace-nowrap flex items-center gap-1.5 hover:opacity-80 disabled:opacity-50">
+                <button type="button" onClick={() => ogFileRef.current?.click()} disabled={uploading === "og_image_url"} className="px-4 py-2.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium whitespace-nowrap flex items-center gap-1.5 hover:opacity-80 disabled:opacity-50 transition-colors">
                   <Upload className="h-3.5 w-3.5" />
                   {uploading === "og_image_url" ? "…" : "Upload"}
                 </button>
