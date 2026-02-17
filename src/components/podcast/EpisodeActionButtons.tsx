@@ -7,9 +7,10 @@ import { YouTubeIcon, SpotifyIcon, ApplePodcastsIcon, APPLE_PODCASTS_URL } from 
 interface EpisodeActionButtonsProps {
   youtubeUrl: string;
   spotifyUrl: string;
+  appleUrl?: string;
 }
 
-const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsProps) => {
+const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl, appleUrl }: EpisodeActionButtonsProps) => {
   const [copied, setCopied] = useState(false);
 
   const handleShare = async () => {
@@ -33,7 +34,7 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl }: EpisodeActionButtonsPr
         <span className={textClasses}>Spotify</span>
       </motion.a>
 
-      <motion.a href={APPLE_PODCASTS_URL} target="_blank" rel="noopener noreferrer" className={liquidGlassButton} variants={buttonVariants} initial="initial" whileHover="hover" whileTap="tap" transition={liquidSpring}>
+      <motion.a href={appleUrl || APPLE_PODCASTS_URL} target="_blank" rel="noopener noreferrer" className={liquidGlassButton} variants={buttonVariants} initial="initial" whileHover="hover" whileTap="tap" transition={liquidSpring}>
         <ApplePodcastsIcon className="w-6 h-6 shrink-0" />
         <span className={textClasses}>Apple</span>
       </motion.a>

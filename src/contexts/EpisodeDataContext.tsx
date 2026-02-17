@@ -68,6 +68,7 @@ function mapDbEpisode(row: any, hostsForEpisode: PodcastHost[]): PodcastEpisode 
     chapters: [],
     youtubeUrl: row.youtube_url || "",
     spotifyUrl: row.spotify_url || "",
+    appleUrl: row.apple_url || undefined,
     duration: row.duration || "",
     publishedDate: row.published ? publishDate : "Coming Soon",
     comingSoon: !row.published,
