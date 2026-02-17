@@ -340,7 +340,10 @@ const AdminDashboard = () => {
       {/* Menu Bar */}
       <div className="fixed top-0 left-0 right-0 z-50">
         <MacMenuBar>
-          <img src={fomBlackIcon} alt="FOM" className="h-3.5 w-auto" />
+          <div className="flex items-center gap-1">
+            <img src={fomBlackIcon} alt="FOM" className="h-3.5 w-auto" />
+            <span className="text-[11px] font-bold" style={macFont}>CMS</span>
+          </div>
 
           <MenuDropdown
             label="File"
