@@ -65,11 +65,15 @@ export const MacWindow = ({
           type="button"
           onClick={(e) => { e.stopPropagation(); onMaximize(); }}
           className="w-[13px] h-[13px] border border-black bg-white hover:bg-black group flex items-center justify-center shrink-0"
-          title="Maximize"
+          title="Zoom"
         >
-          <svg width="9" height="9" viewBox="0 0 9 9" className="group-hover:text-white text-black">
-            <rect x="0" y="0" width="9" height="9" fill="none" stroke="currentColor" strokeWidth="1.5" />
-            <rect x="3" y="3" width="6" height="6" fill="none" stroke="currentColor" strokeWidth="1" />
+          {/* Classic Mac zoom box: small square inside */}
+          <svg width="9" height="9" viewBox="0 0 9 9" style={{ imageRendering: "pixelated" }}>
+            <rect x="0" y="0" width="9" height="1" className="fill-black group-hover:fill-white" />
+            <rect x="0" y="8" width="9" height="1" className="fill-black group-hover:fill-white" />
+            <rect x="0" y="0" width="1" height="9" className="fill-black group-hover:fill-white" />
+            <rect x="8" y="0" width="1" height="9" className="fill-black group-hover:fill-white" />
+            <rect x="3" y="3" width="3" height="3" className="fill-black group-hover:fill-white" />
           </svg>
         </button>
       )}
