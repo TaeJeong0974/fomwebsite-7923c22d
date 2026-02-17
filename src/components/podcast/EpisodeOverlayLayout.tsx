@@ -16,7 +16,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
   return (
     <div className="min-h-screen relative">
       {/* Content Container */}
-      <main className="relative z-10 pt-0 sm:pt-6 lg:pt-12 pb-6 sm:pb-8 lg:pb-12">
+      <main className="relative z-10 pt-0 sm:pt-6 lg:pt-12 pb-32 sm:pb-8 lg:pb-12 [padding-bottom:max(8rem,calc(8rem+env(safe-area-inset-bottom)))] sm:[padding-bottom:2rem] lg:[padding-bottom:3rem]">
         <div className="container mx-auto container-padding">
           <div className="relative flex gap-4 items-start">
             {/* Main Content */}
