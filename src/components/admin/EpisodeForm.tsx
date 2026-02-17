@@ -529,14 +529,6 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
                   {uploading === "guest_image_url" ? "…" : ""}
                 </MacButton>
               </div>
-              {(form.guest_image_url || EPISODE_IMAGES[form.slug]) && (
-                <div className="mt-1">
-                  <img src={form.guest_image_url || EPISODE_IMAGES[form.slug]} alt="Guest" className="h-16 object-cover border border-black" />
-                  {!form.guest_image_url && EPISODE_IMAGES[form.slug] && (
-                    <p className="text-[9px] text-gray-500 mt-0.5" style={macFont}>Using local asset (upload to override)</p>
-                  )}
-                </div>
-              )}
             </div>
           </div>
         </MacWindow>
