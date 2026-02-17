@@ -1,4 +1,5 @@
-import { ReactNode, useState, useRef, useEffect } from "react";
+import { ReactNode, useState, useRef, useEffect, useLayoutEffect } from "react";
+import { createPortal } from "react-dom";
 
 /**
  * Classic Mac OS System 6/7 UI primitives built with Tailwind.
@@ -256,6 +257,8 @@ export const MacSelect = ({
 }) => {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const [dropdownStyle, setDropdownStyle] = useState<React.CSSProperties>({});
 
   // Extract options from children
   const options: { value: string; label: string }[] = [];
@@ -272,6 +275,18 @@ export const MacSelect = ({
 
   const selectedLabel = options.find((o) => o.value === value)?.label || options[0]?.label || "";
 
+  // Position dropdown relative to viewport using portal
+  useLayoutEffect(() => {
+    if (!open || !buttonRef.current) return;
+    const rect = buttonRef.current.getBoundingClientRect();
+    setDropdownStyle({
+      position: "fixed",
+      top: rect.bottom,
+      left: rect.left,
+      width: rect.width,
+    });
+  }, [open]);
+
   useEffect(() => {
     if (!open) return;
     const handler = (e: MouseEvent) => {
@@ -281,9 +296,35 @@ export const MacSelect = ({
     return () => document.removeEventListener("mousedown", handler);
   }, [open]);
 
+  const dropdownMenu = open ? (
+    <div
+      ref={ref}
+      className="border-2 border-black bg-white max-h-[200px] overflow-y-auto"
+      style={{ ...dropdownStyle, boxShadow: "2px 2px 0px #000", zIndex: 99999 }}
+    >
+      {options.map((opt, i) => (
+        <button
+          key={`${opt.value}-${i}`}
+          type="button"
+          className={`w-full text-left px-2 py-1 text-xs cursor-default ${
+            opt.value === value ? "bg-black text-white" : "hover:bg-black hover:text-white"
+          }`}
+          style={{ fontFamily: "'Geneva', 'Helvetica Neue', monospace" }}
+          onClick={() => {
+            onChange({ target: { value: opt.value } } as React.ChangeEvent<HTMLSelectElement>);
+            setOpen(false);
+          }}
+        >
+          {opt.label}
+        </button>
+      ))}
+    </div>
+  ) : null;
+
   return (
-    <div className={`relative ${className}`} ref={ref}>
+    <div className={`relative ${className}`}>
       <button
+        ref={buttonRef}
         type="button"
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between px-2 py-1 text-xs border border-black bg-white text-black text-left cursor-default"
@@ -295,29 +336,7 @@ export const MacSelect = ({
         <span className="truncate">{selectedLabel}</span>
         <span className="ml-1 shrink-0 text-[10px]">▼</span>
       </button>
-      {open && (
-        <div
-          className="absolute left-0 right-0 top-full mt-0 border-2 border-black bg-white z-[70] max-h-[200px] overflow-y-auto"
-          style={{ boxShadow: "2px 2px 0px #000" }}
-        >
-          {options.map((opt, i) => (
-            <button
-              key={`${opt.value}-${i}`}
-              type="button"
-              className={`w-full text-left px-2 py-1 text-xs cursor-default ${
-                opt.value === value ? "bg-black text-white" : "hover:bg-black hover:text-white"
-              }`}
-              style={{ fontFamily: "'Geneva', 'Helvetica Neue', monospace" }}
-              onClick={() => {
-                onChange({ target: { value: opt.value } } as React.ChangeEvent<HTMLSelectElement>);
-                setOpen(false);
-              }}
-            >
-              {opt.label}
-            </button>
-          ))}
-        </div>
-      )}
+      {createPortal(dropdownMenu, document.body)}
     </div>
   );
 };
