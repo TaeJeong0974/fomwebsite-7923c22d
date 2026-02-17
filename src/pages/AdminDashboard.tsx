@@ -34,7 +34,7 @@ const AdminDashboard = () => {
       <div className="container mx-auto container-padding space-y-4 sm:space-y-6">
         {/* Header */}
         <div className="flex items-center justify-between">
-          <h1 className="font-semibold text-dark-foreground tracking-tight" style={{ fontSize: 'clamp(2rem, 5vw, 4rem)' }}>Content Manager</h1>
+          <h1 className="font-semibold text-dark-foreground tracking-tight text-xl sm:text-2xl">Content Manager</h1>
           <button
             onClick={handleLogout}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm text-muted-foreground hover:text-foreground hover:bg-black/5 transition-colors"
