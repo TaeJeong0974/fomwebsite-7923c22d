@@ -23,31 +23,41 @@ export const MacWindow = ({
   children,
   className = "",
   onClose,
+  onTitleBarMouseDown,
+  onTitleBarDoubleClick,
+  isActive = true,
 }: {
   title: string;
   children: ReactNode;
   className?: string;
   onClose?: () => void;
+  onTitleBarMouseDown?: (e: React.MouseEvent) => void;
+  onTitleBarDoubleClick?: () => void;
+  isActive?: boolean;
 }) => (
   <div
     className={`border-2 border-black bg-white ${className}`}
-    style={{ boxShadow: "2px 2px 0px #000" }}
+    style={{ boxShadow: isActive ? "2px 2px 0px #000" : "1px 1px 0px #888" }}
   >
     {/* Title Bar */}
-    <div className="flex items-center h-[22px] px-1.5 border-b-2 border-black bg-white select-none">
+    <div
+      className="flex items-center h-[22px] px-1.5 border-b-2 border-black bg-white select-none cursor-grab active:cursor-grabbing"
+      onMouseDown={onTitleBarMouseDown}
+      onDoubleClick={onTitleBarDoubleClick}
+    >
       {onClose && (
         <button
           type="button"
-          onClick={onClose}
+          onClick={(e) => { e.stopPropagation(); onClose(); }}
           className="w-[13px] h-[13px] border border-black bg-white hover:bg-black hover:text-white flex items-center justify-center shrink-0"
           title="Close"
         />
       )}
-      <TitleBarStripes />
+      {isActive ? <TitleBarStripes /> : <div className="flex-1" />}
       <span className="px-2 text-xs font-bold tracking-wide whitespace-nowrap" style={{ fontFamily: "'Chicago', 'Geneva', 'Helvetica Neue', monospace" }}>
         {title}
       </span>
-      <TitleBarStripes />
+      {isActive ? <TitleBarStripes /> : <div className="flex-1" />}
     </div>
     {/* Content */}
     <div>{children}</div>
@@ -175,7 +185,7 @@ export const MacLabel = ({ children }: { children: ReactNode }) => (
 );
 
 /* ── Desktop (background with dotted pattern) ── */
-export const MacDesktop = ({ children, className = "" }: { children: ReactNode; className?: string }) => (
+export const MacDesktop = ({ children, className = "", style }: { children: ReactNode; className?: string; style?: React.CSSProperties }) => (
   <div
     className={`min-h-screen ${className}`}
     style={{
@@ -183,6 +193,7 @@ export const MacDesktop = ({ children, className = "" }: { children: ReactNode; 
       backgroundImage: "radial-gradient(circle, #808080 1px, transparent 1px)",
       backgroundSize: "4px 4px",
       fontFamily: "'Geneva', 'Helvetica Neue', monospace",
+      ...style,
     }}
   >
     {children}
