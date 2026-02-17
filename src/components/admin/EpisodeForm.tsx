@@ -300,7 +300,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
   };
 
   const fieldClass = "w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary/40 outline-none transition-all placeholder:text-gray-300";
-  const labelClass = "text-sm font-medium text-gray-600";
+  const labelClass = "text-sm font-medium text-gray-700";
 
   const groupDivider = (
     <div className="flex items-center gap-4 py-2">
@@ -322,26 +322,26 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
             <label className={labelClass}>Status</label>
             <div className="flex gap-2 flex-wrap">
               {([
-                { value: "draft", label: "Draft", color: "bg-gray-100 text-gray-600 border-gray-200" },
-                { value: "upcoming", label: "Upcoming", color: "bg-amber-50 text-amber-700 border-amber-200" },
-                { value: "published", label: "Published", color: "bg-green-50 text-green-700 border-green-200" },
-                { value: "deleted", label: "Deleted", color: "bg-red-50 text-red-700 border-red-200" },
-              ] as const).map(({ value, label, color }) => (
+                { value: "draft", label: "Draft" },
+                { value: "upcoming", label: "Upcoming" },
+                { value: "published", label: "Published" },
+                { value: "deleted", label: "Deleted" },
+              ] as const).map(({ value, label }) => (
                 <button
                   key={value}
                   type="button"
                   onClick={() => set("status", value)}
                   className={`px-4 py-2 rounded-full text-xs font-medium border transition-all ${
                     form.status === value
-                      ? `${color} ring-2 ring-offset-1 ring-primary/30`
-                      : "bg-gray-50 text-gray-400 border-gray-100 hover:border-gray-300 opacity-70"
+                      ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                      : "bg-gray-50 text-gray-500 border-gray-200 hover:border-gray-300"
                   }`}
                 >
                   {label}
                 </button>
               ))}
             </div>
-            <p className="text-[11px] text-gray-400">
+            <p className="text-[11px] text-gray-500">
               {form.status === 'upcoming' ? 'Card on homepage, no detail page' :
                form.status === 'published' ? 'Full detail page with video' :
                form.status === 'draft' ? 'Not visible on site' : 'Soft-deleted'}
