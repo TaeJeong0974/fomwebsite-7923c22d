@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { Navigate, useParams } from "react-router-dom";
 import ep1Poster from "@/assets/ep1-poster.png";
 import ep0Poster from "@/assets/ep0-poster.png";
 import Footer from "@/components/Footer";
-import { useParams } from "react-router-dom";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
 import FloatingMiniPlayer from "@/components/podcast/FloatingMiniPlayer";
 import StickyBottomBar from "@/components/podcast/StickyBottomBar";
@@ -63,7 +63,7 @@ const PodcastDetail = () => {
   });
 
   if (!episode) return <ComingSoonEpisode />;
-  if (episode.comingSoon) return <ComingSoonEpisode episode={episode} />;
+  if (episode.comingSoon) return <Navigate to="/" replace />;
 
   const guestName = isIntro ? "INTRO" : episode.name;
   const thumbnailUrl = getYouTubeThumbnail(episode.youtubeUrl);
