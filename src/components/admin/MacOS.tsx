@@ -23,6 +23,7 @@ export const MacWindow = ({
   children,
   className = "",
   onClose,
+  onMaximize,
   onTitleBarMouseDown,
   onTitleBarDoubleClick,
   isActive = true,
@@ -31,6 +32,7 @@ export const MacWindow = ({
   children: ReactNode;
   className?: string;
   onClose?: () => void;
+  onMaximize?: () => void;
   onTitleBarMouseDown?: (e: React.MouseEvent) => void;
   onTitleBarDoubleClick?: () => void;
   isActive?: boolean;
@@ -58,6 +60,19 @@ export const MacWindow = ({
         {title}
       </span>
       {isActive ? <TitleBarStripes /> : <div className="flex-1" />}
+      {onMaximize && (
+        <button
+          type="button"
+          onClick={(e) => { e.stopPropagation(); onMaximize(); }}
+          className="w-[13px] h-[13px] border border-black bg-white hover:bg-black group flex items-center justify-center shrink-0"
+          title="Maximize"
+        >
+          <svg width="9" height="9" viewBox="0 0 9 9" className="group-hover:text-white text-black">
+            <rect x="0" y="0" width="9" height="9" fill="none" stroke="currentColor" strokeWidth="1.5" />
+            <rect x="3" y="3" width="6" height="6" fill="none" stroke="currentColor" strokeWidth="1" />
+          </svg>
+        </button>
+      )}
     </div>
     {/* Content */}
     <div className="flex-1 overflow-hidden flex flex-col min-h-0">{children}</div>
