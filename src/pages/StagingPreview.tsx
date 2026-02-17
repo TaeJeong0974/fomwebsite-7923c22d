@@ -52,6 +52,38 @@ function mapDbEpisode(row: any, hosts: PodcastHost[]): PodcastEpisode {
   };
 }
 
+/* ── Simple in-memory cache with 10s TTL ── */
+let _cache: { data: { episodes: PodcastEpisode[]; hosts: PodcastHost[] } | null; ts: number } = { data: null, ts: 0 };
+const CACHE_TTL = 10_000; // 10 seconds
+
+async function fetchStagingData(): Promise<{ episodes: PodcastEpisode[]; hosts: PodcastHost[] }> {
+  if (_cache.data && Date.now() - _cache.ts < CACHE_TTL) return _cache.data;
+
+  const [epRes, hostRes, linkRes] = await Promise.all([
+    supabase.from("episodes").select("*").order("episode_number", { ascending: false }),
+    supabase.from("hosts").select("*"),
+    supabase.from("episode_hosts").select("episode_id, host_id"),
+  ]);
+
+  const hostRows = hostRes.data || [];
+  const hosts = hostRows.map(mapDbHost);
+
+  const hostMap = new Map<string, PodcastHost>();
+  hostRows.forEach((r: any) => hostMap.set(r.id, mapDbHost(r)));
+
+  const links = linkRes.data || [];
+  const episodes = (epRes.data || []).map((r: any) => {
+    const ids = links.filter((l: any) => l.episode_id === r.id).map((l: any) => l.host_id);
+    return mapDbEpisode(r, ids.map((id: string) => hostMap.get(id)).filter(Boolean) as PodcastHost[]);
+  });
+
+  _cache = { data: { episodes, hosts }, ts: Date.now() };
+  return _cache.data!;
+}
+
+/** Invalidate cache so the next fetch hits the DB */
+export function invalidateStagingCache() { _cache = { data: null, ts: 0 }; }
+
 /* ── Page ── */
 
 const StagingPreview = () => {
@@ -67,27 +99,10 @@ const StagingPreview = () => {
     (async () => {
       setLoading(true);
       try {
-        const [epRes, hostRes, linkRes] = await Promise.all([
-          supabase.from("episodes").select("*").order("episode_number", { ascending: false }),
-          supabase.from("hosts").select("*"),
-          supabase.from("episode_hosts").select("episode_id, host_id"),
-        ]);
-
-        const hostRows = hostRes.data || [];
-        const mapped = hostRows.map(mapDbHost);
-        setAllHosts(mapped);
-
-        const hostMap = new Map<string, PodcastHost>();
-        hostRows.forEach((r: any) => hostMap.set(r.id, mapDbHost(r)));
-
-        const links = linkRes.data || [];
-        const eps = (epRes.data || []).map((r: any) => {
-          const ids = links.filter((l: any) => l.episode_id === r.id).map((l: any) => l.host_id);
-          return mapDbEpisode(r, ids.map((id: string) => hostMap.get(id)).filter(Boolean) as PodcastHost[]);
-        });
-
-        setAllEpisodes(eps);
-        setEpisode(eps.find((e) => e.slug === slug) || null);
+        const { episodes, hosts } = await fetchStagingData();
+        setAllHosts(hosts);
+        setAllEpisodes(episodes);
+        setEpisode(episodes.find((e) => e.slug === slug) || null);
       } catch (err) {
         console.error("Staging fetch failed:", err);
       } finally {
