@@ -287,7 +287,14 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
         <span className="text-xs font-bold" style={{ fontFamily: "'Chicago', 'Geneva', monospace" }}>
           {episodeId ? (form.title || "Untitled Episode") : "New Episode"}
         </span>
-        <MacButton onClick={onDone}>← Back</MacButton>
+        <div className="flex gap-1">
+          {form.slug && (
+            <MacButton onClick={() => window.open(`https://fomwebsite.lovable.app/podcast/${form.slug}`, "_blank")}>
+              👁 Preview
+            </MacButton>
+          )}
+          <MacButton onClick={onDone}>← Back</MacButton>
+        </div>
       </div>
 
       <div className="space-y-4">
