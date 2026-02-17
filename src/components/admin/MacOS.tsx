@@ -288,7 +288,8 @@ export const MacSelect = ({
       position: "fixed",
       top: rect.bottom,
       left: rect.left,
-      width: rect.width,
+      minWidth: rect.width,
+      width: "max-content",
     });
   }, [open]);
 
