@@ -372,11 +372,6 @@ const EpisodeForm = ({ episodeId, onDone }: Props) => {
               <input className={fieldClass} value={form.apple_url} onChange={(e) => set("apple_url", e.target.value)} />
               <FieldHint>Apple Podcasts link — powers the "Listen on Apple" button</FieldHint>
             </div>
-            <div className="space-y-1">
-              <label className={labelClass}>Preview Video URL</label>
-              <input className={fieldClass} value={form.preview_video_url} onChange={(e) => set("preview_video_url", e.target.value)} />
-              <FieldHint>Short teaser clip — autoplays on the episode card hover</FieldHint>
-            </div>
           </div>
         </GlassSection>
 
