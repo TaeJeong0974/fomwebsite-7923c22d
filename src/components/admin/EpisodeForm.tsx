@@ -481,7 +481,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
             <MacTextarea value={form.pull_quote} onChange={(e) => set("pull_quote", e.target.value)} placeholder="A memorable quote…" minHeight="60px" />
             <div className="space-y-1">
               <MacLabel>Attribution</MacLabel>
-            <MacSelect
+              <MacSelect
                 value={form.pull_quote_attribution}
                 onChange={(e) => set("pull_quote_attribution", e.target.value)}
               >
@@ -521,20 +521,23 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
         {/* ── 7. About the Speaker ── */}
         <MacWindow title="About the Speaker">
           <div className="p-3 space-y-2">
-            <div className="flex gap-1">
-              <MacSelect
-                value=""
-                onChange={(e) => {
-                  const speaker = allSpeakers.find((s) => s.id === e.target.value);
-                  applySpeaker(speaker || null);
-                }}
-              >
-                <option value="">— Choose a speaker —</option>
-                {allSpeakers.filter((s) => s.id !== selectedSpeakerId).map((s) => (
-                  <option key={s.id} value={s.id}>{s.name}{s.company ? ` · ${s.company}` : ""}</option>
-                ))}
-              </MacSelect>
-              {onSwitchToSpeakers && <MacButton onClick={onSwitchToSpeakers}>+ New</MacButton>}
+            <div className="space-y-1">
+              <MacLabel>Speaker</MacLabel>
+              <div className="flex gap-1">
+                <MacSelect
+                  value=""
+                  onChange={(e) => {
+                    const speaker = allSpeakers.find((s) => s.id === e.target.value);
+                    applySpeaker(speaker || null);
+                  }}
+                >
+                  <option value="">— Choose a speaker —</option>
+                  {allSpeakers.filter((s) => s.id !== selectedSpeakerId).map((s) => (
+                    <option key={s.id} value={s.id}>{s.name}{s.company ? ` · ${s.company}` : ""}</option>
+                  ))}
+                </MacSelect>
+                {onSwitchToSpeakers && <MacButton onClick={onSwitchToSpeakers}>+ New</MacButton>}
+              </div>
             </div>
             {selectedSpeakerId && (
               <div className="flex flex-wrap gap-1">
@@ -561,19 +564,22 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
         {/* ── 8. About the Host ── */}
         <MacWindow title="About the Host">
           <div className="p-3 space-y-2">
-            <MacSelect
-              value=""
-              onChange={(e) => {
-                if (e.target.value && !selectedHostIds.includes(e.target.value)) {
-                  setSelectedHostIds((prev) => [...prev, e.target.value]);
-                }
-              }}
-            >
-              <option value="">— Choose a host —</option>
-              {allHosts.filter((h) => !selectedHostIds.includes(h.id)).map((h) => (
-                <option key={h.id} value={h.id}>{h.name}</option>
-              ))}
-            </MacSelect>
+            <div className="space-y-1">
+              <MacLabel>Host</MacLabel>
+              <MacSelect
+                value=""
+                onChange={(e) => {
+                  if (e.target.value && !selectedHostIds.includes(e.target.value)) {
+                    setSelectedHostIds((prev) => [...prev, e.target.value]);
+                  }
+                }}
+              >
+                <option value="">— Choose a host —</option>
+                {allHosts.filter((h) => !selectedHostIds.includes(h.id)).map((h) => (
+                  <option key={h.id} value={h.id}>{h.name}</option>
+                ))}
+              </MacSelect>
+            </div>
             {selectedHostIds.length > 0 && (
               <div className="flex flex-wrap gap-1">
                 {selectedHostIds.map((hostId) => {
