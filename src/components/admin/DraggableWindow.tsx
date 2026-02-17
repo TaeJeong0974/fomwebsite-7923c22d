@@ -1,5 +1,6 @@
 import { ReactNode, useRef, useState, useCallback, useEffect } from "react";
 import { MacWindow } from "./MacOS";
+import MacScrollbar from "./MacScrollbar";
 
 interface Position {
   x: number;
@@ -38,7 +39,7 @@ const DraggableWindow = ({
   const resizing = useRef(false);
   const offset = useRef({ x: 0, y: 0 });
   const windowRef = useRef<HTMLDivElement>(null);
-
+  const scrollRef = useRef<HTMLDivElement>(null);
   const handleMouseDown = useCallback(
     (e: React.MouseEvent) => {
       if ((e.target as HTMLElement).closest("button")) return;
@@ -126,7 +127,19 @@ const DraggableWindow = ({
         onTitleBarDoubleClick={toggleMaximize}
         isActive={isActive}
       >
-        <div className="flex-1 overflow-auto mac-scrollbar">{children}</div>
+        <div className="flex-1 overflow-hidden relative">
+          <div
+            ref={scrollRef}
+            className="absolute inset-0 overflow-auto [&::-webkit-scrollbar]:hidden"
+            style={{
+              scrollbarWidth: "none" as const,
+              paddingRight: 16,
+            }}
+          >
+            {children}
+          </div>
+          <MacScrollbar containerRef={scrollRef} />
+        </div>
         {/* Resize grip */}
         {!isMaximized && (
           <div
