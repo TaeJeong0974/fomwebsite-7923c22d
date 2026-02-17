@@ -343,9 +343,6 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
         <div className="flex gap-1">
           {form.slug && (
              <>
-              <MacButton onClick={() => window.open(`${window.location.origin}/#podcast`, "_blank")}>
-                🏠 Homepage
-              </MacButton>
               <MacButton onClick={() => setShowCardPreview(true)}>
                 🃏 Card
               </MacButton>
