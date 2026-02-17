@@ -289,9 +289,14 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
         </span>
         <div className="flex gap-1">
           {form.slug && (
-            <MacButton onClick={() => window.open(`https://fomwebsite.lovable.app/podcast/${form.slug}`, "_blank")}>
-              👁 Preview
-            </MacButton>
+            <>
+              <MacButton onClick={() => window.open(`https://fomwebsite.lovable.app/#episodes`, "_blank")}>
+                🏠 Card
+              </MacButton>
+              <MacButton onClick={() => window.open(`https://fomwebsite.lovable.app/podcast/${form.slug}`, "_blank")}>
+                👁 Page
+              </MacButton>
+            </>
           )}
           <MacButton onClick={onDone}>← Back</MacButton>
         </div>
