@@ -251,6 +251,85 @@ serve(async (req) => {
       return respond(200, { success: true });
     }
 
+    // Seed from static data
+    if (action === 'seed-from-static') {
+      const { episodes: staticEpisodes, hosts: staticHosts } = payload;
+      
+      // 1. Match hosts by name to get their DB ids
+      const { data: dbHosts } = await supabase.from('hosts').select('id, name');
+      const hostMap = new Map((dbHosts || []).map((h: { id: string; name: string }) => [h.name, h.id]));
+
+      // 2. Upsert each episode by slug
+      for (const ep of staticEpisodes) {
+        const episodeData = {
+          slug: ep.slug,
+          title: ep.name,
+          subtitle: ep.overview,
+          episode_number: ep.id,
+          description: ep.overview,
+          full_description: ep.fullDescription,
+          duration: ep.duration || null,
+          guest_name: ep.name === ep.title ? null : ep.name,
+          guest_title: ep.title || null,
+          guest_company: ep.company || null,
+          guest_company_domain: ep.companyDomain || null,
+          guest_bio: ep.bio || null,
+          guest_linkedin_url: ep.linkedInUrl || null,
+          youtube_url: ep.youtubeUrl || null,
+          spotify_url: ep.spotifyUrl || null,
+          preview_video_url: ep.previewVideoUrl || null,
+          publish_date: ep.publishedDate && ep.publishedDate !== 'Coming Soon' ? null : null,
+          status: ep.comingSoon ? 'upcoming' : 'published',
+          published: !ep.comingSoon,
+          topics: ep.topics || [],
+          pull_quote: ep.pullQuote || null,
+        };
+
+        // Check if episode with this slug already exists
+        const { data: existing } = await supabase
+          .from('episodes')
+          .select('id')
+          .eq('slug', ep.slug)
+          .maybeSingle();
+
+        let episodeId: string;
+        if (existing) {
+          await supabase.from('episodes').update(episodeData).eq('id', existing.id);
+          episodeId = existing.id;
+        } else {
+          const { data: inserted, error } = await supabase.from('episodes').insert(episodeData).select('id').single();
+          if (error) return respond(400, { error: `Failed to insert ${ep.slug}: ${error.message}` });
+          episodeId = inserted.id;
+        }
+
+        // 3. Set episode hosts
+        if (ep.hosts && ep.hosts.length > 0) {
+          await supabase.from('episode_hosts').delete().eq('episode_id', episodeId);
+          const hostRows = ep.hosts
+            .map((h: { name: string }) => hostMap.get(h.name))
+            .filter(Boolean)
+            .map((hostId: string) => ({ episode_id: episodeId, host_id: hostId }));
+          if (hostRows.length > 0) {
+            await supabase.from('episode_hosts').insert(hostRows);
+          }
+        }
+
+        // 4. Set newsletter mentions
+        if (ep.newslettersMentioned && ep.newslettersMentioned.length > 0) {
+          await supabase.from('newsletter_mentions').delete().eq('episode_id', episodeId);
+          const nlRows = ep.newslettersMentioned.map((n: { name: string; url?: string; description?: string }) => ({
+            episode_id: episodeId,
+            title: n.name,
+            url: n.url || '',
+            source: n.description || null,
+          }));
+          await supabase.from('newsletter_mentions').insert(nlRows);
+        }
+      }
+
+      return respond(200, { success: true, count: staticEpisodes.length });
+    }
+
     // Batch reorder episodes
     if (action === 'reorder-episodes') {
       const { orders } = payload; // [{ id, episode_number }]

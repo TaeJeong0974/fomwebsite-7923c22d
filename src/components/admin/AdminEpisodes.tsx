@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { adminApi } from "@/lib/adminApi";
 import { toast } from "sonner";
-import { ArrowUpCircle, CheckCircle2, GripVertical, Loader2, Plus, Pencil, Trash2 } from "lucide-react";
+import { podcastEpisodes, podcastHosts } from "@/lib/podcastData";
+import { ArrowUpCircle, CheckCircle2, Database, GripVertical, Loader2, Plus, Pencil, Trash2 } from "lucide-react";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from "@dnd-kit/core";
 import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
@@ -112,10 +113,32 @@ const AdminEpisodes = ({ onSwitchToSpeakers }: { onSwitchToSpeakers?: () => void
   const [loading, setLoading] = useState(true);
   const [promoting, setPromoting] = useState<string | null>(null);
 
+  const [seeding, setSeeding] = useState(false);
+
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 5 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
   );
+
+  const handleSeed = async () => {
+    if (!confirm("This will import all episodes from the static site data into the CMS. Existing episodes with the same slug will be updated. Continue?")) return;
+    setSeeding(true);
+    try {
+      const staticData = podcastEpisodes.map(ep => ({
+        ...ep,
+        hosts: ep.hosts || podcastHosts,
+      }));
+      await adminApi("seed-from-static", {
+        episodes: staticData,
+        hosts: podcastHosts,
+      });
+      toast.success("Imported all episodes from site data");
+      fetchEpisodes();
+    } catch (err: unknown) {
+      toast.error(err instanceof Error ? err.message : "Seed failed");
+    }
+    setSeeding(false);
+  };
 
   const fetchEpisodes = async () => {
     setLoading(true);
@@ -202,6 +225,16 @@ const AdminEpisodes = ({ onSwitchToSpeakers }: { onSwitchToSpeakers?: () => void
     <div className="space-y-4 sm:space-y-5">
       <div className="flex justify-between items-center">
         <h2 className="font-semibold text-dark-foreground" style={{ fontSize: 'clamp(1.25rem, 3vw, 2rem)' }}>Episodes</h2>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={handleSeed}
+            disabled={seeding}
+            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-gray-200 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all disabled:opacity-50"
+            title="Import episodes from site data"
+          >
+            {seeding ? <Loader2 className="h-4 w-4 animate-spin" /> : <Database className="h-4 w-4" />}
+            {seeding ? "Importing…" : "Import from Site"}
+          </button>
         <button
           onClick={() => setCreating(true)}
           className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-medium shadow-sm hover:shadow-md hover:brightness-105 transition-all"
@@ -209,6 +242,7 @@ const AdminEpisodes = ({ onSwitchToSpeakers }: { onSwitchToSpeakers?: () => void
           <Plus className="h-4 w-4" />
           New Episode
         </button>
+        </div>
       </div>
 
       <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-200 shadow-sm overflow-x-auto">
