@@ -370,7 +370,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
             <div className="space-y-1">
               <label className={labelClass}>Slug *</label>
               <input className={fieldClass} value={form.slug} onChange={(e) => set("slug", e.target.value)} />
-              <FieldHint>URL-safe identifier — e.g. "sara-varni". Cannot be changed after publish.</FieldHint>
+              <FieldHint>URL-safe identifier — e.g. "sara-varni"</FieldHint>
             </div>
             <div className="space-y-1">
               <label className={labelClass}>Episode #</label>
