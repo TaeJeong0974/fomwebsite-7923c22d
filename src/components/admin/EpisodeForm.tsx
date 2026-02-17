@@ -166,6 +166,8 @@ const CardPreviewWindow = ({ form, onClose }: { form: typeof EMPTY; onClose: () 
 
 // Select styling now uses MacSelect component
 
+const LIVE_PREVIEW_CHANNEL = "cms-live-preview";
+
 const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
   const [form, setForm] = useState(EMPTY);
   const [topicInput, setTopicInput] = useState("");
@@ -175,6 +177,9 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
   const [selectedSpeakerId, setSelectedSpeakerId] = useState<string | null>(null);
   const [selectedHostIds, setSelectedHostIds] = useState<string[]>([]);
   const [showCardPreview, setShowCardPreview] = useState(false);
+  const [livePreview, setLivePreview] = useState(false);
+  const livePreviewRef = useRef<BroadcastChannel | null>(null);
+  const livePreviewWindowRef = useRef<Window | null>(null);
 
   useEffect(() => {
     adminApi("list-hosts").then((res) => setAllHosts(res.data || [])).catch(() => {});
@@ -308,6 +313,62 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
     }
   };
 
+  // Live preview: broadcast form changes to preview tab
+  const broadcastFormState = (currentForm: typeof EMPTY) => {
+    if (!livePreviewRef.current) return;
+    const hostNames = allHosts.filter(h => selectedHostIds.includes(h.id)).map(h => h.name);
+    livePreviewRef.current.postMessage({
+      type: "live-update",
+      episode: {
+        slug: currentForm.slug,
+        title: currentForm.title,
+        subtitle: currentForm.subtitle,
+        episode_number: currentForm.episode_number,
+        guest_name: currentForm.guest_name,
+        guest_title: currentForm.guest_title,
+        guest_company: currentForm.guest_company,
+        guest_company_domain: currentForm.guest_company_domain,
+        guest_bio: currentForm.guest_bio,
+        guest_linkedin_url: currentForm.guest_linkedin_url,
+        full_description: currentForm.full_description,
+        duration: currentForm.duration,
+        youtube_url: currentForm.youtube_url,
+        spotify_url: currentForm.spotify_url,
+        topics: currentForm.topics,
+        pull_quote: currentForm.pull_quote,
+        pull_quote_attribution: currentForm.pull_quote_attribution,
+        status: currentForm.status,
+        published: currentForm.status === "published",
+        publish_date: currentForm.publish_date,
+        preview_video_url: currentForm.preview_video_url,
+      },
+      hostNames,
+    });
+  };
+
+  useEffect(() => {
+    if (livePreview) broadcastFormState(form);
+  }, [form, selectedHostIds, livePreview]);
+
+  useEffect(() => {
+    return () => { livePreviewRef.current?.close(); };
+  }, []);
+
+  const toggleLivePreview = () => {
+    if (livePreview) {
+      livePreviewRef.current?.close();
+      livePreviewRef.current = null;
+      setLivePreview(false);
+    } else {
+      livePreviewRef.current = new BroadcastChannel(LIVE_PREVIEW_CHANNEL);
+      setLivePreview(true);
+      const previewUrl = `${window.location.origin}/admin/preview/${form.slug}?id=${episodeId || ""}&live=1`;
+      livePreviewWindowRef.current = window.open(previewUrl, "_blank");
+      // Send initial state after a short delay for the tab to load
+      setTimeout(() => broadcastFormState(form), 1000);
+    }
+  };
+
   const addTopic = () => {
     if (!topicInput.trim()) return;
     set("topics", [...form.topics, topicInput.trim()]);
@@ -352,7 +413,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
         <span className="text-xs font-bold" style={MAC_TITLE_FONT}>
           {episodeId ? (form.title || "Untitled Episode") : "New Episode"}
         </span>
-        <div className="flex gap-1">
+        <div className="flex gap-1 items-center">
           {form.slug && (
              <>
               <MacButton onClick={() => setShowCardPreview(true)}>
@@ -361,6 +422,11 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
               <MacButton onClick={handlePreview} disabled={saving}>
                 👁 Preview Page
               </MacButton>
+              {episodeId && (
+                <MacButton onClick={toggleLivePreview}>
+                  {livePreview ? "🔴 Live ON" : "📡 Live Preview"}
+                </MacButton>
+              )}
             </>
           )}
           <MacButton onClick={onDone}>← Back</MacButton>
