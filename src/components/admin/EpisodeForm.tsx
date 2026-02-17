@@ -317,42 +317,35 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
 
       <div className="space-y-8 sm:space-y-12 w-full">
         {/* ── 1. Status & Publishing ── */}
-        <GlassSection label="Status & Publishing" number={1}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div className="space-y-2">
-              <label className={labelClass}>Status</label>
-              <div className="flex gap-2 flex-wrap">
-                {([
-                  { value: "draft", label: "Draft", color: "bg-gray-100 text-gray-600 border-gray-200" },
-                  { value: "upcoming", label: "Upcoming", color: "bg-amber-50 text-amber-700 border-amber-200" },
-                  { value: "published", label: "Published", color: "bg-green-50 text-green-700 border-green-200" },
-                  { value: "deleted", label: "Deleted", color: "bg-red-50 text-red-700 border-red-200" },
-                ] as const).map(({ value, label, color }) => (
-                  <button
-                    key={value}
-                    type="button"
-                    onClick={() => set("status", value)}
-                    className={`px-4 py-2 rounded-full text-xs font-medium border transition-all ${
-                      form.status === value
-                        ? `${color} ring-2 ring-offset-1 ring-primary/30`
-                        : "bg-gray-50 text-gray-400 border-gray-100 hover:border-gray-300 opacity-70"
-                    }`}
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
-              <p className="text-[11px] text-gray-400">
-                {form.status === 'upcoming' ? 'Card on homepage, no detail page' :
-                 form.status === 'published' ? 'Full detail page with video' :
-                 form.status === 'draft' ? 'Not visible on site' : 'Soft-deleted'}
-              </p>
+        <GlassSection label="Status" number={1}>
+          <div className="space-y-2">
+            <label className={labelClass}>Status</label>
+            <div className="flex gap-2 flex-wrap">
+              {([
+                { value: "draft", label: "Draft", color: "bg-gray-100 text-gray-600 border-gray-200" },
+                { value: "upcoming", label: "Upcoming", color: "bg-amber-50 text-amber-700 border-amber-200" },
+                { value: "published", label: "Published", color: "bg-green-50 text-green-700 border-green-200" },
+                { value: "deleted", label: "Deleted", color: "bg-red-50 text-red-700 border-red-200" },
+              ] as const).map(({ value, label, color }) => (
+                <button
+                  key={value}
+                  type="button"
+                  onClick={() => set("status", value)}
+                  className={`px-4 py-2 rounded-full text-xs font-medium border transition-all ${
+                    form.status === value
+                      ? `${color} ring-2 ring-offset-1 ring-primary/30`
+                      : "bg-gray-50 text-gray-400 border-gray-100 hover:border-gray-300 opacity-70"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
             </div>
-            <div className="space-y-1">
-              <label className={labelClass}>Publish Date</label>
-              <input className={fieldClass} type="date" value={form.publish_date} onChange={(e) => set("publish_date", e.target.value)} />
-              <FieldHint>Date shown on the episode card and detail page</FieldHint>
-            </div>
+            <p className="text-[11px] text-gray-400">
+              {form.status === 'upcoming' ? 'Card on homepage, no detail page' :
+               form.status === 'published' ? 'Full detail page with video' :
+               form.status === 'draft' ? 'Not visible on site' : 'Soft-deleted'}
+            </p>
           </div>
         </GlassSection>
 
