@@ -9,6 +9,7 @@ interface DocumentMetaOptions {
   ogType?: string;
   twitterCard?: string;
   canonicalUrl?: string;
+  noindex?: boolean;
 }
 
 /** Sets document title and meta tags. Restores defaults on unmount. */
@@ -21,6 +22,7 @@ const useDocumentMeta = ({
   ogType = "article",
   twitterCard = "summary_large_image",
   canonicalUrl,
+  noindex,
 }: DocumentMetaOptions) => {
   useEffect(() => {
     const prevTitle = document.title;
@@ -46,6 +48,14 @@ const useDocumentMeta = ({
     setMeta("name", "twitter:description", ogDescription || description);
     if (ogImage) setMeta("name", "twitter:image", ogImage);
 
+    // Robots noindex for upcoming/unpublished pages
+    if (noindex) {
+      setMeta("name", "robots", "noindex, nofollow");
+    } else {
+      const robotsMeta = document.querySelector('meta[name="robots"]');
+      if (robotsMeta) robotsMeta.remove();
+    }
+
     // Canonical
     let canonical = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
     if (canonicalUrl) {
@@ -59,8 +69,10 @@ const useDocumentMeta = ({
 
     return () => {
       document.title = prevTitle;
+      const robotsMeta = document.querySelector('meta[name="robots"]');
+      if (robotsMeta) robotsMeta.remove();
     };
-  }, [title, description, ogTitle, ogDescription, ogImage, ogType, twitterCard, canonicalUrl]);
+  }, [title, description, ogTitle, ogDescription, ogImage, ogType, twitterCard, canonicalUrl, noindex]);
 };
 
 export default useDocumentMeta;

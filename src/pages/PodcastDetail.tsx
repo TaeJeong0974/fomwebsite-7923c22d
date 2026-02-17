@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Navigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ep1Poster from "@/assets/ep1-poster.png";
 import ep0Poster from "@/assets/ep0-poster.png";
 import Footer from "@/components/Footer";
@@ -60,10 +60,11 @@ const PodcastDetail = () => {
     description: seo.description,
     ogImage: ogImage || undefined,
     canonicalUrl: slug ? getEpisodeCanonicalUrl(slug) : undefined,
+    noindex: episode?.comingSoon,
   });
 
   if (!episode) return <ComingSoonEpisode />;
-  if (episode.comingSoon) return <Navigate to="/" replace />;
+  if (episode.comingSoon) return <ComingSoonEpisode episode={episode} />;
 
   const guestName = isIntro ? "INTRO" : episode.name;
   const thumbnailUrl = getYouTubeThumbnail(episode.youtubeUrl);
