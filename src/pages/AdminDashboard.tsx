@@ -261,6 +261,7 @@ const MenuDropdown = ({
       <button
         onClick={onToggle}
         className={`cursor-default px-2 text-sm ${isOpen ? "bg-black text-white" : ""}`}
+        style={macFont}
       >
         {label}
       </button>
