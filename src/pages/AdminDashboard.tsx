@@ -221,7 +221,7 @@ const DesktopIcon = ({
       <PixelIcon type={type} selected={selected} />
     </div>
     <span
-      className={`text-xs font-bold px-1 ${
+      className={`text-sm font-bold px-1 ${
         selected ? "bg-black text-white" : "text-black"
       }`}
       style={macFont}
@@ -260,7 +260,7 @@ const MenuDropdown = ({
     <div className="relative" ref={ref}>
       <button
         onClick={onToggle}
-        className={`cursor-default px-1 ${isOpen ? "bg-black text-white" : ""}`}
+        className={`cursor-default px-2 text-sm ${isOpen ? "bg-black text-white" : ""}`}
       >
         {label}
       </button>
@@ -275,12 +275,12 @@ const MenuDropdown = ({
             ) : (
               <button
                 key={i}
-                className="w-full text-left px-3 py-0.5 text-sm hover:bg-black hover:text-white flex justify-between"
+                className="w-full text-left px-3 py-1 text-sm hover:bg-black hover:text-white flex justify-between"
                 style={macFont}
                 onClick={() => { item.onClick(); onClose(); }}
               >
                 <span>{item.label}</span>
-                {item.shortcut && <span className="text-[11px] opacity-60">{item.shortcut}</span>}
+                {item.shortcut && <span className="text-xs opacity-60">{item.shortcut}</span>}
               </button>
             )
           )}
@@ -337,7 +337,7 @@ const AdminDashboard = () => {
 
   if (loading) return (
     <MacDesktop className="flex items-center justify-center">
-      <span className="text-xs font-bold text-black" style={macFont}>Loading…</span>
+      <span className="text-sm font-bold text-black" style={macFont}>Loading…</span>
     </MacDesktop>
   );
 
@@ -364,8 +364,8 @@ const AdminDashboard = () => {
       <div className="fixed top-0 left-0 right-0 z-50">
         <MacMenuBar>
           <div className="flex items-center gap-1">
-            <img src={fomBlackIcon} alt="FOM" className="h-3.5 w-auto" />
-            <span className="text-xs font-bold" style={macFont}>CMS</span>
+            <img src={fomBlackIcon} alt="FOM" className="h-4 w-auto" />
+            <span className="text-sm font-bold" style={macFont}>CMS</span>
           </div>
 
           <MenuDropdown
@@ -418,7 +418,7 @@ const AdminDashboard = () => {
               <PixelIcon type="website" selected={false} />
             </div>
             <span
-              className="text-xs font-bold px-1 text-black"
+              className="text-sm font-bold px-1 text-black"
               style={macFont}
             >
               Website
