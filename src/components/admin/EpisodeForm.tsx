@@ -256,10 +256,8 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
     }));
   };
 
-  const handleSave = async () => {
-    if (!form.slug || !form.title) { toast.error("Slug and title are required"); return; }
-    setSaving(true);
-    const payload: Record<string, unknown> = {
+  const buildPayload = (overrides?: Record<string, unknown>) => {
+    const base: Record<string, unknown> = {
       slug: form.slug, title: form.title, subtitle: form.subtitle || null,
       episode_number: form.episode_number || null,
       description: form.description || null, full_description: form.full_description || null,
@@ -277,8 +275,26 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
       topics: form.topics,
       pull_quote: form.pull_quote || null, pull_quote_attribution: form.pull_quote_attribution || null,
       subscribe_headline: form.subscribe_headline || null,
+      ...overrides,
     };
-    if (episodeId) payload.id = episodeId;
+    if (episodeId) base.id = episodeId;
+    return base;
+  };
+
+  const autoSave = async (overrides?: Record<string, unknown>) => {
+    if (!form.slug || !form.title || !episodeId) return;
+    try {
+      const payload = buildPayload(overrides);
+      await adminApi("upsert-episode", payload);
+      await adminApi("set-episode-hosts", { episode_id: episodeId, host_ids: selectedHostIds });
+      toast.success("Auto-saved");
+    } catch { /* silent */ }
+  };
+
+  const handleSave = async () => {
+    if (!form.slug || !form.title) { toast.error("Slug and title are required"); return; }
+    setSaving(true);
+    const payload = buildPayload();
 
     try {
       const result = await adminApi("upsert-episode", payload);
@@ -326,6 +342,8 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
       const { data: { publicUrl } } = supabase.storage.from("episode-images").getPublicUrl(path);
       set(fieldKey, publicUrl);
       toast.success("Image uploaded");
+      // Auto-save with the new image URL
+      await autoSave({ [fieldKey]: publicUrl });
     } catch (err: unknown) {
       toast.error(err instanceof Error ? err.message : "Upload failed");
     }
@@ -348,26 +366,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
                 if (!form.slug || !form.title) { toast.error("Save requires slug and title"); return; }
                 setSaving(true);
                 try {
-                  const payload: Record<string, unknown> = {
-                    slug: form.slug, title: form.title, subtitle: form.subtitle || null,
-                    episode_number: form.episode_number || null,
-                    description: form.description || null, full_description: form.full_description || null,
-                    duration: form.duration || null,
-                    guest_name: form.guest_name || null, guest_title: form.guest_title || null,
-                    guest_company: form.guest_company || null, guest_company_domain: form.guest_company_domain || null,
-                    guest_bio: form.guest_bio || null, guest_image_url: form.guest_image_url || null,
-                    guest_linkedin_url: form.guest_linkedin_url || null,
-                    poster_image_url: form.poster_image_url || null, og_image_url: form.og_image_url || null,
-                    preview_video_url: form.preview_video_url || null,
-                    apple_url: form.apple_url || null, spotify_url: form.spotify_url || null,
-                    youtube_url: form.youtube_url || null,
-                    published: form.status === 'published', status: form.status,
-                    publish_date: form.publish_date || null,
-                    topics: form.topics,
-                    pull_quote: form.pull_quote || null, pull_quote_attribution: form.pull_quote_attribution || null,
-                    subscribe_headline: form.subscribe_headline || null,
-                  };
-                  if (episodeId) payload.id = episodeId;
+                  const payload = buildPayload();
                   const result = await adminApi("upsert-episode", payload);
                   const savedId = episodeId || result.data?.id;
                   if (savedId) {
