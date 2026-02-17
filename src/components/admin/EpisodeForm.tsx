@@ -290,11 +290,11 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
         <div className="flex gap-1">
           {form.slug && (
             <>
-              <MacButton onClick={() => window.open(`https://fom.xyz/#podcast`, "_blank")}>
+              <MacButton onClick={() => window.open(`${window.location.origin}/#podcast`, "_blank")}>
                 🏠 Homepage
               </MacButton>
               {form.status !== 'draft' && (
-                <MacButton onClick={() => window.open(`https://fom.xyz/podcast/${form.slug}`, "_blank")}>
+                <MacButton onClick={() => window.open(`${window.location.origin}/podcast/${form.slug}`, "_blank")}>
                   👁 Page
                 </MacButton>
               )}
