@@ -3,11 +3,15 @@ import { useNavigate } from "react-router-dom";
 import { clearAdminSession } from "@/lib/adminApi";
 import AdminEpisodes from "@/components/admin/AdminEpisodes";
 import AdminHosts from "@/components/admin/AdminHosts";
+import AdminSpeakers from "@/components/admin/AdminSpeakers";
 import { LogOut } from "lucide-react";
+
+const TABS = ["episodes", "hosts", "speakers"] as const;
+type Tab = typeof TABS[number];
 
 const AdminDashboard = () => {
   const [loading, setLoading] = useState(true);
-  const [tab, setTab] = useState<"episodes" | "hosts">("episodes");
+  const [tab, setTab] = useState<Tab>("episodes");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -43,7 +47,7 @@ const AdminDashboard = () => {
         {/* Tabs — Google-style underline */}
         <div className="border-b border-border -mx-1">
           <div className="flex gap-0">
-            {(["episodes", "hosts"] as const).map((t, i) => (
+            {TABS.map((t, i) => (
               <button
                 key={t}
                 onClick={() => setTab(t)}
@@ -68,6 +72,7 @@ const AdminDashboard = () => {
         <div>
           {tab === "episodes" && <AdminEpisodes />}
           {tab === "hosts" && <AdminHosts />}
+          {tab === "speakers" && <AdminSpeakers />}
         </div>
       </div>
     </div>

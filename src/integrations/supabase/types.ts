@@ -348,6 +348,45 @@ export type Database = {
           },
         ]
       }
+      speakers: {
+        Row: {
+          bio: string | null
+          company: string | null
+          company_domain: string | null
+          created_at: string
+          id: string
+          image_url: string | null
+          linkedin_url: string | null
+          name: string
+          title: string | null
+          updated_at: string
+        }
+        Insert: {
+          bio?: string | null
+          company?: string | null
+          company_domain?: string | null
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          linkedin_url?: string | null
+          name: string
+          title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          bio?: string | null
+          company?: string | null
+          company_domain?: string | null
+          created_at?: string
+          id?: string
+          image_url?: string | null
+          linkedin_url?: string | null
+          name?: string
+          title?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           id: string
