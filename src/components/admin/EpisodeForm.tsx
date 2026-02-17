@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { adminApi } from "@/lib/adminApi";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Upload, GripVertical, ChevronUp, ChevronDown, Eye, EyeOff } from "lucide-react";
+import { PixelUpload, PixelGrip, PixelChevronUp, PixelChevronDown, PixelEye, PixelEyeOff } from "./PixelIcons";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from "@dnd-kit/core";
 import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
@@ -61,7 +61,7 @@ const SortableTopicItem = ({ id, topic, index, total, onRemove, onMove, onEdit }
   return (
     <div ref={setNodeRef} style={style} className="flex items-center gap-1.5 py-1 px-1.5 border-b border-black/20 last:border-0 group">
       <button type="button" {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing touch-none p-0.5 shrink-0">
-        <GripVertical className="h-3 w-3" />
+        <PixelGrip className="h-3 w-3" />
       </button>
       <input
         type="text"
@@ -72,10 +72,10 @@ const SortableTopicItem = ({ id, topic, index, total, onRemove, onMove, onEdit }
       />
       <div className="flex items-center gap-0.5 shrink-0">
         <button type="button" onClick={() => onMove(index, -1)} disabled={index === 0} className="p-0.5 disabled:opacity-20">
-          <ChevronUp className="h-3 w-3" />
+          <PixelChevronUp className="h-3 w-3" />
         </button>
         <button type="button" onClick={() => onMove(index, 1)} disabled={index === total - 1} className="p-0.5 disabled:opacity-20">
-          <ChevronDown className="h-3 w-3" />
+          <PixelChevronDown className="h-3 w-3" />
         </button>
         <button type="button" onClick={() => onRemove(index)} className="p-0.5 text-black hover:text-gray-600 ml-0.5 text-xs font-bold">×</button>
       </div>
@@ -519,7 +519,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
                 <MacInput value={form.guest_image_url} onChange={(e) => set("guest_image_url", e.target.value)} placeholder="URL or upload →" />
                 <input ref={guestImageFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "guest_image_url")} />
                 <MacButton onClick={() => guestImageFileRef.current?.click()} disabled={uploading === "guest_image_url"}>
-                  <Upload className="h-3 w-3" />
+                  <PixelUpload className="h-3 w-3" />
                   {uploading === "guest_image_url" ? "…" : ""}
                 </MacButton>
               </div>
@@ -571,7 +571,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
                   <MacInput value={form.poster_image_url} onChange={(e) => set("poster_image_url", e.target.value)} placeholder="URL or upload →" />
                   <input ref={posterFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "poster_image_url")} />
                   <MacButton onClick={() => posterFileRef.current?.click()} disabled={uploading === "poster_image_url"}>
-                    <Upload className="h-3 w-3" />
+                    <PixelUpload className="h-3 w-3" />
                     {uploading === "poster_image_url" ? "…" : ""}
                   </MacButton>
                 </div>
@@ -590,7 +590,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
                   <MacInput value={form.og_image_url} onChange={(e) => set("og_image_url", e.target.value)} placeholder="URL or upload →" />
                   <input ref={ogFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "og_image_url")} />
                   <MacButton onClick={() => ogFileRef.current?.click()} disabled={uploading === "og_image_url"}>
-                    <Upload className="h-3 w-3" />
+                    <PixelUpload className="h-3 w-3" />
                     {uploading === "og_image_url" ? "…" : ""}
                   </MacButton>
                 </div>
