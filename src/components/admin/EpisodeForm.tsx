@@ -10,6 +10,7 @@ import { MacWindow, MacButton, MacInput, MacTextarea, MacLabel, MacFieldHint } f
 import PodcastCard from "@/components/podcast/PodcastCard";
 import type { PodcastEpisode } from "@/lib/podcastData";
 import { EPISODE_IMAGES } from "@/lib/episodeImages";
+import DraggableWindow from "./DraggableWindow";
 
 const macFont = { fontFamily: "'Geneva', 'Helvetica Neue', monospace" };
 
@@ -115,10 +116,8 @@ const SortableTopicList = ({ topics, onReorder, onRemove, onMove, onEdit }: {
   );
 };
 
-// ── Card Preview (opens in popup window) ──
-const useCardPreviewWindow = (form: typeof EMPTY) => {
-  const popupRef = useRef<Window | null>(null);
-
+// ── Card Preview (floating draggable window inside CMS) ──
+const CardPreviewWindow = ({ form, onClose }: { form: typeof EMPTY; onClose: () => void }) => {
   const mockEpisode: PodcastEpisode = useMemo(() => ({
     id: 0,
     slug: form.slug || "preview",
@@ -141,76 +140,28 @@ const useCardPreviewWindow = (form: typeof EMPTY) => {
     pullQuote: form.pull_quote || undefined,
   }), [form]);
 
-  const openPreview = () => {
-    // If already open and not closed, focus it
-    if (popupRef.current && !popupRef.current.closed) {
-      popupRef.current.focus();
-      return;
-    }
-
-    const w = 400;
-    const h = 600;
-    const left = window.screenX + window.innerWidth - w - 40;
-    const top = window.screenY + 80;
-    const popup = window.open("", "card-preview", `width=${w},height=${h},left=${left},top=${top},resizable=yes,scrollbars=yes`);
-    if (!popup) return;
-    popupRef.current = popup;
-
-    // Write initial shell
-    popup.document.write(`<!DOCTYPE html>
-<html><head><title>Card Preview</title>
-<style>
-  body { margin: 0; background: #f4f2ef; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: Geneva, 'Helvetica Neue', monospace; }
-  #root { width: 320px; }
-</style>
-</head><body><div id="root"></div></body></html>`);
-    popup.document.close();
-
-    // Render React into popup
-    import("react-dom/client").then(({ createRoot }) => {
-      const container = popup.document.getElementById("root");
-      if (!container) return;
-
-      // Copy stylesheets into popup
-      document.querySelectorAll('style, link[rel="stylesheet"]').forEach((node) => {
-        popup.document.head.appendChild(node.cloneNode(true));
-      });
-
-      const root = createRoot(container);
-      root.render(
-        <PodcastCard
-          episode={mockEpisode}
-          isUpcoming={form.status === "upcoming"}
-          image={EPISODE_IMAGES[form.slug] || form.guest_image_url || undefined}
-        />
-      );
-
-      // Store root for updates
-      (popup as any).__previewRoot = root;
-    });
-  };
-
-  // Update popup content when form changes
-  useEffect(() => {
-    const popup = popupRef.current;
-    if (!popup || popup.closed || !(popup as any).__previewRoot) return;
-    (popup as any).__previewRoot.render(
-      <PodcastCard
-        episode={mockEpisode}
-        isUpcoming={form.status === "upcoming"}
-        image={EPISODE_IMAGES[form.slug] || form.guest_image_url || undefined}
-      />
-    );
-  }, [mockEpisode, form.status, form.slug, form.guest_image_url]);
-
-  // Cleanup on unmount
-  useEffect(() => {
-    return () => {
-      if (popupRef.current && !popupRef.current.closed) popupRef.current.close();
-    };
-  }, []);
-
-  return openPreview;
+  return (
+    <DraggableWindow
+      id="card-preview"
+      title="Card Preview"
+      defaultPosition={{ x: window.innerWidth - 380, y: 80 }}
+      defaultSize={{ width: 360, height: 520 }}
+      isActive={true}
+      zIndex={9999}
+      onFocus={() => {}}
+      onClose={onClose}
+    >
+      <div className="p-4 flex items-center justify-center" style={{ background: "#f4f2ef", minHeight: "100%" }}>
+        <div className="w-[300px]">
+          <PodcastCard
+            episode={mockEpisode}
+            isUpcoming={form.status === "upcoming"}
+            image={EPISODE_IMAGES[form.slug] || form.guest_image_url || undefined}
+          />
+        </div>
+      </div>
+    </DraggableWindow>
+  );
 };
 
 // ── Mac select styling ──
@@ -225,7 +176,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
   const [allSpeakers, setAllSpeakers] = useState<Speaker[]>([]);
   const [selectedSpeakerId, setSelectedSpeakerId] = useState<string | null>(null);
   const [selectedHostIds, setSelectedHostIds] = useState<string[]>([]);
-  const openCardPreview = useCardPreviewWindow(form);
+  const [showCardPreview, setShowCardPreview] = useState(false);
 
   useEffect(() => {
     adminApi("list-hosts").then((res) => setAllHosts(res.data || [])).catch(() => {});
@@ -395,7 +346,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
               <MacButton onClick={() => window.open(`${window.location.origin}/#podcast`, "_blank")}>
                 🏠 Homepage
               </MacButton>
-              <MacButton onClick={openCardPreview}>
+              <MacButton onClick={() => setShowCardPreview(true)}>
                 🃏 Card
               </MacButton>
               {form.status !== 'draft' && (
@@ -662,6 +613,9 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
           <MacButton onClick={onDone}>Cancel</MacButton>
         </div>
       </div>
+      {showCardPreview && (
+        <CardPreviewWindow form={form} onClose={() => setShowCardPreview(false)} />
+      )}
     </div>
   );
 };
