@@ -4,6 +4,7 @@ import { PixelUpload } from "./PixelIcons";
 import { adminApi } from "@/lib/adminApi";
 import { toast } from "sonner";
 import { MacButton, MacWindow, MacInput, MacTextarea, MacLabel, MacFieldHint, MacTable, MacImagePreview, MAC_FONT, MAC_TITLE_FONT } from "./MacOS";
+import { HOST_IMAGES_BY_NAME } from "@/lib/episodeImages";
 
 const macFont = MAC_FONT;
 
@@ -133,7 +134,21 @@ const AdminHosts = () => {
                   {uploading ? "…" : ""}
                 </MacButton>
               </div>
-              {form.image_url && <MacImagePreview src={form.image_url} alt={form.name || "Host"} className="mt-1 h-16 object-cover border border-black" />}
+              {(() => {
+                const slug = (form.name || "").toLowerCase().replace(/\s+/g, "-");
+                const img = form.image_url || HOST_IMAGES_BY_NAME[slug];
+                return img ? (
+                  <div className="flex items-start gap-2 mt-1">
+                    <MacImagePreview src={img} alt={form.name || "Host"} className="h-16 object-cover border border-black" />
+                    <div className="flex flex-col gap-1">
+                      {form.image_url && (
+                        <MacButton onClick={() => set("image_url", "")} className="text-[9px]">✕ Clear</MacButton>
+                      )}
+                      <MacButton onClick={() => imageFileRef.current?.click()} className="text-[9px]">↻ Replace</MacButton>
+                    </div>
+                  </div>
+                ) : null;
+              })()}
               <MacFieldHint>Square headshot</MacFieldHint>
             </div>
             <div className="space-y-1"><MacLabel>LinkedIn URL</MacLabel><MacInput value={form.linkedin_url} onChange={(e) => set("linkedin_url", e.target.value)} /><MacFieldHint>Full profile URL</MacFieldHint></div>
@@ -177,7 +192,22 @@ const AdminHosts = () => {
           <tbody>
             {hosts.map((h) => (
               <tr key={h.id} className="border-b border-black/20 last:border-0 hover:bg-black/5">
-                <td className="px-2 py-2 text-[11px] font-bold" style={macFont}>{h.name}</td>
+                <td className="px-2 py-2 text-[11px] font-bold" style={macFont}>
+                  <div className="flex items-center gap-2">
+                    {(() => {
+                      const slug = h.name.toLowerCase().replace(/\s+/g, "-");
+                      const img = h.image_url || HOST_IMAGES_BY_NAME[slug];
+                      return img ? (
+                        <MacImagePreview src={img} alt={h.name} className="h-8 w-8 rounded object-cover border border-black shrink-0" />
+                      ) : (
+                        <div className="h-8 w-8 rounded bg-black/10 border border-black/20 shrink-0 flex items-center justify-center text-[9px] font-bold" style={macFont}>
+                          {h.name.charAt(0)}
+                        </div>
+                      );
+                    })()}
+                    {h.name}
+                  </div>
+                </td>
                 <td className="px-2 py-2 text-[11px]" style={macFont}>{h.title || "—"}</td>
                 <td className="px-2 py-2 text-right">
                   <div className="inline-flex items-center gap-1">
