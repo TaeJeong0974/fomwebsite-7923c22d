@@ -320,32 +320,16 @@ const AdminDashboard = () => {
         style={{ height: "calc(100vh - 22px)", marginTop: 22 }}
         onClick={() => { setSelectedIcon(null); setOpenMenu(null); }}
       >
-        {/* Desktop Icons — top right like classic Mac */}
+        {/* Desktop Icons — always show all three on the right */}
         <div className="absolute top-4 right-4 flex flex-col gap-4 z-[5]">
-          {closedWindows.map((w) => (
+          {WINDOWS.map((w) => (
             <DesktopIcon
               key={w.id}
               icon={w.icon}
               label={w.title}
               selected={selectedIcon === w.id}
               onClick={() => { setSelectedIcon(w.id); }}
-              onDoubleClick={() => openWindow(w.id)}
-            />
-          ))}
-          {/* Trash icon */}
-          <div className="mt-auto" />
-        </div>
-
-        {/* All open desktop icons too — for quick access */}
-        <div className="absolute bottom-4 right-4 flex flex-col gap-3 z-[5]">
-          {WINDOWS.filter((w) => openWindows.has(w.id)).map((w) => (
-            <DesktopIcon
-              key={w.id}
-              icon={w.icon}
-              label={w.title}
-              selected={selectedIcon === w.id}
-              onClick={() => { setSelectedIcon(w.id); bringToFront(w.id); }}
-              onDoubleClick={() => bringToFront(w.id)}
+              onDoubleClick={() => openWindows.has(w.id) ? bringToFront(w.id) : openWindow(w.id)}
             />
           ))}
         </div>
