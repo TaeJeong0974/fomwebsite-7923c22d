@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import type { PodcastEpisode, PodcastHost } from "@/lib/podcastData";
 import { EpisodeDataContext } from "@/contexts/EpisodeDataContext";
@@ -31,12 +31,11 @@ function mapDbHost(row: any): PodcastHost {
   return { name: row.name, title, company, linkedInUrl: row.linkedin_url || undefined, bio: row.bio || undefined };
 }
 
-function mapDbEpisode(row: any, hosts: PodcastHost[]): PodcastEpisode & { _dbId: string } {
+function mapDbEpisode(row: any, hosts: PodcastHost[]): PodcastEpisode {
   const publishDate = row.publish_date
     ? new Date(row.publish_date + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
     : "";
   return {
-    _dbId: row.id,
     id: row.episode_number ?? 0, slug: row.slug,
     name: row.guest_name || row.title, title: row.guest_title || "",
     company: row.guest_company || "", companyDomain: row.guest_company_domain || "",
@@ -89,8 +88,6 @@ export function invalidateStagingCache() { _cache = { data: null, ts: 0 }; }
 
 const StagingPreview = () => {
   const { slug } = useParams();
-  const [searchParams] = useSearchParams();
-  const episodeDbId = searchParams.get("id");
   const [episode, setEpisode] = useState<PodcastEpisode | null>(null);
   const [allHosts, setAllHosts] = useState<PodcastHost[]>([]);
   const [allEpisodes, setAllEpisodes] = useState<PodcastEpisode[]>([]);
@@ -98,25 +95,21 @@ const StagingPreview = () => {
   const [playTrigger, setPlayTrigger] = useState(0);
 
   useEffect(() => {
-    if (!slug && !episodeDbId) return;
+    if (!slug) return;
     (async () => {
       setLoading(true);
       try {
-        invalidateStagingCache(); // Always fetch fresh data
         const { episodes, hosts } = await fetchStagingData();
         setAllHosts(hosts);
         setAllEpisodes(episodes);
-        const match = (episodeDbId
-          ? episodes.find((e) => (e as any)._dbId === episodeDbId)
-          : undefined) || episodes.find((e) => e.slug === slug);
-        setEpisode(match || null);
+        setEpisode(episodes.find((e) => e.slug === slug) || null);
       } catch (err) {
         console.error("Staging fetch failed:", err);
       } finally {
         setLoading(false);
       }
     })();
-  }, [slug, episodeDbId]);
+  }, [slug]);
 
   // Override the EpisodeDataContext so child components read DB data
   const ctxValue = useMemo(() => ({
@@ -145,13 +138,9 @@ const StagingPreview = () => {
   return (
     <EpisodeDataContext.Provider value={ctxValue}>
       {/* Staging banner */}
-      <div className="fixed top-0 left-0 right-0 z-[100] bg-amber-400 text-black text-center text-sm font-bold py-2 tracking-wide shadow-md flex items-center justify-center gap-2">
-        <span className="inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse" />
-        PREVIEW MODE — Changes are not live
+      <div className="fixed top-0 left-0 right-0 z-[100] bg-amber-400 text-black text-center text-xs font-bold py-1.5">
+        ⚠️ STAGING PREVIEW — This is not the live page
       </div>
-
-      {/* Dashed border overlay to reinforce preview context */}
-      <div className="fixed inset-0 z-[99] pointer-events-none border-[3px] border-dashed border-amber-400/60" />
 
       <div style={{ paddingTop: 32 }}>
         <EpisodeOverlayLayout>

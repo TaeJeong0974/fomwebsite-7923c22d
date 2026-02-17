@@ -170,7 +170,6 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
   const [form, setForm] = useState(EMPTY);
   const [topicInput, setTopicInput] = useState("");
   const [saving, setSaving] = useState(false);
-  const [pushing, setPushing] = useState(false);
   const [allHosts, setAllHosts] = useState<Host[]>([]);
   const [allSpeakers, setAllSpeakers] = useState<Speaker[]>([]);
   const [selectedSpeakerId, setSelectedSpeakerId] = useState<string | null>(null);
@@ -257,8 +256,8 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
     }));
   };
 
-  const doSave = async (): Promise<string | null> => {
-    if (!form.slug || !form.title) { toast.error("Slug and title are required"); return null; }
+  const handleSave = async () => {
+    if (!form.slug || !form.title) { toast.error("Slug and title are required"); return; }
     setSaving(true);
     const payload: Record<string, unknown> = {
       slug: form.slug, title: form.title, subtitle: form.subtitle || null,
@@ -288,41 +287,11 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
         await adminApi("set-episode-hosts", { episode_id: savedId, host_ids: selectedHostIds });
       }
       toast.success(episodeId ? "Updated" : "Created");
-      setSaving(false);
-      return savedId || null;
+      onDone();
     } catch (err: unknown) {
       toast.error(err instanceof Error ? err.message : "Save failed");
-      setSaving(false);
-      return null;
     }
-  };
-
-  const handleSave = async () => {
-    const savedId = await doSave();
-    if (savedId) onDone();
-  };
-
-  const handlePreview = async () => {
-    const savedId = await doSave();
-    if (savedId) {
-      window.open(`${window.location.origin}/admin/preview/${form.slug}?id=${savedId}`, "_blank");
-    }
-  };
-
-  const handlePushToLive = async () => {
-    if (!episodeId) return;
-    const confirmed = window.confirm("This will save your changes and push this episode to the live site. Continue?");
-    if (!confirmed) return;
-    setPushing(true);
-    try {
-      const savedId = await doSave();
-      if (!savedId) { setPushing(false); return; }
-      await adminApi("promote-to-live", { id: savedId });
-      toast.success("🚀 Pushed to live!");
-    } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Push to live failed");
-    }
-    setPushing(false);
+    setSaving(false);
   };
 
   const addTopic = () => {
@@ -369,17 +338,15 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
         <span className="text-xs font-bold" style={MAC_TITLE_FONT}>
           {episodeId ? (form.title || "Untitled Episode") : "New Episode"}
         </span>
-        <div className="flex gap-1 items-center">
+        <div className="flex gap-1">
           {form.slug && (
              <>
               <MacButton onClick={() => setShowCardPreview(true)}>
-                👁 Preview Card
+                🃏 Card
               </MacButton>
-              {episodeId && (
-                <MacButton onClick={handlePreview} disabled={saving}>
-                  👁 Preview Page
-                </MacButton>
-              )}
+              <MacButton onClick={() => window.open(`${window.location.origin}/admin/preview/${form.slug}`, "_blank")}>
+                👁 Page
+              </MacButton>
             </>
           )}
           <MacButton onClick={onDone}>← Back</MacButton>
@@ -481,7 +448,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
             <MacTextarea value={form.pull_quote} onChange={(e) => set("pull_quote", e.target.value)} placeholder="A memorable quote…" minHeight="60px" />
             <div className="space-y-1">
               <MacLabel>Attribution</MacLabel>
-              <MacSelect
+            <MacSelect
                 value={form.pull_quote_attribution}
                 onChange={(e) => set("pull_quote_attribution", e.target.value)}
               >
@@ -521,23 +488,20 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
         {/* ── 7. About the Speaker ── */}
         <MacWindow title="About the Speaker">
           <div className="p-3 space-y-2">
-            <div className="space-y-1">
-              <MacLabel>Speaker</MacLabel>
-              <div className="flex gap-1">
-                <MacSelect
-                  value=""
-                  onChange={(e) => {
-                    const speaker = allSpeakers.find((s) => s.id === e.target.value);
-                    applySpeaker(speaker || null);
-                  }}
-                >
-                  <option value="">— Choose a speaker —</option>
-                  {allSpeakers.filter((s) => s.id !== selectedSpeakerId).map((s) => (
-                    <option key={s.id} value={s.id}>{s.name}{s.company ? ` · ${s.company}` : ""}</option>
-                  ))}
-                </MacSelect>
-                {onSwitchToSpeakers && <MacButton onClick={onSwitchToSpeakers}>+ New</MacButton>}
-              </div>
+            <div className="flex gap-1">
+              <MacSelect
+                value=""
+                onChange={(e) => {
+                  const speaker = allSpeakers.find((s) => s.id === e.target.value);
+                  applySpeaker(speaker || null);
+                }}
+              >
+                <option value="">— Choose a speaker —</option>
+                {allSpeakers.filter((s) => s.id !== selectedSpeakerId).map((s) => (
+                  <option key={s.id} value={s.id}>{s.name}{s.company ? ` · ${s.company}` : ""}</option>
+                ))}
+              </MacSelect>
+              {onSwitchToSpeakers && <MacButton onClick={onSwitchToSpeakers}>+ New</MacButton>}
             </div>
             {selectedSpeakerId && (
               <div className="flex flex-wrap gap-1">
@@ -564,22 +528,19 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
         {/* ── 8. About the Host ── */}
         <MacWindow title="About the Host">
           <div className="p-3 space-y-2">
-            <div className="space-y-1">
-              <MacLabel>Host</MacLabel>
-              <MacSelect
-                value=""
-                onChange={(e) => {
-                  if (e.target.value && !selectedHostIds.includes(e.target.value)) {
-                    setSelectedHostIds((prev) => [...prev, e.target.value]);
-                  }
-                }}
-              >
-                <option value="">— Choose a host —</option>
-                {allHosts.filter((h) => !selectedHostIds.includes(h.id)).map((h) => (
-                  <option key={h.id} value={h.id}>{h.name}</option>
-                ))}
-              </MacSelect>
-            </div>
+            <MacSelect
+              value=""
+              onChange={(e) => {
+                if (e.target.value && !selectedHostIds.includes(e.target.value)) {
+                  setSelectedHostIds((prev) => [...prev, e.target.value]);
+                }
+              }}
+            >
+              <option value="">— Choose a host —</option>
+              {allHosts.filter((h) => !selectedHostIds.includes(h.id)).map((h) => (
+                <option key={h.id} value={h.id}>{h.name}</option>
+              ))}
+            </MacSelect>
             {selectedHostIds.length > 0 && (
               <div className="flex flex-wrap gap-1">
                 {selectedHostIds.map((hostId) => {
@@ -644,16 +605,11 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
           </div>
         </MacWindow>
 
-        {/* ── Save & Push ── */}
-        <div className="flex gap-2 pt-2 items-center">
-          <MacButton primary onClick={handleSave} disabled={saving || pushing}>
+        {/* ── Save ── */}
+        <div className="flex gap-2 pt-2">
+          <MacButton primary onClick={handleSave} disabled={saving}>
             {saving ? "Saving…" : episodeId ? "Save" : "Create"}
           </MacButton>
-          {episodeId && (
-            <MacButton onClick={handlePushToLive} disabled={saving || pushing}>
-              {pushing ? "Pushing…" : "🚀 Push to Live"}
-            </MacButton>
-          )}
           <MacButton onClick={onDone}>Cancel</MacButton>
         </div>
       </div>
