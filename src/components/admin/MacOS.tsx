@@ -241,3 +241,50 @@ export const MacFieldHint = ({ children }: { children: ReactNode }) => (
 export const MacSeparator = () => (
   <div className="border-t border-black my-2" />
 );
+
+/* ── Select ── */
+export const MacSelect = ({
+  value,
+  onChange,
+  children,
+  className = "",
+}: {
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  children: ReactNode;
+  className?: string;
+}) => (
+  <select
+    value={value}
+    onChange={onChange}
+    className={`
+      w-full px-2 py-1 text-xs
+      border border-black bg-white text-black
+      outline-none focus:ring-0
+      appearance-none cursor-default
+      bg-[length:8px] bg-[right_6px_center] bg-no-repeat
+      [background-image:url("data:image/svg+xml,%3Csvg%20width='8'%20height='5'%20viewBox='0%200%208%205'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M1%201L4%204L7%201'%20stroke='black'%20stroke-width='1.5'/%3E%3C/svg%3E")]
+      ${className}
+    `}
+    style={{
+      fontFamily: "'Geneva', 'Helvetica Neue', monospace",
+      boxShadow: "inset 1px 1px 0px #999, inset -1px -1px 0px #fff",
+    }}
+  >
+    {children}
+  </select>
+);
+
+/* ── Table wrapper ── */
+export const MacTable = ({ children, className = "" }: { children: ReactNode; className?: string }) => (
+  <div
+    className={`border border-black overflow-x-auto ${className}`}
+    style={{ boxShadow: "inset 1px 1px 0px #999" }}
+  >
+    {children}
+  </div>
+);
+
+/* ── Shared font style constant ── */
+export const MAC_FONT = { fontFamily: "'Geneva', 'Helvetica Neue', monospace" } as const;
+export const MAC_TITLE_FONT = { fontFamily: "'Chicago', 'Geneva', 'Helvetica Neue', monospace" } as const;

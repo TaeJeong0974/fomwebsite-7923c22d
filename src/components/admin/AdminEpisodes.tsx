@@ -8,7 +8,7 @@ import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, us
 import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import EpisodeForm from "./EpisodeForm";
-import { MacButton, MacStatusChip } from "./MacOS";
+import { MacButton, MacStatusChip, MacTable, MAC_FONT, MAC_TITLE_FONT } from "./MacOS";
 
 interface Episode {
   id: string;
@@ -23,7 +23,7 @@ interface Episode {
   updated_at: string | null;
 }
 
-const macFont = { fontFamily: "'Geneva', 'Helvetica Neue', monospace" };
+const macFont = MAC_FONT;
 
 // ── Sortable Row ──
 const SortableRow = ({ ep, stale, isPromoting, canPromote, onEdit, onDelete, onPromote }: {
@@ -203,7 +203,7 @@ const AdminEpisodes = ({ onSwitchToSpeakers }: { onSwitchToSpeakers?: () => void
   return (
     <div className="space-y-3">
       <div className="flex justify-between items-center">
-        <span className="text-xs font-bold" style={{ fontFamily: "'Chicago', 'Geneva', monospace" }}>
+        <span className="text-xs font-bold" style={MAC_TITLE_FONT}>
           Episodes ({episodes.length})
         </span>
         <div className="flex items-center gap-1">
@@ -215,7 +215,7 @@ const AdminEpisodes = ({ onSwitchToSpeakers }: { onSwitchToSpeakers?: () => void
         </div>
       </div>
 
-      <div className="border border-black overflow-x-auto" style={{ boxShadow: "inset 1px 1px 0px #999" }}>
+      <MacTable>
         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
           <SortableContext items={episodes.map((ep) => ep.id)} strategy={verticalListSortingStrategy}>
             <table className="w-full min-w-[600px]">
@@ -252,7 +252,7 @@ const AdminEpisodes = ({ onSwitchToSpeakers }: { onSwitchToSpeakers?: () => void
             </table>
           </SortableContext>
         </DndContext>
-      </div>
+      </MacTable>
     </div>
   );
 };

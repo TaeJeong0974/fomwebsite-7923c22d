@@ -3,9 +3,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { Upload } from "lucide-react";
 import { adminApi } from "@/lib/adminApi";
 import { toast } from "sonner";
-import { MacButton, MacWindow, MacInput, MacTextarea, MacLabel, MacFieldHint } from "./MacOS";
+import { MacButton, MacWindow, MacInput, MacTextarea, MacLabel, MacFieldHint, MacTable, MAC_FONT, MAC_TITLE_FONT } from "./MacOS";
 
-const macFont = { fontFamily: "'Geneva', 'Helvetica Neue', monospace" };
+const macFont = MAC_FONT;
 
 interface Speaker {
   id: string;
@@ -117,7 +117,7 @@ const AdminSpeakers = () => {
     return (
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <span className="text-xs font-bold" style={{ fontFamily: "'Chicago', 'Geneva', monospace" }}>
+          <span className="text-xs font-bold" style={MAC_TITLE_FONT}>
             {editing.id === "new" ? "New Speaker" : "Edit Speaker"}
           </span>
           <MacButton onClick={cancel}>← Back</MacButton>
@@ -167,13 +167,13 @@ const AdminSpeakers = () => {
   return (
     <div className="space-y-3">
       <div className="flex justify-between items-center">
-        <span className="text-xs font-bold" style={{ fontFamily: "'Chicago', 'Geneva', monospace" }}>
+        <span className="text-xs font-bold" style={MAC_TITLE_FONT}>
           Speakers ({speakers.length})
         </span>
         <MacButton primary onClick={startCreate}>+ New</MacButton>
       </div>
 
-      <div className="border border-black overflow-hidden" style={{ boxShadow: "inset 1px 1px 0px #999" }}>
+      <MacTable>
         <table className="w-full">
           <thead>
             <tr className="border-b-2 border-black bg-white">
@@ -202,7 +202,7 @@ const AdminSpeakers = () => {
             )}
           </tbody>
         </table>
-      </div>
+      </MacTable>
     </div>
   );
 };

@@ -6,13 +6,13 @@ import { Upload, GripVertical, ChevronUp, ChevronDown, Eye, EyeOff } from "lucid
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from "@dnd-kit/core";
 import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { MacWindow, MacButton, MacInput, MacTextarea, MacLabel, MacFieldHint } from "./MacOS";
+import { MacWindow, MacButton, MacInput, MacTextarea, MacLabel, MacFieldHint, MacSelect, MAC_FONT, MAC_TITLE_FONT } from "./MacOS";
 import PodcastCard from "@/components/podcast/PodcastCard";
 import type { PodcastEpisode } from "@/lib/podcastData";
 import { EPISODE_IMAGES, POSTER_IMAGES, OG_IMAGES } from "@/lib/episodeImages";
 import DraggableWindow from "./DraggableWindow";
 
-const macFont = { fontFamily: "'Geneva', 'Helvetica Neue', monospace" };
+const macFont = MAC_FONT;
 
 interface Speaker {
   id: string;
@@ -164,9 +164,7 @@ const CardPreviewWindow = ({ form, onClose }: { form: typeof EMPTY; onClose: () 
   );
 };
 
-// ── Mac select styling ──
-const macSelectClass = "w-full px-2 py-1.5 text-sm border-2 border-black bg-[#555] text-white outline-none focus:ring-0 appearance-none cursor-default bg-[length:10px] bg-[right_6px_center] bg-no-repeat" +
-  " [background-image:url(\"data:image/svg+xml,%3Csvg%20width='10'%20height='6'%20viewBox='0%200%2010%206'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M1%201L5%205L9%201'%20stroke='white'%20stroke-width='1.5'/%3E%3C/svg%3E\")]";
+// Select styling now uses MacSelect component
 
 const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
   const [form, setForm] = useState(EMPTY);
@@ -337,7 +335,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
   return (
     <div>
       <div className="flex items-center justify-between mb-4">
-        <span className="text-xs font-bold" style={{ fontFamily: "'Chicago', 'Geneva', monospace" }}>
+        <span className="text-xs font-bold" style={MAC_TITLE_FONT}>
           {episodeId ? (form.title || "Untitled Episode") : "New Episode"}
         </span>
         <div className="flex gap-1">
@@ -452,18 +450,16 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
             <MacTextarea value={form.pull_quote} onChange={(e) => set("pull_quote", e.target.value)} placeholder="A memorable quote…" minHeight="60px" />
             <div className="space-y-1">
               <MacLabel>Attribution</MacLabel>
-              <select
-                className={macSelectClass}
+            <MacSelect
                 value={form.pull_quote_attribution}
                 onChange={(e) => set("pull_quote_attribution", e.target.value)}
-                style={macFont}
               >
                 <option value="">Select speaker…</option>
                 {form.guest_name && <option value={form.guest_name}>{form.guest_name} (Guest)</option>}
                 {allHosts.map((h) => (
                   <option key={h.id} value={h.name}>{h.name} (Host)</option>
                 ))}
-              </select>
+              </MacSelect>
             </div>
           </div>
         </MacWindow>
@@ -495,20 +491,18 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
         <MacWindow title="About the Speaker">
           <div className="p-3 space-y-2">
             <div className="flex gap-1">
-              <select
-                className={macSelectClass}
+              <MacSelect
                 value=""
                 onChange={(e) => {
                   const speaker = allSpeakers.find((s) => s.id === e.target.value);
                   applySpeaker(speaker || null);
                 }}
-                style={macFont}
               >
                 <option value="">— Choose a speaker —</option>
                 {allSpeakers.filter((s) => s.id !== selectedSpeakerId).map((s) => (
                   <option key={s.id} value={s.id}>{s.name}{s.company ? ` · ${s.company}` : ""}</option>
                 ))}
-              </select>
+              </MacSelect>
               {onSwitchToSpeakers && <MacButton onClick={onSwitchToSpeakers}>+ New</MacButton>}
             </div>
             {selectedSpeakerId && (
@@ -536,21 +530,19 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
         {/* ── 8. About the Host ── */}
         <MacWindow title="About the Host">
           <div className="p-3 space-y-2">
-            <select
-              className={macSelectClass}
+            <MacSelect
               value=""
               onChange={(e) => {
                 if (e.target.value && !selectedHostIds.includes(e.target.value)) {
                   setSelectedHostIds((prev) => [...prev, e.target.value]);
                 }
               }}
-              style={macFont}
             >
               <option value="">— Choose a host —</option>
               {allHosts.filter((h) => !selectedHostIds.includes(h.id)).map((h) => (
                 <option key={h.id} value={h.id}>{h.name}</option>
               ))}
-            </select>
+            </MacSelect>
             {selectedHostIds.length > 0 && (
               <div className="flex flex-wrap gap-1">
                 {selectedHostIds.map((hostId) => {
