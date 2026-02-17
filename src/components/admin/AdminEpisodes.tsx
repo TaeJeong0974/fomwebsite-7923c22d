@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import { adminApi } from "@/lib/adminApi";
 import { toast } from "sonner";
 import { podcastEpisodes, podcastHosts } from "@/lib/podcastData";
-import { ArrowUpCircle, CheckCircle2, Database, GripVertical, Loader2, Plus, Pencil, Trash2 } from "lucide-react";
+import { GripVertical, Loader2 } from "lucide-react";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from "@dnd-kit/core";
 import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import EpisodeForm from "./EpisodeForm";
+import { MacButton, MacStatusChip } from "./MacOS";
 
 interface Episode {
   id: string;
@@ -21,16 +22,11 @@ interface Episode {
   updated_at: string | null;
 }
 
-const STATUS_CHIP: Record<string, string> = {
-  published: "bg-green-100 text-green-800",
-  upcoming: "bg-amber-100 text-amber-800",
-  draft: "bg-gray-100 text-gray-600",
-  deleted: "bg-red-100 text-red-700",
-};
+const macFont = { fontFamily: "'Geneva', 'Helvetica Neue', monospace" };
 
 // ── Sortable Row ──
-const SortableRow = ({ ep, stale, isPromoting, canPromote, promoting, onEdit, onDelete, onPromote }: {
-  ep: Episode; stale: boolean; isPromoting: boolean; canPromote: boolean; promoting: string | null;
+const SortableRow = ({ ep, stale, isPromoting, canPromote, onEdit, onDelete, onPromote }: {
+  ep: Episode; stale: boolean; isPromoting: boolean; canPromote: boolean;
   onEdit: (id: string) => void; onDelete: (id: string) => void; onPromote: (id: string) => void;
 }) => {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: ep.id });
@@ -43,62 +39,37 @@ const SortableRow = ({ ep, stale, isPromoting, canPromote, promoting, onEdit, on
   };
 
   return (
-    <tr ref={setNodeRef} style={style} className="border-b border-gray-50 last:border-0 hover:bg-gray-50/80 transition-colors">
-      <td className="px-2 sm:px-3 py-3.5 sm:py-5">
-        <button type="button" {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing touch-none p-1 text-gray-400 hover:text-gray-600">
-          <GripVertical className="h-4 w-4" />
+    <tr ref={setNodeRef} style={style} className="border-b border-black/20 last:border-0 hover:bg-black/5">
+      <td className="px-2 py-2">
+        <button type="button" {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing touch-none p-0.5">
+          <GripVertical className="h-3 w-3" />
         </button>
       </td>
-      <td className="px-3 sm:px-6 py-3.5 sm:py-5 text-sm text-gray-400 font-medium">{ep.episode_number ?? "—"}</td>
-      <td className="px-3 sm:px-6 py-3.5 sm:py-5 text-sm font-medium text-gray-900">{ep.title}</td>
-      <td className="px-3 sm:px-6 py-3.5 sm:py-5 text-sm text-gray-500 hidden sm:table-cell">{ep.guest_name || "—"}</td>
-      <td className="px-3 sm:px-6 py-3.5 sm:py-5 text-sm text-gray-500 hidden sm:table-cell">{ep.guest_company || "—"}</td>
-      <td className="px-3 sm:px-6 py-3.5 sm:py-5">
-        <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium capitalize ${STATUS_CHIP[ep.status] || "bg-gray-100 text-gray-600"}`}>
-          {ep.status || (ep.published ? "published" : "draft")}
-        </span>
+      <td className="px-2 py-2 text-[11px] text-gray-500" style={macFont}>{ep.episode_number ?? "—"}</td>
+      <td className="px-2 py-2 text-[11px] font-bold" style={macFont}>{ep.title}</td>
+      <td className="px-2 py-2 text-[11px] hidden sm:table-cell" style={macFont}>{ep.guest_name || "—"}</td>
+      <td className="px-2 py-2 text-[11px] hidden sm:table-cell" style={macFont}>{ep.guest_company || "—"}</td>
+      <td className="px-2 py-2">
+        <MacStatusChip status={ep.status || (ep.published ? "published" : "draft")} />
       </td>
-      <td className="px-3 sm:px-6 py-3.5 sm:py-5 text-center hidden sm:table-cell">
+      <td className="px-2 py-2 text-center hidden sm:table-cell">
         {canPromote ? (
-          <button
+          <MacButton
             onClick={() => onPromote(ep.id)}
             disabled={isPromoting}
-            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-              !stale
-                ? "bg-green-50 text-green-700 hover:bg-green-100"
-                : "bg-amber-50 text-amber-700 hover:bg-amber-100"
-            } disabled:opacity-50`}
-            title={stale ? "Staging has unpublished changes" : "Live is up to date"}
+            primary={stale}
+            className="text-[10px] px-2 py-0.5"
           >
-            {isPromoting ? (
-              <Loader2 className="h-3.5 w-3.5 animate-spin" />
-            ) : !stale ? (
-              <CheckCircle2 className="h-3.5 w-3.5" />
-            ) : (
-              <ArrowUpCircle className="h-3.5 w-3.5" />
-            )}
-            {isPromoting ? "Pushing…" : !stale ? "Live" : "Push"}
-          </button>
+            {isPromoting ? "…" : !stale ? "✓ Live" : "Push"}
+          </MacButton>
         ) : (
-          <span className="text-xs text-gray-300">—</span>
+          <span className="text-[10px] text-gray-400" style={macFont}>—</span>
         )}
       </td>
-      <td className="px-3 sm:px-6 py-3.5 sm:py-5 text-right">
+      <td className="px-2 py-2 text-right">
         <div className="inline-flex items-center gap-1">
-          <button
-            onClick={() => onEdit(ep.id)}
-            className="p-2 rounded-full text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors"
-            title="Edit"
-          >
-            <Pencil className="h-4 w-4" />
-          </button>
-          <button
-            onClick={() => onDelete(ep.id)}
-            className="p-2 rounded-full text-gray-400 hover:text-red-600 hover:bg-red-50 transition-colors"
-            title="Delete"
-          >
-            <Trash2 className="h-4 w-4" />
-          </button>
+          <MacButton onClick={() => onEdit(ep.id)} className="text-[10px] px-2 py-0.5">Edit</MacButton>
+          <MacButton onClick={() => onDelete(ep.id)} className="text-[10px] px-2 py-0.5">Del</MacButton>
         </div>
       </td>
     </tr>
@@ -112,7 +83,6 @@ const AdminEpisodes = ({ onSwitchToSpeakers }: { onSwitchToSpeakers?: () => void
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [promoting, setPromoting] = useState<string | null>(null);
-
   const [seeding, setSeeding] = useState(false);
 
   const sensors = useSensors(
@@ -187,11 +157,9 @@ const AdminEpisodes = ({ onSwitchToSpeakers }: { onSwitchToSpeakers?: () => void
     const newIndex = episodes.findIndex((ep) => ep.id === over.id);
     const reordered = arrayMove(episodes, oldIndex, newIndex);
 
-    // Update local state immediately
     const updated = reordered.map((ep, i) => ({ ...ep, episode_number: i + 1 }));
     setEpisodes(updated);
 
-    // Persist to backend
     try {
       await adminApi("reorder-episodes", {
         orders: updated.map((ep) => ({ id: ep.id, episode_number: ep.episode_number })),
@@ -199,7 +167,7 @@ const AdminEpisodes = ({ onSwitchToSpeakers }: { onSwitchToSpeakers?: () => void
       toast.success("Order saved");
     } catch (err: unknown) {
       toast.error(err instanceof Error ? err.message : "Reorder failed");
-      fetchEpisodes(); // rollback
+      fetchEpisodes();
     }
   };
 
@@ -212,77 +180,61 @@ const AdminEpisodes = ({ onSwitchToSpeakers }: { onSwitchToSpeakers?: () => void
   if (editing) return <EpisodeForm episodeId={editing} onDone={() => { setEditing(null); fetchEpisodes(); }} onSwitchToSpeakers={onSwitchToSpeakers} />;
   if (creating) return <EpisodeForm onDone={() => { setCreating(false); fetchEpisodes(); }} onSwitchToSpeakers={onSwitchToSpeakers} />;
 
-  if (loading) return <div className="py-16 text-center text-muted-foreground text-sm">Loading episodes…</div>;
+  if (loading) return <div className="py-8 text-center text-[11px]" style={macFont}>Loading episodes…</div>;
 
   if (error) return (
-    <div className="py-16 text-center space-y-3">
-      <p className="text-destructive text-sm">Failed to load episodes: {error}</p>
-      <button onClick={fetchEpisodes} className="text-sm text-primary hover:underline">Retry</button>
+    <div className="py-8 text-center space-y-2">
+      <p className="text-[11px]" style={macFont}>Failed to load episodes: {error}</p>
+      <MacButton onClick={fetchEpisodes}>Retry</MacButton>
     </div>
   );
 
   return (
-    <div className="space-y-4 sm:space-y-5">
+    <div className="space-y-3">
       <div className="flex justify-between items-center">
-        <h2 className="font-semibold text-dark-foreground" style={{ fontSize: 'clamp(1.25rem, 3vw, 2rem)' }}>Episodes</h2>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={handleSeed}
-            disabled={seeding}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-gray-200 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-all disabled:opacity-50"
-            title="Import episodes from site data"
-          >
-            {seeding ? <Loader2 className="h-4 w-4 animate-spin" /> : <Database className="h-4 w-4" />}
-            {seeding ? "Importing…" : "Import from Site"}
-          </button>
-        <button
-          onClick={() => setCreating(true)}
-          className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-medium shadow-sm hover:shadow-md hover:brightness-105 transition-all"
-        >
-          <Plus className="h-4 w-4" />
-          New Episode
-        </button>
+        <span className="text-xs font-bold" style={{ fontFamily: "'Chicago', 'Geneva', monospace" }}>
+          Episodes ({episodes.length})
+        </span>
+        <div className="flex items-center gap-1">
+          <MacButton onClick={handleSeed} disabled={seeding}>
+            {seeding ? <Loader2 className="h-3 w-3 animate-spin" /> : null}
+            {seeding ? "Importing…" : "Import"}
+          </MacButton>
+          <MacButton primary onClick={() => setCreating(true)}>+ New</MacButton>
         </div>
       </div>
 
-      <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-200 shadow-sm overflow-x-auto">
+      <div className="border border-black overflow-x-auto" style={{ boxShadow: "inset 1px 1px 0px #999" }}>
         <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
           <SortableContext items={episodes.map((ep) => ep.id)} strategy={verticalListSortingStrategy}>
-            <table className="w-full min-w-[650px]">
+            <table className="w-full min-w-[600px]">
               <thead>
-                <tr className="border-b border-gray-100">
-                  <th className="w-10 px-2 sm:px-3 py-3 sm:py-4"></th>
-                  <th className="text-left px-3 sm:px-6 py-3 sm:py-4 text-xs font-semibold uppercase tracking-wider text-gray-500">#</th>
-                  <th className="text-left px-3 sm:px-6 py-3 sm:py-4 text-xs font-semibold uppercase tracking-wider text-gray-500">Title</th>
-                  <th className="text-left px-3 sm:px-6 py-3 sm:py-4 text-xs font-semibold uppercase tracking-wider text-gray-500 hidden sm:table-cell">Guest</th>
-                  <th className="text-left px-3 sm:px-6 py-3 sm:py-4 text-xs font-semibold uppercase tracking-wider text-gray-500 hidden sm:table-cell">Company</th>
-                  <th className="text-left px-3 sm:px-6 py-3 sm:py-4 text-xs font-semibold uppercase tracking-wider text-gray-500">Status</th>
-                  <th className="text-center px-3 sm:px-6 py-3 sm:py-4 text-xs font-semibold uppercase tracking-wider text-gray-500 hidden sm:table-cell">Live</th>
-                  <th className="text-right px-3 sm:px-6 py-3 sm:py-4 text-xs font-semibold uppercase tracking-wider text-gray-500">Actions</th>
+                <tr className="border-b-2 border-black bg-white">
+                  <th className="w-8 px-2 py-1.5" />
+                  <th className="text-left px-2 py-1.5 text-[10px] font-bold uppercase" style={macFont}>#</th>
+                  <th className="text-left px-2 py-1.5 text-[10px] font-bold uppercase" style={macFont}>Title</th>
+                  <th className="text-left px-2 py-1.5 text-[10px] font-bold uppercase hidden sm:table-cell" style={macFont}>Guest</th>
+                  <th className="text-left px-2 py-1.5 text-[10px] font-bold uppercase hidden sm:table-cell" style={macFont}>Company</th>
+                  <th className="text-left px-2 py-1.5 text-[10px] font-bold uppercase" style={macFont}>Status</th>
+                  <th className="text-center px-2 py-1.5 text-[10px] font-bold uppercase hidden sm:table-cell" style={macFont}>Live</th>
+                  <th className="text-right px-2 py-1.5 text-[10px] font-bold uppercase" style={macFont}>Actions</th>
                 </tr>
               </thead>
               <tbody>
-                {episodes.map((ep) => {
-                  const stale = isLiveStale(ep);
-                  const isPromotingEp = promoting === ep.id;
-                  const canPromote = ep.status === "published" || ep.status === "upcoming";
-
-                  return (
-                    <SortableRow
-                      key={ep.id}
-                      ep={ep}
-                      stale={stale}
-                      isPromoting={isPromotingEp}
-                      canPromote={canPromote}
-                      promoting={promoting}
-                      onEdit={setEditing}
-                      onDelete={handleDelete}
-                      onPromote={handlePromote}
-                    />
-                  );
-                })}
+                {episodes.map((ep) => (
+                  <SortableRow
+                    key={ep.id}
+                    ep={ep}
+                    stale={isLiveStale(ep)}
+                    isPromoting={promoting === ep.id}
+                    canPromote={ep.status === "published" || ep.status === "upcoming"}
+                    onEdit={setEditing}
+                    onDelete={handleDelete}
+                    onPromote={handlePromote}
+                  />
+                ))}
                 {episodes.length === 0 && (
-                  <tr><td colSpan={8} className="px-6 py-12 text-center text-gray-400 text-sm">No episodes yet</td></tr>
+                  <tr><td colSpan={8} className="px-4 py-8 text-center text-[11px] text-gray-400" style={macFont}>No episodes yet</td></tr>
                 )}
               </tbody>
             </table>

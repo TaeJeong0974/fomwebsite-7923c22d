@@ -2,18 +2,13 @@ import { useEffect, useRef, useState } from "react";
 import { adminApi } from "@/lib/adminApi";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Upload, GripVertical, ChevronUp, ChevronDown, Info } from "lucide-react";
+import { Upload, GripVertical, ChevronUp, ChevronDown } from "lucide-react";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from "@dnd-kit/core";
 import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { MacWindow, MacButton, MacInput, MacTextarea, MacLabel, MacFieldHint } from "./MacOS";
 
-// ── Inline Hint ──
-const FieldHint = ({ children }: { children: React.ReactNode }) => (
-  <p className="flex items-start gap-1.5 mt-1 text-xs leading-snug text-gray-500">
-    <Info className="h-3.5 w-3.5 mt-px shrink-0 text-gray-400" />
-    <span>{children}</span>
-  </p>
-);
+const macFont = { fontFamily: "'Geneva', 'Helvetica Neue', monospace" };
 
 interface Speaker {
   id: string;
@@ -36,7 +31,6 @@ interface Host {
   id: string;
   name: string;
 }
-
 
 const EMPTY = {
   slug: "", title: "", subtitle: "", episode_number: 0,
@@ -61,24 +55,25 @@ const SortableTopicItem = ({ id, topic, index, total, onRemove, onMove, onEdit }
   const style = { transform: CSS.Transform.toString(transform), transition, opacity: isDragging ? 0.5 : 1, zIndex: isDragging ? 10 : undefined };
 
   return (
-    <div ref={setNodeRef} style={style} className="flex items-center gap-2 py-2 px-3 rounded-xl bg-gray-50 border border-gray-200 group">
-      <button type="button" {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing touch-none p-0.5 text-gray-400 hover:text-gray-600 shrink-0">
-        <GripVertical className="h-3.5 w-3.5" />
+    <div ref={setNodeRef} style={style} className="flex items-center gap-1.5 py-1 px-1.5 border-b border-black/20 last:border-0 group">
+      <button type="button" {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing touch-none p-0.5 shrink-0">
+        <GripVertical className="h-3 w-3" />
       </button>
       <input
         type="text"
         value={topic}
         onChange={(e) => onEdit(index, e.target.value)}
-        className="text-sm text-gray-900 flex-1 bg-transparent border-none outline-none focus:ring-0 p-0"
+        className="text-[11px] flex-1 bg-transparent border-none outline-none focus:ring-0 p-0"
+        style={macFont}
       />
       <div className="flex items-center gap-0.5 shrink-0">
-        <button type="button" onClick={() => onMove(index, -1)} disabled={index === 0} className="p-0.5 rounded text-gray-400 hover:text-gray-700 disabled:opacity-30 transition-colors">
-          <ChevronUp className="h-3.5 w-3.5" />
+        <button type="button" onClick={() => onMove(index, -1)} disabled={index === 0} className="p-0.5 disabled:opacity-20">
+          <ChevronUp className="h-3 w-3" />
         </button>
-        <button type="button" onClick={() => onMove(index, 1)} disabled={index === total - 1} className="p-0.5 rounded text-gray-400 hover:text-gray-700 disabled:opacity-30 transition-colors">
-          <ChevronDown className="h-3.5 w-3.5" />
+        <button type="button" onClick={() => onMove(index, 1)} disabled={index === total - 1} className="p-0.5 disabled:opacity-20">
+          <ChevronDown className="h-3 w-3" />
         </button>
-        <button type="button" onClick={() => onRemove(index)} className="p-0.5 rounded text-red-400 hover:text-red-600 transition-colors ml-1">×</button>
+        <button type="button" onClick={() => onRemove(index)} className="p-0.5 text-black hover:text-gray-600 ml-0.5 text-xs font-bold">×</button>
       </div>
     </div>
   );
@@ -107,7 +102,7 @@ const SortableTopicList = ({ topics, onReorder, onRemove, onMove, onEdit }: {
   return (
     <DndContext sensors={sensors} collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <SortableContext items={ids} strategy={verticalListSortingStrategy}>
-        <div className="space-y-1">
+        <div>
           {topics.map((t, i) => (
             <SortableTopicItem key={`topic-${i}`} id={`topic-${i}`} topic={t} index={i} total={topics.length} onRemove={onRemove} onMove={onMove} onEdit={onEdit} />
           ))}
@@ -117,17 +112,8 @@ const SortableTopicList = ({ topics, onReorder, onRemove, onMove, onEdit }: {
   );
 };
 
-// ── Section Container — Google-style white card with label on top ──
-const GlassSection = ({ label, children }: { label: string; number?: number; children: React.ReactNode }) => (
-  <div>
-    <h3 className="font-semibold text-dark-foreground mb-2" style={{ fontSize: 'clamp(1.25rem, 3vw, 2rem)' }}>{label}</h3>
-    <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
-      <div className="p-4 sm:p-6 space-y-6 sm:space-y-8">
-        {children}
-      </div>
-    </div>
-  </div>
-);
+// ── Mac select styling ──
+const macSelectClass = "w-full px-2 py-1 text-xs border border-black bg-white text-black outline-none focus:ring-0";
 
 const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
   const [form, setForm] = useState(EMPTY);
@@ -150,48 +136,50 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
           adminApi("get-episode-hosts", { episode_id: episodeId }),
         ]);
         const data = epResult.data;
-        if (!data) { toast.error("Failed to load"); onDone(); return; }
-        setForm({
-          slug: data.slug || "",
-          title: data.title || "",
-          subtitle: data.subtitle || "",
-          episode_number: data.episode_number || 0,
-          description: data.description || "",
-          full_description: data.full_description || "",
-          duration: data.duration || "",
-          guest_name: data.guest_name || "",
-          guest_title: data.guest_title || "",
-          guest_company: data.guest_company || "",
-          guest_company_domain: data.guest_company_domain || "",
-          guest_bio: data.guest_bio || "",
-          guest_image_url: data.guest_image_url || "",
-          guest_linkedin_url: data.guest_linkedin_url || "",
-          poster_image_url: data.poster_image_url || "",
-          og_image_url: data.og_image_url || "",
-          preview_video_url: data.preview_video_url || "",
-          apple_url: data.apple_url || "",
-          spotify_url: data.spotify_url || "",
-          youtube_url: data.youtube_url || "",
-          status: data.status || "draft",
-          publish_date: data.publish_date || "",
-          topics: (data.topics as string[]) || [],
-          pull_quote: data.pull_quote || "",
-          pull_quote_attribution: data.pull_quote_attribution || "",
-          subscribe_headline: data.subscribe_headline || "",
-        });
+        if (data) {
+          setForm({
+            slug: data.slug || "",
+            title: data.title || "",
+            subtitle: data.subtitle || "",
+            episode_number: data.episode_number || 0,
+            description: data.description || "",
+            full_description: data.full_description || "",
+            duration: data.duration || "",
+            guest_name: data.guest_name || "",
+            guest_title: data.guest_title || "",
+            guest_company: data.guest_company || "",
+            guest_company_domain: data.guest_company_domain || "",
+            guest_bio: data.guest_bio || "",
+            guest_image_url: data.guest_image_url || "",
+            guest_linkedin_url: data.guest_linkedin_url || "",
+            poster_image_url: data.poster_image_url || "",
+            og_image_url: data.og_image_url || "",
+            preview_video_url: data.preview_video_url || "",
+            apple_url: data.apple_url || "",
+            spotify_url: data.spotify_url || "",
+            youtube_url: data.youtube_url || "",
+            status: data.status || "draft",
+            publish_date: data.publish_date || "",
+            topics: (data.topics as string[]) || [],
+            pull_quote: data.pull_quote || "",
+            pull_quote_attribution: data.pull_quote_attribution || "",
+            subscribe_headline: data.subscribe_headline || "",
+          });
+        }
         setSelectedHostIds(hostsResult.data || []);
-      } catch {
-        toast.error("Failed to load episode");
-        onDone();
+      } catch (err: unknown) {
+        toast.error(err instanceof Error ? err.message : "Failed to load episode");
       }
     };
     load();
   }, [episodeId]);
 
-  // Auto-match speaker when episode data and speakers list are both loaded
+  // Auto-match speaker
   useEffect(() => {
-    if (!form.guest_name || allSpeakers.length === 0 || selectedSpeakerId) return;
-    const match = allSpeakers.find((s) => s.name === form.guest_name);
+    if (!form.guest_name || allSpeakers.length === 0) return;
+    const match = allSpeakers.find(
+      (s) => s.name.toLowerCase() === form.guest_name.toLowerCase()
+    );
     if (match) setSelectedSpeakerId(match.id);
   }, [form.guest_name, allSpeakers]);
 
@@ -216,42 +204,26 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
     }));
   };
 
-  const toggleHost = (hostId: string) => {
-    setSelectedHostIds((prev) =>
-      prev.includes(hostId) ? prev.filter((id) => id !== hostId) : [...prev, hostId]
-    );
-  };
-
   const handleSave = async () => {
     if (!form.slug || !form.title) { toast.error("Slug and title are required"); return; }
     setSaving(true);
     const payload: Record<string, unknown> = {
-      slug: form.slug,
-      title: form.title,
-      subtitle: form.subtitle || null,
+      slug: form.slug, title: form.title, subtitle: form.subtitle || null,
       episode_number: form.episode_number || null,
-      description: form.description || null,
-      full_description: form.full_description || null,
+      description: form.description || null, full_description: form.full_description || null,
       duration: form.duration || null,
-      guest_name: form.guest_name || null,
-      guest_title: form.guest_title || null,
-      guest_company: form.guest_company || null,
-      guest_company_domain: form.guest_company_domain || null,
-      guest_bio: form.guest_bio || null,
-      guest_image_url: form.guest_image_url || null,
+      guest_name: form.guest_name || null, guest_title: form.guest_title || null,
+      guest_company: form.guest_company || null, guest_company_domain: form.guest_company_domain || null,
+      guest_bio: form.guest_bio || null, guest_image_url: form.guest_image_url || null,
       guest_linkedin_url: form.guest_linkedin_url || null,
-      poster_image_url: form.poster_image_url || null,
-      og_image_url: form.og_image_url || null,
+      poster_image_url: form.poster_image_url || null, og_image_url: form.og_image_url || null,
       preview_video_url: form.preview_video_url || null,
-      apple_url: form.apple_url || null,
-      spotify_url: form.spotify_url || null,
+      apple_url: form.apple_url || null, spotify_url: form.spotify_url || null,
       youtube_url: form.youtube_url || null,
-      published: form.status === 'published',
-      status: form.status,
+      published: form.status === 'published', status: form.status,
       publish_date: form.publish_date || null,
       topics: form.topics,
-      pull_quote: form.pull_quote || null,
-      pull_quote_attribution: form.pull_quote_attribution || null,
+      pull_quote: form.pull_quote || null, pull_quote_attribution: form.pull_quote_attribution || null,
       subscribe_headline: form.subscribe_headline || null,
     };
     if (episodeId) payload.id = episodeId;
@@ -286,11 +258,9 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
     set("topics", updated);
   };
 
-
   const [uploading, setUploading] = useState<string | null>(null);
   const posterFileRef = useRef<HTMLInputElement>(null);
   const ogFileRef = useRef<HTMLInputElement>(null);
-  const guestFileRef = useRef<HTMLInputElement>(null);
 
   const handleImageUpload = async (file: File, fieldKey: string) => {
     if (!file.type.startsWith("image/")) { toast.error("Please select an image file"); return; }
@@ -309,311 +279,254 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
     setUploading(null);
   };
 
-  const fieldClass = "w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary/40 outline-none transition-all placeholder:text-gray-300";
-  const labelClass = "text-sm font-medium text-gray-700";
-
-  const groupDivider = (
-    <div className="flex items-center gap-4 py-2">
-      <div className="flex-1 h-px bg-gray-200" />
-    </div>
-  );
-
   return (
     <div>
-      <div className="flex items-center justify-between mb-8">
-        <h2 className="font-semibold text-dark-foreground leading-tight" style={{ fontSize: 'clamp(2rem, 5vw, 3.375rem)' }}>{episodeId ? (form.title || "Untitled Episode") : "New Episode"}</h2>
-        <button onClick={onDone} className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">← Back</button>
+      <div className="flex items-center justify-between mb-4">
+        <span className="text-xs font-bold" style={{ fontFamily: "'Chicago', 'Geneva', monospace" }}>
+          {episodeId ? (form.title || "Untitled Episode") : "New Episode"}
+        </span>
+        <MacButton onClick={onDone}>← Back</MacButton>
       </div>
 
-      <div className="space-y-8 sm:space-y-12 w-full">
-        {/* ── 1. Status & Publishing ── */}
-        <GlassSection label="Status" number={1}>
-          <div className="space-y-2">
-            <label className={labelClass}>Status</label>
-            <div className="flex gap-2 flex-wrap">
-              {([
-                { value: "draft", label: "Draft" },
-                { value: "upcoming", label: "Upcoming" },
-                { value: "published", label: "Published" },
-                { value: "deleted", label: "Deleted" },
-              ] as const).map(({ value, label }) => (
-                <button
+      <div className="space-y-4">
+        {/* ── 1. Status ── */}
+        <MacWindow title="Status">
+          <div className="p-3 space-y-2">
+            <MacLabel>Status</MacLabel>
+            <div className="flex gap-1 flex-wrap">
+              {(["draft", "upcoming", "published", "deleted"] as const).map((value) => (
+                <MacButton
                   key={value}
-                  type="button"
+                  primary={form.status === value}
                   onClick={() => set("status", value)}
-                  className={`px-4 py-2 rounded-full text-xs font-medium border transition-all ${
-                    form.status === value
-                      ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                      : "bg-gray-50 text-gray-500 border-gray-200 hover:border-gray-300"
-                  }`}
+                  className="capitalize text-[10px]"
                 >
-                  {label}
-                </button>
+                  {value}
+                </MacButton>
               ))}
             </div>
-            <p className="text-[11px] text-gray-500">
+            <p className="text-[10px] text-gray-500 italic" style={macFont}>
               {form.status === 'upcoming' ? 'Card on homepage, no detail page' :
                form.status === 'published' ? 'Full detail page with video' :
                form.status === 'draft' ? 'Not visible on site' : 'Soft-deleted'}
             </p>
+            {form.status === 'upcoming' && (
+              <div className="space-y-1 pt-1">
+                <MacLabel>Subscribe Headline</MacLabel>
+                <MacInput value={form.subscribe_headline} onChange={(e) => set("subscribe_headline", e.target.value)} placeholder="e.g. We'll Let You Know When Lena's Live" />
+                <MacFieldHint>Custom headline in the subscribe drawer</MacFieldHint>
+              </div>
+            )}
           </div>
-
-          {form.status === 'upcoming' && (
-            <div className="space-y-1">
-              <label className={labelClass}>Subscribe Headline</label>
-              <input className={fieldClass} value={form.subscribe_headline} onChange={(e) => set("subscribe_headline", e.target.value)} placeholder="e.g. We'll Let You Know When Lena's Live" />
-              <FieldHint>Custom headline shown in the subscribe drawer for this upcoming episode</FieldHint>
-            </div>
-          )}
-        </GlassSection>
+        </MacWindow>
 
         {/* ── 2. Header ── */}
-        <GlassSection label="Header" number={2}>
-          <div className="grid grid-cols-3 gap-4">
-            <div className="space-y-1">
-              <label className={labelClass}>Slug *</label>
-              <input className={fieldClass} value={form.slug} onChange={(e) => set("slug", e.target.value)} />
-              <FieldHint>URL-safe identifier — e.g. "sara-varni"</FieldHint>
-            </div>
-            <div className="space-y-1">
-              <label className={labelClass}>Episode #</label>
-              <input className={fieldClass} type="number" value={form.episode_number} onChange={(e) => set("episode_number", parseInt(e.target.value) || 0)} />
-              <FieldHint>Sequential number shown on cards and detail pages</FieldHint>
-            </div>
-            <div className="space-y-1">
-              <label className={labelClass}>Duration</label>
-              <input className={fieldClass} value={form.duration} onChange={(e) => set("duration", e.target.value)} placeholder="e.g. 52 min" />
-              <FieldHint>Approximate length — displayed on episode cards</FieldHint>
-            </div>
-          </div>
-          <div className="space-y-1">
-            <label className={labelClass}>Title *</label>
-            <input className={fieldClass} value={form.title} onChange={(e) => set("title", e.target.value)} />
-            <FieldHint>Guest name or episode name — shown as the page heading</FieldHint>
-          </div>
-          <div className="space-y-1">
-            <label className={labelClass}>Overview (Subtitle)</label>
-            <input className={fieldClass} value={form.subtitle} onChange={(e) => set("subtitle", e.target.value)} />
-            <FieldHint>One-line hook shown on cards and as the hero headline</FieldHint>
-          </div>
-        </GlassSection>
-
-        {/* ── 2. Video ── */}
-        <GlassSection label="Video" number={2}>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-1">
-              <label className={labelClass}>YouTube URL</label>
-              <input className={fieldClass} value={form.youtube_url} onChange={(e) => set("youtube_url", e.target.value)} />
-              <FieldHint>Full YouTube video URL — used for the embedded player</FieldHint>
-            </div>
-            <div className="space-y-1">
-              <label className={labelClass}>Spotify URL</label>
-              <input className={fieldClass} value={form.spotify_url} onChange={(e) => set("spotify_url", e.target.value)} />
-              <FieldHint>Spotify episode link — powers the "Listen on Spotify" button</FieldHint>
-            </div>
-            <div className="space-y-1">
-              <label className={labelClass}>Apple Podcasts URL</label>
-              <input className={fieldClass} value={form.apple_url} onChange={(e) => set("apple_url", e.target.value)} />
-              <FieldHint>Apple Podcasts link — powers the "Listen on Apple" button</FieldHint>
-            </div>
-          </div>
-        </GlassSection>
-
-        {/* ── 3. About this Episode ── */}
-        <GlassSection label="About this Episode" number={3}>
-          <div className="space-y-1">
-            <label className={labelClass}>Short Description</label>
-            <textarea className={`${fieldClass} min-h-[80px]`} value={form.description} onChange={(e) => set("description", e.target.value)} />
-            <FieldHint>Used for SEO meta description and card previews — keep under 160 characters</FieldHint>
-          </div>
-          <div className="space-y-1">
-            <label className={labelClass}>Full Description</label>
-            <textarea className={`${fieldClass} min-h-[240px]`} value={form.full_description} onChange={(e) => set("full_description", e.target.value)} />
-            <FieldHint>Long-form "About this Episode" section on the detail page</FieldHint>
-          </div>
-        </GlassSection>
-
-        {/* ── 4. Quote ── */}
-        <GlassSection label="Quote" number={4}>
-          <div className="space-y-1">
-            <textarea className={`${fieldClass} min-h-[80px]`} value={form.pull_quote} onChange={(e) => set("pull_quote", e.target.value)} placeholder="A memorable quote from the episode…" />
-            <FieldHint>Highlighted quote shown in a large callout on the detail page</FieldHint>
-          </div>
-          <div className="space-y-1">
-            <label className={labelClass}>Attribution</label>
-            <select className={fieldClass} value={form.pull_quote_attribution} onChange={(e) => set("pull_quote_attribution", e.target.value)}>
-              <option value="">Select speaker…</option>
-              {form.guest_name && <option value={form.guest_name}>{form.guest_name} (Guest)</option>}
-              {allHosts.map((h) => (
-                <option key={h.id} value={h.name}>{h.name} (Host)</option>
-              ))}
-            </select>
-            <FieldHint>Who said the quote — appears below the pull quote</FieldHint>
-          </div>
-        </GlassSection>
-
-        {/* ── 5. Topics Covered ── */}
-        <GlassSection label="Topics Covered" number={5}>
-          <div className="flex gap-2">
-            <input className={fieldClass} value={topicInput} onChange={(e) => setTopicInput(e.target.value)} placeholder="Add a topic" onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTopic())} />
-            <button type="button" onClick={addTopic} className="px-4 py-2.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium whitespace-nowrap hover:opacity-80 transition-colors">Add</button>
-          </div>
-          <FieldHint>Key themes discussed — drag to reorder. Shown as pills on the detail page.</FieldHint>
-          <SortableTopicList
-            topics={form.topics}
-            onReorder={(updated) => set("topics", updated)}
-            onRemove={removeTopic}
-            onMove={moveTopic}
-            onEdit={(i, value) => { const updated = [...form.topics]; updated[i] = value; set("topics", updated); }}
-          />
-        </GlassSection>
-
-        {/* ── Group divider: People ── */}
-        {groupDivider}
-
-        {/* ── 6. About the Speaker ── */}
-        <GlassSection label="About the Speaker" number={6}>
-          <div className="space-y-4">
-            <div className="space-y-1">
-              <label className={labelClass}>Select Speaker</label>
-              <div className="flex gap-2">
-                <select
-                  className={fieldClass}
-                  value=""
-                  onChange={(e) => {
-                    const speaker = allSpeakers.find((s) => s.id === e.target.value);
-                    applySpeaker(speaker || null);
-                  }}
-                >
-                  <option value="">— Choose a speaker —</option>
-                  {allSpeakers
-                    .filter((s) => s.id !== selectedSpeakerId)
-                    .map((s) => (
-                      <option key={s.id} value={s.id}>{s.name}{s.company ? ` · ${s.company}` : ""}</option>
-                    ))}
-                </select>
-                {onSwitchToSpeakers && (
-                  <button
-                    type="button"
-                    onClick={onSwitchToSpeakers}
-                    className="px-4 py-2.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium whitespace-nowrap hover:opacity-80 transition-colors"
-                  >
-                    + New
-                  </button>
-                )}
+        <MacWindow title="Header">
+          <div className="p-3 space-y-2">
+            <div className="grid grid-cols-3 gap-2">
+              <div className="space-y-1">
+                <MacLabel>Slug *</MacLabel>
+                <MacInput value={form.slug} onChange={(e) => set("slug", e.target.value)} />
+                <MacFieldHint>URL identifier</MacFieldHint>
               </div>
-              <FieldHint>Select an existing speaker or create a new one in the Speakers tab</FieldHint>
+              <div className="space-y-1">
+                <MacLabel>Episode #</MacLabel>
+                <MacInput type="number" value={String(form.episode_number)} onChange={(e) => set("episode_number", parseInt(e.target.value) || 0)} />
+              </div>
+              <div className="space-y-1">
+                <MacLabel>Duration</MacLabel>
+                <MacInput value={form.duration} onChange={(e) => set("duration", e.target.value)} placeholder="52 min" />
+              </div>
             </div>
+            <div className="space-y-1">
+              <MacLabel>Title *</MacLabel>
+              <MacInput value={form.title} onChange={(e) => set("title", e.target.value)} />
+            </div>
+            <div className="space-y-1">
+              <MacLabel>Overview</MacLabel>
+              <MacInput value={form.subtitle} onChange={(e) => set("subtitle", e.target.value)} />
+              <MacFieldHint>One-line hook for cards</MacFieldHint>
+            </div>
+          </div>
+        </MacWindow>
 
+        {/* ── 3. Video ── */}
+        <MacWindow title="Video">
+          <div className="p-3 space-y-2">
+            <div className="grid grid-cols-2 gap-2">
+              <div className="space-y-1"><MacLabel>YouTube URL</MacLabel><MacInput value={form.youtube_url} onChange={(e) => set("youtube_url", e.target.value)} /></div>
+              <div className="space-y-1"><MacLabel>Spotify URL</MacLabel><MacInput value={form.spotify_url} onChange={(e) => set("spotify_url", e.target.value)} /></div>
+              <div className="space-y-1"><MacLabel>Apple Podcasts URL</MacLabel><MacInput value={form.apple_url} onChange={(e) => set("apple_url", e.target.value)} /></div>
+              <div className="space-y-1"><MacLabel>Preview Video URL</MacLabel><MacInput value={form.preview_video_url} onChange={(e) => set("preview_video_url", e.target.value)} /></div>
+            </div>
+          </div>
+        </MacWindow>
+
+        {/* ── 4. About this Episode ── */}
+        <MacWindow title="About this Episode">
+          <div className="p-3 space-y-2">
+            <div className="space-y-1">
+              <MacLabel>Short Description</MacLabel>
+              <MacTextarea value={form.description} onChange={(e) => set("description", e.target.value)} minHeight="60px" />
+              <MacFieldHint>SEO meta — keep under 160 chars</MacFieldHint>
+            </div>
+            <div className="space-y-1">
+              <MacLabel>Full Description</MacLabel>
+              <MacTextarea value={form.full_description} onChange={(e) => set("full_description", e.target.value)} minHeight="180px" />
+            </div>
+          </div>
+        </MacWindow>
+
+        {/* ── 5. Quote ── */}
+        <MacWindow title="Quote">
+          <div className="p-3 space-y-2">
+            <MacTextarea value={form.pull_quote} onChange={(e) => set("pull_quote", e.target.value)} placeholder="A memorable quote…" minHeight="60px" />
+            <div className="space-y-1">
+              <MacLabel>Attribution</MacLabel>
+              <select
+                className={macSelectClass}
+                value={form.pull_quote_attribution}
+                onChange={(e) => set("pull_quote_attribution", e.target.value)}
+                style={macFont}
+              >
+                <option value="">Select speaker…</option>
+                {form.guest_name && <option value={form.guest_name}>{form.guest_name} (Guest)</option>}
+                {allHosts.map((h) => (
+                  <option key={h.id} value={h.name}>{h.name} (Host)</option>
+                ))}
+              </select>
+            </div>
+          </div>
+        </MacWindow>
+
+        {/* ── 6. Topics Covered ── */}
+        <MacWindow title="Topics Covered">
+          <div className="p-3 space-y-2">
+            <div className="flex gap-1">
+              <MacInput value={topicInput} onChange={(e) => setTopicInput(e.target.value)} placeholder="Add a topic" onKeyDown={(e) => e.key === "Enter" && (e.preventDefault(), addTopic())} />
+              <MacButton onClick={addTopic}>Add</MacButton>
+            </div>
+            <MacFieldHint>Drag to reorder. Click to edit.</MacFieldHint>
+            <div className="border border-black" style={{ boxShadow: "inset 1px 1px 0px #999" }}>
+              <SortableTopicList
+                topics={form.topics}
+                onReorder={(updated) => set("topics", updated)}
+                onRemove={removeTopic}
+                onMove={moveTopic}
+                onEdit={(i, value) => { const updated = [...form.topics]; updated[i] = value; set("topics", updated); }}
+              />
+              {form.topics.length === 0 && (
+                <p className="px-2 py-3 text-[10px] text-gray-400 text-center" style={macFont}>No topics yet</p>
+              )}
+            </div>
+          </div>
+        </MacWindow>
+
+        {/* ── 7. About the Speaker ── */}
+        <MacWindow title="About the Speaker">
+          <div className="p-3 space-y-2">
+            <div className="flex gap-1">
+              <select
+                className={macSelectClass}
+                value=""
+                onChange={(e) => {
+                  const speaker = allSpeakers.find((s) => s.id === e.target.value);
+                  applySpeaker(speaker || null);
+                }}
+                style={macFont}
+              >
+                <option value="">— Choose a speaker —</option>
+                {allSpeakers.filter((s) => s.id !== selectedSpeakerId).map((s) => (
+                  <option key={s.id} value={s.id}>{s.name}{s.company ? ` · ${s.company}` : ""}</option>
+                ))}
+              </select>
+              {onSwitchToSpeakers && <MacButton onClick={onSwitchToSpeakers}>+ New</MacButton>}
+            </div>
             {selectedSpeakerId && (
-              <div className="flex flex-wrap gap-2">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-medium">
+              <div className="flex flex-wrap gap-1">
+                <span className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-bold border border-black bg-black text-white" style={macFont}>
                   {form.guest_name}{form.guest_company ? ` · ${form.guest_company}` : ""}
-                  <button
-                    type="button"
-                    onClick={() => applySpeaker(null)}
-                    className="hover:opacity-70 transition-opacity"
-                  >
-                    ×
-                  </button>
+                  <button type="button" onClick={() => applySpeaker(null)} className="hover:opacity-70">×</button>
                 </span>
               </div>
             )}
           </div>
-        </GlassSection>
+        </MacWindow>
 
-        {/* ── 7. About the Host ── */}
-        <GlassSection label="About the Host" number={7}>
-          <div className="space-y-4">
-            <div className="space-y-1">
-              <label className={labelClass}>Add Host</label>
-              <select
-                className={fieldClass}
-                value=""
-                onChange={(e) => {
-                  if (e.target.value && !selectedHostIds.includes(e.target.value)) {
-                    setSelectedHostIds((prev) => [...prev, e.target.value]);
-                  }
-                }}
-              >
-                <option value="">— Choose a host —</option>
-                {allHosts
-                  .filter((h) => !selectedHostIds.includes(h.id))
-                  .map((h) => (
-                    <option key={h.id} value={h.id}>{h.name}</option>
-                  ))}
-              </select>
-              <FieldHint>Select one or more hosts for this episode — shown in the "About the Host" section</FieldHint>
-            </div>
-
+        {/* ── 8. About the Host ── */}
+        <MacWindow title="About the Host">
+          <div className="p-3 space-y-2">
+            <select
+              className={macSelectClass}
+              value=""
+              onChange={(e) => {
+                if (e.target.value && !selectedHostIds.includes(e.target.value)) {
+                  setSelectedHostIds((prev) => [...prev, e.target.value]);
+                }
+              }}
+              style={macFont}
+            >
+              <option value="">— Choose a host —</option>
+              {allHosts.filter((h) => !selectedHostIds.includes(h.id)).map((h) => (
+                <option key={h.id} value={h.id}>{h.name}</option>
+              ))}
+            </select>
             {selectedHostIds.length > 0 && (
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1">
                 {selectedHostIds.map((hostId) => {
                   const host = allHosts.find((h) => h.id === hostId);
                   if (!host) return null;
                   return (
-                    <span
-                      key={hostId}
-                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-medium"
-                    >
+                    <span key={hostId} className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-bold border border-black bg-black text-white" style={macFont}>
                       {host.name}
-                      <button
-                        type="button"
-                        onClick={() => setSelectedHostIds((prev) => prev.filter((id) => id !== hostId))}
-                        className="hover:opacity-70 transition-opacity"
-                      >
-                        ×
-                      </button>
+                      <button type="button" onClick={() => setSelectedHostIds((prev) => prev.filter((id) => id !== hostId))} className="hover:opacity-70">×</button>
                     </span>
                   );
                 })}
               </div>
             )}
-
-            {allHosts.length === 0 && <p className="text-sm text-muted-foreground">No hosts available</p>}
+            {allHosts.length === 0 && <p className="text-[10px] text-gray-400" style={macFont}>No hosts available</p>}
           </div>
-        </GlassSection>
+        </MacWindow>
 
-        {/* ── Group divider: Assets & Publishing ── */}
-        {groupDivider}
-
-        {/* ── 8. Images & SEO ── */}
-        <GlassSection label="Images & SEO" number={8}>
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-1">
-              <label className={labelClass}>Poster Image</label>
-              <div className="flex gap-2">
-                <input className={fieldClass} value={form.poster_image_url} onChange={(e) => set("poster_image_url", e.target.value)} placeholder="URL or upload →" />
-                <input ref={posterFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "poster_image_url")} />
-                <button type="button" onClick={() => posterFileRef.current?.click()} disabled={uploading === "poster_image_url"} className="px-4 py-2.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium whitespace-nowrap flex items-center gap-1.5 hover:opacity-80 disabled:opacity-50 transition-colors">
-                  <Upload className="h-3.5 w-3.5" />
-                  {uploading === "poster_image_url" ? "…" : "Upload"}
-                </button>
+        {/* ── 9. Images & SEO ── */}
+        <MacWindow title="Images & SEO">
+          <div className="p-3 space-y-2">
+            <div className="grid grid-cols-2 gap-2">
+              <div className="space-y-1">
+                <MacLabel>Poster Image</MacLabel>
+                <div className="flex gap-1">
+                  <MacInput value={form.poster_image_url} onChange={(e) => set("poster_image_url", e.target.value)} placeholder="URL or upload →" />
+                  <input ref={posterFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "poster_image_url")} />
+                  <MacButton onClick={() => posterFileRef.current?.click()} disabled={uploading === "poster_image_url"}>
+                    <Upload className="h-3 w-3" />
+                    {uploading === "poster_image_url" ? "…" : ""}
+                  </MacButton>
+                </div>
+                {form.poster_image_url && <img src={form.poster_image_url} alt="Poster" className="mt-1 h-16 object-cover border border-black" />}
               </div>
-              {form.poster_image_url && <img src={form.poster_image_url} alt="Poster" className="mt-2 h-20 rounded-xl object-cover border border-white/20" />}
-            </div>
-            <div className="space-y-1">
-              <label className={labelClass}>OG Image</label>
-              <div className="flex gap-2">
-                <input className={fieldClass} value={form.og_image_url} onChange={(e) => set("og_image_url", e.target.value)} placeholder="URL or upload →" />
-                <input ref={ogFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "og_image_url")} />
-                <button type="button" onClick={() => ogFileRef.current?.click()} disabled={uploading === "og_image_url"} className="px-4 py-2.5 rounded-full bg-secondary text-secondary-foreground text-sm font-medium whitespace-nowrap flex items-center gap-1.5 hover:opacity-80 disabled:opacity-50 transition-colors">
-                  <Upload className="h-3.5 w-3.5" />
-                  {uploading === "og_image_url" ? "…" : "Upload"}
-                </button>
+              <div className="space-y-1">
+                <MacLabel>OG Image</MacLabel>
+                <div className="flex gap-1">
+                  <MacInput value={form.og_image_url} onChange={(e) => set("og_image_url", e.target.value)} placeholder="URL or upload →" />
+                  <input ref={ogFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "og_image_url")} />
+                  <MacButton onClick={() => ogFileRef.current?.click()} disabled={uploading === "og_image_url"}>
+                    <Upload className="h-3 w-3" />
+                    {uploading === "og_image_url" ? "…" : ""}
+                  </MacButton>
+                </div>
+                {form.og_image_url && <img src={form.og_image_url} alt="OG" className="mt-1 h-16 object-cover border border-black" />}
               </div>
-              {form.og_image_url && <img src={form.og_image_url} alt="OG" className="mt-2 h-20 rounded-xl object-cover border border-white/20" />}
             </div>
           </div>
-        </GlassSection>
+        </MacWindow>
 
-        <div className="flex gap-3 pt-6">
-          <button onClick={handleSave} disabled={saving} className="px-8 py-3 rounded-full bg-primary text-primary-foreground text-sm font-semibold shadow-sm hover:shadow-md hover:brightness-105 disabled:opacity-50 transition-all">
-            {saving ? "Saving…" : episodeId ? "Update Episode" : "Create Episode"}
-          </button>
-          <button onClick={onDone} className="px-6 py-3 rounded-full text-sm font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">
-            Cancel
-          </button>
+        {/* ── Save ── */}
+        <div className="flex gap-2 pt-2">
+          <MacButton primary onClick={handleSave} disabled={saving}>
+            {saving ? "Saving…" : episodeId ? "Save" : "Create"}
+          </MacButton>
+          <MacButton onClick={onDone}>Cancel</MacButton>
         </div>
       </div>
     </div>
