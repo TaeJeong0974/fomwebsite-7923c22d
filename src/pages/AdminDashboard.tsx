@@ -122,15 +122,65 @@ const BootScreen = ({ onDone }: { onDone: () => void }) => {
   );
 };
 
+/* ── 1-bit Pixel Art Icons (System 7 style) ── */
+const PixelIcon = ({ type, selected }: { type: WindowId; selected: boolean }) => {
+  const fill = selected ? "white" : "black";
+  const bg = selected ? "black" : "white";
+
+  const icons: Record<WindowId, JSX.Element> = {
+    // TV/monitor icon for Content Manager
+    episodes: (
+      <svg width="32" height="32" viewBox="0 0 16 16" fill="none" style={{ imageRendering: "pixelated" }}>
+        <rect width="16" height="16" fill={bg} />
+        <rect x="2" y="2" width="12" height="9" fill={fill} />
+        <rect x="3" y="3" width="10" height="7" fill={bg} />
+        <rect x="4" y="4" width="8" height="5" fill={fill} />
+        <rect x="5" y="5" width="6" height="3" fill={bg} />
+        <rect x="6" y="12" width="4" height="1" fill={fill} />
+        <rect x="4" y="13" width="8" height="1" fill={fill} />
+      </svg>
+    ),
+    // Microphone icon for Hosts
+    hosts: (
+      <svg width="32" height="32" viewBox="0 0 16 16" fill="none" style={{ imageRendering: "pixelated" }}>
+        <rect width="16" height="16" fill={bg} />
+        <rect x="6" y="1" width="4" height="8" rx="0" fill={fill} />
+        <rect x="7" y="2" width="2" height="6" fill={bg} />
+        <rect x="4" y="5" width="1" height="4" fill={fill} />
+        <rect x="11" y="5" width="1" height="4" fill={fill} />
+        <rect x="5" y="9" width="6" height="1" fill={fill} />
+        <rect x="7" y="10" width="2" height="2" fill={fill} />
+        <rect x="5" y="12" width="6" height="1" fill={fill} />
+      </svg>
+    ),
+    // Person/podium icon for Speakers
+    speakers: (
+      <svg width="32" height="32" viewBox="0 0 16 16" fill="none" style={{ imageRendering: "pixelated" }}>
+        <rect width="16" height="16" fill={bg} />
+        <rect x="7" y="1" width="2" height="2" fill={fill} />
+        <rect x="6" y="3" width="4" height="1" fill={fill} />
+        <rect x="5" y="4" width="6" height="3" fill={fill} />
+        <rect x="7" y="7" width="2" height="2" fill={fill} />
+        <rect x="3" y="9" width="10" height="1" fill={fill} />
+        <rect x="4" y="10" width="8" height="1" fill={fill} />
+        <rect x="5" y="11" width="6" height="3" fill={fill} />
+        <rect x="6" y="11" width="4" height="3" fill={bg} />
+      </svg>
+    ),
+  };
+
+  return icons[type];
+};
+
 /* ── Desktop Icon ── */
 const DesktopIcon = ({
-  icon,
+  type,
   label,
   selected,
   onClick,
   onDoubleClick,
 }: {
-  icon: string;
+  type: WindowId;
   label: string;
   selected: boolean;
   onClick: () => void;
@@ -142,12 +192,10 @@ const DesktopIcon = ({
     onDoubleClick={onDoubleClick}
   >
     <div
-      className={`w-12 h-10 border-2 border-black flex items-center justify-center text-lg ${
-        selected ? "bg-black text-white" : "bg-white text-black"
-      }`}
-      style={{ boxShadow: selected ? "none" : "2px 2px 0px #000", imageRendering: "pixelated" }}
+      className={`border-2 border-black p-0.5 ${selected ? "bg-black" : "bg-white"}`}
+      style={{ boxShadow: selected ? "none" : "2px 2px 0px #000" }}
     >
-      {icon}
+      <PixelIcon type={type} selected={selected} />
     </div>
     <span
       className={`text-[10px] font-bold px-1 ${
@@ -325,7 +373,7 @@ const AdminDashboard = () => {
           {WINDOWS.map((w) => (
             <DesktopIcon
               key={w.id}
-              icon={w.icon}
+              type={w.id}
               label={w.title}
               selected={selectedIcon === w.id}
               onClick={() => { setSelectedIcon(w.id); }}
