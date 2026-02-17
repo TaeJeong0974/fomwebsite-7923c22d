@@ -110,6 +110,7 @@ const AdminEpisodes = () => {
               <th className="text-left px-3 sm:px-6 py-3 sm:py-4 text-xs font-semibold uppercase tracking-wider text-gray-500">#</th>
               <th className="text-left px-3 sm:px-6 py-3 sm:py-4 text-xs font-semibold uppercase tracking-wider text-gray-500">Title</th>
               <th className="text-left px-3 sm:px-6 py-3 sm:py-4 text-xs font-semibold uppercase tracking-wider text-gray-500 hidden sm:table-cell">Guest</th>
+              <th className="text-left px-3 sm:px-6 py-3 sm:py-4 text-xs font-semibold uppercase tracking-wider text-gray-500 hidden sm:table-cell">Company</th>
               <th className="text-left px-3 sm:px-6 py-3 sm:py-4 text-xs font-semibold uppercase tracking-wider text-gray-500">Status</th>
               <th className="text-center px-3 sm:px-6 py-3 sm:py-4 text-xs font-semibold uppercase tracking-wider text-gray-500 hidden sm:table-cell">Live</th>
               <th className="text-right px-3 sm:px-6 py-3 sm:py-4 text-xs font-semibold uppercase tracking-wider text-gray-500">Actions</th>
@@ -125,7 +126,8 @@ const AdminEpisodes = () => {
                 <tr key={ep.id} className="border-b border-gray-50 last:border-0 hover:bg-gray-50/80 transition-colors">
                   <td className="px-3 sm:px-6 py-3.5 sm:py-5 text-sm text-gray-400 font-medium">{ep.episode_number ?? "—"}</td>
                   <td className="px-3 sm:px-6 py-3.5 sm:py-5 text-sm font-medium text-gray-900">{ep.title}</td>
-                  <td className="px-3 sm:px-6 py-3.5 sm:py-5 text-sm text-gray-500 hidden sm:table-cell">{ep.guest_name}{ep.guest_company ? ` · ${ep.guest_company}` : ""}</td>
+                  <td className="px-3 sm:px-6 py-3.5 sm:py-5 text-sm text-gray-500 hidden sm:table-cell">{ep.guest_name || "—"}</td>
+                  <td className="px-3 sm:px-6 py-3.5 sm:py-5 text-sm text-gray-500 hidden sm:table-cell">{ep.guest_company || "—"}</td>
                   <td className="px-3 sm:px-6 py-3.5 sm:py-5">
                     <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium capitalize ${STATUS_CHIP[ep.status] || "bg-gray-100 text-gray-600"}`}>
                       {ep.status || (ep.published ? "published" : "draft")}
@@ -178,7 +180,7 @@ const AdminEpisodes = () => {
               );
             })}
             {episodes.length === 0 && (
-              <tr><td colSpan={6} className="px-6 py-12 text-center text-gray-400 text-sm">No episodes yet</td></tr>
+              <tr><td colSpan={7} className="px-6 py-12 text-center text-gray-400 text-sm">No episodes yet</td></tr>
             )}
           </tbody>
         </table>
