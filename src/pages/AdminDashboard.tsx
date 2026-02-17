@@ -124,11 +124,11 @@ const BootScreen = ({ onDone }: { onDone: () => void }) => {
 };
 
 /* ── 1-bit Pixel Art Icons (System 7 style) ── */
-const PixelIcon = ({ type, selected }: { type: WindowId; selected: boolean }) => {
+const PixelIcon = ({ type, selected }: { type: WindowId | "website"; selected: boolean }) => {
   const fill = selected ? "white" : "black";
   const bg = selected ? "black" : "white";
 
-  const icons: Record<WindowId, JSX.Element> = {
+  const icons: Record<WindowId | "website", JSX.Element> = {
     // TV/monitor icon for Content Manager
     episodes: (
       <svg width="32" height="32" viewBox="0 0 16 16" fill="none" style={{ imageRendering: "pixelated" }}>
@@ -166,6 +166,29 @@ const PixelIcon = ({ type, selected }: { type: WindowId; selected: boolean }) =>
         <rect x="4" y="10" width="8" height="1" fill={fill} />
         <rect x="5" y="11" width="6" height="3" fill={fill} />
         <rect x="6" y="11" width="4" height="3" fill={bg} />
+      </svg>
+    ),
+    // Globe/internet icon for Website
+    website: (
+      <svg width="32" height="32" viewBox="0 0 16 16" fill="none" style={{ imageRendering: "pixelated" }}>
+        <rect width="16" height="16" fill={bg} />
+        <rect x="5" y="1" width="6" height="1" fill={fill} />
+        <rect x="3" y="2" width="2" height="1" fill={fill} />
+        <rect x="11" y="2" width="2" height="1" fill={fill} />
+        <rect x="2" y="3" width="1" height="2" fill={fill} />
+        <rect x="13" y="3" width="1" height="2" fill={fill} />
+        <rect x="1" y="5" width="1" height="4" fill={fill} />
+        <rect x="14" y="5" width="1" height="4" fill={fill} />
+        <rect x="2" y="9" width="1" height="2" fill={fill} />
+        <rect x="13" y="9" width="1" height="2" fill={fill} />
+        <rect x="3" y="11" width="2" height="1" fill={fill} />
+        <rect x="11" y="11" width="2" height="1" fill={fill} />
+        <rect x="5" y="12" width="6" height="1" fill={fill} />
+        {/* Horizontal lines */}
+        <rect x="2" y="5" width="12" height="1" fill={fill} />
+        <rect x="2" y="8" width="12" height="1" fill={fill} />
+        {/* Vertical line */}
+        <rect x="7" y="1" width="2" height="12" fill={fill} />
       </svg>
     ),
   };
@@ -383,6 +406,24 @@ const AdminDashboard = () => {
               onDoubleClick={() => openWindows.has(w.id) ? bringToFront(w.id) : openWindow(w.id)}
             />
           ))}
+          {/* Website link icon */}
+          <button
+            className="flex flex-col items-center gap-0.5 group"
+            onClick={() => window.open("/", "_blank")}
+          >
+            <div
+              className="border-2 border-black p-0.5 bg-white"
+              style={{ boxShadow: "2px 2px 0px #000" }}
+            >
+              <PixelIcon type="website" selected={false} />
+            </div>
+            <span
+              className="text-[10px] font-bold px-1 text-black"
+              style={macFont}
+            >
+              Website
+            </span>
+          </button>
         </div>
 
         {/* Draggable Windows */}
