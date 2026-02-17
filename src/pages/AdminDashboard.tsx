@@ -212,7 +212,7 @@ const PixelIcon = ({ type, selected }: { type: WindowId | "website"; selected: b
   return icons[type];
 };
 
-/* ── Desktop Icon with Folder wrapper ── */
+/* ── Desktop Icon with Floppy Disk wrapper ── */
 const DesktopIcon = ({
   type,
   label,
@@ -230,23 +230,33 @@ const DesktopIcon = ({
     className="flex flex-col items-center gap-0.5 group"
     onClick={(e) => { e.stopPropagation(); onClick(); onDoubleClick(); }}
   >
-    {/* Folder shape */}
     <div className={`relative ${selected ? "invert" : ""}`}>
-      <svg width="48" height="40" viewBox="0 0 48 40" style={{ imageRendering: "pixelated" }}>
-        {/* Folder tab */}
-        <rect x="2" y="0" width="16" height="6" fill="black" />
-        <rect x="3" y="1" width="14" height="4" fill="white" />
-        {/* Folder body */}
-        <rect x="0" y="5" width="48" height="35" fill="black" />
-        <rect x="1" y="6" width="46" height="33" fill="white" />
-        <rect x="2" y="7" width="44" height="31" fill="white" />
-        {/* Bottom shadow line */}
-        <rect x="1" y="38" width="46" height="1" fill="#808080" />
-        <rect x="47" y="6" width="1" height="33" fill="#808080" />
+      <svg width="40" height="42" viewBox="0 0 40 42" style={{ imageRendering: "pixelated" }}>
+        {/* Disk body */}
+        <rect x="0" y="0" width="36" height="42" fill="black" />
+        <rect x="36" y="4" width="4" height="38" fill="black" />
+        <rect x="36" y="0" width="1" height="4" fill="black" />
+        <rect x="37" y="1" width="1" height="3" fill="black" />
+        <rect x="38" y="2" width="1" height="2" fill="black" />
+        <rect x="39" y="3" width="1" height="1" fill="black" />
+        <rect x="1" y="1" width="34" height="40" fill="white" />
+        <rect x="36" y="5" width="3" height="36" fill="white" />
+        {/* Metal slider area */}
+        <rect x="8" y="1" width="22" height="14" fill="black" />
+        <rect x="9" y="2" width="20" height="12" fill="white" />
+        <rect x="15" y="2" width="6" height="12" fill="black" />
+        <rect x="16" y="3" width="4" height="10" fill="white" />
+        {/* Label area */}
+        <rect x="5" y="22" width="30" height="18" fill="black" />
+        <rect x="6" y="23" width="28" height="16" fill="white" />
+        {/* Label lines */}
+        <rect x="8" y="26" width="24" height="1" fill="black" />
+        <rect x="8" y="30" width="24" height="1" fill="black" />
+        <rect x="8" y="34" width="16" height="1" fill="black" />
       </svg>
-      {/* Icon centered inside folder */}
-      <div className="absolute inset-0 flex items-center justify-center" style={{ paddingTop: 6 }}>
-        <div className="scale-75">
+      {/* Small icon centered in label area */}
+      <div className="absolute flex items-center justify-center" style={{ left: 10, top: 23, width: 20, height: 16 }}>
+        <div className="scale-50 opacity-60">
           <PixelIcon type={type} selected={false} />
         </div>
       </div>
