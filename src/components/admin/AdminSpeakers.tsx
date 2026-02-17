@@ -1,4 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { Upload } from "lucide-react";
 import { adminApi } from "@/lib/adminApi";
 import { toast } from "sonner";
 import { MacButton, MacWindow, MacInput, MacTextarea, MacLabel, MacFieldHint } from "./MacOS";
@@ -25,6 +27,25 @@ const AdminSpeakers = () => {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [uploading, setUploading] = useState(false);
+  const imageFileRef = useRef<HTMLInputElement>(null);
+
+  const handleImageUpload = async (file: File) => {
+    if (!file.type.startsWith("image/")) { toast.error("Please select an image file"); return; }
+    setUploading(true);
+    const ext = file.name.split(".").pop();
+    const path = `speakers/${(form.name || "untitled").replace(/\s+/g, "-").toLowerCase()}-${Date.now()}.${ext}`;
+    try {
+      const { error } = await supabase.storage.from("episode-images").upload(path, file, { upsert: true });
+      if (error) throw error;
+      const { data: { publicUrl } } = supabase.storage.from("episode-images").getPublicUrl(path);
+      set("image_url", publicUrl);
+      toast.success("Image uploaded");
+    } catch (err: unknown) {
+      toast.error(err instanceof Error ? err.message : "Upload failed");
+    }
+    setUploading(false);
+  };
 
   const fetchSpeakers = async () => {
     setLoading(true);
@@ -110,7 +131,19 @@ const AdminSpeakers = () => {
               <div className="space-y-1"><MacLabel>Domain</MacLabel><MacInput value={form.company_domain} onChange={(e) => set("company_domain", e.target.value)} placeholder="acme.com" /><MacFieldHint>For logo fetch</MacFieldHint></div>
             </div>
             <div className="space-y-1"><MacLabel>Bio</MacLabel><MacTextarea value={form.bio} onChange={(e) => set("bio", e.target.value)} minHeight="100px" /><MacFieldHint>Speaker bio for detail pages</MacFieldHint></div>
-            <div className="space-y-1"><MacLabel>Image URL</MacLabel><MacInput value={form.image_url} onChange={(e) => set("image_url", e.target.value)} /><MacFieldHint>Square headshot</MacFieldHint></div>
+            <div className="space-y-1">
+              <MacLabel>Image</MacLabel>
+              <div className="flex gap-1">
+                <MacInput value={form.image_url} onChange={(e) => set("image_url", e.target.value)} placeholder="URL or upload →" />
+                <input ref={imageFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0])} />
+                <MacButton onClick={() => imageFileRef.current?.click()} disabled={uploading}>
+                  <Upload className="h-3 w-3" />
+                  {uploading ? "…" : ""}
+                </MacButton>
+              </div>
+              {form.image_url && <img src={form.image_url} alt="Speaker" className="mt-1 h-16 object-cover border border-black" />}
+              <MacFieldHint>Square headshot</MacFieldHint>
+            </div>
             <div className="space-y-1"><MacLabel>LinkedIn URL</MacLabel><MacInput value={form.linkedin_url} onChange={(e) => set("linkedin_url", e.target.value)} /><MacFieldHint>Full profile URL</MacFieldHint></div>
           </div>
         </MacWindow>
