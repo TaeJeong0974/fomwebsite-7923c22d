@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { setAdminPassword } from "@/lib/adminApi";
 import { toast } from "sonner";
+import { MacDesktop, MacWindow, MacInput, MacButton, MacLabel } from "@/components/admin/MacOS";
 
 const AdminLogin = () => {
   const [password, setPassword] = useState("");
@@ -33,32 +34,26 @@ const AdminLogin = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <form
-        onSubmit={handleSubmit}
-        className="w-full max-w-sm p-8 rounded-2xl glass border border-white/20 shadow-glass space-y-6"
-      >
-        <h1 className="text-center text-dark-foreground font-semibold" style={{ fontSize: 'clamp(2rem, 5vw, 3.5rem)' }}>Admin</h1>
-        <div className="space-y-2">
-          <label className="text-body-sm text-muted-foreground">Password</label>
-          <p className="text-body-sm text-muted-foreground/60 italic">Hint: FOMPODCAST</p>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            className="w-full px-4 py-3 rounded-xl border border-white/30 bg-muted/60 backdrop-blur-sm text-foreground focus:ring-2 focus:ring-primary/30 focus:border-primary/50 outline-none transition-all"
-          />
-        </div>
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full py-3 rounded-xl bg-foreground text-background font-medium hover:opacity-90 disabled:opacity-50 transition-opacity"
-        >
-          {loading ? "Verifying…" : "Enter"}
-        </button>
-      </form>
-    </div>
+    <MacDesktop className="flex items-center justify-center">
+      <MacWindow title="Admin Login" className="w-full max-w-xs">
+        <form onSubmit={handleSubmit} className="p-4 space-y-3">
+          <p className="text-[10px] text-gray-500 italic text-center" style={{ fontFamily: "'Geneva', monospace" }}>
+            Hint: FOMPODCAST
+          </p>
+          <div className="space-y-1">
+            <MacLabel>Password</MacLabel>
+            <MacInput
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <MacButton primary type="submit" disabled={loading} className="w-full">
+            {loading ? "Verifying…" : "Enter"}
+          </MacButton>
+        </form>
+      </MacWindow>
+    </MacDesktop>
   );
 };
 

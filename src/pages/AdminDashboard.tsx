@@ -4,7 +4,7 @@ import { clearAdminSession } from "@/lib/adminApi";
 import AdminEpisodes from "@/components/admin/AdminEpisodes";
 import AdminHosts from "@/components/admin/AdminHosts";
 import AdminSpeakers from "@/components/admin/AdminSpeakers";
-import { LogOut } from "lucide-react";
+import { MacDesktop, MacMenuBar, MacWindow } from "@/components/admin/MacOS";
 
 const TABS = ["episodes", "hosts", "speakers"] as const;
 type Tab = typeof TABS[number];
@@ -27,55 +27,66 @@ const AdminDashboard = () => {
     navigate("/admin");
   };
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Loading…</div>;
+  if (loading) return (
+    <MacDesktop className="flex items-center justify-center">
+      <span className="text-xs font-bold text-black" style={{ fontFamily: "'Chicago', 'Geneva', monospace" }}>Loading…</span>
+    </MacDesktop>
+  );
 
   return (
-    <div className="min-h-screen bg-[#f8f9fa] pt-24 sm:pt-28 lg:pt-32 pb-12 sm:pb-16">
-      <div className="container mx-auto container-padding space-y-4 sm:space-y-6">
-        {/* Header */}
-        <div className="flex items-center justify-between">
-          <h1 className="font-semibold text-dark-foreground tracking-tight text-xl sm:text-2xl">Content Manager</h1>
-          <button
-            onClick={handleLogout}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm text-muted-foreground hover:text-foreground hover:bg-black/5 transition-colors"
-          >
-            <LogOut className="h-4 w-4" />
-            <span className="hidden sm:inline">Sign Out</span>
+    <MacDesktop className="pt-0">
+      {/* Menu Bar — fixed at top */}
+      <div className="fixed top-0 left-0 right-0 z-50">
+        <MacMenuBar>
+          <span className="text-sm">🍎</span>
+          <span className="cursor-default">File</span>
+          <span className="cursor-default">Edit</span>
+          {TABS.map((t) => (
+            <button
+              key={t}
+              onClick={() => setTab(t)}
+              className={`cursor-default capitalize ${tab === t ? "underline" : ""}`}
+            >
+              {t}
+            </button>
+          ))}
+          <div className="flex-1" />
+          <button onClick={handleLogout} className="cursor-default hover:underline">
+            Sign Out
           </button>
-        </div>
-
-        {/* Tabs — Google-style underline */}
-        <div className="border-b border-border -mx-1">
-          <div className="flex gap-0">
-            {TABS.map((t, i) => (
-              <button
-                key={t}
-                onClick={() => setTab(t)}
-                className={`relative py-3 text-sm font-medium capitalize transition-colors ${
-                  i === 0 ? "pl-1 pr-6" : "px-6"
-                } ${
-                  tab === t
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
-              >
-                {t}
-                {tab === t && (
-                  <span className="absolute bottom-0 left-0 right-0 h-[3px] rounded-t-full bg-primary" />
-                )}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Content */}
-        <div>
-          {tab === "episodes" && <AdminEpisodes onSwitchToSpeakers={() => setTab("speakers")} />}
-          {tab === "hosts" && <AdminHosts />}
-          {tab === "speakers" && <AdminSpeakers />}
-        </div>
+        </MacMenuBar>
       </div>
-    </div>
+
+      {/* Desktop Content */}
+      <div className="pt-[30px] p-4 sm:p-6 lg:p-8">
+        <MacWindow title="Content Manager" className="max-w-6xl mx-auto">
+          <div className="p-3 sm:p-4">
+            {/* Tabs as retro buttons */}
+            <div className="flex gap-1 mb-3 border-b border-black pb-2">
+              {TABS.map((t) => (
+                <button
+                  key={t}
+                  onClick={() => setTab(t)}
+                  className={`px-3 py-1 text-xs font-bold capitalize border border-black rounded-[3px] transition-none ${
+                    tab === t
+                      ? "bg-black text-white"
+                      : "bg-white text-black active:bg-black active:text-white"
+                  }`}
+                  style={{ fontFamily: "'Chicago', 'Geneva', monospace" }}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+
+            {/* Content */}
+            {tab === "episodes" && <AdminEpisodes onSwitchToSpeakers={() => setTab("speakers")} />}
+            {tab === "hosts" && <AdminHosts />}
+            {tab === "speakers" && <AdminSpeakers />}
+          </div>
+        </MacWindow>
+      </div>
+    </MacDesktop>
   );
 };
 
