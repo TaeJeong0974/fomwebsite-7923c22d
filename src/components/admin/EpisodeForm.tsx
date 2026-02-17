@@ -344,11 +344,9 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
               <MacButton onClick={() => setShowCardPreview(true)}>
                 🃏 Card
               </MacButton>
-              {form.status !== 'draft' && (
-                <MacButton onClick={() => window.open(`${window.location.origin}/podcast/${form.slug}`, "_blank")}>
-                  👁 Page
-                </MacButton>
-              )}
+              <MacButton onClick={() => window.open(`${window.location.origin}/admin/preview/${form.slug}`, "_blank")}>
+                👁 Page
+              </MacButton>
             </>
           )}
           <MacButton onClick={onDone}>← Back</MacButton>

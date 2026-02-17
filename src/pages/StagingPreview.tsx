@@ -1,0 +1,219 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { supabase } from "@/integrations/supabase/client";
+import type { PodcastEpisode, PodcastHost } from "@/lib/podcastData";
+import Footer from "@/components/Footer";
+import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
+import EpisodeActionButtons from "@/components/podcast/EpisodeActionButtons";
+import EpisodeTopics from "@/components/podcast/EpisodeTopics";
+import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
+import EpisodeHostsCard from "@/components/podcast/EpisodeHostsCard";
+import EpisodePullQuote from "@/components/podcast/EpisodePullQuote";
+import EpisodeNewsletters from "@/components/podcast/EpisodeNewsletters";
+import GuestBio from "@/components/podcast/GuestBio";
+import AboutTheHosts from "@/components/podcast/AboutTheHosts";
+import FadeInSection from "@/components/podcast/FadeInSection";
+import FloatingMiniPlayer from "@/components/podcast/FloatingMiniPlayer";
+import { EPISODE_IMAGES, POSTER_IMAGES } from "@/lib/episodeImages";
+import { getYouTubeThumbnail } from "@/lib/episodeUtils";
+import ep1Poster from "@/assets/ep1-poster.png";
+import ep0Poster from "@/assets/ep0-poster.png";
+
+function parseHostTitle(titleField: string | null): { title: string; company: string } {
+  if (!titleField) return { title: "", company: "" };
+  const parts = titleField.split(",").map((s) => s.trim());
+  return { title: parts[0] || "", company: parts.slice(1).join(", ").trim() || "" };
+}
+
+function mapDbHost(row: any): PodcastHost {
+  const { title, company } = parseHostTitle(row.title);
+  return { name: row.name, title, company, linkedInUrl: row.linkedin_url || undefined, bio: row.bio || undefined };
+}
+
+function mapDbEpisode(row: any, hosts: PodcastHost[]): PodcastEpisode {
+  const publishDate = row.publish_date
+    ? new Date(row.publish_date + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
+    : "";
+  return {
+    id: row.episode_number ?? 0,
+    slug: row.slug,
+    name: row.guest_name || row.title,
+    title: row.guest_title || "",
+    company: row.guest_company || "",
+    companyDomain: row.guest_company_domain || "",
+    overview: row.subtitle || "",
+    fullDescription: row.full_description || "",
+    bio: row.guest_bio || "",
+    topics: (row.topics as string[]) || [],
+    chapters: [],
+    youtubeUrl: row.youtube_url || "",
+    spotifyUrl: row.spotify_url || "",
+    duration: row.duration || "",
+    publishedDate: row.published ? publishDate : "Coming Soon",
+    comingSoon: !row.published,
+    linkedInUrl: row.guest_linkedin_url || undefined,
+    previewVideoUrl: row.preview_video_url || undefined,
+    pullQuote: row.pull_quote || undefined,
+    hosts: hosts.length > 0 ? hosts : undefined,
+  };
+}
+
+const StagingPreview = () => {
+  const { slug } = useParams();
+  const [episode, setEpisode] = useState<PodcastEpisode | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [playTrigger, setPlayTrigger] = useState(0);
+
+  useEffect(() => {
+    if (!slug) return;
+    const fetch = async () => {
+      setLoading(true);
+      const { data: epRow } = await supabase.from("episodes").select("*").eq("slug", slug).single();
+      if (!epRow) { setLoading(false); return; }
+
+      const { data: linkRows } = await supabase.from("episode_hosts").select("host_id").eq("episode_id", epRow.id);
+      const hostIds = (linkRows || []).map((l: any) => l.host_id);
+
+      let hosts: PodcastHost[] = [];
+      if (hostIds.length > 0) {
+        const { data: hostRows } = await supabase.from("hosts").select("*").in("id", hostIds);
+        hosts = (hostRows || []).map(mapDbHost);
+      }
+
+      setEpisode(mapDbEpisode(epRow, hosts));
+      setLoading(false);
+    };
+    fetch();
+  }, [slug]);
+
+  if (loading) return (
+    <div className="min-h-screen flex items-center justify-center bg-[#f4f2ef]">
+      <p className="text-muted-foreground">Loading staging preview…</p>
+    </div>
+  );
+
+  if (!episode) return (
+    <div className="min-h-screen flex items-center justify-center bg-[#f4f2ef]">
+      <p className="text-muted-foreground">Episode not found in staging database.</p>
+    </div>
+  );
+
+  const isIntro = episode.slug === "the-future-of-marketing";
+
+  return (
+    <>
+      {/* Staging banner */}
+      <div className="fixed top-0 left-0 right-0 z-[100] bg-amber-400 text-black text-center text-xs font-bold py-1.5">
+        ⚠️ STAGING PREVIEW — This is not the live page
+      </div>
+
+      <div style={{ paddingTop: 32 }}>
+        <EpisodeOverlayLayout>
+          {/* Title */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-10">
+            <div className="lg:col-span-2 space-y-1 sm:space-y-2">
+              <h3 className="text-section-header font-medium text-foreground mb-5 sm:mb-6">
+                Episode {episode.id}{episode.duration && <span className="text-muted-foreground font-normal"> · {episode.duration}</span>}
+              </h3>
+              <h1 className="text-display-lg font-display font-medium text-foreground leading-[1.1]">
+                {episode.overview || episode.name}
+              </h1>
+            </div>
+            <div className="hidden lg:block mt-6 sm:mt-7">
+              <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
+            </div>
+          </div>
+
+          {/* Video + Content */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 items-start">
+            <div className="lg:col-span-2 space-y-10 sm:space-y-14 lg:space-y-20">
+              <FadeInSection className="space-y-4 sm:space-y-6">
+                <FloatingMiniPlayer
+                  youtubeUrl={episode.youtubeUrl}
+                  spotifyUrl={episode.spotifyUrl}
+                  playTrigger={playTrigger}
+                  thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : isIntro ? ep0Poster : undefined}
+                />
+                <div className="pt-2 lg:hidden">
+                  <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
+                </div>
+              </FadeInSection>
+
+              <FadeInSection>
+                <h3 className="text-section-header font-medium text-foreground mb-5 sm:mb-6">About this Episode</h3>
+                <div className="text-foreground/80 whitespace-pre-line text-[1em] max-w-prose">
+                  {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}.`}
+                </div>
+              </FadeInSection>
+
+              {episode.pullQuote && (
+                <FadeInSection>
+                  <EpisodePullQuote quote={episode.pullQuote} attribution={isIntro ? "Ethan Smith" : episode.name} />
+                </FadeInSection>
+              )}
+
+              <FadeInSection>
+                <EpisodeTopics topics={episode.topics} />
+              </FadeInSection>
+
+              {!isIntro && episode.bio && (
+                <FadeInSection>
+                  <GuestBio
+                    name={episode.name}
+                    bio={episode.bio}
+                    company={episode.company}
+                    companyDomain={episode.companyDomain}
+                    linkedInUrl={episode.linkedInUrl}
+                  />
+                </FadeInSection>
+              )}
+
+              {isIntro && (
+                <FadeInSection>
+                  <AboutTheHosts />
+                </FadeInSection>
+              )}
+
+              {!isIntro && episode.hosts && episode.hosts.length > 0 && (
+                <FadeInSection>
+                  <AboutTheHosts hosts={episode.hosts} />
+                </FadeInSection>
+              )}
+
+              {/* Sidebar cards on mobile */}
+              <div className="lg:hidden space-y-4">
+                {!isIntro && (
+                  <EpisodeGuestCard
+                    name={episode.name}
+                    title={episode.title}
+                    company={episode.company}
+                    companyDomain={episode.companyDomain}
+                    linkedInUrl={episode.linkedInUrl}
+                  />
+                )}
+                <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />
+              </div>
+            </div>
+
+            {/* Sidebar */}
+            <FadeInSection className="hidden lg:flex lg:flex-col space-y-4">
+              {!isIntro && (
+                <EpisodeGuestCard
+                  name={episode.name}
+                  title={episode.title}
+                  company={episode.company}
+                  companyDomain={episode.companyDomain}
+                  linkedInUrl={episode.linkedInUrl}
+                />
+              )}
+              <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />
+            </FadeInSection>
+          </div>
+        </EpisodeOverlayLayout>
+        <Footer />
+      </div>
+    </>
+  );
+};
+
+export default StagingPreview;

@@ -16,6 +16,7 @@ const Privacy = lazy(() => import("./pages/Privacy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const AdminLogin = lazy(() => import("./pages/AdminLogin"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
+const StagingPreview = lazy(() => import("./pages/StagingPreview"));
 
 const queryClient = new QueryClient();
 
@@ -49,6 +50,7 @@ const AppRoutes = () => {
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/admin" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/admin/preview/:slug" element={<StagingPreview />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
