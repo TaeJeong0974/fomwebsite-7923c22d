@@ -460,26 +460,19 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
               <div className="flex gap-2">
                 <select
                   className={fieldClass}
-                  value={selectedSpeakerId || ""}
+                  value=""
                   onChange={(e) => {
                     const speaker = allSpeakers.find((s) => s.id === e.target.value);
                     applySpeaker(speaker || null);
                   }}
                 >
                   <option value="">— Choose a speaker —</option>
-                  {allSpeakers.map((s) => (
-                    <option key={s.id} value={s.id}>{s.name}{s.company ? ` · ${s.company}` : ""}</option>
-                  ))}
+                  {allSpeakers
+                    .filter((s) => s.id !== selectedSpeakerId)
+                    .map((s) => (
+                      <option key={s.id} value={s.id}>{s.name}{s.company ? ` · ${s.company}` : ""}</option>
+                    ))}
                 </select>
-                {selectedSpeakerId && (
-                  <button
-                    type="button"
-                    onClick={() => applySpeaker(null)}
-                    className="px-4 py-2.5 rounded-full border border-red-200 text-red-600 text-sm font-medium whitespace-nowrap hover:bg-red-50 transition-colors"
-                  >
-                    Remove
-                  </button>
-                )}
                 {onSwitchToSpeakers && (
                   <button
                     type="button"
@@ -494,17 +487,17 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
             </div>
 
             {selectedSpeakerId && (
-              <div className="rounded-xl border border-gray-200 bg-gray-50 p-4 space-y-2">
-                <div className="flex items-center gap-3">
-                  {form.guest_image_url && (
-                    <img src={form.guest_image_url} alt={form.guest_name} className="h-12 w-12 rounded-full object-cover border border-gray-200" />
-                  )}
-                  <div>
-                    <p className="text-sm font-medium text-gray-900">{form.guest_name}</p>
-                    <p className="text-xs text-gray-500">{[form.guest_title, form.guest_company].filter(Boolean).join(", ")}</p>
-                  </div>
-                </div>
-                {form.guest_bio && <p className="text-xs text-gray-500 line-clamp-2">{form.guest_bio}</p>}
+              <div className="flex flex-wrap gap-2">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-medium">
+                  {form.guest_name}{form.guest_company ? ` · ${form.guest_company}` : ""}
+                  <button
+                    type="button"
+                    onClick={() => applySpeaker(null)}
+                    className="hover:opacity-70 transition-opacity"
+                  >
+                    ×
+                  </button>
+                </span>
               </div>
             )}
           </div>
