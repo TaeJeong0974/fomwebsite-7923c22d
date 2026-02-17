@@ -188,8 +188,7 @@ const DesktopIcon = ({
 }) => (
   <button
     className="flex flex-col items-center gap-0.5 group"
-    onClick={onClick}
-    onDoubleClick={onDoubleClick}
+    onClick={(e) => { e.stopPropagation(); onClick(); onDoubleClick(); }}
   >
     <div
       className={`border-2 border-black p-0.5 ${selected ? "bg-black" : "bg-white"}`}
