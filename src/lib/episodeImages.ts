@@ -53,6 +53,12 @@ export const OG_IMAGES: Record<string, string> = {
 
 export const HOST_IMAGES = [hostMada, hostEthan, hostCamille];
 
+export const HOST_IMAGES_BY_NAME: Record<string, string> = {
+  "mada-seghete": hostMada,
+  "ethan-smith": hostEthan,
+  "camille-ricketts": hostCamille,
+};
+
 export const getEpisodeImage = (slug: string, index: number): string => {
   return EPISODE_IMAGES[slug] || HOST_IMAGES[index % HOST_IMAGES.length];
 };

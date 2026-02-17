@@ -142,7 +142,21 @@ const AdminSpeakers = () => {
                   {uploading ? "…" : ""}
                 </MacButton>
               </div>
-              {form.image_url && <MacImagePreview src={form.image_url} alt={form.name || "Speaker"} className="mt-1 h-16 object-cover border border-black" />}
+              {(() => {
+                const slug = (form.name || "").toLowerCase().replace(/\s+/g, "-");
+                const img = form.image_url || EPISODE_IMAGES[slug];
+                return img ? (
+                  <div className="flex items-start gap-2 mt-1">
+                    <MacImagePreview src={img} alt={form.name || "Speaker"} className="h-16 object-cover border border-black" />
+                    <div className="flex flex-col gap-1">
+                      {form.image_url && (
+                        <MacButton onClick={() => set("image_url", "")} className="text-[9px]">✕ Clear</MacButton>
+                      )}
+                      <MacButton onClick={() => imageFileRef.current?.click()} className="text-[9px]">↻ Replace</MacButton>
+                    </div>
+                  </div>
+                ) : null;
+              })()}
               <MacFieldHint>Square headshot</MacFieldHint>
             </div>
             <div className="space-y-1"><MacLabel>LinkedIn URL</MacLabel><MacInput value={form.linkedin_url} onChange={(e) => set("linkedin_url", e.target.value)} /><MacFieldHint>Full profile URL</MacFieldHint></div>
