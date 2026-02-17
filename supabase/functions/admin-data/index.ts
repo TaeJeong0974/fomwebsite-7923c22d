@@ -251,6 +251,17 @@ serve(async (req) => {
       return respond(200, { success: true });
     }
 
+    // Batch reorder episodes
+    if (action === 'reorder-episodes') {
+      const { orders } = payload; // [{ id, episode_number }]
+      if (!Array.isArray(orders)) return respond(400, { error: 'orders must be an array' });
+      for (const { id, episode_number } of orders) {
+        const { error } = await supabase.from('episodes').update({ episode_number }).eq('id', id);
+        if (error) return respond(400, { error: error.message });
+      }
+      return respond(200, { success: true });
+    }
+
     return respond(400, { error: 'Unknown action' });
   } catch {
     return respond(400, { error: 'Bad request' });
