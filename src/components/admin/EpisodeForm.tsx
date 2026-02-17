@@ -591,7 +591,14 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
                     {uploading === "poster_image_url" ? "…" : ""}
                   </MacButton>
                 </div>
-                {form.poster_image_url && <img src={form.poster_image_url} alt="Poster" className="mt-1 h-16 object-cover border border-black" />}
+                {(form.poster_image_url || EPISODE_IMAGES[form.slug]) && (
+                  <div className="mt-1">
+                    <img src={form.poster_image_url || EPISODE_IMAGES[form.slug]} alt="Poster" className="h-16 object-cover border border-black" />
+                    {!form.poster_image_url && EPISODE_IMAGES[form.slug] && (
+                      <p className="text-[9px] text-gray-500 mt-0.5" style={macFont}>Using local asset</p>
+                    )}
+                  </div>
+                )}
               </div>
               <div className="space-y-1">
                 <MacLabel>OG Image</MacLabel>
@@ -603,7 +610,14 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
                     {uploading === "og_image_url" ? "…" : ""}
                   </MacButton>
                 </div>
-                {form.og_image_url && <img src={form.og_image_url} alt="OG" className="mt-1 h-16 object-cover border border-black" />}
+                {(form.og_image_url || EPISODE_IMAGES[form.slug]) && (
+                  <div className="mt-1">
+                    <img src={form.og_image_url || EPISODE_IMAGES[form.slug]} alt="OG" className="h-16 object-cover border border-black" />
+                    {!form.og_image_url && EPISODE_IMAGES[form.slug] && (
+                      <p className="text-[9px] text-gray-500 mt-0.5" style={macFont}>Using local asset</p>
+                    )}
+                  </div>
+                )}
               </div>
             </div>
           </div>
