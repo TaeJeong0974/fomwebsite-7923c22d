@@ -9,7 +9,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { MacWindow, MacButton, MacInput, MacTextarea, MacLabel, MacFieldHint } from "./MacOS";
 import PodcastCard from "@/components/podcast/PodcastCard";
 import type { PodcastEpisode } from "@/lib/podcastData";
-import { EPISODE_IMAGES } from "@/lib/episodeImages";
+import { EPISODE_IMAGES, POSTER_IMAGES, OG_IMAGES } from "@/lib/episodeImages";
 import DraggableWindow from "./DraggableWindow";
 
 const macFont = { fontFamily: "'Geneva', 'Helvetica Neue', monospace" };
@@ -591,10 +591,10 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
                     {uploading === "poster_image_url" ? "…" : ""}
                   </MacButton>
                 </div>
-                {(form.poster_image_url || EPISODE_IMAGES[form.slug]) && (
+                {(form.poster_image_url || POSTER_IMAGES[form.slug] || EPISODE_IMAGES[form.slug]) && (
                   <div className="mt-1">
-                    <img src={form.poster_image_url || EPISODE_IMAGES[form.slug]} alt="Poster" className="h-16 object-cover border border-black" />
-                    {!form.poster_image_url && EPISODE_IMAGES[form.slug] && (
+                    <img src={form.poster_image_url || POSTER_IMAGES[form.slug] || EPISODE_IMAGES[form.slug]} alt="Poster" className="h-16 object-cover border border-black" />
+                    {!form.poster_image_url && (POSTER_IMAGES[form.slug] || EPISODE_IMAGES[form.slug]) && (
                       <p className="text-[9px] text-gray-500 mt-0.5" style={macFont}>Using local asset</p>
                     )}
                   </div>
@@ -610,10 +610,10 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
                     {uploading === "og_image_url" ? "…" : ""}
                   </MacButton>
                 </div>
-                {(form.og_image_url || EPISODE_IMAGES[form.slug]) && (
+                {(form.og_image_url || OG_IMAGES[form.slug]) && (
                   <div className="mt-1">
-                    <img src={form.og_image_url || EPISODE_IMAGES[form.slug]} alt="OG" className="h-16 object-cover border border-black" />
-                    {!form.og_image_url && EPISODE_IMAGES[form.slug] && (
+                    <img src={form.og_image_url || OG_IMAGES[form.slug]} alt="OG" className="h-16 object-cover border border-black" />
+                    {!form.og_image_url && OG_IMAGES[form.slug] && (
                       <p className="text-[9px] text-gray-500 mt-0.5" style={macFont}>Using local asset</p>
                     )}
                   </div>

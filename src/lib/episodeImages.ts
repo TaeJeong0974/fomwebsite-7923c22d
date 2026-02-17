@@ -15,8 +15,11 @@ import guestKatrina from "@/assets/guest-katrina-wong.jpg";
 import hostMada from "@/assets/host-mada.png";
 import hostEthan from "@/assets/host-ethan.png";
 import hostCamille from "@/assets/host-camille.png";
+import ep0Poster from "@/assets/ep0-poster.png";
+import ep1Poster from "@/assets/ep1-poster.png";
 
 export const EPISODE_IMAGES: Record<string, string> = {
+  "the-future-of-marketing": ep0Poster,
   "meagen-eisenberg": guestMeagen,
   "lena-waters": guestLena,
   "lindsey-irvine": guestLindsey,
@@ -27,6 +30,25 @@ export const EPISODE_IMAGES: Record<string, string> = {
   "ceci-stallsmith": guestCeci,
   "idan-koren": guestIdan,
   "katrina-wong": guestKatrina,
+};
+
+export const POSTER_IMAGES: Record<string, string> = {
+  "the-future-of-marketing": ep0Poster,
+  "meagen-eisenberg": ep1Poster,
+};
+
+export const OG_IMAGES: Record<string, string> = {
+  "the-future-of-marketing": "/images/ep0-og.png",
+  "meagen-eisenberg": "/images/ep1-og.png",
+  "lena-waters": "/images/og-lena-waters.jpg",
+  "dave-steer": "/images/og-dave-steer.jpg",
+  "sara-varni": "/images/og-sara-varni.jpg",
+  "kate-johnson": "/images/og-kate-johnson.jpg",
+  "idan-koren": "/images/og-idan-koren.jpg",
+  "lindsey-irvine": "/images/og-lindsey-irvine.jpg",
+  "sheila-vashee": "/images/og-sheila-vashee.jpg",
+  "ceci-stallsmith": "/images/og-ceci-stallsmith.jpg",
+  "katrina-wong": "/images/og-katrina-wong.jpg",
 };
 
 export const HOST_IMAGES = [hostMada, hostEthan, hostCamille];
