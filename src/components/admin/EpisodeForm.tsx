@@ -52,9 +52,10 @@ const EMPTY = {
 };
 
 // ── Sortable Topic Item ──
-const SortableTopicItem = ({ id, topic, index, total, onRemove, onMove }: {
+const SortableTopicItem = ({ id, topic, index, total, onRemove, onMove, onEdit }: {
   id: string; topic: string; index: number; total: number;
   onRemove: (i: number) => void; onMove: (i: number, dir: -1 | 1) => void;
+  onEdit: (i: number, value: string) => void;
 }) => {
   const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id });
   const style = { transform: CSS.Transform.toString(transform), transition, opacity: isDragging ? 0.5 : 1, zIndex: isDragging ? 10 : undefined };
@@ -64,7 +65,12 @@ const SortableTopicItem = ({ id, topic, index, total, onRemove, onMove }: {
       <button type="button" {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing touch-none p-0.5 text-gray-400 hover:text-gray-600 shrink-0">
         <GripVertical className="h-3.5 w-3.5" />
       </button>
-      <span className="text-sm text-gray-900 flex-1">{topic}</span>
+      <input
+        type="text"
+        value={topic}
+        onChange={(e) => onEdit(index, e.target.value)}
+        className="text-sm text-gray-900 flex-1 bg-transparent border-none outline-none focus:ring-0 p-0"
+      />
       <div className="flex items-center gap-0.5 shrink-0">
         <button type="button" onClick={() => onMove(index, -1)} disabled={index === 0} className="p-0.5 rounded text-gray-400 hover:text-gray-700 disabled:opacity-30 transition-colors">
           <ChevronUp className="h-3.5 w-3.5" />
@@ -79,9 +85,10 @@ const SortableTopicItem = ({ id, topic, index, total, onRemove, onMove }: {
 };
 
 // ── Sortable Topic List ──
-const SortableTopicList = ({ topics, onReorder, onRemove, onMove }: {
+const SortableTopicList = ({ topics, onReorder, onRemove, onMove, onEdit }: {
   topics: string[]; onReorder: (t: string[]) => void;
   onRemove: (i: number) => void; onMove: (i: number, dir: -1 | 1) => void;
+  onEdit: (i: number, value: string) => void;
 }) => {
   const ids = topics.map((_, i) => `topic-${i}`);
   const sensors = useSensors(
@@ -102,7 +109,7 @@ const SortableTopicList = ({ topics, onReorder, onRemove, onMove }: {
       <SortableContext items={ids} strategy={verticalListSortingStrategy}>
         <div className="space-y-1">
           {topics.map((t, i) => (
-            <SortableTopicItem key={`topic-${i}`} id={`topic-${i}`} topic={t} index={i} total={topics.length} onRemove={onRemove} onMove={onMove} />
+            <SortableTopicItem key={`topic-${i}`} id={`topic-${i}`} topic={t} index={i} total={topics.length} onRemove={onRemove} onMove={onMove} onEdit={onEdit} />
           ))}
         </div>
       </SortableContext>
@@ -457,6 +464,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
             onReorder={(updated) => set("topics", updated)}
             onRemove={removeTopic}
             onMove={moveTopic}
+            onEdit={(i, value) => { const updated = [...form.topics]; updated[i] = value; set("topics", updated); }}
           />
         </GlassSection>
 
