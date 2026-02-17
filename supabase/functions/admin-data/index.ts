@@ -258,6 +258,8 @@ serve(async (req) => {
       for (const { id, episode_number } of orders) {
         const { error } = await supabase.from('episodes').update({ episode_number }).eq('id', id);
         if (error) return respond(400, { error: error.message });
+        // Also update live_episodes if promoted
+        await supabase.from('live_episodes').update({ episode_number }).eq('staging_id', id);
       }
       return respond(200, { success: true });
     }
