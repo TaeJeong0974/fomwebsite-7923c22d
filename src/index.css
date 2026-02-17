@@ -246,7 +246,7 @@ html {
   body {
     @apply text-foreground;
     font-family: var(--font-body);
-    font-size: 0.7rem; /* 11.2px - compact mobile size */
+    font-size: 0.9rem; /* 14.4px - mobile size */
     line-height: 1.5;
     -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape */
     background-image: url('/images/transition-bg-v2.png');
