@@ -9,6 +9,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { MacWindow, MacButton, MacInput, MacTextarea, MacLabel, MacFieldHint } from "./MacOS";
 import PodcastCard from "@/components/podcast/PodcastCard";
 import type { PodcastEpisode } from "@/lib/podcastData";
+import { EPISODE_IMAGES } from "@/lib/episodeImages";
 
 const macFont = { fontFamily: "'Geneva', 'Helvetica Neue', monospace" };
 
@@ -156,7 +157,7 @@ const CardPreview = ({ form }: { form: typeof EMPTY }) => {
             <PodcastCard
               episode={mockEpisode}
               isUpcoming={form.status === "upcoming"}
-              image={form.guest_image_url || undefined}
+              image={EPISODE_IMAGES[form.slug] || form.guest_image_url || undefined}
             />
           </div>
         )}
