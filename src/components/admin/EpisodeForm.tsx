@@ -293,9 +293,11 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
               <MacButton onClick={() => window.open(`https://fomwebsite.lovable.app/#podcast`, "_blank")}>
                 🏠 Homepage
               </MacButton>
-              <MacButton onClick={() => window.open(`https://fomwebsite.lovable.app/podcast/${form.slug}`, "_blank")}>
-                👁 Page
-              </MacButton>
+              {form.status === 'published' && (
+                <MacButton onClick={() => window.open(`https://fomwebsite.lovable.app/podcast/${form.slug}`, "_blank")}>
+                  👁 Page
+                </MacButton>
+              )}
             </>
           )}
           <MacButton onClick={onDone}>← Back</MacButton>
