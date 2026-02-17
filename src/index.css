@@ -2,18 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Scrollbar */
-::-webkit-scrollbar {
+/* Custom Scrollbar — only for non-retro elements */
+*:not(.mac-scrollbar)::-webkit-scrollbar {
   width: 8px;
 }
-::-webkit-scrollbar-track {
+*:not(.mac-scrollbar)::-webkit-scrollbar-track {
   background: transparent;
 }
-::-webkit-scrollbar-thumb {
+*:not(.mac-scrollbar)::-webkit-scrollbar-thumb {
   background: hsl(24 95% 50%);
   border-radius: 999px;
 }
-::-webkit-scrollbar-thumb:hover {
+*:not(.mac-scrollbar)::-webkit-scrollbar-thumb:hover {
   background: hsl(24 95% 42%);
 }
 html {
@@ -38,6 +38,7 @@ html {
     linear-gradient(-45deg, transparent 75%, #aaa 75%) !important;
   background-size: 2px 2px !important;
   background-position: 0 0, 0 1px, 1px -1px, -1px 0px !important;
+  background-color: #e8e8e8 !important;
 }
 .mac-scrollbar::-webkit-scrollbar-thumb {
   background: #c0c0c0 !important;
