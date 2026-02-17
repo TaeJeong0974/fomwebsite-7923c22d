@@ -19,12 +19,7 @@ const StickyBottomBar = ({ youtubeUrl, spotifyUrl, appleUrl, thumbnailUrl, episo
 
   useEffect(() => {
     const handleScroll = () => {
-      const y = window.scrollY;
-      setVisible(prev => {
-        if (!prev && y > 400) return true;
-        if (prev && y < 200) return false;
-        return prev;
-      });
+      setVisible(window.scrollY > 300);
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
