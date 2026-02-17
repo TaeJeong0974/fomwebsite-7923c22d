@@ -130,11 +130,8 @@ const DraggableWindow = ({
         <div className="flex-1 overflow-hidden relative">
           <div
             ref={scrollRef}
-            className="absolute inset-0 overflow-auto [&::-webkit-scrollbar]:hidden"
-            style={{
-              scrollbarWidth: "none" as const,
-              paddingRight: 16,
-            }}
+            className="absolute inset-0 overflow-auto hide-native-scrollbar"
+            style={{ paddingRight: 16 }}
           >
             {children}
           </div>
