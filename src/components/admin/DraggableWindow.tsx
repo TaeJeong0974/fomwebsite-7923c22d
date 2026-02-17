@@ -123,6 +123,7 @@ const DraggableWindow = ({
         title={title}
         className={`h-full flex flex-col ${!isActive ? "opacity-80" : ""}`}
         onClose={onClose}
+        onMaximize={toggleMaximize}
         onTitleBarMouseDown={handleMouseDown}
         onTitleBarDoubleClick={toggleMaximize}
         isActive={isActive}
