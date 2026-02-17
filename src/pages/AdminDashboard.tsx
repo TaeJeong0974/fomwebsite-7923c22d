@@ -198,7 +198,7 @@ const PixelIcon = ({ type, selected }: { type: WindowId | "website"; selected: b
   return icons[type];
 };
 
-/* ── Desktop Icon ── */
+/* ── Desktop Icon with Folder wrapper ── */
 const DesktopIcon = ({
   type,
   label,
@@ -216,14 +216,29 @@ const DesktopIcon = ({
     className="flex flex-col items-center gap-0.5 group"
     onClick={(e) => { e.stopPropagation(); onClick(); onDoubleClick(); }}
   >
-    <div
-      className={`border-2 border-black p-0.5 ${selected ? "bg-black" : "bg-white"}`}
-      style={{ boxShadow: selected ? "none" : "2px 2px 0px #000" }}
-    >
-      <PixelIcon type={type} selected={selected} />
+    {/* Folder shape */}
+    <div className={`relative ${selected ? "invert" : ""}`}>
+      <svg width="48" height="40" viewBox="0 0 48 40" style={{ imageRendering: "pixelated" }}>
+        {/* Folder tab */}
+        <rect x="2" y="0" width="16" height="6" fill="black" />
+        <rect x="3" y="1" width="14" height="4" fill="white" />
+        {/* Folder body */}
+        <rect x="0" y="5" width="48" height="35" fill="black" />
+        <rect x="1" y="6" width="46" height="33" fill="white" />
+        <rect x="2" y="7" width="44" height="31" fill="white" />
+        {/* Bottom shadow line */}
+        <rect x="1" y="38" width="46" height="1" fill="#808080" />
+        <rect x="47" y="6" width="1" height="33" fill="#808080" />
+      </svg>
+      {/* Icon centered inside folder */}
+      <div className="absolute inset-0 flex items-center justify-center" style={{ paddingTop: 6 }}>
+        <div className="scale-75">
+          <PixelIcon type={type} selected={false} />
+        </div>
+      </div>
     </div>
     <span
-      className={`text-sm font-bold px-1.5 py-0.5 rounded-sm ${
+      className={`text-[11px] font-bold px-1.5 py-0.5 ${
         selected ? "bg-black text-white" : "bg-white/80 text-black"
       }`}
       style={macFont}
