@@ -6,6 +6,7 @@ import guestBg from "@/assets/guest-bg.png";
 interface FloatingMiniPlayerProps {
   youtubeUrl?: string;
   spotifyUrl?: string;
+  appleUrl?: string;
   playTrigger?: number;
   thumbnailImage?: string;
 }
@@ -23,7 +24,7 @@ const getYouTubeVideoId = (url: string): string | null => {
   return null;
 };
 
-const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImage }: FloatingMiniPlayerProps) => {
+const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, appleUrl, playTrigger, thumbnailImage }: FloatingMiniPlayerProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [showPip, setShowPip] = useState(false);
   const [hideAtBottom, setHideAtBottom] = useState(false);
@@ -206,7 +207,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, playTrigger, thumbnailImag
                   <SpotifyIcon className="w-3.5 h-3.5" />
                 </a>
               )}
-              <a href={APPLE_PODCASTS_URL} target="_blank" rel="noopener noreferrer" className={listenIconButton} aria-label="Listen on Apple Podcasts">
+              <a href={appleUrl || APPLE_PODCASTS_URL} target="_blank" rel="noopener noreferrer" className={listenIconButton} aria-label="Listen on Apple Podcasts">
                 <ApplePodcastsIcon className="w-3.5 h-3.5" />
               </a>
             </div>

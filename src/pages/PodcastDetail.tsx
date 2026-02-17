@@ -91,6 +91,7 @@ const PodcastDetail = () => {
       <StickyBottomBar
         youtubeUrl={episode.youtubeUrl}
         spotifyUrl={episode.spotifyUrl}
+        appleUrl={episode.appleUrl}
         thumbnailUrl={thumbnailUrl}
         episodeName={episode.name}
         episodeTitle={
@@ -112,7 +113,7 @@ const PodcastDetail = () => {
             </h1>
           </div>
           <div className="hidden lg:block mt-6 sm:mt-7">
-            <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
+            <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} appleUrl={episode.appleUrl} />
           </div>
         </div>
 
@@ -124,11 +125,12 @@ const PodcastDetail = () => {
               <FloatingMiniPlayer
                 youtubeUrl={episode.youtubeUrl}
                 spotifyUrl={episode.spotifyUrl}
+                appleUrl={episode.appleUrl}
                 playTrigger={playTrigger}
                 thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : isIntro ? ep0Poster : undefined}
               />
               <div className="pt-2 lg:hidden">
-                <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} />
+                <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} appleUrl={episode.appleUrl} />
               </div>
             </FadeInSection>
 

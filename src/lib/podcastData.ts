@@ -32,6 +32,7 @@ export interface PodcastEpisode {
   chapters: PodcastChapter[];
   youtubeUrl: string;
   spotifyUrl: string;
+  appleUrl?: string;
   duration: string;
   publishedDate: string;
   comingSoon: boolean;
@@ -105,7 +106,8 @@ From the LinkedIn AI content trap to why Reddit might be the most underrated cha
       { time: "18:00", title: "What's coming up" },
     ],
     youtubeUrl: "https://www.youtube.com/watch?v=rEd0_UxNxxk",
-    spotifyUrl: "https://spotify.com",
+    spotifyUrl: "https://open.spotify.com/episode/1xPoUDXy3pbb2Qmlh1PNC6?si=xuypOIK6TQW4_IFCUSuysw",
+    appleUrl: "https://podcasts.apple.com/us/podcast/why-authenticity-beats-automation-in-modern-marketing/id1876216633?i=1000750164421",
     duration: "25 min",
     publishedDate: "Jan 1, 2026",
     pullQuote: "Whenever there's a new technology, the adoption cycle is actually longer than people often think. If you think about when the Internet was introduced, it took a very long time to actually adopt the Internet and apply it in novel ways. Same with mobile, same with social. And so with AI, I think there's a small number of people who can think 10 steps ahead and most people cannot.",
@@ -150,7 +152,8 @@ This episode is a practical blueprint for CMOs and marketing leaders who want AI
       { time: "45:00", title: "Advice for aspiring CMOs" },
     ],
     youtubeUrl: "https://www.youtube.com/watch?v=yx_k3a83J6E",
-    spotifyUrl: "https://spotify.com",
+    spotifyUrl: "https://open.spotify.com/episode/5O39m6pE2VTlZItwWQKmQr?si=tnXuTP1sQdyFEVQLujZNCw",
+    appleUrl: "https://podcasts.apple.com/us/podcast/why-the-best-cmos-think-like-operators-not-marketers/id1876216633?i=1000750167406",
     duration: "52 min",
     publishedDate: "Jan 15, 2026",
     comingSoon: false,

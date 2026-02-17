@@ -6,13 +6,14 @@ import { YouTubeIcon, SpotifyIcon, ApplePodcastsIcon, APPLE_PODCASTS_URL } from 
 interface StickyBottomBarProps {
   youtubeUrl: string;
   spotifyUrl: string;
+  appleUrl?: string;
   thumbnailUrl: string | null;
   episodeName: string;
   episodeTitle: string;
   onPlayClick?: () => void;
 }
 
-const StickyBottomBar = ({ youtubeUrl, spotifyUrl, thumbnailUrl, episodeName, episodeTitle, onPlayClick }: StickyBottomBarProps) => {
+const StickyBottomBar = ({ youtubeUrl, spotifyUrl, appleUrl, thumbnailUrl, episodeName, episodeTitle, onPlayClick }: StickyBottomBarProps) => {
   const [copied, setCopied] = useState(false);
   const [visible, setVisible] = useState(false);
 
@@ -75,7 +76,7 @@ const StickyBottomBar = ({ youtubeUrl, spotifyUrl, thumbnailUrl, episodeName, ep
               <motion.a href={spotifyUrl} target="_blank" rel="noopener noreferrer" className={iconButton} whileHover={{ scale: 1.15, backgroundColor: "rgba(255,255,255,0.8)" }} whileTap={{ scale: 0.9 }} transition={iconSpring}>
                 <SpotifyIcon className="w-4 h-4" />
               </motion.a>
-              <motion.a href={APPLE_PODCASTS_URL} target="_blank" rel="noopener noreferrer" className={iconButton} whileHover={{ scale: 1.15, backgroundColor: "rgba(255,255,255,0.8)" }} whileTap={{ scale: 0.9 }} transition={iconSpring}>
+              <motion.a href={appleUrl || APPLE_PODCASTS_URL} target="_blank" rel="noopener noreferrer" className={iconButton} whileHover={{ scale: 1.15, backgroundColor: "rgba(255,255,255,0.8)" }} whileTap={{ scale: 0.9 }} transition={iconSpring}>
                 <ApplePodcastsIcon className="w-4 h-4" />
               </motion.a>
               <motion.button onClick={handleShare} className={iconButton} whileHover={{ scale: 1.15, backgroundColor: "rgba(255,255,255,0.8)" }} whileTap={{ scale: 0.9 }} transition={iconSpring}>
