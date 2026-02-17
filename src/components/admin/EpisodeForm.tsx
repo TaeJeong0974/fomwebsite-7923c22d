@@ -512,24 +512,54 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
 
         {/* ── 7. About the Host ── */}
         <GlassSection label="About the Host" number={7}>
-          <div className="flex flex-wrap gap-2">
-            {allHosts.map((h) => (
-              <button
-                key={h.id}
-                type="button"
-                onClick={() => toggleHost(h.id)}
-                className={`px-4 py-2 rounded-full text-xs font-medium transition-all border ${
-                  selectedHostIds.includes(h.id)
-                    ? "bg-primary text-primary-foreground border-primary shadow-sm"
-                    : "bg-gray-50 text-gray-500 border-gray-200 hover:border-gray-300"
-                }`}
+          <div className="space-y-4">
+            <div className="space-y-1">
+              <label className={labelClass}>Add Host</label>
+              <select
+                className={fieldClass}
+                value=""
+                onChange={(e) => {
+                  if (e.target.value && !selectedHostIds.includes(e.target.value)) {
+                    setSelectedHostIds((prev) => [...prev, e.target.value]);
+                  }
+                }}
               >
-                {h.name}
-              </button>
-            ))}
-            {allHosts.length === 0 && <p className="text-body-sm text-muted-foreground">No hosts available</p>}
+                <option value="">— Choose a host —</option>
+                {allHosts
+                  .filter((h) => !selectedHostIds.includes(h.id))
+                  .map((h) => (
+                    <option key={h.id} value={h.id}>{h.name}</option>
+                  ))}
+              </select>
+              <FieldHint>Select one or more hosts for this episode — shown in the "About the Host" section</FieldHint>
+            </div>
+
+            {selectedHostIds.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {selectedHostIds.map((hostId) => {
+                  const host = allHosts.find((h) => h.id === hostId);
+                  if (!host) return null;
+                  return (
+                    <span
+                      key={hostId}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-primary text-primary-foreground text-xs font-medium"
+                    >
+                      {host.name}
+                      <button
+                        type="button"
+                        onClick={() => setSelectedHostIds((prev) => prev.filter((id) => id !== hostId))}
+                        className="hover:opacity-70 transition-opacity"
+                      >
+                        ×
+                      </button>
+                    </span>
+                  );
+                })}
+              </div>
+            )}
+
+            {allHosts.length === 0 && <p className="text-sm text-muted-foreground">No hosts available</p>}
           </div>
-          <FieldHint>Select one or more hosts for this episode — shown in the "About the Host" section</FieldHint>
         </GlassSection>
 
         {/* ── Group divider: Assets & Publishing ── */}
