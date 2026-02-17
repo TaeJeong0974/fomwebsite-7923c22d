@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import type { PodcastEpisode, PodcastHost } from "@/lib/podcastData";
+import { EpisodeDataContext } from "@/contexts/EpisodeDataContext";
 import Footer from "@/components/Footer";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
 import EpisodeActionButtons from "@/components/podcast/EpisodeActionButtons";
@@ -9,20 +10,20 @@ import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
 import EpisodeHostsCard from "@/components/podcast/EpisodeHostsCard";
 import EpisodePullQuote from "@/components/podcast/EpisodePullQuote";
-import EpisodeNewsletters from "@/components/podcast/EpisodeNewsletters";
 import GuestBio from "@/components/podcast/GuestBio";
 import AboutTheHosts from "@/components/podcast/AboutTheHosts";
 import FadeInSection from "@/components/podcast/FadeInSection";
 import FloatingMiniPlayer from "@/components/podcast/FloatingMiniPlayer";
-import { EPISODE_IMAGES, POSTER_IMAGES } from "@/lib/episodeImages";
 import { getYouTubeThumbnail } from "@/lib/episodeUtils";
 import ep1Poster from "@/assets/ep1-poster.png";
 import ep0Poster from "@/assets/ep0-poster.png";
 
-function parseHostTitle(titleField: string | null): { title: string; company: string } {
-  if (!titleField) return { title: "", company: "" };
-  const parts = titleField.split(",").map((s) => s.trim());
-  return { title: parts[0] || "", company: parts.slice(1).join(", ").trim() || "" };
+/* ── DB → domain mappers ── */
+
+function parseHostTitle(t: string | null) {
+  if (!t) return { title: "", company: "" };
+  const p = t.split(",").map((s) => s.trim());
+  return { title: p[0] || "", company: p.slice(1).join(", ").trim() || "" };
 }
 
 function mapDbHost(row: any): PodcastHost {
@@ -35,19 +36,12 @@ function mapDbEpisode(row: any, hosts: PodcastHost[]): PodcastEpisode {
     ? new Date(row.publish_date + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
     : "";
   return {
-    id: row.episode_number ?? 0,
-    slug: row.slug,
-    name: row.guest_name || row.title,
-    title: row.guest_title || "",
-    company: row.guest_company || "",
-    companyDomain: row.guest_company_domain || "",
-    overview: row.subtitle || "",
-    fullDescription: row.full_description || "",
-    bio: row.guest_bio || "",
-    topics: (row.topics as string[]) || [],
-    chapters: [],
-    youtubeUrl: row.youtube_url || "",
-    spotifyUrl: row.spotify_url || "",
+    id: row.episode_number ?? 0, slug: row.slug,
+    name: row.guest_name || row.title, title: row.guest_title || "",
+    company: row.guest_company || "", companyDomain: row.guest_company_domain || "",
+    overview: row.subtitle || "", fullDescription: row.full_description || "",
+    bio: row.guest_bio || "", topics: (row.topics as string[]) || [], chapters: [],
+    youtubeUrl: row.youtube_url || "", spotifyUrl: row.spotify_url || "",
     duration: row.duration || "",
     publishedDate: row.published ? publishDate : "Coming Soon",
     comingSoon: !row.published,
@@ -58,33 +52,59 @@ function mapDbEpisode(row: any, hosts: PodcastHost[]): PodcastEpisode {
   };
 }
 
+/* ── Page ── */
+
 const StagingPreview = () => {
   const { slug } = useParams();
   const [episode, setEpisode] = useState<PodcastEpisode | null>(null);
+  const [allHosts, setAllHosts] = useState<PodcastHost[]>([]);
+  const [allEpisodes, setAllEpisodes] = useState<PodcastEpisode[]>([]);
   const [loading, setLoading] = useState(true);
   const [playTrigger, setPlayTrigger] = useState(0);
 
   useEffect(() => {
     if (!slug) return;
-    const fetch = async () => {
+    (async () => {
       setLoading(true);
-      const { data: epRow } = await supabase.from("episodes").select("*").eq("slug", slug).single();
-      if (!epRow) { setLoading(false); return; }
+      try {
+        const [epRes, hostRes, linkRes] = await Promise.all([
+          supabase.from("episodes").select("*").order("episode_number", { ascending: false }),
+          supabase.from("hosts").select("*"),
+          supabase.from("episode_hosts").select("episode_id, host_id"),
+        ]);
 
-      const { data: linkRows } = await supabase.from("episode_hosts").select("host_id").eq("episode_id", epRow.id);
-      const hostIds = (linkRows || []).map((l: any) => l.host_id);
+        const hostRows = hostRes.data || [];
+        const mapped = hostRows.map(mapDbHost);
+        setAllHosts(mapped);
 
-      let hosts: PodcastHost[] = [];
-      if (hostIds.length > 0) {
-        const { data: hostRows } = await supabase.from("hosts").select("*").in("id", hostIds);
-        hosts = (hostRows || []).map(mapDbHost);
+        const hostMap = new Map<string, PodcastHost>();
+        hostRows.forEach((r: any) => hostMap.set(r.id, mapDbHost(r)));
+
+        const links = linkRes.data || [];
+        const eps = (epRes.data || []).map((r: any) => {
+          const ids = links.filter((l: any) => l.episode_id === r.id).map((l: any) => l.host_id);
+          return mapDbEpisode(r, ids.map((id: string) => hostMap.get(id)).filter(Boolean) as PodcastHost[]);
+        });
+
+        setAllEpisodes(eps);
+        setEpisode(eps.find((e) => e.slug === slug) || null);
+      } catch (err) {
+        console.error("Staging fetch failed:", err);
+      } finally {
+        setLoading(false);
       }
-
-      setEpisode(mapDbEpisode(epRow, hosts));
-      setLoading(false);
-    };
-    fetch();
+    })();
   }, [slug]);
+
+  // Override the EpisodeDataContext so child components read DB data
+  const ctxValue = useMemo(() => ({
+    episodes: allEpisodes,
+    hosts: allHosts,
+    loading,
+    getEpisodeBySlug: (s: string) => allEpisodes.find((e) => e.slug === s),
+    getPublishedEpisodes: () => allEpisodes.filter((e) => !e.comingSoon),
+    getComingSoonEpisodes: () => allEpisodes.filter((e) => e.comingSoon),
+  }), [allEpisodes, allHosts, loading]);
 
   if (loading) return (
     <div className="min-h-screen flex items-center justify-center bg-[#f4f2ef]">
@@ -101,7 +121,7 @@ const StagingPreview = () => {
   const isIntro = episode.slug === "the-future-of-marketing";
 
   return (
-    <>
+    <EpisodeDataContext.Provider value={ctxValue}>
       {/* Staging banner */}
       <div className="fixed top-0 left-0 right-0 z-[100] bg-amber-400 text-black text-center text-xs font-bold py-1.5">
         ⚠️ STAGING PREVIEW — This is not the live page
@@ -158,38 +178,20 @@ const StagingPreview = () => {
 
               {!isIntro && episode.bio && (
                 <FadeInSection>
-                  <GuestBio
-                    name={episode.name}
-                    bio={episode.bio}
-                    company={episode.company}
-                    companyDomain={episode.companyDomain}
-                    linkedInUrl={episode.linkedInUrl}
-                  />
+                  <GuestBio name={episode.name} bio={episode.bio} company={episode.company} companyDomain={episode.companyDomain} linkedInUrl={episode.linkedInUrl} />
                 </FadeInSection>
               )}
 
-              {isIntro && (
-                <FadeInSection>
-                  <AboutTheHosts />
-                </FadeInSection>
-              )}
-
-              {!isIntro && episode.hosts && episode.hosts.length > 0 && (
-                <FadeInSection>
-                  <AboutTheHosts hosts={episode.hosts} />
-                </FadeInSection>
-              )}
+              {isIntro ? (
+                <FadeInSection><AboutTheHosts /></FadeInSection>
+              ) : episode.hosts && episode.hosts.length > 0 ? (
+                <FadeInSection><AboutTheHosts hosts={episode.hosts} /></FadeInSection>
+              ) : null}
 
               {/* Sidebar cards on mobile */}
               <div className="lg:hidden space-y-4">
                 {!isIntro && (
-                  <EpisodeGuestCard
-                    name={episode.name}
-                    title={episode.title}
-                    company={episode.company}
-                    companyDomain={episode.companyDomain}
-                    linkedInUrl={episode.linkedInUrl}
-                  />
+                  <EpisodeGuestCard name={episode.name} title={episode.title} company={episode.company} companyDomain={episode.companyDomain} linkedInUrl={episode.linkedInUrl} />
                 )}
                 <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />
               </div>
@@ -198,13 +200,7 @@ const StagingPreview = () => {
             {/* Sidebar */}
             <FadeInSection className="hidden lg:flex lg:flex-col space-y-4">
               {!isIntro && (
-                <EpisodeGuestCard
-                  name={episode.name}
-                  title={episode.title}
-                  company={episode.company}
-                  companyDomain={episode.companyDomain}
-                  linkedInUrl={episode.linkedInUrl}
-                />
+                <EpisodeGuestCard name={episode.name} title={episode.title} company={episode.company} companyDomain={episode.companyDomain} linkedInUrl={episode.linkedInUrl} />
               )}
               <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />
             </FadeInSection>
@@ -212,7 +208,7 @@ const StagingPreview = () => {
         </EpisodeOverlayLayout>
         <Footer />
       </div>
-    </>
+    </EpisodeDataContext.Provider>
   );
 };
 
