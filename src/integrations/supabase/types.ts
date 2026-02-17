@@ -74,6 +74,7 @@ export type Database = {
           slug: string
           spotify_url: string | null
           status: string
+          subscribe_headline: string | null
           subtitle: string | null
           title: string
           topics: Json | null
@@ -106,6 +107,7 @@ export type Database = {
           slug: string
           spotify_url?: string | null
           status?: string
+          subscribe_headline?: string | null
           subtitle?: string | null
           title: string
           topics?: Json | null
@@ -138,6 +140,7 @@ export type Database = {
           slug?: string
           spotify_url?: string | null
           status?: string
+          subscribe_headline?: string | null
           subtitle?: string | null
           title?: string
           topics?: Json | null
@@ -238,6 +241,7 @@ export type Database = {
           spotify_url: string | null
           staging_id: string
           status: string
+          subscribe_headline: string | null
           subtitle: string | null
           title: string
           topics: Json | null
@@ -268,6 +272,7 @@ export type Database = {
           spotify_url?: string | null
           staging_id: string
           status?: string
+          subscribe_headline?: string | null
           subtitle?: string | null
           title: string
           topics?: Json | null
@@ -298,6 +303,7 @@ export type Database = {
           spotify_url?: string | null
           staging_id?: string
           status?: string
+          subscribe_headline?: string | null
           subtitle?: string | null
           title?: string
           topics?: Json | null
