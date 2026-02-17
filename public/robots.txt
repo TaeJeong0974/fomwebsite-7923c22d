@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://fomwebsite.lovable.app/sitemap.xml
+Sitemap: https://fom.xyz/sitemap.xml
