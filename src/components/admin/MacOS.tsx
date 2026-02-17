@@ -60,7 +60,7 @@ export const MacWindow = ({
       {isActive ? <TitleBarStripes /> : <div className="flex-1" />}
     </div>
     {/* Content */}
-    <div>{children}</div>
+    <div className="flex-1 overflow-hidden flex flex-col min-h-0">{children}</div>
   </div>
 );
 
