@@ -307,22 +307,29 @@ export const MacSelect = ({
       className="border-2 border-black bg-white max-h-[200px] overflow-y-auto"
       style={{ ...dropdownStyle, boxShadow: "2px 2px 0px #000", zIndex: 99999 }}
     >
-      {options.map((opt, i) => (
-        <button
-          key={`${opt.value}-${i}`}
-          type="button"
-          className={`w-full text-left px-2 py-1 text-xs cursor-default ${
-            opt.value === value ? "bg-black text-white" : "hover:bg-black hover:text-white"
-          }`}
-          style={{ fontFamily: "'Geneva', 'Helvetica Neue', monospace" }}
-          onClick={() => {
-            onChange({ target: { value: opt.value } } as React.ChangeEvent<HTMLSelectElement>);
-            setOpen(false);
-          }}
-        >
-          {opt.label}
-        </button>
-      ))}
+      {options.map((opt, i) => {
+        const isSelected = opt.value === value;
+        const ditherBg = `repeating-conic-gradient(#000 0% 25%, transparent 0% 50%) 0 0 / 4px 4px`;
+        return (
+          <button
+            key={`${opt.value}-${i}`}
+            type="button"
+            className={`w-full text-left px-2 py-1 text-xs cursor-default mac-select-option ${
+              isSelected ? "text-white" : ""
+            }`}
+            style={{
+              fontFamily: "'Geneva', 'Helvetica Neue', monospace",
+              ...(isSelected ? { background: ditherBg } : {}),
+            }}
+            onClick={() => {
+              onChange({ target: { value: opt.value } } as React.ChangeEvent<HTMLSelectElement>);
+              setOpen(false);
+            }}
+          >
+            {opt.label}
+          </button>
+        );
+      })}
     </div>
   ) : null;
 

@@ -908,3 +908,9 @@ html {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
+/* Mac OS dropdown dither hover pattern */
+.mac-select-option:hover {
+  background: repeating-conic-gradient(#000 0% 25%, transparent 0% 50%) 0 0 / 4px 4px;
+  color: white;
+}
