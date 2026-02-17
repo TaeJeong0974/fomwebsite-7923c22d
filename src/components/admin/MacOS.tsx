@@ -316,8 +316,8 @@ export const MacSelect = ({
       </button>
       {open && (
         <div
-          className="absolute left-0 right-0 top-full mt-0 border-2 border-black bg-white z-[70] max-h-[200px] overflow-y-auto"
-          style={{ boxShadow: "2px 2px 0px #000" }}
+          className="absolute left-0 top-full mt-0 border-2 border-black bg-white z-[70] max-h-[200px] overflow-y-auto whitespace-nowrap min-w-full"
+          style={{ boxShadow: "2px 2px 0px #000", width: "max-content" }}
         >
           {options.map((opt, i) => (
             <button
