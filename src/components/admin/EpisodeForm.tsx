@@ -311,7 +311,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
   return (
     <div>
       <div className="flex items-center justify-between mb-8">
-        <h2 className="font-semibold text-dark-foreground leading-tight" style={{ fontSize: 'clamp(2rem, 5vw, 3.375rem)' }}>{episodeId ? "Edit Episode" : "New Episode"}</h2>
+        <h2 className="font-semibold text-dark-foreground leading-tight" style={{ fontSize: 'clamp(2rem, 5vw, 3.375rem)' }}>{episodeId ? (form.title || "Untitled Episode") : "New Episode"}</h2>
         <button onClick={onDone} className="text-sm text-gray-400 hover:text-gray-700 transition-colors">← Back</button>
       </div>
 
