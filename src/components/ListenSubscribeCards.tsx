@@ -104,7 +104,7 @@ const ListenSubscribeCards = ({ showTitle = true, className = "", guestName }: L
     },
     {
       label: "Spotify",
-      href: "https://open.spotify.com/show/futureofmarketing",
+      href: "https://open.spotify.com/show/5hb4IHhOnMJwZXVPN7BnRu",
       hoverColors: ["#AB5866", "#B45250", "#B44C38", "#AB5866"],
     },
     {
