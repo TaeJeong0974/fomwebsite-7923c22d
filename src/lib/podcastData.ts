@@ -104,7 +104,7 @@ From the LinkedIn AI content trap to why Reddit might be the most underrated cha
       { time: "10:00", title: "Why this podcast?" },
       { time: "18:00", title: "What's coming up" },
     ],
-    youtubeUrl: "https://www.youtube.com/watch?v=wCDIYvFmgW8",
+    youtubeUrl: "https://www.youtube.com/watch?v=yx_k3a83J6E",
     spotifyUrl: "https://spotify.com",
     duration: "25 min",
     publishedDate: "Jan 1, 2026",
