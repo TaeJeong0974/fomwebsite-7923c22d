@@ -57,6 +57,15 @@ serve(async (req) => {
       return respond(200, { data });
     }
 
+    if (action === 'list-speakers') {
+      const { data, error } = await supabase
+        .from('speakers')
+        .select('*')
+        .order('name');
+      if (error) return respond(400, { error: error.message });
+      return respond(200, { data });
+    }
+
     // WRITE operations
     if (action === 'upsert-episode') {
       const { id, ...rest } = payload;
@@ -84,6 +93,21 @@ serve(async (req) => {
 
     if (action === 'delete-host') {
       const { error } = await supabase.from('hosts').delete().eq('id', payload.id);
+      if (error) return respond(400, { error: error.message });
+      return respond(200, { success: true });
+    }
+
+    if (action === 'upsert-speaker') {
+      const { id, ...rest } = payload;
+      const { data, error } = id
+        ? await supabase.from('speakers').update(rest).eq('id', id).select().single()
+        : await supabase.from('speakers').insert(rest).select().single();
+      if (error) return respond(400, { error: error.message });
+      return respond(200, { data });
+    }
+
+    if (action === 'delete-speaker') {
+      const { error } = await supabase.from('speakers').delete().eq('id', payload.id);
       if (error) return respond(400, { error: error.message });
       return respond(200, { success: true });
     }
