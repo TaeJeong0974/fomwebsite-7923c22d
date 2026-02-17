@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import type { PodcastEpisode, PodcastHost } from "@/lib/podcastData";
 import { EpisodeDataContext } from "@/contexts/EpisodeDataContext";
@@ -31,11 +31,12 @@ function mapDbHost(row: any): PodcastHost {
   return { name: row.name, title, company, linkedInUrl: row.linkedin_url || undefined, bio: row.bio || undefined };
 }
 
-function mapDbEpisode(row: any, hosts: PodcastHost[]): PodcastEpisode {
+function mapDbEpisode(row: any, hosts: PodcastHost[]): PodcastEpisode & { _dbId: string } {
   const publishDate = row.publish_date
     ? new Date(row.publish_date + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
     : "";
   return {
+    _dbId: row.id,
     id: row.episode_number ?? 0, slug: row.slug,
     name: row.guest_name || row.title, title: row.guest_title || "",
     company: row.guest_company || "", companyDomain: row.guest_company_domain || "",
@@ -88,6 +89,8 @@ export function invalidateStagingCache() { _cache = { data: null, ts: 0 }; }
 
 const StagingPreview = () => {
   const { slug } = useParams();
+  const [searchParams] = useSearchParams();
+  const episodeDbId = searchParams.get("id");
   const [episode, setEpisode] = useState<PodcastEpisode | null>(null);
   const [allHosts, setAllHosts] = useState<PodcastHost[]>([]);
   const [allEpisodes, setAllEpisodes] = useState<PodcastEpisode[]>([]);
@@ -95,21 +98,25 @@ const StagingPreview = () => {
   const [playTrigger, setPlayTrigger] = useState(0);
 
   useEffect(() => {
-    if (!slug) return;
+    if (!slug && !episodeDbId) return;
     (async () => {
       setLoading(true);
       try {
         const { episodes, hosts } = await fetchStagingData();
         setAllHosts(hosts);
         setAllEpisodes(episodes);
-        setEpisode(episodes.find((e) => e.slug === slug) || null);
+        // Try matching by DB id first (handles slug changes), then by slug
+        const match = (episodeDbId
+          ? episodes.find((e) => (e as any)._dbId === episodeDbId)
+          : undefined) || episodes.find((e) => e.slug === slug);
+        setEpisode(match || null);
       } catch (err) {
         console.error("Staging fetch failed:", err);
       } finally {
         setLoading(false);
       }
     })();
-  }, [slug]);
+  }, [slug, episodeDbId]);
 
   // Override the EpisodeDataContext so child components read DB data
   const ctxValue = useMemo(() => ({

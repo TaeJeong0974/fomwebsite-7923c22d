@@ -344,7 +344,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
               <MacButton onClick={() => setShowCardPreview(true)}>
                 🃏 Card
               </MacButton>
-              <MacButton onClick={() => window.open(`${window.location.origin}/admin/preview/${form.slug}`, "_blank")}>
+              <MacButton onClick={() => window.open(`${window.location.origin}/admin/preview/${form.slug}${episodeId ? `?id=${episodeId}` : ""}`, "_blank")}>
                 👁 Page
               </MacButton>
             </>
