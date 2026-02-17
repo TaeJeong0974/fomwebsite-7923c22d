@@ -356,10 +356,10 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
           {form.slug && (
              <>
               <MacButton onClick={() => setShowCardPreview(true)}>
-                🃏 Card
+                👁 Preview Card
               </MacButton>
               <MacButton onClick={handlePreview} disabled={saving}>
-                👁 Page
+                👁 Preview Page
               </MacButton>
             </>
           )}
