@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { adminApi } from "@/lib/adminApi";
 import { toast } from "sonner";
 import { podcastEpisodes, podcastHosts } from "@/lib/podcastData";
+import { EPISODE_IMAGES } from "@/lib/episodeImages";
 import { GripVertical, Loader2 } from "lucide-react";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from "@dnd-kit/core";
 import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
@@ -46,6 +47,16 @@ const SortableRow = ({ ep, stale, isPromoting, canPromote, onEdit, onDelete, onP
         </button>
       </td>
       <td className="px-2 py-2 text-[11px] text-gray-500" style={macFont}>{ep.episode_number ?? "—"}</td>
+      <td className="px-2 py-1.5 w-10">
+        {(() => {
+          const img = EPISODE_IMAGES[ep.slug];
+          return img ? (
+            <img src={img} alt="" className="w-8 h-8 rounded object-cover border border-black/20" />
+          ) : (
+            <div className="w-8 h-8 rounded border border-black/20 bg-gray-100" />
+          );
+        })()}
+      </td>
       <td className="px-2 py-2 text-[11px] font-bold" style={macFont}>{ep.title}</td>
       <td className="px-2 py-2 text-[11px] hidden sm:table-cell" style={macFont}>{ep.guest_name || "—"}</td>
       <td className="px-2 py-2 text-[11px] hidden sm:table-cell" style={macFont}>{ep.guest_company || "—"}</td>
@@ -212,6 +223,7 @@ const AdminEpisodes = ({ onSwitchToSpeakers }: { onSwitchToSpeakers?: () => void
                 <tr className="border-b-2 border-black bg-white">
                   <th className="w-8 px-2 py-1.5" />
                   <th className="text-left px-2 py-1.5 text-[10px] font-bold uppercase" style={macFont}>#</th>
+                  <th className="w-10 px-2 py-1.5" />
                   <th className="text-left px-2 py-1.5 text-[10px] font-bold uppercase" style={macFont}>Title</th>
                   <th className="text-left px-2 py-1.5 text-[10px] font-bold uppercase hidden sm:table-cell" style={macFont}>Guest</th>
                   <th className="text-left px-2 py-1.5 text-[10px] font-bold uppercase hidden sm:table-cell" style={macFont}>Company</th>
