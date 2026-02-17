@@ -145,9 +145,13 @@ const StagingPreview = () => {
   return (
     <EpisodeDataContext.Provider value={ctxValue}>
       {/* Staging banner */}
-      <div className="fixed top-0 left-0 right-0 z-[100] bg-amber-400 text-black text-center text-xs font-bold py-1.5">
-        ⚠️ STAGING PREVIEW — This is not the live page
+      <div className="fixed top-0 left-0 right-0 z-[100] bg-amber-400 text-black text-center text-sm font-bold py-2 tracking-wide shadow-md flex items-center justify-center gap-2">
+        <span className="inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+        PREVIEW MODE — Changes are not live
       </div>
+
+      {/* Dashed border overlay to reinforce preview context */}
+      <div className="fixed inset-0 z-[99] pointer-events-none border-[3px] border-dashed border-amber-400/60" />
 
       <div style={{ paddingTop: 32 }}>
         <EpisodeOverlayLayout>
