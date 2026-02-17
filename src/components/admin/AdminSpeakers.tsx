@@ -4,6 +4,7 @@ import { PixelUpload } from "./PixelIcons";
 import { adminApi } from "@/lib/adminApi";
 import { toast } from "sonner";
 import { MacButton, MacWindow, MacInput, MacTextarea, MacLabel, MacFieldHint, MacTable, MacImagePreview, MAC_FONT, MAC_TITLE_FONT } from "./MacOS";
+import MacConfirmDialog from "./MacConfirmDialog";
 import { EPISODE_IMAGES } from "@/lib/episodeImages";
 
 const macFont = MAC_FONT;
@@ -101,15 +102,23 @@ const AdminSpeakers = () => {
     setSaving(false);
   };
 
-  const handleDelete = async (id: string) => {
-    if (!confirm("Delete this speaker?")) return;
-    try {
-      await adminApi("delete-speaker", { id });
-      toast.success("Deleted");
-      fetchSpeakers();
-    } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Delete failed");
-    }
+  const [confirmAction, setConfirmAction] = useState<{ message: string; action: () => void } | null>(null);
+
+  const handleDelete = (id: string) => {
+    const speaker = speakers.find((s) => s.id === id);
+    setConfirmAction({
+      message: `Delete speaker\n"${speaker?.name || "Untitled"}"?`,
+      action: async () => {
+        setConfirmAction(null);
+        try {
+          await adminApi("delete-speaker", { id });
+          toast.success("Deleted");
+          fetchSpeakers();
+        } catch (err: unknown) {
+          toast.error(err instanceof Error ? err.message : "Delete failed");
+        }
+      },
+    });
   };
 
   const set = (key: string, value: string) => setForm((f) => ({ ...f, [key]: value }));
@@ -233,6 +242,13 @@ const AdminSpeakers = () => {
           </tbody>
         </table>
       </MacTable>
+      {confirmAction && (
+        <MacConfirmDialog
+          message={confirmAction.message}
+          onConfirm={confirmAction.action}
+          onCancel={() => setConfirmAction(null)}
+        />
+      )}
     </div>
   );
 };
