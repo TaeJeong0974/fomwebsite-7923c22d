@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useState, useRef, useEffect } from "react";
 
 /**
  * Classic Mac OS System 6/7 UI primitives built with Tailwind.
@@ -242,7 +242,7 @@ export const MacSeparator = () => (
   <div className="border-t border-black my-2" />
 );
 
-/* ── Select ── */
+/* ── Select (retro Mac dropdown) ── */
 export const MacSelect = ({
   value,
   onChange,
@@ -253,27 +253,74 @@ export const MacSelect = ({
   onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   children: ReactNode;
   className?: string;
-}) => (
-  <select
-    value={value}
-    onChange={onChange}
-    className={`
-      w-full px-2 py-1 text-xs
-      border border-black bg-white text-black
-      outline-none focus:ring-0
-      appearance-none cursor-default
-      bg-[length:8px] bg-[right_6px_center] bg-no-repeat
-      [background-image:url("data:image/svg+xml,%3Csvg%20width='8'%20height='5'%20viewBox='0%200%208%205'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M1%201L4%204L7%201'%20stroke='black'%20stroke-width='1.5'/%3E%3C/svg%3E")]
-      ${className}
-    `}
-    style={{
-      fontFamily: "'Geneva', 'Helvetica Neue', monospace",
-      boxShadow: "inset 1px 1px 0px #999, inset -1px -1px 0px #fff",
-    }}
-  >
-    {children}
-  </select>
-);
+}) => {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  // Extract options from children
+  const options: { value: string; label: string }[] = [];
+  const extractOptions = (nodes: ReactNode) => {
+    if (!nodes) return;
+    const arr = Array.isArray(nodes) ? nodes : [nodes];
+    arr.forEach((child) => {
+      if (child && typeof child === "object" && "props" in child && child.type === "option") {
+        options.push({ value: child.props.value ?? "", label: String(child.props.children ?? "") });
+      }
+    });
+  };
+  extractOptions(children);
+
+  const selectedLabel = options.find((o) => o.value === value)?.label || options[0]?.label || "";
+
+  useEffect(() => {
+    if (!open) return;
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [open]);
+
+  return (
+    <div className={`relative ${className}`} ref={ref}>
+      <button
+        type="button"
+        onClick={() => setOpen(!open)}
+        className="w-full flex items-center justify-between px-2 py-1 text-xs border border-black bg-white text-black text-left cursor-default"
+        style={{
+          fontFamily: "'Geneva', 'Helvetica Neue', monospace",
+          boxShadow: "inset 1px 1px 0px #999, inset -1px -1px 0px #fff",
+        }}
+      >
+        <span className="truncate">{selectedLabel}</span>
+        <span className="ml-1 shrink-0 text-[10px]">▼</span>
+      </button>
+      {open && (
+        <div
+          className="absolute left-0 right-0 top-full mt-0 border-2 border-black bg-white z-[70] max-h-[200px] overflow-y-auto"
+          style={{ boxShadow: "2px 2px 0px #000" }}
+        >
+          {options.map((opt, i) => (
+            <button
+              key={`${opt.value}-${i}`}
+              type="button"
+              className={`w-full text-left px-2 py-1 text-xs cursor-default ${
+                opt.value === value ? "bg-black text-white" : "hover:bg-black hover:text-white"
+              }`}
+              style={{ fontFamily: "'Geneva', 'Helvetica Neue', monospace" }}
+              onClick={() => {
+                onChange({ target: { value: opt.value } } as React.ChangeEvent<HTMLSelectElement>);
+                setOpen(false);
+              }}
+            >
+              {opt.label}
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
 
 /* ── Table wrapper ── */
 export const MacTable = ({ children, className = "" }: { children: ReactNode; className?: string }) => (
