@@ -26,6 +26,7 @@ const EpisodeDataContext = createContext<EpisodeDataContextType>({
 });
 
 export const useEpisodeData = () => useContext(EpisodeDataContext);
+export { EpisodeDataContext };
 
 function parseHostTitle(titleField: string | null): { title: string; company: string } {
   if (!titleField) return { title: "", company: "" };
