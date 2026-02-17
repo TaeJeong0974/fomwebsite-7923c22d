@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { Upload } from "lucide-react";
+import { PixelUpload } from "./PixelIcons";
 import { adminApi } from "@/lib/adminApi";
 import { toast } from "sonner";
 import { MacButton, MacWindow, MacInput, MacTextarea, MacLabel, MacFieldHint, MacTable, MAC_FONT, MAC_TITLE_FONT } from "./MacOS";
@@ -129,7 +129,7 @@ const AdminHosts = () => {
                 <MacInput value={form.image_url} onChange={(e) => set("image_url", e.target.value)} placeholder="URL or upload →" />
                 <input ref={imageFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0])} />
                 <MacButton onClick={() => imageFileRef.current?.click()} disabled={uploading}>
-                  <Upload className="h-3 w-3" />
+                  <PixelUpload className="h-3 w-3" />
                   {uploading ? "…" : ""}
                 </MacButton>
               </div>

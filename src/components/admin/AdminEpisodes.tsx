@@ -3,7 +3,7 @@ import { adminApi } from "@/lib/adminApi";
 import { toast } from "sonner";
 import { podcastEpisodes, podcastHosts } from "@/lib/podcastData";
 import { EPISODE_IMAGES } from "@/lib/episodeImages";
-import { GripVertical, Loader2 } from "lucide-react";
+import { PixelGrip, PixelSpinner } from "./PixelIcons";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from "@dnd-kit/core";
 import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
@@ -43,7 +43,7 @@ const SortableRow = ({ ep, stale, isPromoting, canPromote, onEdit, onDelete, onP
     <tr ref={setNodeRef} style={style} className="border-b border-black/20 last:border-0 hover:bg-black/5">
       <td className="px-2 py-2">
         <button type="button" {...attributes} {...listeners} className="cursor-grab active:cursor-grabbing touch-none p-0.5">
-          <GripVertical className="h-3 w-3" />
+          <PixelGrip className="h-3 w-3" />
         </button>
       </td>
       <td className="px-2 py-2 text-[11px] text-gray-500" style={macFont}>{ep.episode_number ?? "—"}</td>
@@ -208,7 +208,7 @@ const AdminEpisodes = ({ onSwitchToSpeakers }: { onSwitchToSpeakers?: () => void
         </span>
         <div className="flex items-center gap-1">
           <MacButton onClick={handleSeed} disabled={seeding}>
-            {seeding ? <Loader2 className="h-3 w-3 animate-spin" /> : null}
+            {seeding ? <PixelSpinner className="h-3 w-3" /> : null}
             {seeding ? "Importing…" : "Import"}
           </MacButton>
           <MacButton primary onClick={() => setCreating(true)}>+ New</MacButton>
