@@ -8,6 +8,7 @@ import { MacDesktop, MacMenuBar } from "@/components/admin/MacOS";
 import DraggableWindow from "@/components/admin/DraggableWindow";
 import fomPixelLogo from "@/assets/fom-pixel-logo.png";
 import fomBlackIcon from "/favicon-black.svg";
+import { playDialupSound } from "@/lib/dialupSound";
 
 const macFont = { fontFamily: "'Chicago', 'Geneva', monospace" };
 
@@ -53,10 +54,11 @@ const BootScreen = ({ onDone }: { onDone: () => void }) => {
   const [stage, setStage] = useState<"happy" | "loading" | "welcome">("happy");
 
   useEffect(() => {
+    const sound = playDialupSound(2.5);
     const t1 = setTimeout(() => setStage("loading"), 800);
     const t2 = setTimeout(() => setStage("welcome"), 2000);
     const t3 = setTimeout(onDone, 2800);
-    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
+    return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); sound.stop(); };
   }, [onDone]);
 
   return (
