@@ -105,14 +105,14 @@ const AdminSpeakers = () => {
 
   const set = (key: string, value: string) => setForm((f) => ({ ...f, [key]: value }));
   const fieldClass = "w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary/40 outline-none transition-all placeholder:text-gray-300";
-  const labelClass = "text-sm font-medium text-gray-600";
+  const labelClass = "text-sm font-medium text-gray-700";
 
   if (editing) {
     return (
       <div className="w-full space-y-6">
         <div className="flex items-center justify-between">
           <h2 className="font-semibold text-dark-foreground" style={{ fontSize: 'clamp(1.25rem, 3vw, 2rem)' }}>{editing.id === "new" ? "New Speaker" : "Edit Speaker"}</h2>
-          <button onClick={cancel} className="text-sm text-gray-400 hover:text-gray-700 transition-colors">← Back</button>
+          <button onClick={cancel} className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">← Back</button>
         </div>
         <div className="bg-white rounded-xl sm:rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
           <div className="p-4 sm:p-6 space-y-6 sm:space-y-8">
@@ -131,7 +131,7 @@ const AdminSpeakers = () => {
           <button onClick={save} disabled={saving} className="px-6 py-2.5 rounded-full bg-primary text-primary-foreground text-sm font-medium shadow-sm hover:shadow-md hover:brightness-105 disabled:opacity-50 transition-all">
             {saving ? "Saving…" : "Save"}
           </button>
-          <button onClick={cancel} className="px-6 py-2.5 rounded-full border border-gray-200 text-gray-600 text-sm font-medium hover:bg-gray-50 transition-colors">Cancel</button>
+          <button onClick={cancel} className="px-6 py-2.5 rounded-full text-sm font-medium text-gray-500 hover:text-gray-700 hover:bg-gray-100 transition-colors">Cancel</button>
         </div>
       </div>
     );
