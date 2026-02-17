@@ -1,12 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { adminApi } from "@/lib/adminApi";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
-import { Upload, GripVertical, ChevronUp, ChevronDown } from "lucide-react";
+import { Upload, GripVertical, ChevronUp, ChevronDown, Eye, EyeOff } from "lucide-react";
 import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, useSensors, DragEndEvent } from "@dnd-kit/core";
 import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { MacWindow, MacButton, MacInput, MacTextarea, MacLabel, MacFieldHint } from "./MacOS";
+import PodcastCard from "@/components/podcast/PodcastCard";
+import type { PodcastEpisode } from "@/lib/podcastData";
 
 const macFont = { fontFamily: "'Geneva', 'Helvetica Neue', monospace" };
 
@@ -109,6 +111,57 @@ const SortableTopicList = ({ topics, onReorder, onRemove, onMove, onEdit }: {
         </div>
       </SortableContext>
     </DndContext>
+  );
+};
+
+// ── Card Preview ──
+const CardPreview = ({ form }: { form: typeof EMPTY }) => {
+  const [open, setOpen] = useState(false);
+
+  const mockEpisode: PodcastEpisode = useMemo(() => ({
+    id: 0,
+    slug: form.slug || "preview",
+    name: form.guest_name || "Guest Name",
+    title: form.guest_title || "Title",
+    company: form.guest_company || "Company",
+    companyDomain: form.guest_company_domain || "",
+    overview: form.description || "",
+    fullDescription: form.full_description || "",
+    bio: form.guest_bio || "",
+    topics: form.topics || [],
+    chapters: [],
+    youtubeUrl: form.youtube_url || "",
+    spotifyUrl: form.spotify_url || "",
+    duration: form.duration || "",
+    publishedDate: form.publish_date || "Coming Soon",
+    comingSoon: form.status === "upcoming",
+    linkedInUrl: form.guest_linkedin_url || undefined,
+    previewVideoUrl: form.preview_video_url || undefined,
+    pullQuote: form.pull_quote || undefined,
+  }), [form]);
+
+  return (
+    <MacWindow title="Card Preview">
+      <div className="p-3">
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-[10px] uppercase tracking-wider" style={macFont}>
+            {open ? "Live preview of homepage card" : "Click to preview card"}
+          </span>
+          <MacButton onClick={() => setOpen(!open)}>
+            {open ? <><EyeOff className="h-3 w-3 mr-1" /> Hide</> : <><Eye className="h-3 w-3 mr-1" /> Show</>}
+          </MacButton>
+        </div>
+        {open && (
+          <div className="bg-background rounded-lg p-4 border border-black/10 max-w-[320px] mx-auto">
+            <PodcastCard
+              episode={mockEpisode}
+              isUpcoming={form.status === "upcoming"}
+              image={form.guest_image_url || undefined}
+            />
+          </div>
+        )}
+      </div>
+    </MacWindow>
   );
 };
 
@@ -303,6 +356,9 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
           <MacButton onClick={onDone}>← Back</MacButton>
         </div>
       </div>
+
+      {/* ── Live Card Preview ── */}
+      <CardPreview form={form} />
 
       <div className="space-y-4">
         {/* ── 1. Status ── */}
