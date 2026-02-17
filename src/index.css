@@ -21,6 +21,68 @@ html {
   scrollbar-width: thin;
 }
 
+/* Classic Mac OS System 7 Scrollbar */
+.mac-scrollbar::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+.mac-scrollbar::-webkit-scrollbar-track {
+  background: white;
+  border-left: 1px solid black;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 1px,
+      white 1px,
+      white 2px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 1px,
+      white 1px,
+      white 2px
+    );
+  background-size: 2px 2px;
+  background-color: #c0c0c0;
+}
+.mac-scrollbar::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+  border: 1px solid black;
+  border-radius: 0;
+  box-shadow: inset 1px 1px 0px white, inset -1px -1px 0px #808080;
+}
+.mac-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #a0a0a0;
+}
+.mac-scrollbar::-webkit-scrollbar-button:single-button {
+  background: #c0c0c0;
+  border: 1px solid black;
+  box-shadow: inset 1px 1px 0px white, inset -1px -1px 0px #808080;
+  display: block;
+  height: 16px;
+  width: 16px;
+}
+.mac-scrollbar::-webkit-scrollbar-button:single-button:vertical:decrement {
+  background-image: url("data:image/svg+xml,%3Csvg width='6' height='4' viewBox='0 0 6 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='3,0 6,4 0,4' fill='black'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.mac-scrollbar::-webkit-scrollbar-button:single-button:vertical:increment {
+  background-image: url("data:image/svg+xml,%3Csvg width='6' height='4' viewBox='0 0 6 4' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolygon points='3,4 6,0 0,0' fill='black'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.mac-scrollbar::-webkit-scrollbar-corner {
+  background: #c0c0c0;
+  border: 1px solid black;
+}
+.mac-scrollbar {
+  scrollbar-color: #c0c0c0 #e0e0e0;
+  scrollbar-width: auto;
+}
+
 /* ==========================================
    ========================================== */
 @font-face {

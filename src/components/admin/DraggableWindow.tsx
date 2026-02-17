@@ -126,7 +126,7 @@ const DraggableWindow = ({
         onTitleBarDoubleClick={toggleMaximize}
         isActive={isActive}
       >
-        <div className="flex-1 overflow-auto">{children}</div>
+        <div className="flex-1 overflow-auto mac-scrollbar">{children}</div>
         {/* Resize grip */}
         {!isMaximized && (
           <div
