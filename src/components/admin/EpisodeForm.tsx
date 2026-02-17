@@ -262,6 +262,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
   const [uploading, setUploading] = useState<string | null>(null);
   const posterFileRef = useRef<HTMLInputElement>(null);
   const ogFileRef = useRef<HTMLInputElement>(null);
+  const guestImageFileRef = useRef<HTMLInputElement>(null);
 
   const handleImageUpload = async (file: File, fieldKey: string) => {
     if (!file.type.startsWith("image/")) { toast.error("Please select an image file"); return; }
@@ -451,6 +452,18 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
                 </span>
               </div>
             )}
+            <div className="space-y-1">
+              <MacLabel>Guest Image</MacLabel>
+              <div className="flex gap-1">
+                <MacInput value={form.guest_image_url} onChange={(e) => set("guest_image_url", e.target.value)} placeholder="URL or upload →" />
+                <input ref={guestImageFileRef} type="file" accept="image/*" className="hidden" onChange={(e) => e.target.files?.[0] && handleImageUpload(e.target.files[0], "guest_image_url")} />
+                <MacButton onClick={() => guestImageFileRef.current?.click()} disabled={uploading === "guest_image_url"}>
+                  <Upload className="h-3 w-3" />
+                  {uploading === "guest_image_url" ? "…" : ""}
+                </MacButton>
+              </div>
+              {form.guest_image_url && <img src={form.guest_image_url} alt="Guest" className="mt-1 h-16 object-cover border border-black" />}
+            </div>
           </div>
         </MacWindow>
 
