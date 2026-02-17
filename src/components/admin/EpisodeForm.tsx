@@ -115,9 +115,9 @@ const SortableTopicList = ({ topics, onReorder, onRemove, onMove, onEdit }: {
   );
 };
 
-// ── Card Preview ──
-const CardPreview = ({ form }: { form: typeof EMPTY }) => {
-  const [open, setOpen] = useState(false);
+// ── Card Preview (opens in popup window) ──
+const useCardPreviewWindow = (form: typeof EMPTY) => {
+  const popupRef = useRef<Window | null>(null);
 
   const mockEpisode: PodcastEpisode = useMemo(() => ({
     id: 0,
@@ -141,29 +141,76 @@ const CardPreview = ({ form }: { form: typeof EMPTY }) => {
     pullQuote: form.pull_quote || undefined,
   }), [form]);
 
-  return (
-    <MacWindow title="Card Preview">
-      <div className="p-3">
-        <div className="flex items-center justify-between mb-2">
-          <span className="text-[10px] uppercase tracking-wider" style={macFont}>
-            {open ? "Live preview of homepage card" : "Click to preview card"}
-          </span>
-          <MacButton onClick={() => setOpen(!open)}>
-            {open ? <><EyeOff className="h-3 w-3 mr-1" /> Hide</> : <><Eye className="h-3 w-3 mr-1" /> Show</>}
-          </MacButton>
-        </div>
-        {open && (
-          <div className="bg-background rounded-lg p-4 border border-black/10 max-w-[320px] mx-auto">
-            <PodcastCard
-              episode={mockEpisode}
-              isUpcoming={form.status === "upcoming"}
-              image={EPISODE_IMAGES[form.slug] || form.guest_image_url || undefined}
-            />
-          </div>
-        )}
-      </div>
-    </MacWindow>
-  );
+  const openPreview = () => {
+    // If already open and not closed, focus it
+    if (popupRef.current && !popupRef.current.closed) {
+      popupRef.current.focus();
+      return;
+    }
+
+    const w = 400;
+    const h = 600;
+    const left = window.screenX + window.innerWidth - w - 40;
+    const top = window.screenY + 80;
+    const popup = window.open("", "card-preview", `width=${w},height=${h},left=${left},top=${top},resizable=yes,scrollbars=yes`);
+    if (!popup) return;
+    popupRef.current = popup;
+
+    // Write initial shell
+    popup.document.write(`<!DOCTYPE html>
+<html><head><title>Card Preview</title>
+<style>
+  body { margin: 0; background: #f4f2ef; display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: Geneva, 'Helvetica Neue', monospace; }
+  #root { width: 320px; }
+</style>
+</head><body><div id="root"></div></body></html>`);
+    popup.document.close();
+
+    // Render React into popup
+    import("react-dom/client").then(({ createRoot }) => {
+      const container = popup.document.getElementById("root");
+      if (!container) return;
+
+      // Copy stylesheets into popup
+      document.querySelectorAll('style, link[rel="stylesheet"]').forEach((node) => {
+        popup.document.head.appendChild(node.cloneNode(true));
+      });
+
+      const root = createRoot(container);
+      root.render(
+        <PodcastCard
+          episode={mockEpisode}
+          isUpcoming={form.status === "upcoming"}
+          image={EPISODE_IMAGES[form.slug] || form.guest_image_url || undefined}
+        />
+      );
+
+      // Store root for updates
+      (popup as any).__previewRoot = root;
+    });
+  };
+
+  // Update popup content when form changes
+  useEffect(() => {
+    const popup = popupRef.current;
+    if (!popup || popup.closed || !(popup as any).__previewRoot) return;
+    (popup as any).__previewRoot.render(
+      <PodcastCard
+        episode={mockEpisode}
+        isUpcoming={form.status === "upcoming"}
+        image={EPISODE_IMAGES[form.slug] || form.guest_image_url || undefined}
+      />
+    );
+  }, [mockEpisode, form.status, form.slug, form.guest_image_url]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      if (popupRef.current && !popupRef.current.closed) popupRef.current.close();
+    };
+  }, []);
+
+  return openPreview;
 };
 
 // ── Mac select styling ──
@@ -178,6 +225,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
   const [allSpeakers, setAllSpeakers] = useState<Speaker[]>([]);
   const [selectedSpeakerId, setSelectedSpeakerId] = useState<string | null>(null);
   const [selectedHostIds, setSelectedHostIds] = useState<string[]>([]);
+  const openCardPreview = useCardPreviewWindow(form);
 
   useEffect(() => {
     adminApi("list-hosts").then((res) => setAllHosts(res.data || [])).catch(() => {});
@@ -343,9 +391,12 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
         </span>
         <div className="flex gap-1">
           {form.slug && (
-            <>
+             <>
               <MacButton onClick={() => window.open(`${window.location.origin}/#podcast`, "_blank")}>
                 🏠 Homepage
+              </MacButton>
+              <MacButton onClick={openCardPreview}>
+                🃏 Card
               </MacButton>
               {form.status !== 'draft' && (
                 <MacButton onClick={() => window.open(`${window.location.origin}/podcast/${form.slug}`, "_blank")}>
@@ -357,9 +408,6 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
           <MacButton onClick={onDone}>← Back</MacButton>
         </div>
       </div>
-
-      {/* ── Live Card Preview ── */}
-      <CardPreview form={form} />
 
       <div className="space-y-4">
         {/* ── 1. Status ── */}
