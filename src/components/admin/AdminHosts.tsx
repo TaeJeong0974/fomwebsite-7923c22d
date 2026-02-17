@@ -3,7 +3,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { PixelUpload } from "./PixelIcons";
 import { adminApi } from "@/lib/adminApi";
 import { toast } from "sonner";
-import { MacButton, MacWindow, MacInput, MacTextarea, MacLabel, MacFieldHint, MacTable, MAC_FONT, MAC_TITLE_FONT } from "./MacOS";
+import { MacButton, MacWindow, MacInput, MacTextarea, MacLabel, MacFieldHint, MacTable, MacImagePreview, MAC_FONT, MAC_TITLE_FONT } from "./MacOS";
 
 const macFont = MAC_FONT;
 
@@ -133,7 +133,7 @@ const AdminHosts = () => {
                   {uploading ? "…" : ""}
                 </MacButton>
               </div>
-              {form.image_url && <img src={form.image_url} alt="Host" className="mt-1 h-16 object-cover border border-black" />}
+              {form.image_url && <MacImagePreview src={form.image_url} alt={form.name || "Host"} className="mt-1 h-16 object-cover border border-black" />}
               <MacFieldHint>Square headshot</MacFieldHint>
             </div>
             <div className="space-y-1"><MacLabel>LinkedIn URL</MacLabel><MacInput value={form.linkedin_url} onChange={(e) => set("linkedin_url", e.target.value)} /><MacFieldHint>Full profile URL</MacFieldHint></div>

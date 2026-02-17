@@ -8,7 +8,7 @@ import { DndContext, closestCenter, KeyboardSensor, PointerSensor, useSensor, us
 import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy, arrayMove } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import EpisodeForm from "./EpisodeForm";
-import { MacButton, MacStatusChip, MacTable, MAC_FONT, MAC_TITLE_FONT } from "./MacOS";
+import { MacButton, MacStatusChip, MacTable, MacImagePreview, MAC_FONT, MAC_TITLE_FONT } from "./MacOS";
 
 interface Episode {
   id: string;
@@ -51,7 +51,7 @@ const SortableRow = ({ ep, stale, isPromoting, canPromote, onEdit, onDelete, onP
         {(() => {
           const img = EPISODE_IMAGES[ep.slug];
           return img ? (
-            <img src={img} alt="" className="w-8 h-8 rounded object-cover border border-black/20" />
+            <MacImagePreview src={img} alt={ep.title} className="w-8 h-8 rounded object-cover border border-black/20" />
           ) : (
             <div className="w-8 h-8 rounded border border-black/20 bg-gray-100" />
           );
