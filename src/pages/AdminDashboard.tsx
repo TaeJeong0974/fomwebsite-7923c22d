@@ -221,7 +221,7 @@ const DesktopIcon = ({
       <PixelIcon type={type} selected={selected} />
     </div>
     <span
-      className={`text-[10px] font-bold px-1 ${
+      className={`text-xs font-bold px-1 ${
         selected ? "bg-black text-white" : "text-black"
       }`}
       style={macFont}
@@ -275,12 +275,12 @@ const MenuDropdown = ({
             ) : (
               <button
                 key={i}
-                className="w-full text-left px-3 py-0.5 text-xs hover:bg-black hover:text-white flex justify-between"
+                className="w-full text-left px-3 py-0.5 text-sm hover:bg-black hover:text-white flex justify-between"
                 style={macFont}
                 onClick={() => { item.onClick(); onClose(); }}
               >
                 <span>{item.label}</span>
-                {item.shortcut && <span className="text-[10px] opacity-60">{item.shortcut}</span>}
+                {item.shortcut && <span className="text-[11px] opacity-60">{item.shortcut}</span>}
               </button>
             )
           )}
@@ -365,7 +365,7 @@ const AdminDashboard = () => {
         <MacMenuBar>
           <div className="flex items-center gap-1">
             <img src={fomBlackIcon} alt="FOM" className="h-3.5 w-auto" />
-            <span className="text-[11px] font-bold" style={macFont}>CMS</span>
+            <span className="text-xs font-bold" style={macFont}>CMS</span>
           </div>
 
           <MenuDropdown
@@ -418,7 +418,7 @@ const AdminDashboard = () => {
               <PixelIcon type="website" selected={false} />
             </div>
             <span
-              className="text-[10px] font-bold px-1 text-black"
+              className="text-xs font-bold px-1 text-black"
               style={macFont}
             >
               Website
