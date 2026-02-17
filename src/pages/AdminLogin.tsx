@@ -37,9 +37,6 @@ const AdminLogin = () => {
     <MacDesktop className="flex items-center justify-center">
       <MacWindow title="Admin Login" className="w-full max-w-xs">
         <form onSubmit={handleSubmit} className="p-4 space-y-3">
-          <p className="text-[10px] text-gray-500 italic text-center" style={{ fontFamily: "'Geneva', monospace" }}>
-            Hint: FOMPODCAST
-          </p>
           <div className="space-y-1">
             <MacLabel>Password</MacLabel>
             <MacInput
