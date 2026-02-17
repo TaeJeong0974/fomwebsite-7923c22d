@@ -344,8 +344,43 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
               <MacButton onClick={() => setShowCardPreview(true)}>
                 🃏 Card
               </MacButton>
-              <MacButton onClick={() => window.open(`${window.location.origin}/admin/preview/${form.slug}`, "_blank")}>
-                👁 Page
+              <MacButton onClick={async () => {
+                if (!form.slug || !form.title) { toast.error("Save requires slug and title"); return; }
+                setSaving(true);
+                try {
+                  const payload: Record<string, unknown> = {
+                    slug: form.slug, title: form.title, subtitle: form.subtitle || null,
+                    episode_number: form.episode_number || null,
+                    description: form.description || null, full_description: form.full_description || null,
+                    duration: form.duration || null,
+                    guest_name: form.guest_name || null, guest_title: form.guest_title || null,
+                    guest_company: form.guest_company || null, guest_company_domain: form.guest_company_domain || null,
+                    guest_bio: form.guest_bio || null, guest_image_url: form.guest_image_url || null,
+                    guest_linkedin_url: form.guest_linkedin_url || null,
+                    poster_image_url: form.poster_image_url || null, og_image_url: form.og_image_url || null,
+                    preview_video_url: form.preview_video_url || null,
+                    apple_url: form.apple_url || null, spotify_url: form.spotify_url || null,
+                    youtube_url: form.youtube_url || null,
+                    published: form.status === 'published', status: form.status,
+                    publish_date: form.publish_date || null,
+                    topics: form.topics,
+                    pull_quote: form.pull_quote || null, pull_quote_attribution: form.pull_quote_attribution || null,
+                    subscribe_headline: form.subscribe_headline || null,
+                  };
+                  if (episodeId) payload.id = episodeId;
+                  const result = await adminApi("upsert-episode", payload);
+                  const savedId = episodeId || result.data?.id;
+                  if (savedId) {
+                    await adminApi("set-episode-hosts", { episode_id: savedId, host_ids: selectedHostIds });
+                  }
+                  toast.success("Saved — opening preview");
+                  window.open(`${window.location.origin}/admin/preview/${form.slug}`, "_blank");
+                } catch (err: unknown) {
+                  toast.error(err instanceof Error ? err.message : "Save failed");
+                }
+                setSaving(false);
+              }} disabled={saving}>
+                {saving ? "Saving…" : "👁 Page"}
               </MacButton>
             </>
           )}
