@@ -5,6 +5,7 @@ import AdminEpisodes from "@/components/admin/AdminEpisodes";
 import AdminHosts from "@/components/admin/AdminHosts";
 import AdminSpeakers from "@/components/admin/AdminSpeakers";
 import { MacDesktop, MacMenuBar, MacWindow } from "@/components/admin/MacOS";
+import fomPixelLogo from "@/assets/fom-pixel-logo.png";
 
 type WindowId = "episodes" | "hosts" | "speakers";
 
@@ -59,7 +60,7 @@ const AdminDashboard = () => {
       {/* Menu Bar */}
       <div className="fixed top-0 left-0 right-0 z-50">
         <MacMenuBar>
-          <span className="text-sm">🍎</span>
+          <img src={fomPixelLogo} alt="FOM" className="h-3.5 w-auto" style={{ imageRendering: "pixelated" }} />
           <span className="cursor-default font-bold">Finder</span>
           <span className="cursor-default">File</span>
           <span className="cursor-default">Edit</span>
