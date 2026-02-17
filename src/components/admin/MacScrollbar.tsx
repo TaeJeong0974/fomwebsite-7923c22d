@@ -59,7 +59,7 @@ const thumbStyle = (pressed: boolean): React.CSSProperties => ({
 
 interface MacScrollbarProps {
   /** The scrollable container ref */
-  containerRef: React.RefObject<HTMLDivElement>;
+  containerRef: React.RefObject<HTMLDivElement | null>;
 }
 
 const MacScrollbar = ({ containerRef }: MacScrollbarProps) => {
@@ -190,8 +190,6 @@ const MacScrollbar = ({ containerRef }: MacScrollbarProps) => {
     }
   }, [containerRef, thumbTop, thumbHeight]);
 
-  if (!visible) return null;
-
   return (
     <div
       style={{
@@ -231,17 +229,19 @@ const MacScrollbar = ({ containerRef }: MacScrollbarProps) => {
           borderLeft: "1px solid #000",
           cursor: "default",
         }}
-        onMouseDown={onTrackClick}
+        onMouseDown={visible ? onTrackClick : undefined}
       >
-        {/* Thumb */}
-        <div
-          style={{
-            ...thumbStyle(thumbPressed),
-            top: thumbTop,
-            height: thumbHeight,
-          }}
-          onMouseDown={onThumbMouseDown}
-        />
+        {/* Thumb — only shown when content overflows */}
+        {visible && (
+          <div
+            style={{
+              ...thumbStyle(thumbPressed),
+              top: thumbTop,
+              height: thumbHeight,
+            }}
+            onMouseDown={onThumbMouseDown}
+          />
+        )}
       </div>
 
       {/* Down arrow button */}
