@@ -256,8 +256,8 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
     }));
   };
 
-  const handleSave = async () => {
-    if (!form.slug || !form.title) { toast.error("Slug and title are required"); return; }
+  const doSave = async (): Promise<string | null> => {
+    if (!form.slug || !form.title) { toast.error("Slug and title are required"); return null; }
     setSaving(true);
     const payload: Record<string, unknown> = {
       slug: form.slug, title: form.title, subtitle: form.subtitle || null,
@@ -287,11 +287,25 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
         await adminApi("set-episode-hosts", { episode_id: savedId, host_ids: selectedHostIds });
       }
       toast.success(episodeId ? "Updated" : "Created");
-      onDone();
+      setSaving(false);
+      return savedId || null;
     } catch (err: unknown) {
       toast.error(err instanceof Error ? err.message : "Save failed");
+      setSaving(false);
+      return null;
     }
-    setSaving(false);
+  };
+
+  const handleSave = async () => {
+    const savedId = await doSave();
+    if (savedId) onDone();
+  };
+
+  const handlePreview = async () => {
+    const savedId = await doSave();
+    if (savedId) {
+      window.open(`${window.location.origin}/admin/preview/${form.slug}?id=${savedId}`, "_blank");
+    }
   };
 
   const addTopic = () => {
@@ -344,7 +358,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
               <MacButton onClick={() => setShowCardPreview(true)}>
                 🃏 Card
               </MacButton>
-              <MacButton onClick={() => window.open(`${window.location.origin}/admin/preview/${form.slug}${episodeId ? `?id=${episodeId}` : ""}`, "_blank")}>
+              <MacButton onClick={handlePreview} disabled={saving}>
                 👁 Page
               </MacButton>
             </>
