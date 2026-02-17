@@ -32,17 +32,9 @@ export const SubscribeProvider = ({ children }: SubscribeProviderProps) => {
   const [guestSlug, setGuestSlug] = useState<string | undefined>();
   const [subscribeHeadline, setSubscribeHeadline] = useState<string | undefined>();
 
-  const openSubscribe = (optionsOrEvent?: SubscribeOptions | React.SyntheticEvent) => {
-    if (optionsOrEvent && typeof optionsOrEvent === 'object' && 'guestName' in optionsOrEvent) {
-      setGuestName(optionsOrEvent.guestName);
-      setGuestSlug((optionsOrEvent as SubscribeOptions).guestSlug);
-      setSubscribeHeadline((optionsOrEvent as SubscribeOptions).subscribeHeadline);
-    } else {
-      setGuestName(undefined);
-      setGuestSlug(undefined);
-      setSubscribeHeadline(undefined);
-    }
-    setIsOpen(true);
+  // TEMPORARY: Redirect Subscribe to Apple Podcasts (revert when promotion ends)
+  const openSubscribe = (_optionsOrEvent?: SubscribeOptions | React.SyntheticEvent) => {
+    window.open("https://podcasts.apple.com/us/podcast/future-of-marketing/id1876216633", "_blank", "noopener,noreferrer");
   };
 
   return (
