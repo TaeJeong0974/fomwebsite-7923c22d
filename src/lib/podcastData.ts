@@ -149,7 +149,7 @@ This episode is a practical blueprint for CMOs and marketing leaders who want AI
       { time: "35:45", title: "Data-driven decision making" },
       { time: "45:00", title: "Advice for aspiring CMOs" },
     ],
-    youtubeUrl: "https://www.youtube.com/watch?v=ZXsQAXx_ao0",
+    youtubeUrl: "https://www.youtube.com/watch?v=rEd0_UxNxxk",
     spotifyUrl: "https://spotify.com",
     duration: "52 min",
     publishedDate: "Jan 15, 2026",
