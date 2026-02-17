@@ -409,7 +409,7 @@ const AdminDashboard = () => {
           {/* Website link icon */}
           <button
             className="flex flex-col items-center gap-0.5 group"
-            onClick={() => window.open("/", "_blank")}
+            onClick={() => window.open("https://fomwebsite.lovable.app/", "_blank")}
           >
             <div
               className="border-2 border-black p-0.5 bg-white"
