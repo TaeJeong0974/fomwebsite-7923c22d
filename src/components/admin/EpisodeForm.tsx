@@ -37,11 +37,6 @@ interface Host {
   name: string;
 }
 
-interface Newsletter {
-  title: string;
-  url: string;
-  source?: string;
-}
 
 const EMPTY = {
   slug: "", title: "", subtitle: "", episode_number: 0,
@@ -134,8 +129,6 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
   const [allSpeakers, setAllSpeakers] = useState<Speaker[]>([]);
   const [selectedSpeakerId, setSelectedSpeakerId] = useState<string | null>(null);
   const [selectedHostIds, setSelectedHostIds] = useState<string[]>([]);
-  const [newsletters, setNewsletters] = useState<Newsletter[]>([]);
-  const [nlForm, setNlForm] = useState({ title: "", url: "" });
 
   useEffect(() => {
     adminApi("list-hosts").then((res) => setAllHosts(res.data || [])).catch(() => {});
@@ -144,10 +137,9 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
     if (!episodeId) return;
     const load = async () => {
       try {
-        const [epResult, hostsResult, nlResult] = await Promise.all([
+        const [epResult, hostsResult] = await Promise.all([
           adminApi("get-episode", { id: episodeId }),
           adminApi("get-episode-hosts", { episode_id: episodeId }),
-          adminApi("get-newsletters", { episode_id: episodeId }),
         ]);
         const data = epResult.data;
         if (!data) { toast.error("Failed to load"); onDone(); return; }
@@ -179,7 +171,6 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
           pull_quote_attribution: data.pull_quote_attribution || "",
         });
         setSelectedHostIds(hostsResult.data || []);
-        setNewsletters((nlResult.data || []).map((n: Newsletter & { id?: string }) => ({ title: n.title, url: n.url, source: n.source })));
       } catch {
         toast.error("Failed to load episode");
         onDone();
@@ -259,10 +250,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
       const result = await adminApi("upsert-episode", payload);
       const savedId = episodeId || result.data?.id;
       if (savedId) {
-        await Promise.all([
-          adminApi("set-episode-hosts", { episode_id: savedId, host_ids: selectedHostIds }),
-          adminApi("set-newsletters", { episode_id: savedId, newsletters }),
-        ]);
+        await adminApi("set-episode-hosts", { episode_id: savedId, host_ids: selectedHostIds });
       }
       toast.success(episodeId ? "Updated" : "Created");
       onDone();
@@ -288,13 +276,6 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
     set("topics", updated);
   };
 
-  const addNewsletter = () => {
-    if (!nlForm.title.trim() || !nlForm.url.trim()) return;
-    setNewsletters((prev) => [...prev, { title: nlForm.title.trim(), url: nlForm.url.trim() }]);
-    setNlForm({ title: "", url: "" });
-  };
-
-  const removeNewsletter = (i: number) => setNewsletters((prev) => prev.filter((_, idx) => idx !== i));
 
   const [uploading, setUploading] = useState<string | null>(null);
   const posterFileRef = useRef<HTMLInputElement>(null);
