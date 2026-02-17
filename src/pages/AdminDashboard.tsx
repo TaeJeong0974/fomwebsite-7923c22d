@@ -235,39 +235,39 @@ const DesktopIcon = ({
     >
       <div className={selected ? "invert" : ""}>
         {isFloppy ? (
-          /* ── Floppy Disk (8-bit bitmap) ── */
-          <svg width="32" height="32" viewBox="0 0 32 32" style={{ imageRendering: "pixelated" }}>
-            <rect x="2" y="2" width="26" height="28" fill="black" />
-            <rect x="28" y="4" width="2" height="26" fill="black" />
-            <rect x="27" y="3" width="1" height="1" fill="black" />
-            <rect x="3" y="3" width="24" height="26" fill="white" />
-            <rect x="28" y="5" width="1" height="24" fill="white" />
-            {/* Metal slider */}
-            <rect x="8" y="2" width="16" height="10" fill="black" />
-            <rect x="9" y="3" width="14" height="8" fill="white" />
-            <rect x="14" y="3" width="4" height="8" fill="black" />
-            <rect x="15" y="4" width="2" height="6" fill="white" />
-            {/* Label */}
-            <rect x="5" y="16" width="22" height="12" fill="black" />
-            <rect x="6" y="17" width="20" height="10" fill="white" />
-            <rect x="8" y="19" width="16" height="1" fill="black" />
-            <rect x="8" y="22" width="16" height="1" fill="black" />
-            <rect x="8" y="25" width="10" height="1" fill="black" />
+          /* ── Floppy Disk — chunky 1-bit bitmap ── */
+          <svg width="48" height="48" viewBox="0 0 24 24" style={{ imageRendering: "pixelated" }}>
+            {/* Body */}
+            <rect x="2" y="1" width="18" height="22" fill="black" />
+            <rect x="20" y="3" width="2" height="20" fill="black" />
+            <rect x="19" y="2" width="1" height="1" fill="black" />
+            <rect x="3" y="2" width="16" height="20" fill="white" />
+            <rect x="20" y="4" width="1" height="18" fill="white" />
+            {/* Metal shutter */}
+            <rect x="6" y="1" width="10" height="7" fill="black" />
+            <rect x="7" y="2" width="8" height="5" fill="white" />
+            <rect x="10" y="2" width="3" height="5" fill="black" />
+            <rect x="11" y="3" width="1" height="3" fill="white" />
+            {/* Label sticker */}
+            <rect x="4" y="12" width="14" height="9" fill="black" />
+            <rect x="5" y="13" width="12" height="7" fill="white" />
+            <rect x="6" y="15" width="10" height="1" fill="black" />
+            <rect x="6" y="17" width="10" height="1" fill="black" />
           </svg>
         ) : (
-          /* ── Folder (8-bit bitmap) ── */
-          <svg width="32" height="28" viewBox="0 0 32 28" style={{ imageRendering: "pixelated" }}>
+          /* ── Folder — chunky 1-bit bitmap ── */
+          <svg width="48" height="40" viewBox="0 0 24 20" style={{ imageRendering: "pixelated" }}>
             {/* Tab */}
-            <rect x="1" y="0" width="10" height="4" fill="black" />
-            <rect x="2" y="1" width="8" height="2" fill="white" />
-            {/* Body outline */}
-            <rect x="0" y="3" width="32" height="25" fill="black" />
-            <rect x="1" y="4" width="30" height="23" fill="white" />
-            {/* Top fold line */}
-            <rect x="1" y="6" width="30" height="1" fill="black" />
+            <rect x="1" y="0" width="8" height="3" fill="black" />
+            <rect x="2" y="1" width="6" height="1" fill="white" />
+            {/* Body */}
+            <rect x="0" y="2" width="24" height="18" fill="black" />
+            <rect x="1" y="3" width="22" height="16" fill="white" />
+            {/* Fold line */}
+            <rect x="1" y="5" width="22" height="1" fill="black" />
             {/* Shadow */}
-            <rect x="2" y="26" width="30" height="1" fill="#808080" />
-            <rect x="31" y="5" width="1" height="22" fill="#808080" />
+            <rect x="1" y="18" width="23" height="1" fill="#808080" />
+            <rect x="23" y="4" width="1" height="15" fill="#808080" />
           </svg>
         )}
       </div>
