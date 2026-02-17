@@ -172,6 +172,7 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
   const [form, setForm] = useState(EMPTY);
   const [topicInput, setTopicInput] = useState("");
   const [saving, setSaving] = useState(false);
+  const [pushing, setPushing] = useState(false);
   const [allHosts, setAllHosts] = useState<Host[]>([]);
   const [allSpeakers, setAllSpeakers] = useState<Speaker[]>([]);
   const [selectedSpeakerId, setSelectedSpeakerId] = useState<string | null>(null);
@@ -367,6 +368,22 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
       // Send initial state after a short delay for the tab to load
       setTimeout(() => broadcastFormState(form), 1000);
     }
+  };
+
+  const handlePushToLive = async () => {
+    if (!episodeId) return;
+    const confirmed = window.confirm("This will save your changes and push this episode to the live site. Continue?");
+    if (!confirmed) return;
+    setPushing(true);
+    try {
+      const savedId = await doSave();
+      if (!savedId) { setPushing(false); return; }
+      await adminApi("promote-to-live", { id: savedId });
+      toast.success("🚀 Pushed to live!");
+    } catch (err: unknown) {
+      toast.error(err instanceof Error ? err.message : "Push to live failed");
+    }
+    setPushing(false);
   };
 
   const addTopic = () => {
@@ -682,11 +699,16 @@ const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
           </div>
         </MacWindow>
 
-        {/* ── Save ── */}
-        <div className="flex gap-2 pt-2">
-          <MacButton primary onClick={handleSave} disabled={saving}>
+        {/* ── Save & Push ── */}
+        <div className="flex gap-2 pt-2 items-center">
+          <MacButton primary onClick={handleSave} disabled={saving || pushing}>
             {saving ? "Saving…" : episodeId ? "Save" : "Create"}
           </MacButton>
+          {episodeId && (
+            <MacButton onClick={handlePushToLive} disabled={saving || pushing}>
+              {pushing ? "Pushing…" : "🚀 Push to Live"}
+            </MacButton>
+          )}
           <MacButton onClick={onDone}>Cancel</MacButton>
         </div>
       </div>
