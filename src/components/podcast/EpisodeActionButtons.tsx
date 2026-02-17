@@ -2,7 +2,7 @@ import { Share2, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { liquidSpring, buttonVariants, variantClasses } from "@/components/ui/LiquidButton";
-import { YouTubeIcon, SpotifyIcon, ApplePodcastsIcon, APPLE_PODCASTS_URL } from "@/components/icons/PlatformIcons";
+import { YouTubeIcon, SpotifyIcon, ApplePodcastsIcon, RSSIcon, APPLE_PODCASTS_URL, RSS_FEED_URL } from "@/components/icons/PlatformIcons";
 
 interface EpisodeActionButtonsProps {
   youtubeUrl: string;
@@ -37,6 +37,11 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl, appleUrl }: EpisodeActio
       <motion.a href={appleUrl || APPLE_PODCASTS_URL} target="_blank" rel="noopener noreferrer" className={liquidGlassButton} variants={buttonVariants} initial="initial" whileHover="hover" whileTap="tap" transition={liquidSpring}>
         <ApplePodcastsIcon className="w-6 h-6 shrink-0" />
         <span className={textClasses}>Apple</span>
+      </motion.a>
+
+      <motion.a href={RSS_FEED_URL} target="_blank" rel="noopener noreferrer" className={liquidGlassButton} variants={buttonVariants} initial="initial" whileHover="hover" whileTap="tap" transition={liquidSpring}>
+        <RSSIcon className="w-6 h-6 shrink-0" />
+        <span className={textClasses}>RSS</span>
       </motion.a>
 
       <motion.button onClick={handleShare} className={liquidGlassButton} variants={buttonVariants} initial="initial" whileHover="hover" whileTap="tap" transition={liquidSpring}>
