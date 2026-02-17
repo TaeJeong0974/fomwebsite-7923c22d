@@ -113,7 +113,8 @@ const SortableTopicList = ({ topics, onReorder, onRemove, onMove, onEdit }: {
 };
 
 // ── Mac select styling ──
-const macSelectClass = "w-full px-2 py-1 text-xs border border-black bg-white text-black outline-none focus:ring-0";
+const macSelectClass = "w-full px-2 py-1.5 text-sm border-2 border-black bg-[#555] text-white outline-none focus:ring-0 appearance-none cursor-default bg-[length:10px] bg-[right_6px_center] bg-no-repeat" +
+  " [background-image:url(\"data:image/svg+xml,%3Csvg%20width='10'%20height='6'%20viewBox='0%200%2010%206'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M1%201L5%205L9%201'%20stroke='white'%20stroke-width='1.5'/%3E%3C/svg%3E\")]";
 
 const EpisodeForm = ({ episodeId, onDone, onSwitchToSpeakers }: Props) => {
   const [form, setForm] = useState(EMPTY);
