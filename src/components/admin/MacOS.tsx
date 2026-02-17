@@ -41,7 +41,7 @@ export const MacWindow = ({
   >
     {/* Title Bar */}
     <div
-      className="flex items-center h-[22px] px-1.5 border-b-2 border-black bg-white select-none cursor-grab active:cursor-grabbing"
+      className="flex items-center h-[26px] px-1.5 border-b-2 border-black bg-white select-none cursor-grab active:cursor-grabbing"
       onMouseDown={onTitleBarMouseDown}
       onDoubleClick={onTitleBarDoubleClick}
     >
@@ -54,7 +54,7 @@ export const MacWindow = ({
         />
       )}
       {isActive ? <TitleBarStripes /> : <div className="flex-1" />}
-      <span className="px-2 text-xs font-bold tracking-wide whitespace-nowrap" style={{ fontFamily: "'Chicago', 'Geneva', 'Helvetica Neue', monospace" }}>
+      <span className="px-2 text-sm font-bold tracking-wide whitespace-nowrap" style={{ fontFamily: "'Chicago', 'Geneva', 'Helvetica Neue', monospace" }}>
         {title}
       </span>
       {isActive ? <TitleBarStripes /> : <div className="flex-1" />}
@@ -89,7 +89,7 @@ export const MacButton = ({
     title={title}
     className={`
       inline-flex items-center justify-center gap-1.5
-      px-4 py-1 text-xs font-bold tracking-wide
+      px-4 py-1.5 text-sm font-bold tracking-wide
       border border-black rounded-[3px]
       transition-none select-none
       disabled:opacity-40 disabled:cursor-not-allowed
@@ -128,7 +128,7 @@ export const MacInput = ({
     placeholder={placeholder}
     onKeyDown={onKeyDown}
     className={`
-      w-full px-2 py-1 text-xs
+      w-full px-2 py-1.5 text-sm
       border border-black bg-white text-black
       outline-none focus:ring-0
       placeholder:text-gray-400
@@ -160,7 +160,7 @@ export const MacTextarea = ({
     onChange={onChange}
     placeholder={placeholder}
     className={`
-      w-full px-2 py-1 text-xs
+      w-full px-2 py-1.5 text-sm
       border border-black bg-white text-black
       outline-none focus:ring-0 resize-y
       placeholder:text-gray-400
@@ -177,7 +177,7 @@ export const MacTextarea = ({
 /* ── Label ── */
 export const MacLabel = ({ children }: { children: ReactNode }) => (
   <label
-    className="text-xs font-bold text-black"
+    className="text-sm font-bold text-black"
     style={{ fontFamily: "'Chicago', 'Geneva', 'Helvetica Neue', monospace" }}
   >
     {children}
@@ -203,7 +203,7 @@ export const MacDesktop = ({ children, className = "", style }: { children: Reac
 /* ── Menu Bar ── */
 export const MacMenuBar = ({ children }: { children: ReactNode }) => (
   <div
-    className="flex items-center h-[22px] px-2 gap-4 border-b-2 border-black bg-white text-xs font-bold select-none"
+    className="flex items-center h-[26px] px-3 gap-4 border-b-2 border-black bg-white text-sm font-bold select-none"
     style={{ fontFamily: "'Chicago', 'Geneva', 'Helvetica Neue', monospace" }}
   >
     {children}
@@ -220,7 +220,7 @@ const STATUS_STYLES: Record<string, string> = {
 
 export const MacStatusChip = ({ status }: { status: string }) => (
   <span
-    className={`inline-flex items-center px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider border border-black ${STATUS_STYLES[status] || "border-black bg-white text-black"}`}
+    className={`inline-flex items-center px-2 py-0.5 text-xs font-bold uppercase tracking-wider border border-black ${STATUS_STYLES[status] || "border-black bg-white text-black"}`}
     style={{ fontFamily: "'Chicago', 'Geneva', 'Helvetica Neue', monospace" }}
   >
     {status}
@@ -230,7 +230,7 @@ export const MacStatusChip = ({ status }: { status: string }) => (
 /* ── Field Hint ── */
 export const MacFieldHint = ({ children }: { children: ReactNode }) => (
   <p
-    className="mt-0.5 text-[10px] text-gray-500 italic"
+    className="mt-0.5 text-xs text-gray-500 italic"
     style={{ fontFamily: "'Geneva', 'Helvetica Neue', monospace" }}
   >
     {children}
