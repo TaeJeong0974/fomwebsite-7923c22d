@@ -83,8 +83,58 @@ export const EpisodeDataProvider = ({ children }: { children: ReactNode }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // DB sync disabled — using static data for now
-    setLoading(false);
+    const fetchData = async () => {
+      try {
+        // Fetch episodes
+        const { data: epRows, error: epErr } = await supabase
+          .from("episodes")
+          .select("*")
+          .order("episode_number", { ascending: false });
+
+        if (epErr) throw epErr;
+
+        // Fetch hosts
+        const { data: hostRows, error: hostErr } = await supabase
+          .from("hosts")
+          .select("*");
+
+        if (hostErr) throw hostErr;
+
+        // Fetch episode-host links
+        const { data: linkRows, error: linkErr } = await supabase
+          .from("episode_hosts")
+          .select("episode_id, host_id");
+
+        if (linkErr) throw linkErr;
+
+        const mappedHosts = (hostRows || []).map(mapDbHost);
+        setHosts(mappedHosts);
+
+        const hostMap = new Map<string, PodcastHost>();
+        (hostRows || []).forEach((row: any) => {
+          hostMap.set(row.id, mapDbHost(row));
+        });
+
+        const mappedEpisodes = (epRows || []).map((row: any) => {
+          const episodeHostIds = (linkRows || [])
+            .filter((l: any) => l.episode_id === row.id)
+            .map((l: any) => l.host_id);
+          const episodeHosts = episodeHostIds
+            .map((hid: string) => hostMap.get(hid))
+            .filter(Boolean) as PodcastHost[];
+          return mapDbEpisode(row, episodeHosts);
+        });
+
+        setEpisodes(mappedEpisodes);
+      } catch (err) {
+        console.error("Failed to fetch episode data, using static fallback:", err);
+        // Keep static data as fallback
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const value = useMemo(
