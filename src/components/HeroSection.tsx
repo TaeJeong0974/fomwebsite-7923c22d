@@ -51,7 +51,7 @@ const HeroSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   return (
-    <section id="hero" className="pt-8 lg:pt-12 pb-14 lg:pb-20">
+    <section id="hero" className="pt-24 sm:pt-28 lg:pt-32 pb-14 lg:pb-20">
       <div className="container mx-auto container-padding">
         {/* Top row: Tagline left, Title right */}
         <div className="flex justify-between items-start mb-20 lg:mb-32">
