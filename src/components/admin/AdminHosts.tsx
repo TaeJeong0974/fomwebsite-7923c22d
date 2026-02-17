@@ -4,6 +4,7 @@ import { PixelUpload } from "./PixelIcons";
 import { adminApi } from "@/lib/adminApi";
 import { toast } from "sonner";
 import { MacButton, MacWindow, MacInput, MacTextarea, MacLabel, MacFieldHint, MacTable, MacImagePreview, MAC_FONT, MAC_TITLE_FONT } from "./MacOS";
+import MacConfirmDialog from "./MacConfirmDialog";
 import { HOST_IMAGES_BY_NAME } from "@/lib/episodeImages";
 
 const macFont = MAC_FONT;
@@ -97,15 +98,23 @@ const AdminHosts = () => {
     setSaving(false);
   };
 
-  const handleDelete = async (id: string) => {
-    if (!confirm("Delete this host?")) return;
-    try {
-      await adminApi("delete-host", { id });
-      toast.success("Deleted");
-      fetchHosts();
-    } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Delete failed");
-    }
+  const [confirmAction, setConfirmAction] = useState<{ message: string; action: () => void } | null>(null);
+
+  const handleDelete = (id: string) => {
+    const host = hosts.find((h) => h.id === id);
+    setConfirmAction({
+      message: `Delete host\n"${host?.name || "Untitled"}"?`,
+      action: async () => {
+        setConfirmAction(null);
+        try {
+          await adminApi("delete-host", { id });
+          toast.success("Deleted");
+          fetchHosts();
+        } catch (err: unknown) {
+          toast.error(err instanceof Error ? err.message : "Delete failed");
+        }
+      },
+    });
   };
 
   const set = (key: string, value: string) => setForm((f) => ({ ...f, [key]: value }));
@@ -223,6 +232,13 @@ const AdminHosts = () => {
           </tbody>
         </table>
       </MacTable>
+      {confirmAction && (
+        <MacConfirmDialog
+          message={confirmAction.message}
+          onConfirm={confirmAction.action}
+          onCancel={() => setConfirmAction(null)}
+        />
+      )}
     </div>
   );
 };

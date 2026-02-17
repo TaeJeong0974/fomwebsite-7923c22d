@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { adminApi } from "@/lib/adminApi";
 import { toast } from "sonner";
 import { podcastEpisodes, podcastHosts } from "@/lib/podcastData";
@@ -9,6 +9,7 @@ import { SortableContext, sortableKeyboardCoordinates, useSortable, verticalList
 import { CSS } from "@dnd-kit/utilities";
 import EpisodeForm from "./EpisodeForm";
 import { MacButton, MacStatusChip, MacTable, MacImagePreview, MAC_FONT, MAC_TITLE_FONT } from "./MacOS";
+import MacConfirmDialog from "./MacConfirmDialog";
 
 interface Episode {
   id: string;
@@ -137,27 +138,42 @@ const AdminEpisodes = ({ onSwitchToSpeakers }: { onSwitchToSpeakers?: () => void
 
   useEffect(() => { fetchEpisodes(); }, []);
 
-  const handleDelete = async (id: string) => {
-    if (!confirm("Delete this episode?")) return;
-    try {
-      await adminApi("delete-episode", { id });
-      toast.success("Deleted");
-      fetchEpisodes();
-    } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Delete failed");
-    }
+  const [confirmAction, setConfirmAction] = useState<{ message: string; action: () => void } | null>(null);
+
+  const handleDelete = (id: string) => {
+    const ep = episodes.find((e) => e.id === id);
+    setConfirmAction({
+      message: `Delete episode\n"${ep?.title || "Untitled"}"?`,
+      action: async () => {
+        setConfirmAction(null);
+        try {
+          await adminApi("delete-episode", { id });
+          toast.success("Deleted");
+          fetchEpisodes();
+        } catch (err: unknown) {
+          toast.error(err instanceof Error ? err.message : "Delete failed");
+        }
+      },
+    });
   };
 
-  const handlePromote = async (id: string) => {
-    setPromoting(id);
-    try {
-      await adminApi("promote-to-live", { id });
-      toast.success("Pushed to live");
-      fetchEpisodes();
-    } catch (err: unknown) {
-      toast.error(err instanceof Error ? err.message : "Promote failed");
-    }
-    setPromoting(null);
+  const handlePromote = (id: string) => {
+    const ep = episodes.find((e) => e.id === id);
+    setConfirmAction({
+      message: `Push "${ep?.title || "Untitled"}"\nto live?`,
+      action: async () => {
+        setConfirmAction(null);
+        setPromoting(id);
+        try {
+          await adminApi("promote-to-live", { id });
+          toast.success("Pushed to live");
+          fetchEpisodes();
+        } catch (err: unknown) {
+          toast.error(err instanceof Error ? err.message : "Promote failed");
+        }
+        setPromoting(null);
+      },
+    });
   };
 
   const handleDragEnd = async (event: DragEndEvent) => {
@@ -253,6 +269,13 @@ const AdminEpisodes = ({ onSwitchToSpeakers }: { onSwitchToSpeakers?: () => void
           </SortableContext>
         </DndContext>
       </MacTable>
+      {confirmAction && (
+        <MacConfirmDialog
+          message={confirmAction.message}
+          onConfirm={confirmAction.action}
+          onCancel={() => setConfirmAction(null)}
+        />
+      )}
     </div>
   );
 };
