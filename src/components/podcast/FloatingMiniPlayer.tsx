@@ -31,7 +31,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, appleUrl, playTrigger, thu
   const [pipDismissed, setPipDismissed] = useState(false);
   const [pipRight, setPipRight] = useState(96);
   const [pipWidth, setPipWidth] = useState<number | undefined>(undefined);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLButtonElement>(null);
   const playerWrapperRef = useRef<HTMLDivElement>(null);
   const cleanupRef = useRef<(() => void) | null>(null);
   const videoId = youtubeUrl ? getYouTubeVideoId(youtubeUrl) : null;
@@ -137,24 +137,25 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, appleUrl, playTrigger, thu
               className="absolute inset-0 w-full h-full"
             />
           ) : (
-            <div
+            <button
               ref={containerRef}
-              className="absolute inset-0 group cursor-pointer"
+              className="absolute inset-0 group cursor-pointer w-full h-full border-0 bg-transparent p-0"
               onClick={handlePlay}
+              aria-label="Play episode"
             >
               <img
                 src={thumbnailImage || thumbnailUrl || guestBg}
                 alt="Episode thumbnail"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-smooth group-hover:scale-105"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-smooth [@media(hover:hover)]:group-hover:scale-105"
                 loading="eager"
                 decoding="async"
               />
               <div className="absolute inset-0 flex items-center justify-center z-10">
-                <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg transition-transform duration-200 group-hover:scale-110">
+                <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg transition-transform duration-200 [@media(hover:hover)]:group-hover:scale-110">
                   <Play className="w-5 h-5 text-foreground fill-foreground ml-0.5" />
                 </div>
               </div>
-            </div>
+            </button>
           )}
         </div>
       </div>
