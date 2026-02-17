@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useCallback } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import type { PodcastEpisode, PodcastHost } from "@/lib/podcastData";
@@ -87,66 +87,22 @@ export function invalidateStagingCache() { _cache = { data: null, ts: 0 }; }
 
 /* ── Page ── */
 
-const LIVE_PREVIEW_CHANNEL = "cms-live-preview";
-
 const StagingPreview = () => {
   const { slug } = useParams();
   const [searchParams] = useSearchParams();
   const episodeDbId = searchParams.get("id");
-  const isLiveMode = searchParams.get("live") === "1";
   const [episode, setEpisode] = useState<PodcastEpisode | null>(null);
   const [allHosts, setAllHosts] = useState<PodcastHost[]>([]);
   const [allEpisodes, setAllEpisodes] = useState<PodcastEpisode[]>([]);
   const [loading, setLoading] = useState(true);
   const [playTrigger, setPlayTrigger] = useState(0);
-  const [liveConnected, setLiveConnected] = useState(false);
-
-  // Convert a live-update message into a PodcastEpisode overlay
-  const applyLiveUpdate = useCallback((msg: any) => {
-    if (msg?.type !== "live-update") return;
-    const ep = msg.episode;
-    const publishDate = ep.publish_date
-      ? new Date(ep.publish_date + "T00:00:00").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })
-      : "";
-    const liveEpisode: PodcastEpisode = {
-      id: ep.episode_number ?? 0,
-      slug: ep.slug,
-      name: ep.guest_name || ep.title,
-      title: ep.guest_title || "",
-      company: ep.guest_company || "",
-      companyDomain: ep.guest_company_domain || "",
-      overview: ep.subtitle || "",
-      fullDescription: ep.full_description || "",
-      bio: ep.guest_bio || "",
-      topics: ep.topics || [],
-      chapters: [],
-      youtubeUrl: ep.youtube_url || "",
-      spotifyUrl: ep.spotify_url || "",
-      duration: ep.duration || "",
-      publishedDate: ep.published ? publishDate : "Coming Soon",
-      comingSoon: !ep.published,
-      linkedInUrl: ep.guest_linkedin_url || undefined,
-      previewVideoUrl: ep.preview_video_url || undefined,
-      pullQuote: ep.pull_quote || undefined,
-      hosts: (msg.hostNames || []).map((name: string) => ({ name, title: "", company: "" })),
-    };
-    setEpisode(liveEpisode);
-    setLiveConnected(true);
-  }, []);
-
-  // Listen for live-preview broadcasts
-  useEffect(() => {
-    if (!isLiveMode) return;
-    const bc = new BroadcastChannel(LIVE_PREVIEW_CHANNEL);
-    bc.onmessage = (e) => applyLiveUpdate(e.data);
-    return () => bc.close();
-  }, [isLiveMode, applyLiveUpdate]);
 
   useEffect(() => {
     if (!slug && !episodeDbId) return;
     (async () => {
       setLoading(true);
       try {
+        invalidateStagingCache(); // Always fetch fresh data
         const { episodes, hosts } = await fetchStagingData();
         setAllHosts(hosts);
         setAllEpisodes(episodes);
@@ -189,13 +145,13 @@ const StagingPreview = () => {
   return (
     <EpisodeDataContext.Provider value={ctxValue}>
       {/* Staging banner */}
-      <div className={`fixed top-0 left-0 right-0 z-[100] text-black text-center text-sm font-bold py-2 tracking-wide shadow-md flex items-center justify-center gap-2 ${liveConnected ? "bg-green-400" : "bg-amber-400"}`}>
-        <span className={`inline-block w-2 h-2 rounded-full animate-pulse ${liveConnected ? "bg-green-700" : "bg-red-500"}`} />
-        {liveConnected ? "LIVE PREVIEW — Updating in real-time from CMS" : "PREVIEW MODE — Changes are not live"}
+      <div className="fixed top-0 left-0 right-0 z-[100] bg-amber-400 text-black text-center text-sm font-bold py-2 tracking-wide shadow-md flex items-center justify-center gap-2">
+        <span className="inline-block w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+        PREVIEW MODE — Changes are not live
       </div>
 
       {/* Dashed border overlay to reinforce preview context */}
-      <div className={`fixed inset-0 z-[99] pointer-events-none border-[3px] border-dashed ${liveConnected ? "border-green-400/60" : "border-amber-400/60"}`} />
+      <div className="fixed inset-0 z-[99] pointer-events-none border-[3px] border-dashed border-amber-400/60" />
 
       <div style={{ paddingTop: 32 }}>
         <EpisodeOverlayLayout>
