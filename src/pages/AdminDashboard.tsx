@@ -11,7 +11,7 @@ import fomBlackIcon from "/favicon-black.svg";
 
 const macFont = { fontFamily: "'Chicago', 'Geneva', monospace" };
 
-type WindowId = "episodes" | "hosts" | "speakers";
+type WindowId = "episodes" | "hosts" | "speakers" | "preview";
 
 interface WindowState {
   id: WindowId;
@@ -23,18 +23,21 @@ const WINDOWS: WindowState[] = [
   { id: "episodes", title: "Content Manager", icon: "📺" },
   { id: "hosts", title: "Hosts", icon: "🎙️" },
   { id: "speakers", title: "Speakers", icon: "🗣️" },
+  { id: "preview", title: "Website", icon: "🌐" },
 ];
 
 const DEFAULT_POSITIONS: Record<WindowId, { x: number; y: number }> = {
   episodes: { x: 30, y: 40 },
   hosts: { x: 80, y: 80 },
   speakers: { x: 130, y: 120 },
+  preview: { x: 60, y: 60 },
 };
 
 const DEFAULT_SIZES: Record<WindowId, { width: number; height: number }> = {
   episodes: { width: 900, height: 550 },
   hosts: { width: 650, height: 450 },
   speakers: { width: 650, height: 450 },
+  preview: { width: 900, height: 600 },
 };
 
 /* ── Clock ── */
@@ -124,11 +127,11 @@ const BootScreen = ({ onDone }: { onDone: () => void }) => {
 };
 
 /* ── 1-bit Pixel Art Icons (System 7 style) ── */
-const PixelIcon = ({ type, selected }: { type: WindowId | "website"; selected: boolean }) => {
+const PixelIcon = ({ type, selected }: { type: WindowId; selected: boolean }) => {
   const fill = selected ? "white" : "black";
   const bg = selected ? "black" : "white";
 
-  const icons: Record<WindowId | "website", JSX.Element> = {
+  const icons: Record<WindowId, JSX.Element> = {
     // TV/monitor icon for Content Manager
     episodes: (
       <svg width="32" height="32" viewBox="0 0 16 16" fill="none" style={{ imageRendering: "pixelated" }}>
@@ -168,8 +171,8 @@ const PixelIcon = ({ type, selected }: { type: WindowId | "website"; selected: b
         <rect x="6" y="11" width="4" height="3" fill={bg} />
       </svg>
     ),
-    // Globe/internet icon for Website
-    website: (
+    // Globe/internet icon for Preview
+    preview: (
       <svg width="32" height="32" viewBox="0 0 16 16" fill="none" style={{ imageRendering: "pixelated" }}>
         <rect width="16" height="16" fill={bg} />
         <rect x="5" y="1" width="6" height="1" fill={fill} />
