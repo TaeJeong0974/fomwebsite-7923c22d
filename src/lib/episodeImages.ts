@@ -19,7 +19,7 @@ import ep0Poster from "@/assets/ep0-poster.png";
 import ep1Poster from "@/assets/ep1-poster.png";
 
 export const EPISODE_IMAGES: Record<string, string> = {
-  "the-future-of-marketing": ep0Poster,
+  "the-future-of-marketing": hostMada,
   "meagen-eisenberg": guestMeagen,
   "lena-waters": guestLena,
   "lindsey-irvine": guestLindsey,
