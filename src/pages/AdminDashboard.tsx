@@ -70,7 +70,7 @@ const AdminDashboard = () => {
 
         {/* Content */}
         <div>
-          {tab === "episodes" && <AdminEpisodes />}
+          {tab === "episodes" && <AdminEpisodes onSwitchToSpeakers={() => setTab("speakers")} />}
           {tab === "hosts" && <AdminHosts />}
           {tab === "speakers" && <AdminSpeakers />}
         </div>

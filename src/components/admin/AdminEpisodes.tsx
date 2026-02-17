@@ -24,7 +24,7 @@ const STATUS_CHIP: Record<string, string> = {
   deleted: "bg-red-100 text-red-700",
 };
 
-const AdminEpisodes = () => {
+const AdminEpisodes = ({ onSwitchToSpeakers }: { onSwitchToSpeakers?: () => void }) => {
   const [episodes, setEpisodes] = useState<Episode[]>([]);
   const [editing, setEditing] = useState<string | null>(null);
   const [creating, setCreating] = useState(false);
@@ -77,8 +77,8 @@ const AdminEpisodes = () => {
     return new Date(ep.updated_at) > new Date(ep.promoted_at);
   };
 
-  if (editing) return <EpisodeForm episodeId={editing} onDone={() => { setEditing(null); fetchEpisodes(); }} />;
-  if (creating) return <EpisodeForm onDone={() => { setCreating(false); fetchEpisodes(); }} />;
+  if (editing) return <EpisodeForm episodeId={editing} onDone={() => { setEditing(null); fetchEpisodes(); }} onSwitchToSpeakers={onSwitchToSpeakers} />;
+  if (creating) return <EpisodeForm onDone={() => { setCreating(false); fetchEpisodes(); }} onSwitchToSpeakers={onSwitchToSpeakers} />;
 
   if (loading) return <div className="py-16 text-center text-muted-foreground text-sm">Loading episodes…</div>;
 
