@@ -395,6 +395,15 @@ const AdminDashboard = () => {
         style={{ height: "calc(100vh - 22px)", marginTop: 22 }}
         onClick={() => { setSelectedIcon(null); setOpenMenu(null); }}
       >
+        {/* Staging Banner */}
+        <div
+          className="absolute top-3 left-1/2 -translate-x-1/2 z-[6] border-2 border-black bg-[#fffde6] px-4 py-1.5 flex items-center gap-2"
+          style={{ boxShadow: "2px 2px 0px #000", ...macFont }}
+        >
+          <span className="text-base">⚠️</span>
+          <span className="text-[11px] font-bold">STAGING MODE — Edits here are not live on the website</span>
+        </div>
+
         {/* Desktop Icons — always show all three on the right */}
         <div className="absolute top-4 right-4 flex flex-col gap-4 z-[5]">
           {WINDOWS.map((w) => (
