@@ -103,6 +103,21 @@ serve(async (req) => {
         ? await supabase.from('speakers').update(rest).eq('id', id).select().single()
         : await supabase.from('speakers').insert(rest).select().single();
       if (error) return respond(400, { error: error.message });
+
+      // Sync speaker image/fields to any episodes using this speaker
+      if (data) {
+        const updates: Record<string, unknown> = {};
+        if (data.image_url !== undefined) updates.guest_image_url = data.image_url;
+        if (data.title !== undefined) updates.guest_title = data.title;
+        if (data.company !== undefined) updates.guest_company = data.company;
+        if (data.company_domain !== undefined) updates.guest_company_domain = data.company_domain;
+        if (data.bio !== undefined) updates.guest_bio = data.bio;
+        if (data.linkedin_url !== undefined) updates.guest_linkedin_url = data.linkedin_url;
+        if (Object.keys(updates).length > 0) {
+          await supabase.from('episodes').update(updates).eq('guest_name', data.name);
+        }
+      }
+
       return respond(200, { data });
     }
 
