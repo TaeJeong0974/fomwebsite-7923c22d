@@ -27,7 +27,7 @@ const EpisodeOverlayLayout = ({ children, actionButtons }: EpisodeOverlayLayoutP
 
             {/* Action Buttons + Close Button row - desktop only */}
             <div className="hidden lg:flex flex-col flex-shrink-0 sticky top-28 gap-3 items-end">
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 h-14">
                 {actionButtons}
                 <LiquidButton
                   onClick={handleClose}
