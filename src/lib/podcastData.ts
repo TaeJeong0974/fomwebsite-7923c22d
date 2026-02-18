@@ -197,7 +197,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     publishedDate: "Feb 26, 2026",
     comingSoon: false,
     linkedInUrl: "https://linkedin.com/in/lenawaters",
-    pullQuote: "As AI becomes more agentic and autonomous, it's now more important than ever that we really understand the value we bring as humans—that EQ we need to bring to the table.",
+    pullQuote: "This idea now that AI can work alongside you, as we know, it's becoming much more agentic. It's starting to become autonomous. As we become more trusting and open with it, it's going to fill in the gaps that we have. And so, it's now more important than ever that we really understand the value that we bring as humans and that sort of EQ that we need to bring to the table.",
     hosts: [podcastHosts[1], podcastHosts[0]], // Camille Ricketts, Mada Seghete
   },
   {
