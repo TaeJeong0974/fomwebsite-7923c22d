@@ -17,6 +17,7 @@ import FloatingMiniPlayer from "@/components/podcast/FloatingMiniPlayer";
 import { getYouTubeThumbnail } from "@/lib/episodeUtils";
 import ep1Poster from "@/assets/ep1-poster.png";
 import ep0Poster from "@/assets/ep0-poster.png";
+import guestLena from "@/assets/guest-lena-waters.jpg";
 
 /* ── DB → domain mappers ── */
 
@@ -168,7 +169,7 @@ const StagingPreview = () => {
                   spotifyUrl={episode.spotifyUrl}
                   appleUrl={episode.appleUrl}
                   playTrigger={playTrigger}
-                  thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : isIntro ? ep0Poster : undefined}
+                  thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : episode.slug === "lena-waters" ? guestLena : isIntro ? ep0Poster : undefined}
                 />
                 <div className="pt-2 lg:hidden">
                   <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} appleUrl={episode.appleUrl} />
