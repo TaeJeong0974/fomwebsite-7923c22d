@@ -170,7 +170,7 @@ This episode is a practical blueprint for CMOs and marketing leaders who want AI
     title: "Chief Marketing Officer",
     company: "Notion",
     companyDomain: "notion.so",
-    overview: "Rethinking Workflows in the Age of AI with Lena Waters",
+    overview: "Rethinking Workflows in the Age of AI",
     bio: "is the Chief Marketing Officer at Notion, where she leads global go-to-market strategy as the company evolves from a beloved productivity tool into a leading AI-connected workspace. With over 20 years of experience at companies like Grammarly, Docusign, Responsys, and Lookout, Lena has built and led global teams across growth, demand, and brand, helping organizations scale through major platform shifts while maintaining strong brand affinity.",
     fullDescription: `AI isn't your new employee. It's your new teammate and that changes how marketing, product, and go-to-market teams operate at a fundamental level.
 
