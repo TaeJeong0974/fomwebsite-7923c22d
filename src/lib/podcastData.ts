@@ -172,24 +172,31 @@ This episode is a practical blueprint for CMOs and marketing leaders who want AI
     companyDomain: "notion.so",
     overview: "Rethinking Workflows in the Age of AI",
     bio: "is the Chief Marketing Officer at Notion, where she leads global go-to-market strategy as the company evolves from a beloved productivity tool into a leading AI-connected workspace. With over 20 years of experience at companies like Grammarly, Docusign, Responsys, and Lookout, Lena has built and led global teams across growth, demand, and brand, helping organizations scale through major platform shifts while maintaining strong brand affinity.",
-    fullDescription: `In this upcoming episode of Future of Marketing, hosts Camille Ricketts and Mada Seghete sit down with Lena Waters, CMO of Notion, to explore how AI is reshaping not just marketing workflows, but how teams work together. They unpack how Notion integrates AI natively into its product and go-to-market, why "show, don't tell" beats traditional enterprise selling, and how to scale brand, PLG, and enterprise motion without losing warmth or clarity.`,
+    fullDescription: `Most teams are automating their workflows. Very few are questioning whether those workflows should exist at all.
+
+In this episode of Future of Marketing, hosts Camille Ricketts and Mada Seghete sit down with Lena Waters, CMO of Notion, to explore how AI is reshaping not just marketing workflows, but how teams think and work together.
+
+Lena shares how Notion integrates AI natively into its product and go-to-market motion, why "show, don't tell" beats traditional enterprise selling, and how to scale brand, PLG, and enterprise motion simultaneously without losing warmth or clarity.
+
+The conversation tackles what it means to move upmarket without losing the authenticity that made your brand beloved, why static websites are becoming a growth liability, and how the best marketing teams are learning to lead with product experience rather than claims. Lena also explains why, as AI becomes more autonomous, the uniquely human skills — judgment, empathy, storytelling — are becoming more valuable, not less.`,
     topics: [
       "Question workflows, don't just automate them",
       "'Show, don't tell' collapses sales cycles",
       "PLG and enterprise motions reinforce each other",
       "Traditional websites as a growth liability",
       "Warmth vs. competency when moving upmarket",
+      "The human skills that matter most as AI becomes autonomous",
     ],
     chapters: [],
     youtubeUrl: "",
     spotifyUrl: "",
+    appleUrl: undefined,
     duration: "",
-    publishedDate: "Coming Soon",
-    comingSoon: true,
+    publishedDate: "Feb 26, 2026",
+    comingSoon: false,
     linkedInUrl: "https://linkedin.com/in/lenawaters",
     pullQuote: "As AI becomes more agentic and autonomous, it's now more important than ever that we really understand the value we bring as humans—that EQ we need to bring to the table.",
-    hosts: [podcastHosts[2], podcastHosts[0]], // Camille Ricketts, Mada Seghete
-    
+    hosts: [podcastHosts[1], podcastHosts[0]], // Camille Ricketts, Mada Seghete
   },
   {
     id: 3,
