@@ -104,14 +104,17 @@ const PodcastDetail = () => {
       />
 
 
-      <EpisodeOverlayLayout actionButtons={<EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} appleUrl={episode.appleUrl} />}>
-        {/* Title */}
-        <div className="mb-6 sm:mb-8 lg:mb-10">
-          <div className="space-y-1 sm:space-y-2">
+      <EpisodeOverlayLayout>
+        {/* Title & Action Buttons */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-6 sm:mb-8 lg:mb-10">
+          <div className="lg:col-span-2 space-y-1 sm:space-y-2">
             <h3 className="text-section-header font-medium text-foreground mb-5 sm:mb-6">Episode {episode.id}{episode.duration && <span className="text-muted-foreground font-normal"> · {episode.duration}</span>}</h3>
             <h1 className="text-display-lg font-display font-medium text-foreground leading-[1.1] stable-text lg:text-[2.2rem]">
               {episode.overview || episode.name}
             </h1>
+          </div>
+          <div className="hidden lg:block mt-6 sm:mt-7">
+            <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} appleUrl={episode.appleUrl} />
           </div>
         </div>
 
