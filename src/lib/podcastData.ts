@@ -172,13 +172,15 @@ This episode is a practical blueprint for CMOs and marketing leaders who want AI
     companyDomain: "notion.so",
     overview: "Rethinking Workflows in the Age of AI with Lena Waters",
     bio: "is the Chief Marketing Officer at Notion, where she leads global go-to-market strategy as the company evolves from a beloved productivity tool into a leading AI-connected workspace. With over 20 years of experience at companies like Grammarly, Docusign, Responsys, and Lookout, Lena has built and led global teams across growth, demand, and brand, helping organizations scale through major platform shifts while maintaining strong brand affinity.",
-    fullDescription: `Most teams are automating their workflows. Very few are questioning whether those workflows should exist at all.
+    fullDescription: `AI isn't your new employee. It's your new teammate and that changes how marketing, product, and go-to-market teams operate at a fundamental level.
 
-In this episode of Future of Marketing, hosts Camille Ricketts and Mada Seghete sit down with Lena Waters, CMO of Notion, to explore how AI is reshaping not just marketing workflows, but how teams think and work together.
+In this episode of Future of Marketing, hosts Camille Ricketts and Mada Seghete talk with Lena Waters, CMO of Notion, about how one of the world's most beloved productivity tools is evolving into an AI-connected workspace and how that shift shows up not just in the product, but across the entire organization.
 
-Lena shares how Notion integrates AI natively into its product and go-to-market motion, why "show, don't tell" beats traditional enterprise selling, and how to scale brand, PLG, and enterprise motion simultaneously without losing warmth or clarity.
+Lena shares how Notion avoids the common trap of treating AI like a feature add-on. Instead, her team challenges customers to rethink whether existing workflows should exist at all. The conversation explores how Notion collapses discovery time in enterprise deals by bringing prospects directly into the product, why PLG and enterprise are part of the same continuous loop, and how internal teams move from idea to market in hours, not weeks.
 
-The conversation tackles what it means to move upmarket without losing the authenticity that made your brand beloved, why static websites are becoming a growth liability, and how the best marketing teams are learning to lead with product experience rather than claims. Lena also explains why, as AI becomes more autonomous, the uniquely human skills — judgment, empathy, storytelling — are becoming more valuable, not less.`,
+They also tackle bigger questions most marketers aren't ready for yet: whether traditional websites and landing pages are becoming legacy artifacts, why storytelling still matters as much as attribution, and how empowering customers and employees to tell your brand story creates more consistency than strict brand governance ever could.
+
+This episode is a blueprint for marketing leaders navigating the shift from AI as automation to AI as transformation.`,
     topics: [
       "Question workflows, don't just automate them",
       "'Show, don't tell' collapses sales cycles",
