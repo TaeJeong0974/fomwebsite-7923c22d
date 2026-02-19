@@ -25,7 +25,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
             </div>
             
             {/* Close Button - Sticky on desktop */}
-            <div className="hidden lg:flex w-12 flex-shrink-0 sticky top-28 mt-[2.75rem]">
+            <div className="hidden lg:flex w-12 flex-shrink-0 sticky top-28 mt-7">
               <LiquidButton
                 onClick={handleClose}
                 variant="dark"
