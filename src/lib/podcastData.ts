@@ -192,7 +192,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
       "The \"warmth vs. competency\" framework for moving upmarket without losing what made you loved",
     ],
     chapters: [],
-    youtubeUrl: "",
+    youtubeUrl: "https://www.youtube.com/watch?v=IkdI15f6M58",
     spotifyUrl: "",
     appleUrl: "https://podcasts.apple.com/us/podcast/rethinking-workflows-in-the-age-of-ai-with-lena-waters/id1876216633",
     duration: "51 min",
