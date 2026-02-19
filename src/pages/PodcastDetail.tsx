@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams } from "react-router-dom";
 import ep1Poster from "@/assets/ep1-poster.png";
 import ep0Poster from "@/assets/ep0-poster.png";
-import ep2Poster from "@/assets/ep2-poster.png";
+import guestLena from "@/assets/guest-lena-waters.jpg";
 import Footer from "@/components/Footer";
 import NotFound from "@/pages/NotFound";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
@@ -128,7 +128,7 @@ const PodcastDetail = () => {
                 spotifyUrl={episode.spotifyUrl}
                 appleUrl={episode.appleUrl}
                 playTrigger={playTrigger}
-                thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : episode.slug === "lena-waters" ? ep2Poster : isIntro ? ep0Poster : undefined}
+                thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : episode.slug === "lena-waters" ? guestLena : isIntro ? ep0Poster : undefined}
               />
               <div className="pt-2 lg:hidden">
                 <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} appleUrl={episode.appleUrl} />
