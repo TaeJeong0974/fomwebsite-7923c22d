@@ -14,9 +14,7 @@ import Index from "./pages/Index";
 const PodcastDetail = lazy(() => import("./pages/PodcastDetail"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-const AdminLogin = lazy(() => import("./pages/AdminLogin"));
-const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
-const StagingPreview = lazy(() => import("./pages/StagingPreview"));
+// CMS disabled — admin routes redirect to 404
 
 const queryClient = new QueryClient();
 
@@ -31,15 +29,14 @@ const NavigateToSlug = () => {
 
 const AppRoutes = () => {
   const location = useLocation();
-  const isAdmin = location.pathname.startsWith("/admin");
   
   return (
     <>
       {/* Fixed background - stays during transitions */}
       <div className="fixed inset-0 -z-10 bg-[#f4f2ef]" />
       
-      {/* Navbar stays fixed, outside of page transitions — hidden on admin routes */}
-      {!isAdmin && <Navbar />}
+      {/* Navbar */}
+      <Navbar />
       
       <PageTransition>
         <Suspense fallback={<RouteFallback />}>
@@ -48,9 +45,8 @@ const AppRoutes = () => {
             <Route path="/podcast/:slug" element={<PodcastDetail />} />
             <Route path="/episode/:slug" element={<NavigateToSlug />} />
             <Route path="/privacy" element={<Privacy />} />
-            <Route path="/admin" element={<AdminLogin />} />
-            <Route path="/admin/dashboard" element={<AdminDashboard />} />
-            <Route path="/admin/preview/:slug" element={<StagingPreview />} />
+            <Route path="/admin" element={<NotFound />} />
+            <Route path="/admin/*" element={<NotFound />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Suspense>
