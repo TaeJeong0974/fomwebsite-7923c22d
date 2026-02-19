@@ -194,7 +194,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     chapters: [],
     youtubeUrl: "https://www.youtube.com/watch?v=IkdI15f6M58",
     spotifyUrl: "",
-    appleUrl: "https://podcasts.apple.com/us/podcast/rethinking-workflows-in-the-age-of-ai-with-lena-waters/id1876216633",
+    appleUrl: "https://podcasts.apple.com/us/podcast/rethinking-workflows-in-the-age-of-ai-with-lena-waters/id1876216633?i=1000750505883",
     duration: "51 min",
     publishedDate: "Feb 19, 2026",
     comingSoon: false,
