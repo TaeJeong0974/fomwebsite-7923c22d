@@ -25,6 +25,7 @@ const getYouTubeVideoId = (url: string): string | null => {
 };
 
 const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, appleUrl, playTrigger, thumbnailImage }: FloatingMiniPlayerProps) => {
+
   const [isPlaying, setIsPlaying] = useState(false);
   const [showPip, setShowPip] = useState(false);
   const [hideAtBottom, setHideAtBottom] = useState(false);
