@@ -32,6 +32,7 @@ import {
 } from "@/lib/episodeUtils";
 
 const PodcastDetail = () => {
+
   const { slug } = useParams();
   const [playTrigger, setPlayTrigger] = useState(0);
   const { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes } = useEpisodeData();
