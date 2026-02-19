@@ -25,11 +25,11 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
             </div>
             
             {/* Close Button - Sticky on desktop */}
-            <div className="hidden lg:flex w-12 flex-shrink-0 sticky top-28 mt-[1.75rem]">
+            <div className="hidden lg:flex w-14 flex-shrink-0 sticky top-28 mt-[1.75rem]">
               <LiquidButton
                 onClick={handleClose}
                 variant="glass"
-                size="icon"
+                className="h-14 w-14"
                 aria-label="Close and return to homepage"
               >
                 <X className="h-5 w-5" />
