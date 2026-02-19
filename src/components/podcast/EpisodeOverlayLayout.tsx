@@ -28,7 +28,7 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
             <div className="hidden lg:flex w-12 flex-shrink-0 sticky top-28 mt-[1.75rem]">
               <LiquidButton
                 onClick={handleClose}
-                variant="dark"
+                variant="glass"
                 size="icon"
                 aria-label="Close and return to homepage"
               >
