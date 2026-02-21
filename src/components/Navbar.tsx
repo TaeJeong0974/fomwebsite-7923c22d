@@ -237,14 +237,19 @@ const Navbar = () => {
 
           {/* Mobile Navigation */}
           {isOpen && (
-            <div className="md:hidden py-4 border-t border-border/50 mt-3">
+            <div className="md:hidden py-4 border-t border-border/50 mt-3" style={{ touchAction: 'manipulation' }}>
               <ul className="flex flex-col gap-1">
                 {navLinks.map((link) => (
                   <li key={link.label}>
                     <a
                       href={link.href}
                       onClick={(e) => handleNavClick(e, link.href)}
-                      className="block py-2 text-3xl text-foreground hover:text-primary hover:bg-secondary/50 rounded-xl hover-transition focus-ring"
+                      onTouchEnd={(e) => {
+                        e.preventDefault();
+                        handleNavClick(e as unknown as React.MouseEvent<HTMLAnchorElement>, link.href);
+                      }}
+                      className="block py-3 text-3xl text-foreground active:text-primary active:bg-secondary/50 rounded-xl focus-ring"
+                      style={{ touchAction: 'manipulation', WebkitTapHighlightColor: 'transparent' }}
                     >
                       {link.label}
                     </a>
