@@ -237,7 +237,7 @@ const Navbar = () => {
 
           {/* Mobile Navigation */}
           {isOpen && (
-            <div className="md:hidden py-4 border-t border-border/50 mt-3" style={{ touchAction: 'manipulation' }}>
+            <div className="md:hidden py-4 border-t border-border/50 mt-3 bg-background/95 backdrop-blur-xl rounded-b-md" style={{ touchAction: 'manipulation' }}>
               <ul className="flex flex-col gap-1">
                 {navLinks.map((link) => (
                   <li key={link.label}>
