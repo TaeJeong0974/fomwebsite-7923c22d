@@ -23,11 +23,11 @@ const HOVER_COLORS = [
   ["#B44C38", "#594881", "#805781", "#B44C38"],
 ];
 
-const isNewEpisode = (publishedDate: string): boolean => {
-  if (publishedDate === "Coming Soon") return false;
-  const published = new Date(publishedDate);
-  const diffDays = (Date.now() - published.getTime()) / (1000 * 60 * 60 * 24);
-  return diffDays <= 14;
+const getNewestEpisodeSlug = (episodes: PodcastEpisode[]): string | null => {
+  const published = episodes.filter(e => !e.comingSoon && e.publishedDate !== "Coming Soon");
+  if (published.length === 0) return null;
+  published.sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime());
+  return published[0].slug;
 };
 
 const PodcastSection = () => {
@@ -108,6 +108,7 @@ interface PodcastViewProps {
 const PodcastGridView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => {
   const [showAll, setShowAll] = useState(false);
   const isMobile = useIsMobile();
+  const newestSlug = getNewestEpisodeSlug(episodes);
   
   const allCards = [
     ...episodes.slice(0, 4).map((ep, i) => ({ type: 'episode' as const, episode: ep, index: i })),
@@ -130,7 +131,7 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
         >
           <PodcastCard 
             episode={episode} 
-            isNew={type === 'episode' && isNewEpisode(episode.publishedDate)} 
+            isNew={type === 'episode' && episode.slug === newestSlug} 
             isUpcoming={type === 'coming-soon'}
             image={getEpisodeImage(episode.slug, index)}
             placeholderColor={HOVER_COLORS[index % HOVER_COLORS.length][0]}
@@ -185,6 +186,7 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
 };
 
 const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => {
+  const newestSlug = getNewestEpisodeSlug(episodes);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const isMobile = useIsMobile();
   const { openSubscribe } = useSubscribe();
@@ -197,7 +199,7 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
       {allEpisodes.map((episode, index) => {
         const isComingSoon = episode.comingSoon;
         const isIntroEpisode = episode.slug === 'the-future-of-marketing';
-        const hasBadge = isComingSoon || isNewEpisode(episode.publishedDate);
+        const hasBadge = isComingSoon || episode.slug === newestSlug;
         const isHovered = hoveredIndex === index && !isMobile;
         const colors = HOVER_COLORS[index % HOVER_COLORS.length];
 
@@ -222,7 +224,7 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastViewProps) => 
                         <span className="text-label invisible" aria-hidden="true">EP 00</span>
                         <div className="mb-3 sm:mb-4 list-focus-transition">
                           {isComingSoon && <span className="badge-status">Upcoming</span>}
-                          {!isComingSoon && isNewEpisode(episode.publishedDate) && <span className="badge-status">New</span>}
+                          {!isComingSoon && episode.slug === newestSlug && <span className="badge-status">New</span>}
                         </div>
                       </div>
                     )}
