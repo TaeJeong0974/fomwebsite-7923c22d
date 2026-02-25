@@ -12,12 +12,13 @@ const SidebarCard = ({ title, children, className = "" }: SidebarCardProps) => {
   return (
     <div className={`glass rounded-xl overflow-hidden relative ${className}`}>
       {/* Background image */}
-      <img
+      {/* Background image hidden for now */}
+      {/* <img
         src={teaserBg}
         alt=""
         className="w-full h-auto object-contain object-bottom absolute bottom-0 left-0 pointer-events-none"
         loading="lazy"
-      />
+      /> */}
       {/* Gradient mask */}
       <div className="absolute inset-0 bg-[linear-gradient(to_bottom,hsl(var(--background))_0%,hsl(var(--background))_50%,hsl(var(--background)/0.8)_70%,hsl(var(--background)/0.3)_85%,transparent_100%)]" />
 
