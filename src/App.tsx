@@ -1,9 +1,8 @@
 import { lazy, Suspense } from "react";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route, useLocation, Navigate, useParams } from "react-router-dom";
 import { SubscribeProvider } from "@/contexts/SubscribeContext";
 import { EpisodeDataProvider } from "@/contexts/EpisodeDataContext";
-import { Toaster } from "sonner";
+
 import ScrollToTop from "@/components/ScrollToTop";
 import PageTransition from "@/components/animations/PageTransition";
 import Navbar from "@/components/Navbar";
@@ -13,8 +12,6 @@ import Index from "./pages/Index";
 const PodcastDetail = lazy(() => import("./pages/PodcastDetail"));
 const Privacy = lazy(() => import("./pages/Privacy"));
 const NotFound = lazy(() => import("./pages/NotFound"));
-
-
 
 const RouteFallback = () => (
   <div className="min-h-screen" />
@@ -52,27 +49,14 @@ const AppRoutes = () => {
 };
 
 const App = () => (
-  <TooltipProvider>
-    <EpisodeDataProvider>
-      <SubscribeProvider>
-        <BrowserRouter>
-          <ScrollToTop />
-          <AppRoutes />
-        </BrowserRouter>
-        <Toaster 
-          position="bottom-center" 
-          toastOptions={{
-            style: {
-              background: 'rgba(0, 0, 0, 0.8)',
-              backdropFilter: 'blur(20px)',
-              border: '1px solid rgba(255, 255, 255, 0.1)',
-              color: 'white',
-            },
-          }}
-        />
-      </SubscribeProvider>
-    </EpisodeDataProvider>
-  </TooltipProvider>
+  <EpisodeDataProvider>
+    <SubscribeProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <AppRoutes />
+      </BrowserRouter>
+    </SubscribeProvider>
+  </EpisodeDataProvider>
 );
 
 export default App;
