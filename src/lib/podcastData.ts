@@ -209,7 +209,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     title: "Chief Marketing Officer",
     company: "Webflow",
     companyDomain: "webflow.com",
-    overview: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore.",
+    overview: "Trust Is The Ultimate Differentiator In The Age Of AI",
     bio: "",
     fullDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     topics: ["Topic one", "Topic two", "Topic three"],
