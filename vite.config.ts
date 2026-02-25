@@ -19,10 +19,8 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks: {
-          // Split heavy vendor deps into their own cached chunks
           "vendor-react": ["react", "react-dom", "react-router-dom"],
           "vendor-motion": ["framer-motion"],
-          "vendor-query": ["@tanstack/react-query"],
         },
       },
     },

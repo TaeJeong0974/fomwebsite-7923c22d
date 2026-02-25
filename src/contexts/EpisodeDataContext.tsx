@@ -1,5 +1,4 @@
-import { createContext, useContext, useEffect, useState, ReactNode, useMemo } from "react";
-import { supabase } from "@/integrations/supabase/client";
+import { createContext, useContext, useState, ReactNode, useMemo } from "react";
 import {
   PodcastEpisode,
   PodcastHost,
@@ -80,14 +79,9 @@ function mapDbEpisode(row: any, hostsForEpisode: PodcastHost[]): PodcastEpisode 
 }
 
 export const EpisodeDataProvider = ({ children }: { children: ReactNode }) => {
-  const [episodes, setEpisodes] = useState<PodcastEpisode[]>(staticEpisodes);
-  const [hosts, setHosts] = useState<PodcastHost[]>(staticHosts);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // DB sync disabled — public site uses static data only
-    setLoading(false);
-  }, []);
+  const [episodes] = useState<PodcastEpisode[]>(staticEpisodes);
+  const [hosts] = useState<PodcastHost[]>(staticHosts);
+  const loading = false;
 
   const value = useMemo(
     () => ({
