@@ -83,7 +83,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image, placeh
       <div className="card-overlay-light hover-transition md:group-hover:opacity-90 z-[2]" />
       
       {!isUpcoming && (
-        <div className="absolute top-6 right-6 lg:top-8 lg:right-8 z-[3]">
+        <div className="absolute top-6 right-6 lg:top-8 lg:right-8 z-[3] opacity-100 translate-y-0 md:opacity-0 md:translate-y-2 md:group-hover:opacity-100 md:group-hover:translate-y-0 transition-all duration-500 ease-smooth">
           <span className="w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm shadow-md flex items-center justify-center">
             <Play className="w-4 h-4 text-foreground fill-foreground ml-0.5" />
           </span>
