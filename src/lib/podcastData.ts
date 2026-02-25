@@ -210,7 +210,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     company: "Webflow",
     companyDomain: "webflow.com",
     overview: "Trust Is The Ultimate Differentiator In The Age Of AI",
-    bio: "",
+    bio: "is the Chief Marketing Officer at Webflow and an experienced marketing leader with cross-category expertise spanning B2C, B2B, and developer marketing. He has held senior leadership roles at some of the world's most iconic technology companies, including Facebook, Twitter, eBay, PayPal, and Cloudflare, where he helped scale the company through its IPO.\n\nDave specializes in product and solutions marketing, brand strategy, and go-to-market execution, leading large global teams through periods of hyper-growth and market transformation.\n\nLearn more about how Webflow helps marketing teams create, manage, and optimize personalized web experiences that drive real results.",
     fullDescription: "AI is accelerating everything. But acceleration without trust just amplifies risk.\n\nIn this episode of Future of Marketing, hosts Ethan Smith and Mada Seghete talk with Dave Steer, CMO of Webflow, to explore why trust is becoming the defining advantage for companies navigating the AI era.\n\nDrawing from two decades of experience across platforms like eBay, PayPal, Facebook, Twitter, and Cloudflare including helping lead Cloudflare through its IPO, Dave introduces a simple but powerful framework: (Reliability + Credibility + Approachability) ÷ Self-Interest. In a world where AI can generate anything, trust determines what customers actually believe.\n\nThe conversation digs into why the average CMO tenure is just 18 months, and how attribution theater, not incremental ROI, is quietly eroding marketing's credibility inside companies. Dave argues that marketing teams must tie their work to real, dollar-based impact measured against a single north star metric, or risk being seen as cost centers rather than growth drivers.\n\nThis episode is a candid blueprint for marketing leaders who want to prove value to the CFO, build durable trust with customers, and evolve their teams before the market forces them to.",
     topics: [
       "The Trust Equation: (Reliability + Credibility + Approachability) ÷ Self-Interest and why it determines whether customers buy",
@@ -228,7 +228,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     duration: "",
     publishedDate: "Feb 26, 2026",
     comingSoon: false,
-    
+    hosts: [podcastHosts[2], podcastHosts[0]], // Ethan Smith, Mada Seghete
   },
   {
     id: 4,
