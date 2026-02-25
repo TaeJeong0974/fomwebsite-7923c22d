@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { Play } from "lucide-react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
-import fomThumbnail from "@/assets/fom-2025-thumbnail.png";
+import fomThumbnail from "@/assets/fom-2025-thumbnail.png?format=webp";
 
 const YOUTUBE_VIDEO_ID = "5E--ZqG5QME";
 

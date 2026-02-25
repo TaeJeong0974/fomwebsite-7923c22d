@@ -2,21 +2,21 @@
  * Shared episode image map — single source of truth.
  * Used by PodcastSection, RelatedEpisodes, and any future component needing episode images.
  */
-import guestMeagen from "@/assets/guest-meagen-eisenberg.jpg";
-import guestLena from "@/assets/guest-lena-waters.jpg";
-import guestLindsey from "@/assets/guest-lindsey-irvine.jpg";
-import guestSara from "@/assets/guest-sara-varni.jpg";
-import guestDave from "@/assets/guest-dave-steer.jpg";
-import guestKate from "@/assets/guest-kate-johnson.jpg";
-import guestSheila from "@/assets/guest-sheila-vashee.jpg";
-import guestCeci from "@/assets/guest-ceci-stallsmith.jpg";
-import guestIdan from "@/assets/guest-idan-koren.jpg";
-import guestKatrina from "@/assets/guest-katrina-wong.jpg";
-import hostMada from "@/assets/host-mada.png";
-import hostEthan from "@/assets/host-ethan.png";
-import hostCamille from "@/assets/host-camille.png";
-import ep0Poster from "@/assets/ep0-poster.png";
-import ep1Poster from "@/assets/ep1-poster.png";
+import guestMeagen from "@/assets/guest-meagen-eisenberg.jpg?format=webp";
+import guestLena from "@/assets/guest-lena-waters.jpg?format=webp";
+import guestLindsey from "@/assets/guest-lindsey-irvine.jpg?format=webp";
+import guestSara from "@/assets/guest-sara-varni.jpg?format=webp";
+import guestDave from "@/assets/guest-dave-steer.jpg?format=webp";
+import guestKate from "@/assets/guest-kate-johnson.jpg?format=webp";
+import guestSheila from "@/assets/guest-sheila-vashee.jpg?format=webp";
+import guestCeci from "@/assets/guest-ceci-stallsmith.jpg?format=webp";
+import guestIdan from "@/assets/guest-idan-koren.jpg?format=webp";
+import guestKatrina from "@/assets/guest-katrina-wong.jpg?format=webp";
+import hostMada from "@/assets/host-mada.png?format=webp";
+import hostEthan from "@/assets/host-ethan.png?format=webp";
+import hostCamille from "@/assets/host-camille.png?format=webp";
+import ep0Poster from "@/assets/ep0-poster.png?format=webp";
+import ep1Poster from "@/assets/ep1-poster.png?format=webp";
 
 export const EPISODE_IMAGES: Record<string, string> = {
   "the-future-of-marketing": hostMada,

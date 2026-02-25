@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSubscriptionForm } from "@/hooks/use-subscription-form";
-import subscribeBg from "@/assets/subscribe-bg.png";
+import subscribeBg from "@/assets/subscribe-bg.png?format=webp";
 
 const SubscribeCard = () => {
   const [showForm, setShowForm] = useState(false);

@@ -5,7 +5,7 @@ import { useSubscribe } from "@/contexts/SubscribeContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useSubscriptionForm } from "@/hooks/use-subscription-form";
 import { LiquidButton } from "@/components/ui/LiquidButton";
-import guestBg from "@/assets/guest-bg.png";
+import guestBg from "@/assets/guest-bg.png?format=webp";
 
 interface ComingSoonHeroCardProps {
   guestFirstName: string;
