@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, ReactNode, useMemo } from "react";
+import { createContext, useContext, ReactNode, useMemo } from "react";
 import {
   PodcastEpisode,
   PodcastHost,
@@ -79,8 +79,8 @@ function mapDbEpisode(row: any, hostsForEpisode: PodcastHost[]): PodcastEpisode 
 }
 
 export const EpisodeDataProvider = ({ children }: { children: ReactNode }) => {
-  const [episodes] = useState<PodcastEpisode[]>(staticEpisodes);
-  const [hosts] = useState<PodcastHost[]>(staticHosts);
+  const episodes = staticEpisodes;
+  const hosts = staticHosts;
   const loading = false;
 
   const value = useMemo(
