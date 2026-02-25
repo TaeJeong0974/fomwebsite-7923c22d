@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Play, X } from "lucide-react";
 import { YouTubeIcon, SpotifyIcon, ApplePodcastsIcon, APPLE_PODCASTS_URL } from "@/components/icons/PlatformIcons";
-import guestBg from "@/assets/guest-bg.png";
+import guestBg from "@/assets/guest-bg.png?format=webp";
 
 interface FloatingMiniPlayerProps {
   youtubeUrl?: string;

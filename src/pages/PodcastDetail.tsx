@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
-import ep1Poster from "@/assets/ep1-poster.png";
-import ep0Poster from "@/assets/ep0-poster.png";
-import guestLena from "@/assets/guest-lena-waters-cover.png";
+import ep1Poster from "@/assets/ep1-poster.png?format=webp";
+import ep0Poster from "@/assets/ep0-poster.png?format=webp";
+import guestLena from "@/assets/guest-lena-waters-cover.png?format=webp";
 import Footer from "@/components/Footer";
 import NotFound from "@/pages/NotFound";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";

@@ -7,7 +7,7 @@ import EpisodeCardContent from "@/components/podcast/EpisodeCardContent";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useSubscribe } from "@/contexts/SubscribeContext";
-import guestBg from "@/assets/guest-bg.png";
+import guestBg from "@/assets/guest-bg.png?format=webp";
 
 interface PodcastCardProps {
   episode: PodcastEpisode;

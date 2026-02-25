@@ -2,11 +2,11 @@ import { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { ChevronDown, Linkedin, Globe, Building2, Twitter } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
-import hostMada from "@/assets/host-mada.png";
-import hostEthan from "@/assets/host-ethan.png";
-import hostCamille from "@/assets/host-camille.png";
+import hostMada from "@/assets/host-mada.png?format=webp";
+import hostEthan from "@/assets/host-ethan.png?format=webp";
+import hostCamille from "@/assets/host-camille.png?format=webp";
 
-import teaserBg from "@/assets/teaser-bg.png";
+import teaserBg from "@/assets/teaser-bg.png?format=webp";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
 import { fomMaskContainStyles } from "@/lib/logoMask";
 
