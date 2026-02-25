@@ -211,7 +211,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     companyDomain: "webflow.com",
     overview: "Trust Is The Ultimate Differentiator In The Age Of AI",
     bio: "",
-    fullDescription: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    fullDescription: "AI is accelerating everything. But acceleration without trust just amplifies risk.\n\nIn this episode of Future of Marketing, hosts Ethan Smith and Mada Seghete talk with Dave Steer, CMO of Webflow, to explore why trust is becoming the defining advantage for companies navigating the AI era.\n\nDrawing from two decades of experience across platforms like eBay, PayPal, Facebook, Twitter, and Cloudflare including helping lead Cloudflare through its IPO, Dave introduces a simple but powerful framework: (Reliability + Credibility + Approachability) ÷ Self-Interest. In a world where AI can generate anything, trust determines what customers actually believe.\n\nThe conversation digs into why the average CMO tenure is just 18 months, and how attribution theater, not incremental ROI, is quietly eroding marketing's credibility inside companies. Dave argues that marketing teams must tie their work to real, dollar-based impact measured against a single north star metric, or risk being seen as cost centers rather than growth drivers.\n\nThis episode is a candid blueprint for marketing leaders who want to prove value to the CFO, build durable trust with customers, and evolve their teams before the market forces them to.",
     topics: ["Topic one", "Topic two", "Topic three"],
     chapters: [],
     youtubeUrl: "",
