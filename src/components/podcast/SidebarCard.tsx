@@ -10,7 +10,7 @@ interface SidebarCardProps {
 const SidebarCard = ({ title, children, className = "" }: SidebarCardProps) => {
 
   return (
-    <div className={`glass rounded-xl overflow-hidden relative ${className}`}>
+    <div className={`glass rounded-xl overflow-hidden relative transition-all duration-300 ease-smooth hover:-translate-y-1 hover:shadow-[0_8px_30px_-8px_hsl(var(--foreground)/0.12)] ${className}`}>
       {/* Background image */}
       {/* Background image hidden for now */}
       {/* <img
