@@ -41,7 +41,6 @@ export interface PodcastEpisode {
   hosts?: PodcastHost[];
   pullQuote?: string;
   newslettersMentioned?: NewsletterMention[];
-  
 }
 
 // Shared hosts data
@@ -383,15 +382,3 @@ Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deseru
     
   },
 ];
-
-export const getEpisodeBySlug = (slug: string): PodcastEpisode | undefined => {
-  return podcastEpisodes.find((ep) => ep.slug === slug);
-};
-
-export const getPublishedEpisodes = (): PodcastEpisode[] => {
-  return podcastEpisodes.filter((ep) => !ep.comingSoon);
-};
-
-export const getComingSoonEpisodes = (): PodcastEpisode[] => {
-  return podcastEpisodes.filter((ep) => ep.comingSoon);
-};
