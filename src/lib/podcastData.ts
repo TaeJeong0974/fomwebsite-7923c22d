@@ -217,8 +217,8 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     youtubeUrl: "",
     spotifyUrl: "",
     duration: "",
-    publishedDate: "Coming Soon",
-    comingSoon: true,
+    publishedDate: "Feb 26, 2026",
+    comingSoon: false,
     
   },
   {
