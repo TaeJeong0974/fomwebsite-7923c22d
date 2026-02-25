@@ -27,7 +27,7 @@ const isNewEpisode = (publishedDate: string): boolean => {
   if (publishedDate === "Coming Soon") return false;
   const published = new Date(publishedDate);
   const diffDays = (Date.now() - published.getTime()) / (1000 * 60 * 60 * 24);
-  return diffDays <= 7;
+  return diffDays <= 14;
 };
 
 const PodcastSection = () => {
