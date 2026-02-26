@@ -222,7 +222,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
       "Practical ways to protect deep work and strategic thinking in an always-on environment",
     ],
     chapters: [],
-    youtubeUrl: "",
+    youtubeUrl: "https://www.youtube.com/watch?v=wbPjgzN9B3s",
     spotifyUrl: "",
     duration: "",
     publishedDate: "Feb 26, 2026",
