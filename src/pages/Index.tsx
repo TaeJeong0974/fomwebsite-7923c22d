@@ -3,11 +3,12 @@ import HeroSection from "@/components/HeroSection";
 import StickyVerticalText from "@/components/StickyVerticalText";
 import Footer from "@/components/Footer";
 import SectionsFallback from "@/components/skeletons/SectionSkeletons";
+import { lazyRetry } from "@/lib/lazyRetry";
 
-// Lazy load below-the-fold sections
-const PodcastSection = lazy(() => import("@/components/PodcastSection"));
-const EventsSection = lazy(() => import("@/components/EventsSection"));
-const CTASection = lazy(() => import("@/components/CTASection"));
+// Lazy load below-the-fold sections with retry for stale chunks
+const PodcastSection = lazy(() => lazyRetry(() => import("@/components/PodcastSection")));
+const EventsSection = lazy(() => lazyRetry(() => import("@/components/EventsSection")));
+const CTASection = lazy(() => lazyRetry(() => import("@/components/CTASection")));
 
 const Index = () => {
   return (
