@@ -250,7 +250,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     spotifyUrl: "",
     duration: "",
     publishedDate: "Coming Soon",
-    comingSoon: true,
+    comingSoon: false,
     linkedInUrl: "https://www.linkedin.com/in/saravarnibright/",
     pullQuote: "When you're marketing to developers, authenticity isn't just nice to have—it's the only thing that works.",
     
