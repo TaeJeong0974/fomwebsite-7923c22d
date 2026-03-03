@@ -28,8 +28,8 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: PodcastGridViewProps)
   const isMobile = useIsMobile();
   
   const allCards = [
-    ...episodes.slice(0, 4).map((ep, i) => ({ type: 'episode' as const, episode: ep, index: i })),
-    ...comingSoonEpisodes.map((ep, i) => ({ type: 'coming-soon' as const, episode: ep, index: episodes.slice(0, 4).length + i })),
+    ...episodes.map((ep, i) => ({ type: 'episode' as const, episode: ep, index: i })),
+    ...comingSoonEpisodes.map((ep, i) => ({ type: 'coming-soon' as const, episode: ep, index: episodes.length + i })),
   ];
   
   const MOBILE_INITIAL = 3;
