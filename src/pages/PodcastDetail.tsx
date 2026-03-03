@@ -73,10 +73,10 @@ const PodcastDetail = () => {
   const guestName = isIntro ? "INTRO" : episode.name;
   const thumbnailUrl = getYouTubeThumbnail(episode.youtubeUrl);
 
-  const otherEpisodes = [
-    ...getPublishedEpisodes().filter(ep => ep.slug !== slug),
-    ...getComingSoonEpisodes().filter(ep => ep.slug !== slug),
-  ].slice(0, 3);
+  const otherEpisodes = getPublishedEpisodes()
+    .filter(ep => ep.slug !== slug)
+    .sort(() => Math.random() - 0.5)
+    .slice(0, 3);
 
   const handlePlayFromBar = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
