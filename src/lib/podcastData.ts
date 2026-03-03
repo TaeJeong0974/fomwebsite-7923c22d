@@ -224,7 +224,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     chapters: [],
     youtubeUrl: "https://www.youtube.com/watch?v=wbPjgzN9B3s",
     spotifyUrl: "",
-    duration: "",
+    duration: "55 min",
     publishedDate: "Feb 26, 2026",
     comingSoon: false,
     hosts: [podcastHosts[2], podcastHosts[0]], // Ethan Smith, Mada Seghete
