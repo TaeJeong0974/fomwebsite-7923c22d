@@ -7,11 +7,12 @@ import ScrollToTop from "@/components/ScrollToTop";
 import PageTransition from "@/components/animations/PageTransition";
 import Navbar from "@/components/Navbar";
 import Index from "./pages/Index";
+import { lazyRetry } from "@/lib/lazyRetry";
 
-// Lazy-load non-homepage routes — these are code-split into separate chunks
-const PodcastDetail = lazy(() => import("./pages/PodcastDetail"));
-const Privacy = lazy(() => import("./pages/Privacy"));
-const NotFound = lazy(() => import("./pages/NotFound"));
+// Lazy-load non-homepage routes with retry for stale chunks
+const PodcastDetail = lazy(() => lazyRetry(() => import("./pages/PodcastDetail")));
+const Privacy = lazy(() => lazyRetry(() => import("./pages/Privacy")));
+const NotFound = lazy(() => lazyRetry(() => import("./pages/NotFound")));
 
 const RouteFallback = () => (
   <div className="min-h-screen" />
