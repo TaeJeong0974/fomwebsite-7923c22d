@@ -26,7 +26,8 @@ interface PodcastGridViewProps {
 const PodcastGridView = ({ episodes, comingSoonEpisodes }: PodcastGridViewProps) => {
   const [showAll, setShowAll] = useState(false);
   const isMobile = useIsMobile();
-  
+  const newestSlug = episodes.length > 0 ? episodes[episodes.length - 1].slug : null;
+
   const allCards = [
     ...episodes.map((ep, i) => ({ type: 'episode' as const, episode: ep, index: i })),
     ...comingSoonEpisodes.map((ep, i) => ({ type: 'coming-soon' as const, episode: ep, index: episodes.length + i })),
@@ -48,7 +49,7 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: PodcastGridViewProps)
         >
           <PodcastCard 
             episode={episode} 
-            isNew={false} 
+            isNew={type === 'episode' && episode.slug === newestSlug} 
             isUpcoming={type === 'coming-soon'}
             image={getEpisodeImage(episode.slug, index)}
             placeholderColor={HOVER_COLORS[index % HOVER_COLORS.length][0]}
