@@ -72,7 +72,7 @@ const ComingSoonHeroCard = ({ guestFirstName }: ComingSoonHeroCardProps) => {
             onClick={(e) => e.stopPropagation()}
           >
             <h3 className="font-display text-2xl md:text-3xl font-semibold text-white mb-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut.
+              Be the first to know when {guestFirstName}'s episode drops.
             </h3>
             
             <form onSubmit={handleSubmit} className="max-w-md space-y-3">
