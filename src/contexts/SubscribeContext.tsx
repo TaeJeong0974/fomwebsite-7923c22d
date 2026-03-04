@@ -1,4 +1,5 @@
-import { createContext, useContext, ReactNode } from "react";
+import { createContext, useContext, useState, useCallback, ReactNode } from "react";
+import SubscribeDrawer from "@/components/SubscribeDrawer";
 
 interface SubscribeOptions {
   guestName?: string;
@@ -25,14 +26,33 @@ interface SubscribeProviderProps {
 }
 
 export const SubscribeProvider = ({ children }: SubscribeProviderProps) => {
-  // TEMPORARY: Redirect Subscribe to Apple Podcasts (revert when promotion ends)
-  const openSubscribe = (_optionsOrEvent?: SubscribeOptions | React.SyntheticEvent) => {
-    window.open("https://podcasts.apple.com/us/podcast/future-of-marketing/id1876216633", "_blank", "noopener,noreferrer");
-  };
+  const [isOpen, setIsOpen] = useState(false);
+  const [options, setOptions] = useState<SubscribeOptions>({});
+
+  const openSubscribe = useCallback((optionsOrEvent?: SubscribeOptions | React.SyntheticEvent) => {
+    if (optionsOrEvent && typeof optionsOrEvent === "object" && !("nativeEvent" in optionsOrEvent)) {
+      setOptions(optionsOrEvent as SubscribeOptions);
+    } else {
+      setOptions({});
+    }
+    setIsOpen(true);
+  }, []);
+
+  const handleClose = useCallback(() => {
+    setIsOpen(false);
+    setOptions({});
+  }, []);
 
   return (
     <SubscribeContext.Provider value={{ openSubscribe }}>
       {children}
+      <SubscribeDrawer
+        isOpen={isOpen}
+        onClose={handleClose}
+        guestName={options.guestName}
+        guestSlug={options.guestSlug}
+        headline={options.subscribeHeadline}
+      />
     </SubscribeContext.Provider>
   );
 };
