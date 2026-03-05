@@ -254,7 +254,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     youtubeUrl: "https://youtu.be/SjqP0Heq4wM",
     spotifyUrl: "https://bit.ly/4rf7a35",
     appleUrl: "https://apple.co/4l7QPM6",
-    duration: "",
+    duration: "54 min",
     publishedDate: "Coming Soon",
     comingSoon: false,
     linkedInUrl: "https://www.linkedin.com/in/saravarnibright/",
