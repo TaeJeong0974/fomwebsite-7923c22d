@@ -23,7 +23,6 @@ import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
 import ListenSubscribeCards from "@/components/ListenSubscribeCards";
 import DetailVerticalText from "@/components/podcast/DetailVerticalText";
 import FadeInSection from "@/components/podcast/FadeInSection";
-import SidebarSubscribeCard from "@/components/podcast/SidebarSubscribeCard";
 import useDocumentMeta from "@/hooks/use-document-meta";
 import { useEpisodeData } from "@/contexts/EpisodeDataContext";
 import { EPISODE_IMAGES } from "@/lib/episodeImages";
@@ -214,10 +213,6 @@ const PodcastDetail = () => {
               />
             )}
             <EpisodeHostsCard showAllHosts={isIntro} episodeHosts={episode.hosts} />
-            <SidebarSubscribeCard
-              guestName={!isIntro ? episode.name.split(" ")[0] : undefined}
-              guestSlug={episode.slug}
-            />
           </FadeInSection>
         </div>
 
