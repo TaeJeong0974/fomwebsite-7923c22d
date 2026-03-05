@@ -251,7 +251,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
       "Why rebuilding your org \"from a clean sheet\" may be the only way to survive the AI shift",
     ],
     chapters: [],
-    youtubeUrl: "",
+    youtubeUrl: "https://www.youtube.com/watch?v=SjqP0Heq4wM",
     spotifyUrl: "",
     duration: "",
     publishedDate: "Coming Soon",
