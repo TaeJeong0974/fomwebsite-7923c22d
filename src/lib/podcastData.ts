@@ -252,7 +252,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     ],
     chapters: [],
     youtubeUrl: "https://youtu.be/SjqP0Heq4wM",
-    spotifyUrl: "https://bit.ly/4rf7a35",
+    spotifyUrl: "https://open.spotify.com/episode/3ArZEIpkamKgHh2HblUgsX",
     appleUrl: "https://apple.co/4l7QPM6",
     duration: "54 min",
     publishedDate: "Coming Soon",
