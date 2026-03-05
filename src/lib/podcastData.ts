@@ -258,7 +258,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     publishedDate: "Coming Soon",
     comingSoon: false,
     linkedInUrl: "https://www.linkedin.com/in/saravarnibright/",
-    pullQuote: "When you're marketing to developers, authenticity isn't just nice to have—it's the only thing that works.",
+    pullQuote: undefined,
     hosts: [podcastHosts[1], podcastHosts[0]], // Camille Ricketts, Mada Seghete
   },
   {
