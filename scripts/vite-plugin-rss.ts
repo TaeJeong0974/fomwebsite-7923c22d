@@ -111,6 +111,12 @@ export function rssPlugin(): Plugin {
     name: "vite-plugin-rss",
     configResolved(c) { root = c.root; },
     buildStart() { generate(root); },
-    configureServer() { generate(root); },
+    configureServer(server) {
+      generate(root);
+      // Re-generate when podcastData changes during dev
+      server.watcher.on("change", (file) => {
+        if (file.includes("podcastData")) generate(root);
+      });
+    },
   };
 }
