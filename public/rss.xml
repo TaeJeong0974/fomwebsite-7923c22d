@@ -7,7 +7,7 @@
     <description>Future of Marketing explores how B2B marketing teams are actually using AI at work. Each episode features honest conversations with CMOs, growth leaders, and operators about real workflows, real decisions, and the trade-offs involved in AI adoption across GTM, content, SEO, analytics, and revenue teams.</description>
     <language>en</language>
     <copyright>© 2026 Future of Marketing. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 06 Mar 2026 18:09:32 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 06 Mar 2026 18:12:47 GMT</lastBuildDate>
     <itunes:author>XYZ Venture Capital, Upside, Graphite Growth</itunes:author>
     <itunes:category text="Business">
       <itunes:category text="Marketing" />
@@ -19,6 +19,16 @@
       <title>Future of Marketing</title>
       <link>https://fom.xyz</link>
     </image>
+
+    <item>
+      <title>Sara Varni: From Community To Revenue: Building An AI-First Marketing Engine</title>
+      <link>https://fom.xyz/podcast/sara-varni</link>
+      <guid isPermaLink="true">https://fom.xyz/podcast/sara-varni</guid>
+      <pubDate>Thu, 05 Mar 2026 00:00:00 GMT</pubDate>
+      <description>Marketing isn't disappearing. But the org chart you're used to might.  In this episode of Future of Marketing, hosts Camille Ricketts and Mada Seghete talk with Sara Varni, CMO of Datadog, to discuss what marketing teams must unlearn as AI reshapes workflows, attribution, and buyer behavior.  With over a decade at Salesforce and CMO roles at Twilio, Attentive, and now Datadog, Sara has seen multiple platform shifts. Her take is pragmatic: AI should automate the soul-crushing tasks — resizing ads, writing redundant copy variations, summarizing notes — not the strategic thinking and creative judgment that differentiate great teams.  The conversation dives into the developer-buyer paradox: how do you market to hands-on technical users without alienating the economic decision-makers? Sara shares concrete plays, including Twilio's enterprise hackathons that aligned developers and executives in a single day, collapsing sales cycles and creating internal champions.  This episode is a blueprint for marketing leaders navigating bottom-up adoption, enterprise expansion, and AI-driven workflow shifts without losing credibility, creativity, or customer trust.</description>
+      <itunes:duration>54:00</itunes:duration>
+      <itunes:author>Future of Marketing</itunes:author>
+    </item>
 
     <item>
       <title>Dave Steer: Trust Is The Ultimate Differentiator In The Age Of AI</title>
