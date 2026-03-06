@@ -14,6 +14,7 @@ export default defineConfig(({ mode }) => ({
   },
   plugins: [
     react(),
+    rssPlugin(),
     mode === "development" && componentTagger(),
     imagetools(),
     ViteImageOptimizer({
