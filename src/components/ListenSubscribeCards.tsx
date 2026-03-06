@@ -112,11 +112,6 @@ const ListenSubscribeCards = ({ showTitle = true, className = "", guestName }: L
       href: "https://www.linkedin.com/company/f-o-m/about/",
       hoverColors: ["#B45250", "#B44C38", "#594881", "#B45250"],
     },
-    {
-      label: "RSS Feed",
-      href: "https://feeds.fame.so/future-of-marketing",
-      hoverColors: ["#B44C38", "#594881", "#805781", "#B44C38"],
-    },
   ];
 
   const containerVariants = {
