@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title>Future of Marketing</title>
+    <link>https://fom.xyz</link>
+    <atom:link href="https://fom.xyz/rss.xml" rel="self" type="application/rss+xml" />
+    <description>Future of Marketing explores how B2B marketing teams are actually using AI at work. Each episode features honest conversations with CMOs, growth leaders, and operators about real workflows, real decisions, and the trade-offs involved in AI adoption across GTM, content, SEO, analytics, and revenue teams.</description>
+    <language>en</language>
+    <copyright>© 2026 Future of Marketing. All rights reserved.</copyright>
+    <lastBuildDate>Thu, 06 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <itunes:author>XYZ Venture Capital, Upside, Graphite Growth</itunes:author>
+    <itunes:category text="Business">
+      <itunes:category text="Marketing" />
+    </itunes:category>
+    <itunes:explicit>false</itunes:explicit>
+    <itunes:image href="https://fom.xyz/images/og-homepage.png" />
+    <image>
+      <url>https://fom.xyz/images/og-homepage.png</url>
+      <title>Future of Marketing</title>
+      <link>https://fom.xyz</link>
+    </image>
+
+    <item>
+      <title>Sara Varni: From Community To Revenue: Building An AI-First Marketing Engine</title>
+      <link>https://fom.xyz/podcast/sara-varni</link>
+      <guid isPermaLink="true">https://fom.xyz/podcast/sara-varni</guid>
+      <pubDate>Wed, 05 Mar 2026 12:00:00 +0000</pubDate>
+      <description>Sara Varni (Chief Marketing Officer, Datadog) discusses what marketing teams must unlearn as AI reshapes workflows, attribution, and buyer behavior. Topics include marketing to developers, PLG and enterprise as one unified funnel, and the enterprise hackathon playbook.</description>
+      <itunes:duration>54:00</itunes:duration>
+      <itunes:author>Future of Marketing</itunes:author>
+    </item>
+
+    <item>
+      <title>Dave Steer: Trust Is The Ultimate Differentiator In The Age Of AI</title>
+      <link>https://fom.xyz/podcast/dave-steer</link>
+      <guid isPermaLink="true">https://fom.xyz/podcast/dave-steer</guid>
+      <pubDate>Thu, 26 Feb 2026 12:00:00 +0000</pubDate>
+      <description>Dave Steer (Chief Marketing Officer, Webflow) explores why trust is becoming the defining advantage for companies navigating the AI era. Topics include the Trust Equation framework, proving marketing value to the CFO, and the three phases of AI adoption.</description>
+      <itunes:duration>55:00</itunes:duration>
+      <itunes:author>Future of Marketing</itunes:author>
+    </item>
+
+    <item>
+      <title>Lena Waters: Rethinking Workflows in the Age of AI</title>
+      <link>https://fom.xyz/podcast/lena-waters</link>
+      <guid isPermaLink="true">https://fom.xyz/podcast/lena-waters</guid>
+      <pubDate>Thu, 19 Feb 2026 12:00:00 +0000</pubDate>
+      <description>Lena Waters (Chief Marketing Officer, Notion) discusses how Notion is evolving into an AI-connected workspace and how that shift shows up across the entire organization. Topics include reframing AI from automating workflows to questioning whether they should exist, and why traditional websites may be becoming a growth liability.</description>
+      <itunes:duration>51:00</itunes:duration>
+      <itunes:author>Future of Marketing</itunes:author>
+    </item>
+
+    <item>
+      <title>Meagen Eisenberg: Why the Best CMOs Think Like Operators, Not Marketers</title>
+      <link>https://fom.xyz/podcast/meagen-eisenberg</link>
+      <guid isPermaLink="true">https://fom.xyz/podcast/meagen-eisenberg</guid>
+      <pubDate>Thu, 15 Jan 2026 12:00:00 +0000</pubDate>
+      <description>Meagen Eisenberg (Chief Marketing Officer, Samsara) breaks down how she rebuilt her marketing org around AI agents and what changed as a result. Topics include operationalizing AI across 95% of her marketing team and why pipeline per employee is the metric that exposes whether AI is actually working.</description>
+      <itunes:duration>52:00</itunes:duration>
+      <itunes:author>Future of Marketing</itunes:author>
+    </item>
+
+    <item>
+      <title>Introduction to Future of Marketing: Why Authenticity Beats Automation in Modern Marketing</title>
+      <link>https://fom.xyz/podcast/the-future-of-marketing</link>
+      <guid isPermaLink="true">https://fom.xyz/podcast/the-future-of-marketing</guid>
+      <pubDate>Thu, 01 Jan 2026 12:00:00 +0000</pubDate>
+      <description>In this launch episode, hosts Camille Ricketts, Ethan Smith, and Mada Seghete cut through the AI hype and talk about what they believe is changing inside marketing teams. They discuss real use cases for AI, the LinkedIn AI content trap, and why storytelling talent is the most valuable skill of the next decade.</description>
+      <itunes:duration>25:00</itunes:duration>
+      <itunes:author>Future of Marketing</itunes:author>
+    </item>
+
+  </channel>
+</rss>

@@ -110,6 +110,7 @@ const Footer = () => {
             <li><a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="relative hover:text-foreground transition-colors duration-300 group inline-flex"><span className="absolute right-full top-1/2 -translate-y-1/2 mr-3 h-[3px] rounded-full w-0 group-hover:w-5 transition-all duration-300 ease-smooth" style={{ backgroundColor: '#D4763A' }} />Connect</a></li>
             <li><button onClick={openSubscribe} className="relative hover:text-foreground transition-colors duration-300 text-left group inline-flex"><span className="absolute right-full top-1/2 -translate-y-1/2 mr-3 h-[3px] rounded-full w-0 group-hover:w-5 transition-all duration-300 ease-smooth" style={{ backgroundColor: '#B45250' }} />Subscribe</button></li>
             <li><Link to="/privacy" className="relative hover:text-foreground transition-colors duration-300 group inline-flex"><span className="absolute right-full top-1/2 -translate-y-1/2 mr-3 h-[3px] rounded-full w-0 group-hover:w-5 transition-all duration-300 ease-smooth" style={{ backgroundColor: '#3A7CA5' }} />Privacy</Link></li>
+            <li><a href="/rss.xml" target="_blank" rel="noopener noreferrer" className="relative hover:text-foreground transition-colors duration-300 group inline-flex"><span className="absolute right-full top-1/2 -translate-y-1/2 mr-3 h-[3px] rounded-full w-0 group-hover:w-5 transition-all duration-300 ease-smooth" style={{ backgroundColor: '#D4763A' }} />RSS Feed</a></li>
           </ul>
         </motion.div>
       </div>
