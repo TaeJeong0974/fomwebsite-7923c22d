@@ -12,13 +12,31 @@
   </url>
   <url>
     <loc>https://fom.xyz/podcast/the-future-of-marketing</loc>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-03-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
     <loc>https://fom.xyz/podcast/meagen-eisenberg</loc>
-    <lastmod>2026-02-16</lastmod>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fom.xyz/podcast/lena-waters</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fom.xyz/podcast/dave-steer</loc>
+    <lastmod>2026-03-06</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://fom.xyz/podcast/sara-varni</loc>
+    <lastmod>2026-03-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
