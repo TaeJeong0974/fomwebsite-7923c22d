@@ -289,7 +289,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     publishedDate: "Mar 12, 2026",
     comingSoon: false,
     linkedInUrl: "https://www.linkedin.com/in/katejohnson/",
-    pullQuote: "Taste, judgment, and creativity. They are very human things, and will be difficult to replace.",
+    pullQuote: undefined,
     hosts: [podcastHosts[2], podcastHosts[0]], // Ethan Smith, Mada Seghete
   },
   {
