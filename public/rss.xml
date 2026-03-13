@@ -7,7 +7,7 @@
     <description>Future of Marketing explores how B2B marketing teams are actually using AI at work. Each episode features honest conversations with CMOs, growth leaders, and operators about real workflows, real decisions, and the trade-offs involved in AI adoption across GTM, content, SEO, analytics, and revenue teams.</description>
     <language>en</language>
     <copyright>© 2026 Future of Marketing. All rights reserved.</copyright>
-    <lastBuildDate>Fri, 13 Mar 2026 13:42:02 GMT</lastBuildDate>
+    <lastBuildDate>Fri, 13 Mar 2026 13:44:43 GMT</lastBuildDate>
     <itunes:author>XYZ Venture Capital, Upside, Graphite Growth</itunes:author>
     <itunes:category text="Business">
       <itunes:category text="Marketing" />
@@ -19,6 +19,16 @@
       <title>Future of Marketing</title>
       <link>https://fom.xyz</link>
     </image>
+
+    <item>
+      <title>Kate Johnson: What If Attribution Isn</title>
+      <link>https://fom.xyz/podcast/kate-johnson</link>
+      <guid isPermaLink="true">https://fom.xyz/podcast/kate-johnson</guid>
+      <pubDate>Thu, 12 Mar 2026 00:00:00 GMT</pubDate>
+      <description>What if attribution isn't clarifying your strategy but quietly breaking it?  In this episode of Future of Marketing, hosts Ethan Smith and Mada Seghete sit down with Kate Johnson, CMO of Dscout, to challenge the obsession with single-source attribution and the internal damage it can cause.  Instead of arguing over which channel \&quot;sourced\&quot; a deal, Kate explains how her team focuses on deal stories — understanding the full narrative of influence across touchpoints. Powered in part by tools like Upside, this approach shifts the conversation from credit-taking to clarity: what combination of efforts actually moved the buyer forward?  Kate also unpacks how she's structured her marketing team to operate like project-based pods — lean, cross-functional, and built around ownership. The result: less SLA theater, more accountability, and tighter alignment with sales. She shares why moving SDRs under marketing can transform feedback loops, how shared revenue metrics outperform isolated KPIs, and why high-touch collaboration with sales still wins.  From the power of in-the-moment user research to the strategic value of no-meeting Wednesdays, this episode is a blueprint for building a marketing function that thinks clearly, moves efficiently, and earns executive trust.</description>
+      <itunes:duration>50:00</itunes:duration>
+      <itunes:author>Future of Marketing</itunes:author>
+    </item>
 
     <item>
       <title>Sara Varni: From Community To Revenue: Building An AI-First Marketing Engine</title>
