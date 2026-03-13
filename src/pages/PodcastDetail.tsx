@@ -5,6 +5,7 @@ import ep0Poster from "@/assets/ep0-poster.png?format=webp";
 import guestLena from "@/assets/guest-lena-waters-cover.png?format=webp";
 import guestDaveCover from "@/assets/guest-dave-steer-cover.png?format=webp";
 import guestSaraCover from "@/assets/guest-sara-varni-cover.png?format=webp";
+import guestKateCover from "@/assets/guest-kate-johnson-cover.png?format=webp";
 import Footer from "@/components/Footer";
 import NotFound from "@/pages/NotFound";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
