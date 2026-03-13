@@ -283,7 +283,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
       "Why leadership requires protected thinking time and how to operationalize it",
     ],
     chapters: [],
-    youtubeUrl: "https://www.youtube.com/watch?v=placeholder",
+    youtubeUrl: "https://www.youtube.com/watch?v=esWCvWhKgNY",
     spotifyUrl: "https://open.spotify.com/episode/placeholder",
     duration: "50 min",
     publishedDate: "Mar 12, 2026",
