@@ -285,6 +285,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     chapters: [],
     youtubeUrl: "https://www.youtube.com/watch?v=esWCvWhKgNY",
     spotifyUrl: "https://open.spotify.com/episode/6hGjkK6bxEQ0uG7kDobCBA",
+    appleUrl: "https://podcasts.apple.com/us/podcast/ai-alignment-and-the-death-of-single-touch/id1876216633?i=1000754858206",
     duration: "50 min",
     publishedDate: "Mar 12, 2026",
     comingSoon: false,
