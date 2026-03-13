@@ -38,6 +38,7 @@ export const POSTER_IMAGES: Record<string, string> = {
   "the-future-of-marketing": ep0Poster,
   "meagen-eisenberg": ep1Poster,
   "sara-varni": saraCover,
+  "kate-johnson": kateCover,
 };
 
 export const OG_IMAGES: Record<string, string> = {
