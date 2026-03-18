@@ -85,7 +85,7 @@ const PodcastSection = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -4, scale: 0.97 }}
                     transition={{ duration: 0.2, ease: liquidEase }}
-                    className="absolute right-0 top-full mt-2 z-50 bg-background/95 backdrop-blur-xl rounded-2xl border border-foreground/[0.08] shadow-lg py-2 w-max min-w-[180px]"
+                    className="absolute right-0 top-full mt-2 z-50 bg-background/95 backdrop-blur-xl rounded-2xl border border-foreground/[0.08] shadow-lg py-2 w-max"
                   >
                     {SORT_OPTIONS.map(option => (
                       <button
