@@ -266,7 +266,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     appleUrl: "https://apple.co/4l7QPM6",
     duration: "54 min",
     publishedDate: "Mar 5, 2026",
-    primaryTheme: "GTM",
+    themes: ["AI", "GTM", "Measurement"],
     detailTags: ["Developer-First", "AI Adoption", "GTM Strategy", "Attribution & Measurement", "Authenticity"],
     comingSoon: false,
     linkedInUrl: "https://www.linkedin.com/in/saravarnibright/",
