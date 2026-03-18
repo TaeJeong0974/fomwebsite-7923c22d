@@ -29,6 +29,8 @@ export interface PodcastEpisode {
   fullDescription: string;
   bio?: string;
   topics: string[];
+  primaryTheme?: string;
+  detailTags?: string[];
   chapters: PodcastChapter[];
   youtubeUrl: string;
   spotifyUrl: string;
