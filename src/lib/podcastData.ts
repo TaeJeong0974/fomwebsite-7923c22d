@@ -300,17 +300,28 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     title: "Chief Marketing Officer",
     company: "Figma",
     companyDomain: "figma.com",
-    overview: "",
-    bio: "",
-    fullDescription: "",
-    topics: [],
+    overview: "What happens when the product is the distribution channel?",
+    bio: "is the Chief Marketing Officer at Figma, where she leads brand, growth, and marketing strategy for one of the most beloved creative tools in the world. Her career spans Dropbox, Opendoor, Ethos, and now Figma—companies that didn't just grow, but became movements.",
+    fullDescription: `In this episode of Future of Marketing, hosts Ethan Smith and Camille Ricketts talk with Sheila Vashee, Chief Marketing Officer at Figma, about scaling one of the most beloved creative tools in the world from product-led growth roots to enterprise expansion and AI-native workflows.
+
+Sheila's career spans Dropbox, Opendoor, Ethos, and now Figma—companies that didn't just grow, but became movements. At Figma, she's helped steward a brand built on community, co-creation, and craft. With over 200 "Friends of Figma" chapters globally and an annual Config conference dubbed the "Coachella for designers," Figma has turned user enthusiasm into durable distribution.
+
+The conversation explores what companies get wrong about PLG (optimizing before earning user love), how 70% of Figma's enterprise deals begin with individual users, and why expansion works best when it feels like a natural evolution—not a forced upsell.`,
+    topics: [
+      "Product-led growth at scale",
+      "Community as distribution",
+      "Enterprise expansion from individual users",
+      "AI-native creative workflows",
+      "Brand building through co-creation",
+    ],
     chapters: [],
     youtubeUrl: "",
     spotifyUrl: "",
     duration: "",
     publishedDate: "",
     comingSoon: false,
-    
+    linkedInUrl: "https://linkedin.com/in/sheilavashee",
+    hosts: [podcastHosts[2], podcastHosts[1]], // Ethan Smith, Camille Ricketts
   },
   {
     id: 7,
