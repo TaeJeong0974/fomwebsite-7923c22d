@@ -26,7 +26,9 @@ interface PodcastGridViewProps {
 const PodcastGridView = ({ episodes, comingSoonEpisodes }: PodcastGridViewProps) => {
   const [showAll, setShowAll] = useState(false);
   const isMobile = useIsMobile();
-  const newestSlug = episodes.length > 0 ? episodes[episodes.length - 1].slug : null;
+  const newestSlug = episodes.length > 0
+    ? [...episodes].sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime())[0].slug
+    : null;
 
   const allCards = [
     ...episodes.map((ep, i) => ({ type: 'episode' as const, episode: ep, index: i })),
