@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { LayoutGrid, List, ChevronDown, X } from "lucide-react";
+import { LayoutGrid, List, ChevronDown } from "lucide-react";
 
 import { useEpisodeData } from "@/contexts/EpisodeDataContext";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -9,65 +9,43 @@ import PodcastListView from "@/components/podcast/PodcastListView";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
 
 type LayoutType = "grid" | "list";
+type SortMode = "newest" | "oldest" | "name";
+
+const SORT_OPTIONS: { value: SortMode; label: string }[] = [
+  { value: "newest", label: "Newest First" },
+  { value: "oldest", label: "Oldest First" },
+  { value: "name", label: "Name A–Z" },
+];
 
 const PodcastSection = () => {
   const isMobile = useIsMobile();
   const [layout, setLayout] = useState<LayoutType>("grid");
-  const [filterOpen, setFilterOpen] = useState(false);
-  const [activeFilter, setActiveFilter] = useState<string | null>(null);
-  const filterRef = useRef<HTMLDivElement>(null);
+  const [sortOpen, setSortOpen] = useState(false);
+  const [sortMode, setSortMode] = useState<SortMode>("newest");
+  const sortRef = useRef<HTMLDivElement>(null);
   const { getPublishedEpisodes, getComingSoonEpisodes } = useEpisodeData();
   const publishedEpisodes = getPublishedEpisodes();
   const comingSoonEpisodes = getComingSoonEpisodes();
 
-  // Build filter options from episodes
-  const filterOptions = useMemo(() => {
-    const allEps = [...publishedEpisodes, ...comingSoonEpisodes];
-    const options: { label: string; value: string; type: "name" | "company"; company?: string }[] = [];
-    const seen = new Set<string>();
-    allEps.forEach(ep => {
-      if (ep.slug === "the-future-of-marketing") return;
-      if (!seen.has(ep.name)) {
-        seen.add(ep.name);
-        options.push({ label: ep.name, value: ep.name, type: "name", company: ep.company });
-      }
-      if (!seen.has(ep.company)) {
-        seen.add(ep.company);
-        options.push({ label: ep.company, value: ep.company, type: "company" });
-      }
-    });
-    return options;
-  }, [publishedEpisodes, comingSoonEpisodes]);
+  const sortEpisodes = <T extends { id: number; name: string; publishedDate: string }>(eps: T[]): T[] => {
+    const sorted = [...eps];
+    switch (sortMode) {
+      case "newest": return sorted.sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime());
+      case "oldest": return sorted.sort((a, b) => new Date(a.publishedDate).getTime() - new Date(b.publishedDate).getTime());
+      case "name": return sorted.sort((a, b) => a.name.localeCompare(b.name));
+    }
+  };
 
-  // Build display label for active filter
-  const activeLabel = useMemo(() => {
-    if (!activeFilter) return "All Guests";
-    const opt = filterOptions.find(o => o.value === activeFilter);
-    if (opt?.type === "name" && opt.company) return `${opt.label} · ${opt.company}`;
-    return opt?.label || activeFilter;
-  }, [activeFilter, filterOptions]);
+  const sortedPublished = useMemo(() => sortEpisodes(publishedEpisodes), [publishedEpisodes, sortMode]);
+  const sortedComingSoon = useMemo(() => sortEpisodes(comingSoonEpisodes), [comingSoonEpisodes, sortMode]);
 
-  // Find longest label for stable button width — render all options invisibly
-  const allLabels = useMemo(() => {
-    return ["All Guests", ...filterOptions.map(o => o.type === "name" && o.company ? `${o.label} · ${o.company}` : o.label)];
-  }, [filterOptions]);
-
-  // Filter episodes
-  const filteredPublished = useMemo(() => {
-    if (!activeFilter) return publishedEpisodes;
-    return publishedEpisodes.filter(ep => ep.name === activeFilter || ep.company === activeFilter);
-  }, [publishedEpisodes, activeFilter]);
-
-  const filteredComingSoon = useMemo(() => {
-    if (!activeFilter) return comingSoonEpisodes;
-    return comingSoonEpisodes.filter(ep => ep.name === activeFilter || ep.company === activeFilter);
-  }, [comingSoonEpisodes, activeFilter]);
+  const activeLabel = SORT_OPTIONS.find(o => o.value === sortMode)!.label;
 
   // Close dropdown on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (filterRef.current && !filterRef.current.contains(e.target as Node)) {
-        setFilterOpen(false);
+      if (sortRef.current && !sortRef.current.contains(e.target as Node)) {
+        setSortOpen(false);
       }
     };
     document.addEventListener("mousedown", handler);
@@ -89,71 +67,35 @@ const PodcastSection = () => {
               <h2 className="text-display-xl font-medium text-foreground">Podcast</h2>
             </div>
             
-            {/* Filter Dropdown */}
-            <div ref={filterRef} className="relative mb-0.5">
+            {/* Sort Dropdown */}
+            <div ref={sortRef} className="relative mb-0.5">
               <button
-                onClick={() => setFilterOpen(!filterOpen)}
-                className={`glass rounded-full px-4 py-2 flex items-center gap-2 text-sm font-medium transition-all duration-300 !shadow-none hover:!shadow-glass ${
-                  activeFilter 
-                    ? "bg-foreground text-background hover:bg-foreground/90" 
-                    : "text-foreground hover:bg-foreground/5"
-                }`}
+                onClick={() => setSortOpen(!sortOpen)}
+                className="glass rounded-full px-4 py-2 flex items-center gap-2 text-sm font-medium transition-all duration-300 !shadow-none hover:!shadow-glass text-foreground hover:bg-foreground/5"
               >
-                {/* Invisible sizers for stable width — one per label */}
+                {/* Invisible sizers for stable width */}
                 <span className="invisible h-0 flex flex-col whitespace-nowrap">
-                  {allLabels.map((l, i) => <span key={i} className="block">{l}</span>)}
+                  {SORT_OPTIONS.map((o) => <span key={o.value} className="block">{o.label}</span>)}
                 </span>
                 <span className="absolute left-4">{activeLabel}</span>
-                <span className="ml-auto">
-                  {activeFilter ? (
-                    <X 
-                      className="h-3.5 w-3.5 shrink-0" 
-                      onClick={(e) => { e.stopPropagation(); setActiveFilter(null); setFilterOpen(false); }}
-                    />
-                  ) : (
-                    <ChevronDown className={`h-3.5 w-3.5 shrink-0 transition-transform duration-300 ${filterOpen ? "rotate-180" : ""}`} />
-                  )}
-                </span>
+                <ChevronDown className={`h-3.5 w-3.5 shrink-0 transition-transform duration-300 ml-auto ${sortOpen ? "rotate-180" : ""}`} />
               </button>
               
               <AnimatePresence>
-                {filterOpen && (
+                {sortOpen && (
                   <motion.div
                     initial={{ opacity: 0, y: -4, scale: 0.97 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -4, scale: 0.97 }}
                     transition={{ duration: 0.2, ease: liquidEase }}
-                    className="absolute left-0 top-full mt-2 z-50 bg-background/95 backdrop-blur-xl rounded-2xl border border-foreground/[0.08] shadow-lg py-2 w-max min-w-[220px] max-h-[320px] overflow-y-auto"
+                    className="absolute left-0 top-full mt-2 z-50 bg-background/95 backdrop-blur-xl rounded-2xl border border-foreground/[0.08] shadow-lg py-2 w-max min-w-[180px]"
                   >
-                    <button
-                      onClick={() => { setActiveFilter(null); setFilterOpen(false); }}
-                      className={`w-full text-left px-4 py-2.5 text-sm transition-colors duration-200 ${
-                        !activeFilter ? "text-foreground font-medium bg-foreground/5" : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
-                      }`}
-                    >
-                      All Guests
-                    </button>
-                    <div className="h-px bg-foreground/[0.06] my-1" />
-                    <p className="px-4 py-1.5 text-[0.65rem] font-medium text-muted-foreground uppercase tracking-widest">Guests</p>
-                    {filterOptions.filter(o => o.type === "name").map(option => (
+                    {SORT_OPTIONS.map(option => (
                       <button
                         key={option.value}
-                        onClick={() => { setActiveFilter(option.value); setFilterOpen(false); }}
+                        onClick={() => { setSortMode(option.value); setSortOpen(false); }}
                         className={`w-full text-left px-4 py-2.5 text-sm transition-colors duration-200 ${
-                          activeFilter === option.value ? "text-foreground font-medium bg-foreground/5" : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
-                        }`}
-                      >
-                        {option.label} <span className="text-muted-foreground font-normal">· {option.company}</span>
-                      </button>
-                    ))}
-                    <div className="h-px bg-foreground/[0.06] my-1" />
-                    <p className="px-4 py-1.5 text-[0.65rem] font-medium text-muted-foreground uppercase tracking-widest">Companies</p>
-                    {filterOptions.filter(o => o.type === "company").map(option => (
-                      <button
-                        key={option.value}
-                        onClick={() => { setActiveFilter(option.value); setFilterOpen(false); }}
-                        className={`w-full text-left px-4 py-2.5 text-sm transition-colors duration-200 ${
-                          activeFilter === option.value ? "text-foreground font-medium bg-foreground/5" : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
+                          sortMode === option.value ? "text-foreground font-medium bg-foreground/5" : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
                         }`}
                       >
                         {option.label}
@@ -204,8 +146,8 @@ const PodcastSection = () => {
             transition={{ duration: 0.35, ease: liquidEase }}
           >
             {layout === "grid" 
-              ? <PodcastGridView episodes={filteredPublished} comingSoonEpisodes={filteredComingSoon} /> 
-              : <PodcastListView episodes={filteredPublished} comingSoonEpisodes={filteredComingSoon} />
+              ? <PodcastGridView episodes={sortedPublished} comingSoonEpisodes={sortedComingSoon} /> 
+              : <PodcastListView episodes={sortedPublished} comingSoonEpisodes={sortedComingSoon} />
             }
           </motion.div>
         </AnimatePresence>
