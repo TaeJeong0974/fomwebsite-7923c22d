@@ -92,15 +92,19 @@ const PodcastSection = () => {
                     : "text-foreground hover:bg-foreground/5"
                 }`}
               >
-                {activeFilter || "All Guests"}
-                {activeFilter ? (
-                  <X 
-                    className="h-3.5 w-3.5 shrink-0" 
-                    onClick={(e) => { e.stopPropagation(); setActiveFilter(null); setFilterOpen(false); }}
-                  />
-                ) : (
-                  <ChevronDown className={`h-3.5 w-3.5 shrink-0 transition-transform duration-300 ${filterOpen ? "rotate-180" : ""}`} />
-                )}
+                {/* Invisible sizer for stable width */}
+                <span className="invisible h-0 block whitespace-nowrap">{longestLabel}</span>
+                <span className="absolute left-4">{activeFilter || "All Guests"}</span>
+                <span className="ml-auto">
+                  {activeFilter ? (
+                    <X 
+                      className="h-3.5 w-3.5 shrink-0" 
+                      onClick={(e) => { e.stopPropagation(); setActiveFilter(null); setFilterOpen(false); }}
+                    />
+                  ) : (
+                    <ChevronDown className={`h-3.5 w-3.5 shrink-0 transition-transform duration-300 ${filterOpen ? "rotate-180" : ""}`} />
+                  )}
+                </span>
               </button>
               
               <AnimatePresence>
