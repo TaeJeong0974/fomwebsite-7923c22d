@@ -72,13 +72,13 @@ const PodcastSection = () => {
             <div ref={sortRef} className="relative">
               <button
                 onClick={() => setSortOpen(!sortOpen)}
-                className="glass rounded-full p-1.5 pl-3.5 pr-3 flex items-center gap-2 text-xs font-medium transition-all duration-300 !shadow-none hover:!shadow-glass text-foreground hover:bg-foreground/5 h-[42px]"
+                className="glass rounded-full p-1.5 pl-4 pr-3 flex items-center gap-2 text-xs font-medium transition-all duration-300 !shadow-none hover:!shadow-glass text-foreground hover:bg-foreground/5 h-[42px]"
               >
                 {/* Invisible sizers for stable width */}
                 <span className="invisible h-0 flex flex-col whitespace-nowrap">
                   {SORT_OPTIONS.map((o) => <span key={o.value} className="block">{o.label}</span>)}
                 </span>
-                <span className="absolute left-3.5">{activeLabel}</span>
+                <span className="absolute left-4">{activeLabel}</span>
                 <ChevronDown className={`h-3.5 w-3.5 shrink-0 transition-transform duration-300 ml-auto ${sortOpen ? "rotate-180" : ""}`} />
               </button>
               
