@@ -29,7 +29,7 @@ export interface PodcastEpisode {
   fullDescription: string;
   bio?: string;
   topics: string[];
-  primaryTheme?: string;
+  themes?: string[];
   detailTags?: string[];
   chapters: PodcastChapter[];
   youtubeUrl: string;
@@ -112,7 +112,7 @@ From the LinkedIn AI content trap to why Reddit might be the most underrated cha
     duration: "25 min",
     publishedDate: "Jan 1, 2026",
     pullQuote: "Whenever there's a new technology, the adoption cycle is actually longer than people often think. If you think about when the Internet was introduced, it took a very long time to actually adopt the Internet and apply it in novel ways. Same with mobile, same with social. And so with AI, I think there's a small number of people who can think 10 steps ahead and most people cannot.",
-    primaryTheme: "AI",
+    themes: ["AI"],
     detailTags: ["AI Strategy", "Storytelling", "Authenticity", "Culture"],
     comingSoon: false,
     previewVideoUrl: undefined,
@@ -159,7 +159,7 @@ This episode is a practical blueprint for CMOs and marketing leaders who want AI
     appleUrl: "https://podcasts.apple.com/us/podcast/why-the-best-cmos-think-like-operators-not-marketers/id1876216633?i=1000750167406",
     duration: "52 min",
     publishedDate: "Jan 15, 2026",
-    primaryTheme: "AI",
+    themes: ["AI", "Work / Culture"],
     detailTags: ["AI Strategy", "Automation", "Leadership", "AEO", "Culture"],
     comingSoon: false,
     linkedInUrl: "https://linkedin.com/in/meageneisenberg",
@@ -202,8 +202,8 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     appleUrl: "https://podcasts.apple.com/us/podcast/rethinking-workflows-in-the-age-of-ai-with-lena-waters/id1876216633?i=1000750505883",
     duration: "51 min",
     publishedDate: "Feb 19, 2026",
-    primaryTheme: "GTM",
-    detailTags: ["Future of Work", "GTM Strategy", "Brand", "Community", "Storytelling", "Visibility"],
+    themes: ["Brand", "GTM"],
+    detailTags: ["Future of Work", "GTM Strategy", "Brand", "Community", "Storytelling", "Visibility", "ROI"],
     comingSoon: false,
     linkedInUrl: "https://linkedin.com/in/lenawaters",
     pullQuote: "This idea now that AI can work alongside you, as we know, it's becoming much more agentic. It's starting to become autonomous. As we become more trusting and open with it, it's going to fill in the gaps that we have. And so, it's now more important than ever that we really understand the value that we bring as humans and that sort of EQ that we need to bring to the table.",
@@ -234,7 +234,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     spotifyUrl: "https://open.spotify.com/episode/11wp5t22MdBePMEHfwe89S",
     duration: "55 min",
     publishedDate: "Feb 26, 2026",
-    primaryTheme: "Brand",
+    themes: ["Brand", "AI", "Measurement"],
     detailTags: ["Brand Trust", "AI Adoption", "GTM Strategy", "Visibility", "ROI", "Leadership"],
     comingSoon: false,
     hosts: [podcastHosts[2], podcastHosts[0]], // Ethan Smith, Mada Seghete
@@ -266,7 +266,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     appleUrl: "https://apple.co/4l7QPM6",
     duration: "54 min",
     publishedDate: "Mar 5, 2026",
-    primaryTheme: "GTM",
+    themes: ["AI", "GTM", "Measurement"],
     detailTags: ["Developer-First", "AI Adoption", "GTM Strategy", "Attribution & Measurement", "Authenticity"],
     comingSoon: false,
     linkedInUrl: "https://www.linkedin.com/in/saravarnibright/",
@@ -300,7 +300,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     appleUrl: "https://podcasts.apple.com/us/podcast/ai-alignment-and-the-death-of-single-touch/id1876216633?i=1000754858206",
     duration: "50 min",
     publishedDate: "Mar 12, 2026",
-    primaryTheme: "Measurement",
+    themes: ["Brand", "AI", "Community"],
     detailTags: ["Attribution & Measurement", "Storytelling", "Sales & Marketing Alignment", "Leadership", "AI Strategy", "Community", "Events"],
     comingSoon: false,
     linkedInUrl: "https://www.linkedin.com/in/katejohnson/",
@@ -338,7 +338,7 @@ The conversation explores what companies get wrong about PLG (optimizing before 
     spotifyUrl: "",
     duration: "",
     publishedDate: "Mar 19, 2026",
-    primaryTheme: "GTM",
+    themes: ["GTM", "AI", "Brand"],
     detailTags: ["PLG", "Brand Experience", "AI Marketing", "GTM", "AI Strategy", "Human Factor"],
     comingSoon: false,
     linkedInUrl: "https://linkedin.com/in/sheilavashee",
