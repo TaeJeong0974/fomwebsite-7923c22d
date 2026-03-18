@@ -35,8 +35,10 @@ const PodcastSection = () => {
   const themes = useMemo(() => {
     const set = new Set<string>();
     publishedEpisodes.forEach(ep => { ep.themes?.forEach(t => set.add(t)); });
-    return [ALL_THEME, ...Array.from(set)];
-  }, [publishedEpisodes]);
+    const themeList = [ALL_THEME, ...Array.from(set)];
+    if (comingSoonEpisodes.length > 0) themeList.push(UPCOMING_THEME);
+    return themeList;
+  }, [publishedEpisodes, comingSoonEpisodes]);
 
   const sortEpisodes = <T extends { id: number; name: string; publishedDate: string }>(eps: T[]): T[] => {
     const sorted = [...eps];
