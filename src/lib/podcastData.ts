@@ -234,6 +234,8 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     spotifyUrl: "https://open.spotify.com/episode/11wp5t22MdBePMEHfwe89S",
     duration: "55 min",
     publishedDate: "Feb 26, 2026",
+    primaryTheme: "Brand",
+    detailTags: ["Brand Trust", "AI Adoption", "GTM Strategy", "Visibility", "ROI", "Leadership"],
     comingSoon: false,
     hosts: [podcastHosts[2], podcastHosts[0]], // Ethan Smith, Mada Seghete
   },
