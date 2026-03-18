@@ -338,6 +338,8 @@ The conversation explores what companies get wrong about PLG (optimizing before 
     spotifyUrl: "",
     duration: "",
     publishedDate: "Mar 19, 2026",
+    primaryTheme: "GTM",
+    detailTags: ["PLG", "Brand Experience", "AI Marketing", "GTM", "AI Strategy", "Human Factor"],
     comingSoon: false,
     linkedInUrl: "https://linkedin.com/in/sheilavashee",
     pullQuote: "Your craft as a designer, as a human, your craft, your taste, what you bring to the table is actually what sets your product apart, and that can't be automated. No matter how many tools you have at your disposal, your judgment, your craft is what makes your product special.",
