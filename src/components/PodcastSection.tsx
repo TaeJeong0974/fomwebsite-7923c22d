@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { LayoutGrid, List } from "lucide-react";
+import { LayoutGrid, List, ChevronDown, X } from "lucide-react";
 
 import { useEpisodeData } from "@/contexts/EpisodeDataContext";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -13,9 +13,53 @@ type LayoutType = "grid" | "list";
 const PodcastSection = () => {
   const isMobile = useIsMobile();
   const [layout, setLayout] = useState<LayoutType>("grid");
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const filterRef = useRef<HTMLDivElement>(null);
   const { getPublishedEpisodes, getComingSoonEpisodes } = useEpisodeData();
   const publishedEpisodes = getPublishedEpisodes();
   const comingSoonEpisodes = getComingSoonEpisodes();
+
+  // Build filter options from episodes
+  const filterOptions = useMemo(() => {
+    const allEps = [...publishedEpisodes, ...comingSoonEpisodes];
+    const options: { label: string; value: string; type: "name" | "company" }[] = [];
+    const seen = new Set<string>();
+    allEps.forEach(ep => {
+      if (ep.slug === "the-future-of-marketing") return;
+      if (!seen.has(ep.name)) {
+        seen.add(ep.name);
+        options.push({ label: ep.name, value: ep.name, type: "name" });
+      }
+      if (!seen.has(ep.company)) {
+        seen.add(ep.company);
+        options.push({ label: ep.company, value: ep.company, type: "company" });
+      }
+    });
+    return options;
+  }, [publishedEpisodes, comingSoonEpisodes]);
+
+  // Filter episodes
+  const filteredPublished = useMemo(() => {
+    if (!activeFilter) return publishedEpisodes;
+    return publishedEpisodes.filter(ep => ep.name === activeFilter || ep.company === activeFilter);
+  }, [publishedEpisodes, activeFilter]);
+
+  const filteredComingSoon = useMemo(() => {
+    if (!activeFilter) return comingSoonEpisodes;
+    return comingSoonEpisodes.filter(ep => ep.name === activeFilter || ep.company === activeFilter);
+  }, [comingSoonEpisodes, activeFilter]);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (filterRef.current && !filterRef.current.contains(e.target as Node)) {
+        setFilterOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
 
   useEffect(() => {
     setLayout(isMobile ? "list" : "grid");
