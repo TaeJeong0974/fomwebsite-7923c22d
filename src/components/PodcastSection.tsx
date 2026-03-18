@@ -61,23 +61,24 @@ const PodcastSection = () => {
       <div className="container mx-auto container-padding">
         {/* Header */}
         <div className="flex items-end justify-between gap-4 sm:gap-6 mb-8 md:mb-10 lg:mb-12">
-          <div className="flex items-end gap-3 sm:gap-4 flex-wrap">
-            <div>
-              <p className="text-label font-medium text-foreground mb-2 sm:mb-3">EPISODES</p>
-              <h2 className="text-display-xl font-medium text-foreground">Podcast</h2>
-            </div>
-            
+          <div>
+            <p className="text-label font-medium text-foreground mb-2 sm:mb-3">EPISODES</p>
+            <h2 className="text-display-xl font-medium text-foreground">Podcast</h2>
+          </div>
+          
+          {/* Controls: Sort + Layout Toggle */}
+          <div className="flex items-center gap-2">
             {/* Sort Dropdown */}
-            <div ref={sortRef} className="relative mb-0.5">
+            <div ref={sortRef} className="relative">
               <button
                 onClick={() => setSortOpen(!sortOpen)}
-                className="glass rounded-full px-4 py-2 flex items-center gap-2 text-sm font-medium transition-all duration-300 !shadow-none hover:!shadow-glass text-foreground hover:bg-foreground/5"
+                className="glass rounded-full p-1.5 pl-3.5 pr-3 flex items-center gap-2 text-xs font-medium transition-all duration-300 !shadow-none hover:!shadow-glass text-foreground hover:bg-foreground/5 h-[42px]"
               >
                 {/* Invisible sizers for stable width */}
                 <span className="invisible h-0 flex flex-col whitespace-nowrap">
                   {SORT_OPTIONS.map((o) => <span key={o.value} className="block">{o.label}</span>)}
                 </span>
-                <span className="absolute left-4">{activeLabel}</span>
+                <span className="absolute left-3.5">{activeLabel}</span>
                 <ChevronDown className={`h-3.5 w-3.5 shrink-0 transition-transform duration-300 ml-auto ${sortOpen ? "rotate-180" : ""}`} />
               </button>
               
@@ -88,7 +89,7 @@ const PodcastSection = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -4, scale: 0.97 }}
                     transition={{ duration: 0.2, ease: liquidEase }}
-                    className="absolute left-0 top-full mt-2 z-50 bg-background/95 backdrop-blur-xl rounded-2xl border border-foreground/[0.08] shadow-lg py-2 w-max min-w-[180px]"
+                    className="absolute right-0 top-full mt-2 z-50 bg-background/95 backdrop-blur-xl rounded-2xl border border-foreground/[0.08] shadow-lg py-2 w-max min-w-[180px]"
                   >
                     {SORT_OPTIONS.map(option => (
                       <button
@@ -105,34 +106,34 @@ const PodcastSection = () => {
                 )}
               </AnimatePresence>
             </div>
-          </div>
-          
-          {/* Layout Toggle */}
-          <div className="glass rounded-full p-1.5 flex items-center gap-1 !shadow-none hover:!shadow-glass transition-shadow duration-300 relative">
-            {([
-              { type: "grid" as const, icon: LayoutGrid },
-              { type: "list" as const, icon: List },
-            ]).map(({ type, icon: Icon }) => (
-              <button 
-                key={type}
-                onClick={() => setLayout(type)} 
-                className={`p-2.5 rounded-full flex items-center justify-center gap-2 relative z-10 transition-colors duration-300 ${
-                  layout === type 
-                    ? "text-background" 
-                    : "text-foreground hover:bg-foreground/5"
-                }`}
-              >
-                {layout === type && (
-                  <motion.div
-                    layoutId="toggle-pill"
-                    className="absolute inset-0 rounded-full bg-foreground shadow-lg"
-                    transition={{ type: "spring", stiffness: 300, damping: 25, mass: 0.8 }}
-                  />
-                )}
-                <Icon className="h-4 w-4 shrink-0 relative z-10" />
-                <span className="text-xs font-medium pr-1 capitalize leading-none translate-y-[1px] relative z-10">{type}</span>
-              </button>
-            ))}
+
+            {/* Layout Toggle */}
+            <div className="glass rounded-full p-1.5 flex items-center gap-1 !shadow-none hover:!shadow-glass transition-shadow duration-300 relative h-[42px]">
+              {([
+                { type: "grid" as const, icon: LayoutGrid },
+                { type: "list" as const, icon: List },
+              ]).map(({ type, icon: Icon }) => (
+                <button 
+                  key={type}
+                  onClick={() => setLayout(type)} 
+                  className={`p-2.5 rounded-full flex items-center justify-center gap-2 relative z-10 transition-colors duration-300 ${
+                    layout === type 
+                      ? "text-background" 
+                      : "text-foreground hover:bg-foreground/5"
+                  }`}
+                >
+                  {layout === type && (
+                    <motion.div
+                      layoutId="toggle-pill"
+                      className="absolute inset-0 rounded-full bg-foreground shadow-lg"
+                      transition={{ type: "spring", stiffness: 300, damping: 25, mass: 0.8 }}
+                    />
+                  )}
+                  <Icon className="h-4 w-4 shrink-0 relative z-10" />
+                  <span className="text-xs font-medium pr-1 capitalize leading-none translate-y-[1px] relative z-10">{type}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
