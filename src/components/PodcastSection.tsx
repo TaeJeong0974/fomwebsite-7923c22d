@@ -124,7 +124,7 @@ const PodcastSection = () => {
                           activeFilter === option.value ? "text-foreground font-medium bg-foreground/5" : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
                         }`}
                       >
-                        {option.label}
+                        {option.label} <span className="text-muted-foreground font-normal">· {option.company}</span>
                       </button>
                     ))}
                     <div className="h-px bg-foreground/[0.06] my-1" />
