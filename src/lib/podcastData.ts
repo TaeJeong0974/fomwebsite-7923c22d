@@ -159,7 +159,7 @@ This episode is a practical blueprint for CMOs and marketing leaders who want AI
     appleUrl: "https://podcasts.apple.com/us/podcast/why-the-best-cmos-think-like-operators-not-marketers/id1876216633?i=1000750167406",
     duration: "52 min",
     publishedDate: "Jan 15, 2026",
-    primaryTheme: "AI",
+    themes: ["AI", "Work / Culture"],
     detailTags: ["AI Strategy", "Automation", "Leadership", "AEO", "Culture"],
     comingSoon: false,
     linkedInUrl: "https://linkedin.com/in/meageneisenberg",
