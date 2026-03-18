@@ -112,6 +112,8 @@ From the LinkedIn AI content trap to why Reddit might be the most underrated cha
     duration: "25 min",
     publishedDate: "Jan 1, 2026",
     pullQuote: "Whenever there's a new technology, the adoption cycle is actually longer than people often think. If you think about when the Internet was introduced, it took a very long time to actually adopt the Internet and apply it in novel ways. Same with mobile, same with social. And so with AI, I think there's a small number of people who can think 10 steps ahead and most people cannot.",
+    primaryTheme: "AI",
+    detailTags: ["AI Strategy", "Storytelling", "Authenticity", "Culture"],
     comingSoon: false,
     previewVideoUrl: undefined,
     hosts: podcastHosts,
