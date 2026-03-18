@@ -338,7 +338,7 @@ The conversation explores what companies get wrong about PLG (optimizing before 
     spotifyUrl: "",
     duration: "",
     publishedDate: "Mar 19, 2026",
-    primaryTheme: "GTM",
+    themes: ["GTM", "AI", "Brand"],
     detailTags: ["PLG", "Brand Experience", "AI Marketing", "GTM", "AI Strategy", "Human Factor"],
     comingSoon: false,
     linkedInUrl: "https://linkedin.com/in/sheilavashee",
