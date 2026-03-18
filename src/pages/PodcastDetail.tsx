@@ -154,7 +154,7 @@ const PodcastDetail = () => {
             )}
 
             <FadeInSection>
-              <EpisodeTopics topics={episode.topics} />
+              <EpisodeTopics topics={episode.topics} detailTags={episode.detailTags} />
             </FadeInSection>
 
             {episode.newslettersMentioned && episode.newslettersMentioned.length > 0 && (

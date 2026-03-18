@@ -17,15 +17,25 @@ const SORT_OPTIONS: { value: SortMode; label: string }[] = [
   { value: "name", label: "Name A–Z" },
 ];
 
+const ALL_THEME = "All";
+
 const PodcastSection = () => {
   const isMobile = useIsMobile();
   const [layout, setLayout] = useState<LayoutType>("grid");
   const [sortOpen, setSortOpen] = useState(false);
   const [sortMode, setSortMode] = useState<SortMode>("newest");
+  const [activeTheme, setActiveTheme] = useState(ALL_THEME);
   const sortRef = useRef<HTMLDivElement>(null);
   const { getPublishedEpisodes, getComingSoonEpisodes } = useEpisodeData();
   const publishedEpisodes = getPublishedEpisodes();
   const comingSoonEpisodes = getComingSoonEpisodes();
+
+  // Derive unique themes from published episodes
+  const themes = useMemo(() => {
+    const set = new Set<string>();
+    publishedEpisodes.forEach(ep => { if (ep.primaryTheme) set.add(ep.primaryTheme); });
+    return [ALL_THEME, ...Array.from(set)];
+  }, [publishedEpisodes]);
 
   const sortEpisodes = <T extends { id: number; name: string; publishedDate: string }>(eps: T[]): T[] => {
     const sorted = [...eps];
@@ -36,8 +46,18 @@ const PodcastSection = () => {
     }
   };
 
-  const sortedPublished = useMemo(() => sortEpisodes(publishedEpisodes), [publishedEpisodes, sortMode]);
-  const sortedComingSoon = useMemo(() => sortEpisodes(comingSoonEpisodes), [comingSoonEpisodes, sortMode]);
+  const filteredPublished = useMemo(() => {
+    if (activeTheme === ALL_THEME) return publishedEpisodes;
+    return publishedEpisodes.filter(ep => ep.primaryTheme === activeTheme);
+  }, [publishedEpisodes, activeTheme]);
+
+  const filteredComingSoon = useMemo(() => {
+    if (activeTheme === ALL_THEME) return comingSoonEpisodes;
+    return comingSoonEpisodes.filter(ep => ep.primaryTheme === activeTheme);
+  }, [comingSoonEpisodes, activeTheme]);
+
+  const sortedPublished = useMemo(() => sortEpisodes(filteredPublished), [filteredPublished, sortMode]);
+  const sortedComingSoon = useMemo(() => sortEpisodes(filteredComingSoon), [filteredComingSoon, sortMode]);
 
   const activeLabel = SORT_OPTIONS.find(o => o.value === sortMode)!.label;
 
@@ -133,10 +153,29 @@ const PodcastSection = () => {
           </div>
         </div>
 
+        {/* Theme Filter Pills */}
+        {themes.length > 2 && (
+          <div className="flex items-center gap-2 mb-6 md:mb-8 flex-wrap">
+            {themes.map(theme => (
+              <button
+                key={theme}
+                onClick={() => setActiveTheme(theme)}
+                className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 border ${
+                  activeTheme === theme
+                    ? "bg-foreground text-background border-foreground"
+                    : "bg-transparent text-foreground/70 border-foreground/[0.12] hover:border-foreground/25 hover:text-foreground"
+                }`}
+              >
+                {theme}
+              </button>
+            ))}
+          </div>
+        )}
+
         {/* Animated Layout Switch */}
         <AnimatePresence mode="wait">
           <motion.div
-            key={layout}
+            key={`${layout}-${activeTheme}`}
             initial={{ opacity: 0, scale: 0.97, filter: "blur(4px)" }}
             animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
             exit={{ opacity: 0, scale: 0.97, filter: "blur(4px)" }}
