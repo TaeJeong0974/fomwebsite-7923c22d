@@ -39,10 +39,17 @@ const PodcastSection = () => {
     return options;
   }, [publishedEpisodes, comingSoonEpisodes]);
 
-  // Find longest label for stable button width
-  const longestLabel = useMemo(() => {
-    const allLabels = ["All Guests", ...filterOptions.map(o => o.type === "name" && o.company ? `${o.label} · ${o.company}` : o.label)];
-    return allLabels.reduce((a, b) => a.length >= b.length ? a : b, "");
+  // Build display label for active filter
+  const activeLabel = useMemo(() => {
+    if (!activeFilter) return "All Guests";
+    const opt = filterOptions.find(o => o.value === activeFilter);
+    if (opt?.type === "name" && opt.company) return `${opt.label} · ${opt.company}`;
+    return opt?.label || activeFilter;
+  }, [activeFilter, filterOptions]);
+
+  // Find longest label for stable button width — render all options invisibly
+  const allLabels = useMemo(() => {
+    return ["All Guests", ...filterOptions.map(o => o.type === "name" && o.company ? `${o.label} · ${o.company}` : o.label)];
   }, [filterOptions]);
 
   // Filter episodes
@@ -92,9 +99,11 @@ const PodcastSection = () => {
                     : "text-foreground hover:bg-foreground/5"
                 }`}
               >
-                {/* Invisible sizer for stable width */}
-                <span className="invisible h-0 block whitespace-nowrap">{longestLabel}</span>
-                <span className="absolute left-4">{activeFilter || "All Guests"}</span>
+                {/* Invisible sizers for stable width — one per label */}
+                <span className="invisible h-0 flex flex-col whitespace-nowrap">
+                  {allLabels.map((l, i) => <span key={i} className="block">{l}</span>)}
+                </span>
+                <span className="absolute left-4">{activeLabel}</span>
                 <span className="ml-auto">
                   {activeFilter ? (
                     <X 
