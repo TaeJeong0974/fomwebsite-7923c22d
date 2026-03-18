@@ -72,9 +72,9 @@ const PodcastSection = () => {
             <div ref={sortRef} className="relative">
               <button
                 onClick={() => setSortOpen(!sortOpen)}
-                className="glass rounded-full px-4 flex items-center gap-2 text-xs font-medium transition-all duration-300 !shadow-none hover:!shadow-glass text-foreground hover:bg-foreground/5 h-[42px] whitespace-nowrap"
+                className="glass rounded-full px-4 flex items-center justify-center gap-2 text-xs font-medium transition-all duration-300 !shadow-none hover:!shadow-glass text-foreground hover:bg-foreground/5 h-[42px] whitespace-nowrap"
               >
-                <span>{activeLabel}</span>
+                <span className="translate-y-[1px]">{activeLabel}</span>
                 <ChevronDown className={`h-3.5 w-3.5 shrink-0 transition-transform duration-300 ${sortOpen ? "rotate-180" : ""}`} />
               </button>
               
@@ -85,7 +85,7 @@ const PodcastSection = () => {
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -4, scale: 0.97 }}
                     transition={{ duration: 0.2, ease: liquidEase }}
-                    className="absolute right-0 top-full mt-2 z-50 bg-background/95 backdrop-blur-xl rounded-2xl border border-foreground/[0.08] shadow-lg py-2 w-max min-w-[180px]"
+                    className="absolute right-0 top-full mt-2 z-50 bg-background/95 backdrop-blur-xl rounded-2xl border border-foreground/[0.08] shadow-lg py-2 w-max"
                   >
                     {SORT_OPTIONS.map(option => (
                       <button
