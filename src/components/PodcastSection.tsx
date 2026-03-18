@@ -185,8 +185,8 @@ const PodcastSection = () => {
             transition={{ duration: 0.35, ease: liquidEase }}
           >
             {layout === "grid" 
-              ? <PodcastGridView episodes={publishedEpisodes} comingSoonEpisodes={comingSoonEpisodes} /> 
-              : <PodcastListView episodes={publishedEpisodes} comingSoonEpisodes={comingSoonEpisodes} />
+              ? <PodcastGridView episodes={filteredPublished} comingSoonEpisodes={filteredComingSoon} /> 
+              : <PodcastListView episodes={filteredPublished} comingSoonEpisodes={filteredComingSoon} />
             }
           </motion.div>
         </AnimatePresence>
