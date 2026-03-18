@@ -33,7 +33,7 @@ const PodcastSection = () => {
   // Derive unique themes from published episodes
   const themes = useMemo(() => {
     const set = new Set<string>();
-    publishedEpisodes.forEach(ep => { if (ep.primaryTheme) set.add(ep.primaryTheme); });
+    publishedEpisodes.forEach(ep => { ep.themes?.forEach(t => set.add(t)); });
     return [ALL_THEME, ...Array.from(set)];
   }, [publishedEpisodes]);
 
