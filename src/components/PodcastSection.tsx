@@ -92,7 +92,7 @@ const PodcastSection = () => {
                         key={option.value}
                         onClick={() => { setSortMode(option.value); setSortOpen(false); }}
                         className={`w-full text-left px-4 py-2.5 text-sm transition-colors duration-200 ${
-                          sortMode === option.value ? "text-foreground font-medium bg-foreground/5" : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
+                          sortMode === option.value ? "text-foreground font-medium" : "text-foreground/70 hover:text-foreground hover:bg-foreground/5"
                         }`}
                       >
                         {option.label}
