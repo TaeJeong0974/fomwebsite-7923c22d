@@ -39,6 +39,12 @@ const PodcastSection = () => {
     return options;
   }, [publishedEpisodes, comingSoonEpisodes]);
 
+  // Find longest label for stable button width
+  const longestLabel = useMemo(() => {
+    const allLabels = ["All Guests", ...filterOptions.map(o => o.type === "name" && o.company ? `${o.label} · ${o.company}` : o.label)];
+    return allLabels.reduce((a, b) => a.length >= b.length ? a : b, "");
+  }, [filterOptions]);
+
   // Filter episodes
   const filteredPublished = useMemo(() => {
     if (!activeFilter) return publishedEpisodes;
@@ -86,15 +92,19 @@ const PodcastSection = () => {
                     : "text-foreground hover:bg-foreground/5"
                 }`}
               >
-                {activeFilter || "All Guests"}
-                {activeFilter ? (
-                  <X 
-                    className="h-3.5 w-3.5 shrink-0" 
-                    onClick={(e) => { e.stopPropagation(); setActiveFilter(null); setFilterOpen(false); }}
-                  />
-                ) : (
-                  <ChevronDown className={`h-3.5 w-3.5 shrink-0 transition-transform duration-300 ${filterOpen ? "rotate-180" : ""}`} />
-                )}
+                {/* Invisible sizer for stable width */}
+                <span className="invisible h-0 block whitespace-nowrap">{longestLabel}</span>
+                <span className="absolute left-4">{activeFilter || "All Guests"}</span>
+                <span className="ml-auto">
+                  {activeFilter ? (
+                    <X 
+                      className="h-3.5 w-3.5 shrink-0" 
+                      onClick={(e) => { e.stopPropagation(); setActiveFilter(null); setFilterOpen(false); }}
+                    />
+                  ) : (
+                    <ChevronDown className={`h-3.5 w-3.5 shrink-0 transition-transform duration-300 ${filterOpen ? "rotate-180" : ""}`} />
+                  )}
+                </span>
               </button>
               
               <AnimatePresence>
