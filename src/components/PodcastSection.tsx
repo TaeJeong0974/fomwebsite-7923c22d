@@ -18,6 +18,7 @@ const SORT_OPTIONS: { value: SortMode; label: string }[] = [
 ];
 
 const ALL_THEME = "All";
+const UPCOMING_THEME = "Upcoming";
 
 const PodcastSection = () => {
   const isMobile = useIsMobile();
@@ -34,8 +35,10 @@ const PodcastSection = () => {
   const themes = useMemo(() => {
     const set = new Set<string>();
     publishedEpisodes.forEach(ep => { ep.themes?.forEach(t => set.add(t)); });
-    return [ALL_THEME, ...Array.from(set)];
-  }, [publishedEpisodes]);
+    const themeList = [ALL_THEME, ...Array.from(set)];
+    if (comingSoonEpisodes.length > 0) themeList.push(UPCOMING_THEME);
+    return themeList;
+  }, [publishedEpisodes, comingSoonEpisodes]);
 
   const sortEpisodes = <T extends { id: number; name: string; publishedDate: string }>(eps: T[]): T[] => {
     const sorted = [...eps];
@@ -47,11 +50,13 @@ const PodcastSection = () => {
   };
 
   const filteredPublished = useMemo(() => {
+    if (activeTheme === UPCOMING_THEME) return [];
     if (activeTheme === ALL_THEME) return publishedEpisodes;
     return publishedEpisodes.filter(ep => ep.themes?.includes(activeTheme));
   }, [publishedEpisodes, activeTheme]);
 
   const filteredComingSoon = useMemo(() => {
+    if (activeTheme === UPCOMING_THEME) return comingSoonEpisodes;
     if (activeTheme === ALL_THEME) return comingSoonEpisodes;
     return comingSoonEpisodes.filter(ep => ep.themes?.includes(activeTheme));
   }, [comingSoonEpisodes, activeTheme]);
