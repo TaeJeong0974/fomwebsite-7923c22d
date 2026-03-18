@@ -300,7 +300,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     title: "Chief Marketing Officer",
     company: "Figma",
     companyDomain: "figma.com",
-    overview: "What happens when the product is the distribution channel?",
+    overview: "Community Is the Moat: How Figma Turns Product Passion into Revenue",
     bio: "is the Chief Marketing Officer at Figma, where she oversees marketing, communications, growth, and customer support. She previously served as CMO and Consumer GM at Ethos, VP of Marketing and Growth at Opendoor, and was the second marketing hire at Dropbox, helping scale the company to over $1 billion in revenue.\n\nSheila is also a Venture Partner at Basis Set Ventures, advising early-stage companies on growth and operations. She began her career as an investment banker at Morgan Stanley and holds a BA in Economics from Stanford University and an MBA from UC Berkeley.",
     fullDescription: `In this episode of Future of Marketing, hosts Ethan Smith and Camille Ricketts talk with Sheila Vashee, Chief Marketing Officer at Figma, about scaling one of the most beloved creative tools in the world from product-led growth roots to enterprise expansion and AI-native workflows.
 
