@@ -7,7 +7,7 @@
     <description>Future of Marketing explores how B2B marketing teams are actually using AI at work. Each episode features honest conversations with CMOs, growth leaders, and operators about real workflows, real decisions, and the trade-offs involved in AI adoption across GTM, content, SEO, analytics, and revenue teams.</description>
     <language>en</language>
     <copyright>© 2026 Future of Marketing. All rights reserved.</copyright>
-    <lastBuildDate>Wed, 18 Mar 2026 20:00:27 GMT</lastBuildDate>
+    <lastBuildDate>Wed, 18 Mar 2026 20:49:13 GMT</lastBuildDate>
     <itunes:author>XYZ Venture Capital, Upside, Graphite Growth</itunes:author>
     <itunes:category text="Business">
       <itunes:category text="Marketing" />
@@ -19,6 +19,65 @@
       <title>Future of Marketing</title>
       <link>https://fom.xyz</link>
     </image>
+
+    <item>
+      <title>Sheila Vashee: Community Is the Moat: How Figma Turns Product Passion into Revenue</title>
+      <link>https://fom.xyz/podcast/sheila-vashee</link>
+      <guid isPermaLink="true">https://fom.xyz/podcast/sheila-vashee</guid>
+      <pubDate>Thu, 19 Mar 2026 00:00:00 GMT</pubDate>
+      <description>In this episode of Future of Marketing, hosts Ethan Smith and Camille Ricketts talk with Sheila Vashee, Chief Marketing Officer at Figma, about scaling one of the most beloved creative tools in the world from product-led growth roots to enterprise expansion and AI-native workflows.</description>
+      <itunes:author>Future of Marketing</itunes:author>
+    </item>
+
+    <item>
+      <title>Kate Johnson: AI, Alignment, And The Death Of Single-Touch Marketing</title>
+      <link>https://fom.xyz/podcast/kate-johnson</link>
+      <guid isPermaLink="true">https://fom.xyz/podcast/kate-johnson</guid>
+      <pubDate>Thu, 12 Mar 2026 00:00:00 GMT</pubDate>
+      <description>What if attribution isn't clarifying your strategy but quietly breaking it?  In this episode of Future of Marketing, hosts Ethan Smith and Mada Seghete sit down with Kate Johnson, CMO of Dscout, to challenge the obsession with single-source attribution and the internal damage it can cause.  Instead of arguing over which channel \&quot;sourced\&quot; a deal, Kate explains how her team focuses on deal stories — understanding the full narrative of influence across touchpoints. Powered in part by tools like Upside, this approach shifts the conversation from credit-taking to clarity: what combination of efforts actually moved the buyer forward?  Kate also unpacks how she's structured her marketing team to operate like project-based pods — lean, cross-functional, and built around ownership. The result: less SLA theater, more accountability, and tighter alignment with sales. She shares why moving SDRs under marketing can transform feedback loops, how shared revenue metrics outperform isolated KPIs, and why high-touch collaboration with sales still wins.  From the power of in-the-moment user research to the strategic value of no-meeting Wednesdays, this episode is a blueprint for building a marketing function that thinks clearly, moves efficiently, and earns executive trust.</description>
+      <itunes:duration>50:00</itunes:duration>
+      <itunes:author>Future of Marketing</itunes:author>
+    </item>
+
+    <item>
+      <title>Sara Varni: From Community To Revenue: Building An AI-First Marketing Engine</title>
+      <link>https://fom.xyz/podcast/sara-varni</link>
+      <guid isPermaLink="true">https://fom.xyz/podcast/sara-varni</guid>
+      <pubDate>Thu, 05 Mar 2026 00:00:00 GMT</pubDate>
+      <description>Marketing isn't disappearing. But the org chart you're used to might.  In this episode of Future of Marketing, hosts Camille Ricketts and Mada Seghete talk with Sara Varni, CMO of Datadog, to discuss what marketing teams must unlearn as AI reshapes workflows, attribution, and buyer behavior.  With over a decade at Salesforce and CMO roles at Twilio, Attentive, and now Datadog, Sara has seen multiple platform shifts. Her take is pragmatic: AI should automate the soul-crushing tasks — resizing ads, writing redundant copy variations, summarizing notes — not the strategic thinking and creative judgment that differentiate great teams.  The conversation dives into the developer-buyer paradox: how do you market to hands-on technical users without alienating the economic decision-makers? Sara shares concrete plays, including Twilio's enterprise hackathons that aligned developers and executives in a single day, collapsing sales cycles and creating internal champions.  This episode is a blueprint for marketing leaders navigating bottom-up adoption, enterprise expansion, and AI-driven workflow shifts without losing credibility, creativity, or customer trust.</description>
+      <itunes:duration>54:00</itunes:duration>
+      <itunes:author>Future of Marketing</itunes:author>
+    </item>
+
+    <item>
+      <title>Dave Steer: Trust Is The Ultimate Differentiator In The Age Of AI</title>
+      <link>https://fom.xyz/podcast/dave-steer</link>
+      <guid isPermaLink="true">https://fom.xyz/podcast/dave-steer</guid>
+      <pubDate>Thu, 26 Feb 2026 00:00:00 GMT</pubDate>
+      <description>AI is accelerating everything. But acceleration without trust just amplifies risk.  In this episode of Future of Marketing, hosts Ethan Smith and Mada Seghete talk with Dave Steer, CMO of Webflow, to explore why trust is becoming the defining advantage for companies navigating the AI era.  Drawing from two decades of experience across platforms like eBay, PayPal, Facebook, Twitter, and Cloudflare including helping lead Cloudflare through its IPO, Dave introduces a simple but powerful framework: (Reliability + Credibility + Approachability) ÷ Self-Interest. In a world where AI can generate anything, trust determines what customers actually believe.  The conversation digs into why the average CMO tenure is just 18 months, and how attribution theater, not incremental ROI, is quietly eroding marketing's credibility inside companies. Dave argues that marketing teams must tie their work to real, dollar-based impact measured against a single north star metric, or risk being seen as cost centers rather than growth drivers.  This episode is a candid blueprint for marketing leaders who want to prove value to the CFO, build durable trust with customers, and evolve their teams before the market forces them to.</description>
+      <itunes:duration>55:00</itunes:duration>
+      <itunes:author>Future of Marketing</itunes:author>
+    </item>
+
+    <item>
+      <title>Lena Waters: Rethinking Workflows in the Age of AI</title>
+      <link>https://fom.xyz/podcast/lena-waters</link>
+      <guid isPermaLink="true">https://fom.xyz/podcast/lena-waters</guid>
+      <pubDate>Thu, 19 Feb 2026 00:00:00 GMT</pubDate>
+      <description>AI isn't your new employee. It's your new teammate and that changes how marketing, product, and go-to-market teams operate at a fundamental level.</description>
+      <itunes:duration>51:00</itunes:duration>
+      <itunes:author>Future of Marketing</itunes:author>
+    </item>
+
+    <item>
+      <title>Meagen Eisenberg: Why the Best CMOs Think Like Operators, Not Marketers</title>
+      <link>https://fom.xyz/podcast/meagen-eisenberg</link>
+      <guid isPermaLink="true">https://fom.xyz/podcast/meagen-eisenberg</guid>
+      <pubDate>Thu, 15 Jan 2026 00:00:00 GMT</pubDate>
+      <description>Most marketing teams are &quot;using AI.&quot; Very few are actually operationalizing it.</description>
+      <itunes:duration>52:00</itunes:duration>
+      <itunes:author>Future of Marketing</itunes:author>
+    </item>
 
     <item>
       <title>Introduction to Future of Marketing: Why Authenticity Beats Automation in Modern Marketing</title>
