@@ -23,13 +23,13 @@ const PodcastSection = () => {
   // Build filter options from episodes
   const filterOptions = useMemo(() => {
     const allEps = [...publishedEpisodes, ...comingSoonEpisodes];
-    const options: { label: string; value: string; type: "name" | "company" }[] = [];
+    const options: { label: string; value: string; type: "name" | "company"; company?: string }[] = [];
     const seen = new Set<string>();
     allEps.forEach(ep => {
       if (ep.slug === "the-future-of-marketing") return;
       if (!seen.has(ep.name)) {
         seen.add(ep.name);
-        options.push({ label: ep.name, value: ep.name, type: "name" });
+        options.push({ label: ep.name, value: ep.name, type: "name", company: ep.company });
       }
       if (!seen.has(ep.company)) {
         seen.add(ep.company);
