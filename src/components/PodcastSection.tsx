@@ -50,11 +50,13 @@ const PodcastSection = () => {
   };
 
   const filteredPublished = useMemo(() => {
+    if (activeTheme === UPCOMING_THEME) return [];
     if (activeTheme === ALL_THEME) return publishedEpisodes;
     return publishedEpisodes.filter(ep => ep.themes?.includes(activeTheme));
   }, [publishedEpisodes, activeTheme]);
 
   const filteredComingSoon = useMemo(() => {
+    if (activeTheme === UPCOMING_THEME) return comingSoonEpisodes;
     if (activeTheme === ALL_THEME) return comingSoonEpisodes;
     return comingSoonEpisodes.filter(ep => ep.themes?.includes(activeTheme));
   }, [comingSoonEpisodes, activeTheme]);
