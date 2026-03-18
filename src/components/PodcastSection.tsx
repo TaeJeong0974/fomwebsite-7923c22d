@@ -18,6 +18,7 @@ const SORT_OPTIONS: { value: SortMode; label: string }[] = [
 ];
 
 const ALL_THEME = "All";
+const UPCOMING_THEME = "Upcoming";
 
 const PodcastSection = () => {
   const isMobile = useIsMobile();
