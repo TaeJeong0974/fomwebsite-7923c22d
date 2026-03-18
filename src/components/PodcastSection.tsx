@@ -39,6 +39,12 @@ const PodcastSection = () => {
     return options;
   }, [publishedEpisodes, comingSoonEpisodes]);
 
+  // Find longest label for stable button width
+  const longestLabel = useMemo(() => {
+    const allLabels = ["All Guests", ...filterOptions.map(o => o.type === "name" && o.company ? `${o.label} · ${o.company}` : o.label)];
+    return allLabels.reduce((a, b) => a.length >= b.length ? a : b, "");
+  }, [filterOptions]);
+
   // Filter episodes
   const filteredPublished = useMemo(() => {
     if (!activeFilter) return publishedEpisodes;
