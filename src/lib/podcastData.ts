@@ -300,7 +300,7 @@ This episode is a blueprint for marketing leaders navigating the shift from AI a
     appleUrl: "https://podcasts.apple.com/us/podcast/ai-alignment-and-the-death-of-single-touch/id1876216633?i=1000754858206",
     duration: "50 min",
     publishedDate: "Mar 12, 2026",
-    primaryTheme: "Measurement",
+    themes: ["Brand", "AI", "Community"],
     detailTags: ["Attribution & Measurement", "Storytelling", "Sales & Marketing Alignment", "Leadership", "AI Strategy", "Community", "Events"],
     comingSoon: false,
     linkedInUrl: "https://www.linkedin.com/in/katejohnson/",
