@@ -160,7 +160,7 @@ const PodcastSection = () => {
               <button
                 key={theme}
                 onClick={() => setActiveTheme(theme)}
-                className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 border ${
+                className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-300 border flex items-center justify-center ${
                   activeTheme === theme
                     ? "bg-foreground text-background border-foreground"
                     : "bg-transparent text-foreground/70 border-foreground/[0.12] hover:border-foreground/25 hover:text-foreground"
