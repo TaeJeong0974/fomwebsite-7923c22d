@@ -99,9 +99,11 @@ const PodcastSection = () => {
                     : "text-foreground hover:bg-foreground/5"
                 }`}
               >
-                {/* Invisible sizer for stable width */}
-                <span className="invisible h-0 block whitespace-nowrap">{longestLabel}</span>
-                <span className="absolute left-4">{activeFilter || "All Guests"}</span>
+                {/* Invisible sizers for stable width — one per label */}
+                <span className="invisible h-0 flex flex-col whitespace-nowrap">
+                  {allLabels.map((l, i) => <span key={i} className="block">{l}</span>)}
+                </span>
+                <span className="absolute left-4">{activeLabel}</span>
                 <span className="ml-auto">
                   {activeFilter ? (
                     <X 
