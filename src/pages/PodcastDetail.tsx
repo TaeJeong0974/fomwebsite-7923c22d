@@ -26,7 +26,7 @@ import DetailVerticalText from "@/components/podcast/DetailVerticalText";
 import FadeInSection from "@/components/podcast/FadeInSection";
 import useDocumentMeta from "@/hooks/use-document-meta";
 import { useEpisodeData } from "@/contexts/EpisodeDataContext";
-import { EPISODE_IMAGES } from "@/lib/episodeImages";
+import { EPISODE_IMAGES, OG_IMAGES } from "@/lib/episodeImages";
 import {
   getYouTubeThumbnail,
   buildEpisodeSeo,
