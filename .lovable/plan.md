@@ -1,17 +1,14 @@
 
 
-## Fix Meta/OG Issues
+## Update Meagen Eisenberg OG Image
 
 ### What changes
 
-1. **Privacy page** (`src/pages/Privacy.tsx`) — Add `useDocumentMeta` with a Privacy-specific title, description, and `noindex: true`.
+1. **Copy uploaded image to public** — Copy `user-uploads://Meagen.png` to `public/images/og-meagen-eisenberg.png` (OG images must be absolute URLs served statically, not bundled via src/assets).
 
-2. **NotFound page** (`src/pages/NotFound.tsx`) — Add `useDocumentMeta` with a 404-specific title/description and `noindex: true`.
+2. **Update OG_IMAGES map** (`src/lib/episodeImages.ts`) — Change the `meagen-eisenberg` entry from `ep1-og.png` to `og-meagen-eisenberg.png`.
 
-3. **Consolidate OG map** (`src/pages/PodcastDetail.tsx`) — Remove the inline `OG_OVERRIDES` object and import `OG_IMAGES` from `@/lib/episodeImages` instead. Update the `ogImage` assignment to read from `OG_IMAGES[episode?.slug]`. The `SITE_URL` prefix is already baked into the values in `episodeImages.ts`, so we'll add it there if missing.
-
-4. **Ensure full URLs** (`src/lib/episodeImages.ts`) — Prefix all `OG_IMAGES` values with `https://fomwebsite.lovable.app` so they work as absolute OG URLs (currently they're root-relative paths like `/images/ep0-og.png`).
-
-### Per-episode OG images remain unchanged
-Each episode keeps its own unique OG image — Meagen gets `ep1-og.png`, Lena gets `og-lena-waters.jpg`, etc. The only difference is one map instead of two.
+### Files touched
+- `public/images/og-meagen-eisenberg.png` (new)
+- `src/lib/episodeImages.ts` (one-line edit)
 
