@@ -5,6 +5,7 @@ import { componentTagger } from "lovable-tagger";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 import { imagetools } from "vite-imagetools";
 import { rssPlugin } from "./scripts/vite-plugin-rss";
+import { sitemapPlugin } from "./scripts/vite-plugin-sitemap";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
