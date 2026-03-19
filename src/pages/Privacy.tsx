@@ -1,6 +1,12 @@
 import Footer from "@/components/Footer";
+import useDocumentMeta from "@/hooks/use-document-meta";
 
 const Privacy = () => {
+  useDocumentMeta({
+    title: "Privacy Policy | Future of Marketing",
+    description: "Privacy policy for the Future of Marketing podcast website by Graphite Growth.",
+    noindex: true,
+  });
   return (
     <main className="min-h-screen pt-32 pb-16">
       <div className="container mx-auto container-padding max-w-3xl">

@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom";
+import useDocumentMeta from "@/hooks/use-document-meta";
 
 const NotFound = () => {
+  useDocumentMeta({
+    title: "Page Not Found | Future of Marketing",
+    description: "The page you're looking for doesn't exist.",
+    noindex: true,
+  });
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">
       <div className="text-center container-padding">

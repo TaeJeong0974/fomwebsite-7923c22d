@@ -45,21 +45,7 @@ const PodcastDetail = () => {
   const isIntro = !episode?.comingSoon && episode?.slug === "the-future-of-marketing";
   const seo = buildEpisodeSeo(episode);
 
-  const OG_OVERRIDES: Record<string, string> = {
-    "the-future-of-marketing": "https://fomwebsite.lovable.app/images/ep0-og.png",
-    "meagen-eisenberg": "https://fomwebsite.lovable.app/images/ep1-og.png",
-    "lena-waters": "https://fomwebsite.lovable.app/images/og-lena-waters.jpg",
-    "dave-steer": "https://fomwebsite.lovable.app/images/og-dave-steer.jpg",
-    "sara-varni": "https://fomwebsite.lovable.app/images/og-sara-varni.jpg",
-    "kate-johnson": "https://fomwebsite.lovable.app/images/og-kate-johnson.jpg",
-    "idan-koren": "https://fomwebsite.lovable.app/images/og-idan-koren.jpg",
-    "lindsey-irvine": "https://fomwebsite.lovable.app/images/og-lindsey-irvine.jpg",
-    "sheila-vashee": "https://fomwebsite.lovable.app/images/og-sheila-vashee.jpg",
-    "ceci-stallsmith": "https://fomwebsite.lovable.app/images/og-ceci-stallsmith.jpg",
-    "katrina-wong": "https://fomwebsite.lovable.app/images/og-katrina-wong.jpg",
-  };
-
-  const ogImage = OG_OVERRIDES[episode?.slug || ""]
+  const ogImage = OG_IMAGES[episode?.slug || ""]
     ?? (episode?.youtubeUrl ? getYouTubeThumbnail(episode.youtubeUrl, "hqdefault") : null);
 
   useDocumentMeta({

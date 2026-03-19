@@ -41,18 +41,20 @@ export const POSTER_IMAGES: Record<string, string> = {
   "kate-johnson": kateCover,
 };
 
+const SITE_URL = "https://fomwebsite.lovable.app";
+
 export const OG_IMAGES: Record<string, string> = {
-  "the-future-of-marketing": "/images/ep0-og.png",
-  "meagen-eisenberg": "/images/ep1-og.png",
-  "lena-waters": "/images/og-lena-waters.jpg",
-  "dave-steer": "/images/og-dave-steer.jpg",
-  "sara-varni": "/images/og-sara-varni.jpg",
-  "kate-johnson": "/images/og-kate-johnson.jpg",
-  "idan-koren": "/images/og-idan-koren.jpg",
-  "lindsey-irvine": "/images/og-lindsey-irvine.jpg",
-  "sheila-vashee": "/images/og-sheila-vashee.jpg",
-  "ceci-stallsmith": "/images/og-ceci-stallsmith.jpg",
-  "katrina-wong": "/images/og-katrina-wong.jpg",
+  "the-future-of-marketing": `${SITE_URL}/images/ep0-og.png`,
+  "meagen-eisenberg": `${SITE_URL}/images/ep1-og.png`,
+  "lena-waters": `${SITE_URL}/images/og-lena-waters.jpg`,
+  "dave-steer": `${SITE_URL}/images/og-dave-steer.jpg`,
+  "sara-varni": `${SITE_URL}/images/og-sara-varni.jpg`,
+  "kate-johnson": `${SITE_URL}/images/og-kate-johnson.jpg`,
+  "idan-koren": `${SITE_URL}/images/og-idan-koren.jpg`,
+  "lindsey-irvine": `${SITE_URL}/images/og-lindsey-irvine.jpg`,
+  "sheila-vashee": `${SITE_URL}/images/og-sheila-vashee.jpg`,
+  "ceci-stallsmith": `${SITE_URL}/images/og-ceci-stallsmith.jpg`,
+  "katrina-wong": `${SITE_URL}/images/og-katrina-wong.jpg`,
 };
 
 export const HOST_IMAGES = [hostMada, hostEthan, hostCamille];
