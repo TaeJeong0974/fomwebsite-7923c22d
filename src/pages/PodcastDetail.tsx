@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import ep1Poster from "@/assets/ep1-poster.png?format=webp";
 import ep0Poster from "@/assets/ep0-poster.png?format=webp";
 import guestLena from "@/assets/guest-lena-waters-cover.png?format=webp";
@@ -24,9 +25,9 @@ import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
 import ListenSubscribeCards from "@/components/ListenSubscribeCards";
 import DetailVerticalText from "@/components/podcast/DetailVerticalText";
 import FadeInSection from "@/components/podcast/FadeInSection";
-import useDocumentMeta from "@/hooks/use-document-meta";
 import { useEpisodeData } from "@/contexts/EpisodeDataContext";
 import { EPISODE_IMAGES, OG_IMAGES } from "@/lib/episodeImages";
+import { DEFAULT_OG_IMAGE } from "@/lib/seoConstants";
 import {
   getYouTubeThumbnail,
   buildEpisodeSeo,
@@ -48,13 +49,8 @@ const PodcastDetail = () => {
   const ogImage = OG_IMAGES[episode?.slug || ""]
     ?? (episode?.youtubeUrl ? getYouTubeThumbnail(episode.youtubeUrl, "hqdefault") : null);
 
-  useDocumentMeta({
-    title: seo.title,
-    description: seo.description,
-    ogImage: ogImage || undefined,
-    canonicalUrl: slug ? getEpisodeCanonicalUrl(slug) : undefined,
-    noindex: episode?.comingSoon,
-  });
+  const canonicalUrl = slug ? getEpisodeCanonicalUrl(slug) : undefined;
+  const resolvedOgImage = ogImage || DEFAULT_OG_IMAGE;
 
   if (!episode || episode.comingSoon) return <NotFound />;
 
@@ -75,6 +71,21 @@ const PodcastDetail = () => {
 
   return (
     <>
+      <Helmet>
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.description} />
+        {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+        {episode?.comingSoon && <meta name="robots" content="noindex, nofollow" />}
+        <meta property="og:title" content={seo.title} />
+        <meta property="og:description" content={seo.description} />
+        <meta property="og:image" content={resolvedOgImage} />
+        {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+        <meta property="og:type" content="article" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={seo.title} />
+        <meta name="twitter:description" content={seo.description} />
+        <meta name="twitter:image" content={resolvedOgImage} />
+      </Helmet>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

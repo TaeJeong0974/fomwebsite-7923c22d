@@ -1,13 +1,28 @@
 import Footer from "@/components/Footer";
-import useDocumentMeta from "@/hooks/use-document-meta";
+import { Helmet } from "react-helmet-async";
+import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seoConstants";
+
+const PRIVACY_TITLE = "Privacy Policy | Future of Marketing";
+const PRIVACY_DESC = "Privacy policy for the Future of Marketing podcast website by Graphite Growth.";
+const PRIVACY_URL = `${SITE_URL}/privacy`;
 
 const Privacy = () => {
-  useDocumentMeta({
-    title: "Privacy Policy | Future of Marketing",
-    description: "Privacy policy for the Future of Marketing podcast website by Graphite Growth.",
-    noindex: true,
-  });
   return (
+    <>
+    <Helmet>
+      <title>{PRIVACY_TITLE}</title>
+      <meta name="description" content={PRIVACY_DESC} />
+      <meta name="robots" content="noindex, nofollow" />
+      <link rel="canonical" href={PRIVACY_URL} />
+      <meta property="og:title" content={PRIVACY_TITLE} />
+      <meta property="og:description" content={PRIVACY_DESC} />
+      <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+      <meta property="og:url" content={PRIVACY_URL} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={PRIVACY_TITLE} />
+      <meta name="twitter:description" content={PRIVACY_DESC} />
+      <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+    </Helmet>
     <main className="min-h-screen pt-32 pb-16">
       <div className="container mx-auto container-padding max-w-3xl">
         <h1 className="font-display text-4xl sm:text-5xl font-bold mb-4">Privacy Policy</h1>
@@ -223,6 +238,7 @@ const Privacy = () => {
       </div>
       <Footer />
     </main>
+    </>
   );
 };
 

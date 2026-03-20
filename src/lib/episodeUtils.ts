@@ -1,6 +1,6 @@
 import { PodcastEpisode } from "@/lib/podcastData";
 
-const SITE_URL = "https://fomwebsite.lovable.app";
+const SITE_URL = "https://fom.xyz";
 
 /**
  * Extract a YouTube thumbnail URL from a YouTube video URL.
