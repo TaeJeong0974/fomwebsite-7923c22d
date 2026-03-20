@@ -8,6 +8,21 @@ const PRIVACY_URL = `${SITE_URL}/privacy`;
 
 const Privacy = () => {
   return (
+    <>
+    <Helmet>
+      <title>{PRIVACY_TITLE}</title>
+      <meta name="description" content={PRIVACY_DESC} />
+      <meta name="robots" content="noindex, nofollow" />
+      <link rel="canonical" href={PRIVACY_URL} />
+      <meta property="og:title" content={PRIVACY_TITLE} />
+      <meta property="og:description" content={PRIVACY_DESC} />
+      <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+      <meta property="og:url" content={PRIVACY_URL} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={PRIVACY_TITLE} />
+      <meta name="twitter:description" content={PRIVACY_DESC} />
+      <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+    </Helmet>
     <main className="min-h-screen pt-32 pb-16">
       <div className="container mx-auto container-padding max-w-3xl">
         <h1 className="font-display text-4xl sm:text-5xl font-bold mb-4">Privacy Policy</h1>
