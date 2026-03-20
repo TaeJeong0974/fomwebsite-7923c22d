@@ -49,13 +49,8 @@ const PodcastDetail = () => {
   const ogImage = OG_IMAGES[episode?.slug || ""]
     ?? (episode?.youtubeUrl ? getYouTubeThumbnail(episode.youtubeUrl, "hqdefault") : null);
 
-  useDocumentMeta({
-    title: seo.title,
-    description: seo.description,
-    ogImage: ogImage || undefined,
-    canonicalUrl: slug ? getEpisodeCanonicalUrl(slug) : undefined,
-    noindex: episode?.comingSoon,
-  });
+  const canonicalUrl = slug ? getEpisodeCanonicalUrl(slug) : undefined;
+  const resolvedOgImage = ogImage || DEFAULT_OG_IMAGE;
 
   if (!episode || episode.comingSoon) return <NotFound />;
 
