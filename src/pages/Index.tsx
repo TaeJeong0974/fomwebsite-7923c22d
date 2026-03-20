@@ -26,8 +26,8 @@ const Index = () => {
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={SITE_TITLE} />
-        <meta name="twitter:description" content={SITE_DESCRIPTION} />
-        <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+        <meta name="twitter:description" content="Weekly conversations on how AI is transforming marketing." />
+        <meta name="twitter:image" content={`${SITE_URL}/og/home.jpg`} />
       </Helmet>
 
       <StickyVerticalText />
