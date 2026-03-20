@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import ep1Poster from "@/assets/ep1-poster.png?format=webp";
 import ep0Poster from "@/assets/ep0-poster.png?format=webp";
 import guestLena from "@/assets/guest-lena-waters-cover.png?format=webp";
@@ -24,9 +25,9 @@ import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
 import ListenSubscribeCards from "@/components/ListenSubscribeCards";
 import DetailVerticalText from "@/components/podcast/DetailVerticalText";
 import FadeInSection from "@/components/podcast/FadeInSection";
-import useDocumentMeta from "@/hooks/use-document-meta";
 import { useEpisodeData } from "@/contexts/EpisodeDataContext";
 import { EPISODE_IMAGES, OG_IMAGES } from "@/lib/episodeImages";
+import { DEFAULT_OG_IMAGE } from "@/lib/seoConstants";
 import {
   getYouTubeThumbnail,
   buildEpisodeSeo,
