@@ -29,7 +29,7 @@ export const EPISODE_IMAGES: Record<string, string> = {
   "sara-varni": guestSara,
   "dave-steer": guestDave,
   "kate-johnson": guestKate,
-  "sheila-vashee": guestSheila,
+  "sheila-vashee": sheilaCover,
   "ceci-stallsmith": guestCeci,
   "idan-koren": guestIdan,
   "katrina-wong": guestKatrina,
