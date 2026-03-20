@@ -335,7 +335,7 @@ The conversation explores what companies get wrong about PLG (optimizing before 
     ],
     chapters: [],
     youtubeUrl: "",
-    spotifyUrl: "",
+    spotifyUrl: "https://open.spotify.com/episode/1Xm3dsQsGX5KSYckjQxkeo",
     appleUrl: "https://podcasts.apple.com/us/podcast/community-is-the-moat-how-figma-turns-product-passion/id1876216633?i=1000756337876",
     duration: "",
     publishedDate: "Mar 19, 2026",
