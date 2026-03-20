@@ -1,12 +1,12 @@
 import Footer from "@/components/Footer";
-import useDocumentMeta from "@/hooks/use-document-meta";
+import { Helmet } from "react-helmet-async";
+import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seoConstants";
+
+const PRIVACY_TITLE = "Privacy Policy | Future of Marketing";
+const PRIVACY_DESC = "Privacy policy for the Future of Marketing podcast website by Graphite Growth.";
+const PRIVACY_URL = `${SITE_URL}/privacy`;
 
 const Privacy = () => {
-  useDocumentMeta({
-    title: "Privacy Policy | Future of Marketing",
-    description: "Privacy policy for the Future of Marketing podcast website by Graphite Growth.",
-    noindex: true,
-  });
   return (
     <main className="min-h-screen pt-32 pb-16">
       <div className="container mx-auto container-padding max-w-3xl">
