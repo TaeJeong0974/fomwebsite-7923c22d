@@ -21,7 +21,7 @@ const Index = () => {
         <link rel="canonical" href={SITE_URL} />
         <meta property="og:title" content={SITE_TITLE} />
         <meta property="og:description" content={SITE_DESCRIPTION} />
-        <meta property="og:image" content={`${SITE_URL}/og/home.jpg`} />
+        <meta property="og:image" content={`${SITE_URL}/images/og-homepage.png`} />
         <meta property="og:url" content={SITE_URL} />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
