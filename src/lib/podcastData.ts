@@ -334,7 +334,7 @@ The conversation explores what companies get wrong about PLG (optimizing before 
       "Why human judgment and taste remain the ultimate differentiator in design",
     ],
     chapters: [],
-    youtubeUrl: "",
+    youtubeUrl: "https://youtu.be/h8K72wYLNZE",
     spotifyUrl: "https://open.spotify.com/episode/1Xm3dsQsGX5KSYckjQxkeo",
     appleUrl: "https://podcasts.apple.com/us/podcast/community-is-the-moat-how-figma-turns-product-passion/id1876216633?i=1000756337876",
     duration: "",
