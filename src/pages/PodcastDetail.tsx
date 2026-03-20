@@ -26,7 +26,7 @@ import ListenSubscribeCards from "@/components/ListenSubscribeCards";
 import DetailVerticalText from "@/components/podcast/DetailVerticalText";
 import FadeInSection from "@/components/podcast/FadeInSection";
 import { useEpisodeData } from "@/contexts/EpisodeDataContext";
-import { EPISODE_IMAGES, OG_IMAGES } from "@/lib/episodeImages";
+import { EPISODE_IMAGES, OG_IMAGES, POSTER_IMAGES } from "@/lib/episodeImages";
 import { DEFAULT_OG_IMAGE } from "@/lib/seoConstants";
 import {
   getYouTubeThumbnail,
