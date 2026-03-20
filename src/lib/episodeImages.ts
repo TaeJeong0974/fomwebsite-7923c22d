@@ -41,7 +41,7 @@ export const POSTER_IMAGES: Record<string, string> = {
   "meagen-eisenberg": ep1Poster,
   "sara-varni": saraCover,
   "kate-johnson": kateCover,
-  "sheila-vashee": sheilaCover,
+  "sheila-vashee": sheilaPoster,
 };
 
 const SITE_URL = "https://fom.xyz";
