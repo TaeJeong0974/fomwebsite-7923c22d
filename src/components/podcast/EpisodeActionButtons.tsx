@@ -39,10 +39,6 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl, appleUrl }: EpisodeActio
         <span className={textClasses}>Apple</span>
       </motion.a>
 
-      <motion.a href={RSS_FEED_URL} target="_blank" rel="noopener noreferrer" className={liquidGlassButton} variants={buttonVariants} initial="initial" whileHover="hover" whileTap="tap" transition={liquidSpring}>
-        <RSSIcon className="w-6 h-6 shrink-0" />
-        <span className={textClasses}>RSS</span>
-      </motion.a>
 
       <motion.button onClick={handleShare} className={liquidGlassButton} variants={buttonVariants} initial="initial" whileHover="hover" whileTap="tap" transition={liquidSpring}>
         <AnimatePresence mode="wait">
