@@ -41,7 +41,7 @@ export const POSTER_IMAGES: Record<string, string> = {
   "kate-johnson": kateCover,
 };
 
-const SITE_URL = "https://fomwebsite.lovable.app";
+const SITE_URL = "https://fom.xyz";
 
 export const OG_IMAGES: Record<string, string> = {
   "the-future-of-marketing": `${SITE_URL}/images/ep0-og.png`,
