@@ -7,19 +7,91 @@ const corsHeaders = {
 const SITE_URL = "https://fom.xyz";
 const DEFAULT_OG_IMAGE = `${SITE_URL}/og/default.jpg`;
 const HOMEPAGE_OG_IMAGE = `${SITE_URL}/images/og-homepage.png`;
-const SITE_TITLE = "Future of Marketing Podcast | How AI Is Changing Marketing";
+const SITE_TITLE =
+  "Future of Marketing Podcast | How AI Is Changing Marketing";
 const SITE_DESCRIPTION =
   "How AI is reshaping marketing, from the leaders living it. Hosted by Graphite Growth, XYZ Venture Capital, and Upside.";
 
-// Known crawler user-agents
+// Hardcoded episode SEO data — single source of truth for crawlers.
+// Keep in sync with podcastData.ts + episodeImages.ts OG_IMAGES.
+const EPISODE_SEO: Record<
+  string,
+  { title: string; description: string; ogImage: string }
+> = {
+  "the-future-of-marketing": {
+    title: "Introducing the Future of Marketing Podcast",
+    description:
+      "Meet the hosts of the Future of Marketing podcast — Mada Seghete, Ethan Smith, and Camille Ricketts — as they discuss how AI is reshaping marketing.",
+    ogImage: `${SITE_URL}/images/ep0-og.png`,
+  },
+  "meagen-eisenberg": {
+    title: "Meagen Eisenberg (Lacework) on the Future of Marketing",
+    description:
+      "Meagen Eisenberg, CMO at Lacework, shares how AI is transforming B2B marketing, pipeline generation, and the role of the modern CMO.",
+    ogImage: `${SITE_URL}/images/og-meagen-eisenberg.png`,
+  },
+  "lena-waters": {
+    title: "Lena Waters (Dropbox) on the Future of Marketing",
+    description:
+      "Lena Waters, VP of Marketing at Dropbox, discusses brand reinvention, AI-powered productivity, and marketing in the age of intelligent tools.",
+    ogImage: `${SITE_URL}/images/og-lena-waters.jpg`,
+  },
+  "dave-steer": {
+    title: "Dave Steer (Ridgeline) on the Future of Marketing",
+    description:
+      "Dave Steer, CMO at Ridgeline, talks about marketing in fintech, building trust, and the intersection of AI and financial services.",
+    ogImage: `${SITE_URL}/images/og-dave-steer.jpg`,
+  },
+  "sara-varni": {
+    title: "Sara Varni (Attentive) on the Future of Marketing",
+    description:
+      "Sara Varni, CMO at Attentive, explores personalization at scale, AI-driven messaging, and what's next for mobile marketing.",
+    ogImage: `${SITE_URL}/images/og-sara-varni.jpg`,
+  },
+  "kate-johnson": {
+    title: "Kate Johnson (Samsara) on the Future of Marketing",
+    description:
+      "Kate Johnson, CMO at Samsara, discusses IoT marketing, operational intelligence, and building a brand in the physical operations space.",
+    ogImage: `${SITE_URL}/images/og-kate-johnson.jpg`,
+  },
+  "sheila-vashee": {
+    title: "Sheila Vashee (Figma) on the Future of Marketing",
+    description:
+      "Sheila Vashee, Head of Marketing at Figma, shares how community-led growth, product passion, and AI-driven design are reshaping marketing.",
+    ogImage: `${SITE_URL}/images/og-sheila-vashee.jpg`,
+  },
+  "lindsey-irvine": {
+    title: "Lindsey Irvine (Square) on the Future of Marketing",
+    description:
+      "Lindsey Irvine, CMO at Square, discusses fintech brand building, marketing to SMBs, and the future of commerce.",
+    ogImage: `${SITE_URL}/images/og-lindsey-irvine.jpg`,
+  },
+  "idan-koren": {
+    title: "Idan Koren (Verkada) on the Future of Marketing",
+    description:
+      "Idan Koren, CMO at Verkada, discusses security technology marketing and AI-driven brand strategy.",
+    ogImage: `${SITE_URL}/images/og-idan-koren.jpg`,
+  },
+  "ceci-stallsmith": {
+    title: "Ceci Stallsmith (Lovable) on the Future of Marketing",
+    description:
+      "Ceci Stallsmith, CMO at Lovable, shares insights on developer marketing, product-led growth, and AI-powered tools.",
+    ogImage: `${SITE_URL}/images/og-ceci-stallsmith.jpg`,
+  },
+  "katrina-wong": {
+    title: "Katrina Wong (New Relic) on the Future of Marketing",
+    description:
+      "Katrina Wong, CMO at New Relic, discusses observability marketing, developer relations, and data-driven brand building.",
+    ogImage: `${SITE_URL}/images/og-katrina-wong.jpg`,
+  },
+};
+
 const CRAWLER_REGEX =
   /googlebot|bingbot|yandex|baiduspider|twitterbot|facebookexternalhit|linkedinbot|slackbot|discordbot|whatsapp|telegrambot|applebot|pinterestbot|redditbot|embedly|showyoubot|outbrain|quora link preview|rogerbot|vkshare/i;
 
 function isCrawler(ua: string): boolean {
   return CRAWLER_REGEX.test(ua);
 }
-
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 Deno.serve(async (req) => {
   if (req.method === "OPTIONS") {
@@ -28,11 +100,12 @@ Deno.serve(async (req) => {
 
   const url = new URL(req.url);
   const userAgent = req.headers.get("user-agent") || "";
+  const path =
+    url.searchParams.get("path") ||
+    req.headers.get("x-original-path") ||
+    "/";
 
-  // Get the path from query param or X-Original-Path header
-  const path = url.searchParams.get("path") || req.headers.get("x-original-path") || "/";
-
-  // If not a crawler, redirect to the SPA
+  // Non-crawlers get redirected to the SPA
   if (!isCrawler(userAgent)) {
     return new Response(null, {
       status: 302,
@@ -40,7 +113,6 @@ Deno.serve(async (req) => {
     });
   }
 
-  // Determine which page to render meta tags for
   let title = SITE_TITLE;
   let description = SITE_DESCRIPTION;
   let ogImage = HOMEPAGE_OG_IMAGE;
@@ -55,108 +127,78 @@ Deno.serve(async (req) => {
     canonicalUrl = `${SITE_URL}/podcast/${slug}`;
     ogType = "article";
 
-    try {
-      const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
-      const supabaseKey = Deno.env.get("SUPABASE_ANON_KEY")!;
-      const supabase = createClient(supabaseUrl, supabaseKey);
-
-      const { data: episode } = await supabase
-        .from("live_episodes")
-        .select("*")
-        .eq("slug", slug)
-        .single();
-
-      if (episode) {
-        const guestName = episode.guest_name || "";
-        const guestTitle = episode.guest_title || "";
-        const guestCompany = episode.guest_company || "";
-
-        title = guestName
-          ? `${guestName} (${guestCompany}) on the Future of Marketing`
-          : episode.title;
-        description =
-          episode.description ||
-          `Join us for a conversation with ${guestName}, ${guestTitle} at ${guestCompany}.`;
-        ogImage = episode.og_image_url || DEFAULT_OG_IMAGE;
-
-        // Build JSON-LD for the episode
-        const episodeJsonLd = {
-          "@context": "https://schema.org",
-          "@type": "PodcastEpisode",
-          name: title,
-          description,
-          url: canonicalUrl,
-          ...(episode.youtube_url && { video: { "@type": "VideoObject", embedUrl: episode.youtube_url } }),
-          partOfSeries: {
-            "@type": "PodcastSeries",
-            name: "Future of Marketing Podcast",
-            url: SITE_URL,
-          },
-        };
-        jsonLd = `<script type="application/ld+json">${JSON.stringify(episodeJsonLd)}</script>`;
-      } else {
-        // Try the staging episodes table as fallback
-        const { data: stagingEp } = await supabase
-          .from("episodes")
-          .select("*")
-          .eq("slug", slug)
-          .eq("published", true)
-          .single();
-
-        if (stagingEp) {
-          const guestName = stagingEp.guest_name || "";
-          const guestTitle = stagingEp.guest_title || "";
-          const guestCompany = stagingEp.guest_company || "";
-
-          title = guestName
-            ? `${guestName} (${guestCompany}) on the Future of Marketing`
-            : stagingEp.title;
-          description =
-            stagingEp.description ||
-            `Join us for a conversation with ${guestName}, ${guestTitle} at ${guestCompany}.`;
-          ogImage = stagingEp.og_image_url || DEFAULT_OG_IMAGE;
-        }
-      }
-    } catch (e) {
-      console.error("Error fetching episode:", e);
+    const seo = EPISODE_SEO[slug];
+    if (seo) {
+      title = seo.title;
+      description = seo.description;
+      ogImage = seo.ogImage;
     }
+
+    jsonLd = `<script type="application/ld+json">${JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "PodcastEpisode",
+      name: title,
+      description,
+      url: canonicalUrl,
+      image: ogImage,
+      partOfSeries: {
+        "@type": "PodcastSeries",
+        name: "Future of Marketing Podcast",
+        url: SITE_URL,
+      },
+    })}</script>`;
   } else if (path === "/privacy") {
     title = "Privacy Policy | Future of Marketing";
-    description = "Privacy policy for the Future of Marketing podcast website.";
+    description =
+      "Privacy policy for the Future of Marketing podcast website.";
     canonicalUrl = `${SITE_URL}/privacy`;
+  } else {
+    // Homepage JSON-LD
+    jsonLd = `<script type="application/ld+json">${JSON.stringify({
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          name: "Future of Marketing",
+          url: SITE_URL,
+          description: SITE_DESCRIPTION,
+          publisher: { "@type": "Organization", name: "Future of Marketing" },
+        },
+        {
+          "@type": "PodcastSeries",
+          name: "Future of Marketing Podcast",
+          url: SITE_URL,
+          description: SITE_DESCRIPTION,
+          webFeed: `${SITE_URL}/rss.xml`,
+          image: HOMEPAGE_OG_IMAGE,
+        },
+      ],
+    })}</script>`;
   }
 
-  // Build the HTML response with meta tags
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>${escapeHtml(title)}</title>
-  <meta name="description" content="${escapeHtml(description)}" />
+  <title>${esc(title)}</title>
+  <meta name="description" content="${esc(description)}" />
   <link rel="canonical" href="${canonicalUrl}" />
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="${escapeHtml(title)}" />
-  <meta property="og:description" content="${escapeHtml(description)}" />
-  <meta property="og:image" content="${escapeHtml(ogImage)}" />
+  <meta property="og:title" content="${esc(title)}" />
+  <meta property="og:description" content="${esc(description)}" />
+  <meta property="og:image" content="${esc(ogImage)}" />
   <meta property="og:url" content="${canonicalUrl}" />
   <meta property="og:type" content="${ogType}" />
   <meta property="og:site_name" content="Future of Marketing" />
-
-  <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="${escapeHtml(title)}" />
-  <meta name="twitter:description" content="${escapeHtml(description)}" />
-  <meta name="twitter:image" content="${escapeHtml(ogImage)}" />
-
+  <meta name="twitter:title" content="${esc(title)}" />
+  <meta name="twitter:description" content="${esc(description)}" />
+  <meta name="twitter:image" content="${esc(ogImage)}" />
   ${jsonLd}
-
-  <!-- Redirect non-crawlers to the SPA -->
   <meta http-equiv="refresh" content="0;url=${canonicalUrl}" />
 </head>
 <body>
-  <h1>${escapeHtml(title)}</h1>
-  <p>${escapeHtml(description)}</p>
+  <h1>${esc(title)}</h1>
+  <p>${esc(description)}</p>
   <a href="${canonicalUrl}">Visit ${canonicalUrl}</a>
 </body>
 </html>`;
@@ -171,8 +213,8 @@ Deno.serve(async (req) => {
   });
 });
 
-function escapeHtml(str: string): string {
-  return str
+function esc(s: string): string {
+  return s
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
