@@ -2,7 +2,7 @@ import { Share2, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { liquidSpring, buttonVariants, variantClasses } from "@/components/ui/LiquidButton";
-import { YouTubeIcon, SpotifyIcon, ApplePodcastsIcon, RSSIcon, APPLE_PODCASTS_URL, RSS_FEED_URL } from "@/components/icons/PlatformIcons";
+import { YouTubeIcon, SpotifyIcon, ApplePodcastsIcon, APPLE_PODCASTS_URL } from "@/components/icons/PlatformIcons";
 
 interface EpisodeActionButtonsProps {
   youtubeUrl: string;
