@@ -1,12 +1,6 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
-import ep1Poster from "@/assets/ep1-poster.png?format=webp";
-import ep0Poster from "@/assets/ep0-poster.png?format=webp";
-import guestLena from "@/assets/guest-lena-waters-cover.png?format=webp";
-import guestDaveCover from "@/assets/guest-dave-steer-cover.png?format=webp";
-import guestSaraCover from "@/assets/guest-sara-varni-cover.png?format=webp";
-import guestKateCover from "@/assets/guest-kate-johnson-cover.png?format=webp";
 import Footer from "@/components/Footer";
 import NotFound from "@/pages/NotFound";
 import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
@@ -26,7 +20,7 @@ import ListenSubscribeCards from "@/components/ListenSubscribeCards";
 import DetailVerticalText from "@/components/podcast/DetailVerticalText";
 import FadeInSection from "@/components/podcast/FadeInSection";
 import { useEpisodeData } from "@/contexts/EpisodeDataContext";
-import { EPISODE_IMAGES, OG_IMAGES } from "@/lib/episodeImages";
+import { EPISODE_IMAGES, OG_IMAGES, POSTER_IMAGES } from "@/lib/episodeImages";
 import { DEFAULT_OG_IMAGE } from "@/lib/seoConstants";
 import {
   getYouTubeThumbnail,
@@ -129,7 +123,7 @@ const PodcastDetail = () => {
                 spotifyUrl={episode.spotifyUrl}
                 appleUrl={episode.appleUrl}
                 playTrigger={playTrigger}
-                thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : episode.slug === "lena-waters" ? guestLena : episode.slug === "dave-steer" ? guestDaveCover : episode.slug === "sara-varni" ? guestSaraCover : episode.slug === "kate-johnson" ? guestKateCover : isIntro ? ep0Poster : undefined}
+                thumbnailImage={POSTER_IMAGES[episode.slug]}
               />
               <div className="pt-2 lg:hidden">
                 <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} appleUrl={episode.appleUrl} />

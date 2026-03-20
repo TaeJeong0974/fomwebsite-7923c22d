@@ -19,6 +19,7 @@ import ep0Poster from "@/assets/ep0-poster.png?format=webp";
 import ep1Poster from "@/assets/ep1-poster.png?format=webp";
 import saraCover from "@/assets/guest-sara-varni-cover.png?format=webp";
 import kateCover from "@/assets/guest-kate-johnson-cover.png?format=webp";
+import sheilaCover from "@/assets/guest-sheila-vashee-cover.png?format=webp";
 
 export const EPISODE_IMAGES: Record<string, string> = {
   "the-future-of-marketing": hostMada,
@@ -39,6 +40,7 @@ export const POSTER_IMAGES: Record<string, string> = {
   "meagen-eisenberg": ep1Poster,
   "sara-varni": saraCover,
   "kate-johnson": kateCover,
+  "sheila-vashee": sheilaCover,
 };
 
 const SITE_URL = "https://fom.xyz";
