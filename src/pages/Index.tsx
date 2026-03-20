@@ -27,7 +27,7 @@ const Index = () => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={SITE_TITLE} />
         <meta name="twitter:description" content={SITE_DESCRIPTION} />
-        <meta name="twitter:image" content={`${SITE_URL}/og/home.jpg`} />
+        <meta name="twitter:image" content={`${SITE_URL}/images/og-homepage.png`} />
       </Helmet>
 
       <StickyVerticalText />
