@@ -17,17 +17,17 @@ const Index = () => {
     <div className="min-h-screen relative overflow-x-hidden">
       <Helmet>
         <title>{SITE_TITLE}</title>
-        <meta name="description" content={SITE_DESCRIPTION} />
+        <meta name="description" content="Weekly conversations on how AI is transforming marketing." />
         <link rel="canonical" href={SITE_URL} />
         <meta property="og:title" content={SITE_TITLE} />
-        <meta property="og:description" content={SITE_DESCRIPTION} />
-        <meta property="og:image" content={DEFAULT_OG_IMAGE} />
+        <meta property="og:description" content="Weekly conversations on how AI is transforming marketing." />
+        <meta property="og:image" content={`${SITE_URL}/og/home.jpg`} />
         <meta property="og:url" content={SITE_URL} />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={SITE_TITLE} />
-        <meta name="twitter:description" content={SITE_DESCRIPTION} />
-        <meta name="twitter:image" content={DEFAULT_OG_IMAGE} />
+        <meta name="twitter:description" content="Weekly conversations on how AI is transforming marketing." />
+        <meta name="twitter:image" content={`${SITE_URL}/og/home.jpg`} />
       </Helmet>
 
       <StickyVerticalText />
