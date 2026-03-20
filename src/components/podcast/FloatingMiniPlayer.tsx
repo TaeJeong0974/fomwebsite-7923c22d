@@ -147,7 +147,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, appleUrl, playTrigger, thu
               <img
                 src={thumbnailImage || thumbnailUrl || guestBg}
                 alt="Episode thumbnail"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-smooth [@media(hover:hover)]:group-hover:scale-105"
+                className={`absolute inset-0 w-full h-full transition-transform duration-700 ease-smooth [@media(hover:hover)]:group-hover:scale-105 ${thumbnailImage ? 'object-contain bg-neutral-900' : 'object-cover'}`}
                 loading="eager"
                 decoding="async"
               />
