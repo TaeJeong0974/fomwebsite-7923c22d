@@ -129,7 +129,7 @@ const PodcastDetail = () => {
                 spotifyUrl={episode.spotifyUrl}
                 appleUrl={episode.appleUrl}
                 playTrigger={playTrigger}
-                thumbnailImage={episode.slug === "meagen-eisenberg" ? ep1Poster : episode.slug === "lena-waters" ? guestLena : episode.slug === "dave-steer" ? guestDaveCover : episode.slug === "sara-varni" ? guestSaraCover : episode.slug === "kate-johnson" ? guestKateCover : isIntro ? ep0Poster : undefined}
+                thumbnailImage={POSTER_IMAGES[episode.slug]}
               />
               <div className="pt-2 lg:hidden">
                 <EpisodeActionButtons youtubeUrl={episode.youtubeUrl} spotifyUrl={episode.spotifyUrl} appleUrl={episode.appleUrl} />
