@@ -2,7 +2,7 @@ import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet-async";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seoConstants";
 
-const PRIVACY_TITLE = "Privacy Policy | Future of Marketing";
+const PRIVACY_TITLE = "Privacy Policy | FOM Podcast";
 const PRIVACY_DESC = "Privacy policy for the Future of Marketing podcast website by Graphite Growth.";
 const PRIVACY_URL = `${SITE_URL}/privacy`;
 

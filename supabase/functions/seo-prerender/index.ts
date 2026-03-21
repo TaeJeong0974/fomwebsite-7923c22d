@@ -148,7 +148,7 @@ Deno.serve(async (req) => {
       },
     })}</script>`;
   } else if (path === "/privacy") {
-    title = "Privacy Policy | Future of Marketing";
+    title = "Privacy Policy | FOM Podcast";
     description =
       "Privacy policy for the Future of Marketing podcast website.";
     canonicalUrl = `${SITE_URL}/privacy`;
