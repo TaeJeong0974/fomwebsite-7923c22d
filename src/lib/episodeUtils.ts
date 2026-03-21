@@ -22,14 +22,28 @@ export function getYouTubeThumbnail(
 export function buildEpisodeSeo(episode?: PodcastEpisode) {
   if (!episode) {
     return {
-      title: "Episode Not Found | Future of Marketing",
+      title: "Episode Not Found | FOM Podcast",
       description: "The episode you're looking for doesn't exist.",
     };
   }
 
-  const title = episode.comingSoon
-    ? `${episode.name} — Coming Soon | Future of Marketing`
-    : `${episode.name} on ${episode.overview} | Future of Marketing`;
+  const SUFFIX = " | FOM Podcast";
+  const MAX_TITLE = 60;
+
+  let title: string;
+  if (episode.comingSoon) {
+    title = `${episode.name} — Coming Soon${SUFFIX}`;
+  } else {
+    const base = `${episode.name}: ${episode.overview}${SUFFIX}`;
+    if (base.length <= MAX_TITLE) {
+      title = base;
+    } else {
+      // Truncate overview to fit
+      const budget = MAX_TITLE - `${episode.name}: ${SUFFIX}`.length - 1;
+      const truncated = episode.overview.slice(0, budget).trimEnd();
+      title = `${episode.name}: ${truncated}…${SUFFIX}`;
+    }
+  }
 
   const description = episode.comingSoon
     ? `${episode.name} (${episode.title}, ${episode.company}) joins the Future of Marketing podcast soon.`

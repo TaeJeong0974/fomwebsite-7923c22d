@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seoConstants";
 
 const NotFound = () => {
-  const title = "Page Not Found | Future of Marketing";
+  const title = "Page Not Found | FOM Podcast";
   const description = "The page you're looking for doesn't exist.";
 
   return (
