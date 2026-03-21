@@ -19,67 +19,67 @@ const EPISODE_SEO: Record<
   { title: string; description: string; ogImage: string }
 > = {
   "the-future-of-marketing": {
-    title: "Introducing the Future of Marketing Podcast",
+    title: "Introducing FOM Podcast",
     description:
       "Meet the hosts of the Future of Marketing podcast — Mada Seghete, Ethan Smith, and Camille Ricketts — as they discuss how AI is reshaping marketing.",
     ogImage: `${SITE_URL}/images/ep0-og.png`,
   },
   "meagen-eisenberg": {
-    title: "Meagen Eisenberg (Lacework) on the Future of Marketing",
+    title: "Meagen Eisenberg (Lacework) | FOM Podcast",
     description:
       "Meagen Eisenberg, CMO at Lacework, shares how AI is transforming B2B marketing, pipeline generation, and the role of the modern CMO.",
     ogImage: `${SITE_URL}/images/og-meagen-eisenberg.png`,
   },
   "lena-waters": {
-    title: "Lena Waters (Dropbox) on the Future of Marketing",
+    title: "Lena Waters (Dropbox) | FOM Podcast",
     description:
       "Lena Waters, VP of Marketing at Dropbox, discusses brand reinvention, AI-powered productivity, and marketing in the age of intelligent tools.",
     ogImage: `${SITE_URL}/images/og-lena-waters.jpg`,
   },
   "dave-steer": {
-    title: "Dave Steer (Ridgeline) on the Future of Marketing",
+    title: "Dave Steer (Ridgeline) | FOM Podcast",
     description:
       "Dave Steer, CMO at Ridgeline, talks about marketing in fintech, building trust, and the intersection of AI and financial services.",
     ogImage: `${SITE_URL}/images/og-dave-steer.jpg`,
   },
   "sara-varni": {
-    title: "Sara Varni (Attentive) on the Future of Marketing",
+    title: "Sara Varni (Attentive) | FOM Podcast",
     description:
       "Sara Varni, CMO at Attentive, explores personalization at scale, AI-driven messaging, and what's next for mobile marketing.",
     ogImage: `${SITE_URL}/images/og-sara-varni.jpg`,
   },
   "kate-johnson": {
-    title: "Kate Johnson (Samsara) on the Future of Marketing",
+    title: "Kate Johnson (Samsara) | FOM Podcast",
     description:
       "Kate Johnson, CMO at Samsara, discusses IoT marketing, operational intelligence, and building a brand in the physical operations space.",
     ogImage: `${SITE_URL}/images/og-kate-johnson.jpg`,
   },
   "sheila-vashee": {
-    title: "Sheila Vashee (Figma) on the Future of Marketing",
+    title: "Sheila Vashee (Figma) | FOM Podcast",
     description:
       "Sheila Vashee, Head of Marketing at Figma, shares how community-led growth, product passion, and AI-driven design are reshaping marketing.",
     ogImage: `${SITE_URL}/images/og-sheila-vashee.jpg`,
   },
   "lindsey-irvine": {
-    title: "Lindsey Irvine (Square) on the Future of Marketing",
+    title: "Lindsey Irvine (Square) | FOM Podcast",
     description:
       "Lindsey Irvine, CMO at Square, discusses fintech brand building, marketing to SMBs, and the future of commerce.",
     ogImage: `${SITE_URL}/images/og-lindsey-irvine.jpg`,
   },
   "idan-koren": {
-    title: "Idan Koren (Verkada) on the Future of Marketing",
+    title: "Idan Koren (Verkada) | FOM Podcast",
     description:
       "Idan Koren, CMO at Verkada, discusses security technology marketing and AI-driven brand strategy.",
     ogImage: `${SITE_URL}/images/og-idan-koren.jpg`,
   },
   "ceci-stallsmith": {
-    title: "Ceci Stallsmith (Lovable) on the Future of Marketing",
+    title: "Ceci Stallsmith (Lovable) | FOM Podcast",
     description:
       "Ceci Stallsmith, CMO at Lovable, shares insights on developer marketing, product-led growth, and AI-powered tools.",
     ogImage: `${SITE_URL}/images/og-ceci-stallsmith.jpg`,
   },
   "katrina-wong": {
-    title: "Katrina Wong (New Relic) on the Future of Marketing",
+    title: "Katrina Wong (New Relic) | FOM Podcast",
     description:
       "Katrina Wong, CMO at New Relic, discusses observability marketing, developer relations, and data-driven brand building.",
     ogImage: `${SITE_URL}/images/og-katrina-wong.jpg`,
