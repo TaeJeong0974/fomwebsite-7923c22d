@@ -1,14 +1,44 @@
 
 
-## Update Meagen Eisenberg OG Image
+# Update Page Titles for All Routes
 
-### What changes
+## Current Titles (some exceed 60 chars)
+- **Homepage:** "Future of Marketing Podcast | How AI Is Changing Marketing" (59 chars ✅)
+- **Episode pages:** `"{Name} on {Overview} | Future of Marketing"` — easily exceeds 60 chars for longer names/overviews
+- **Not Found:** "Page Not Found | Future of Marketing" (36 chars ✅)
+- **Privacy:** "Privacy Policy | Future of Marketing" (36 chars ✅)
+- **Episode not found fallback:** "Episode Not Found | Future of Marketing" (39 chars ✅)
+- **Coming soon:** `"{Name} — Coming Soon | Future of Marketing"` — can exceed 60 chars
 
-1. **Copy uploaded image to public** — Copy `user-uploads://Meagen.png` to `public/images/og-meagen-eisenberg.png` (OG images must be absolute URLs served statically, not bundled via src/assets).
+## Changes
 
-2. **Update OG_IMAGES map** (`src/lib/episodeImages.ts`) — Change the `meagen-eisenberg` entry from `ep1-og.png` to `og-meagen-eisenberg.png`.
+### 1. Shorten the brand suffix
+Use `"| FOM Podcast"` instead of `"| Future of Marketing"` to save ~10 characters across all episode titles.
 
-### Files touched
-- `public/images/og-meagen-eisenberg.png` (new)
-- `src/lib/episodeImages.ts` (one-line edit)
+### 2. Update `src/lib/seoConstants.ts`
+- Keep `SITE_TITLE` as-is (59 chars, fine)
+
+### 3. Update `src/lib/episodeUtils.ts` — `buildEpisodeSeo()`
+- Published: `"{Name}: {Overview} | FOM Podcast"` — truncate overview if needed to stay under 60 chars
+- Coming soon: `"{Name} — Coming Soon | FOM Podcast"`
+- Not found: `"Episode Not Found | FOM Podcast"`
+
+### 4. Update `src/pages/NotFound.tsx`
+- `"Page Not Found | FOM Podcast"`
+
+### 5. Update `src/pages/Privacy.tsx`
+- `"Privacy Policy | FOM Podcast"`
+
+### 6. Update `supabase/functions/seo-prerender/index.ts`
+- Match the same shortened title format for crawler-facing HTML
+
+### 7. Update `index.html`
+- Update the static `<title>` fallback to match `SITE_TITLE`
+
+## Files to modify
+- `src/lib/episodeUtils.ts`
+- `src/pages/NotFound.tsx`
+- `src/pages/Privacy.tsx`
+- `supabase/functions/seo-prerender/index.ts`
+- `index.html` (static fallback title)
 
