@@ -16,6 +16,7 @@ const NotFound = () => {
         <meta property="og:description" content={description} />
         <meta property="og:image" content={DEFAULT_OG_IMAGE} />
         <meta property="og:url" content={SITE_URL} />
+        <meta property="og:site_name" content="Future of Marketing" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
