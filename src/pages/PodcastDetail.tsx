@@ -74,15 +74,13 @@ const PodcastDetail = () => {
         <meta property="og:image" content={resolvedOgImage} />
         <meta property="og:url" content={canonicalUrl || ""} />
         <meta property="og:type" content="article" />
+        <meta property="og:site_name" content="Future of Marketing" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={seo.title} />
         <meta name="twitter:description" content={seo.description} />
         <meta name="twitter:image" content={resolvedOgImage} />
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
       </Helmet>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
       <DetailVerticalText guestName={guestName} />
       <StickyBottomBar
         youtubeUrl={episode.youtubeUrl}
