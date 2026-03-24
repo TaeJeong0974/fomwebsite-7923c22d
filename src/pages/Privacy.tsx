@@ -18,6 +18,7 @@ const Privacy = () => {
       <meta property="og:description" content={PRIVACY_DESC} />
       <meta property="og:image" content={DEFAULT_OG_IMAGE} />
       <meta property="og:url" content={PRIVACY_URL} />
+      <meta property="og:site_name" content="Future of Marketing" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={PRIVACY_TITLE} />
       <meta name="twitter:description" content={PRIVACY_DESC} />
