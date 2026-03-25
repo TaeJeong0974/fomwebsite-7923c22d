@@ -47,15 +47,15 @@ export const POSTER_IMAGES: Record<string, string> = {
 const SITE_URL = "https://fom.xyz";
 
 export const OG_IMAGES: Record<string, string> = {
-  "the-future-of-marketing": `${SITE_URL}/images/ep0-og.png`,
+  "the-future-of-marketing": `${SITE_URL}/images/og-the-future-of-marketing.png`,
   "meagen-eisenberg": `${SITE_URL}/images/og-meagen-eisenberg.png`,
-  "lena-waters": `${SITE_URL}/images/og-lena-waters.jpg`,
-  "dave-steer": `${SITE_URL}/images/og-dave-steer.jpg`,
-  "sara-varni": `${SITE_URL}/images/og-sara-varni.jpg`,
-  "kate-johnson": `${SITE_URL}/images/og-kate-johnson.jpg`,
+  "lena-waters": `${SITE_URL}/images/og-lena-waters.png`,
+  "dave-steer": `${SITE_URL}/images/og-dave-steer.png`,
+  "sara-varni": `${SITE_URL}/images/og-sara-varni.png`,
+  "kate-johnson": `${SITE_URL}/images/og-kate-johnson.png`,
   "idan-koren": `${SITE_URL}/images/og-idan-koren.jpg`,
   "lindsey-irvine": `${SITE_URL}/images/og-lindsey-irvine.jpg`,
-  "sheila-vashee": `${SITE_URL}/images/og-sheila-vashee.jpg`,
+  "sheila-vashee": `${SITE_URL}/images/og-sheila-vashee.png`,
   "ceci-stallsmith": `${SITE_URL}/images/og-ceci-stallsmith.jpg`,
   "katrina-wong": `${SITE_URL}/images/og-katrina-wong.jpg`,
 };
