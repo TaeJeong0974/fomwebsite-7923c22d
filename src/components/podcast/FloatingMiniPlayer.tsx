@@ -128,7 +128,7 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, appleUrl, playTrigger, thu
     <>
       {/* Main Video Player */}
       <div ref={playerWrapperRef} className="-ml-4 -mr-4 w-[calc(100%+2rem)] sm:ml-0 sm:mr-0 sm:w-full">
-        <div className="relative aspect-video sm:rounded-xl overflow-hidden bg-neutral-900 sm:ring-1 sm:ring-white/10 sm:shadow-2xl sm:shadow-black/20">
+        <div className="relative aspect-video sm:rounded-xl overflow-hidden bg-neutral-900 sm:shadow-2xl sm:shadow-black/20">
           {isPlaying && videoId ? (
             <iframe
               src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1&playsinline=1`}
