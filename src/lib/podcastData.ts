@@ -395,11 +395,11 @@ The conversation explores what companies get wrong about PLG (optimizing before 
     id: 9,
     slug: "ceci-stallsmith",
     name: "Ceci Stallsmith",
-    title: "VP of Marketing",
+    title: "CMO",
     company: "Lovable",
     companyDomain: "lovable.dev",
     overview: "What It Takes to Market a Product When the Category Doesn't Fully Exist Yet",
-    bio: "is the VP of Marketing at Lovable, where she leads marketing for a company redefining how software gets built. Her career spans scaling developer ecosystems, advising founders, and building brands at the intersection of product and community. At Lovable, Ceci navigates the unique challenge of marketing a product that serves multiple audiences—developers, non-technical founders, and enterprise buyers—while the category itself is still being defined.",
+    bio: "is the CMO at Lovable, where she leads marketing for a company redefining how software gets built. Her career spans scaling developer ecosystems, advising founders, and building brands at the intersection of product and community. At Lovable, Ceci navigates the unique challenge of marketing a product that serves multiple audiences—developers, non-technical founders, and enterprise buyers—while the category itself is still being defined.",
     fullDescription: `What does it take to market a product when the category itself doesn't fully exist yet?
 
 In this episode of Future of Marketing, hosts Ethan Smith and Camille Ricketts sit down with Cecilia Stallsmith, CMO at Lovable, to unpack the realities of building and scaling marketing in one of the fastest-moving spaces in tech.
