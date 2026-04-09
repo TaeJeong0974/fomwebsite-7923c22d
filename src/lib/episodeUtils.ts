@@ -53,7 +53,7 @@ export function buildEpisodeSeo(episode?: PodcastEpisode) {
 }
 
 /**
- * Build JSON-LD structured data for an episode.
+ * Build JSON-LD structured data for an episode (PodcastEpisode + BreadcrumbList).
  */
 export function buildEpisodeJsonLd(
   episode: PodcastEpisode,
@@ -63,17 +63,44 @@ export function buildEpisodeJsonLd(
 ) {
   return {
     "@context": "https://schema.org",
-    "@type": "PodcastEpisode",
-    name: isIntro ? "Future of Marketing — Intro" : `${episode.name}: ${episode.overview}`,
-    description: episode.fullDescription || episode.overview,
-    url: `${SITE_URL}/podcast/${slug}`,
-    datePublished: episode.publishedDate,
-    image: ogImage || undefined,
-    partOfSeries: {
-      "@type": "PodcastSeries",
-      name: "Future of Marketing",
-      url: SITE_URL,
-    },
+    "@graph": [
+      {
+        "@type": "PodcastEpisode",
+        name: isIntro ? "Future of Marketing — Intro" : `${episode.name}: ${episode.overview}`,
+        description: episode.fullDescription || episode.overview,
+        url: `${SITE_URL}/podcast/${slug}`,
+        datePublished: episode.publishedDate,
+        image: ogImage || undefined,
+        partOfSeries: {
+          "@type": "PodcastSeries",
+          name: "Future of Marketing",
+          url: SITE_URL,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: `${SITE_URL}/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Podcast",
+            item: `${SITE_URL}/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: isIntro ? "Intro" : episode.name,
+            item: `${SITE_URL}/podcast/${slug}`,
+          },
+        ],
+      },
+    ],
   };
 }
 
