@@ -395,7 +395,7 @@ The conversation explores what companies get wrong about PLG (optimizing before 
     id: 9,
     slug: "ceci-stallsmith",
     name: "Ceci Stallsmith",
-    title: "Chief Marketing Officer",
+    title: "VP of Marketing",
     company: "Lovable",
     companyDomain: "lovable.dev",
     overview: "What It Takes to Market a Product When the Category Doesn't Fully Exist Yet",
