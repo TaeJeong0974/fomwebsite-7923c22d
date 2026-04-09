@@ -397,18 +397,47 @@ The conversation explores what companies get wrong about PLG (optimizing before 
     name: "Ceci Stallsmith",
     title: "Chief Marketing Officer",
     company: "Lovable",
-    companyDomain: "lovable.com",
-    overview: "",
-    bio: "",
-    fullDescription: "",
-    topics: [],
+    companyDomain: "lovable.dev",
+    overview: "What It Takes to Market a Product When the Category Doesn't Fully Exist Yet",
+    bio: "is the Chief Marketing Officer at Lovable, where she leads marketing for a company redefining how software gets built. Her career spans scaling developer ecosystems, advising founders, and building brands at the intersection of product and community. At Lovable, Ceci navigates the unique challenge of marketing a product that serves multiple audiences—developers, non-technical founders, and enterprise buyers—while the category itself is still being defined.",
+    fullDescription: `What does it take to market a product when the category itself doesn't fully exist yet?
+
+In this episode of Future of Marketing, hosts Ethan Smith and Camille Ricketts sit down with Cecilia Stallsmith, CMO at Lovable, to unpack the realities of building and scaling marketing in one of the fastest-moving spaces in tech.
+
+Ceci brings a rare perspective shaped by her experience scaling developer ecosystems, advising founders, and now leading marketing at a company redefining how software gets built. At Lovable, the challenge isn't just go-to-market execution, it's defining the narrative for a product that serves multiple audiences at once: developers, non-technical founders, and enterprise buyers.
+
+A central theme in the conversation is the misconception that developers are "immune" to marketing. In reality, Ceci argues they are deeply influenced by brand, identity, and culture—just in less obvious ways. Choosing a tool isn't just a functional decision; it's a signal of taste and belonging. That insight fundamentally changes how teams should approach messaging, design, and community-building.
+
+The episode also explores the complexity of category creation in the age of AI. With terms like "vibe coding" and "agentic software" emerging rapidly, Ceci explains why locking into buzzwords too early can backfire. Instead, her approach is to run multiple messaging experiments simultaneously and let the market determine what sticks, rather than forcing a single narrative prematurely.
+
+AI's role in marketing is another major focus—but not in the way most teams think. Ceci emphasizes that the real advantage isn't AI-generated content, but the ability to dramatically compress feedback loops. Faster testing, quicker iteration, and real-time insights allow smaller teams to run more campaigns, take more risks, and learn faster than ever before.
+
+Finally, Ceci addresses the rise of AI-driven "consensus" and how it impacts brand perception. As AI systems synthesize years of content from across the internet, companies must actively shape their narrative by flooding the ecosystem with fresh, credible signals, rather than trying to erase outdated positioning.
+
+The takeaway is clear: in a market defined by rapid change, the winners will be the ones willing to experiment faster, adapt constantly, and build brands people want to belong to.`,
+    topics: [
+      "Why developers aren't immune to marketing—and how brand signals taste and belonging",
+      "The challenge of category creation when terms like 'vibe coding' are still emerging",
+      "Why locking into buzzwords too early can backfire on positioning",
+      "Running multiple messaging experiments and letting the market decide what sticks",
+      "How AI compresses feedback loops for faster testing and iteration",
+      "Marketing to multiple audiences simultaneously: developers, founders, and enterprise",
+      "Shaping brand narrative in the age of AI-driven consensus",
+      "Why flooding the ecosystem with fresh, credible signals beats erasing old positioning",
+      "Building brands people want to belong to in a rapidly changing market",
+    ],
     chapters: [],
-    youtubeUrl: "",
-    spotifyUrl: "",
-    duration: "",
-    publishedDate: "Coming Soon",
-    comingSoon: true,
-    
+    youtubeUrl: "https://www.youtube.com/watch?v=WEE_w_c8SMs",
+    spotifyUrl: "https://tinyurl.com/yw5xr4xv",
+    appleUrl: "https://tinyurl.com/ysb222xx",
+    duration: "67:57",
+    publishedDate: "Apr 9, 2026",
+    themes: ["AI", "Brand", "GTM"],
+    detailTags: ["Category Creation", "Developer Marketing", "AI Strategy", "Brand Building", "Messaging", "Community"],
+    comingSoon: false,
+    linkedInUrl: "https://linkedin.com/in/ceciliastallsmith",
+    pullQuote: "Choosing a tool isn't just a functional decision; it's a signal of taste and belonging. That insight fundamentally changes how teams should approach messaging, design, and community-building.",
+    hosts: [podcastHosts[2], podcastHosts[1]], // Ethan Smith, Camille Ricketts
   },
   {
     id: 10,
