@@ -40,8 +40,8 @@ function generate(root: string) {
   const episodes = parsePublishedSlugs(root);
 
   const entries: SitemapEntry[] = [
-    { loc: "/", changefreq: "weekly", priority: "1.0" },
-    { loc: "/privacy", changefreq: "yearly", priority: "0.3" },
+    { loc: "/", lastmod: today, changefreq: "weekly", priority: "1.0" },
+    { loc: "/privacy", lastmod: today, changefreq: "yearly", priority: "0.3" },
     ...episodes.map((ep) => ({
       loc: `/podcast/${ep.slug}`,
       lastmod: today,
