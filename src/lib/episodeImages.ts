@@ -57,7 +57,7 @@ export const OG_IMAGES: Record<string, string> = {
   "idan-koren": `${SITE_URL}/images/og-idan-koren.jpg?${OG_VERSION}`,
   "lindsey-irvine": `${SITE_URL}/images/og-lindsey-irvine.jpg?${OG_VERSION}`,
   "sheila-vashee": `${SITE_URL}/images/og-sheila-vashee.png?${OG_VERSION}`,
-  "ceci-stallsmith": `${SITE_URL}/images/og-ceci-stallsmith.jpg?${OG_VERSION}`,
+  "ceci-stallsmith": `${SITE_URL}/images/og-ceci-stallsmith.png?${OG_VERSION}`,
   "katrina-wong": `${SITE_URL}/images/og-katrina-wong.jpg?${OG_VERSION}`,
 };
 
