@@ -43,6 +43,7 @@ export const POSTER_IMAGES: Record<string, string> = {
   "sara-varni": saraCover,
   "kate-johnson": kateCover,
   "sheila-vashee": sheilaPoster,
+  "ceci-stallsmith": ceciCover,
 };
 
 const SITE_URL = "https://fom.xyz";
