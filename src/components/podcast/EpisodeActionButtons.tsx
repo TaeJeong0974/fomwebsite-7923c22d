@@ -14,7 +14,11 @@ const EpisodeActionButtons = ({ youtubeUrl, spotifyUrl, appleUrl }: EpisodeActio
   const [copied, setCopied] = useState(false);
 
   const handleShare = async () => {
-    await navigator.clipboard.writeText(window.location.href);
+    // Append a cache-busting query param so social platforms (Slack, LinkedIn, etc.)
+    // re-scrape OG tags instead of serving a stale empty preview from a prior share.
+    const url = new URL(window.location.href);
+    url.searchParams.set("s", Date.now().toString(36).slice(-4));
+    await navigator.clipboard.writeText(url.toString());
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
