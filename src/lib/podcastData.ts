@@ -353,24 +353,45 @@ The conversation explores what companies get wrong about PLG (optimizing before 
     title: "Chief Marketing Officer",
     company: "Square",
     companyDomain: "squareup.com",
-    overview: "",
-    bio: "is the Chief Marketing Officer at Square, where she leads brand, communications, and marketing strategy for the financial services and digital payments company. Previously served as CMO at Carta and held leadership roles at PayPal, known for making complex financial products accessible to everyday entrepreneurs.",
-    fullDescription: "",
+    overview: "Why Customer Obsession and AI Make the Strongest Marketing Team",
+    bio: "is the Chief Marketing Officer at Square, where she leads global marketing across brand, demand, product, field, and operations to drive growth for more than 4.5 million sellers worldwide. Known for building high-performing, fast-moving teams, Lindsey focuses on connecting product innovation to real customer value, turning field insights into strategy, and creating brands that businesses choose first. Prior to Square, she served as CMO at Benchling and spent nearly a decade at Salesforce, including leadership roles as Global COO and CMO of MuleSoft.",
+    fullDescription: `In this episode of Future of Marketing, Lindsey Irvine, CMO of Square, breaks down how marketing is evolving in a world where you're not just selling to humans but also showing up for AI agents.
+
+Drawing from her experience across Salesforce, MuleSoft, Benchling, and now Square, Lindsey shares what it takes to market to SMBs at scale, where customers care more about saving time than adopting new technology—and how that changes everything from messaging to channels.
+
+She also unpacks the shift toward AI-driven discovery, including why earned media and community content now matter more than your website, and how teams can rethink growth by automating workflows and even building AI agents instead of hiring more people.
+
+If you're navigating AI, changing search behavior, and building a modern go-to-market strategy, this episode offers a practical and forward-looking perspective on where marketing is headed.`,
     topics: [
-      "Fintech brand building",
-      "Marketing to SMBs",
-      "Trust and transparency in financial services",
-      "The future of commerce",
+      "Customer obsession as the through line across every market",
+      "Reaching SMB buyers through digital, field, and community channels",
+      "Building market-specific strategies for global growth",
+      "Creating one core message for many audiences",
+      "Equipping teams with AI tools and automating high-impact workflows",
+      "Marketing for both humans and agents in the new search era",
+      "Redefining the future of marketing teams in an AI-first world",
     ],
-    chapters: [],
-    youtubeUrl: "",
-    spotifyUrl: "",
-    duration: "",
-    publishedDate: "Coming Soon",
-    comingSoon: true,
+    chapters: [
+      { time: "00:00:00", title: "Intro" },
+      { time: "00:01:37", title: "Customer Obsession As The Through Line Across Every Market" },
+      { time: "00:04:59", title: "Reaching SMB Buyers Through Digital, Field, And Community Channels" },
+      { time: "00:10:02", title: "Building Market-Specific Strategies For Global Growth" },
+      { time: "00:13:06", title: "Creating One Core Message For Many Audiences" },
+      { time: "00:20:16", title: "Equipping Teams With AI Tools And Automating High-Impact Workflows" },
+      { time: "00:31:02", title: "Marketing For Both Humans And Agents In The New Search Era" },
+      { time: "00:45:07", title: "Redefining The Future Of Marketing Teams In An AI-First World" },
+    ],
+    youtubeUrl: "https://www.youtube.com/watch?v=Zk0DOaLbnfA",
+    spotifyUrl: "https://bit.ly/48DFFtr",
+    appleUrl: "https://bit.ly/4vAEGEh",
+    duration: "37:09",
+    publishedDate: "Apr 16, 2026",
+    themes: ["AI", "SMB", "GTM"],
+    detailTags: ["Customer Obsession", "SMB Marketing", "AI Agents", "Global Growth", "Search", "Automation"],
+    comingSoon: false,
     linkedInUrl: "https://linkedin.com/in/lindseyirvine",
     pullQuote: "The best marketing doesn't feel like marketing—it feels like a service you're providing to your customers.",
-    
+    hosts: [podcastHosts[0], podcastHosts[1]], // Mada Seghete, Camille Ricketts
   },
   {
     id: 8,
