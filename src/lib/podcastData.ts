@@ -399,7 +399,7 @@ Looking ahead, Lindsey believes the future marketing organization will be define
     detailTags: ["Customer Obsession", "SMB Marketing", "AI Agents", "Global Growth", "Search", "Automation"],
     comingSoon: false,
     linkedInUrl: "https://linkedin.com/in/lindseyirvine",
-    pullQuote: "The best marketing doesn't feel like marketing—it feels like a service you're providing to your customers.",
+    pullQuote: "80+ percent of citations come from earned, not owned. LLMs are smart—they search for authentic authority content, not your owned content that says you're great.",
     hosts: [podcastHosts[0], podcastHosts[1]], // Mada Seghete, Camille Ricketts
   },
   {
