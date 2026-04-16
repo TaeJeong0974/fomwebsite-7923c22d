@@ -355,21 +355,30 @@ The conversation explores what companies get wrong about PLG (optimizing before 
     companyDomain: "squareup.com",
     overview: "Why Customer Obsession and AI Make the Strongest Marketing Team",
     bio: "is the Chief Marketing Officer at Square, where she leads global marketing across brand, demand, product, field, and operations to drive growth for more than 4.5 million sellers worldwide. Known for building high-performing, fast-moving teams, Lindsey focuses on connecting product innovation to real customer value, turning field insights into strategy, and creating brands that businesses choose first. Prior to Square, she served as CMO at Benchling and spent nearly a decade at Salesforce, including leadership roles as Global COO and CMO of MuleSoft.",
-    fullDescription: `In this episode of Future of Marketing, Lindsey Irvine, CMO of Square, breaks down how marketing is evolving in a world where you're not just selling to humans but also showing up for AI agents.
+    fullDescription: `What happens when cutting-edge marketing meets the everyday realities of small business owners?
 
-Drawing from her experience across Salesforce, MuleSoft, Benchling, and now Square, Lindsey shares what it takes to market to SMBs at scale, where customers care more about saving time than adopting new technology—and how that changes everything from messaging to channels.
+In this episode of Future of Marketing, hosts Mada Seghete and Camille Ricketts talk with Lindsey Irvine, Chief Marketing Officer at Square, about how marketing is fundamentally shifting in an AI-driven world, especially when your audience isn't made up of tech insiders, but real-world business operators.
 
-She also unpacks the shift toward AI-driven discovery, including why earned media and community content now matter more than your website, and how teams can rethink growth by automating workflows and even building AI agents instead of hiring more people.
+Lindsey brings a unique perspective shaped by her experience across Salesforce, MuleSoft, Benchling, and now Square. At the core of her approach is a relentless focus on customer obsession—meeting business owners where they are, understanding their real-world challenges, and building marketing strategies that prioritize simplicity, trust, and time savings over technical complexity.
 
-If you're navigating AI, changing search behavior, and building a modern go-to-market strategy, this episode offers a practical and forward-looking perspective on where marketing is headed.`,
+A central theme throughout the conversation is the emergence of marketing's new "dual mandate." It's no longer enough to create content that resonates with human buyers—you also need to create content that AI agents can discover, interpret, and recommend. As search behavior shifts toward LLMs and AI-powered overviews, traditional SEO strategies are breaking down. Lindsey shares how her team is adapting by prioritizing earned media, community-driven platforms like Reddit and YouTube, and structured, data-backed content that signals credibility to both humans and machines.
+
+The episode also dives into the operational side of AI in marketing. Lindsey emphasizes that AI is not a shortcut for strategy—it's a multiplier. The real opportunity lies in identifying high-impact workflows that can be automated end-to-end, such as ad bidding, lead scoring, and campaign optimization, rather than simply layering AI on top of existing processes. At the same time, she highlights the importance of maintaining a strong core message that anchors the entire organization, preventing fragmentation across channels, segments, and geographies.
+
+Looking ahead, Lindsey believes the future marketing organization will be defined by AI-first thinking, fewer but more empowered teams, and leaders who act as cross-functional "quarterbacks," orchestrating both human and AI resources to scale impact. The mindset is shifting from hiring more people to building systems and even AI agents that can 10x output without increasing headcount.`,
     topics: [
-      "Customer obsession as the through line across every market",
-      "Reaching SMB buyers through digital, field, and community channels",
-      "Building market-specific strategies for global growth",
-      "Creating one core message for many audiences",
-      "Equipping teams with AI tools and automating high-impact workflows",
-      "Marketing for both humans and agents in the new search era",
-      "Redefining the future of marketing teams in an AI-first world",
+      "Why marketing now requires a dual mandate: optimizing for both human audiences and AI agents",
+      "How to build and scale a single core message across segments, channels, and geographies",
+      "The key differences between marketing to technologists vs. SMB business owners",
+      "Why traditional B2B playbooks break when selling to real-world operators",
+      "How AI-driven search (LLMs, AIO) is reshaping discovery, traffic, and visibility",
+      "A practical framework for ranking in AI search: focus, measure visibility, and prioritize earned content",
+      "Why earned media, community platforms, and user-generated content drive AI authority",
+      "Why 'AI + human' is the new operating model and how to apply it effectively",
+      "The shift from hiring teams to building AI agents that scale output",
+      "Why the best marketers are becoming builders who prototype, not just storytellers who pitch",
+      "How to design marketing organizations around speed, adaptability, and cross-functional leadership",
+      "Why future marketing leaders must act as quarterbacks, orchestrating people, systems, and AI together",
     ],
     chapters: [
       { time: "00:00:00", title: "Intro" },
