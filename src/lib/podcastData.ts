@@ -390,7 +390,7 @@ Looking ahead, Lindsey believes the future marketing organization will be define
       { time: "00:31:02", title: "Marketing For Both Humans And Agents In The New Search Era" },
       { time: "00:45:07", title: "Redefining The Future Of Marketing Teams In An AI-First World" },
     ],
-    youtubeUrl: "https://www.youtube.com/watch?v=Zk0DOaLbnfA",
+    youtubeUrl: "https://youtu.be/EeM08OuM06M",
     spotifyUrl: "https://bit.ly/48DFFtr",
     appleUrl: "https://bit.ly/4vAEGEh",
     duration: "37:09",
