@@ -175,22 +175,13 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, appleUrl, playTrigger, thu
             className="relative w-full aspect-video rounded-lg overflow-hidden bg-neutral-900 ring-1 ring-white/10 cursor-pointer group/pip"
             onClick={handlePipClick}
           >
-            {isPlaying && videoId ? (
-              <iframe
-                src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=0&playsinline=1`}
-                title="Episode Video (Mini)"
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                className="absolute inset-0 w-full h-full pointer-events-none"
-              />
-            ) : (
-              <img
-                src={thumbnailImage || thumbnailUrl || guestBg}
-                alt="Episode thumbnail"
-                className="absolute inset-0 w-full h-full object-cover"
-                loading="lazy"
-                decoding="async"
-              />
-            )}
+            <img
+              src={thumbnailImage || thumbnailUrl || guestBg}
+              alt="Episode thumbnail"
+              className="absolute inset-0 w-full h-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/pip:opacity-100 transition-opacity duration-200">
               <div className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-md">
                 <Play className="w-4 h-4 text-foreground fill-foreground ml-0.5" />
