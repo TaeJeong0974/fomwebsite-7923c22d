@@ -51,7 +51,7 @@ export const POSTER_IMAGES: Record<string, string> = {
 };
 
 const SITE_URL = "https://fom.xyz";
-const OG_VERSION = "v3";
+const OG_VERSION = "v4";
 
 export const OG_IMAGES: Record<string, string> = {
   "the-future-of-marketing": `${SITE_URL}/images/og-the-future-of-marketing.png?${OG_VERSION}`,
