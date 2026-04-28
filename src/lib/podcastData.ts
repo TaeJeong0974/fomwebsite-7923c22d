@@ -409,7 +409,7 @@ Looking ahead, Lindsey believes the future marketing organization will be define
     title: "Chief Marketing Officer",
     company: "Verkada",
     companyDomain: "verkada.com",
-    overview: "Why Proprietary Data and Operational Systems Make AI Marketing Actually Work",
+    overview: "Marketing AI That Protects People, Places, and Businesses",
     bio: "is the Chief Marketing Officer at Verkada, where he has built marketing from the ground up into a highly technical organization as the company scaled from startup to Series F. Idan approaches marketing with the mindset of a scientist—treating data as the foundation for experimentation and AI as a tool to stress-test decisions—investing in the operational systems that quietly drive performance: attribution frameworks, lead routing infrastructure, deliverability management, and databases of first-party interaction data.",
     fullDescription: `What if the real impact of AI in marketing isn't replacing people but making each person dramatically more effective?
 
