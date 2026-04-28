@@ -11,6 +11,7 @@ import guestKate from "@/assets/guest-kate-johnson.jpg?format=webp";
 import guestSheila from "@/assets/guest-sheila-vashee.jpg?format=webp";
 import guestCeci from "@/assets/guest-ceci-stallsmith.jpg?format=webp";
 import guestIdan from "@/assets/guest-idan-koren.jpg?format=webp";
+import idanCover from "@/assets/guest-idan-koren-cover.png?format=webp";
 import guestKatrina from "@/assets/guest-katrina-wong.jpg?format=webp";
 import hostMada from "@/assets/host-mada.png?format=webp";
 import hostEthan from "@/assets/host-ethan.png?format=webp";
@@ -46,6 +47,7 @@ export const POSTER_IMAGES: Record<string, string> = {
   "sheila-vashee": sheilaPoster,
   "ceci-stallsmith": ceciCover,
   "lindsey-irvine": lindseyCover,
+  "idan-koren": idanCover,
 };
 
 const SITE_URL = "https://fom.xyz";
