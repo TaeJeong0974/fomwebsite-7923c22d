@@ -409,17 +409,41 @@ Looking ahead, Lindsey believes the future marketing organization will be define
     title: "Chief Marketing Officer",
     company: "Verkada",
     companyDomain: "verkada.com",
-    overview: "",
-    bio: "",
-    fullDescription: "",
-    topics: [],
+    overview: "Why Proprietary Data and Operational Systems Make AI Marketing Actually Work",
+    bio: "is the Chief Marketing Officer at Verkada, where he has built marketing from the ground up into a highly technical organization as the company scaled from startup to Series F. Idan approaches marketing with the mindset of a scientist—treating data as the foundation for experimentation and AI as a tool to stress-test decisions—investing in the operational systems that quietly drive performance: attribution frameworks, lead routing infrastructure, deliverability management, and databases of first-party interaction data.",
+    fullDescription: `What if the real impact of AI in marketing isn't replacing people but making each person dramatically more effective?
+
+In this episode of Future of Marketing, hosts Ethan Smith and Camille Ricketts talk with Idan Koren, Chief Marketing Officer at Verkada, about how he's built marketing from the ground up into a highly technical organization as the company scaled from startup to Series F.
+
+Idan approaches marketing with the mindset of a scientist - treating data as the foundation for experimentation and AI as a tool to stress-test decisions. Instead of focusing on flashy automation, his team invests in the operational systems that quietly drive performance: attribution frameworks, lead routing infrastructure, deliverability management, and databases of first-party interaction data.
+
+One key theme throughout the conversation is that the most powerful AI applications rely on proprietary signals. Verkada's team captures every interaction with prospects, from emails and call recordings to CRM notes and uses that data to power highly contextual outreach that references real past conversations. The result is personalization that actually works at scale.
+
+Idan also challenges several common assumptions about AI in marketing. For example, he argues that the biggest barrier to scaling outbound email isn't copy quality, it's deliverability and inbox reputation. And while many companies are focused on AI-driven "next best action" systems, he believes the underlying infrastructure needed to support those systems is still largely unsolved.
+
+Ultimately, Idan's perspective is pragmatic: AI can accelerate execution and analysis, but marketing still requires human judgment, creative thinking, and disciplined operational systems to drive real growth.`,
+    topics: [
+      "Why AI's biggest impact is making each marketer dramatically more effective, not replacing them",
+      "How to build a highly technical marketing org from startup to Series F",
+      "Treating marketing like a scientist: data as foundation, AI as stress test",
+      "Why operational systems—attribution, routing, deliverability—quietly drive performance",
+      "How proprietary first-party interaction data powers truly contextual outreach",
+      "Why deliverability and inbox reputation, not copy, cap outbound email scale",
+      "The unsolved infrastructure problem behind AI-driven 'next best action' systems",
+      "Where human judgment and creative thinking still beat automation",
+    ],
     chapters: [],
     youtubeUrl: "",
     spotifyUrl: "",
+    appleUrl: "",
     duration: "",
-    publishedDate: "Coming Soon",
-    comingSoon: true,
-    
+    publishedDate: "Apr 28, 2026",
+    themes: ["AI", "GTM", "Data"],
+    detailTags: ["Proprietary Data", "Outbound", "Deliverability", "Attribution", "AI Marketing", "Operational Systems"],
+    comingSoon: false,
+    linkedInUrl: "https://linkedin.com/in/idankoren",
+    pullQuote: "The biggest barrier to scaling outbound email isn't copy quality—it's deliverability and inbox reputation.",
+    hosts: [podcastHosts[2], podcastHosts[1]], // Ethan Smith, Camille Ricketts
   },
   {
     id: 9,
