@@ -61,6 +61,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://fom.xyz/podcast/idan-koren</loc>
+    <lastmod>2026-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://fom.xyz/podcast/ceci-stallsmith</loc>
     <lastmod>2026-04-28</lastmod>
     <changefreq>monthly</changefreq>
