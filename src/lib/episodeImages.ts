@@ -25,6 +25,7 @@ import sheilaCover from "@/assets/guest-sheila-vashee-cover.png?format=webp";
 import sheilaPoster from "@/assets/guest-sheila-vashee-poster.png?format=webp";
 import ceciCover from "@/assets/guest-ceci-stallsmith-cover.png?format=webp";
 import lindseyCover from "@/assets/guest-lindsey-irvine-cover.png?format=webp";
+import wendyCover from "@/assets/guest-wendy-werve-cover.png?format=webp";
 
 export const EPISODE_IMAGES: Record<string, string> = {
   "the-future-of-marketing": hostMada,
