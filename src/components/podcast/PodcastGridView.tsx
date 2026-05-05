@@ -4,7 +4,6 @@ import { Plus, ChevronUp } from "lucide-react";
 
 import { PodcastEpisode } from "@/lib/podcastData";
 import { useIsMobile } from "@/hooks/use-mobile";
-import SubscribeCard from "@/components/SubscribeCard";
 import PodcastCard from "@/components/podcast/PodcastCard";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
 import { getEpisodeImage } from "@/lib/episodeImages";
@@ -59,28 +58,6 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: PodcastGridViewProps)
         </motion.div>
       ))}
       
-      {!isMobile && (
-        <motion.div 
-          initial={{ opacity: 0, y: 30, scale: 0.98 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 1.0, delay: 0.2, ease: liquidEase }}
-        >
-          <SubscribeCard />
-        </motion.div>
-      )}
-
-      {showAll && isMobile && (
-        <motion.div 
-          initial={{ opacity: 0, y: 30, scale: 0.98 }}
-          whileInView={{ opacity: 1, y: 0, scale: 1 }}
-          viewport={{ once: true, amount: 0.15 }}
-          transition={{ duration: 1.0, delay: 0.2, ease: liquidEase }}
-        >
-          <SubscribeCard />
-        </motion.div>
-      )}
-
       {hasMore && (
         <motion.div 
           initial={{ opacity: 0, y: 30, scale: 0.95 }}

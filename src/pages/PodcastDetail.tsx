@@ -46,7 +46,8 @@ const PodcastDetail = () => {
   const canonicalUrl = slug ? getEpisodeCanonicalUrl(slug) : undefined;
   const resolvedOgImage = ogImage || DEFAULT_OG_IMAGE;
 
-  if (!episode || episode.comingSoon) return <NotFound />;
+  if (!episode) return <NotFound />;
+  if (episode.comingSoon) return <ComingSoonEpisode episode={episode} />;
 
   const guestName = isIntro ? "INTRO" : episode.name;
   const thumbnailUrl = getYouTubeThumbnail(episode.youtubeUrl);
