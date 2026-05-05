@@ -51,6 +51,7 @@ export const POSTER_IMAGES: Record<string, string> = {
   "ceci-stallsmith": ceciCover,
   "lindsey-irvine": lindseyCover,
   "idan-koren": idanCover,
+  "wendy-werve": wendyCover,
 };
 
 const SITE_URL = "https://fom.xyz";
