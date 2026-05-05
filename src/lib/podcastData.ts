@@ -449,7 +449,7 @@ Ultimately, Idan's perspective is pragmatic: AI can accelerate execution and ana
     id: 11,
     slug: "wendy-werve",
     name: "Wendy Werve",
-    title: "Chief Marketing Officer",
+    title: "Chief Market Officer",
     company: "Comply",
     companyDomain: "comply.com",
     overview: "The Death of the Funnel and the Rise of Signal Driven Marketing",
