@@ -13,6 +13,7 @@ import guestCeci from "@/assets/guest-ceci-stallsmith.jpg?format=webp";
 import guestIdan from "@/assets/guest-idan-koren.jpg?format=webp";
 import idanCover from "@/assets/guest-idan-koren-cover.png?format=webp";
 import guestKatrina from "@/assets/guest-katrina-wong.jpg?format=webp";
+import guestWendy from "@/assets/guest-wendy-werve.jpg?format=webp";
 import hostMada from "@/assets/host-mada.png?format=webp";
 import hostEthan from "@/assets/host-ethan.png?format=webp";
 import hostCamille from "@/assets/host-camille.png?format=webp";
@@ -37,6 +38,7 @@ export const EPISODE_IMAGES: Record<string, string> = {
   "ceci-stallsmith": guestCeci,
   "idan-koren": guestIdan,
   "katrina-wong": guestKatrina,
+  "wendy-werve": guestWendy,
 };
 
 export const POSTER_IMAGES: Record<string, string> = {
