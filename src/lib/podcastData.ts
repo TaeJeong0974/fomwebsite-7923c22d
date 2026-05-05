@@ -460,8 +460,8 @@ Ultimately, Idan's perspective is pragmatic: AI can accelerate execution and ana
     youtubeUrl: "",
     spotifyUrl: "",
     duration: "",
-    publishedDate: "Coming Soon",
-    comingSoon: true,
+    publishedDate: "May 5, 2026",
+    comingSoon: false,
   },
   {
     id: 9,

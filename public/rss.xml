@@ -7,7 +7,7 @@
     <description>Future of Marketing explores how B2B marketing teams are actually using AI at work. Each episode features honest conversations with CMOs, growth leaders, and operators about real workflows, real decisions, and the trade-offs involved in AI adoption across GTM, content, SEO, analytics, and revenue teams.</description>
     <language>en</language>
     <copyright>© 2026 Future of Marketing. All rights reserved.</copyright>
-    <lastBuildDate>Tue, 05 May 2026 14:39:57 GMT</lastBuildDate>
+    <lastBuildDate>Tue, 05 May 2026 14:45:34 GMT</lastBuildDate>
     <itunes:author>XYZ Venture Capital, Upside, Graphite Growth</itunes:author>
     <itunes:category text="Business">
       <itunes:category text="Marketing" />
@@ -19,6 +19,15 @@
       <title>Future of Marketing</title>
       <link>https://fom.xyz</link>
     </image>
+
+    <item>
+      <title>Wendy Werve: </title>
+      <link>https://fom.xyz/podcast/wendy-werve</link>
+      <guid isPermaLink="true">https://fom.xyz/podcast/wendy-werve</guid>
+      <pubDate>Tue, 05 May 2026 00:00:00 GMT</pubDate>
+      <description></description>
+      <itunes:author>Future of Marketing</itunes:author>
+    </item>
 
     <item>
       <title>Idan Koren: Marketing AI That Protects People, Places, and Businesses</title>
