@@ -452,16 +452,40 @@ Ultimately, Idan's perspective is pragmatic: AI can accelerate execution and ana
     title: "Chief Marketing Officer",
     company: "Comply",
     companyDomain: "comply.com",
-    overview: "",
-    bio: "",
-    fullDescription: "",
-    topics: [],
+    overview: "Why the Marketing Funnel Is Broken and What Comes Next",
+    bio: "is the Chief Marketing Officer at Comply, where she leads marketing strategy across brand, demand, and revenue. Wendy is known for rethinking go-to-market in an AI-driven world, championing signal-based 'pinball marketing' over the traditional funnel, and aligning marketing, sales, and product around the customers that actually drive long-term value.",
+    fullDescription: `What if the marketing funnel isn't just outdated but actively holding you back?
+
+In this episode of Future of Marketing, hosts Camille Ricketts and Mada Seghete sit down with Wendy Werve, Chief Marketing Officer at Comply, to unpack a fundamentally different way to think about go-to-market in an AI-driven world.
+
+Wendy challenges the traditional funnel model, arguing that buyer journeys are no longer linear or predictable. Instead, she introduces the concept of "pinball marketing" — a dynamic, signal-driven approach where teams respond to real-time buyer intent rather than forcing prospects through predefined stages. In this world, success depends less on controlling the journey and more on recognizing and reacting to high-intent moments as they happen.
+
+A central theme in the conversation is the shift from volume-based marketing to precision and speed. Wendy explains how AI enables teams to detect signals, personalize outreach, and respond faster than ever before, making speed-to-lead and relevance far more important than sheer output. This shift also requires rethinking measurement: moving away from MQLs and vanity metrics toward pipeline, conversion rates, and true revenue impact.
+
+The discussion also dives into the importance of defining the right ICP. Wendy emphasizes that ICP and persona are often confused, and that the most effective teams use data, not intuition, to identify which customers actually drive long-term value. By aligning marketing, sales, and product around these insights, companies can dramatically improve efficiency and outcomes.
+
+Finally, the episode explores what it takes to build and sustain high-performing teams. From breaking down silos across go-to-market functions to modeling personal sustainability as a leader, Wendy underscores that long-term success comes from both operational excellence and a culture that prioritizes endurance over burnout.`,
+    topics: [
+      "Why the traditional marketing funnel no longer reflects how buyers actually decide",
+      "'Pinball marketing': responding to real-time signals instead of forcing linear journeys",
+      "How AI shifts the game from volume to precision and speed-to-lead",
+      "Moving past MQLs toward pipeline, conversion, and revenue as true north metrics",
+      "The difference between ICP and persona — and why most teams conflate them",
+      "Using data (not intuition) to identify the customers that drive long-term value",
+      "Aligning marketing, sales, and product around a shared definition of the ideal customer",
+      "Breaking down GTM silos to move faster as one team",
+      "Building high-performing teams that prioritize endurance over burnout",
+    ],
     chapters: [],
     youtubeUrl: "",
     spotifyUrl: "",
     duration: "",
     publishedDate: "May 5, 2026",
+    themes: ["AI", "GTM"],
+    detailTags: ["Pinball Marketing", "Signal-Based GTM", "ICP", "Pipeline Metrics", "AI Marketing", "Team Building"],
     comingSoon: false,
+    pullQuote: "The funnel assumes a journey you can control. In reality, buyers bounce around like a pinball — your job is to recognize the signal and respond at the moment it matters.",
+    hosts: [podcastHosts[1], podcastHosts[0]], // Camille Ricketts, Mada Seghete
   },
   {
     id: 9,
