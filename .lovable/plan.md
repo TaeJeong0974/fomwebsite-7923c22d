@@ -1,44 +1,57 @@
+## Goal
 
+1. Add **Wendy Werve** (Chief Marketing Officer, Comply) as a new upcoming guest, inserted right after Idan Koren in the data array.
+2. Use the existing default placeholder image for her card (no new asset).
+3. Mark her as the newest upcoming episode in the Podcast section.
+4. Give her a working detail page at `/podcast/wendy-werve`.
+5. Hide the inline Subscribe card from the Podcast module (grid view).
 
-# Update Page Titles for All Routes
-
-## Current Titles (some exceed 60 chars)
-- **Homepage:** "Future of Marketing Podcast | How AI Is Changing Marketing" (59 chars ✅)
-- **Episode pages:** `"{Name} on {Overview} | Future of Marketing"` — easily exceeds 60 chars for longer names/overviews
-- **Not Found:** "Page Not Found | Future of Marketing" (36 chars ✅)
-- **Privacy:** "Privacy Policy | Future of Marketing" (36 chars ✅)
-- **Episode not found fallback:** "Episode Not Found | Future of Marketing" (39 chars ✅)
-- **Coming soon:** `"{Name} — Coming Soon | Future of Marketing"` — can exceed 60 chars
+---
 
 ## Changes
 
-### 1. Shorten the brand suffix
-Use `"| FOM Podcast"` instead of `"| Future of Marketing"` to save ~10 characters across all episode titles.
+### 1. `src/lib/podcastData.ts` — insert Wendy after Idan
+Place a new episode object immediately after the Idan Koren entry (currently followed by Ceci Stallsmith at line ~440 and Katrina Wong at the end). Minimal upcoming-style data, mirroring Katrina's shape so it slots into the Upcoming filter:
 
-### 2. Update `src/lib/seoConstants.ts`
-- Keep `SITE_TITLE` as-is (59 chars, fine)
+```ts
+{
+  id: 11,
+  slug: "wendy-werve",
+  name: "Wendy Werve",
+  title: "Chief Marketing Officer",
+  company: "Comply",
+  companyDomain: "comply.com",
+  overview: "",
+  bio: "",
+  fullDescription: "",
+  topics: [],
+  chapters: [],
+  youtubeUrl: "",
+  spotifyUrl: "",
+  duration: "",
+  publishedDate: "Coming Soon",
+  comingSoon: true,
+}
+```
 
-### 3. Update `src/lib/episodeUtils.ts` — `buildEpisodeSeo()`
-- Published: `"{Name}: {Overview} | FOM Podcast"` — truncate overview if needed to stay under 60 chars
-- Coming soon: `"{Name} — Coming Soon | FOM Podcast"`
-- Not found: `"Episode Not Found | FOM Podcast"`
+No entry added to `EPISODE_IMAGES` so `getEpisodeImage()` falls back to the rotating host placeholder (same behavior Katrina has today).
 
-### 4. Update `src/pages/NotFound.tsx`
-- `"Page Not Found | FOM Podcast"`
+### 2. `src/pages/PodcastDetail.tsx` — render detail page for upcoming guests
+Currently any `comingSoon: true` episode returns `<NotFound />`. Update so upcoming episodes render the already-imported `<ComingSoonEpisode>`:
 
-### 5. Update `src/pages/Privacy.tsx`
-- `"Privacy Policy | FOM Podcast"`
+- Replace `if (!episode || episode.comingSoon) return <NotFound />;`
+- With:
+  - `if (!episode) return <NotFound />;`
+  - `if (episode.comingSoon) return <ComingSoonEpisode episode={episode} />;`
 
-### 6. Update `supabase/functions/seo-prerender/index.ts`
-- Match the same shortened title format for crawler-facing HTML
+`ComingSoonEpisode` already handles missing fields gracefully (falls back to "A Conversation with {name}", generic description, hides pull quote / bio when empty). This makes `/podcast/wendy-werve` (and `/podcast/katrina-wong`) reachable.
 
-### 7. Update `index.html`
-- Update the static `<title>` fallback to match `SITE_TITLE`
+### 3. `src/components/podcast/PodcastGridView.tsx` — hide Subscribe card
+Remove the two `<SubscribeCard />` motion blocks (the always-on desktop one and the mobile "show all" one) and drop the unused `SubscribeCard` import. List view doesn't include it, so nothing to change there.
 
-## Files to modify
-- `src/lib/episodeUtils.ts`
-- `src/pages/NotFound.tsx`
-- `src/pages/Privacy.tsx`
-- `supabase/functions/seo-prerender/index.ts`
-- `index.html` (static fallback title)
+---
 
+## Notes
+- Wendy will appear in the grid/list under the "Upcoming" theme pill, alongside Katrina, with the rotating placeholder image.
+- Clicking her card opens the Subscribe drawer (existing upcoming-card behavior); the new detail page is reachable via direct URL `/podcast/wendy-werve` and from related-episode lists.
+- When her real photo, bio, topics, and pull quote come in, drop them into the same object and add her image to `EPISODE_IMAGES`.
