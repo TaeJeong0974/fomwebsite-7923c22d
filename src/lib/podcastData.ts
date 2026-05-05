@@ -486,7 +486,7 @@ Finally, the episode explores what it takes to build and sustain high-performing
     themes: ["AI", "GTM"],
     detailTags: ["Pinball Marketing", "Signal-Based GTM", "ICP", "Pipeline Metrics", "AI Marketing", "Team Building"],
     comingSoon: false,
-    pullQuote: "The funnel assumes a journey you can control. In reality, buyers bounce around like a pinball — your job is to recognize the signal and respond at the moment it matters.",
+    pullQuote: "AI today can do the ing of marketing. So get in and be the chief market officer, understand the market, understand the signals in your market, be the first to respond to those signals. And it's a rethink of your whole go to market, really, with a different way of operating. It's a different operating model entirely.",
     hosts: [podcastHosts[1], podcastHosts[0]], // Camille Ricketts, Mada Seghete
   },
   {
