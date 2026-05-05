@@ -449,14 +449,14 @@ Ultimately, Idan's perspective is pragmatic: AI can accelerate execution and ana
     id: 11,
     slug: "wendy-werve",
     name: "Wendy Werve",
-    title: "Chief Marketing Officer",
+    title: "Chief Market Officer",
     company: "Comply",
     companyDomain: "comply.com",
     overview: "The Death of the Funnel and the Rise of Signal Driven Marketing",
     bio: "is the Chief Market Officer at Comply, where she leads go-to-market strategy, demand generation, brand, and customer engagement for a fast-growing compliance platform. With a proven track record of building high-performing teams, Wendy has driven revenue growth, accelerated bookings, and increased customer retention across B2B, B2C, and B2B2C organizations.\n\nHer expertise spans account-based marketing, demand generation, product marketing, communications, and integrated GTM strategy. She has deep experience in SaaS and enterprise software, with a strong focus on data-driven marketing, modern tooling, and aligning marketing closely with business outcomes.\n\nWendy has worked across venture-backed, private equity-backed, and public companies, including involvement in M&A and IPO environments. Known for her pragmatic and forward-thinking approach, she brings a unique perspective on how marketing leaders can evolve beyond traditional frameworks and operate as strategic drivers of growth in an AI-first world.",
     fullDescription: `What if the marketing funnel isn't just outdated but actively holding you back?
 
-In this episode of Future of Marketing, hosts Camille Ricketts and Mada Seghete sit down with Wendy Werve, Chief Marketing Officer at Comply, to unpack a fundamentally different way to think about go-to-market in an AI-driven world.
+In this episode of Future of Marketing, hosts Camille Ricketts and Mada Seghete sit down with Wendy Werve, Chief Market Officer at Comply, to unpack a fundamentally different way to think about go-to-market in an AI-driven world.
 
 Wendy challenges the traditional funnel model, arguing that buyer journeys are no longer linear or predictable. Instead, she introduces the concept of "pinball marketing" — a dynamic, signal-driven approach where teams respond to real-time buyer intent rather than forcing prospects through predefined stages. In this world, success depends less on controlling the journey and more on recognizing and reacting to high-intent moments as they happen.
 
@@ -488,7 +488,7 @@ Finally, the episode explores what it takes to build and sustain high-performing
     detailTags: ["Pinball Marketing", "Signal-Based GTM", "ICP", "Pipeline Metrics", "AI Marketing", "Team Building"],
     comingSoon: false,
     linkedInUrl: "https://www.linkedin.com/in/wendy-werve/",
-    pullQuote: "AI today can do the ing of marketing. So get in and be the chief market officer, understand the market, understand the signals in your market, be the first to respond to those signals. And it's a rethink of your whole go to market, really, with a different way of operating. It's a different operating model entirely.",
+    pullQuote: "AI today can do the doing of marketing. So get in and be the chief market officer, understand the market, understand the signals in your market, be the first to respond to those signals. And it's a rethink of your whole go to market, really, with a different way of operating. It's a different operating model entirely.",
     hosts: [podcastHosts[1], podcastHosts[0]], // Camille Ricketts, Mada Seghete
   },
   {
