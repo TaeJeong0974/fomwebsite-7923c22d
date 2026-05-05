@@ -488,7 +488,7 @@ Finally, the episode explores what it takes to build and sustain high-performing
     detailTags: ["Pinball Marketing", "Signal-Based GTM", "ICP", "Pipeline Metrics", "AI Marketing", "Team Building"],
     comingSoon: false,
     linkedInUrl: "https://www.linkedin.com/in/wendy-werve/",
-    pullQuote: "AI today can do the ing of marketing. So get in and be the chief market officer, understand the market, understand the signals in your market, be the first to respond to those signals. And it's a rethink of your whole go to market, really, with a different way of operating. It's a different operating model entirely.",
+    pullQuote: "AI today can do the doing of marketing. So get in and be the chief market officer, understand the market, understand the signals in your market, be the first to respond to those signals. And it's a rethink of your whole go to market, really, with a different way of operating. It's a different operating model entirely.",
     hosts: [podcastHosts[1], podcastHosts[0]], // Camille Ricketts, Mada Seghete
   },
   {
