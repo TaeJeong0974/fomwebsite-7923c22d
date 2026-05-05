@@ -69,6 +69,7 @@ export const OG_IMAGES: Record<string, string> = {
   "sheila-vashee": `${SITE_URL}/images/og-sheila-vashee.png?${OG_VERSION}`,
   "ceci-stallsmith": `${SITE_URL}/images/og-ceci-stallsmith.png?${OG_VERSION}`,
   "katrina-wong": `${SITE_URL}/images/og-katrina-wong.jpg?${OG_VERSION}`,
+  "wendy-werve": `${SITE_URL}/images/og-wendy-werve.png?${OG_VERSION}`,
 };
 
 export const HOST_IMAGES = [hostMada, hostEthan, hostCamille];
