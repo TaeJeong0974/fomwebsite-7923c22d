@@ -452,7 +452,7 @@ Ultimately, Idan's perspective is pragmatic: AI can accelerate execution and ana
     title: "Chief Marketing Officer",
     company: "Comply",
     companyDomain: "comply.com",
-    overview: "Why the Marketing Funnel Is Broken and What Comes Next",
+    overview: "The Death of the Funnel and the Rise of Signal Driven Marketing",
     bio: "is the Chief Marketing Officer at Comply, where she leads marketing strategy across brand, demand, and revenue. Wendy is known for rethinking go-to-market in an AI-driven world, championing signal-based 'pinball marketing' over the traditional funnel, and aligning marketing, sales, and product around the customers that actually drive long-term value.",
     fullDescription: `What if the marketing funnel isn't just outdated but actively holding you back?
 
