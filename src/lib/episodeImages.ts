@@ -38,6 +38,7 @@ export const EPISODE_IMAGES: Record<string, string> = {
   "ceci-stallsmith": guestCeci,
   "idan-koren": guestIdan,
   "katrina-wong": guestKatrina,
+  "wendy-werve": guestWendy,
 };
 
 export const POSTER_IMAGES: Record<string, string> = {
