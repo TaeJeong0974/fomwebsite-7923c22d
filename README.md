@@ -1,73 +1,79 @@
-# Welcome to your Lovable project
+# Future of Marketing — fom.xyz
 
-## Project info
+Marketing site and podcast hub for **Graphite Growth**, home of the *Future of Marketing with AI* podcast.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+Live: https://fom.xyz
 
-## How can I edit this code?
+## Tech stack
 
-There are several ways of editing your application.
+- **Framework**: Vite 5 + React 18 + TypeScript 5
+- **Styling**: Tailwind CSS v3, custom Liquid Glass design system, ITC Avant Garde Gothic Pro
+- **Routing**: React Router v6
+- **Animation**: Framer Motion
+- **SEO**: react-helmet-async, JSON-LD structured data, RSS + sitemap generated at build time via custom Vite plugins (`scripts/vite-plugin-rss.ts`, `scripts/vite-plugin-sitemap.ts`)
+- **Backend**: Lovable Cloud (Supabase) — only used by the email subscribe form (`subscribers` table)
+- **Image pipeline**: `vite-imagetools` + `vite-plugin-image-optimizer` (sharp)
+- **Hosting**: Lovable today; migrating to Vercel (frontend) + Lovable Cloud (backend, unchanged)
 
-**Use Lovable**
+## Project structure
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+src/
+  components/     UI components (hero, podcast cards, navigation, etc.)
+  contexts/       React contexts (Subscribe drawer, etc.)
+  hooks/          Custom hooks
+  integrations/
+    supabase/     Auto-generated client + types — DO NOT EDIT MANUALLY
+  lib/
+    podcastData.ts   Single source of truth for all episode content (static)
+  pages/          Route-level pages
+  assets/         Static images imported by components
+public/           Static files served as-is (favicons, OG images, robots.txt)
+scripts/          Build-time RSS + sitemap generators
+supabase/         Database migrations + config
 ```
 
-**Edit a file directly in GitHub**
+Episode content is **fully static** — edit `src/lib/podcastData.ts` to add/update episodes. There is no CMS.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Local development
 
-**Use GitHub Codespaces**
+Requirements: Node.js 18+ and [bun](https://bun.sh) (or npm).
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```sh
+bun install
+bun run dev      # http://localhost:8080
+bun run build    # production build to dist/
+bun run preview  # preview the built site
+bun run lint
+```
 
-## What technologies are used for this project?
+## Environment variables
 
-This project is built with:
+The Supabase client is loaded from these `VITE_*` env vars (auto-injected in Lovable; must be set manually elsewhere):
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+| Variable | Purpose |
+|---|---|
+| `VITE_SUPABASE_URL` | Backend project URL |
+| `VITE_SUPABASE_PUBLISHABLE_KEY` | Public/anon key (safe in client) |
+| `VITE_SUPABASE_PROJECT_ID` | Backend project ID |
 
-## How can I deploy this project?
+For Vercel: add all three under Project Settings → Environment Variables before the first deploy.
 
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
+## Deployment
 
-## Can I connect a custom domain to my Lovable project?
+- **Today**: deployed via Lovable to `fomwebsite.lovable.app`, fronted by Hado SEO at `fom.xyz`.
+- **Migrating to**: GitHub → Vercel for the frontend. Backend (Supabase via Lovable Cloud) stays where it is.
+- SPA fallback + asset cache headers will be configured in `vercel.json`.
 
-Yes, you can!
+## SEO
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- Per-page titles ≤60 chars, meta descriptions ≤160 chars
+- Single H1 per page, semantic HTML, alt text on all images
+- JSON-LD: `WebSite` + `PodcastSeries`
+- OG images are PNG with cache-busting version query
+- Sitemap at `/sitemap.xml`, RSS at `/rss.xml` (both generated at build)
+- Canonical tag on every page; trailing slash only on the homepage
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## License
+
+All rights reserved © Graphite Growth.
