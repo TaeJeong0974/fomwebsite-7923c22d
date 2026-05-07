@@ -1,3 +1,5 @@
+"use client";
+
 import { PodcastEpisode } from "@/lib/podcastData";
 import PodcastCard from "@/components/podcast/PodcastCard";
 import { EPISODE_IMAGES, HOST_IMAGES } from "@/lib/episodeImages";

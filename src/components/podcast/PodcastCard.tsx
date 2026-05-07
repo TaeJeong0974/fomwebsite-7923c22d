@@ -1,5 +1,8 @@
+"use client";
+
 import { useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 import { PodcastEpisode } from "@/lib/podcastData";
@@ -7,7 +10,7 @@ import EpisodeCardContent from "@/components/podcast/EpisodeCardContent";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useSubscribe } from "@/contexts/SubscribeContext";
-import guestBg from "@/assets/guest-bg.png?format=webp";
+const guestBg = "/images/assets/guest-bg.jpg";
 
 interface PodcastCardProps {
   episode: PodcastEpisode;
@@ -15,11 +18,11 @@ interface PodcastCardProps {
   isUpcoming?: boolean;
   image?: string;
   placeholderColor?: string;
+  priority?: boolean;
 }
 
-const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image, placeholderColor }: PodcastCardProps) => {
+const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image, placeholderColor, priority = false }: PodcastCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [showImage, setShowImage] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const isMobile = useIsMobile();
@@ -53,13 +56,13 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image, placeh
       ref={cardRef}
       style={placeholderColor ? { backgroundColor: placeholderColor } : undefined}
     >
-      <img
+      <Image
         src={cardImage}
         alt={episode.name ? `${episode.name}, ${episode.title} at ${episode.company}` : "Episode thumbnail"}
-        loading="lazy"
-        decoding="async"
-        onLoad={() => setTimeout(() => setShowImage(true), 400)}
-        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] ${showImage ? 'opacity-100' : 'opacity-0'}`}
+        fill
+        priority={priority}
+        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+        className="object-cover"
       />
       {episode.previewVideoUrl && !isUpcoming && (
         <motion.div
@@ -124,7 +127,7 @@ const PodcastCard = ({ episode, isNew = false, isUpcoming = false, image, placeh
 
   return (
     <Link
-      to={`/podcast/${episode.slug}`}
+      href={`/podcast/${episode.slug}`}
       className="block group"
       aria-label={`Listen to episode with ${episode.name}, ${episode.title} at ${episode.company}`}
       onMouseEnter={handleMouseEnter}

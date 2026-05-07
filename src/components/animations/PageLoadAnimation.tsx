@@ -1,3 +1,5 @@
+"use client";
+
 // Shared easing for liquid-glass feel
 export const liquidEase = [0.22, 1, 0.36, 1] as const;
 

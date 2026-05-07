@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Plus, ChevronUp } from "lucide-react";
@@ -48,12 +50,13 @@ const PodcastGridView = ({ episodes, comingSoonEpisodes }: PodcastGridViewProps)
           viewport={{ once: true, amount: 0.15 }}
           transition={{ duration: 1.0, delay: Math.floor(index / 3) * 0.1, ease: liquidEase }}
         >
-          <PodcastCard 
-            episode={episode} 
-            isNew={type === 'episode' && episode.slug === newestSlug} 
+          <PodcastCard
+            episode={episode}
+            isNew={type === 'episode' && episode.slug === newestSlug}
             isUpcoming={type === 'coming-soon'}
             image={getEpisodeImage(episode.slug, index)}
             placeholderColor={HOVER_COLORS[index % HOVER_COLORS.length][0]}
+            priority={index < 3}
           />
         </motion.div>
       ))}

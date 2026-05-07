@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { Bell } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -5,7 +7,7 @@ import { useSubscribe } from "@/contexts/SubscribeContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useSubscriptionForm } from "@/hooks/use-subscription-form";
 import { LiquidButton } from "@/components/ui/LiquidButton";
-import guestBg from "@/assets/guest-bg.png?format=webp";
+const guestBg = "/images/assets/guest-bg.jpg";
 
 interface ComingSoonHeroCardProps {
   guestFirstName: string;
@@ -72,7 +74,7 @@ const ComingSoonHeroCard = ({ guestFirstName }: ComingSoonHeroCardProps) => {
             onClick={(e) => e.stopPropagation()}
           >
             <h3 className="font-display text-2xl md:text-3xl font-semibold text-white mb-4">
-              Be the first to know when {guestFirstName}'s episode drops.
+              Be the first to know when {guestFirstName}&apos;s episode drops.
             </h3>
             
             <form onSubmit={handleSubmit} className="max-w-md space-y-3">
@@ -117,9 +119,9 @@ const ComingSoonHeroCard = ({ guestFirstName }: ComingSoonHeroCardProps) => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
               </svg>
             </div>
-            <h3 className="font-display text-2xl font-semibold text-white mb-2">You're on the list!</h3>
+            <h3 className="font-display text-2xl font-semibold text-white mb-2">You&apos;re on the list!</h3>
             <p className="text-body text-white">
-              We'll let you know when {guestFirstName}'s episode is ready.
+              We&apos;ll let you know when {guestFirstName}&apos;s episode is ready.
             </p>
           </motion.div>
         )}

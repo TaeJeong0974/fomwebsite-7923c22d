@@ -1,4 +1,6 @@
-import { useParams } from "react-router-dom";
+"use client";
+
+import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { Bell } from "lucide-react";
 import { useSubscribe } from "@/contexts/SubscribeContext";
@@ -23,7 +25,8 @@ interface ComingSoonEpisodeProps {
 }
 
 const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => {
-  const { slug } = useParams();
+  const params = useParams<{ slug: string }>();
+  const slug = params?.slug;
   const { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes } = useEpisodeData();
   const episode = propEpisode || (slug ? getEpisodeBySlug(slug) : undefined);
   const { openSubscribe } = useSubscribe();
@@ -56,7 +59,7 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
                 New Episode<br />Coming Soon
               </h1>
               <p className="text-foreground text-lg max-w-md mx-auto mb-8">
-                We're preparing something special. Subscribe to get notified when this episode drops.
+                We&apos;re preparing something special. Subscribe to get notified when this episode drops.
               </p>
               <LiquidButton onClick={openSubscribe} variant="glass" size="lg" className="gap-2.5">
                 <Bell className="w-5 h-5" />

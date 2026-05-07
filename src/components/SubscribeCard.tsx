@@ -1,7 +1,9 @@
+"use client";
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useSubscriptionForm } from "@/hooks/use-subscription-form";
-import subscribeBg from "@/assets/subscribe-bg.png?format=webp";
+const subscribeBg = "/images/assets/subscribe-bg.jpg";
 
 const SubscribeCard = () => {
   const [showForm, setShowForm] = useState(false);
@@ -112,7 +114,7 @@ const SubscribeCard = () => {
               Thank you for subscribing.
             </h3>
             <p className="text-body text-foreground/70">
-              We'll notify you when new episodes drop.
+              We&apos;ll notify you when new episodes drop.
             </p>
           </motion.div>
         )}

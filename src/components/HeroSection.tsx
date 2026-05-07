@@ -1,12 +1,15 @@
+"use client";
+
 import { useState, useRef } from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ChevronDown, Linkedin, Globe, Building2, Twitter } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
-import hostMada from "@/assets/host-mada.png?format=webp";
-import hostEthan from "@/assets/host-ethan.png?format=webp";
-import hostCamille from "@/assets/host-camille.png?format=webp";
+const hostMada = "/images/assets/host-mada.jpg";
+const hostEthan = "/images/assets/host-ethan.jpg";
+const hostCamille = "/images/assets/host-camille.jpg";
 
-import teaserBg from "@/assets/teaser-bg.png?format=webp";
+const teaserBg = "/images/assets/teaser-bg.jpg";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
 import { fomMaskContainStyles } from "@/lib/logoMask";
 
@@ -236,13 +239,13 @@ const HeroSection = () => {
                           transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
                         >
                           <div className="absolute inset-0">
-                            <img 
-                              src={host.image} 
+                            <Image
+                              src={host.image}
                               alt={host.name}
-                              className="w-full h-full object-cover"
-                              loading="eager"
-                              fetchPriority="high"
-                              decoding="async"
+                              fill
+                              priority
+                              sizes="(max-width: 1024px) 100vw, 33vw"
+                              className="object-cover"
                             />
                             <div className="card-overlay" />
                           </div>
@@ -357,13 +360,13 @@ const HeroSection = () => {
                           }}
                         >
                           <div className="absolute inset-0">
-                            <img 
-                              src={host.image} 
+                            <Image
+                              src={host.image}
                               alt={host.name}
-                              className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                              loading="eager"
-                              fetchPriority="high"
-                              decoding="async"
+                              fill
+                              priority
+                              sizes="(max-width: 1024px) 100vw, 33vw"
+                              className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                             />
                             <div className="card-overlay" />
                           </div>

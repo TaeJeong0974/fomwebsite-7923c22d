@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useRef, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { LayoutGrid, List, ChevronDown } from "lucide-react";
@@ -77,9 +79,11 @@ const PodcastSection = () => {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
+  /* eslint-disable react-hooks/set-state-in-effect -- syncing layout to viewport from useIsMobile (external store) */
   useEffect(() => {
     setLayout(isMobile ? "list" : "grid");
   }, [isMobile]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   return (
     <section id="podcast" className="pt-16 md:pt-20 lg:pt-24 pb-14 md:pb-16 lg:pb-20 scroll-mt-24 md:scroll-mt-28">

@@ -1,0 +1,664 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Scrollbar — site-wide orange scrollbar */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  width: 8px;
+}
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+  background: hsl(24 95% 50%);
+  border-radius: 999px;
+}
+html::-webkit-scrollbar-thumb:hover,
+body::-webkit-scrollbar-thumb:hover {
+  background: hsl(24 95% 42%);
+}
+html {
+  scrollbar-color: hsl(24 95% 50%) transparent;
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+}
+
+
+
+
+/* ==========================================
+   ========================================== */
+@font-face {
+  font-family: 'ITC Avant Garde Gothic Pro';
+  src: url('/fonts/ITC_Avant_Garde_Gothic_Pro-XLt.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+  font-display: optional;
+}
+
+@font-face {
+  font-family: 'ITC Avant Garde Gothic Pro';
+  src: url('/fonts/ITC_Avant_Garde_Gothic_Pro-Book.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 100%;
+}
+
+@font-face {
+  font-family: 'ITC Avant Garde Gothic Pro';
+  src: url('/fonts/ITC_Avant_Garde_Gothic_Pro-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 100%;
+}
+
+@font-face {
+  font-family: 'ITC Avant Garde Gothic Pro';
+  src: url('/fonts/ITC_Avant_Garde_Gothic_Pro-Demi.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+  size-adjust: 100%;
+}
+
+@font-face {
+  font-family: 'ITC Avant Garde Gothic Pro';
+  src: url('/fonts/ITC_Avant_Garde_Gothic_Pro-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: optional;
+}
+
+/* ==========================================
+   Design Tokens (CSS Variables)
+   ========================================== */
+@layer base {
+  :root {
+    /* Core Colors */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 10%;
+    --dark-foreground: 0 0% 0%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 10%;
+    --primary: 24 95% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 5% 94%;
+    --secondary-foreground: 240 10% 10%;
+    --muted: 240 5% 92%;
+    --muted-foreground: 240 5% 45%;
+    --accent: 16 90% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 24 95% 50%;
+    --radius: 0.75rem;
+
+    /* Typography */
+    --font-display: 'ITC Avant Garde Gothic Pro', 'Century Gothic', sans-serif;
+    --font-body: 'ITC Avant Garde Gothic Pro', 'Century Gothic', sans-serif;
+
+    /* Glass Effects */
+    --glass-bg: 0 0% 100%;
+    --glass-border: 0 0% 100%;
+    --glass-blur: 20px;
+    --glass-opacity: 0.7;
+    --glass-shadow: 0 8px 32px -8px hsl(240 10% 10% / 0.1);
+    --glass-shadow-lg: 0 20px 60px -15px hsl(240 10% 10% / 0.15);
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 240 10% 10%;
+    --sidebar-primary: 24 95% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 5% 94%;
+    --sidebar-accent-foreground: 240 10% 10%;
+    --sidebar-border: 240 6% 90%;
+    --sidebar-ring: 24 95% 50%;
+  }
+
+  .dark {
+    --background: 240 10% 4%;
+    --foreground: 0 0% 98%;
+    --dark-foreground: 0 0% 100%;
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 6%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 24 95% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 6% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 6% 15%;
+    --muted-foreground: 240 5% 55%;
+    --accent: 16 90% 50%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 6% 18%;
+    --input: 240 6% 18%;
+    --ring: 24 95% 50%;
+    --glass-bg: 240 10% 10%;
+    --glass-border: 0 0% 100%;
+    --glass-opacity: 0.5;
+    --glass-shadow: 0 8px 32px -8px hsl(0 0% 0% / 0.3);
+    --glass-shadow-lg: 0 20px 60px -15px hsl(0 0% 0% / 0.4);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    overflow-x: clip;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-foreground;
+    font-family: var(--font-body);
+    font-size: 0.9rem; /* 14.4px - mobile size */
+    line-height: 1.5;
+    -webkit-text-size-adjust: 100%; /* Prevent font scaling in landscape */
+
+
+  }
+
+  @media (min-width: 640px) {
+    body {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    body {
+      font-size: 1.0625rem; /* 17px for larger screens */
+      line-height: 1.65;
+    }
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+
+  /* Page-level typography scale — consistent line heights */
+  p, li, dd, blockquote, figcaption {
+    line-height: 1.75;
+  }
+
+  @media (min-width: 640px) {
+    p, li, dd, blockquote, figcaption {
+      line-height: 1.8;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    p, li, dd, blockquote, figcaption {
+      line-height: 1.85;
+    }
+  }
+
+  [id] {
+    scroll-margin-top: 5rem;
+  }
+
+  @media (min-width: 1024px) {
+    [id] {
+      scroll-margin-top: 6rem;
+    }
+  }
+}
+
+/* Stabilise text elements during font-swap reflow —
+   prevents CSS transitions from retriggering when the
+   custom font loads and changes glyph metrics.          */
+.stable-text {
+  transition: none !important;
+  animation: none !important;
+  will-change: contents;
+  text-rendering: geometricPrecision;
+}
+
+
+/* ==========================================
+   Typography Utilities
+   ========================================== */
+@layer utilities {
+  /* Display Headings - H1 */
+  .text-display-xl {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+  }
+
+  /* Display Headings - H2 */
+  .text-display-lg {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  /* Display Headings - H3 */
+  .text-display-md {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+
+  /* Section Labels */
+  .text-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* Body Text */
+  .text-body-lg {
+    font-size: 0.8rem;
+    line-height: 1.6;
+    letter-spacing: 0.01em;
+  }
+  @media (min-width: 640px) {
+    .text-body-lg {
+      font-size: 1.125rem;
+      line-height: 1.7;
+    }
+  }
+
+  .text-body {
+    font-size: 0.75rem;
+    line-height: 1.55;
+    letter-spacing: 0.01em;
+  }
+  @media (min-width: 640px) {
+    .text-body {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+    }
+  }
+
+  .text-body-sm {
+    font-size: 0.7rem;
+    line-height: 1.5;
+    letter-spacing: 0.005em;
+  }
+  @media (min-width: 640px) {
+    .text-body-sm {
+      font-size: 0.8125rem;
+      line-height: 1.6;
+    }
+  }
+
+  /* Section Headers - matches body typography with medium weight */
+  .text-section-header {
+    font-family: var(--font-body);
+    font-size: 1.125rem;
+    line-height: 1.7;
+  }
+
+  /* Table Headers - smaller uppercase for data tables */
+  .text-table-header {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* Status Badges - glass pill style for New/Upcoming indicators */
+  .badge-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    padding: 0.75rem 0.75rem 0.5rem;
+    border-radius: 9999px;
+    background: hsl(var(--glass-bg) / var(--glass-opacity));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid hsl(var(--glass-border) / 0.2);
+  }
+}
+
+/* ==========================================
+   Spacing Utilities
+   ========================================== */
+@layer utilities {
+  .section-spacing {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+  @media (min-width: 1024px) {
+    .section-spacing {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .section-spacing {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+  @media (min-width: 1536px) {
+    .section-spacing {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+    }
+  }
+
+  .container-padding {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  @media (min-width: 1024px) {
+    .container-padding {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .container-padding {
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+  }
+  @media (min-width: 1536px) {
+    .container-padding {
+      padding-left: 6rem;
+      padding-right: 6rem;
+    }
+  }
+
+  .card-padding {
+    padding: 1.25rem;
+  }
+  @media (min-width: 1024px) {
+    .card-padding {
+      padding: 1.5rem;
+    }
+  }
+
+  .card-padding-lg {
+    padding: 1.5rem;
+  }
+  @media (min-width: 1024px) {
+    .card-padding-lg {
+      padding: 2rem;
+    }
+  }
+
+  .grid-gap {
+    gap: 1rem;
+  }
+  @media (min-width: 768px) {
+    .grid-gap {
+      gap: 1.25rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .grid-gap {
+      gap: 1.5rem;
+    }
+  }
+  @media (min-width: 1280px) {
+    .grid-gap {
+      gap: 1.75rem;
+    }
+  }
+  @media (min-width: 1536px) {
+    .grid-gap {
+      gap: 2rem;
+    }
+  }
+}
+
+/* ==========================================
+   Glass Effects
+   ========================================== */
+@layer utilities {
+  .glass {
+    background: hsl(var(--glass-bg) / var(--glass-opacity));
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
+    border: 1px solid hsl(var(--glass-border) / 0.2);
+    box-shadow: var(--glass-shadow);
+  }
+
+  .glass-hue-shadow {
+    animation: hue-shadow-cycle 16s ease-in-out infinite;
+  }
+
+  @keyframes hue-shadow-cycle {
+    0%   { box-shadow: 0 2px 12px -3px hsl(280 70% 50% / 0.18); }
+    16%  { box-shadow: 0 2px 12px -3px hsl(340 80% 55% / 0.18); }
+    33%  { box-shadow: 0 2px 12px -3px hsl(20 90% 55% / 0.18); }
+    50%  { box-shadow: 0 2px 12px -3px hsl(45 90% 50% / 0.18); }
+    66%  { box-shadow: 0 2px 12px -3px hsl(160 60% 45% / 0.18); }
+    83%  { box-shadow: 0 2px 12px -3px hsl(220 70% 55% / 0.18); }
+    100% { box-shadow: 0 2px 12px -3px hsl(280 70% 50% / 0.18); }
+  }
+
+}
+
+/* ==========================================
+   Hover Animations (500ms, cubic-bezier)
+   ========================================== */
+@layer utilities {
+  .hover-transition {
+    transition: all 500ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  /* List view focus/dim transition - slower, for hover dimming effects */
+  .list-focus-transition {
+    transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .hover-transition-fast {
+    transition: all 300ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+
+  .hover-reveal {
+    opacity: 0;
+    transition: all 500ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  @media (hover: hover) {
+    .group:hover .hover-reveal {
+      opacity: 1;
+    }
+  }
+
+
+  .hover-scale {
+    transition: transform 500ms cubic-bezier(0.33, 1, 0.68, 1);
+  }
+  @media (hover: hover) {
+    .hover-scale:hover,
+    .group:hover .hover-scale {
+      transform: scale(1.02);
+    }
+  }
+}
+
+/* ==========================================
+   Card Utilities
+   ========================================== */
+@layer utilities {
+  .card-base {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    background-color: hsl(var(--muted) / 0.4);
+  }
+
+  .card-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    aspect-ratio: 3 / 4;
+  }
+
+  .card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, hsl(0 0% 0% / 0.8), hsl(0 0% 0% / 0.3) 50%, transparent);
+  }
+
+  .card-overlay-light {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, hsl(0 0% 0% / 0.7), hsl(0 0% 0% / 0.3) 50%, transparent);
+  }
+
+  .card-content-bottom {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+  }
+
+  .card-content-full {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+/* ==========================================
+   Button Utilities
+   ========================================== */
+@layer utilities {
+  .btn-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 9999px;
+    transition: all 500ms cubic-bezier(0.33, 1, 0.68, 1);
+    cursor: pointer;
+  }
+
+  .btn-base:active {
+    transform: scale(0.98);
+  }
+
+  .btn-lg {
+    font-size: 0.875rem;
+    padding: 1rem 2rem;
+  }
+
+  .btn-glass {
+    background: hsl(var(--foreground) / 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--foreground) / 0.1);
+    color: hsl(var(--foreground));
+    box-shadow: 0 4px 16px -4px hsl(var(--foreground) / 0.1);
+  }
+  @media (hover: hover) {
+    .btn-glass:hover {
+      background: hsl(var(--foreground) / 0.1);
+      transform: scale(1.02);
+    }
+  }
+
+}
+
+/* ==========================================
+   Focus States
+   ========================================== */
+@layer utilities {
+  .focus-ring {
+    outline: none;
+  }
+  .focus-ring:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.3);
+  }
+}
+
+
+/* ==========================================
+   Glass Title Animation
+   ========================================== */
+/* Initial reveal: moves from black to colors, runs once */
+@keyframes gradient-initial-reveal {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 25% 50%;
+  }
+}
+
+/* Cycles between color tones only, never returns to black */
+@keyframes gradient-color-only-cycle {
+  0%, 100% {
+    background-position: 25% 50%;
+  }
+  50% {
+    background-position: 55% 50%;
+  }
+}
+
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes ring-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+@keyframes bell-swing {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(12deg);
+  }
+  20% {
+    transform: rotate(-10deg);
+  }
+  30% {
+    transform: rotate(6deg);
+  }
+  40% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes footer-gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}

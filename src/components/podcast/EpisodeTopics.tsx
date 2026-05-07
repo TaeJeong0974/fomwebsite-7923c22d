@@ -1,3 +1,5 @@
+"use client";
+
 interface EpisodeTopicsProps {
   topics: string[];
   detailTags?: string[];

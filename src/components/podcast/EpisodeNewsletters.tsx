@@ -1,3 +1,5 @@
+"use client";
+
 import { NewsletterMention } from "@/lib/podcastData";
 
 interface EpisodeNewslettersProps {
@@ -11,7 +13,7 @@ const EpisodeNewsletters = ({ newsletters, guestFirstName }: EpisodeNewslettersP
   return (
     <div>
       <h3 className="text-section-header font-medium text-foreground mb-5 sm:mb-6">
-        {guestFirstName}'s Reco Newsletters
+        {guestFirstName}&apos;s Reco Newsletters
       </h3>
       <ul className="space-y-3">
         {newsletters.map((newsletter) => (

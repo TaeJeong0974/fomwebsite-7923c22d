@@ -1,7 +1,9 @@
+"use client";
+
 import { useState, useEffect, useRef, useCallback } from "react";
 import { Play, X } from "lucide-react";
 import { YouTubeIcon, SpotifyIcon, ApplePodcastsIcon, APPLE_PODCASTS_URL } from "@/components/icons/PlatformIcons";
-import guestBg from "@/assets/guest-bg.png?format=webp";
+const guestBg = "/images/assets/guest-bg.jpg";
 
 interface FloatingMiniPlayerProps {
   youtubeUrl?: string;
@@ -51,12 +53,14 @@ const FloatingMiniPlayer = ({ youtubeUrl, spotifyUrl, appleUrl, playTrigger, thu
     return () => window.removeEventListener('resize', updatePosition);
   }, []);
 
+  /* eslint-disable react-hooks/set-state-in-effect -- responding to parent-controlled trigger counter */
   useEffect(() => {
     if (playTrigger && playTrigger > 0) {
       setIsPlaying(true);
       setPipDismissed(false);
     }
   }, [playTrigger]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   useEffect(() => {
     if (!playerWrapperRef.current) return;

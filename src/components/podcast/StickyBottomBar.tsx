@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { Share2, Check } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";

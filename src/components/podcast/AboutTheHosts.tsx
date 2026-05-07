@@ -1,3 +1,5 @@
+"use client";
+
 import { PodcastHost } from "@/lib/podcastData";
 import { useEpisodeData } from "@/contexts/EpisodeDataContext";
 
