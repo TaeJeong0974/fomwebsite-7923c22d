@@ -1,3 +1,5 @@
+"use client";
+
 import { createContext, useContext, ReactNode } from "react";
 
 interface SubscribeOptions {
@@ -25,7 +27,7 @@ interface SubscribeProviderProps {
 }
 
 export const SubscribeProvider = ({ children }: SubscribeProviderProps) => {
-  const openSubscribe = (_optionsOrEvent?: SubscribeOptions | React.SyntheticEvent) => {
+  const openSubscribe = () => {
     window.open("https://www.youtube.com/@FutureofMarketingwithAI", "_blank", "noopener,noreferrer");
   };
 

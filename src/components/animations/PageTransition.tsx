@@ -1,5 +1,7 @@
-import { motion, AnimatePresence } from "framer-motion";
-import { useLocation } from "react-router-dom";
+"use client";
+
+import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
 
 interface PageTransitionProps {
@@ -7,20 +9,17 @@ interface PageTransitionProps {
 }
 
 const PageTransition = ({ children }: PageTransitionProps) => {
-  const location = useLocation();
+  const pathname = usePathname();
 
   return (
-    <AnimatePresence mode="wait">
-      <motion.div 
-        key={location.pathname}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.4, ease: liquidEase }}
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
+    <motion.div
+      key={pathname}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4, ease: liquidEase }}
+    >
+      {children}
+    </motion.div>
   );
 };
 

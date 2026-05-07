@@ -1,4 +1,6 @@
-import { motion, useInView } from "framer-motion";
+"use client";
+
+import { motion, useInView, type Variants } from "framer-motion";
 import { useRef, useState } from "react";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
@@ -13,7 +15,7 @@ interface LinkItem {
 
 interface AnimatedLinkProps {
   item: LinkItem;
-  variants: any;
+  variants: Variants;
   isMobile: boolean;
 }
 

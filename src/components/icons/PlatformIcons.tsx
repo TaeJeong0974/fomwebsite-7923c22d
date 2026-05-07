@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * Shared SVG platform icons — eliminates duplication across
  * EpisodeActionButtons, StickyBottomBar, and FloatingMiniPlayer.

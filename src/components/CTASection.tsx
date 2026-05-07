@@ -1,3 +1,5 @@
+"use client";
+
 import ListenSubscribeCards from "@/components/ListenSubscribeCards";
 
 const CTASection = () => {

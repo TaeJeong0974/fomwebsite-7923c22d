@@ -1,5 +1,7 @@
+"use client";
+
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import Link from "next/link";
 import { motion } from "framer-motion";
 
 import { PodcastEpisode } from "@/lib/podcastData";
@@ -143,7 +145,7 @@ const PodcastListView = ({ episodes, comingSoonEpisodes }: PodcastListViewProps)
                 </div>
               ) : (
                 <Link
-                  to={`/podcast/${episode.slug}`}
+                  href={`/podcast/${episode.slug}`}
                   aria-label={`Listen to episode with ${episode.name}, ${episode.title} at ${episode.company}`}
                   className="group py-6 sm:py-8 flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 sm:gap-6 hover-transition relative z-10"
                 >

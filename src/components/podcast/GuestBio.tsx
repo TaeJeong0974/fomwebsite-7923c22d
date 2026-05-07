@@ -1,3 +1,5 @@
+"use client";
+
 /**
  * Shared guest bio rendering with company link.
  * Eliminates duplication between PodcastDetail and ComingSoonEpisode.

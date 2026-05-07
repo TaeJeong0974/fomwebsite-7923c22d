@@ -1,8 +1,11 @@
+"use client";
+
 import { useState, useEffect } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import FomLogo from "@/assets/FOM_Logo.svg";
+const FomLogo = "/images/assets/FOM_Logo.svg";
 import { useSubscribe } from "@/contexts/SubscribeContext";
 
 import SubscribeButton from "@/components/SubscribeButton";
@@ -72,16 +75,15 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState<string>("");
-  const location = useLocation();
-  const navigate = useNavigate();
-  const isHomePage = location.pathname === "/";
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
   
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
       
       // Only track sections on homepage
-      if (location.pathname !== "/") {
+      if (pathname !== "/") {
         setActiveSection("");
         return;
       }
@@ -107,7 +109,7 @@ const Navbar = () => {
     handleScroll(); // Check initial position
     
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [location.pathname]);
+  }, [pathname]);
   
   const navLinks = [
     { label: "Podcast", href: "#podcast" },
@@ -115,23 +117,8 @@ const Navbar = () => {
     { label: "Connect", href: "#contact" },
   ];
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    setIsOpen(false);
-    
-    if (isHomePage) {
-      const element = document.querySelector(href);
-      element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    } else {
-      navigate('/');
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          const element = document.querySelector(href);
-          element?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }, 100);
-      });
-    }
-  };
+  const closeMenu = () => setIsOpen(false);
+  const linkHref = (hash: string) => (isHomePage ? hash : `/${hash}`);
 
   return (
     <motion.header 
@@ -145,8 +132,8 @@ const Navbar = () => {
         <nav className={`rounded-md transition-all duration-500 ease-smooth ${isScrolled ? 'glass glass-hue-shadow bg-background/80 backdrop-blur-xl px-4 sm:px-5 lg:px-6 mt-4 py-2.5 lg:py-3' : 'pt-5 lg:pt-6 py-3 lg:py-4'}`}>
           {/* Mobile: Simple flex layout */}
           <div className="flex items-center justify-between md:hidden">
-            <Link 
-              to="/" 
+            <Link
+              href="/"
               onClick={(e) => {
                 if (isHomePage) {
                   e.preventDefault();
@@ -175,8 +162,8 @@ const Navbar = () => {
           {/* Desktop: Grid layout */}
           <div className="hidden md:grid grid-cols-3 items-center">
             {/* Logo - First column */}
-            <Link 
-              to="/" 
+            <Link
+              href="/"
               onClick={(e) => {
                 if (isHomePage) {
                   e.preventDefault();
@@ -204,20 +191,20 @@ const Navbar = () => {
                     ease: liquidEase 
                   }}
                 >
-                  <a
-                    href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
+                  <Link
+                    href={linkHref(link.href)}
+                    onClick={closeMenu}
                     className={`relative text-[1em] font-medium focus-ring transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                       activeSection === link.href ? 'text-primary' : 'text-foreground hover:text-foreground/60'
                     }`}
                   >
                     {link.label}
-                    <span 
+                    <span
                       className={`absolute -bottom-1 left-0 h-[2px] bg-primary transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
                         activeSection === link.href ? 'w-full' : 'w-0'
                       }`}
                     />
-                  </a>
+                  </Link>
                 </motion.li>
               ))}
             </ul>
@@ -241,18 +228,14 @@ const Navbar = () => {
               <ul className="flex flex-col gap-1">
                 {navLinks.map((link) => (
                   <li key={link.label}>
-                    <a
-                      href={link.href}
-                      onClick={(e) => handleNavClick(e, link.href)}
-                      onTouchEnd={(e) => {
-                        e.preventDefault();
-                        handleNavClick(e as unknown as React.MouseEvent<HTMLAnchorElement>, link.href);
-                      }}
+                    <Link
+                      href={linkHref(link.href)}
+                      onClick={closeMenu}
                       className="block py-3 text-3xl text-foreground active:text-primary active:bg-secondary/50 rounded-xl focus-ring"
                       style={{ touchAction: 'manipulation', WebkitTapHighlightColor: 'transparent' }}
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   </li>
                 ))}
                 <li className="pt-3">

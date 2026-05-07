@@ -1,3 +1,5 @@
+"use client";
+
 import { Linkedin, Building2 } from "lucide-react";
 import { PodcastHost } from "@/lib/podcastData";
 import { useEpisodeData } from "@/contexts/EpisodeDataContext";

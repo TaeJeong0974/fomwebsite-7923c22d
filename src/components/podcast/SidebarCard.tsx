@@ -1,5 +1,6 @@
+"use client";
+
 import { ReactNode } from "react";
-import teaserBg from "@/assets/teaser-bg.png?format=webp";
 
 interface SidebarCardProps {
   title: string;

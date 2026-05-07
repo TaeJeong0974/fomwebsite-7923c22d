@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useCallback } from "react";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -40,7 +42,7 @@ export const useSubscriptionForm = ({
   const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
     if (isSubmitting) return;
-    
+
     setIsSubmitting(true);
     try {
       await supabase.from("subscribers").upsert(

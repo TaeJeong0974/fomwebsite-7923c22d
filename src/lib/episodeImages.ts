@@ -2,30 +2,31 @@
  * Shared episode image map — single source of truth.
  * Used by PodcastSection, RelatedEpisodes, and any future component needing episode images.
  */
-import guestMeagen from "@/assets/guest-meagen-eisenberg.jpg?format=webp";
-import guestLena from "@/assets/guest-lena-waters.jpg?format=webp";
-import guestLindsey from "@/assets/guest-lindsey-irvine.jpg?format=webp";
-import guestSara from "@/assets/guest-sara-varni.jpg?format=webp";
-import guestDave from "@/assets/guest-dave-steer.jpg?format=webp";
-import guestKate from "@/assets/guest-kate-johnson.jpg?format=webp";
-import guestSheila from "@/assets/guest-sheila-vashee.jpg?format=webp";
-import guestCeci from "@/assets/guest-ceci-stallsmith.jpg?format=webp";
-import guestIdan from "@/assets/guest-idan-koren.jpg?format=webp";
-import idanCover from "@/assets/guest-idan-koren-cover.png?format=webp";
-import guestKatrina from "@/assets/guest-katrina-wong.jpg?format=webp";
-import guestWendy from "@/assets/guest-wendy-werve.jpg?format=webp";
-import hostMada from "@/assets/host-mada.png?format=webp";
-import hostEthan from "@/assets/host-ethan.png?format=webp";
-import hostCamille from "@/assets/host-camille.png?format=webp";
-import ep0Poster from "@/assets/ep0-poster.png?format=webp";
-import ep1Poster from "@/assets/ep1-poster.png?format=webp";
-import saraCover from "@/assets/guest-sara-varni-cover.png?format=webp";
-import kateCover from "@/assets/guest-kate-johnson-cover.png?format=webp";
-import sheilaCover from "@/assets/guest-sheila-vashee-cover.png?format=webp";
-import sheilaPoster from "@/assets/guest-sheila-vashee-poster.png?format=webp";
-import ceciCover from "@/assets/guest-ceci-stallsmith-cover.png?format=webp";
-import lindseyCover from "@/assets/guest-lindsey-irvine-cover.png?format=webp";
-import wendyCover from "@/assets/guest-wendy-werve-cover.png?format=webp";
+const guestMeagen = "/images/assets/guest-meagen-eisenberg.jpg";
+const guestLena = "/images/assets/guest-lena-waters.jpg";
+const guestLindsey = "/images/assets/guest-lindsey-irvine.jpg";
+const guestSara = "/images/assets/guest-sara-varni.jpg";
+const guestDave = "/images/assets/guest-dave-steer.jpg";
+const daveCover = "/images/assets/guest-dave-steer-cover.jpg";
+const lenaCover = "/images/assets/guest-lena-waters-cover.jpg";
+const guestKate = "/images/assets/guest-kate-johnson.jpg";
+const guestCeci = "/images/assets/guest-ceci-stallsmith.jpg";
+const guestIdan = "/images/assets/guest-idan-koren.jpg";
+const idanCover = "/images/assets/guest-idan-koren-cover.jpg";
+const guestKatrina = "/images/assets/guest-katrina-wong.jpg";
+const guestWendy = "/images/assets/guest-wendy-werve.jpg";
+const hostMada = "/images/assets/host-mada.jpg";
+const hostEthan = "/images/assets/host-ethan.jpg";
+const hostCamille = "/images/assets/host-camille.jpg";
+const ep0Poster = "/images/assets/ep0-poster.jpg";
+const ep1Poster = "/images/assets/ep1-poster.jpg";
+const saraCover = "/images/assets/guest-sara-varni-cover.jpg";
+const kateCover = "/images/assets/guest-kate-johnson-cover.jpg";
+const sheilaCover = "/images/assets/guest-sheila-vashee-cover.jpg";
+const sheilaPoster = "/images/assets/guest-sheila-vashee-poster.jpg";
+const ceciCover = "/images/assets/guest-ceci-stallsmith-cover.png";
+const lindseyCover = "/images/assets/guest-lindsey-irvine-cover.jpg";
+const wendyCover = "/images/assets/guest-wendy-werve-cover.jpg";
 
 export const EPISODE_IMAGES: Record<string, string> = {
   "the-future-of-marketing": hostMada,
@@ -45,7 +46,9 @@ export const EPISODE_IMAGES: Record<string, string> = {
 export const POSTER_IMAGES: Record<string, string> = {
   "the-future-of-marketing": ep0Poster,
   "meagen-eisenberg": ep1Poster,
+  "lena-waters": lenaCover,
   "sara-varni": saraCover,
+  "dave-steer": daveCover,
   "kate-johnson": kateCover,
   "sheila-vashee": sheilaPoster,
   "ceci-stallsmith": ceciCover,
@@ -58,18 +61,18 @@ const SITE_URL = "https://fom.xyz";
 const OG_VERSION = "v4";
 
 export const OG_IMAGES: Record<string, string> = {
-  "the-future-of-marketing": `${SITE_URL}/images/og-the-future-of-marketing.png?${OG_VERSION}`,
-  "meagen-eisenberg": `${SITE_URL}/images/og-meagen-eisenberg.png?${OG_VERSION}`,
-  "lena-waters": `${SITE_URL}/images/og-lena-waters.png?${OG_VERSION}`,
-  "dave-steer": `${SITE_URL}/images/og-dave-steer.png?${OG_VERSION}`,
-  "sara-varni": `${SITE_URL}/images/og-sara-varni.png?${OG_VERSION}`,
-  "kate-johnson": `${SITE_URL}/images/og-kate-johnson.png?${OG_VERSION}`,
-  "idan-koren": `${SITE_URL}/images/og-idan-koren.png?${OG_VERSION}`,
-  "lindsey-irvine": `${SITE_URL}/images/og-lindsey-irvine.png?${OG_VERSION}`,
-  "sheila-vashee": `${SITE_URL}/images/og-sheila-vashee.png?${OG_VERSION}`,
-  "ceci-stallsmith": `${SITE_URL}/images/og-ceci-stallsmith.png?${OG_VERSION}`,
+  "the-future-of-marketing": `${SITE_URL}/images/og-the-future-of-marketing.jpg?${OG_VERSION}`,
+  "meagen-eisenberg": `${SITE_URL}/images/og-meagen-eisenberg.jpg?${OG_VERSION}`,
+  "lena-waters": `${SITE_URL}/images/og-lena-waters.jpg?${OG_VERSION}`,
+  "dave-steer": `${SITE_URL}/images/og-dave-steer.jpg?${OG_VERSION}`,
+  "sara-varni": `${SITE_URL}/images/og-sara-varni.jpg?${OG_VERSION}`,
+  "kate-johnson": `${SITE_URL}/images/og-kate-johnson.jpg?${OG_VERSION}`,
+  "idan-koren": `${SITE_URL}/images/og-idan-koren.jpg?${OG_VERSION}`,
+  "lindsey-irvine": `${SITE_URL}/images/og-lindsey-irvine.jpg?${OG_VERSION}`,
+  "sheila-vashee": `${SITE_URL}/images/og-sheila-vashee.jpg?${OG_VERSION}`,
+  "ceci-stallsmith": `${SITE_URL}/images/og-ceci-stallsmith.jpg?${OG_VERSION}`,
   "katrina-wong": `${SITE_URL}/images/og-katrina-wong.jpg?${OG_VERSION}`,
-  "wendy-werve": `${SITE_URL}/images/og-wendy-werve.png?${OG_VERSION}`,
+  "wendy-werve": `${SITE_URL}/images/og-wendy-werve.jpg?${OG_VERSION}`,
 };
 
 export const HOST_IMAGES = [hostMada, hostEthan, hostCamille];

@@ -1,4 +1,6 @@
-import { useNavigate } from "react-router-dom";
+"use client";
+
+import { useRouter } from "next/navigation";
 import { X } from "lucide-react";
 import { LiquidButton } from "@/components/ui/LiquidButton";
 
@@ -7,10 +9,10 @@ interface EpisodeOverlayLayoutProps {
 }
 
 const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const handleClose = () => {
-    navigate("/#podcast");
+    router.push("/#podcast");
   };
 
   return (
