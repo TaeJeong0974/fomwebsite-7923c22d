@@ -1,12 +1,12 @@
 "use client";
 
-import { createContext, useContext, ReactNode, useMemo } from "react";
 import {
-  PodcastEpisode,
-  PodcastHost,
+  type PodcastEpisode,
+  type PodcastHost,
   podcastEpisodes as staticEpisodes,
   podcastHosts as staticHosts,
 } from "@/lib/podcastData";
+import { type ReactNode, createContext, useContext, useMemo } from "react";
 
 interface EpisodeDataContextType {
   episodes: PodcastEpisode[];
@@ -35,7 +35,8 @@ export const EpisodeDataProvider = ({ children }: { children: ReactNode }) => {
       episodes: staticEpisodes,
       hosts: staticHosts,
       loading: false,
-      getEpisodeBySlug: (slug: string) => staticEpisodes.find((ep) => ep.slug === slug),
+      getEpisodeBySlug: (slug: string) =>
+        staticEpisodes.find((ep) => ep.slug === slug),
       getPublishedEpisodes: () => staticEpisodes.filter((ep) => !ep.comingSoon),
       getComingSoonEpisodes: () => staticEpisodes.filter((ep) => ep.comingSoon),
     }),

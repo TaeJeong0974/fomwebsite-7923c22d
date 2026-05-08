@@ -1,6 +1,6 @@
 "use client";
 
-import { Linkedin, Building2 } from "lucide-react";
+import { Building2, Linkedin } from "lucide-react";
 import SidebarCard from "./SidebarCard";
 
 interface EpisodeGuestCardProps {
@@ -11,9 +11,15 @@ interface EpisodeGuestCardProps {
   linkedInUrl?: string;
 }
 
-const EpisodeGuestCard = ({ name, title, company, companyDomain, linkedInUrl }: EpisodeGuestCardProps) => {
-  const [firstName, ...lastNameParts] = name.split(' ');
-  const lastName = lastNameParts.join(' ');
+const EpisodeGuestCard = ({
+  name,
+  title,
+  company,
+  companyDomain,
+  linkedInUrl,
+}: EpisodeGuestCardProps) => {
+  const [firstName, ...lastNameParts] = name.split(" ");
+  const lastName = lastNameParts.join(" ");
   const companyUrl = companyDomain ? `https://${companyDomain}` : undefined;
 
   return (

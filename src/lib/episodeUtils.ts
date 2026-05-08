@@ -1,4 +1,4 @@
-import { PodcastEpisode } from "@/lib/podcastData";
+import type { PodcastEpisode } from "@/lib/podcastData";
 
 const SITE_URL = "https://fom.xyz";
 
@@ -7,7 +7,11 @@ const SITE_URL = "https://fom.xyz";
  */
 export function getYouTubeThumbnail(
   youtubeUrl: string,
-  quality: "maxresdefault" | "hqdefault" | "mqdefault" | "sddefault" = "maxresdefault"
+  quality:
+    | "maxresdefault"
+    | "hqdefault"
+    | "mqdefault"
+    | "sddefault" = "maxresdefault"
 ): string {
   const match = youtubeUrl.match(
     /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([a-zA-Z0-9_-]{11})/
@@ -66,7 +70,9 @@ export function buildEpisodeJsonLd(
     "@graph": [
       {
         "@type": "PodcastEpisode",
-        name: isIntro ? "Future of Marketing — Intro" : `${episode.name}: ${episode.overview}`,
+        name: isIntro
+          ? "Future of Marketing — Intro"
+          : `${episode.name}: ${episode.overview}`,
         description: episode.fullDescription || episode.overview,
         url: `${SITE_URL}/podcast/${slug}`,
         datePublished: episode.publishedDate,

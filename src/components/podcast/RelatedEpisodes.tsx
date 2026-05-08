@@ -1,22 +1,30 @@
 "use client";
 
-import { PodcastEpisode } from "@/lib/podcastData";
 import PodcastCard from "@/components/podcast/PodcastCard";
 import { EPISODE_IMAGES, HOST_IMAGES } from "@/lib/episodeImages";
+import type { PodcastEpisode } from "@/lib/podcastData";
 
 interface RelatedEpisodesProps {
   episodes: PodcastEpisode[];
   title?: string;
 }
 
-const RelatedEpisodes = ({ episodes, title = "Other Speakers" }: RelatedEpisodesProps) => {
+const RelatedEpisodes = ({
+  episodes,
+  title = "Other Speakers",
+}: RelatedEpisodesProps) => {
   if (episodes.length === 0) return null;
 
   return (
-    <div id="related-episodes" className="mt-8 sm:mt-10 lg:mt-12 pt-8 sm:pt-10 lg:pt-12 border-t border-border">
+    <div
+      id="related-episodes"
+      className="mt-8 sm:mt-10 lg:mt-12 pt-8 sm:pt-10 lg:pt-12 border-t border-border"
+    >
       <h2 className="text-display-xl font-medium text-foreground mb-6 sm:mb-8">
-        {title.split(' ').map((word, i) => (
-          <span key={i} className="block">{word}</span>
+        {title.split(" ").map((word) => (
+          <span key={word} className="block">
+            {word}
+          </span>
         ))}
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
@@ -25,7 +33,9 @@ const RelatedEpisodes = ({ episodes, title = "Other Speakers" }: RelatedEpisodes
             key={ep.id}
             episode={ep}
             isUpcoming={ep.comingSoon}
-            image={EPISODE_IMAGES[ep.slug] || HOST_IMAGES[i % HOST_IMAGES.length]}
+            image={
+              EPISODE_IMAGES[ep.slug] || HOST_IMAGES[i % HOST_IMAGES.length]
+            }
           />
         ))}
       </div>

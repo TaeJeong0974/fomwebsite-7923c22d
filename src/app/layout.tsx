@@ -1,8 +1,13 @@
-import type { Metadata } from "next";
-import { GoogleTagManager } from "@next/third-parties/google";
-import Providers from "./providers";
 import Navbar from "@/components/Navbar";
-import { SITE_TITLE, SITE_DESCRIPTION, SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seoConstants";
+import {
+  DEFAULT_OG_IMAGE,
+  SITE_DESCRIPTION,
+  SITE_TITLE,
+  SITE_URL,
+} from "@/lib/seoConstants";
+import { GoogleTagManager } from "@next/third-parties/google";
+import type { Metadata } from "next";
+import Providers from "./providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -51,13 +56,50 @@ export default function RootLayout({
     <html lang="en" data-scroll-behavior="smooth">
       <head>
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-        <link rel="preconnect" href="https://www.googletagmanager.com" crossOrigin="" />
-        <link rel="preload" href="/fonts/ITC_Avant_Garde_Gothic_Pro-Book.otf" as="font" type="font/otf" crossOrigin="" />
-        <link rel="preload" href="/fonts/ITC_Avant_Garde_Gothic_Pro-Medium.otf" as="font" type="font/otf" crossOrigin="" />
-        <link rel="preload" href="/fonts/ITC_Avant_Garde_Gothic_Pro-Demi.otf" as="font" type="font/otf" crossOrigin="" />
-        <link rel="preload" href="/images/assets/host-mada.jpg" as="image" type="image/jpeg" />
-        <link rel="preload" href="/images/assets/host-ethan.jpg" as="image" type="image/jpeg" />
-        <link rel="preload" href="/images/assets/host-camille.jpg" as="image" type="image/jpeg" />
+        <link
+          rel="preconnect"
+          href="https://www.googletagmanager.com"
+          crossOrigin=""
+        />
+        <link
+          rel="preload"
+          href="/fonts/ITC_Avant_Garde_Gothic_Pro-Book.otf"
+          as="font"
+          type="font/otf"
+          crossOrigin=""
+        />
+        <link
+          rel="preload"
+          href="/fonts/ITC_Avant_Garde_Gothic_Pro-Medium.otf"
+          as="font"
+          type="font/otf"
+          crossOrigin=""
+        />
+        <link
+          rel="preload"
+          href="/fonts/ITC_Avant_Garde_Gothic_Pro-Demi.otf"
+          as="font"
+          type="font/otf"
+          crossOrigin=""
+        />
+        <link
+          rel="preload"
+          href="/images/assets/host-mada.jpg"
+          as="image"
+          type="image/jpeg"
+        />
+        <link
+          rel="preload"
+          href="/images/assets/host-ethan.jpg"
+          as="image"
+          type="image/jpeg"
+        />
+        <link
+          rel="preload"
+          href="/images/assets/host-camille.jpg"
+          as="image"
+          type="image/jpeg"
+        />
       </head>
       <body suppressHydrationWarning>
         <Providers>

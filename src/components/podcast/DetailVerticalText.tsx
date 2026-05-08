@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const BRAND_TAGLINE = "THE FUTURE OF MARKETING";
 
 // Typewriter animation for each character
 const TypewriterText = ({ text }: { text: string }) => {
   const characters = text.split("");
-  
+
   return (
     <span className="text-[10px] font-display font-semibold tracking-[0.25em] text-foreground whitespace-nowrap">
       {characters.map((char, index) => (
@@ -29,9 +29,13 @@ const TypewriterText = ({ text }: { text: string }) => {
   );
 };
 
-
-const DetailVerticalText = ({ guestName, isUpcoming = false }: { guestName: string; isUpcoming?: boolean }) => {
-  const guestLabel = isUpcoming ? `UPCOMING: ${guestName.toUpperCase()}` : guestName.toUpperCase();
+const DetailVerticalText = ({
+  guestName,
+  isUpcoming = false,
+}: { guestName: string; isUpcoming?: boolean }) => {
+  const guestLabel = isUpcoming
+    ? `UPCOMING: ${guestName.toUpperCase()}`
+    : guestName.toUpperCase();
   const [currentLabel, setCurrentLabel] = useState(guestLabel);
   const [currentNumber, setCurrentNumber] = useState("01");
 
@@ -40,7 +44,7 @@ const DetailVerticalText = ({ guestName, isUpcoming = false }: { guestName: stri
       const relatedSection = document.getElementById("related-episodes");
       const stayConnectedSection = document.getElementById("stay-connected");
       const windowHeight = window.innerHeight;
-      
+
       // Check stay connected section first (lowest priority position)
       if (stayConnectedSection) {
         const rect = stayConnectedSection.getBoundingClientRect();
@@ -50,7 +54,7 @@ const DetailVerticalText = ({ guestName, isUpcoming = false }: { guestName: stri
           return;
         }
       }
-      
+
       // Check related episodes section
       if (relatedSection) {
         const rect = relatedSection.getBoundingClientRect();
@@ -60,7 +64,7 @@ const DetailVerticalText = ({ guestName, isUpcoming = false }: { guestName: stri
           return;
         }
       }
-      
+
       // Default to guest name (with UPCOMING prefix if applicable)
       setCurrentLabel(guestLabel);
       setCurrentNumber("01");
@@ -77,12 +81,16 @@ const DetailVerticalText = ({ guestName, isUpcoming = false }: { guestName: stri
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
+        transition={{
+          duration: 1,
+          delay: 0.3,
+          ease: [0.22, 1, 0.36, 1] as const,
+        }}
         className="fixed left-8 2xl:left-12 top-1/2 -translate-y-1/2 z-40 hidden xl:block"
       >
-        <div 
+        <div
           className="text-[10px] font-display font-semibold tracking-[0.25em] text-foreground whitespace-nowrap"
-          style={{ 
+          style={{
             writingMode: "vertical-rl",
             transform: "rotate(180deg)",
           }}
@@ -95,7 +103,11 @@ const DetailVerticalText = ({ guestName, isUpcoming = false }: { guestName: stri
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
+        transition={{
+          duration: 1,
+          delay: 0.3,
+          ease: [0.22, 1, 0.36, 1] as const,
+        }}
         className="fixed right-8 2xl:right-12 top-1/2 -translate-y-1/2 z-40 hidden xl:block"
       >
         <div className="flex flex-col items-center gap-4">
@@ -112,12 +124,12 @@ const DetailVerticalText = ({ guestName, isUpcoming = false }: { guestName: stri
               {currentNumber}
             </motion.span>
           </AnimatePresence>
-          
+
           {/* Divider line */}
           <div className="w-px h-4 bg-foreground/30" />
-          
+
           {/* Section label */}
-          <div 
+          <div
             className="relative h-56 flex items-center justify-center overflow-hidden"
             style={{ writingMode: "vertical-rl" }}
           >
@@ -127,7 +139,10 @@ const DetailVerticalText = ({ guestName, isUpcoming = false }: { guestName: stri
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
-                transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] as const }}
+                transition={{
+                  duration: 0.2,
+                  ease: [0.22, 1, 0.36, 1] as const,
+                }}
               >
                 <TypewriterText text={currentLabel} />
               </motion.div>

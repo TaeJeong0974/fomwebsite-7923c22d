@@ -1,8 +1,8 @@
 "use client";
 
-import { Linkedin, Building2 } from "lucide-react";
-import { PodcastHost } from "@/lib/podcastData";
 import { useEpisodeData } from "@/contexts/EpisodeDataContext";
+import type { PodcastHost } from "@/lib/podcastData";
+import { Building2, Linkedin } from "lucide-react";
 import SidebarCard from "./SidebarCard";
 
 interface EpisodeHostsCardProps {
@@ -10,21 +10,34 @@ interface EpisodeHostsCardProps {
   episodeHosts?: PodcastHost[];
 }
 
-const EpisodeHostsCard = ({ showAllHosts = false, episodeHosts }: EpisodeHostsCardProps) => {
+const EpisodeHostsCard = ({
+  showAllHosts = false,
+  episodeHosts,
+}: EpisodeHostsCardProps) => {
   const { hosts: allHosts } = useEpisodeData();
-  const hosts = episodeHosts || (showAllHosts ? allHosts : allHosts.slice(0, 2));
+  const hosts =
+    episodeHosts || (showAllHosts ? allHosts : allHosts.slice(0, 2));
 
   return (
     <SidebarCard title="Hosts">
       <div className="space-y-3 lg:space-y-4">
         {hosts.map((host, index) => {
-          const [firstName, ...lastNameParts] = host.name.split(' ');
-          const lastName = lastNameParts.join(' ');
-          
+          const [firstName, ...lastNameParts] = host.name.split(" ");
+          const lastName = lastNameParts.join(" ");
+
           return (
-            <div key={index} className={index > 0 ? "pt-3 lg:pt-4 border-t-[1.5px] border-border/40" : ""}>
+            <div
+              key={host.name}
+              className={
+                index > 0
+                  ? "pt-3 lg:pt-4 border-t-[1.5px] border-border/40"
+                  : ""
+              }
+            >
               <h3 className="font-display text-xl lg:text-3xl text-foreground leading-none tracking-normal">
-                <span className="inline lg:block font-medium">{firstName} </span>
+                <span className="inline lg:block font-medium">
+                  {firstName}{" "}
+                </span>
                 <span className="inline lg:block font-normal">{lastName}</span>
               </h3>
               <p className="text-xs lg:text-sm text-muted-foreground mt-1 lg:mt-2">

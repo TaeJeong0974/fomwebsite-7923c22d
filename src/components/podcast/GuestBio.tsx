@@ -13,10 +13,18 @@ interface GuestBioProps {
   linkedInUrl?: string;
 }
 
-const GuestBio = ({ name, bio, company, companyDomain, linkedInUrl }: GuestBioProps) => {
+const GuestBio = ({
+  name,
+  bio,
+  company,
+  companyDomain,
+  linkedInUrl,
+}: GuestBioProps) => {
   return (
     <div>
-      <h3 className="text-section-header font-medium text-foreground mb-5 sm:mb-6">About the Guest</h3>
+      <h3 className="text-section-header font-medium text-foreground mb-5 sm:mb-6">
+        About the Guest
+      </h3>
       <p className="text-foreground/80 leading-relaxed text-sm lg:text-base max-w-prose">
         <span className="font-medium text-foreground">{name}</span>{" "}
         {companyDomain ? (
@@ -44,7 +52,9 @@ const GuestBio = ({ name, bio, company, companyDomain, linkedInUrl }: GuestBioPr
           className="group text-sm text-muted-foreground hover:text-foreground hover-transition inline-block mt-3"
         >
           LinkedIn{" "}
-          <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">→</span>
+          <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
+            →
+          </span>
         </a>
       )}
     </div>
