@@ -1,8 +1,8 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { X } from "lucide-react";
 import { LiquidButton } from "@/components/ui/LiquidButton";
+import { X } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface EpisodeOverlayLayoutProps {
   children: React.ReactNode;
@@ -22,10 +22,8 @@ const EpisodeOverlayLayout = ({ children }: EpisodeOverlayLayoutProps) => {
         <div className="container mx-auto container-padding">
           <div className="relative flex gap-4 items-start">
             {/* Main Content */}
-            <div className="flex-1">
-              {children}
-            </div>
-            
+            <div className="flex-1">{children}</div>
+
             {/* Close Button - Sticky on desktop */}
             <div className="hidden lg:flex w-12 flex-shrink-0 sticky top-28 mt-7">
               <LiquidButton

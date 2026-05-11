@@ -2,17 +2,32 @@ import { podcastEpisodes } from "@/lib/podcastData";
 import { SITE_URL } from "@/lib/seoConstants";
 
 function esc(s: string) {
-  return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
 export function GET() {
   const eps = podcastEpisodes
-    .filter((e) => !e.comingSoon && e.publishedDate && e.publishedDate !== "Coming Soon")
-    .sort((a, b) => new Date(b.publishedDate).getTime() - new Date(a.publishedDate).getTime());
+    .filter(
+      (e) =>
+        !e.comingSoon && e.publishedDate && e.publishedDate !== "Coming Soon"
+    )
+    .sort(
+      (a, b) =>
+        new Date(b.publishedDate).getTime() -
+        new Date(a.publishedDate).getTime()
+    );
 
   const items = eps
     .map((e) => {
-      const firstP = (e.fullDescription || "").split(/\n\n/)[0]?.trim().replace(/\n/g, " ") ?? "";
+      const firstP =
+        (e.fullDescription || "")
+          .split(/\n\n/)[0]
+          ?.trim()
+          .replace(/\n/g, " ") ?? "";
       const desc = firstP || e.overview || "";
       return `    <item>
       <title>${esc(`${e.name}: ${e.overview}`)}</title>

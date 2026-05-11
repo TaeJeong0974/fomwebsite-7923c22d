@@ -3,22 +3,22 @@ export const fomLogoMask = `url("data:image/svg+xml,%3Csvg width='598' height='1
 
 export const fomMaskStyles: React.CSSProperties = {
   maskImage: fomLogoMask,
-  maskSize: '100% 100%',
-  maskRepeat: 'no-repeat',
-  maskPosition: 'left center',
+  maskSize: "100% 100%",
+  maskRepeat: "no-repeat",
+  maskPosition: "left center",
   WebkitMaskImage: fomLogoMask,
-  WebkitMaskSize: '100% 100%',
-  WebkitMaskRepeat: 'no-repeat',
-  WebkitMaskPosition: 'left center',
+  WebkitMaskSize: "100% 100%",
+  WebkitMaskRepeat: "no-repeat",
+  WebkitMaskPosition: "left center",
 };
 
 export const fomMaskContainStyles: React.CSSProperties = {
   maskImage: fomLogoMask,
-  maskSize: 'contain',
-  maskRepeat: 'no-repeat',
-  maskPosition: 'center',
+  maskSize: "contain",
+  maskRepeat: "no-repeat",
+  maskPosition: "center",
   WebkitMaskImage: fomLogoMask,
-  WebkitMaskSize: 'contain',
-  WebkitMaskRepeat: 'no-repeat',
-  WebkitMaskPosition: 'center',
+  WebkitMaskSize: "contain",
+  WebkitMaskRepeat: "no-repeat",
+  WebkitMaskPosition: "center",
 };

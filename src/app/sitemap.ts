@@ -1,6 +1,6 @@
-import type { MetadataRoute } from "next";
 import { podcastEpisodes } from "@/lib/podcastData";
 import { SITE_URL } from "@/lib/seoConstants";
+import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const today = new Date();
@@ -14,8 +14,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
 
   return [
-    { url: `${SITE_URL}/`, lastModified: today, changeFrequency: "weekly", priority: 1 },
-    { url: `${SITE_URL}/privacy`, lastModified: today, changeFrequency: "yearly", priority: 0.3 },
+    {
+      url: `${SITE_URL}/`,
+      lastModified: today,
+      changeFrequency: "weekly",
+      priority: 1,
+    },
+    {
+      url: `${SITE_URL}/privacy`,
+      lastModified: today,
+      changeFrequency: "yearly",
+      priority: 0.3,
+    },
     ...episodes,
   ];
 }

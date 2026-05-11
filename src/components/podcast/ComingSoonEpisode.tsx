@@ -1,39 +1,42 @@
 "use client";
 
-import { useParams } from "next/navigation";
-import { motion } from "framer-motion";
-import { Bell } from "lucide-react";
-import { useSubscribe } from "@/contexts/SubscribeContext";
-import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
 import Footer from "@/components/Footer";
+import ListenSubscribeCards from "@/components/ListenSubscribeCards";
+import ComingSoonHeroCard from "@/components/podcast/ComingSoonHeroCard";
+import DetailVerticalText from "@/components/podcast/DetailVerticalText";
 import EpisodeGuestCard from "@/components/podcast/EpisodeGuestCard";
 import EpisodeHostsCard from "@/components/podcast/EpisodeHostsCard";
-import EpisodeTopics from "@/components/podcast/EpisodeTopics";
+import EpisodeOverlayLayout from "@/components/podcast/EpisodeOverlayLayout";
 import EpisodePullQuote from "@/components/podcast/EpisodePullQuote";
-import GuestBio from "@/components/podcast/GuestBio";
-import ComingSoonHeroCard from "@/components/podcast/ComingSoonHeroCard";
-import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
-import DetailVerticalText from "@/components/podcast/DetailVerticalText";
-import ListenSubscribeCards from "@/components/ListenSubscribeCards";
+import EpisodeTopics from "@/components/podcast/EpisodeTopics";
 import FadeInSection from "@/components/podcast/FadeInSection";
+import GuestBio from "@/components/podcast/GuestBio";
+import RelatedEpisodes from "@/components/podcast/RelatedEpisodes";
 import { LiquidButton } from "@/components/ui/LiquidButton";
-import { PodcastEpisode } from "@/lib/podcastData";
 import { useEpisodeData } from "@/contexts/EpisodeDataContext";
+import { useSubscribe } from "@/contexts/SubscribeContext";
+import type { PodcastEpisode } from "@/lib/podcastData";
+import { motion } from "framer-motion";
+import { Bell } from "lucide-react";
+import { useParams } from "next/navigation";
 
 interface ComingSoonEpisodeProps {
   episode?: PodcastEpisode;
 }
 
-const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => {
+const ComingSoonEpisode = ({
+  episode: propEpisode,
+}: ComingSoonEpisodeProps) => {
   const params = useParams<{ slug: string }>();
   const slug = params?.slug;
-  const { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes } = useEpisodeData();
+  const { getEpisodeBySlug, getPublishedEpisodes, getComingSoonEpisodes } =
+    useEpisodeData();
   const episode = propEpisode || (slug ? getEpisodeBySlug(slug) : undefined);
   const { openSubscribe } = useSubscribe();
 
   const otherEpisodes = [
-    ...getPublishedEpisodes().filter(ep => ep.slug !== episode?.slug),
-    ...getComingSoonEpisodes().filter(ep => ep.slug !== episode?.slug),
+    ...getPublishedEpisodes().filter((ep) => ep.slug !== episode?.slug),
+    ...getComingSoonEpisodes().filter((ep) => ep.slug !== episode?.slug),
   ].slice(0, 3);
 
   // Generic coming soon — no episode data
@@ -56,12 +59,20 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
                 </div>
               </div>
               <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-                New Episode<br />Coming Soon
+                New Episode
+                <br />
+                Coming Soon
               </h1>
               <p className="text-foreground text-lg max-w-md mx-auto mb-8">
-                We&apos;re preparing something special. Subscribe to get notified when this episode drops.
+                We&apos;re preparing something special. Subscribe to get
+                notified when this episode drops.
               </p>
-              <LiquidButton onClick={openSubscribe} variant="glass" size="lg" className="gap-2.5">
+              <LiquidButton
+                onClick={openSubscribe}
+                variant="glass"
+                size="lg"
+                className="gap-2.5"
+              >
                 <Bell className="w-5 h-5" />
                 Notify Me
               </LiquidButton>
@@ -105,18 +116,25 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
                 About this Episode
               </h3>
               <div className="text-foreground/80 whitespace-pre-line leading-relaxed text-base lg:text-lg max-w-prose">
-                {episode.fullDescription || `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
+                {episode.fullDescription ||
+                  `Join us for an insightful conversation with ${episode.name}, ${episode.title} at ${episode.company}. In this episode, we dive deep into their journey, exploring the strategies and insights that have shaped their career and the industry.\n\nDiscover the lessons learned, challenges overcome, and the vision for the future that drives their work every day.`}
               </div>
             </FadeInSection>
 
             {episode.pullQuote && (
               <FadeInSection delay={0.3}>
-                <EpisodePullQuote quote={episode.pullQuote} attribution={episode.name} />
+                <EpisodePullQuote
+                  quote={episode.pullQuote}
+                  attribution={episode.name}
+                />
               </FadeInSection>
             )}
 
             <FadeInSection delay={0.45}>
-              <EpisodeTopics topics={episode.topics} title="Topics We'll Cover" />
+              <EpisodeTopics
+                topics={episode.topics}
+                title="Topics We'll Cover"
+              />
             </FadeInSection>
 
             {episode.bio && (
@@ -145,7 +163,10 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
           </div>
 
           {/* Sidebar */}
-          <FadeInSection delay={0.1} className="hidden lg:flex lg:flex-col space-y-6">
+          <FadeInSection
+            delay={0.1}
+            className="hidden lg:flex lg:flex-col space-y-6"
+          >
             <EpisodeGuestCard
               name={episode.name}
               title={episode.title}
@@ -159,7 +180,10 @@ const ComingSoonEpisode = ({ episode: propEpisode }: ComingSoonEpisodeProps) => 
 
         <RelatedEpisodes episodes={otherEpisodes} />
 
-        <FadeInSection id="stay-connected" className="mt-8 sm:mt-10 lg:mt-12 pt-8 sm:pt-10 lg:pt-12">
+        <FadeInSection
+          id="stay-connected"
+          className="mt-8 sm:mt-10 lg:mt-12 pt-8 sm:pt-10 lg:pt-12"
+        >
           <ListenSubscribeCards guestName={guestFirstName} />
         </FadeInSection>
       </EpisodeOverlayLayout>

@@ -2,10 +2,13 @@
 
 import { motion } from "framer-motion";
 
-const shimmer = "relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-foreground/[0.04] before:to-transparent";
+const shimmer =
+  "relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_1.5s_infinite] before:bg-gradient-to-r before:from-transparent before:via-foreground/[0.04] before:to-transparent";
 
 const Bone = ({ className }: { className?: string }) => (
-  <div className={`rounded-lg bg-foreground/[0.06] ${shimmer} ${className ?? ""}`} />
+  <div
+    className={`rounded-lg bg-foreground/[0.06] ${shimmer} ${className ?? ""}`}
+  />
 );
 
 /** Matches PodcastSection grid layout */
@@ -22,9 +25,10 @@ export const PodcastSkeleton = () => (
       </div>
       {/* Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 grid-gap">
-        {[...Array(6)].map((_, i) => (
-          <Bone key={i} className="aspect-[3/4] rounded-xl" />
-        ))}
+        {[...Array(6)].map((_, i) => {
+          // biome-ignore lint/suspicious/noArrayIndexKey: identical skeleton bones have no stable identity
+          return <Bone key={i} className="aspect-[3/4] rounded-xl" />;
+        })}
       </div>
     </div>
   </section>

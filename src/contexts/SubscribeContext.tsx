@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, ReactNode } from "react";
+import { type ReactNode, createContext, useContext } from "react";
 
 interface SubscribeOptions {
   guestName?: string;
@@ -9,7 +9,9 @@ interface SubscribeOptions {
 }
 
 interface SubscribeContextType {
-  openSubscribe: (optionsOrEvent?: SubscribeOptions | React.SyntheticEvent) => void;
+  openSubscribe: (
+    optionsOrEvent?: SubscribeOptions | React.SyntheticEvent
+  ) => void;
 }
 
 const SubscribeContext = createContext<SubscribeContextType>({
@@ -28,7 +30,11 @@ interface SubscribeProviderProps {
 
 export const SubscribeProvider = ({ children }: SubscribeProviderProps) => {
   const openSubscribe = () => {
-    window.open("https://www.youtube.com/@FutureofMarketingwithAI", "_blank", "noopener,noreferrer");
+    window.open(
+      "https://www.youtube.com/@FutureofMarketingwithAI",
+      "_blank",
+      "noopener,noreferrer"
+    );
   };
 
   return (

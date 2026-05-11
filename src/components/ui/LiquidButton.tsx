@@ -1,8 +1,8 @@
 "use client";
 
-import { motion, HTMLMotionProps } from "framer-motion";
-import { forwardRef } from "react";
 import { cn } from "@/lib/utils";
+import { type HTMLMotionProps, motion } from "framer-motion";
+import { forwardRef } from "react";
 
 // iOS-style liquid spring animation config
 export const liquidSpring = {
@@ -33,11 +33,13 @@ const sizeClasses = {
 
 const variantClasses = {
   // Light glass for dark backgrounds
-  light: "bg-white/15 backdrop-blur-2xl border border-white/25 text-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.2)] hover:bg-white/25 hover:shadow-[0_4px_16px_-4px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.3)]",
-  // Dark glass for light backgrounds  
+  light:
+    "bg-white/15 backdrop-blur-2xl border border-white/25 text-white shadow-[0_2px_8px_-2px_rgba(0,0,0,0.15),inset_0_1px_0_rgba(255,255,255,0.2)] hover:bg-white/25 hover:shadow-[0_4px_16px_-4px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.3)]",
+  // Dark glass for light backgrounds
   dark: "bg-foreground text-background shadow-[0_4px_16px_-4px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_24px_-8px_rgba(0,0,0,0.3)]",
   // Default glass for light backgrounds
-  glass: "bg-white/60 backdrop-blur-2xl border border-white/40 text-foreground shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)] hover:bg-white/80 hover:shadow-[0_4px_16px_-4px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.8)]",
+  glass:
+    "bg-white/60 backdrop-blur-2xl border border-white/40 text-foreground shadow-[0_2px_8px_-2px_rgba(0,0,0,0.08),inset_0_1px_0_rgba(255,255,255,0.6)] hover:bg-white/80 hover:shadow-[0_4px_16px_-4px_rgba(0,0,0,0.12),inset_0_1px_0_rgba(255,255,255,0.8)]",
 };
 
 const LiquidButton = forwardRef<HTMLButtonElement, LiquidButtonProps>(

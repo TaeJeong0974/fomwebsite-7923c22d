@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 interface SectionLabel {
   id: string;
@@ -18,14 +18,15 @@ const SECTION_LABELS: SectionLabel[] = [
 
 // Get section number (01, 02, etc.)
 const getSectionNumber = (id: string): string => {
-  const index = SECTION_LABELS.findIndex(s => s.id === id);
-  return String(index + 1).padStart(2, '0');
+  const index = SECTION_LABELS.findIndex((s) => s.id === id);
+  return String(index + 1).padStart(2, "0");
 };
 
 const BRAND_TAGLINE = "THE FUTURE OF MARKETING";
 
 // Shared typography class for vertical labels
-const VERTICAL_TEXT_CLASS = "text-[10px] font-display font-semibold tracking-[0.2em] text-foreground whitespace-nowrap uppercase";
+const VERTICAL_TEXT_CLASS =
+  "text-[10px] font-display font-semibold tracking-[0.2em] text-foreground whitespace-nowrap uppercase";
 
 const StickyVerticalText = () => {
   const [currentSection, setCurrentSection] = useState<string>("hero");
@@ -45,11 +46,11 @@ const StickyVerticalText = () => {
           top: rect.top + scrollY,
           bottom: rect.bottom + scrollY,
         };
-      }).filter(s => s.top !== 0 || s.bottom !== 0);
+      }).filter((s) => s.top !== 0 || s.bottom !== 0);
 
       // Determine which section is most visible
       const viewportMiddle = scrollY + windowHeight / 2;
-      
+
       for (let i = sections.length - 1; i >= 0; i--) {
         if (viewportMiddle >= sections[i].top) {
           setCurrentSection(sections[i].id);
@@ -63,7 +64,8 @@ const StickyVerticalText = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const currentLabel = SECTION_LABELS.find(s => s.id === currentSection)?.label || "WELCOME";
+  const currentLabel =
+    SECTION_LABELS.find((s) => s.id === currentSection)?.label || "WELCOME";
   const currentNumber = getSectionNumber(currentSection);
 
   return (
@@ -72,13 +74,17 @@ const StickyVerticalText = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
+        transition={{
+          duration: 1,
+          delay: 0.5,
+          ease: [0.22, 1, 0.36, 1] as const,
+        }}
         className="fixed top-1/2 z-40 hidden xl:block xl:left-8 2xl:left-12"
         style={{ transform: "translateY(-50%)" }}
       >
-        <div 
+        <div
           className={VERTICAL_TEXT_CLASS}
-          style={{ 
+          style={{
             writingMode: "vertical-rl",
             transform: "rotate(180deg)",
           }}
@@ -91,7 +97,11 @@ const StickyVerticalText = () => {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
+        transition={{
+          duration: 1,
+          delay: 0.5,
+          ease: [0.22, 1, 0.36, 1] as const,
+        }}
         className="fixed top-1/2 z-40 hidden xl:block xl:right-8 2xl:right-12"
         style={{ transform: "translateY(-50%)" }}
       >
@@ -109,12 +119,12 @@ const StickyVerticalText = () => {
               {currentNumber}
             </motion.span>
           </AnimatePresence>
-          
+
           {/* Divider line */}
           <div className="w-px h-4 bg-foreground/30" />
-          
+
           {/* Section label - consistent height for all labels */}
-          <div 
+          <div
             className="flex items-center justify-center"
             style={{ writingMode: "vertical-rl", height: "160px" }}
           >
@@ -124,7 +134,10 @@ const StickyVerticalText = () => {
                 initial={{ opacity: 0, x: 4 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -4 }}
-                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] as const }}
+                transition={{
+                  duration: 0.5,
+                  ease: [0.22, 1, 0.36, 1] as const,
+                }}
                 className={VERTICAL_TEXT_CLASS}
               >
                 {currentLabel}

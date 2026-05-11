@@ -1,13 +1,16 @@
 "use client";
 
-import { NewsletterMention } from "@/lib/podcastData";
+import type { NewsletterMention } from "@/lib/podcastData";
 
 interface EpisodeNewslettersProps {
   newsletters: NewsletterMention[];
   guestFirstName: string;
 }
 
-const EpisodeNewsletters = ({ newsletters, guestFirstName }: EpisodeNewslettersProps) => {
+const EpisodeNewsletters = ({
+  newsletters,
+  guestFirstName,
+}: EpisodeNewslettersProps) => {
   if (!newsletters || newsletters.length === 0) return null;
 
   return (
@@ -27,14 +30,19 @@ const EpisodeNewsletters = ({ newsletters, guestFirstName }: EpisodeNewslettersP
               >
                 <span className="font-medium">{newsletter.name}</span>
                 {newsletter.description && (
-                  <span className="text-foreground/60">— {newsletter.description}</span>
+                  <span className="text-foreground/60">
+                    — {newsletter.description}
+                  </span>
                 )}
               </a>
             ) : (
               <span className="text-foreground">
                 <span className="font-medium">{newsletter.name}</span>
                 {newsletter.description && (
-                  <span className="text-foreground/60"> — {newsletter.description}</span>
+                  <span className="text-foreground/60">
+                    {" "}
+                    — {newsletter.description}
+                  </span>
                 )}
               </span>
             )}

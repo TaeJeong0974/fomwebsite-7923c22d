@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, useInView } from "framer-motion";
+import { useCallback, useRef, useState } from "react";
 const FomIcon = "/images/assets/FOM_Icon.svg";
-import { useSubscribe } from "@/contexts/SubscribeContext";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
+import { useSubscribe } from "@/contexts/SubscribeContext";
 import { fomMaskStyles } from "@/lib/logoMask";
 
 const AnimatedFooterLogo = () => {
@@ -26,7 +26,7 @@ const AnimatedFooterLogo = () => {
   return (
     <div
       className="relative w-full will-change-transform"
-      style={{ transform: 'translateZ(0)' }}
+      style={{ transform: "translateZ(0)" }}
       onMouseEnter={handleEnter}
       onMouseLeave={handleLeave}
     >
@@ -38,26 +38,33 @@ const AnimatedFooterLogo = () => {
       <motion.div
         className="absolute inset-0 w-full h-full pointer-events-none"
         style={{
-          aspectRatio: '598 / 186',
+          aspectRatio: "598 / 186",
           ...fomMaskStyles,
-          background: 'linear-gradient(135deg, rgb(255,100,80) 0%, rgb(255,60,120) 25%, rgb(100,140,255) 50%, rgb(255,180,60) 75%, rgb(255,100,80) 100%)',
-          backgroundSize: '400% 400%',
-          animation: isHovered ? 'footer-gradient-shift 10s ease-in-out infinite' : 'none',
-          willChange: 'opacity',
-          transform: 'translateZ(0)',
+          background:
+            "linear-gradient(135deg, rgb(255,100,80) 0%, rgb(255,60,120) 25%, rgb(100,140,255) 50%, rgb(255,180,60) 75%, rgb(255,100,80) 100%)",
+          backgroundSize: "400% 400%",
+          animation: isHovered
+            ? "footer-gradient-shift 10s ease-in-out infinite"
+            : "none",
+          willChange: "opacity",
+          transform: "translateZ(0)",
         }}
         initial={{ opacity: 0 }}
         animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: isHovered ? 0.4 : 0.8, delay: isHovered ? 0.15 : 0 }}
+        transition={{
+          duration: isHovered ? 0.4 : 0.8,
+          delay: isHovered ? 0.15 : 0,
+        }}
       />
       <motion.div
         className="absolute inset-0 w-full h-full pointer-events-none"
         style={{
-          aspectRatio: '598 / 186',
-          background: 'linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0) 100%)',
+          aspectRatio: "598 / 186",
+          background:
+            "linear-gradient(135deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0.8) 50%, rgba(0,0,0,0) 100%)",
           ...fomMaskStyles,
-          willChange: 'opacity',
-          transform: 'translateZ(0)',
+          willChange: "opacity",
+          transform: "translateZ(0)",
         }}
         initial={{ opacity: 0 }}
         animate={{ opacity: isHovered ? 1 : 0 }}
@@ -77,7 +84,11 @@ const Footer = () => {
   const linkHref = (hash: string) => (isHomePage ? hash : `/${hash}`);
 
   return (
-    <footer id="site-footer" ref={footerRef} className="pt-16 sm:pt-20 lg:pt-24 pb-0 overflow-hidden">
+    <footer
+      id="site-footer"
+      ref={footerRef}
+      className="pt-16 sm:pt-20 lg:pt-24 pb-0 overflow-hidden"
+    >
       <div className="container mx-auto container-padding">
         {/* Top section: tagline + nav links */}
         <motion.div
@@ -93,12 +104,81 @@ const Footer = () => {
 
           {/* Nav links */}
           <ul className="flex flex-col gap-1 text-body text-foreground/70">
-            <li><Link href={linkHref('#podcast')} className="relative hover:text-foreground transition-colors duration-300 group inline-flex"><span className="absolute right-full top-1/2 -translate-y-1/2 mr-3 h-[3px] rounded-full w-0 group-hover:w-5 transition-all duration-300 ease-smooth" style={{ backgroundColor: '#594881' }} />Podcast</Link></li>
-            <li><Link href={linkHref('#events')} className="relative hover:text-foreground transition-colors duration-300 group inline-flex"><span className="absolute right-full top-1/2 -translate-y-1/2 mr-3 h-[3px] rounded-full w-0 group-hover:w-5 transition-all duration-300 ease-smooth" style={{ backgroundColor: '#9A5B77' }} />Events</Link></li>
-            <li><Link href={linkHref('#contact')} className="relative hover:text-foreground transition-colors duration-300 group inline-flex"><span className="absolute right-full top-1/2 -translate-y-1/2 mr-3 h-[3px] rounded-full w-0 group-hover:w-5 transition-all duration-300 ease-smooth" style={{ backgroundColor: '#D4763A' }} />Connect</Link></li>
-            <li><button onClick={openSubscribe} className="relative hover:text-foreground transition-colors duration-300 text-left group inline-flex"><span className="absolute right-full top-1/2 -translate-y-1/2 mr-3 h-[3px] rounded-full w-0 group-hover:w-5 transition-all duration-300 ease-smooth" style={{ backgroundColor: '#B45250' }} />Subscribe</button></li>
-            <li><Link href="/privacy" className="relative hover:text-foreground transition-colors duration-300 group inline-flex"><span className="absolute right-full top-1/2 -translate-y-1/2 mr-3 h-[3px] rounded-full w-0 group-hover:w-5 transition-all duration-300 ease-smooth" style={{ backgroundColor: '#3A7CA5' }} />Privacy</Link></li>
-            <li><a href="/rss.xml" target="_blank" rel="noopener noreferrer" className="relative hover:text-foreground transition-colors duration-300 group inline-flex"><span className="absolute right-full top-1/2 -translate-y-1/2 mr-3 h-[3px] rounded-full w-0 group-hover:w-5 transition-all duration-300 ease-smooth" style={{ backgroundColor: '#D4763A' }} />RSS Feed</a></li>
+            <li>
+              <Link
+                href={linkHref("#podcast")}
+                className="relative hover:text-foreground transition-colors duration-300 group inline-flex"
+              >
+                <span
+                  className="absolute right-full top-1/2 -translate-y-1/2 mr-3 h-[3px] rounded-full w-0 group-hover:w-5 transition-all duration-300 ease-smooth"
+                  style={{ backgroundColor: "#594881" }}
+                />
+                Podcast
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={linkHref("#events")}
+                className="relative hover:text-foreground transition-colors duration-300 group inline-flex"
+              >
+                <span
+                  className="absolute right-full top-1/2 -translate-y-1/2 mr-3 h-[3px] rounded-full w-0 group-hover:w-5 transition-all duration-300 ease-smooth"
+                  style={{ backgroundColor: "#9A5B77" }}
+                />
+                Events
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={linkHref("#contact")}
+                className="relative hover:text-foreground transition-colors duration-300 group inline-flex"
+              >
+                <span
+                  className="absolute right-full top-1/2 -translate-y-1/2 mr-3 h-[3px] rounded-full w-0 group-hover:w-5 transition-all duration-300 ease-smooth"
+                  style={{ backgroundColor: "#D4763A" }}
+                />
+                Connect
+              </Link>
+            </li>
+            <li>
+              <button
+                type="button"
+                onClick={openSubscribe}
+                className="relative hover:text-foreground transition-colors duration-300 text-left group inline-flex"
+              >
+                <span
+                  className="absolute right-full top-1/2 -translate-y-1/2 mr-3 h-[3px] rounded-full w-0 group-hover:w-5 transition-all duration-300 ease-smooth"
+                  style={{ backgroundColor: "#B45250" }}
+                />
+                Subscribe
+              </button>
+            </li>
+            <li>
+              <Link
+                href="/privacy"
+                className="relative hover:text-foreground transition-colors duration-300 group inline-flex"
+              >
+                <span
+                  className="absolute right-full top-1/2 -translate-y-1/2 mr-3 h-[3px] rounded-full w-0 group-hover:w-5 transition-all duration-300 ease-smooth"
+                  style={{ backgroundColor: "#3A7CA5" }}
+                />
+                Privacy
+              </Link>
+            </li>
+            <li>
+              <a
+                href="/rss.xml"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative hover:text-foreground transition-colors duration-300 group inline-flex"
+              >
+                <span
+                  className="absolute right-full top-1/2 -translate-y-1/2 mr-3 h-[3px] rounded-full w-0 group-hover:w-5 transition-all duration-300 ease-smooth"
+                  style={{ backgroundColor: "#D4763A" }}
+                />
+                RSS Feed
+              </a>
+            </li>
           </ul>
         </motion.div>
       </div>
@@ -119,13 +199,37 @@ const Footer = () => {
           transition={{ duration: 0.8, delay: 0.5, ease: liquidEase }}
         >
           <p className="text-body-sm text-foreground/40">
-            © {new Date().getFullYear()} Future of Marketing. All rights reserved.
+            © {new Date().getFullYear()} Future of Marketing. All rights
+            reserved.
           </p>
           <p className="text-body-sm text-foreground/40">
             Brought to you by{" "}
-            <a href="https://www.xyzvc.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors duration-300">XYZ Venture Capital</a>,{" "}
-            <a href="https://upside.tech" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors duration-300">Upside</a>,{" "}
-            <a href="https://www.graphitehq.com" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors duration-300">Graphite Growth</a>
+            <a
+              href="https://www.xyzvc.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition-colors duration-300"
+            >
+              XYZ Venture Capital
+            </a>
+            ,{" "}
+            <a
+              href="https://upside.tech"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition-colors duration-300"
+            >
+              Upside
+            </a>
+            ,{" "}
+            <a
+              href="https://www.graphitehq.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-foreground transition-colors duration-300"
+            >
+              Graphite Growth
+            </a>
           </p>
         </motion.div>
       </div>

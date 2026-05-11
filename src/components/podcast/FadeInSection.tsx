@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { liquidEase } from "@/components/animations/PageLoadAnimation";
+import { motion } from "framer-motion";
 
 interface FadeInSectionProps {
   children: React.ReactNode;
@@ -16,7 +16,13 @@ const fadeInVariants = {
   visible: { opacity: 1, y: 0 },
 };
 
-const FadeInSection = ({ children, className, delay = 0, id, ...rest }: FadeInSectionProps) => (
+const FadeInSection = ({
+  children,
+  className,
+  delay = 0,
+  id,
+  ...rest
+}: FadeInSectionProps) => (
   <motion.div
     id={id}
     className={className}

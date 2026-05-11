@@ -6,10 +6,18 @@ interface EpisodeTopicsProps {
   title?: string;
 }
 
-const EpisodeTopics = ({ topics, detailTags, title = "Topics Covered" }: EpisodeTopicsProps) => {
-  if ((!topics || topics.length === 0) && (!detailTags || detailTags.length === 0)) return null;
+const EpisodeTopics = ({
+  topics,
+  detailTags,
+  title = "Topics Covered",
+}: EpisodeTopicsProps) => {
+  if (
+    (!topics || topics.length === 0) &&
+    (!detailTags || detailTags.length === 0)
+  )
+    return null;
 
-  const formatNumber = (index: number) => String(index + 1).padStart(2, '0');
+  const formatNumber = (index: number) => String(index + 1).padStart(2, "0");
 
   return (
     <div className="max-w-prose">
@@ -35,16 +43,25 @@ const EpisodeTopics = ({ topics, detailTags, title = "Topics Covered" }: Episode
         <div className="border-t border-border">
           {/* Table Header */}
           <div className="flex items-center py-3 border-b border-border">
-            <span className="w-12 flex-shrink-0 text-table-header font-medium text-muted-foreground">No.</span>
-            <span className="text-table-header font-medium text-muted-foreground">Topic</span>
+            <span className="w-12 flex-shrink-0 text-table-header font-medium text-muted-foreground">
+              No.
+            </span>
+            <span className="text-table-header font-medium text-muted-foreground">
+              Topic
+            </span>
           </div>
           {/* Table Rows */}
           {topics.map((topic, index) => (
-            <div key={index} className="flex items-start py-5 border-b border-border/60 last:border-b-0">
+            <div
+              key={topic}
+              className="flex items-start py-5 border-b border-border/60 last:border-b-0"
+            >
               <span className="w-12 flex-shrink-0 text-sm text-muted-foreground tabular-nums pt-0.5">
                 {formatNumber(index)}
               </span>
-              <p className="text-sm lg:text-base text-foreground leading-relaxed">{topic}</p>
+              <p className="text-sm lg:text-base text-foreground leading-relaxed">
+                {topic}
+              </p>
             </div>
           ))}
         </div>

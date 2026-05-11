@@ -1,10 +1,10 @@
-import HeroSection from "@/components/HeroSection";
-import StickyVerticalText from "@/components/StickyVerticalText";
-import Footer from "@/components/Footer";
-import PodcastSection from "@/components/PodcastSection";
-import EventsSection from "@/components/EventsSection";
 import CTASection from "@/components/CTASection";
-import { SITE_URL, SITE_DESCRIPTION } from "@/lib/seoConstants";
+import EventsSection from "@/components/EventsSection";
+import Footer from "@/components/Footer";
+import HeroSection from "@/components/HeroSection";
+import PodcastSection from "@/components/PodcastSection";
+import StickyVerticalText from "@/components/StickyVerticalText";
+import { SITE_DESCRIPTION, SITE_URL } from "@/lib/seoConstants";
 
 const homepageJsonLd = {
   "@context": "https://schema.org",

@@ -1,8 +1,8 @@
 "use client";
 
+import { liquidEase } from "@/components/animations/PageLoadAnimation";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { liquidEase } from "@/components/animations/PageLoadAnimation";
 
 interface PageTransitionProps {
   children: React.ReactNode;

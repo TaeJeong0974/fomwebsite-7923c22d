@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { podcastEpisodes } from "@/lib/podcastData";
+import PodcastDetailClient from "@/components/podcast/PodcastDetailClient";
+import { OG_IMAGES } from "@/lib/episodeImages";
 import {
-  buildEpisodeSeo,
   buildEpisodeJsonLd,
+  buildEpisodeSeo,
   getEpisodeCanonicalUrl,
   getYouTubeThumbnail,
 } from "@/lib/episodeUtils";
-import { OG_IMAGES } from "@/lib/episodeImages";
+import { podcastEpisodes } from "@/lib/podcastData";
 import { DEFAULT_OG_IMAGE } from "@/lib/seoConstants";
-import PodcastDetailClient from "@/components/podcast/PodcastDetailClient";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 type RouteParams = Promise<{ slug: string }>;
 
@@ -17,7 +17,9 @@ export function generateStaticParams() {
   return podcastEpisodes.map((ep) => ({ slug: ep.slug }));
 }
 
-export async function generateMetadata({ params }: { params: RouteParams }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: { params: RouteParams }): Promise<Metadata> {
   const { slug } = await params;
   const episode = podcastEpisodes.find((ep) => ep.slug === slug);
   if (!episode) return {};
@@ -26,7 +28,9 @@ export async function generateMetadata({ params }: { params: RouteParams }): Pro
   const canonical = getEpisodeCanonicalUrl(slug);
   const ogImage =
     OG_IMAGES[slug] ??
-    (episode.youtubeUrl ? getYouTubeThumbnail(episode.youtubeUrl, "hqdefault") : null) ??
+    (episode.youtubeUrl
+      ? getYouTubeThumbnail(episode.youtubeUrl, "hqdefault")
+      : null) ??
     DEFAULT_OG_IMAGE;
 
   return {
@@ -50,15 +54,20 @@ export async function generateMetadata({ params }: { params: RouteParams }): Pro
   };
 }
 
-export default async function PodcastDetailPage({ params }: { params: RouteParams }) {
+export default async function PodcastDetailPage({
+  params,
+}: { params: RouteParams }) {
   const { slug } = await params;
   const episode = podcastEpisodes.find((ep) => ep.slug === slug);
   if (!episode) notFound();
 
-  const isIntro = !episode.comingSoon && episode.slug === "the-future-of-marketing";
+  const isIntro =
+    !episode.comingSoon && episode.slug === "the-future-of-marketing";
   const ogImage =
     OG_IMAGES[slug] ??
-    (episode.youtubeUrl ? getYouTubeThumbnail(episode.youtubeUrl, "hqdefault") : null);
+    (episode.youtubeUrl
+      ? getYouTubeThumbnail(episode.youtubeUrl, "hqdefault")
+      : null);
   const jsonLd = buildEpisodeJsonLd(episode, slug, isIntro, ogImage);
 
   return (
