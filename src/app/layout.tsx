@@ -10,9 +10,7 @@ import type { Metadata } from "next";
 import Providers from "./providers";
 import "./globals.css";
 
-const resolvedBase = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : SITE_URL;
+const resolvedBase = process.env.NEXT_PUBLIC_SITE_URL ?? SITE_URL;
 
 export const metadata: Metadata = {
   metadataBase: new URL(resolvedBase),
