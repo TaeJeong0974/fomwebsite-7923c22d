@@ -57,22 +57,21 @@ export const POSTER_IMAGES: Record<string, string> = {
   "wendy-werve": wendyCover,
 };
 
-const SITE_URL = "https://fom.xyz";
 const OG_VERSION = "v4";
 
 export const OG_IMAGES: Record<string, string> = {
-  "the-future-of-marketing": `${SITE_URL}/images/og-the-future-of-marketing.jpg?${OG_VERSION}`,
-  "meagen-eisenberg": `${SITE_URL}/images/og-meagen-eisenberg.jpg?${OG_VERSION}`,
-  "lena-waters": `${SITE_URL}/images/og-lena-waters.jpg?${OG_VERSION}`,
-  "dave-steer": `${SITE_URL}/images/og-dave-steer.jpg?${OG_VERSION}`,
-  "sara-varni": `${SITE_URL}/images/og-sara-varni.jpg?${OG_VERSION}`,
-  "kate-johnson": `${SITE_URL}/images/og-kate-johnson.jpg?${OG_VERSION}`,
-  "idan-koren": `${SITE_URL}/images/og-idan-koren.jpg?${OG_VERSION}`,
-  "lindsey-irvine": `${SITE_URL}/images/og-lindsey-irvine.jpg?${OG_VERSION}`,
-  "sheila-vashee": `${SITE_URL}/images/og-sheila-vashee.jpg?${OG_VERSION}`,
-  "ceci-stallsmith": `${SITE_URL}/images/og-ceci-stallsmith.jpg?${OG_VERSION}`,
-  "katrina-wong": `${SITE_URL}/images/og-katrina-wong.jpg?${OG_VERSION}`,
-  "wendy-werve": `${SITE_URL}/images/og-wendy-werve.jpg?${OG_VERSION}`,
+  "the-future-of-marketing": `/images/og-the-future-of-marketing.jpg?${OG_VERSION}`,
+  "meagen-eisenberg": `/images/og-meagen-eisenberg.jpg?${OG_VERSION}`,
+  "lena-waters": `/images/og-lena-waters.jpg?${OG_VERSION}`,
+  "dave-steer": `/images/og-dave-steer.jpg?${OG_VERSION}`,
+  "sara-varni": `/images/og-sara-varni.jpg?${OG_VERSION}`,
+  "kate-johnson": `/images/og-kate-johnson.jpg?${OG_VERSION}`,
+  "idan-koren": `/images/og-idan-koren.jpg?${OG_VERSION}`,
+  "lindsey-irvine": `/images/og-lindsey-irvine.jpg?${OG_VERSION}`,
+  "sheila-vashee": `/images/og-sheila-vashee.jpg?${OG_VERSION}`,
+  "ceci-stallsmith": `/images/og-ceci-stallsmith.jpg?${OG_VERSION}`,
+  "katrina-wong": `/images/og-katrina-wong.jpg?${OG_VERSION}`,
+  "wendy-werve": `/images/og-wendy-werve.jpg?${OG_VERSION}`,
 };
 
 export const HOST_IMAGES = [hostMada, hostEthan, hostCamille];

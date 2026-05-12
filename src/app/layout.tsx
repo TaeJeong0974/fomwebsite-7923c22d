@@ -10,8 +10,12 @@ import type { Metadata } from "next";
 import Providers from "./providers";
 import "./globals.css";
 
+const resolvedBase = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : SITE_URL;
+
 export const metadata: Metadata = {
-  metadataBase: new URL(SITE_URL),
+  metadataBase: new URL(resolvedBase),
   title: {
     default: SITE_TITLE,
     template: "%s | Future of Marketing",
