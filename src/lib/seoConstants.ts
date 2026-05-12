@@ -1,5 +1,5 @@
 export const SITE_URL = "https://fom.xyz";
-export const DEFAULT_OG_IMAGE = `${SITE_URL}/og/default.jpg`;
+export const DEFAULT_OG_IMAGE = "/images/og-homepage.jpg";
 export const SITE_TITLE =
   "Future of Marketing Podcast | How AI Is Changing Marketing";
 export const SITE_DESCRIPTION =
