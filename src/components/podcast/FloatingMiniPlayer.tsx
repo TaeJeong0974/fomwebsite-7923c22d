@@ -7,6 +7,7 @@ import {
   YouTubeIcon,
 } from "@/components/icons/PlatformIcons";
 import { Play, X } from "lucide-react";
+import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 const guestBg = "/images/assets/guest-bg.jpg";
 
@@ -166,12 +167,13 @@ const FloatingMiniPlayer = ({
               onClick={handlePlay}
               aria-label="Play episode"
             >
-              <img
+              <Image
                 src={thumbnailImage || thumbnailUrl || guestBg}
                 alt="Episode thumbnail"
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-smooth [@media(hover:hover)]:group-hover:scale-105"
+                fill
+                className="object-cover transition-transform duration-700 ease-smooth [@media(hover:hover)]:group-hover:scale-105"
                 loading="eager"
-                decoding="async"
+                unoptimized={!!(thumbnailImage || thumbnailUrl)}
               />
               <div className="absolute bottom-4 right-4 sm:bottom-6 sm:right-6 z-10">
                 <div className="w-14 h-14 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow-lg transition-transform duration-200 [@media(hover:hover)]:group-hover:scale-110">
@@ -201,12 +203,13 @@ const FloatingMiniPlayer = ({
             className="relative w-full aspect-video rounded-lg overflow-hidden bg-neutral-900 ring-1 ring-white/10 cursor-pointer group/pip"
             onClick={handlePipClick}
           >
-            <img
+            <Image
               src={thumbnailImage || thumbnailUrl || guestBg}
               alt="Episode thumbnail"
-              className="absolute inset-0 w-full h-full object-cover"
+              fill
+              className="object-cover"
               loading="lazy"
-              decoding="async"
+              unoptimized={!!(thumbnailImage || thumbnailUrl)}
             />
             <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/pip:opacity-100 transition-opacity duration-200">
               <div className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center shadow-md">

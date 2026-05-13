@@ -318,10 +318,11 @@ const HeroSection = () => {
                           style={{ pointerEvents: isFlipped ? "auto" : "none" }}
                         >
                           {/* Teaser background image */}
-                          <img
+                          <Image
                             src={teaserBg}
                             alt=""
-                            className="w-full h-auto object-contain object-bottom absolute bottom-0 left-0"
+                            fill
+                            className="object-contain object-bottom"
                           />
                           {/* Gradient mask over image */}
                           <div className="absolute inset-0 bg-[linear-gradient(to_bottom,hsl(var(--background))_0%,hsl(var(--background))_40%,hsl(var(--background)/0.8)_60%,hsl(var(--background)/0.3)_80%,transparent_100%)]" />
@@ -476,10 +477,11 @@ const HeroSection = () => {
                           }}
                         >
                           {/* Teaser background image */}
-                          <img
+                          <Image
                             src={teaserBg}
                             alt=""
-                            className="w-full h-auto object-contain object-bottom absolute bottom-0 left-0"
+                            fill
+                            className="object-contain object-bottom"
                           />
                           {/* Gradient mask over image */}
                           <div className="absolute inset-0 bg-[linear-gradient(to_bottom,hsl(var(--background))_0%,hsl(var(--background))_40%,hsl(var(--background)/0.8)_60%,hsl(var(--background)/0.3)_80%,transparent_100%)]" />

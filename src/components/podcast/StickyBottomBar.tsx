@@ -8,6 +8,7 @@ import {
 } from "@/components/icons/PlatformIcons";
 import { AnimatePresence, motion } from "framer-motion";
 import { Check, Share2 } from "lucide-react";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 
 interface StickyBottomBarProps {
@@ -78,10 +79,12 @@ const StickyBottomBar = ({
                 onClick={onPlayClick}
                 className="relative w-20 aspect-video rounded-lg overflow-hidden shrink-0 ring-1 ring-foreground/5 hover:ring-foreground/15 transition-all duration-200 hover:scale-105 cursor-pointer"
               >
-                <img
+                <Image
                   src={thumbnailUrl}
                   alt={episodeName}
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
+                  unoptimized
                 />
                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
                   <svg

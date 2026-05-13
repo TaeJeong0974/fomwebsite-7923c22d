@@ -3,6 +3,7 @@
 import { useIsMobile } from "@/hooks/use-mobile";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 import { Play } from "lucide-react";
+import Image from "next/image";
 import { useRef, useState } from "react";
 const fomThumbnail = "/images/assets/fom-2025-thumbnail.jpg";
 
@@ -108,12 +109,12 @@ const EventsSection = () => {
                 />
               ) : (
                 <>
-                  <img
+                  <Image
                     src={fomThumbnail}
                     alt="FOM 2025 Event"
-                    className="absolute inset-0 w-full h-full object-cover scale-110"
+                    fill
+                    className="object-cover scale-110"
                     loading="lazy"
-                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 hover-transition" />
 
