@@ -28,7 +28,12 @@ const AnimatedLogo = ({ className }: { className?: string }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       {/* Base static logo */}
-      <Image src={FomLogo} alt="Future of Marketing" fill className="object-contain" />
+      <Image
+        src={FomLogo}
+        alt="Future of Marketing"
+        fill
+        className="object-contain"
+      />
 
       {/* Animated gradient overlay - masked by the shapes */}
       <motion.div
