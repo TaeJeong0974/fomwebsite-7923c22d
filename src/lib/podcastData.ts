@@ -675,7 +675,8 @@ The takeaway is clear: in a market defined by rapid change, the winners will be 
     title: "Co-Founder and Co-CEO",
     company: "Chili Piper",
     companyDomain: "chilipiper.com",
-    overview: "From 22 Marketers to 2: Automating 80% of Marketing at Chili Piper",
+    overview:
+      "From 22 Marketers to 2: Automating 80% of Marketing at Chili Piper",
     bio: `Alina Vandenberghe is the co-founder and Co-CEO of Chili Piper, a demand conversion platform used by companies like Spotify, Airbnb, Shopify, and Snapchat to double inbound conversion rates. With a background in computer science, she has built mobile products used by millions at companies like Thomson Reuters, Bloomberg, and Pearson, some of which were featured by Steve Jobs on stage.
 
 An entrepreneur from an early age, Alina started her first business before high school and has since grown Chili Piper to a near-billion-dollar valuation. Known for her technical approach to go-to-market, she combines engineering rigor with bold experimentation to rethink how modern marketing teams operate.
