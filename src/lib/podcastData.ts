@@ -668,4 +668,58 @@ The takeaway is clear: in a market defined by rapid change, the winners will be 
     publishedDate: "Coming Soon",
     comingSoon: true,
   },
+  {
+    id: 12,
+    slug: "alina-vandenberghe",
+    name: "Alina Vandenberghe",
+    title: "Co-Founder and Co-CEO",
+    company: "Chili Piper",
+    companyDomain: "chilipiper.com",
+    overview:
+      "From 22 Marketers to 2: Automating 80% of Marketing at Chili Piper",
+    bio: `Alina Vandenberghe is the co-founder and Co-CEO of Chili Piper, a demand conversion platform used by companies like Spotify, Airbnb, Shopify, and Snapchat to double inbound conversion rates. With a background in computer science, she has built mobile products used by millions at companies like Thomson Reuters, Bloomberg, and Pearson, some of which were featured by Steve Jobs on stage.
+
+An entrepreneur from an early age, Alina started her first business before high school and has since grown Chili Piper to a near-billion-dollar valuation. Known for her technical approach to go-to-market, she combines engineering rigor with bold experimentation to rethink how modern marketing teams operate.
+
+Through her writing and leadership, she also shares lessons on entrepreneurship, career growth, and navigating the journey as a woman and mother in tech, encouraging others to push beyond conventional limits and build on their own terms.`,
+    fullDescription: `What if the future of marketing isn't about scaling teams but shrinking them?
+
+In this episode of Future of Marketing, hosts Ethan Smith and Mada Seghete sit down with Alina Vandenberghe, Co-Founder and Co-CEO of Chili Piper, to unpack her unconventional approach to marketing: reducing her team from 22 marketers to just 2, while increasing performance and driving over 1,400 qualified booked meetings annually.
+
+Alina brings a deeply technical and entrepreneurial perspective to marketing. With a background in computer science and experience building products used by millions, she approached marketing like an engineering problem, auditing every task, measuring impact versus effort, and systematically automating what didn't require human creativity.
+
+A core theme throughout the conversation is that most marketing teams are overloaded with low-impact, repetitive work. By identifying and automating up to 80% of these tasks, Alina was able to free up time and resources to focus on what actually drives growth: strategy, creativity, and bold thinking.
+
+The discussion also challenges traditional metrics. Alina explains why booked meetings alone can be misleading and emphasizes the importance of tracking the full customer journey, from pipeline to retention, to understand true business impact. She also highlights how small, often invisible improvements, like filtering out fake leads, can have outsized effects on team productivity and morale.
+
+Another key focus is the evolving role of AI. While AI excels at handling repetitive and data-heavy tasks, Alina argues that it naturally trends toward average outcomes. The real competitive advantage comes from human marketers who can take contrarian positions, demonstrate taste, and create emotionally resonant work that stands out.
+
+Ultimately, this conversation reframes the role of marketing teams: not as executors of campaigns, but as strategic operators who leverage AI to move faster, think bigger, and focus on the work that truly differentiates.`,
+    topics: [
+      "How to audit and prioritize marketing tasks for automation using impact vs. effort",
+      "Why most B2B marketing teams are overstaffed and what to do instead",
+      "How automating repetitive work can increase, not decrease, performance",
+      "Why booked meetings aren't enough and how to measure true revenue impact",
+      "The importance of mapping the full customer journey from pipeline to retention",
+      "How small operational fixes (like filtering bad leads) can drive massive ROI",
+      "Practical ways to unify and leverage data without complex infrastructure",
+      "Why AI tends toward average outcomes and where humans still win",
+      "The role of contrarian thinking and creative risk-taking in modern marketing",
+      "What a high-performing, lean marketing team actually looks like",
+      "How to balance automation with authenticity in channels like LinkedIn",
+      "What skills will matter most for marketers in an AI-first world",
+    ],
+    themes: ["AI"],
+    chapters: [],
+    youtubeUrl: "https://youtu.be/yK0DRWzOt1I",
+    spotifyUrl: "https://bit.ly/4dChZHK",
+    appleUrl: "https://bit.ly/3PT2285",
+    duration: "46 min",
+    publishedDate: "May 19, 2026",
+    comingSoon: false,
+    linkedInUrl: "https://www.linkedin.com/in/alinav/",
+    pullQuote:
+      "Every CMO that I speak with, they are under a lot of pressure. They feel like the goals that they have are unachievable — what the founders or the CEO is asking of them in terms of reducing headcount and results are unattainable. Yet I believe that that tension that's being felt in the air right now — it's only a tension that comes from the fact that we're going through a lot of change.",
+    hosts: [podcastHosts[2], podcastHosts[0]], // Ethan Smith, Mada Seghete
+  },
 ];
