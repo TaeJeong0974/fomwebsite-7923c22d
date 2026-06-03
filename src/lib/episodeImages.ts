@@ -15,6 +15,8 @@ const guestIdan = "/images/assets/guest-idan-koren.jpg";
 const idanCover = "/images/assets/guest-idan-koren-cover.jpg";
 const guestKatrina = "/images/assets/guest-katrina-wong.jpg";
 const guestWendy = "/images/assets/guest-wendy-werve.jpg";
+const guestAnthony = "/images/assets/guest-anthony-kennada.jpg";
+const anthonyCover = "/images/assets/guest-anthony-kennada-cover.jpg";
 const guestAlina = "/images/assets/guest-alina-vandenberghe.jpg";
 const alinaCover = "/images/assets/guest-alina-vandenberghe-cover.jpg";
 const hostMada = "/images/assets/host-mada.jpg";
@@ -44,6 +46,7 @@ export const EPISODE_IMAGES: Record<string, string> = {
   "katrina-wong": guestKatrina,
   "wendy-werve": guestWendy,
   "alina-vandenberghe": guestAlina,
+  "anthony-kennada": guestAnthony,
 };
 
 export const POSTER_IMAGES: Record<string, string> = {
@@ -59,6 +62,7 @@ export const POSTER_IMAGES: Record<string, string> = {
   "idan-koren": idanCover,
   "wendy-werve": wendyCover,
   "alina-vandenberghe": alinaCover,
+  "anthony-kennada": anthonyCover,
 };
 
 const OG_VERSION = "v4";
@@ -77,6 +81,7 @@ export const OG_IMAGES: Record<string, string> = {
   "katrina-wong": `/images/og-katrina-wong.jpg?${OG_VERSION}`,
   "wendy-werve": `/images/og-wendy-werve.jpg?${OG_VERSION}`,
   "alina-vandenberghe": `/images/og-alina-vandenberghe.jpg?${OG_VERSION}`,
+  "anthony-kennada": `/images/og-anthony-kennada.jpg?${OG_VERSION}`,
 };
 
 export const HOST_IMAGES = [hostMada, hostEthan, hostCamille];
