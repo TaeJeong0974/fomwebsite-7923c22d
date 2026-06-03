@@ -26,19 +26,29 @@ function sortEpisodes<
   T extends { id: number; name: string; publishedDate: string },
 >(eps: T[], sortMode: SortMode): T[] {
   const sorted = [...eps];
+  // Empty/invalid publishedDate is treated as "just added, newest" for "newest" sort
+  // (Infinity) and as "very old" for "oldest" sort (-Infinity). Tiebreaker is id.
+  const dateTimeNewest = (s: string) => {
+    const t = new Date(s).getTime();
+    return Number.isNaN(t) ? Number.POSITIVE_INFINITY : t;
+  };
+  const dateTimeOldest = (s: string) => {
+    const t = new Date(s).getTime();
+    return Number.isNaN(t) ? Number.NEGATIVE_INFINITY : t;
+  };
   switch (sortMode) {
     case "newest":
-      return sorted.sort(
-        (a, b) =>
-          new Date(b.publishedDate).getTime() -
-          new Date(a.publishedDate).getTime()
-      );
+      return sorted.sort((a, b) => {
+        const diff =
+          dateTimeNewest(b.publishedDate) - dateTimeNewest(a.publishedDate);
+        return diff !== 0 ? diff : b.id - a.id;
+      });
     case "oldest":
-      return sorted.sort(
-        (a, b) =>
-          new Date(a.publishedDate).getTime() -
-          new Date(b.publishedDate).getTime()
-      );
+      return sorted.sort((a, b) => {
+        const diff =
+          dateTimeOldest(a.publishedDate) - dateTimeOldest(b.publishedDate);
+        return diff !== 0 ? diff : a.id - b.id;
+      });
     case "name":
       return sorted.sort((a, b) => a.name.localeCompare(b.name));
   }
